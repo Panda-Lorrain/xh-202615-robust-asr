@@ -1,0 +1,1772 @@
+arXiv:2501.00114v1 [eess.AS] 30 Dec 2024
+
+DiCoW: Diarization-Conditioned Whisper for Target
+Speaker Automatic Speech Recognition
+Alexander Poloka,1,∗, Dominik Klementa,b,1 , Martin Kocoura,1 , Jiangyu
+Hana , Federico Landinia , Bolaji Yusufa , Matthew Wiesnerb,c , Sanjeev
+Khudanpurb,c , Jan Černockýa , Lukáš Burgeta
+a
+
+Speech@FIT, Brno University of Technology, Czechia
+b
+CLSP,Johns Hopkins University, USA
+c
+HLTCOE, Johns Hopkins University, USA
+
+Abstract
+Speaker-attributed automatic speech recognition (ASR) in multi-speaker
+environments remains a significant challenge, particularly when systems conditioned on speaker embeddings fail to generalize to unseen speakers. In
+this work, we propose Diarization-Conditioned Whisper (DiCoW), a novel
+approach to target-speaker ASR that leverages speaker diarization outputs
+as conditioning information. DiCoW extends the pre-trained Whisper model
+by integrating diarization labels directly, eliminating reliance on speaker embeddings and reducing the need for extensive speaker-specific training data.
+Our method introduces frame-level diarization-dependent transformations
+(FDDT) and query-key biasing (QKb) techniques to refine the model’s focus on target speakers while effectively handling overlapping speech. By
+leveraging diarization outputs as conditioning signals, DiCoW simplifies the
+workflow for multi-speaker ASR, improves generalization to unseen speakers
+and enables more reliable transcription in real-world multi-speaker recordings. Additionally, we explore the integration of a connectionist temporal
+classification (CTC) head to Whisper and demonstrate its ability to improve
+transcription efficiency through hybrid decoding. Notably, we show that our
+approach is not limited to Whisper; it also provides similar benefits when applied to the Branchformer model. We validate DiCoW on real-world datasets,
+∗
+
+Corresponding author
+Email address: ipoloka@fit.vut.cz (Alexander Polok)
+1
+These authors contributed equally.
+
+Preprint submitted to Computer Speech & Language
+
+January 3, 2025
+
+including AMI and NOTSOFAR-1 from CHiME-8 challenge, as well as synthetic benchmarks such as Libri2Mix and LibriCSS, enabling direct comparisons with previous methods. Results demonstrate that DiCoW enhances the
+model’s target-speaker ASR capabilities while maintaining Whisper’s accuracy and robustness on single-speaker data.
+Keywords: Diarization-Conditioned Whisper, Target-Speaker ASR,
+Speaker Diarization, Long-Form ASR, Whisper Adaptation
+1. Introduction
+The rapid development of deep learning techniques and vast increases in
+available training data and computing resources have made low-error-rate
+ASR systems on single speaker recordings viable at reasonable latencies [1].
+Consequently, the research community has focused [2, 3, 4, 5] on the more
+challenging task of multi-speaker ASR, whose goal is the accurate transcription of multiple speakers in a recording, often including speaker-attributed
+ASR, whose goal is also to assign a speaker label to each spoken word.
+In this work, we focus on speaker-attributed ASR by adapting a singlespeaker ASR system using speaker diarization information to produce transcripts for all speakers.
+Speaker-attributed ASR-systems that combine diarization and speech
+recognition mainly operate in one of three ways: (a) running ASR and diarization independently, capturing the respective word and timing information from each, and using this timing information to assign words to speakers
+throughout a long conversation [6]; (b) using a fully cascaded pipeline where
+various orderings of diarization, speaker extraction or source separation are
+combined with ASR [7, 8]; and (c) using target speaker ASR (TS-ASR),
+where, in lieu of any source extraction or separation, the original audio is
+directly input along with some speaker conditioning, so that the system transcribes the speech belonging to the conditioned speaker [9].
+The conventional approach to TS-ASR is to extract speaker embeddings
+corresponding to the target speaker and to have these embeddings as an
+auxiliary input to the ASR system [10, 11]. Although the use of speaker
+embeddings from a pre-trained speaker embedding extractor [12, 13, 14] can
+give clues to the ASR about what information in its input to utilize and
+what information to ignore, it implicitly requires learning to map speaker
+embeddings to ASR speech embeddings. Learning a robust mapping gene2
+
+ralizing to new speaker sets at test time, especially when the speaker embeddings are trained independently, requires having a large number of speakers
+in the multi-speaker ASR training set. While this is manageable for simulated multi-speaker data (for which a large number of speakers could be
+obtained), data scarcity is arguably the most significant challenge for “in-thewild” multi-speaker ASR; it is therefore, imperative to develop systems that
+can be efficiently trained on the order of tens of hours of real conversational
+data.
+In this paper, we propose Diarization-Conditioned Whisper (DiCoW),
+a semi-end-to-end approach to speaker-attributed ASR where we condition
+Whisper [15] on diarization outputs, unlike prior approaches relying on speaker
+embeddings or specific modules to model speaker information. We use Whisper as the base ASR system in order to take advantage of its large-scale
+pretraining, multi-domain robustness, and long-form capabilities. However,
+we also present results with another “generic” single-speaker system, showcasing that our proposed method can attain strong results in combination
+with different ASR models. By directly using diarization labels, there is no
+need for the model to learn to map speaker and ASR embedding subspaces.
+This is accomplished by means of speaker conditioning in the form of timespeaker activity probabilities.
+To this end, we propose a pair of methods for incorporating speaker activity information into Whisper.
+The first of our methods, termed Query-Key Biasing, produces a mask
+for each target speaker from the diarization outputs. This mask is then used
+to modify the attention scores: the scores for frames that do not correspond
+to the desired speaker are attenuated, while those belonging to the target
+speaker are kept intact. This allows Whisper to focus on the target speaker’s
+ASR in the presence of large regions of silence and non-target speaker speech.
+We note that the attention scores are modified with trainable parameters so
+that the attenuation of non-target-speaker positions is only enforced at the
+beginning of training, and the model is still afforded the flexibility to learn
+how much non-target information to keep.
+In the second method, named Frame-Level Diarization Dependent Transformations (FDDT), the model is provided with more fine-grained access
+to the diarization output. Specifically, for each target speaker, an external diarizer categorizes speech frames into silence, target speaker, non-target
+speaker and overlapped speech. For each of the four categories and each
+Whisper encoder layer, a trainable affine transformation is introduced to
+3
+
+transform the input frames belonging to the given category before they are
+fed into the next encoder layer. Thus, the model is equipped to learn how to
+handle the different regions of speech.
+We experimentally validate our methods by fine-tuning Whisper on various datasets: NOTSOFAR-1 [16], AMI [17], and Libri2Mix [18] using groundtruth speaker segmentation information. At inference time, we utilize speaker
+diarization labels generated by an end-to-end speaker diarization system with
+vector clustering [19, 20]. We also evaluate our system on LibriCSS [21] without fine-tuning it on this dataset.
+Our experiments on both real and synthetic datasets show that, without
+considerably degrading its single-speaker recognition performance, our proposed methods imbue Whisper with strong speaker-attributed ASR capabilities across datasets, even when automatic diarization is used for conditioning.
+The rest of the paper is organized as follows:
+• Section 2 provides coverage of closely related works.
+• Section 3 gives a background of Whisper and our modifications to reduce its hallucination tendencies.
+• Section 4 describes the methods we propose to make a diarizationconditioned Whisper capable of target-speaker ASR.
+• Section 5 describes the setup of our experiments, including datasets,
+metrics, and training details.
+• Section 6 shows the results of our experiments.
+• Section 8 concludes the paper with a summary of our findings.
+2. Related Works
+Diarization-based ASR: The integration of ASR and diarization has been
+explored in various studies using different techniques. These include adding
+speaker role tokens during ASR decoding [22], clustering speaker embeddings,
+and mapping them to ASR tokens [23]—which requires deriving word timings
+for the tokens after decoding—and jointly producing ASR tokens, speaker
+tags, and timings [24]. While training a single model from scratch to perform
+both tasks at once can exploit the synergies between “what is said” and “who
+said it”, large training corpora are necessary, which are either only available
+4
+
+to large companies or of synthetic nature in academic settings. In contrast,
+we focus in this work on leveraging existing pre-trained models to reduce the
+training burden.
+Multi-speaker extensions of Whisper: There have been recent works extending Whisper for multi-speaker ASR. In [25], the model is prompt-tuned
+with a target speaker embedding so that the model recognizes only the speech
+of that speaker. Alternatively, in [26], Whisper is activated using speech from
+the target speaker instead of an embedding so that smaller modifications to
+the original architecture are required compared to [25]. In [27], a “speakerquerying” module is added to produce speaker prompts that are used as input
+in the decoder. While similar in motivation, our work differs from [25, 26, 27]
+in that instead of using speaker embeddings or enrollment speech, we directly
+utilize speaker activities. This simplifies the interaction with external modules and elides any need for selecting and processing enrollment speech.
+3. Long-form Modeling with Whisper
+OpenAI’s Whisper [15] is an attention-based encoder-decoder model for
+automatic speech recognition and speech translation. The widely used model
+is trained on an order of magnitude more data than other open-source models,
+which was found to be the key to achieving state-of-the-art performance on a
+wide range of ASR benchmarks and popularized a number of useful features
+for ASR.
+First, several speech processing tasks need to be performed “in the wild,”
+and it might be relevant to perform them jointly, so Whisper is designed to be
+prompted with token-based control sequences in order to perform ASR and
+additionally return time voice activity detection (VAD) or language identification (LID) decisions, among other complementary information.
+Whisper incorporates previous text conditioning, where prior transcriptions are fed as context to the decoder. This feature enables effective processing of long-form audio, such as meetings, lectures, or podcasts, by maintaining context across extended recordings.
+Long-form audio processing is particularly relevant for multi-speaker ASR,
+which requires handling continuous dialogues rather than isolated utterances.
+However, extending Whisper to support multi-speaker scenarios introduces
+new challenges, such as managing overlapping speech and multi-speaker outputs. Leveraging Whisper as a foundation benefits from its extensive pretraining on large-scale data, reducing the need for additional task-specific
+5
+
+training data.
+In this work, we propose several extensions to Whisper that address these
+challenges and enable its application to multi-speaker ASR. The Whisper
+model is described in the following section, and our proposed methods are
+detailed in Section 4.
+3.1. Whisper
+Whisper is available in variants ranging from 38M to 1.54B parameters
+and has been trained on up to 5 million hours of weakly (pseudo) labeled data.
+It employs an encoder-decoder Transformer [28] architecture, processing the
+log-Mel spectrogram as input X ∈ RF ×T , where T = 3000 corresponds to 30
+seconds of audio. Shorter audio segments are padded with zero signal, while
+longer ones are processed sequentially. The number of Mel frequency bins,
+F , is 80 in earlier versions and 128 in later versions.
+The spectrogram is passed through two 1-dimensional convolutional layers
+that increase the feature dimension to dm and downsample the sequence by
+a factor of two. The encoder layers transform these features into hidden
+representations H ∈ Rdm ×T /2 , which the decoder uses autoregressively to
+generate text tokens ŷ, conditioned on task-specific special tokens g. The
+process is formally defined as:
+H = AudioEncoderϕe (X),
+
+ŷt = TextDecoderϕd (g, ŷ1:t−1 , H),
+
+(1)
+
+where ϕe and ϕd denote the encoder and decoder parameters, respectively.
+Whisper incorporates two primary task-specific tokens: ⟨|transcribe|⟩ for
+transcription and ⟨|translate|⟩ for translation tasks. Additionally, the token ⟨|notimestamps|⟩ can be used to suppress the decoding of timestamps.
+The inclusion of language-specific tokens, such as ⟨|en|⟩ for English, enables
+Whisper to condition decoding for specific languages and tasks. Furthermore, Whisper supports previous text conditioning by allowing an optional
+sequence of tokens from prior decoding as input, facilitating context-aware
+transcription or translation.
+In this study, we utilize the large-v3-turbo variant of Whisper in all our
+Whisper experiments. This version builds on prior work on distilling Whisper
+models [29] and reduces the number of decoder layers from 32 (large-v3) to
+4 without significantly harming the model’s performance. This architectural
+modification significantly reduces autoregressive decoding time, making it
+more practical for real-world applications. The large-v3-turbo model was
+6
+
+trained on a mixture of 1 million hours of weakly labeled audio and 4 million
+hours of pseudo-labeled audio derived from the large-v3 model. In this work,
+we turn Whisper into a TS-ASR system by extending and adapting it to
+condition on diarization information in order to decode speakers of interest.
+3.2. CTC Head for Whisper
+Inspired by [30], we incorporate a connectionist temporal classification
+(CTC) [31] head into Whisper to improve the alignment of encoder representations and reduce decoder hallucinations. The CTC head operates on the
+encoder’s hidden representations, enforcing better correspondence between
+input audio and output tokens.
+It first applies a Transformer layer, followed by two 1-dimensional convolutional layers with a stride of 2, reducing the sequence length from 1500 to
+375 (approximately matching the maximum sequence length in the decoder).
+This subsampling helps to reduce the computational overhead caused by the
+final linear projection, which maps the hidden representations from dimensionality dm to vocabulary size V ≈ 50k.
+Formally, given the encoder’s hidden representations H ∈ Rdm ×T /2 , the
+CTC head computes:
+Z = Linear(Conv(SelfAttention(H))),
+
+(2)
+
+where Z ∈ RV ×T /8 represents the output logits.
+The CTC head enables efficient single-pass decoding and accurate results
+when combined with the autoregressive decoder [32]. It also supports selfspeculative decoding [33].
+3.3. Joint CTC/Attention Decoding with Whisper
+We observed improved convergence when the CTC head does not generate timestamp tokens, which led us to modify the ESPNet [34] CTC prefix
+scoring implementation2 . Specifically, we adjusted the scoring procedure to
+retain current states without restoring the next tokens when the autoregressive decoder prefers timestamp tokens. This modification facilitates joint
+CTC/Attention decoding, wherein the CTC head operates over a distinct
+2
+
+https://github.com/espnet/espnet/blob/master/espnet/nets/ctc_prefix_
+score.py
+
+7
+
+subset of labels, diverging from those used by the autoregressive attentionbased decoder.
+The decoding objective in this setup is defined as a combination of the
+sequence probabilities from the CTC and attention-based models. Let C be a
+sequence, pctc (C|X) be the sequence probability given by the CTC model, and
+patt (C|X) be the sequence probability given by the attention-based model.
+The decoding objective is then formulated as:
+Ĉ = arg max∗ (λ log pctc (C|X) + (1 − λ) log patt (C|X)) ,
+C∈U
+
+(3)
+
+where λ is a weight parameter controlling the balance between the CTC and
+attention model outputs [32] and U ∗ is the set of sequences, given by a beam
+of the top-k most likely hypotheses.
+Additionally, we streamlined the implementation by vectorizing key operations, improving computational efficiency, and enabling support for batched
+beam decoding. Our implementation is made publicly available3 .
+4. Diarization-Conditioned Whisper
+In this section, we introduce the proposed approaches for conditioning on
+speaker activity. While Whisper serves as the base single-speaker ASR model
+for our explanations, these methods are generalizable and can be applied to
+other models, as shown in Section 6.6.
+We begin by defining conditioning masks derived from the speech activity
+of each speaker, which serves as the foundation for all our proposed systems.
+We then describe three distinct mechanisms for utilizing these masks:
+1. Input masking: directly masks the input audio based on speaker
+activity.
+2. Query-key biasing: selectively biases the attention weights using
+information from the masks.
+3. Frame-level diarization-dependent transformations: incorporate
+the full masks to condition encoder representations in a more comprehensive manner.
+3
+
+https://github.com/BUTSpeechFIT/TS-ASR-Whisper
+
+8
+
+4.1. Silence, Target, Non-Target, and Overlap Masks
+Let D ∈ [0, 1]S×T , where S is the number of speakers in the recording,
+and T is the number of frames. The matrix D represents the diarization
+output, with d(s, t) denoting the probability that the speaker s is active in
+time frame t.
+The dependency on the number of speakers in D can be a limiting factor
+for easily incorporating this mask into the model. To address this, we treat
+each speaker independently. Let sk represent the target speaker. We define a
+distribution over the following mutually exclusive events for a frame at time
+t:
+• S: The time frame t represents silence.
+• T : The target speaker, sk , is the only active speaker in the time frame
+t.
+• N : One or more non-target speakers, s ̸= sk are active and the target
+speaker, sk , is not active at the time frame t.
+• O: The target speaker sk is active while at least one non-target speaker
+s ̸= sk is also active at time frame t, denoting an overlap.
+The probabilities of these events occurring in the time frame t can be
+calculated as:
+
+ptS =
+
+S
+Y
+(1 − d(s, t))
+
+(4)
+
+s=1
+
+ptT
+
+= d(sk , t)
+
+S
+Y
+
+(1 − d(s, t))
+
+(5)
+
+s=1
+s̸=sk
+
+
+ptN = 1 − ptS − d (sk , t)
+ptO = d(sk , t) − ptT
+
+(6)
+(7)
+
+This definition allows us to use a fixed-sized STNO (Silence, Target, Non
+⊤
+target, Overlap) mask Mt = ptS ptT ptN ptO .
+Note that the mask is speaker-dependent, so decoding each target speaker
+involves using a different STNO mask, which results in a different transcript.
+9
+
+4.2. Input Masking
+Let x ∈ RT denote the input audio signal. The masked signal xmasked is
+computed as:
+xmasked (t) = x(t) · (ptT + ptO ),
+
+(8)
+
+Hence, if the target speaker is not active, the output audio signal is equal to
+0 (i.e., silence).
+However, similar to source separation approaches, this method has limitations. It can introduce artifacts because it creates an unnatural version
+of the input signal. Furthermore, it treats all frames in which the target
+speaker is active equally, without taking into account if there is an overlap
+with other speakers, which can potentially harm the performance.
+4.3. Query-Key Biasing Conditioning
+An alternative approach to steer the model’s attention away from nontarget segments is to integrate target-speaker masks with the model’s internal
+representations by incorporating them into encoder/decoder attention masks.
+Compared to the input masking method, attention masking does not introduce artificial silence in the audio signal, reducing the chance of artifacts and
+potentially leading to better performance.
+For simplicity, let us assume a single attention head. Let Wq , Wk ∈
+Rdm ×dm denote the query and key projection matrices and qi , kj ∈ Rdm the
+query and key, respectively. The unnormalized attention score between qi , kj
+is defined as:
+(Wq qi )T (Wk kj )
+√
+.
+(9)
+aij =
+dm
+To obtain normalized attention weights, the softmax function is applied
+across the j-dimension of aij
+If we assume that acoustic information is aligned across time, masking
+out non-target speaker frames forces the model to ignore information irrelevant to the target speaker transcript (i.e., other speakers, silence, etc.).
+However, pure attention masking leaves the model no chance for unmasking
+and possibly attending to non-target frames, which makes adaptation and
+speaker-tracking learning impossible.
+As a solution, we decided to bias the encoder self-attention and the decoder cross-attention by extending queries, and keys and initializing corresponding projections in the following way:
+10
+
+ 
+ 
+
+
+
+
+qi
+kj
+Wq 0
+Wk 0
+q̂i =
+, k̂j =
+, Ŵq =
+, Ŵk =
+0 1
+1
+−c
+0 1
+
+(10)
+
+where c ∈ R+
+0 is a bias factor set to 0 if kj corresponds to a target speaker
+frame and to a predefined constant otherwise. We name this approach querykey biasing conditioning (QKb).
+It is easy to observe that, after initialization, if kj represents a target
+speaker frame, aij remains intact. On the other hand, if kj represents a nontarget speaker frame, the calculation of aij changes as:
+
+
+
+
+Wq q i
+Wk k j
+Ŵq q̂i =
+, Ŵk k̂j =
+,
+(11)
+1
+−c
+
+
+
+ W k kj
+T
+(Wq qi ) 1
+= (Wq qi )T (Wk kj ) − c.
+(12)
+−c
+It is important to note that fine-tuning the Whisper model with extended
+queries and keys changes the extended attention projection matrices Ŵq and
+Ŵk , which controls the level of attention biasing.
+4.3.1. Shifted Positional Embeddings
+Masked silences within an utterance can lead to hallucinations and instabilities during Whisper’s training. The main reason is that the decoder
+cross-attends to discontinuous parts of the encoder embedding sequence after
+QK biasing is applied. To account for this, instead of adding the original sequence of positional embeddings, we shift the positional embeddings on target
+speaker frames and repeat the previous positional embeddings on the nontarget ones (i.e., for the following sequence of target and non-target frames:
+TTTNNTT, the positional embeddings would represent the following positions: 1233345), which ensures that the embeddings the decoder attends to
+have continuous positions.
+4.4. Frame-Level Diarization Dependent Transformations
+The third and most sophisticated approach to diarization conditioning is
+frame-level diarization dependent transformations (FDDT) depicted in Figure 1. It modifies the frame-by-frame model inputs based on the diarization
+outputs and unlike the previous methods, it uses all four STNO masks.
+Let Zl ∈ Rdm ×T represent the frame-by-frame inputs to the l-th (Transformer) layer. We transform these hidden representations by applying four
+11
+
+Figure 1: Proposed Diarization-Conditioned Whisper model with STNO mask example.
+
+12
+
+l
+l
+affine STNO layer- and class-specific transformations: WSl , WTl , WN
+, WO
+∈
+dm ×dm
+l
+l
+l
+l
+dm
+R
+together with biases bS , bT , bN , bO ∈ R to obtain new speakerspecific hidden representations Ẑl = [ẑl1 , . . . , ẑlT ] as
+
+
+ẑlt = WSl zlt + blS ptS + WTl zlt + blT ptT
+
+
+l l
+l l
+zt + blO ptO ,
+(13)
+zt + blN ptN + WO
++ WN
+
+In other words, the hidden representations zlt are transformed using a convex
+combination of the four STNO class-specific affine transformations, weighted
+by the corresponding STNO class probabilities (4)-(7). When using a hard
+STNO mask (i.e., one-hot encoding), equation (13) simplifies selecting and
+applying one of the four class-specific transformations for each frame. Note
+that the same transformation is applied to all frames with identical STNO
+masks.
+l
+l
+The matrices WSl , WTl , WN
+, WO
+are designed to transform the hidden
+representations into a space where speaker distinction is more effective, or
+where certain components of the signal can be suppressed. These transformations are essential for the model to correctly identify and isolate the target
+speaker while handling other sources of noise.
+However, fine-tuning the model with randomly initialized FDDT matrices
+could disrupt its already learned internal representations [35]. To mitigate
+this risk, we employ a suppressive initialization strategy. In this strategy,
+0
+as zero matrices, which effectively suppresses the
+we initialize WS0 and WN
+influence of other speakers; while the other parameters blS , blT , blN , blO (set
+l
+(set to identity matrices) are initialized to
+to zero vectors), and WTl , WO
+maintain stability and allow the model to process the STNO classes effectively.
+4.5. Co-Attention Module for Speaker Interaction in TS-ASR
+So far, we have discussed diarization conditioning approaches for TS-ASR.
+In the previous sections, we designed the system to process each speaker independently as a target speaker, applying parallel processing for each one.
+While effective in certain scenarios, this approach can be limiting when transcribing conversations involving multiple speakers, such as in meetings. It is
+inherently suboptimal as it does not account for interactions between speakers. To address this limitation, we explore methods to model inter-speaker
+dependencies.
+
+13
+
+×H
+
+T
+cat, proj
+
+T
+
+T
+
+T
+
+cat, proj
+
+cat,
+proj
+
+T
+
+Figure 2: Scheme of Co-Attention module. Dotted lines depict affine transformation
+followed by layer norm. The gray rectangle depicts the definition of multi-headed attention
+derived in (14). Inputs to scaled-dot product fAT attention are queries, keys and values
+from top to bottom.
+
+One such method is the Co-Attention module, which we present as a
+means to effectively capture and manage these dependencies within the context of TS-ASR. Originally proposed for speaker diarization [36] and later
+extended to speaker identification tasks [37], the Co-Attention module processes encoder outputs from multiple speakers, contextualizing these representations while addressing redundancies in overlapping speech transcripts.
+The architecture of the Co-Attention module is depicted in Figure 2.
+In the following method description, we adopt the notation introduced
+in [37]. Let
+H
+
+
+(h)
+(h)
+(h)
+fMA (X, Y; θMA ) := WO ∥ fAT WQ X, WK X, WV Y
+(14)
+h=1
+
+be H-head attention parametrized by θMA , where fAT (Q, K, V) denotes scaled
+dot-product attention [28], || represents concatenation along the first dimen(h)
+(h)
+(h)
+sion, and θMA consists of the weight matrices {WQ , WK , WV }H
+h=1 ∪{WO }.
+Our Co-Attention version performs summarization of all speakers’ speech,
+concatenation with per-speaker representations, and enriches original input
+embeddings with derived contextual information. Given the encoder outputs
+{Hs }Ss=1 for S speakers, where Hs ∈ Rdm ×T , speaker summarization is derived
+14
+
+as
+
+"
+A = LN WA
+
+1X
+Hs
+S s
+
+#!
+,
+
+(15)
+
+ˆ
+
+where WA ∈ Rd×dm projects the aggregated summary embeddings to a lowerˆ Per-speaker representations are defined as
+dimension d.
+′
+
+Ms = LN (WM Hs ) ∈ Rd ×T ,
+
+(16)
+
+and concatenated across speakers to obtain
+S
+
+′
+
+M = ∥ Ms ∈ RSd ×T .
+
+(17)
+
+s=1
+
+Next, Co-Attention is performed to model interactions between speakers
+M′s = LN (fMA (M, Ms ; θ) + Ms ) ,
+A′ = LN (fMA (M, A; ξ) + A) ,
+
+(18)
+
+where H-head attention parameters θ and ξ share the same query and key
+(h)
+(h)
+transformation matrices, WQ and WK , resulting in identical attention ma(h)
+(h)
+trices. Here, WQ and WK are block-diagonal matrices composed of S
+′
+′
+individual matrices with dimensionality Rd /H×d all sharing the same parameters.
+To further refine the representations, we apply self-attention to the contextualized summary embeddings.
+Ā = LN (fMA (A′ , A′ ; ω) + A′ ) .
+
+(19)
+
+Finally, Ā is concatenated with each speaker’s co-attended representation
+M′s , and a linear projection maps the combined output back to the original
+space Rdm
+
+′ ˆ
+M̄s = WF M′s ||Ā , WF ∈ Rdm ×(d +d) .
+(20)
+The updated representation for speaker s is given by
+Ĥs = Hs + M̄s .
+
+15
+
+(21)
+
+Table 1: Numbers of files, minimum and maximum numbers of speakers per recording,
+and numbers of hours per partition.
+
+Dataset
+
+train
+development
+test
+#files #spk # h #files #spk # h #files #spk # h
+
+AMI
+NOTSOFAR-1
+
+136
+526
+
+3-5 80.67
+4-8 54.27
+
+Libri2Mix
+LibriCSS
+
+13900
+-
+
+2
+-
+
+18
+117
+
+56.37 3000
+7
+
+4
+9.67
+4-6 12.17
+
+16
+160
+
+3-4 9.06
+3-7 16.67
+
+2
+8
+
+3000
+55
+
+2
+8
+
+7.6
+1.0
+
+7.01
+9.09
+
+5. Experimental Setup
+This section describes details of our experimental setup, including datasets,
+evaluation metrics, training procedure, hyperparameters, and lastly, the diarization system. All our models were implemented in HuggingFace Transformers library [38]. We used Whisper-large-v3-turbo as it is a faster version
+of large-v3, and we observed almost no performance degradation.
+5.1. Evaluation Datasets
+To validate the proposed method, we utilized two publicly available multispeaker datasets: AMI [17] and NOTSOFAR-1 [16]. Both have realistic
+interactions in a far-field setting, presenting English-spoken meetings in a
+challenging scenario. Statistics about the sets can be found in Tables 1 and 2.
+To be able to compare with other existing methods, we also utilized
+Libri2Mix [18] and LibriCSS [21].
+Given the current state of technology and the availability of public datasets,
+we believe results should be reported on real and not synthetic datasets.
+5.2. Evaluation Metrics
+Word error rate (WER) is normally used to evaluate single-speaker ASR.
+It calculates the error of a hypothesis with respect to the reference as the
+sum of substitutions, insertions, and deletions over the number of words in
+the reference annotation. However, with recordings having more than one
+speaker, different recognizers are usually evaluated with different metrics
+depending on how the hypotheses and references are mapped. In order to be
+able to compare with relevant previous works, we considered:
+
+16
+
+Table 2: Information about the percentage of silence, speech with a single speaker, and
+overlap for each set.
+
+Dataset
+
+train
+development
+test
+%sil %1-spk %ov %sil %1-spk %ov %sil %1-spk %ov
+
+AMI
+16.5
+NOTSOFAR-1 8.1
+
+72.3
+65.4
+
+11.2 22.0
+26.5 17.7
+
+61.1
+68.8
+
+16.9 14.7
+13.7 8.0
+
+67.9
+66.6
+
+17.4
+25.2
+
+Libri2Mix
+LibriCSS
+
+33.9
+-
+
+60.6 8.4
+6.2
+
+42.6
+84.2
+
+49.0 8.1
+9.6 6.7
+
+42.8
+83.7
+
+49.1
+9.6
+
+5.5
+-
+
+• Concatenated minimum-permutation WER (cpWER), where for each
+speaker, all their utterances are concatenated, and the best permutation between hypothesis and reference is used to calculate the standard
+WER. This metric calculates speaker-attributed ASR errors.
+• Time-constrained minimum-permutation WER (tcpWER), where the
+evaluation is like cp-WER but also considering the temporal alignments
+of the words.
+• Optimal reference combination WER (ORC-WER), which does not
+consider the speaker labels and can be used to evaluate speaker-agnostic
+systems.
+• Time-constrained optimal reference combination WER (tcORC-WER),
+where the evaluation optimally matches hypotheses and references without considering speaker labels but ensures that temporal alignments are
+respected.
+To avoid cluttering tables with notation, we do not write ‘WER’ in the
+headers below. For a more thorough analysis and comparison of the metrics,
+we refer the reader to [39]. For time-constrained metrics, we use a collar
+of 5s. The diarization error rate (DER), used to evaluate the diarization
+system, is calculated using collar 0s.
+5.3. Training Details
+The training is divided into three consecutive phases:
+1. CTC preheat - pre-train only the CTC-related parameters on LibriSpeech 960h [40] with the rest of the model being frozen. CTC is
+17
+
+trained without timestamps as we believe that timestamp prediction
+should not occur in the encoder and can rather be heuristically derived
+from the CTC frame-by-frame predictions.
+2. FDDT preheat - pre-train CTC and FDDT-related parameters on
+the target multi-speaker dataset. We train FDDT parameters with
+100× higher learning rate than the rest (i.e., 2 × 10−5 ) to improve the
+model convergence.
+3. Full fine-tuning - fine-tune all the parameters on the target multispeaker dataset until convergence.
+We train all the models with an overall batch size of 64 samples using
+AdamW [41] optimizer with weight decay 1×10−6 . We warm up the learning
+rate for 5k steps (i.e., 5k per batch model updates) and then use a linear
+decay scheduler for the rest of the training. The peak learning rate is set
+to 2 × 10−7 . The CTC loss weight is set to λ = 0.3 [30]. We evaluate
+the model on the development set at intervals of min(1 epoch, 500 steps),
+monitor the development tcpWER, and use early stopping with a patience
+of 5 evaluation steps. The maximum number of training steps is set to 50k,
+and we will select the final model based on the best development tcpWER.
+Please note that CTC Preheat training is independent of FDDT preheat and
+full fine-tuning. For CTC Preheat, we use only 1k warm-up steps with a
+peak learning rate of 2 × 10−4 , monitoring WER on Librispeech dev-clean
+and dev-other sets. Other hyperparameters, including the batch size and
+optimizer settings, remain unchanged.
+Furthermore, we do not enforce true casing or lower casing. Instead,
+we compute the cross-entropy loss with both lowercase and uppercase labels
+and select the smaller loss value. We empirically chose the initial value of
+the QK biasing constant c (10)-(12) to be 50 as we observed that higher
+values result in fewer hallucinations at the beginning of training, while also
+making it easier for the model to approximate a hard attention mask by
+producing very low attention scores without having to scale up the query
+and key projection weights.
+5.4. Diarization System
+We utilized DiariZen [42]4 which is based on a framework with local endto-end neural diarization (EEND) followed by speaker embedding cluster4
+
+https://github.com/BUTSpeechFIT/DiariZen
+
+18
+
+ing [19, 43] using pyannote [20, 44]. The EEND module combines WavLM [45]
+with Conformer [46] layers and is trained using the powerset loss [44]. The
+EEND operates on 8-second-long overlapping segments, and for each speaker
+found in the segment, a speaker embedding is extracted using a ResNet34based embedding extractor [14]. These are, in turn, clustered by spectral
+clustering [47] to obtain the inter-segment mapping between speakers and
+produce a single output for each recording. The hard decisions made by
+the diarization system are used to provide the corresponding inputs for the
+following ASR system. Note that we use the same model on all evaluation
+sets. This model is compliant with the CHiME-8 challenge rules [16] for the
+NOTSOFAR-1 track. Fine-tuning the model on each specific dataset could
+lead to further improvements.
+6. Experiments
+This section presents a comparison of the proposed methods. First, we
+compare our best configuration with other works considering both groundtruth and system diarization. We use cpWER to assess the quality of speakerattributed transcripts and ORC-WER to assess the quality of transcripts disregarding speaker assignment errors. However, these metrics do not penalize
+the model for incorrectly determining the utterance timing, which is one of
+the qualities that TS-ASR systems should, in our opinion, have. Hence,
+we also report time-constrained metrics (i.e., tcpWER and tcORC-WER)
+similar to the NOTSOFAR-1 challenge. Different works have reported different evaluation metrics for different datasets, so we report results using
+the metrics used in the literature before and also all the time-constrained
+metrics. We encourage researchers to compare their future work based on
+time-constrained metrics. Note that calculating ORC-WER for some results
+is infeasible, so we approximate these values using tcORC-WER instead by
+increasing the time collar until tcORC-WER converges (the obtained metric
+cannot be lower than ORC-WER).
+First, we focus on comparing the proposed variants of diarization conditioning, presenting results across all datasets using ground-truth diarization,
+followed by an analysis of the impact of real diarization on the results. Next,
+we analyze the effect of joint CTC training and decoding on the NOTSOFAR1 dataset. We also report the impact of target-speaker training on singlespeaker evaluation datasets. Finally, we show the proposed diarization conditioning when using a different architecture to showcase that the method
+19
+
+can be applied to other ASR models.
+6.1. Baseline Comparison
+In this section, we begin by analyzing the performance of our bestperforming models, as summarized in Table 3, and comparing them to stateof-the-art results reported in the literature. Specifically, we use the bestperforming variants of our approach: the multi-domain (MD) FDDT model
+for AMI-sdm, NOTSOFAR-1, and LibriCSS, and the single-domain (SD)
+fine-tuned version with Co-Attention for Libri2Mix. These configurations
+were selected to highlight our most effective methods on each dataset. For a
+more detailed comparison of all proposed methods, refer to Table 4.
+Even though comparisons across datasets are inherently challenging, as
+different studies report results on different datasets, our models demonstrate
+consistently strong performance. On AMI-sdm, to the best of our knowledge, we achieve state-of-the-art results with ground-truth diarization. Notably, the degradation when switching to real diarization is relatively small
+for ORC-WER. However, for cpWER, the impact is significantly larger, indicating that errors related to speaker label assignment (linked to the confusion
+errors in DER) have a more substantial effect than inaccuracies in segment
+boundaries.
+Our proposed method also achieves the best results to date on the Libri2Mix and LibriCSS datasets for both real- and ground-truth diarization. However, while these results are noteworthy, we consider evaluations on artificial
+datasets like Libri2Mix to be of limited practical relevance.
+6.2. Input masking vs. QK biasing vs. FDDT
+Table 4 presents the performance of the methods proposed in Section 4. It
+can be seen that the out-of-the-box Whisper model does not perform well, as
+it lacks a mechanism to prevent transcribing all present speech, irrespective
+of who is considered the target speaker. By masking the non-target speaker
+audio (Input masking), we improve on all datasets substantially.
+Furthermore, we can see that QK biasing after initialization (and before
+fine-tuning) does not perform well, reaching WER metrics above 100%, suggesting strong levels of hallucination. After fine-tuning, we can see that not
+shifting positional embeddings results in better performance with regard to
+both tcpWER and tcORC WER. We further analyze the difference between
+these two modifications in Table 5.
+
+20
+
+Table 3: Comparison of the proposed system alongside various multi-speaker ASR systems.
+The top section includes systems where no additional information about speaker identity
+or segmentation is provided. Our results are obtained using a diarization system. The
+bottom section features models that directly or indirectly utilize ground-truth (oracle)
+diarization information. Proposed ORC WER results marked with ⋆ were approximated
+by increasing the collar for tcORC WER. Results marked with † are evaluated on utterance
+groups, where the model is not penalized for speaker confusions outside the window of the
+utterance group, which significantly reduces cpWER.
+
+Kanda et al. [48] 21.2†
+Raj et al. [49]
+44.6†
+Zarandi et al. [50]
+Vinnikov et al. [16]
+41.4
+Cornell et al. [24] 24.5
+Niu et al. [51]
+22.2
+Ours (real diar.)
+23.6 18.0⋆ 33.5
+Cornell et al. [24] 21.1
+Ma et al. [25]
+Zhang et al. [52]
+Meng et al. [26]
+Guo et al. [27]
+22.0
+Ours (oracle diar.) 17.2 16.5⋆ 19.7
+
+ORC
+
+cp
+
+ORC
+
+cp
+
+ORC
+
+cp
+
+tcORC
+
+tcp
+
+ORC
+
+cp
+
+AMI-sdm NOTSOFAR-1
+Libri2Mix
+LibriCSS
+test
+eval-small test-clean test-both
+test
+
+16.9
+7.8
+35.5
+17.7
+22.6
+
+6.0 6.0 15.0 14.9 8.5 6.5⋆
+12.0
+
+26.4
+23.5
+
+4.7
+19.1
+
+14.6
+4.4 4.4 10.9 10.9 5.6 5.5⋆
+
+Lastly, the third section of Table 4 presents FDDT. First, it can be observed that the method performs comparably to input masking right after
+suppressive initialization, suggesting that the initialization does not break
+the original Whisper model compared to QK biasing. Furthermore, after
+single-domain (SD) fine-tuning (i.e., fine-tuning the model only on the corresponding training set), we can observe a massive improvement on all the
+datasets.
+Our model faces a challenge with fully overlapped speech, such as in
+Libri2Mix, where two speakers spew concurrently most of the time. This
+limitation arises from the model design, where each target speaker is decoded by an independent instance of the TS-ASR model. With fully over21
+
+lapped speech, it might be difficult for an independent TS-ASR instance to
+determine which speaker’s speech is responsible for decoding. As a consequence, multiple TS-ASR instances can decide to decode speech from the
+same speaker. To mitigate this, we incorporate a Co-Attention mechanism
+that allows the model to compare information across target speaker channels
+(i.e., TS-ASR instances). This mechanism allows the channels to collaboratively decide which instance is responsible for decoding each speaker in the
+input utterance. By resolving this ambiguity, Co-Attention reduces errors on
+Libri2Mix by 2–3% absolute.
+However, the improvement is not as significant on AMI or NOTSOFAR-1,
+as these datasets have a significantly lower percentage of overlapped speech,
+and also, more speakers are present, which makes the scenario more challenging.
+FDDT MD refers to a multi-domain model, which utilizes training data
+from AMI-sdm, NOTSOFAR-1, and Libri2Mix weighted with a ratio of 4:4:1.
+We selected the best-performing checkpoint based on the NOTSOFAR-1 development set.
+It can be seen that the model outperforms the other approaches on both
+real datasets. However, it performs worse on Libri2Mix, suggesting the domain mismatch between real-world and synthetic mixtures. It also demonstrates that the increased amount of data is not solving the full overlap issue
+and that a speaker interaction module is indeed necessary.
+The addition of Co-Attention to the MD FDDT model slightly improves
+performance on Libri2Mix compared to MD FDDT alone, indicating its potential to better handle fully overlapped speech in synthetic mixtures.
+However, it remains inferior to the performance demonstrated by SD +
+Co-Attention on Libri2Mix, where the smaller, more targeted domain training likely aligns better with the dataset’s specific characteristics. On the
+other hand, MD FDDT + Co-Attention does not offer improvements on
+AMI or NOTSOFAR-1, which may be attributed to the variability in the
+number of speakers and the dynamic interaction patterns in these real-world
+datasets. This variability affects the normalization of attention scores within
+the Co-Attention module. This suggests that while Co-Attention provides
+some benefits in specific scenarios, its integration with MD FDDT may require further design changes to handle diverse speaker configurations more
+effectively.
+Furthermore, Figure 3 shows the evolution of tcpWER of QK biasing and
+FDDT. It can be seen that FDDT converges much quicker than QK biasing,
+22
+
+which is mainly caused by the non-disturbing initialization. After 1000 steps,
+the FDDT approach reaches tcpWER below 30 %, suggesting that FDDT is
+an effective module that quickly turns Whisper into a target-speaker model.
+Table 4: Comparison of different diarization-conditioning methods. The table is divided
+into three sections: the first section presents the performance of vanilla Whisper and Input
+Masking methods, which do not require additional training; the second and third sections
+show the results for QK biasing and FDDT with different configurations. An asterisk (*)
+indicates values that could not be computed due to scalability issues, while a dash (—)
+denotes single-domain setups (LibriCSS) where training data is unavailable.
+
+tcORC
+
+QKb init.
+276.3 * 260.0
+QKb w shift
+55.8 54.1 65.3
+QKb w/o shift 47.8 46.6 28.2
+
+*
+*
+*
+
+323.6 * 339.4 * 990.9
+9.9 9.9 16.5 16.5
+–
+7.9 7.9 16.4 16.4
+–
+
+FDDT init.
+78.3 68.7 89.7
+FDDT SD
+17.8 17.5 20.9
++ CoAttention 17.5 17.2 20.8
+FDDT MD
+17.6 16.7 19.7
++ CoAttention 18.1 17.7 20.0
+
+77.5
+20.3
+20.3
+19.1
+19.4
+
+tcp
+
+66.1 66.1 69.4 69.4 588.2 *
+42.2 42.1 47.9 47.9 56.2 55.0
+
+tcp
+
+tcORC
+
+tcORC
+
+tcp
+
+*
+54.0
+
+tcp
+
+tcORC
+
+LibriCSS
+test
+
+Whisper
+220.0 212.0 260.1
+Input masking 52.8 47.9 61.6
+
+tcp
+
+tcORC
+
+AMI-sdm NOTSOFAR-1
+Libri2Mix
+test
+eval-small
+test-clean test-both
+
+*
+–
+–
+
+100.6 96.1 105.9 100.4 102.0 101.9
+6.3 6.3 13.8 13.8
+–
+–
+4.4 4.4 11.0 11.0 –
+–
+6.9 6.9 15.9 15.9 8.8 8.8
+5.8 5.8 14.4 14.4 11.0 11.0
+
+6.2.1. QK Biasing Shift
+Table 5 shows differences in cpWER and tcpWER between QK biasing
+with and without shifted positional embeddings on three datasets: AMI-sdm,
+NOTSOFAR, and Libri2Mix. An immediate observation is that both metrics
+on Libri2Mix are exactly the same compared to the real datasets, which is
+mainly caused by Libri2Mix being a short-form dataset — i.e., utterances are
+shorter than 30s; thus, Whisper does not utilize timestamps for inference.
+Also, the majority of the words are going to be within the collar boundaries,
+not influencing reference alignment.
+Furthermore, while QK biasing with shift provides a lower cpWER on
+real datasets, it is worse on Libri2Mix, also probably due to the short-form
+and synthetic nature of this dataset.
+23
+
+Table 5: Comparison of cpWER and tcpWER between QK biasing with and without
+shifted positional embeddings with ground-truth diarization.
+
+cp
+
+tcp
+
+cp
+
+tcp
+
+cp
+
+tcp
+
+Libri2Mix
+test-clean test-both
+
+tcp
+
+QKb w shift
+QKb w/o shift
+
+NOTSOFAR-1
+eval-small
+
+cp
+
+AMI-sdm
+test
+21.3
+45.9
+
+55.8
+47.8
+
+25.2
+27.3
+
+65.4
+28.5
+
+9.9
+7.9
+
+9.9
+7.9
+
+16.5
+16.4
+
+16.5
+16.4
+
+210
+Input masking
+FDDT
+QK Biasing
+
+tcpWER [%]
+
+180
+150
+120
+90
+60
+30
+0
+
+0
+
+1000
+
+2000
+
+3000
+
+4000
+
+5000
+
+Training Steps
+Figure 3: Test TCP-WER as a function of training steps for the NOTSOFAR-1 model
+evaluated on the eval-small dataset.
+
+This highlights the risk of drawing incorrect conclusions from interpretations developed on artificial evaluation data. Therefore, our analyses and
+hypotheses are based on results obtained from the real datasets AMI-sdm
+and NOTSOFAR-1.
+It can be seen that shifting positional embeddings helps transcription
+quality on AMI-sdm (24.6% absolute cpWER improvement) and NOTSOFAR (2.1% absolute cpWER improvement) datasets. We suspect that encoder attention masking creates “holes” in the positional information in the
+encoder’s output to which the decoder cross-attends, potentially causing the
+decoder to lose track of the position in the input sequence and hallucinate.
+On the other hand, the gap between cp and tcp WER suggests that the
+positional information is not accurate after shifting positional embeddings
+and that the Whisper model timestamp prediction heavily relies on the positional embeddings added to the encoder input. However, if we do not shift
+the positional embeddings, the gap between cp and tcpWER decreases to a
+24
+
+few percent on both the AMI-sdm and NOTSOFAR-1 datasets.
+6.3. Performance with Real Diarization
+We have demonstrated that our proposed DiCoW model achieves strong
+performance when high-quality speaker and segmentation information is provided. We also evaluated our proposed system with real diarization (cf. Section 5.4). In this section, we focus on a more detailed analysis of the impact
+of diarization errors on DiCoW. We use the FDDT model fine-tuned on all
+datasets (AMI-sdm, NOTSOFAR-1, Libri2Mix).
+As shown in Table 6, the performance deteriorates significantly with respect to the system with ground-truth diarization. This decline is primarily
+attributed to errors introduced by the diarization process (cf. Table 7).
+On the NOTSOFAR-1 eval-small dataset, we achieved a tcpWER of
+33.5 % (22.6 % tcORC-WER), with 14.5 % (8.3 %) deletions, 10 % (3.6 %)
+insertions, and 9 % (10.7 %) substitutions, indicating that the system struggles with omissions in this scenario. This is expected, given that this dataset
+features recordings with a higher number of speakers on average and significantly more overlapping speech, both of which increase the likelihood of
+confusion errors during diarization. In contrast, LibriCSS has fewer overlapping segments and fewer speakers per recording. However, most of the
+diarization errors in LibriCSS (cf. Table 7) are caused by missed speech,
+which results in 4 % deletions, 4 % substitutions and 3 % insertions.
+The errors are partly due to the model being trained with ground-truth
+diarization, which provides accurate speaker boundaries and correctly labeled
+silence. In contrast, real diarization can miss portions of a speaker’s speech,
+particularly in scenarios with more than two overlapping speakers. The system struggles to recover from missed speech segments because it has not
+encountered such cases during training. Moreover, we initialize the FDDT
+parameters in such a way that the model ignores frames marked as silence
+from the very beginning (cf. Section 4.4). This further limits the system’s
+ability to recover from diarization errors.
+The proposed DiCoW model is designed to handle soft diarization decisions in the form of frame-by-frame speaker activity probabilities d(s, t).
+However, in this work, we use only hard diarization decisions for both training and inference. As the result, the probabilities d(s, t) and, consequently,
+the STNO class probabilities (4)-(7) are restricted to binary values 0 or 1.
+For training, we rely solely on hard ground-truth diarization decisions.
+Using real diarization outputs introduces the additional challenge of align25
+
+Table 6: Comparison of overall performance with ground-truth and proposed diarization
+system. Both ground-truth and real system results were obtained with a model trained
+on multiple datasets (cf. FDDT MD in Table 4).
+
+tcORC
+
+tcp
+
+15.9 15.9 8.8 8.8
+20.6 20.5 11.0 8.9
+
+tcORC
+
+tcp
+
+6.9
+8.3
+
+tcp
+
+tcORC
+
+6.9
+8.4
+
+tcORC
+
+tcp
+
+19.1
+22.6
+
+tcp
+
+Ground-truth 17.6 16.7 19.7
+Real system 25.0 18.2 33.5
+
+Diarization
+
+tcORC
+
+AMI-sdm NOTSOFAR-1
+Libri2Mix
+LibriCSS
+eval-small
+test-clean test-both
+test
+test
+
+Table 7: Diarization performance on the test set of each corpus.
+
+Dataset
+
+DER Miss FA Conf.
+
+AMI-sdm
+NOTSOFAR-1
+Libri2Mix (mix clean)
+Libri2Mix (mix both)
+LibriCSS
+
+17.3
+22.0
+4.8
+10.0
+5.5
+
+8.7
+7.0
+0.3
+1.2
+3.6
+
+3.8
+6.2
+4.1
+8.4
+0.4
+
+4.8
+8.8
+0.4
+0.4
+1.5
+
+ing the speakers identified by the diarization system with the ground-truth
+speakers labeled in the ASR annotations. This alignment becomes especially
+problematic when the diarization system predicts an incorrect number of
+speakers.
+In our system submitted to the CHiME-8 challenge [53] (closely following the method described in this paper), we demonstrated that soft diarization decisions can improve ASR decoding performance. However, subsequent
+analysis revealed that these improvements were largely due to the overly aggressive post-processing used to derive hard decisions in our earlier diarization system. Therefore, in this work, we always use hard diarization decisions
+– whether from the ground-truth or the real diarization outputs – during decoding, as this approach matches the setup used during training. Note that
+in such a case, equation (13) defining the FDDT transform reduces to a
+straightforward selection of one of the affine transformations corresponding
+to the respective STNO classes.
+Incorporating soft activations into the current framework remains an open
+problem for future work.
+26
+
+Table 8: Performance of the method with and without the CTC head on the NOTSFOAR1 eval set, evaluated using tcpWER with a 5s collar. The table compares the effects
+of varying λ values in (3). When λ = 1.0, decoding is still primarily guided by the
+autoregressive model, and only the top 1000 tokens are rescored by CTC. The ‘CTC only’
+column shows performance when the model uses only CTC for decoding.
+
+greedy
+beam 5
+
+w/o CTC head
+
+λ=0
+
+λ = 0.2
+
+λ = 1.0
+
+CTC only
+
+22.9
+22.2
+
+22.1
+21.7
+
+21.7
+20.9
+
+27.9
+32.0
+
+46.5
+52.8
+
+6.4. Extending Whisper with Joint CTC/Attention Training and Decoding
+Table 8 shows the effect of the CTC head on speaker-attributed ASR
+performance. First, we observe a significant improvement in tcpWER simply
+by adding joint training with the CTC head, even without using it during
+decoding (see λ = 0). This highlights the importance of guiding the training
+by enforcing a monotonic alignment between input frames and the output
+token sequence, as the Whisper decoder (or AED ASR) does not assume such
+alignment by default. Furthermore, using the CTC head for joint decoding
+further improves the performance (see λ = 0.2), although we note that using
+only the CTC head for decoding is significantly worse than the Whisper
+decoder. Overall, we surmise that the CTC head mitigates some of Whisper’s
+hallucinatory tendencies despite being considerably worse as a standalone
+decoder.
+6.5. Does Target-Speaker Training Affect Single-Speaker Performance?
+Next, we examine the performance of the proposed TS-ASR on singlespeaker datasets to quantify the impact of our method on the performance
+of the original Whisper model on single-speaker speech. This experiment
+was conducted on LibriSpeech [40], TED-LIUM [54], and VoxPopuli [55]
+evaluation sets. The results are presented in Table 9.
+On the Librispeech test sets, we observe that the proposed model slightly
+outperforms the baseline Whisper model, likely due to the inclusion of the
+LibriSpeech training data in our fine-tuning dataset. However, we observe
+performance degradation on TED-LIUM and VoxPopuli, a degradation which
+is especially pronounced when we incorporate the CTC head, both standalone
+and as part of joint decoding. This is unsurprising, as the CTC head is trained
+on a much more limited set of data than the original Whisper model. Overall,
+we infer that the proposed training method still maintains Whisper’s abilities
+27
+
+Table 9: Comparison of the proposed method and original Whisper on single-speaker
+speech with both greedy (beam size 1) and beam-search (beam size 5) decoding. λ = 0.0
+indicates no use of auxilary CTC logits during decoding despite training with auxilary
+CTC loss.
+
+beam
+LibriSpeech
+TED-LIUM VoxPopuli
+λ
+size
+test-clean test-other
+test
+test
+Whisper
+CTC head
+Proposed
+Proposed
+
+1
+1
+1
+1
+
+0.0
+0.2
+
+2.5
+3.9
+2.1
+1.9
+
+4.5
+7.3
+4.3
+4.1
+
+4.3
+8.4
+5.3
+8.5
+
+10.9
+16.1
+11.2
+11.7
+
+Whisper
+Proposed
+Proposed
+
+5
+5
+5
+
+0.0
+0.2
+
+2.2
+2.1
+1.9
+
+4.3
+4.2
+4.0
+
+4.3
+5.0
+7.8
+
+10.0
+11.0
+11.2
+
+to handle single-talker ASR but slightly degrades its domain generalization
+capabilities.
+6.6. Non-Whisper Models
+To verify that our method is not Whisper-specific, we took an ESPNet [34] LibriSpeech recipe5 and trained attention-based encoder decoder
+(AED) model, namely Branchformer CTC-AED [56] on LibriSpeech 960h [40].
+Then, we added additional FDDT parameters to the pre-trained model and
+fine-tuned it on the AMI-sdm dataset segmented the same way as for Whisper
+fine-tuning.
+To show that FDDT really improves the TS-ASR performance, we performed the inference in two regimes: a) utterance-level; and b) segmentgroup, following the evaluation protocol from [48].
+Table 10: Comparison of ORC-WER of fine-tuned Branchformer inference methods on
+AMI-sdm.
+
+Inference Style
+utterance-level
+segment-group
+5
+
+Baseline
+34.5
+141.2
+
+with FDDT
+34.5
+26.8
+
+https://github.com/espnet/espnet/tree/master/egs2/librispeech/asr1
+
+28
+
+Table 10 presents ORC-WER for two models per each inference style. For
+baseline, we took a fine-tuned model with FDDT parameters and adjusted
+STNO masks such that the target speaker is always active in a given segment.
+We can see that in the case of utterance-level inference style, diarization information does not provide any improvement over the baseline, as the segments
+are usually single-speaker with occasional overlap. In the case of overlap, the
+STNO mask has only target-speaker and overlapped masks active, as there
+is no silence nor non-target speaker present in the utterance-level segments.
+Also, there may not be enough context for transcribing overlaps well. Furthermore, there are many segments that contain almost perfect overlap. In
+such a case, the model fails to properly separate the overlapped transcripts.
+On the other hand, there is a significant difference between the two models in the case of segment-group inference style (114.4% absolute). It is
+mainly due to the Baseline model transcribing all the speakers within the
+segment-group; hence, introducing many insertions. This difference proves
+that by adding FDDT and performing fine-tuning, we efficiently transform
+a single-talker model into a TS-ASR model. Furthermore, the difference
+between utterance-level and segment-group performance with FDDT parameters demonstrates that TS-ASR models may benefit from a longer context. Specifically, the model using FDDT parameters achieved a 7.7 % absolute improvement in performance on segment-group inference compared to
+utterance-level inference.
+7. Discussion
+Despite its promising results, the proposed approach has several limitations:
+• Dependency on accurate diarization: DiCoW’s performance is strongly
+influenced by the quality of the diarization system. Poor diarization,
+such as in high-overlap or noisy environments, can degrade the overall
+effectiveness of the model.
+• Performance on synthetic versus real data: While the approach shows
+strong results on both synthetic and real-world datasets, it faces challenges adapting from synthetic benchmarks like Libri2Mix to real-world
+scenarios due to domain mismatches.
+
+29
+
+• Scalability with increasing speaker count: DiCoW’s computational complexity and performance are affected in scenarios with a large number
+of speakers, as the model processes each speaker independently.
+• Handling of overlapping speech: Although the Co-Attention mechanism
+addresses overlapping speech to some extent, fully overlapped segments
+involving multiple dominant speakers remain challenging.
+• Limited validation on unseen conditions: While we validated DiCoW
+across several datasets, further testing under diverse acoustic environments, speaker characteristics, and languages is necessary to better
+understand its generalization capabilities.
+Addressing these limitations in future work will help refine the approach
+and broaden its applicability to a wider range of real-world scenarios.
+8. Conclusion
+In this study, we presented DiCoW, an approach to extend a singlespeaker ASR system to perform target/multi-speaker ASR using a diarization
+conditioning scheme. The main contributions are:
+• Integration of diarization for target-speaker ASR: DiCoW directly conditions Whisper’s ASR capabilities on speaker diarization outputs, bypassing traditional speaker embeddings. This simplifies the workflow,
+reduces dependency on synthetic data, and improves generalization to
+unseen speakers.
+• Extension of long-form ASR to multi-speaker scenarios: By building on
+Whisper’s long-form transcription abilities, DiCoW effectively handles
+overlapping speech and real-world multi-speaker recordings, enabling
+more reliable transcription for conversations, meetings, and other challenging audio environments.
+• Efficient fine-tuning of pre-trained ASR models: DiCoW leverages largescale pre-trained models like Whisper, fine-tuning them with diarization conditioning to deliver strong performance across diverse datasets.
+This approach minimizes training costs while achieving notable accuracy gains on real-world benchmarks such as AMI and NOTSOFAR-1.
+30
+
+Additionally, we extended Whisper with a “CTC head” to mitigate hallucinations and compared different conditioning approaches in terms of ASR
+performance and speed of convergence, highlighting the advantages of FrameLevel Diarization-Dependent Transformations (FDDT). We demonstrated
+that adapting Whisper for multi-speaker ASR does not substantially degrade its performance on single-speaker recordings, although some loss of
+generalization capabilities was observed.
+Moreover, while most analyses were based on Whisper, we showed that
+the proposed method can also be successful with other models, such as AEDbased ASR, demonstrating the general effectiveness of the approach.
+We have successfully demonstrated that our DiCoW model achieves strong
+performance across various datasets when provided with ground-truth diarization. In future work, we aim to extend the framework incorporating real
+speaker diarization information into training in order to reduce the performance drop that comes from training exclusively on ground-truth diarization
+and only using real diarization during inference.
+To facilitate future comparisons and analysis, we release our code and
+recipes at https://github.com/BUTSpeechFIT/TS-ASR-Whisper.
+Acknowledgement
+The work was supported by the Czech Ministry of Education (MoE)
+through OP JAK project No. ID:CZ.02.01.01/00/23 020/0008518, Brno
+Ph.D. Talent Scholarship Programme, and by National Science Foundation
+CCRI Grant No 2120435. Computing and data repository/services were supported by MoE through e-INFRA CZ (ID:90254) and LINDAT/CLARIAHCZ LRI (ID:90262) respectively.
+References
+[1] J. Li, et al., Recent advances in end-to-end automatic speech recognition, APSIPA Transactions on Signal and Information Processing 11 (1)
+(2022).
+[2] S. Watanabe, M. Mandel, J. Barker, E. Vincent, A. Arora, X. Chang,
+S. Khudanpur, V. Manohar, D. Povey, D. Raj, et al., CHiME-6 challenge: Tackling multispeaker speech recognition for unsegmented recordings, arXiv preprint arXiv:2004.09249 (2020).
+31
+
+[3] F. Yu, S. Zhang, Y. Fu, L. Xie, S. Zheng, Z. Du, W. Huang,
+P. Guo, Z. Yan, B. Ma, X. Xu, H. Bu, M2MeT: The ICASSP
+2022 Multi-Channel Multi-Party Meeting Transcription Challenge,
+in: ICASSP 2022 - 2022 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 2022, pp. 6167–6171.
+doi:10.1109/ICASSP43922.2022.9746465.
+[4] S. Cornell, M. S. Wiesner, S. Watanabe, D. Raj, X. Chang, P. Garcia,
+Y. Masuyam, Z.-Q. Wang, S. Squartini, S. Khudanpur, The CHiME7 DASR Challenge: Distant Meeting Transcription with Multiple Devices in Diverse Scenarios, in: 7th International Workshop on Speech
+Processing in Everyday Environments (CHiME 2023), 2023, pp. 1–6.
+doi:10.21437/CHiME.2023-1.
+[5] S. Cornell, T. J. Park, H. Huang, C. Boeddeker, X. Chang, M. Maciejewski, M. S. Wiesner, P. Garcia, S. Watanabe, The CHiME-8 DASR Challenge for Generalizable and Array Agnostic Distant Automatic Speech
+Recognition and Diarization, in: 8th International Workshop on Speech
+Processing in Everyday Environments (CHiME 2024), 2024, pp. 1–6.
+doi:10.21437/CHiME.2024-1.
+[6] N. Bhandari, D. Chen, M. A. del Rı́o Fernández, N. Delworth, J. D.
+Fox, M. Jetté, Q. McNamara, C. Miller, O. Novotný, J. Profant, N. Qin,
+M. Ratajczak, J.-P. Robichaud, Reverb: Open-Source ASR and Diarization from Rev, arXiv preprint arXiv:2410.03930 (2024).
+[7] T. Yoshioka, I. Abramovski, C. Aksoylar, Z. Chen, M. David, D. Dimitriadis, Y. Gong, I. Gurvich, X. Huang, Y. Huang, A. Hurvitz,
+L. Jiang, S. Koubi, E. Krupka, I. Leichter, C. Liu, P. Parthasarathy,
+A. Vinnikov, L. Wu, X. Xiao, W. Xiong, H. Wang, Z. Wang,
+J. Zhang, Y. Zhao, T. Zhou, Advances in Online Audio-Visual
+Meeting Transcription, in: 2019 IEEE Automatic Speech Recognition and Understanding Workshop (ASRU), 2019, pp. 276–283.
+doi:10.1109/ASRU46091.2019.9003827.
+[8] D. Raj, P. Denisov, Z. Chen, H. Erdogan, Z. Huang, M. He, S. Watanabe, J. Du, T. Yoshioka, Y. Luo, N. Kanda, J. Li, S. Wisdom, J. R.
+Hershey, Integration of Speech Separation, Diarization, and Recognition for Multi-Speaker Meetings: System Description, Comparison, and
+32
+
+Analysis, in: 2021 IEEE Spoken Language Technology Workshop (SLT),
+2021, pp. 897–904. doi:10.1109/SLT48900.2021.9383556.
+[9] N. Kanda, S. Horiguchi, R. Takashima, Y. Fujita, K. Nagamatsu,
+S. Watanabe, Auxiliary interference speaker loss for target-speaker
+speech recognition, Proceedings of the Annual Conference of the International Speech Communication Association, INTERSPEECH 2019September (2019) 236–240. doi:10.21437/Interspeech.2019-1126.
+[10] M. Karafiát, L. Burget, P. Matějka, O. Glembek, J. Černockỳ, iVectorbased discriminative adaptation for automatic speech recognition, in:
+2011 IEEE Workshop on Automatic Speech Recognition & Understanding, IEEE, 2011, pp. 152–157.
+[11] Z. Huang, D. Raj, P. Garcı́a, S. Khudanpur, Adapting Self-Supervised
+Models to Multi-Talker Speech Recognition Using Speaker Embeddings, in: ICASSP 2023 - 2023 IEEE International Conference on
+Acoustics, Speech and Signal Processing (ICASSP), 2023, pp. 1–5.
+doi:10.1109/ICASSP49357.2023.10097139.
+[12] N. Dehak, P. J. Kenny, R. Dehak, P. Dumouchel, P. Ouellet, Front-end
+factor analysis for speaker verification, IEEE Transactions on Audio,
+Speech, and Language Processing 19 (4) (2010) 788–798.
+[13] D. Snyder, D. Garcia-Romero, G. Sell, D. Povey, S. Khudanpur, Xvectors: Robust dnn embeddings for speaker recognition, in: 2018
+IEEE international conference on acoustics, speech and signal processing
+(ICASSP), IEEE, 2018, pp. 5329–5333.
+[14] H. Wang, C. Liang, S. Wang, Z. Chen, B. Zhang, X. Xiang, Y. Deng,
+Y. Qian, Wespeaker: A research and production oriented speaker embedding learning toolkit, in: IEEE International Conference on Acoustics,
+Speech and Signal Processing (ICASSP), IEEE, 2023, pp. 1–5.
+[15] A. Radford, J. W. Kim, T. Xu, G. Brockman, C. McLeavey, I. Sutskever,
+Robust speech recognition via large-scale weak supervision, in: International conference on machine learning, PMLR, 2023, pp. 28492–28518.
+[16] A. Vinnikov, A. Ivry, A. Hurvitz, I. Abramovski, S. Koubi, I. Gurvich,
+S. Peer, X. Xiao, B. M. Elizalde, N. Kanda, X. Wang, S. Shaer, S. Yagev,
+33
+
+Y. Asher, S. Sivasankaran, Y. Gong, M. Tang, H. Wang, E. Krupka,
+NOTSOFAR-1 Challenge: New Datasets, Baseline, and Tasks for Distant Meeting Transcription, in: Interspeech 2024, 2024, pp. 5003–5007.
+doi:10.21437/Interspeech.2024-1788.
+[17] I. Mccowan, J. Carletta, W. Kraaij, S. Ashby, S. Bourban, M. Flynn,
+M. Guillemot, T. Hain, J. Kadlec, V. Karaiskos, M. Kronenthal,
+G. Lathoud, M. Lincoln, A. Lisowska Masson, W. Post, D. Reidsma,
+P. Wellner, The ami meeting corpus, Int’l. Conf. on Methods and Techniques in Behavioral Research (01 2005).
+[18] J. Cosentino, M. Pariente, S. Cornell, A. Deleforge, E. Vincent, LibriMix: An Open-Source Dataset for Generalizable Speech Separation,
+arXiv: Audio and Speech Processing (2020).
+URL https://api.semanticscholar.org/CorpusID:218862876
+[19] K. Kinoshita, M. Delcroix, N. Tawara, Integrating end-to-end neural
+and clustering-based diarization: Getting the best of both worlds, in:
+Proc. ICASSP, IEEE, 2021, pp. 7198–7202.
+[20] H. Bredin, pyannote. audio 2.1 speaker diarization pipeline: principle,
+benchmark, and recipe, in: Proc. Interspeech 2023, 2023, pp. 1983–1987.
+[21] Z. Chen, T. Yoshioka, L. Lu, T. Zhou, Z. Meng, Y. Luo, J. Wu, X. Xiao,
+J. Li, Continuous speech separation: Dataset and analysis, in: ICASSP
+2020-2020 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), IEEE, 2020, pp. 7284–7288.
+[22] L. E. Shafey, H. Soltau, I. Shafran, Joint Speech Recognition and
+Speaker Diarization via Sequence Transduction, in: Interspeech 2019,
+2019, pp. 396–400. doi:10.21437/Interspeech.2019-1943.
+[23] N. Kanda, X. Xiao, Y. Gaur, X. Wang, Z. Meng, Z. Chen, T. Yoshioka,
+Transcribe-to-diarize: Neural speaker diarization for unlimited number
+of speakers using end-to-end speaker-attributed ASR, in: ICASSP 20222022 IEEE International Conference on Acoustics, Speech and Signal
+Processing (ICASSP), IEEE, 2022, pp. 8082–8086.
+[24] S. Cornell, J.-w. Jung, S. Watanabe, S. Squartini, One Model to Rule
+Them All? Towards End-to-End Joint Speaker Diarization and Speech
+34
+
+Recognition, in: ICASSP 2024-2024 IEEE International Conference on
+Acoustics, Speech and Signal Processing (ICASSP), IEEE, 2024, pp.
+11856–11860.
+[25] H. Ma, Z. Peng, M. Shao, J. Li, J. Liu, Extending Whisper with
+prompt tuning to target-speaker ASR, in: ICASSP 2024-2024 IEEE
+International Conference on Acoustics, Speech and Signal Processing
+(ICASSP), IEEE, 2024, pp. 12516–12520.
+[26] L. Meng, J. Kang, Y. Wang, Z. Jin, X. Wu, X. Liu, H. Meng, Empowering Whisper as a Joint Multi-Talker and Target-Talker Speech
+Recognition System, in: Interspeech 2024, 2024, pp. 4653–4657.
+doi:10.21437/Interspeech.2024-971.
+[27] P. Guo, X. Chang, H. Lv, S. Watanabe, L. Xie, SQ-Whisper: SpeakerQuerying based Whisper Model for Target-Speaker ASR, arXiv preprint
+arXiv:2412.05589 (2024).
+[28] A. Vaswani, Attention is all you need, Advances in Neural Information
+Processing Systems (2017).
+[29] S. Gandhi, P. von Platen, A. M. Rush, Distil-whisper: Robust
+knowledge distillation via large-scale pseudo labelling, arXiv preprint
+arXiv:2311.00430 (2023).
+[30] S. Watanabe, T. Hori, S. Kim, J. R. Hershey, T. Hayashi, Hybrid
+CTC/attention architecture for end-to-end speech recognition, IEEE
+Journal of Selected Topics in Signal Processing 11 (8) (2017) 1240–1253.
+[31] A. Graves, S. Fernández, F. Gomez, J. Schmidhuber, Connectionist temporal classification: labelling unsegmented sequence data with recurrent
+neural networks, in: Proceedings of the 23rd International Conference
+on Machine Learning, ICML ’06, Association for Computing Machinery,
+New York, NY, USA, 2006, p. 369–376. doi:10.1145/1143844.1143891.
+URL https://doi.org/10.1145/1143844.1143891
+[32] T. Hori, S. Watanabe, J. Hershey, Joint CTC/attention decoding for
+end-to-end speech recognition, in: R. Barzilay, M.-Y. Kan (Eds.),
+Proceedings of the 55th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), Association for
+35
+
+Computational Linguistics, Vancouver, Canada, 2017, pp. 518–529.
+doi:10.18653/v1/P17-1048.
+URL https://aclanthology.org/P17-1048
+[33] Y. Leviathan, M. Kalman, Y. Matias, Fast Inference from Transformers
+via Speculative Decoding, in: A. Krause, E. Brunskill, K. Cho, B. Engelhardt, S. Sabato, J. Scarlett (Eds.), Proceedings of the 40th International Conference on Machine Learning, Vol. 202 of Proceedings of
+Machine Learning Research, PMLR, 2023, pp. 19274–19286.
+URL https://proceedings.mlr.press/v202/leviathan23a.html
+[34] S. Watanabe, T. Hori, S. Karita, T. Hayashi, J. Nishitoba, Y. Unno,
+N. Enrique Yalta Soplin, J. Heymann, M. Wiesner, N. Chen,
+A. Renduchintala, T. Ochiai, ESPnet: End-to-end speech processing toolkit, in: Proceedings of Interspeech, 2018, pp. 2207–2211.
+doi:10.21437/Interspeech.2018-1456.
+URL http://dx.doi.org/10.21437/Interspeech.2018-1456
+[35] A. Polok, D. Klement, M. Wiesner, S. Khudanpur, J. Černocký, L. Burget, Target Speaker ASR with Whisper (2024). arXiv:2409.09543.
+URL https://arxiv.org/abs/2409.09543
+[36] S. Horiguchi, Y. Takashima, P. Garcı́a, S. Watanabe, Y. Kawaguchi,
+Multi-Channel End-To-End Neural Diarization with Distributed Microphones, in: ICASSP 2022 - 2022 IEEE International Conference on
+Acoustics, Speech and Signal Processing (ICASSP), 2022, pp. 7332–
+7336. doi:10.1109/ICASSP43922.2022.9746749.
+[37] L. Mošner, R. Serizel, L. Burget, O. Plchot, E. Vincent, J. Peng,
+J. Černocký, Multi-channel extension of pre-trained models for speaker
+verification, in: Proceedings of Interspeech 2024, Vol. 2024, International Speech Communication Association, 2024, pp. 2135–2139.
+doi:10.21437/Interspeech.2024-1260.
+URL https://www.fit.vut.cz/research/publication/13322
+[38] T. Wolf, L. Debut, V. Sanh, J. Chaumond, C. Delangue, A. Moi, P. Cistac, T. Rault, R. Louf, M. Funtowicz, J. Davison, S. Shleifer, P. von
+Platen, C. Ma, Y. Jernite, J. Plu, C. Xu, T. L. Scao, S. Gugger,
+M. Drame, Q. Lhoest, A. M. Rush, Transformers: State-of-the-art natural language processing, in: Proceedings of the 2020 Conference on
+36
+
+Empirical Methods in Natural Language Processing: System Demonstrations, Association for Computational Linguistics, Online, 2020, pp.
+38–45.
+URL https://www.aclweb.org/anthology/2020.emnlp-demos.6
+[39] T. v. Neumann, C. B. Boeddeker, M. Delcroix, R. Haeb-Umbach,
+MeetEval: A Toolkit for Computation of Word Error Rates for Meeting
+Transcription Systems, in: Proceedings of the 7th International Workshop on Speech Processing in Everyday Environments (CHiME 2023),
+2023, pp. 27–32. doi:10.21437/CHiME.2023-6.
+[40] V. Panayotov, G. Chen, D. Povey, S. Khudanpur, Librispeech: An ASR
+corpus based on public domain audio books, in: 2015 IEEE International
+Conference on Acoustics, Speech and Signal Processing (ICASSP), 2015,
+pp. 5206–5210. doi:10.1109/ICASSP.2015.7178964.
+[41] I. Loshchilov, F. Hutter, Decoupled weight decay regularization, in: International Conference on Learning Representations, 2019, pp. 1–18.
+URL https://openreview.net/forum?id=Bkg6RiCqY7
+[42] J. Han, F. Landini, J. Rohdin, A. Silnova, M. Diez, L. Burget, Leveraging Self-Supervised Learning for Speaker Diarization, arXiv preprint
+arXiv:2409.09408 (2024).
+[43] K. Kinoshita, M. Delcroix, N. Tawara, Advances in integration of endto-end neural and clustering-based diarization for real conversational
+speech, in: Proc. Interspeech, 2021, pp. 3565–3569.
+[44] A. Plaquet, H. Bredin, Powerset multi-class cross entropy loss for neural
+speaker diarization, in: INTERSPEECH 2023, 2023, pp. 3222–3226.
+doi:10.21437/Interspeech.2023-205.
+[45] S. Chen, C. Wang, Z. Chen, Y. Wu, S. Liu, Z. Chen, J. Li, N. Kanda,
+T. Yoshioka, X. Xiao, et al., Wavlm: Large-scale self-supervised pretraining for full stack speech processing, IEEE Journal of Selected Topics
+in Signal Processing 16 (6) (2022) 1505–1518.
+[46] A. Gulati, J. Qin, C.-C. Chiu, N. Parmar, Y. Zhang, J. Yu, W. Han,
+S. Wang, Z. Zhang, Y. Wu, et al., Conformer: Convolution-augmented
+transformer for speech recognition, in: Proc. Interspeech, 2020, pp.
+5036–5040.
+37
+
+[47] T. J. Park, K. J. Han, M. Kumar, S. Narayanan, Auto-tuning spectral
+clustering for speaker diarization using normalized maximum eigengap,
+IEEE Signal Processing Letters 27 (2019) 381–385.
+[48] N. Kanda, G. Ye, Y. Wu, Y. Gaur, X. Wang, Z. Meng,
+Z. Chen, T. Yoshioka, Large-Scale Pre-Training of End-to-End MultiTalker ASR for Meeting Transcription with Single Distant Microphone, in: Proceedings of Interspeech 2021, 2021, pp. 3430–3434.
+doi:10.21437/Interspeech.2021-102.
+[49] D. Raj, D. Povey, S. Khudanpur, SURT 2.0:
+Advances in
+Transducer-Based Multi-Talker Speech Recognition, IEEE/ACM
+Trans. Audio, Speech and Lang. Proc. 31 (2023) 3800–3813.
+doi:10.1109/TASLP.2023.3318398.
+URL https://doi.org/10.1109/TASLP.2023.3318398
+[50] M. Fazel-Zarandi, W.-N. Hsu, Cocktail Hubert: Generalized SelfSupervised Pre-Training for Mixture and Single-Source Speech, in:
+ICASSP 2023 - 2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 2023, pp. 1–5.
+doi:10.1109/ICASSP49357.2023.10096630.
+[51] S. Niu, R. Wang, J. Du, G. Yang, Y. Tu, S. Wu, S. Qian, H. Wu, H. Xu,
+X. Zhang, G. Zhong, X. Yu, J. Chen, M. Wang, D. Cai, T. Gao, G. Wan,
+F. Ma, J. Pan, J. Gao, The USTC-NERCSLIP Systems for the CHiME8 NOTSOFAR-1 Challenge, in: 8th International Workshop on Speech
+Processing in Everyday Environments (CHiME 2024), 2024, pp. 31–36.
+doi:10.21437/CHiME.2024-7.
+[52] W. Zhang, Y. Qian, Weakly-Supervised Speech Pre-training: A Case
+Study on Target Speech Recognition, in: Proc. INTERSPEECH 2023,
+2023, pp. 3517–3521. doi:10.21437/Interspeech.2023-1280.
+[53] A. Polok, D. Klement, J. Han, S. Sedláček, B. Yusuf, M. Maciejewski,
+M. Wiesner, L. Burget, BUT/JHU System Description for CHiME-8
+NOTSOFAR-1 Challenge, in: 8th International Workshop on Speech
+Processing in Everyday Environments (CHiME 2024), 2024, pp. 18–22.
+doi:10.21437/CHiME.2024-4.
+
+38
+
+[54] A. Rousseau, P. Deléglise, Y. Estève, TED-LIUM: an automatic speech
+recognition dedicated corpus, in: N. Calzolari, K. Choukri, T. Declerck,
+M. U. Doğan, B. Maegaard, J. Mariani, A. Moreno, J. Odijk, S. Piperidis
+(Eds.), Proceedings of the Eighth International Conference on Language
+Resources and Evaluation (LREC’12), European Language Resources
+Association (ELRA), Istanbul, Turkey, 2012, pp. 125–129.
+URL http://www.lrec-conf.org/proceedings/lrec2012/pdf/698_
+Paper.pdf
+[55] C. Wang, M. Riviere, A. Lee, A. Wu, C. Talnikar, D. Haziza,
+M. Williamson, J. Pino, E. Dupoux, VoxPopuli: A large-scale multilingual speech corpus for representation learning, semi-supervised
+learning and interpretation, in: C. Zong, F. Xia, W. Li, R. Navigli
+(Eds.), Proceedings of the 59th Annual Meeting of the Association
+for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers), Association for Computational Linguistics, Online, 2021, pp. 993–1003.
+doi:10.18653/v1/2021.acl-long.80.
+URL https://aclanthology.org/2021.acl-long.80
+[56] Y. Peng, S. Dalmia, I. Lane, S. Watanabe, Branchformer: Parallel MLPAttention Architectures to Capture Local and Global Context for Speech
+Recognition and Understanding, in: K. Chaudhuri, S. Jegelka, L. Song,
+C. Szepesvari, G. Niu, S. Sabato (Eds.), Proceedings of the 39th International Conference on Machine Learning, Vol. 162 of Proceedings of
+Machine Learning Research, PMLR, 2022, pp. 17627–17643.
+URL https://proceedings.mlr.press/v162/peng22a.html
+
+39
+
+

@@ -1,0 +1,979 @@
+GEOMETRY-AGNOSTIC ACOUSTIC PROCESSING: A DYNAMIC SPATIAL NETWORK
+FOR JOINT ECHO CANCELLATION AND NOISE SUPPRESSION
+Kangqi Jing1† , Wenbin Zhang3† , Jun Du2 , Qing Wang2* , Yu Gao3*
+1
+
+School of Information Science and Engineering, Southeast University, China
+2
+University of Science and Technology of China (USTC), Hefei, China
+3
+AI Research Center, Midea Group (Shanghai) Co.,Ltd., China
+jingkangqi@seu.edu.cn, zhangwb87@midea.com
+
+ABSTRACT
+We propose a geometry-agnostic solution for multichannel acoustic echo cancellation and noise suppression. The
+model employs a Dynamic Spatial Encoder that adaptively
+processes spatial information from arbitrary microphone arrays, combined with powerful separation modules for echo
+cancellation and noise suppression. A post-processing network further enhances output quality by eliminating residual
+artifacts and speech distortions. The system incorporates
+an integrated classifier for frame-level voice activity detection, enabling accurate identification of acoustic states
+(double-talk, far-end single-talk, near-end single-talk and
+double-silence). Experimental results demonstrate consistent performance across various array geometries for both
+stationary and moving speakers, achieving significant word
+error rate (WER) reduction in challenging conditions while
+improving perceptual speech quality.
+Index Terms— Acoustic echo cancellation, multichannel, geometry-agnostic
+1. INTRODUCTION
+Acoustic echo cancellation (AEC) addresses the critical challenge of removing undesired echoes caused by loudspeakermicrophone coupling in communication systems [1]. Modern conference rooms, typically equipped with multiple
+microphones and loudspeakers, require multichannel solutions (MCAEC) and multi-loudspeaker echo cancellation
+(MMAEC) approaches. These scenarios present both additional challenges and opportunities compared to singlechannel AEC, driving significant research attention [2].
+While neural network-based multichannel AEC methods [3, 4, 5, 6] have demonstrated superior performance over
+conventional approaches[7, 8, 9], their real-world deployment
+faces a critical limitation: current models require retraining
+for different microphone array geometries. This constraint
+† Equal contribution. * Corresponding author.
+
+necessitates impractical computational resources when adapting to diverse conference room configurations. Recent arrayagnostic speech enhancement methods [10, 11, 12, 13, 14]
+have explored this direction. DeFTAN-AA [12] introduces
+a spatial transformer that aggregates spatial information
+through channel-wise self-attention and a space-object crossattention (SOCA) block to mitigate array-specific overfitting.
+Similarly, Zheng et al. [14] proposes a spatial filter bank to
+extract geometry-invariant features, processed by a two-stage
+conformer-based model. ArrayDPS [13] addresses the blind
+speech separation (BSS) problem through an unsupervised,
+array-agnostic framework that leverages diffusion posterior
+sampling to approximate room acoustics without requiring
+prior knowledge of array geometry.
+Building upon these advances, we formulate AEC as a
+supervised speech separation task. Our framework introduces
+three key components: (1) a Dynamic Spatial Encoder that
+adaptively processes spatial information from arbitrary microphone arrays, (2) powerful separation modules for joint
+echo cancellation and noise suppression, and (3) a postprocessing network that eliminates residual artifacts and
+speech distortions. The system incorporates an auxiliary
+classification network for frame-level acoustic state detection, identifying four distinct scenarios: double-talk, far-end
+single-talk, near-end single-talk and double-silence. This
+state information guides the post mask estimation network to
+optimize echo cancellation performance. By estimating nearend speech from microphone signals using far-end references
+as conditional information, our approach decouples system
+performance from specific spatial configurations.
+Experiments show that the proposed method effectively
+suppresses both acoustic echoes and background noise, even
+under challenging conditions with nonlinear distortions for
+adverse SER and both static and moving near-end sources.
+Furthermore, downstream ASR evaluation shows significant
+WER reduction compared to baseline approaches, confirming
+the practical utility of our geometry-agnostic design. Code
+and audio examples are available at https://github.
+com/jingkangqi/VSAEC.
+
+X
+[B, F, T, 2]
+
+reshape
+
+Separation
+
+T-Conv1D
+
+C
+
+ℎ0
+
+Narrowband
+
+×L
+
+𝑀ref
+
+ℎ1
+
+Crossband
+
+Decoder
+
+Dynamic
+Spatial Encoder
+
+M
+[B, F, T, 2Q]
+
+𝑆0
+
+labels
+
+×2
+
+×3
+
+×2
+
+[ B, Q, C, T, F ]
+
+[ BQ, C, T, F ]
+
+Conv Block
+
+(d) PostNet
+
+C
+
+Mean
+(dim=1)
+
+reshape
+
+GT-Conv2D
+
+𝑆0
+
+GT-Conv2D
+
+labels
+𝑀ref
+
+US-Conv2d
+Block
+
+reshape
+
+DPR
+
+[ BT, 4Q, F ]
+
+C
+
+Conv Block
+
+Linear Block
+
+MaxPool
+
+(c) Classifier
+
+LN
+
+FiLM
+
+Self Attention
+
+V
+
+Feed
+Forward
+
+LN
+
+DS-Conv2D
+
+K
+
+DPR
+
+[ BT, 2Q, F ]
+
+Q
+
+DS-Conv2D
+
+ℎ1
+
+Linear
+
+DS-Conv2D
+
+C
+
+Linear
+
+reshape
+
+Conv Block
+
+[ B, F, T, 2Q ]
+
+ℎ0
+
+Linear
+
+[ BQ, 4, T, F ]
+
+Classifier
+(b) Dynamic Spatial Encoder
+
+𝑆መ
+
+PostNet
+
+[B, C, T, F]
+
+(a) Overall diagram of the proposed framework
+
+×3
+
+×2
+
+𝑆0
+
+𝑆መ
+
+Fig. 1. (a) The system overview of the proposed AEC model. The detailed structure of (b) Dynamic Spatial Encoder, (c)
+Classfier, (d) PostNet.
+2. PROBLEM FORMULATION
+Consider a system comprising P loudspeakers and Q microphones. The loudspeaker’s signal xp [n], generated from farend sources x[n], are convolved with room impulse responses
+(RIRs) hp [n] , where p ∈ {1, 2, ..., P }. In the receiving room,
+the processed signals xnl
+p [n] are played through loudspeakers.
+Assume s[n] is the clean near-end speech, the signal captured
+by the q-th microphone in the short-time Fourier transform
+(STFT) domain is expressed as:
+Mq (t, f ) =
+
+P
+X
+
+Hpq (f )Xpnl (t, f ) +Sq (t, f ) + Vq (t, f ), (1)
+{z
+}
+|
+p=1
+Epq (t,f )
+
+where t and f denote the time frame and frequency bin indices respectively, Epq (t, f ) represents the echo component
+from the p-th loudspeaker to the q-th microphone, Hpq (f ) is
+the corresponding acoustic transfer function, Sq (t, f ) denotes
+the STFT of the reverberant near-end speech signal, given by
+sq [n] = s[n] ∗ rq [n], rq [n] is the RIR between the clean nearend source and the q-th microphone, and Vq (t, f ) is the background noise. The multichannel mixture received by the Qmicrophone array at each time-frequency bin is given by:
+M(t, f ) = E(t, f ) + S(t, f ) + V(t, f ) ∈ CQ ,
+
+(2)
+
+where E(t, f ), S(t, f ), and V(t, f ) represent the echo,
+speech, and noise components respectively.
+
+The objective of this work is to simultaneously suppress
+the echo E(t, f ) and noise V(t, f ), and to perform dereverberation to recover an enhanced speech signal ŝ[n] such that
+ŝ[n] 7→ s[n]. Our proposed system achieves this through a
+composite transformation F (·) operating on both the microphone signals and the reference far-end signal:
+ŝ[n] = iSTFT (F (M(t, f ), X(t, f ))) ,
+
+(3)
+
+where X(t, f ) represents the STFT of the reference channel’s far-end signal x[n]. The system is designed to adapt
+flexibly to varying numbers of microphones (Q) and loudspeakers (P ), arbitrary array geometries, while jointly addressing acoustic echo cancelation, noise suppression, and
+speech dereverberation in a unified framework.
+3. PROPOSED METHOD
+The proposed AEC system, illustrated in Figure 1, processes
+multi-microphone STFT coefficients M ∈ RF ×T ×2Q and
+far-end reference signal X ∈ RF ×T ×2 to estimate the clean
+signal ŝ, where F and T denote the number of frequency bins
+and time frames, respectively.
+The model incorporates a Dynamic Spatial Encoder to
+capture spatial correlations between arbitrary microphone
+pairs, enabling channel-agnostic processing for variable array
+geometries. The encoded microphone features are concatenated with the far-end reference signal, and across the convolutional input layer (T-Conv1d) with a kernel size of 1 and
+
+5 on the frequency and time axes, respectively, and with C
+channels, obtaining a hidden representation h0 ∈ RF ×T ×C .
+h0 is then processed by interleaved Crossband and Narrowband layers to achieve simultaneous speech separation
+and echo cancellation. The Crossband and Narrowband layers follow the same structure as described in [15], selected for
+their strong ability to separate speech using complex spatial
+information. The output of this processing is h1 ∈ RF ×T ×C .
+The features h0 and h1 are concatenated and fed to the
+Classifier to predict the acoustic scenario labels. The decoder
+consists of a linear layer that maps h0 to the preliminary target STFT coefficients S0 . A postnet is then utilized to recover
+speech distortions and remove residual noise in the audio signal. Finally, inverse short-time Fourier transform (iSTFT) is
+applied to resynthesize the echo-canceled signal ŝ.
+3.1. Dynamic Spatial Encoder
+The proposed Dynamic Spatial Encoder, illustrated in Figure 1(b), introduces a geometry-agnostic framework for spatial feature extraction in microphone arrays by adaptively processing input features X ∈ RF ×T ×2Q through a hierarchical
+spatial attention mechanism. The encoder first reinterprets
+the conventional feature dimensions by treating temporal
+frames (T ) as batch dimension, frequency bins (F ) as the
+embedding dimension, and microphone channels (2Q) as the
+sequence dimension, enabling the generation of a 2Q × 2Q
+spatial attention matrix that adaptively captures pairwise microphone interactions independent of array configuration.
+The attended features are then enhanced through a feedforward network with layer normalization(LN)[16] to introduce
+nonlinear feature transformations. These processed features
+are then combined with the reshaped original spectral inputs,
+where the real and imaginary components are systematically
+separated and reorganized into a (Q, 4, T, F )-dimensional
+representation through a learnable upsample convolutional
+(US-Conv2d) block consisting of a convolution layer, LN
+and parametric rectified linear unit (PReLU) activation[17].
+Finally, a mean pooling along the microphone-dimension to
+generate consolidated features O ∈ RB×C×T ×F that preserve essential spatial information while remaining adaptable
+to arbitrary microphone configurations.
+3.2. Classifier
+The classifier, illustrated in Figure 1(c), provides frame-level
+acoustic scenario detection to guide the post-enhancement
+process. The network first projects the concatenated highdimensional features [h0 ; h1 ] ∈ RF ×T ×2C into a lowerdimensional label space through a convolutional block, followed by two successive downsampling convolutional blocks
+(DS-Conv2D) that progressively reduce the frequency resolution to F/4, balancing computational efficiency with feature
+retention. At the bottleneck, a Dual-Path Recurrent (DPR)
+
+module [18] simultaneously models local band-wise temporal
+dependencies and global frame-wise frequency correlations
+through its dual-path architecture, effectively capturing essential scenario characteristics with minimal parameters. Then
+a DS-Conv2D block projects features to dimension D. The
+final classification head consists of a max-pooling operation
+along the frequency dimension, a fully-connected layer with
+weight matrix Wc ∈ RD×Nclass , and a softmax activation that
+generates the posterior probability distribution p̂t ∈ [0, 1]Nclass
+for each frame, where t denotes the frame index and Nclass
+denotes the number of predefined acoustic scenarios.
+3.3. PostNet
+The postnet serves as the final refinement stage for the enhanced spectrogram, addressing residual artifacts and improving speech quality. As shown in Figure 1(d), the module
+processes three inputs: the primary enhanced spectrogram
+S0 ∈ CF ×T , scenario labels L ∈ RT ×Nclass from the classifier,
+and the reference channel’s microphone signal Mref ∈ CF ×T .
+The post-processing begins with FiLM-conditioned [19]
+feature transformation, where the reference signal is modulated according to acoustic scenarios through learned scaling
+and shifting parameters:
+FiLM(Mref |L) = γ(L) ⊙ Mref + β(L)
+
+(4)
+
+where L ∈ RT ×Nclass represents the frame-wise scenario labels from the classifier, and γ, β are learned transformations
+according to the current state. The FiLM-processed features
+are then concatenated with S0 along the channel dimension
+and fed into a U-Net architecture.
+The encoder consists of two convolution block to map the
+input spectrum to a high-dimensional and three grouped temporal convolution (GT-Conv) blocks employing depth-wise
+separable convolutions with dilation rates (1, 2, 5) to capture
+multi-scale temporal dependencies. The bottleneck uses two
+DPR blocks. The decoder is the mirror version of the encoder,
+ultimately generating the real and imaginary components of a
+complex ratio mask (CRM) [20]. This mask is applied to the
+reference noisy signal through element-wise multiplication to
+produce the final enhanced spectrum Ŝ ∈ CF ×T .
+3.4. Loss Fuction
+The proposed model is trained using a combination of a spectral magnitude loss, a scale-invariant signal-to-distortion ratio
+(SI-SDR) [21] loss and a cross-entropy loss of labels. The
+overall loss function is formulated as:
+L = LMag + λLSI-SDR + LCE ,
+
+(5)
+
+where λ is a weighting factor. The spectral magnitude loss,
+similar to [22], enforces consistency in the TF domain and is
+defined as:
+∥|STFT(ŝc )| − |STFT(sc )|∥1
+.
+(6)
+LMag =
+∥|STFT(sc )|∥1
+
+To improve the perceptual quality of the extracted speech, we
+incorporate the SI-SDR loss:
+!
+C
+2
+X
+∥sc ∥2
+,
+(7)
+LSI-SDR = −
+10 log10
+2
+∥ŝc − αc sc ∥2
+c=1
+where αc is the optimal scaling factor given by
+αc =
+
+sTc ŝc
+.
+sTc sc
+
+(8)
+
+LCE is the cross-entropy loss between the true state probabilities p(ci (n)) and the predicted probabilities p(ĉi (n)) obtained
+from the softmax function for the states, DS, FST, NST and
+DT, i ∈ [0, 1, 2, 3] corresponding to states 0, 1, 2, and 3, respectively, n is the frame index.
+LCE = −
+
+3
+XX
+n
+
+p(ci (n)) log(p(ĉi (n)))
+
+(9)
+
+i=0
+
+4. EXPERIMENTS
+4.1. Dataset
+For training, we generate the simulated data by taking a similar way as reported in [23]. The far-end and near-end signals
+are chosen from train-clean-100 subset from the LibriSpeech
+corpus [24], while the background noise is taken from the
+DEMAND dataset [25].
+To simulate spatialized speech and noise signals, rooms
+are generated by randomly sampled width, depth, and height
+from the prescribed intervals of [5, 12] m, [5, 12] m, and [2, 5]
+m, respectively. The reverberation time (RT60) of the room
+is randomly varied within the range [0.3, 1.2] s. A circular 4-microphone array is employed as reference configurations with 10 cm diameters. The RIR is generated using using
+gpuRIR [26]. For static scenarios, the near-end speaker is
+positioned at least 0.3 m from walls, while two loudspeakers
+are systematically distributed in room corners. For moving
+scenarios, the near-end speaker’s start location and moving
+direction are randomly sampled in the loop trajectories. The
+moving speed is sampled in [1, 1.5] m/s. Note that, when
+moving speed is high, the simulated direct-path target signals
+may have some clicking noise and other audible artifacts. To
+mitigate this problem, the speech signals at two adjacent locations are partial-overlapped and applied with a trapezium
+window for both the reverberant signal and direct-path signals [15].
+For data augmentation, we simulate realistic acoustic
+echo cancellation conditions by modeling both nonlinear
+distortions and time-varying transmission effects. Following [27], we simulate loudspeaker nonlinearities through hard
+clipping and distortion applied to far-end signals. To model
+transmission channel variations, we introduce time-varying
+
+delays by applying temporal shifts randomly sampled from
+U(−20, 0) ms to each far-end signal, as proposed in [28],
+which forces continuous adaptation during processing. Our
+double-talk simulation produces 10-second mixed audio segments containing echo signals and near-end speech, each with
+randomized durations between 6-10 seconds.
+This dataset encompassed signal-to-noise ratio (SNR)
+ranging from [-10, 10] dB. We mix the noise and the near-end
+speech based on SNR. The signal-to-echo ratio (SER), which
+is evaluated during double-talk scenarios, randomly ranges
+from [-15, 15] dB. We mix the echo signal and the near-end
+speech based on SER. The Root-Mean-Square (RMS) level
+of each mixed signal is randomly sampled from [-20, -15] dB.
+Meanwhile, the signals’ energy of the near-end and the echo
+are calculated and compared to the threshold, judging whether
+there is voice at the corresponding branch. Four categories are
+obtained, i.e., Double Slience(DS), Far-end single talk(FST),
+Near-end single talk(NST), Double Talk(DT), acting as classification labels. All audio mixtures are 10 second-long, with
+a sampling rate of 16 kHz. In total, we generate 40 hours
+of training data for static speaker scenarios and an additional
+40 hours for moving speaker scenarios. Scenario distribution
+follows 8:1:1 ratios for DT, FST, and NST conditions.
+The test set was simulated using the same methodology
+as the training set but with different data sources. Clean
+speech signals were extracted from the test-clean subset of
+LibriSpeech, while noise samples were selected from the
+same dataset used for training. To evaluate generalization
+capabilities, we conducted experiments with distinct array
+geometries: circular, rectangular, and linear configurations.
+The array size was systematically varied, with radius randomly sampled between 5 cm and 20 cm.
+4.2. Experimental Setup
+The STFT configuration employs a 16 ms (256 samples) Hanning window with 8 ms (128 samples) hop length, yielding
+129 frequency bins. The model architecture adopts C =
+64 hidden channels and L = 8 separation blocks, following
+[15]’s configuration (C ′ = 64, C ′′ = 8) with channel 0 as
+reference. The classifier utilizes D = 32 hidden dimension,
+while the PostNet contains 16 hidden channels, resulting in
+the total parameter count is 0.9M.
+The model employs a two-phase training strategy: (1) The
+base architecture (without PostNet) trains on 4-channel data
+for 100 epochs to develop robust, array-agnostic features for
+acoustic echo cancellation; (2) With the base model frozen,
+the PostNet fine-tunes for 50 epochs to enhance spectral refinement and mitigate AEC performance degradation caused
+by array configuration differences, effectively addressing
+residual artifacts and improving speech quality. Training
+batch size is 4, using the Adam [29] optimizer with an initial
+learning rate of 0.001, which decays exponentially by a factor
+of 0.99 per epoch.
+
+Table 1. The performance of the proposed method compared with baselines.
+Test scenarios
+DT
+NST
+FST
+SER(dB)
+-10
+-5
+0
+–
+–
+Model\Metric PESQ SISNRi WER(%) PESQ SISNRi WER(%) PESQ SISNRi WER(%) PESQ SISNRi WER(%) ERLE
+mix
+1.12 -19.42
+96.10
+1.12 -12.30
+91.12
+1.14
+-8.71
+86.01
+1.24
+-4.70
+27.98
+–
+9.69
+68.37
+1.26
+6.39
+49.40
+1.31
+3.31
+34.10
+1.36
+0.13
+22.14
+8.08
+NKF+MVDR 1.19
+ICRN
+1.35 17.14
+47.22
+1.46 13.77
+33.48
+1.55 10.88
+25.09
+1.73
+7.87
+14.94
+44.62
+Proposed
+1.57 21.36
+31.13
+1.76 17.28
+18.44
+1.95 14.62
+12.68
+2.30 11.92
+7.46
+50.37
+w/o Classifier 1.57 21.23
+31.30
+1.76 17.13
+18.89
+1.94 14.46
+13.05
+2.27 11.75
+7.58
+45.12
+1.54 20.12
+33.40
+1.75 17.01
+20.23
+1.93 12.25
+13.70
+2.26 11.59
+8.15
+49.88
+w/o Postnet
+
+Table 2. The performance of the proposed method in static and moving configurations with varying microphone (Q) and
+loudspeaker (P) counts.
+Test scenarios
+DT
+NST
+FST
+SER(dB)
+-10
+-5
+0
+–
+–
+near-end Q\P PESQ SISNRi WER(%) PESQ SISNRi WER(%) PESQ SISNRi WER(%) PESQ SISNRi WER(%) ERLE
+37.43
+1.61 15.39
+23.34
+1.77 12.90
+15.79
+2.09 10.59
+8.90
+47.82
+3\1 1.45 18.46
+4\1 1.54 19.40
+31.51
+1.74 16.45
+18.75
+1.93 14.03
+12.60
+2.31 11.90
+7.10
+49.10
+Static
+4\3 1.57 20.75
+29.35
+1.78 17.60
+17.30
+1.97 14.87
+11.89
+2.31 11.91
+6.94
+50.84
+6\3 1.54 20.81
+30.96
+1.75 17.65
+18.55
+1.94 14.87
+12.80
+2.29 11.89
+7.86
+51.43
+41.17
+1.47 12.67
+30.24
+1.52
+9.98
+22.16
+1.79
+7.65
+15.43
+43.90
+3\2 1.36 16.28
+Moving 4\2 1.45 17.53
+34.04
+1.56 14.22
+22.18
+1.64 12.07
+15.05
+1.92
+8.13
+12.50
+45.09
+6\2 1.44 17.68
+33.87
+1.56 14.34
+23.45
+1.62 12.27
+15.57
+1.92
+8.04
+13.22
+43.90
+
+4.3. Evaluation Metrics
+For evaluation, we employ scenario-specific metrics: SI-SNR
+improvement (SISNRi) and wideband PESQ [30] for doubletalk (DT) and near-end single-talk (NST) conditions, echo
+return loss enhancement (ERLE) [31] for far-end single-talk
+(ST-FE). Additionally, we incorporate word error rate (WER)
+as a downstream automatic speech recognition (ASR) performance metric.
+5. RESULTS AND ANALYSIS
+5.1. Comparative Evaluation
+In Table 1, we present a comprehensive comparison between our proposed model and two baseline methods. The
+NKF+MVDR, represents a modular approach that combines
+a neural Kalman filter (NKF) [32] for per-channel echo cancellation with subsequent MVDR beamforming for spatial
+processing [2]. ICRN [5], implements an end-to-end complex spectral mapping solution that jointly models temporal
+and spatial dependencies through inplace convolutional recurrent networks for multichannel AEC. For fair comparison,
+we have scaled the ICRN model size to match our proposed
+architecture’s parameter count while maintaining its original
+structural design.
+
+All compared systems are trained on the 4-mic static
+dataset and evaluated on randomized 4-mic geometries that
+differ from the training configurations, ensuring the array
+geometry remains unknown a priori. The test set features
+varying SNRs uniformly sampled from 5-10 dB, incorporating challenging acoustic conditions such as reverberation,
+additive noise, and nonlinear distortions. Under these conditions, while the NKF+MVDR approach exhibits limited
+robustness and the neural-based ICRN framework serves as
+a strong baseline, our proposed method consistently achieves
+superior performance across all three acoustic scenarios. As
+evidenced in Table 1, our method demonstrates significant
+advantages in processing unseen spatial configurations, outperforming both NKF+MVDR (by 10.8-11.7 dB SISNRi improvement) and ICRN (by 3.5-4.2 dB SISNRi improvement)
+in cross-geometry evaluation scenarios.
+The ablation study systematically quantifies the contribution of each component. By eliminating the classifier and directly feeding the reference microphone signal to the PostNet,
+we demonstrate that the classifier module plays a crucial role
+in echo suppression, with its removal leading to a substantial
+5.25 dB decrease in ERLE specifically under far-end singletalk conditions. The PostNet, on the other hand, is shown
+to be principally responsible for perceptual quality enhancement, as indicated by systematic reductions in PESQ scores
+when deactivated, while concurrently providing a stable 1.0-
+
+Noisy
+
+8000
+
+Far-end
+
+8000
+
++0 dB
+
+Frequency (Hz)
+
+-10 dB
+6000
+
+6000
+
+4000
+
+4000
+
+2000
+
+2000
+
+-20 dB
+-30 dB
+-40 dB
+-50 dB
+
+Amplitude (dB)
+
+-60 dB
+-70 dB
+
+0
+
+0
+
+1.5
+
+3
+
+8000
+
+4.5
+
+Target
+
+6
+
+7.5
+
+9
+
+0
+
+0
+
+1.5
+
+3
+
+8000
+
+4.5
+
+Enhanced
+
+6
+
+7.5
+
+9
+
+-80 dB
++0 dB
+
+Frequency (Hz)
+
+-10 dB
+6000
+
+6000
+
+4000
+
+4000
+
+2000
+
+2000
+
+-20 dB
+-30 dB
+-40 dB
+-50 dB
+
+Amplitude (dB)
+
+2.2% relative improvement in word error rate.
+Most notably, in challenging echo-dominant environments with SER of -10 dB, the complete system achieves
+optimal performance - improving SISNRi by 18.46 dB while
+dramatically reducing WER from 96.10% to 31.13% compared to the unprocessed baseline. This substantial 64.97%
+absolute WER reduction underscores the system’s effectiveness in severe acoustic conditions where both reverberation,
+additive noise, and nonlinear distortions are included.
+
+-60 dB
+-70 dB
+
+0
+
+5.2. Robustness Analysis
+
+0
+
+1.5
+
+3
+
+4.5
+6
+Time (s)
+
+5.2.2. Dynamic Speaker Conditions
+Following the same training procedure, we additionally train
+the model on the moving sound source dataset. Table 2 further evaluates the model’s performance under dynamic conditions with speakers moving at 1-1.5 m/s. Despite the challenging acoustic environment characterized by time-varying
+spatial relationships, the model demonstrates robust generalization across all tested array configurations (Q = {3, 4, 6}
+mics with P = 2 loudspeakers). The results show confirming
+effective adaptation to both stationary and moving conditions.
+5.3. Effectiveness of State-Detection Learning
+Figure 2(a) presents a representative example comparing the
+noisy mixture, far-end signal, target speech, and enhanced
+output. Figure 2(b) shows the model’s frame-level state predictions alongside the ground truth annotations. The nearperfect alignment between predicted states and reference labels demonstrates the model’s ability to precisely characterize
+acoustic conditions. This accurate state detection enables optimal processing mode selection for simultaneous AEC and
+speech enhancement.
+The quantitative evaluation on 1,000 test samples demonstrates robust state detection performance, as evidenced by the
+confusion matrix in Figure 2(c). The system achieves 99% accuracy for critical double-talk (DT) detection-the most com-
+
+9
+
+0
+
+0
+
+1.5
+
+3
+
+4.5
+6
+Time (s)
+
+7.5
+
+9
+
+-80 dB
+
+(a)
+
+5.2.1. Array Configuration Variability
+Table 2 demonstrates our model’s generalization capability
+across different microphone and loudspeaker configurations,
+despite being trained on a 4-mic/2-loudspeaker setup. When
+tested with P = {1, 3} loudspeakers while maintaining 4 microphones, the model preserves strong acoustic echo cancellation and noise suppression performance, showing remarkable robustness to varying interference conditions. Similarly,
+adaptation to Q = {3, 6} microphone configurations reveals
+the model’s ability to effectively utilize additional spatial information, with only marginal performance degradation observed in the 6-mic case compared to the original 4-mic setup.
+The results demonstrate that the model maintains robust generalization capability across different array geometries.
+
+7.5
+
+(b)
+
+(c)
+
+Fig. 2. Experimental results: (a) Spectrum visualizations of
+noisy input, far-end reference, target speech, and enhanced
+output signal; (b) Frame-level state transition visualization:
+ground truth (red) vs predicted (blue); (c) Confusion matrix of
+state classification (DS: Double Slience, FST: Far-end single
+talk, NST: Near-end single talk, DT: Double Talk).
+putationally demanding state requiring precise echo cancellation, while maintaining high accuracy for double silence (DS,
+95%) and near-end/far-end single talk scenarios (NST/FST,
+91-92%), the model exhibits a conservative bias toward DT
+classification.
+6. CONCLUSIONS
+This work presents a geometry-agnostic neural network for
+multichannel acoustic echo cancellation, featuring a Dynamic
+Spatial Encoder for adaptive array processing, joint powerful
+separation modules for simultaneous echo and noise suppression, and a postnet enhanced by an auxiliary state classifier.
+Experimental results demonstrate robust performance across
+diverse microphone configurations, with significant improvements in both speech quality and ASR accuracy, particularly
+in challenging scenarios involving nonlinear distortions and
+moving sound sources. The proposed solution provides an
+effective approach for real-world deployment where array geometries and acoustic conditions vary unpredictably, establishing a new benchmark for flexible AEC systems.
+
+7. REFERENCES
+[1] Gerald Enzner, Herbert Buchner, Alexis Favrot, and
+Fabian Kuech, “Acoustic echo control,” in Academic
+press library in signal processing, vol. 4, pp. 807–877.
+Elsevier, 2014.
+[2] Hao Zhang and DeLiang Wang, “A deep learning approach to multi-channel and multi-microphone acoustic echo cancellation.,” in Interspeech, 2021, pp. 1139–
+1143.
+[3] Hao Zhang and DeLiang Wang, “Neural cascade architecture for multi-channel acoustic echo suppression,”
+IEEE/ACM Transactions on Audio, Speech, and Language Processing, vol. 30, pp. 2326–2336, 2022.
+[4] Premanand Nayak, Kamini Sabu, and M Shaik, “Multimic echo cancellation coalesced with beamforming for
+real world adverse acoustic conditions,” in Proc. Interspeech 2024, 2024, pp. 147–151.
+[5] Chenggang Zhang, Jinjiang Liu, Hao Li, and Xueliang
+Zhang, “Neural multi-channel and multi-microphone
+acoustic echo cancellation,” IEEE/ACM Transactions
+on Audio, Speech, and Language Processing, vol. 31,
+pp. 2181–2192, 2023.
+[6] Yuval Konforti, Israel Cohen, and Baruch Berdugo,
+“Multichannel acoustic echo cancellation with beamforming in dynamic environments,” IEEE Open Journal
+of Signal Processing, vol. 4, pp. 479–488, 2023.
+[7] Wolfgang Herbordt, Walter Kellermann, and Satoshi
+Nakamura, “Joint optimization of acoustic echo cancellation and adaptive beamforming,” Topics in acoustic
+echo and noise control, pp. 19–50, 2006.
+[8] Klaus Reindl, Yuanhang Zheng, Anthony Lombard, Andreas Schwarz, and Walter Kellermann, “An acoustic
+front-end for interactive tv incorporating multichannel
+acoustic echo cancellation and blind signal extraction,”
+in 2010 Conference Record of the Forty Fourth Asilomar
+Conference on Signals, Systems and Computers. IEEE,
+2010, pp. 1716–1720.
+[9] W Herbordtt, Satoshi Nakamura, and Walter Kellermann, “Joint optimization of lcmv beamforming and
+acoustic echo cancellation for automatic speech recognition,” in Proceedings.(ICASSP’05). IEEE International
+Conference on Acoustics, Speech, and Signal Processing, 2005. IEEE, 2005, vol. 3, pp. iii–77.
+[10] Takuya Yoshioka, Xiaofei Wang, Dongmei Wang, Min
+Tang, Zirun Zhu, Zhuo Chen, and Naoyuki Kanda,
+“Vararray: Array-geometry-agnostic continuous speech
+separation,” in ICASSP 2022-2022 IEEE International
+
+Conference on Acoustics, Speech and Signal Processing
+(ICASSP). IEEE, 2022, pp. 6027–6031.
+[11] Siyuan Zhang and Xiaofei Li, “Microphone array generalization for multichannel narrowband deep speech enhancement,” in Proc. Interspeech 2021, 2021, pp. 666–
+670.
+[12] Dongheon Lee and Jung-Woo Choi, “Deftan-aa: Array geometry agnostic multichannel speech enhancement,” Proc. INTERSPEECH, Kos, Greece, pp. 3360–
+3364, 2024.
+[13] Zhongweiyang Xu, Xulin Fan, Zhong-Qiu Wang, Xilin
+Jiang, and Romit Roy Choudhury, “Unsupervised blind
+speech separation with a diffusion prior,” arXiv preprint
+arXiv:2505.05657, 2025.
+[14] Tianqin Zheng, Jilu Jin, Hanchen Pei, Gongping Huang,
+Jingdong Chen, and Jacob Benesty, “Spatial-filter-bankbased neural method for multichannel speech enhancement,” arXiv preprint arXiv:2504.01392, 2025.
+[15] Changsheng Quan and Xiaofei Li, “Spatialnet: Extensively learning spatial information for multichannel
+joint speech separation, denoising and dereverberation,”
+IEEE/ACM Transactions on Audio, Speech, and Language Processing, vol. 32, pp. 1310–1323, 2024.
+[16] Jimmy Lei Ba, Jamie Ryan Kiros, and Geoffrey E Hinton, “Layer normalization,” ArXiv e-prints, pp. arXiv–
+1607, 2016.
+[17] Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian
+Sun, “Delving deep into rectifiers: Surpassing humanlevel performance on imagenet classification,” in Proceedings of the IEEE international conference on computer vision, 2015, pp. 1026–1034.
+[18] Haoyin Yan, Jie Zhang, Cunhang Fan, Yeping Zhou,
+and Peiqi Liu, “Lisennet: Lightweight sub-band and
+dual-path modeling for real-time speech enhancement,”
+in ICASSP 2025-2025 IEEE International Conference
+on Acoustics, Speech and Signal Processing (ICASSP).
+IEEE, 2025, pp. 1–5.
+[19] Ethan Perez, Florian Strub, Harm De Vries, Vincent Dumoulin, and Aaron Courville, “Film: Visual reasoning
+with a general conditioning layer,” in Proceedings of the
+AAAI conference on artificial intelligence, 2018, vol. 32.
+[20] Donald S Williamson, Yuxuan Wang, and DeLiang
+Wang, “Complex ratio masking for monaural speech
+separation,” IEEE/ACM transactions on audio, speech,
+and language processing, vol. 24, no. 3, pp. 483–492,
+2015.
+
+[21] Jonathan Le Roux, Scott Wisdom, Hakan Erdogan, and
+John R. Hershey, “Sdr – half-baked or well done?,”
+in ICASSP 2019 - 2019 IEEE International Conference
+on Acoustics, Speech and Signal Processing (ICASSP),
+2019, pp. 626–630.
+[22] Zhong-Qiu Wang, Samuele Cornell, Shukjae Choi,
+Younglo Lee, Byeong-Yeol Kim, and Shinji Watanabe,
+“Tf-gridnet: Integrating full-and sub-band modeling for
+speech separation,” IEEE/ACM Transactions on Audio,
+Speech, and Language Processing, 2023.
+[23] Lu Ma, Song Yang, Yaguang Gong, Xintian Wang, and
+Zhongqin Wu, “Echofilter: End-to-end neural network for acoustic echo cancellation,” arXiv preprint
+arXiv:2105.14666, 2021.
+[24] Vassil Panayotov, Guoguo Chen, Daniel Povey, and Sanjeev Khudanpur, “Librispeech: an asr corpus based on
+public domain audio books,” in 2015 IEEE international
+conference on acoustics, speech and signal processing
+(ICASSP). IEEE, 2015, pp. 5206–5210.
+[25] Joachim Thiemann, Nobutaka Ito, and Emmanuel Vincent, “The diverse environments multi-channel acoustic noise database (demand): A database of multichannel environmental noise recordings,” in Proceedings of
+Meetings on Acoustics. AIP Publishing, 2013, vol. 19.
+[26] David Diaz-Guerra, Antonio Miguel, and Jose R Beltran, “gpurir: A python library for room impulse response simulation with gpu acceleration,” Multimedia
+Tools and Applications, vol. 80, no. 4, pp. 5653–5671,
+2021.
+[27] Jung-Hee Kim and Joon-Hyuk Chang, “Attention waveu-net for acoustic echo cancellation.,” in Interspeech,
+2020, pp. 3969–3973.
+[28] Lukas Pfeifenberger, Matthias Zoehrer, and Franz
+Pernkopf, “Acoustic echo cancellation with crossdomain learning.,” in Interspeech, 2021, vol. 8, p. 2021.
+[29] Diederik Kingma and Jimmy Ba, “Adam: A method for
+stochastic optimization,” Computer Science, 2014.
+[30] ITUT Rec, “P. 862.2: Wideband extension to recommendation p. 862 for the assessment of wideband telephone networks and speech codecs,” Int. Telecommu.
+Uni., 2005.
+[31] Sergios Theodoridis and Rama Chellappa, Academic
+press library in signal processing: Image, video processing and analysis, hardware, audio, acoustic and
+speech processing, Academic Press, 2013.
+[32] Dong Yang, Fei Jiang, Wei Wu, Xuefei Fang, and Muyong Cao, “Low-complexity acoustic echo cancellation
+
+with neural kalman filtering,” in ICASSP 2023-2023
+IEEE International Conference on Acoustics, Speech
+and Signal Processing (ICASSP). IEEE, 2023, pp. 1–5.
+
+

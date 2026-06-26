@@ -1,0 +1,45 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# ===== 虚拟环境 =====
+.venv/
+venv/
+env/
+.uv/
+
+# ===== 模型权重 / 大文件缓存（落 E 盘，禁入 git）=====
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.safetensors
+*.onnx
+*.gguf
+*.tar.gz
+*.zip
+hf_cache/
+uv_cache/
+pip_cache/
+torch_cache/
+.cache/
+cache/
+
+# ===== 第三方开源仓库（各自有 .git，不纳入主仓库）=====
+code/TS-ASR-Whisper/
+code/3D-Speaker/
+code/*/
+
+# ===== IDE / OS =====
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ===== 临时 / 日志 =====
+*.log
+tmp/
+temp/

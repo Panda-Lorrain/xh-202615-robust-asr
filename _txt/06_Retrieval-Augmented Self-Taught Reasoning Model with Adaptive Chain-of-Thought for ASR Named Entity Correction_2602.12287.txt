@@ -1,0 +1,702 @@
+RETRIEVAL-AUGMENTED SELF-TAUGHT REASONING MODEL WITH ADAPTIVE
+CHAIN-OF-THOUGHT FOR ASR NAMED ENTITY CORRECTION
+Junjie An1,2 , Jingguang Tian1 , Tianyi Wang1 , Yu Gao1,∗ , Xiaofeng Mou1 , Yi Xu1
+1
+
+AI Research Institute, Midea Group (Shanghai) Co.,Ltd., China, 2 Zhejiang University, China
+
+arXiv:2602.12287v1 [cs.CL] 21 Jan 2026
+
+ABSTRACT
+End-to-end automatic speech recognition (ASR) systems frequently
+misrecognize domain-specific phrases like named entities, which
+can cause catastrophic failures in downstream tasks. A new family
+of named entity correction methods based on large language models
+(LLMs) has recently emerged. However, these approaches have yet
+to fully exploit the sophisticated reasoning capabilities inherent to
+LLMs. To bridge this gap, we propose a novel retrieval-augmented
+generation framework for correcting named entity errors in ASR.
+Our approach consists of two key components: (1) a rephrasing
+language model (RLM) for named entity recognition, followed by
+candidate retrieval using a phonetic-level edit distance; and (2) a
+novel self-taught reasoning model with adaptive chain-of-thought
+(A-STAR) that dynamically adjusts the depth of its reasoning based
+on task difficulty. Experiments on the AISHELL-1 and Homophone datasets demonstrate the effectiveness of our method, which
+achieves relative reductions in the named entity character error rate
+of 17.96% and 34.42%, respectively, compared to a strong baseline.
+Index Terms— automatic speech recognition, named entity correction, large reasoning model, adaptive chain-of-thought
+1. INTRODUCTION
+End-to-end automatic speech recognition has achieved significant
+progress in recent decades, driven by breakthroughs in deep learning [1]. However, a well-documented vulnerability of these models
+is their propensity to misrecognize low-frequency, domain-specific
+terms, such as named entities (NEs) including personal names, locations, and organizations. These entities are often incorrectly transcribed as more common, phonetically similar words.
+Numerous post-correction methods have been developed to
+address the named entity correction (NEC) challenge in ASR. KGECO [2] leverages knowledge graphs to enrich both structural and
+textual representations of entities, thereby enhancing NEC performance. DANCER [3] mitigates phonetic confusion by employing
+an efficient masked language model augmented with entity descriptions, which incorporates contextual information to improve
+recognition accuracy. More recently, research has shifted toward
+generative error correction (GEC) approaches utilizing LLMs.
+These methods either prompt LLMs to perform NEC tasks without fine-tuning [4], or fine-tune LLMs directly using hypothesis–transcription pairs [5, 6, 7]. Recent LLMs, such as OpenAI’s
+o1 [8] and DeepSeek R1 [9], demonstrate that “slow-thinking” reasoning, which incorporates explicit reasoning stages prior to answer
+generation, significantly improves task performance. Nevertheless,
+such structured reasoning paradigms remain largely underexplored
+in the context of NEC.
+* Corresponding author.
+
+It is well-established that training reasoning models requires
+high-quality rationale data. However, such data are notoriously
+scarce and costly to obtain, particularly for rare entities and phonetically ambiguous cases. Despite the success of self-training
+paradigms with self-generated chain-of-thought (CoT) in recent
+methods such as STAR [10] and ReST-MCTS [11], their application
+to NEC for ASR remains an open research question.
+Retrieval-augmented generation (RAG) has emerged as an effective solution for NEC [3, 5, 6], leveraging external databases to integrate relevant knowledge. A crucial preliminary step for named entity retrieval is to identify and locate them within ASR transcripts—a
+process known as named entity recognition (NER). Consequently,
+the correction capability of an NEC system is fundamentally constrained by the performance of its NER model. However, existing
+NER models predominantly formulate NER as a sequence tagging
+task. A critical flaw of character-level tagging is its tendency to overfit mappings between characters and labels during training. Consequently, the resulting tags rely excessively on local character patterns, frequently failing to capture broader sentence-level semantics.
+To address these limitations, we propose a retrieval-augmented
+self-taught reasoning model with adaptive chain-of-thought (RASTAR). we first propose a BERT-based [12] rephrasing language
+model (RLM), designed to handle NER by emulating human-like
+paraphrasing. Rather than relying on memorized local character patterns, RLM reformulates entire sentences through semantic understanding, thereby capturing global semantic information. Building
+on this, we introduce a novel self-taught reasoning model with adaptive chain-of-thought (A-STAR). It employs self-training techniques
+to generate CoT rationale training data, bootstrapping its ability
+to handle challenging NEC cases. Furthermore, it autonomously
+assesses task complexity and adjusts the depth of reasoning accordingly, significantly reducing inference costs.
+2. METHODOLOGY
+2.1. Preliminary
+Our RASTAR model addresses the challenges encountered by conventional GEC in handling rare NEs by retrieving relevant NEs from
+external knowledge bases [13]. The problem begins with an ASR
+hypothesis with n tokens represented by X = {x1 , x2 , · · · , xn },
+and a pre-defined NEs candidate repository consisting of C entities
+denoted as E = {e1 , · · · , ec }, where ec is an entity composed of a
+list of character tokens. The goal of RASTAR is to identify the posX
+sible set of NEs E X = (eX
+1 , · · · , eM ) for the given hypothesis X,
+and replace each of them with the correct candidate selected from E.
+RASTAR consists of three core modules. First, the NER module identifies NEs E X from the given ASR transcripts. Next, the retrieval module fetches the top-k entity candidates for each detected
+corrupted entity. Finally, the correction module employs A-STAR
+model to replace the corrupted entity with the most appropriate can-
+
+Named Entity
+
+NER Module
+
+Ground Truth: 游客爬到峨眉山悬崖边
+
+ASR Transcription
+ASR Hypothesis: 游客爬到我们上血压边
+
+Equal-Length Masking
+
+DPO
+
+NER Input: 游客〈m〉到我们上血压边 〈s〉 〈m〉 〈m〉 〈m〉 〈m〉 〈m〉 〈m〉 〈m〉 〈m〉 〈m〉 〈m〉
+Randomly mask 30%
+of non-entity tokens
+
+RLM
+
+Thinking
+
+Qwen3
+
+NER Output: 游客爬到我们上血压边 〈s〉 〈O〉 〈O〉 〈O〉 〈O〉 〈B〉 〈I〉 〈I〉 〈O〉 〈O〉 〈O〉
+
+NoThinking
+
+我们上 | wo men shang
+Phonetic Similarity Retrieval
+
+Short
+Answer
+
+A-STAR
+Top-k Entities with Score
+我们仨 | 0.89
+峨眉山 | 0.56
+吴门四家 | 0.44
+
+Hint
+Incorrect
+(Formidable )
+
+Qwen3
+
+Correct
+(Challenging)
+
+Correct
+
+Incorrect
+Synthetic Data
+Correct
+(Simple)
+
+Correction Module
+
+Entity & Pinyin
+峨眉山 | e mei shan
+我们仨 | wo men sa
+吴门四家 | wu men si jia
+…
+NE Candidate Repository
+
+COT
++ Answer
+
+峨眉山
+
+Retrieval Module
+
+Corrected Named Entity
+
+Fig. 1. Architecture of the RASTAR. The system processes ASR transcripts through three sequential modules: (1) NER Module identifies
+entities E X from ASR transcripts; (2) Retrieval Module retrieves top-k candidate entities from a NEs candidate repository; (3) Correction
+Module employs a self-taught reasoning mechanism to select the most appropriate candidate for entity replacement.
+didate. The overall architecture is illustrated in Fig. 1.
+
+2.3. Phonetic-level Retrieval
+
+2.2. RLM for Named Entity Recognition
+
+Our candidate entities retrieval scheme is inspired by the PED-NEC
+framework, which employs an efficient phonetic matching mechanism using edit distance [16]. The method retrieves candidates from
+a curated named entity repository E by computing the conditional
+probability between the detected entity eX
+m and each candidate ec :
+
+Current state-of-the-art methods formulate NER as a sequence tagging problem and address it by fine-tuning BERT-based models on
+sentence pairs [14]. Given the ASR hypothesis X, the model seeks
+to generate the target sentence Y = {y1 , y2 , · · · , yn }, where yi is in
+charge of categorizing character xi into three classes with the BIO
+format, following the conditional probability P (yi | X). In this format, 〈B〉and 〈I〉represent the beginning token and the inside token of
+an entity, and 〈O〉represents non-entity tokens.
+However, the model’s character-level mapping paradigm relies
+heavily on precise input-output alignments, making it vulnerable to
+speculative behaviors in real-world ASR systems with frequent transcription errors [15]. For example, as shown in the NER module
+of Fig. 1, the entity Éméi Shān (means “Mount Emei”) becomes wǒ
+men shàng (means “we go up”) after ASR transcription—a phonetically similar non-entity unseen during training. This results in recognition failures. The phenomenon can be abstracted as the following
+training objective degradation:
+P (yi | X) ≈ P (yi | xi )
+
+(1)
+
+Building on the work in [15], based on BERT, we propose
+RLM, a non-auto-regressive phrasing model, which fully leverages
+the powerful contextual semantic understanding capabilities of pretrained models. As shown in the NER module of Fig. 1, we concatenate the ASR hypothesis X with a mask sequence of equal length,
+forming (x1 , x2 , · · · , xn , ⟨s⟩ , m1 , m2 , · · · , mn ). The model is
+trained to reconstruct all masked tokens mi . Due to the bidirectional encoding mechanism of BERT, the model seeks to solve the
+following probability for yi , i = 1 ∼ n:
+P (yi | X) ≈ P (yi | X, m1 , m2 , · · · , mn ).
+
+(2)
+
+To further enhance the model’s paraphrasing capability, we employ an auxiliary masked language modeling strategy, which randomly masks a portion of tokens. The model is forced to simultaneously reconstruct the entire sentence while predicting entity labels.
+
+P (ec |eX
+m) = P
+
+ϕ(Pin(ec ), Pin(eX
+m ))
+′ ), Pin(eX ))
+ϕ(Pin(e
+′
+c
+m
+e ∈E
+
+(3)
+
+c
+
+where Pin(·) denotes the romanization for standard Mandarin Chinese and ϕ measures the phonetic similarity between ec and eX
+m
+based on the normalized edit distance.
+For each detected span eX
+m , we rank the candidates in E by their
+conditional probability and selects the top-k candidates: EeX
+=
+m
+{ẽ1 , · · · , ẽk }, which will serve as a context reference for the correction module.
+2.4. A-STAR
+We form the input to the reasoning model by concatenating the ASR
+hypothesis X, the top-k entity candidates EeX
+, and a task-specific
+m
+prompt: Q = {X, EeX
+,
+prompt}.
+m
+Current reasoning models support switching between thinking and nothinking modes [17]. For example, Qwen3 [18] allows
+mode transition via prompt flags (/think) or an API parameter
+(enable thinking). However, these methods require explicit
+mode selection, lacking autonomous judgment about when slowthinking is needed [19, 20, 21]. This often results in unnecessarily
+long chains of thought even for simple NEC tasks, producing redundant text and substantial computational overhead.
+Simultaneously, enabling models to effectively master the
+reasoning paradigms specific to NEC tasks necessitates largescale CoT data, which remains scarce and costly to annotate
+manually. A promising alternative involves leveraging models
+to autonomously generate CoT rationales from non-CoT data
+
+through self-training [10], an approach that offers sustainable selfimprovement and extensibility.
+To address these challenges, we propose A-STAR, which features self-distillation without the need for manually annotated COT
+data, and is capable of autonomously switching between thinking
+modes according to problem complexity. As illustrated in the correction module of Fig. 1, we begin by processing the problem dataset Q
+through the reference model to generate both COT responses (Athink )
+and direct responses with brief explanations (Anothink ). Subsequently,
+we classify problem difficulty by comparing Anothink responses with
+ground truth labels. Problems correctly answered in nothinking
+mode are categorized as “Simple”, forming the subset QS with
+corresponding responses AS .
+For the remaining problems in Q, we evaluate their corresponding responses in Athink and perform secondary classification based
+on answer correctness: problems solved correctly are categorized as
+“Challenging” (QC ), while those remaining unsolved even in thinking mode are labeled as “Formidable” (QF ). Their corresponding
+responses form subsets AC and AF , respectively. Inspired by the
+works of STAR [10], we address QF by incorporating corrective
+hints containing ground-truth answers into the prompts. This allows the model to regenerate refined responses through reflection,
+followed by rejection sampling to produce the final response set A′F .
+Finally, we synthesize preference pairs from AS , AC , and A′F
+to form synthetic data for self-improvement. Specifically, we treat
+responses generated in nothinking mode as preferred responses for
+simple problems (QS ), while the dispreferred responses pairs are
+those produced in thinking mode. For harder problems ( QC and
+QF ), this preference relationship is reversed. We employ Direct
+Preference Optimization (DPO) [22] for self-training, with the training loss expressed by:
+
+Table 1. NER Performance on the AISHELL-1 and Homophone
+Test Sets. DANCER refers specifically to its NER component.
+Model
+
+AISHELL-1 (%)
+recall precision
+
+DANCER 92.57
+RLM
+95.55
+
+91.39
+92.84
+
+F1
+
+Homophone (%)
+recall precision
+
+91.97 71.19
+94.18 83.33
+
+78.84
+84.49
+
+F1
+74.82
+83.91
+
+3. EXPERIMENT
+3.1. Dataset, Evaluation Metrics and Baseline
+Our experimental setup is consistent with the DANCER [3]. Evaluations were performed on the AISHELL-1 benchmark [23], along
+with a specialized Homophone test set comprising 115 utterances
+with high phonetic confusion, sampled from AISHELL-1. We additionally utilized the AISHELL-NER data set [24], which was constructed based on AISHELL-1, to obtain NER annotation information. The named entity candidate repository E contained 16,168 distinct entities compiled from the complete training, development, and
+test sets of AISHELL-1.
+We evaluate the NER model on three metrics: recall, precision, and F1. For NEC methods, we employ four metrics: 1) CER
+(Character Error Rate), measuring overall character-level accuracy;
+2) NNE-CER (Non-Named Entity CER), evaluating error rate in
+non-entity segments; 3) NE-CER (Named Entity CER), assessing
+error rate within entity segments; and 4) NE-Recall, quantifying the
+recall of correctly recognized entities.
+To ensure a fair comparison, we employ the same Conformerbased ASR model (trained on AISHELL-1) used in DANCER [3] to
+generate hypotheses. NEC experiments are then conducted on these
+ASR outputs. We reproduced the results of DANCER and established it as a strong baseline.
+
+
+
+LDPO (πθ ; π) = −E(q,y+ ,y− )∼D log σ β rθ (q, y + ) − rθ (q, y − )
+(4)
+
+3.2. Implementation Details
+
+where πθ denotes the policy model to be optimized, π denotes the
+reference model, q ∈ Q denotes the input, D denotes the preference
+dataset containing triples (q, y + , y − ), y + represents the preferred
+response, and y − represents the dispreferred response, rθ (q, y) =
+θ (y|q)
+denotes the implicit reward function, β denotes the temlog ππ(y|q)
+perature parameter controlling deviation from the reference π. The
+complete workflow of A-STAR is detailed in algorithm 1.
+
+We employ the bert-base-chinese pre-trained model [12] for the NER
+module. To enhance the model’s entity recognition capability in
+practical scenarios (with ASR transcription error as noise), we utilize n-best ASR transcriptions of the utterances from the AISHELL1 training set as additional noisy data to train our RLM model. Here
+we set n=10. To assign BIO tags to the n-best hypotheses, we align
+them with the ground truth labels from the AISHELL-NER corpus.
+Subsequently, we concatenate the ASR hypotheses and their corresponding equal-length BIO tags in the manner described in Section 2.2 to form our NER training set. We then apply complete masking to all BIO tags segment while implementing partial masking on
+the ASR hypothesis segment. Through empirical study of masking
+strategies and mask rates, we ultimately randomly mask 30% of the
+non-entity tokens in the ASR hypotheses segment, as shown in the
+NER module of Fig. 1. The loss function for our RLM model is
+cross-entropy loss, computed only on the masked tokens.
+For the phonetic-level retrieval module, through comparative
+studies we ultimately set k = 3, as an excessively large k would
+introduce irrelevant or weakly related entities, interfering with the
+model’s correction performance [13].
+We employ the Qwen3 series models (0.6B and 8B variants) for
+the A-STAR module in our experiments [18]. The DPO datasets
+for fine-tuning consisted of 1,800 high-quality samples (from Algorithm 1) for Qwen3-8B and 6,880 samples for Qwen3-0.6B. In both
+datasets, the data comprises an equal mix (50% each) of preferred
+and dispreferred samples from no-thinking responses. We utilize the
+llamafactory toolkit for model fine-tuning [25], with training
+conducted on 8 × 40GB NVIDIA H20 GPUs. We set the temper-
+
+Algorithm 1: A-STAR
+Input: Policy model πθ , problem dataset Q, labels Y
+1. Anothink ← πθ−nothink (Q);
+2. QS ← {q ∈ Q : Anothink (q) = Yq }, QR ← Q \ QS ;
+3. AS ← {Anothink (q) ∈ Anothink : q ∈ QS };
+4. Athink ← πθ−think (QR );
+5. QC ← {q ∈ QR : Athink (q) = Yq }, QF ← QR \ QC ;
+6. AC ← {Athink (q) ∈ Athink : q ∈ QC };
+7. A′F ← πθ−think (QF , hint, Y ) //rejection sampling
+8. Build DPO pairs:
+sampled
+
+D ←−−−− {(q, A′F (q), Anothink (q)) : q ∈ QF } ∪
+{(q, AC (q), Anothink (q)) : q ∈ QC } ∪
+{(q, AS (q), Athink (q)) : q ∈ QS }
+9. πθ′ ← DPO-Train(πθ , D);
+return πθ′ ;
+
+Table 2. NEC Performance on the AISHELL-1 and Homophone Test Sets.
+Model
+
+AISHELL-1 Test Set (%)
+
+Homophone Test Set (%)
+
+CER
+
+NNE-CER
+
+NE-CER
+
+NE Recall
+
+CER
+
+NNE-CER
+
+NE-CER
+
+NE Recall
+
+DANCER
+DANCER (RLM)
+
+4.29
+4.22
+
+4.00
+4.01
+
+7.57
+6.81
+
+85.84
+87.12
+
+7.17
+7.01
+
+5.35
+5.27
+
+11.33
+10.97
+
+79.84
+79.83
+
+Qwen3 (8B)-nothinking
+Qwen3 (8B)-thinking
+Qwen3 (8B)-SFT
+RASTAR (8B)
+
+4.27
+4.24
+4.18
+4.21
+
+4.04
+4.07
+4.05
+4.05
+
+7.14
+6.47
+6.01
+6.21
+
+86.94
+89.22
+89.15
+89.33
+
+6.79
+6.15
+6.31
+6.04
+
+5.43
+5.27
+5.27
+5.43
+
+9.91
+8.14
+8.67
+7.43
+
+78.91
+84.57
+82.54
+85.80
+
+Qwen3 (0.6B)-nothinking
+Qwen3 (0.6B)-thinking
+Qwen3 (0.6B)-SFT
+RASTAR (0.6B)
+
+4.69
+4.27
+4.28
+4.27
+
+4.08
+4.04
+4.06
+4.06
+
+11.52
+7.14
+7.07
+6.93
+
+78.97
+86.94
+87.70
+87.92
+
+8.25
+7.39
+7.12
+6.63
+
+5.89
+5.43
+5.43
+5.43
+
+14.69
+12.04
+10.97
+9.38
+
+73.39
+74.57
+76.96
+79.42
+
+ature parameter β = 0.1. The 8B variant is trained for 10 epochs
+while the 0.6B variant undergoes 2 training epochs, using a learning
+rate of 5e−6 and gradient accumulation steps set to 8.
+3.3. Results
+3.3.1. Main Results
+Experimental results for the NER module and the overall correction performance are presented in Table 1 and Table 2, respectively.
+As shown in Table 1, RLM outperforms the tagging-based NER
+model from DANCER, achieving absolute F1 score improvements
+of 2.21% and 9.09% on the AISHELL-1 and homophone test sets,
+respectively. Furthermore, replacing DANCER’s NER module with
+RLM—as indicated in the first two rows of Table 2—yields relative
+NE-CER reductions of 10.03% and 3.18% on the AISHELL-1 and
+Homophone test sets, respectively. These results demonstrate that
+our RLM model more effectively leverages contextual semantic information, even in the presence of ASR errors.
+Table 2 presents a comparative analysis of LLM-based NEC performance across two parameter scales (0.6B and 8B). The results
+show that reasoning (“thinking” mode) consistently improved NEC
+performance over the “nothinking” mode in the pre-trained Qwen3
+model. Following the approach in [5, 6, 7], we perform supervised
+fine-tuning (SFT) of the Qwen3 model on the AISHELL-1 hypothesis–transcription pair dataset. We observe that the fine-tuned Qwen3
+loses its reasoning capability, the knowledge learned from the indomain dataset leads to limited improvements compared to the pretrained model. Finally, our proposed method demonstrates clear performance advantages, particularly on the challenging Homophone
+test set, where it achieves relative reductions of 17.96% and 34.42%
+in NE-CER compared to the DANCER.
+3.3.2. Reasoning Efficiency Analysis
+Table 3 summarizes the average CoT length and the ratio of nothinking mode usage for both the Qwen3 and the RASTAR models
+(0.6B/8B variants). The CoT length for RASTAR was calculated as
+the average of the outputs from both thinking and nothinking modes.
+The results show that RASTAR (8B) reduces tokens by 30% and
+21% on the AISHELL-1 and Homophone test sets, respectively. The
+ratio of nothinking mode usage shows a consistent trend, and is more
+evident (40%) on the relatively simpler AISHELL-1 dataset. This
+demonstrates that our model can autonomously assess task complexity and switch between thinking modes accordingly, significantly reducing reasoning costs.
+
+However, the same methodology shows constrained compression efficiency for the 0.6B model, with only 3% of tokens reduction
+on the Homophone test set. This indicates that smaller-parameter
+models struggle to maintain comparable accuracy when reasoning
+chains are compressed. Table 2 provides additional validation: on
+AISHELL-1 test set, the 0.6B model exhibits a 38% relative decrease
+in NE-CER when utilizing thinking mode, compared to merely a 9%
+reduction for the 8B model. This disparity underscores the greater
+dependency of smaller models on elaborated reasoning processes
+for performance gains [26]. Above results collectively indicate that
+larger models can effectively solve most problems through abbreviated reasoning chains, demonstrating superior compressibility. In
+contrast, smaller models still require extended intermediate reasoning steps to obtain substantial performance improvements, resulting
+in stronger reliance on “slow-thinking” methodologies—which fundamentally constrains their compression potential.
+Table 3. Statistics of Mode-Averaged CoT Length and Nothinking
+Ratio on the AISHELL-1 and Homophone Test Sets.
+Model
+
+Qwen3 (8B)-thinking
+RASTAR (8B)
+
+AISHELL-1
+
+Homophone
+
+Tokens
+
+Tokens
+
+Ratio
+
+Ratio
+
+405
+0
+449
+0
+284(↓ 30%) 40% 355(↓ 21%) 24%
+
+Qwen3 (0.6B)-thinking
+418
+RASTAR (0.6B)
+375(↓ 10%)
+
+0
+6%
+
+389
+378(↓ 3%)
+
+0
+2%
+
+4. CONCLUSION
+In this paper, we propose a comprehensive framework for NEC in
+end-to-end ASR systems, addressing key limitations in both NER
+and GEC. We introduce the RLM, which enhances the robustness of
+NER under noisy ASR transcriptions by leveraging contextual semantic understanding beyond strict token alignment. Furthermore,
+we present the A-STAR, which integrates phonetic retrieval with a
+“slow-thinking” reasoning mechanism to effectively handle rare and
+challenging named entities. A-STAR enables two key capabilities:
+self-improvement through training on self-distilled data, and adaptively switches thinking modes based on task complexity which significantly reduces reasoning costs. Experimental results demonstrate
+that our method achieves substantial improvements in both NER and
+NEC performance, particularly in phonetically challenging cases,
+while also compressing reasoning chains for larger models without
+sacrificing accuracy.
+
+5. REFERENCES
+[1] Rohit Prabhavalkar, Takaaki Hori, Tara N Sainath, Ralf
+Schlüter, and Shinji Watanabe, “End-to-end speech recognition: A survey,” IEEE/ACM Transactions on Audio, Speech,
+and Language Processing, vol. 32, pp. 325–351, 2023.
+[2] Jinglun Cai, Mingda Li, Ziyan Jiang, Eunah Cho, Zheng Chen,
+Yang Liu, Xing Fan, and Chenlei Guo, “Kg-eco: Knowledge graph enhanced entity correction for query rewriting,” in
+ICASSP. IEEE, 2023, pp. 1–5.
+[3] Yi-Cheng Wang, Hsin-Wei Wang, Bi-Cheng Yan, Chi-Han
+Lin, and Berlin Chen, “Dancer: Entity description augmented named entity corrector for automatic speech recognition,” arXiv preprint arXiv:2403.17645, 2024.
+[4] Chao-Han Huck Yang, Yile Gu, Yi-Chieh Liu, Shalini Ghosh,
+Ivan Bulyko, and Andreas Stolcke, “Generative speech recognition error correction with large language models and taskactivating prompting,” in ASRU. IEEE, 2023, pp. 1–8.
+[5] Sreyan Ghosh, Mohammad Sadegh Rasooli, Michael Levit,
+Peidong Wang, Jian Xue, Dinesh Manocha, and Jinyu Li,
+“Failing forward: Improving generative error correction for asr
+with synthetic data and retrieval augmentation,” arXiv preprint
+arXiv:2410.13198, 2024.
+[6] Ernest Pusateri, Anmol Walia, Anirudh Kashi, Bortik Bandyopadhyay, Nadia Hyder, Sayantan Mahinder, Raviteja Anantha, Daben Liu, and Sashank Gondala, “Retrieval augmented
+correction of named entity speech recognition errors,” in
+ICASSP. IEEE, 2025, pp. 1–5.
+[7] Natsuo Yamashita, Masaaki Yamamoto, Hiroaki Kokubo, and
+Yohei Kawaguchi, “LLM-based Generative Error Correction
+for Rare Words with Synthetic Data and Phonetic Context,” in
+Interspeech 2025, 2025, pp. 3653–3657.
+
+[14] Imed Keraghel, Stanislas Morbieu, and Mohamed Nadif, “A
+survey on recent advances in named entity recognition,” arXiv
+preprint arXiv:2401.10825, 2024.
+[15] Linfeng Liu, Hongqiu Wu, and Hai Zhao, “Chinese spelling
+correction as rephrasing language model,” in Proceedings of
+the AAAI Conference on Artificial Intelligence, 2024, vol. 38,
+pp. 18662–18670.
+[16] Arushi Raghuvanshi, Vijay Ramakrishnan, Varsha Embar, Lucien Carroll, and Karthik Raghunathan, “Entity resolution for
+noisy asr transcripts,” in EMNLP-IJCNLP, 2019, pp. 61–66.
+[17] Qiguang Chen, Libo Qin, Jinhao Liu, Dengyun Peng, Jiannan
+Guan, Peng Wang, Mengkang Hu, Yuhang Zhou, Te Gao, and
+Wanxiang Che, “Towards reasoning era: A survey of long
+chain-of-thought for reasoning large language models,” arXiv
+preprint arXiv:2503.09567, 2025.
+[18] An Yang, Anfeng Li, Baosong Yang, Beichen Zhang, Binyuan
+Hui, Bo Zheng, Bowen Yu, Chang Gao, Chengen Huang,
+Chenxu Lv, et al., “Qwen3 technical report,” arXiv preprint
+arXiv:2505.09388, 2025.
+[19] Shengjia Zhang, Junjie Wu, Jiawei Chen, Changwang Zhang,
+Xingyu Lou, Wangchunshu Zhou, Sheng Zhou, Can Wang,
+and Jun Wang, “Othink-r1: Intrinsic fast/slow thinking
+mode switching for over-reasoning mitigation,” arXiv preprint
+arXiv:2506.02397, 2025.
+[20] Gongfan Fang, Xinyin Ma, and Xinchao Wang, “Thinkless:
+Llm learns when to think,” arXiv preprint arXiv:2505.13379,
+2025.
+[21] Jiajie Zhang, Nianyi Lin, Lei Hou, Ling Feng, and Juanzi
+Li, “Adaptthink: Reasoning models can learn when to think,”
+arXiv preprint arXiv:2505.13417, 2025.
+
+[8] Aaron Jaech, Adam Kalai, Adam Lerer, Adam Richardson, Ahmed El-Kishky, Aiden Low, Alec Helyar, Aleksander
+Madry, Alex Beutel, Alex Carney, et al., “Openai o1 system
+card,” arXiv preprint arXiv:2412.16720, 2024.
+
+[22] Rafael Rafailov, Archit Sharma, Eric Mitchell, Christopher D.
+Manning, Stefano Ermon, and Chelsea Finn, “Direct preference optimization: Your language model is secretly a reward
+model,” Advances in Neural Information Processing Systems,
+vol. 36, pp. 53792–53814, 2023.
+
+[9] Daya Guo, Dejian Yang, Haowei Zhang, Junxiao Song, Ruoyu
+Zhang, Runxin Xu, Qihao Zhu, Shirong Ma, Peiyi Wang,
+Xiao Bi, et al., “Deepseek-r1: Incentivizing reasoning capability in llms via reinforcement learning,” arXiv preprint
+arXiv:2501.12948, 2025.
+
+[23] Hui Bu, Jiayu Du, Xingyu Na, Bengu Wu, and Hao Zheng,
+“Aishell-1: An open-source mandarin speech corpus and a
+speech recognition baseline,” in O-COCOSDA. IEEE, 2017,
+pp. 1–5.
+
+[10] Eric Zelikman, Yuhuai Wu, Jesse Mu, and Noah D Goodman,
+“Star: Self-taught reasoner bootstrapping reasoning with reasoning,” in Proc. the 36th International Conference on Neural
+Information Processing Systems, 2024, vol. 1126.
+[11] Dan Zhang, Sining Zhoubian, Ziniu Hu, Yisong Yue, Yuxiao
+Dong, and Jie Tang, “Rest-mcts*: Llm self-training via process
+reward guided tree search,” Advances in Neural Information
+Processing Systems, vol. 37, pp. 64735–64772, 2024.
+[12] Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina
+Toutanova, “Bert: Pre-training of deep bidirectional transformers for language understanding,” in Proceedings of the 2019
+conference of the North American chapter of the association
+for computational linguistics: human language technologies,
+volume 1 (long and short papers), 2019, pp. 4171–4186.
+[13] Solee Im, Wonjun Lee, Jinmyeong An, Yunsu Kim, Jungseul
+Ok, and Gary Geunbae Lee, “Deragec: Denoising named entity candidates with synthetic rationale for asr error correction,”
+arXiv preprint arXiv:2506.07510, 2025.
+
+[24] Boli Chen, Guangwei Xu, Xiaobin Wang, Pengjun Xie, Meishan Zhang, and Fei Huang, “Aishell-ner: Named entity recognition from chinese speech,” in ICASSP. IEEE, 2022, pp.
+8352–8356.
+[25] Yaowei Zheng, Richong Zhang, Junhao Zhang, Yanhan Ye,
+Zheyan Luo, Zhangchi Feng, and Yongqiang Ma, “Llamafactory: Unified efficient fine-tuning of 100+ language models,”
+arXiv preprint arXiv:2403.13372, 2024.
+[26] Namgyu Ho, Laura Schmid, and Se-Young Yun, “Large
+language models are reasoning teachers,” arXiv preprint
+arXiv:2212.10071, 2022.
+
+

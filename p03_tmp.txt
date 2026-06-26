@@ -1,0 +1,473 @@
+End-to-End Direction-Aware Keyword Spotting with Spatial Priors in Noisy
+Environments
+Rui Wang, Zhifei Zhang, Yu Gao∗ , Xiaofeng Mou, Yi Xu
+AI Research Center, Midea Group (Shanghai) Co., Ltd., China
+{wangrui302, zhangzf148, gaoyu11, mouxf, xuyi42}@midea.com
+
+arXiv:2603.09505v1 [eess.AS] 10 Mar 2026
+
+Abstract
+Keyword spotting (KWS) is crucial for many speech-driven applications, but robust KWS in noisy environments remains challenging. Conventional systems often rely on single-channel inputs and a cascaded pipeline separating front-end enhancement
+from KWS. This precludes joint optimization, inherently limiting performance. We present an end-to-end multi-channel KWS
+framework that exploits spatial cues to improve noise robustness. A spatial encoder learns inter-channel features, while a
+spatial embedding injects directional priors; the fused representation is processed by a streaming backbone. Experiments in
+simulated noisy conditions across multiple signal-to-noise ratios (SNRs) show that spatial modeling and directional priors
+each yield clear gains over baselines, with their combination
+achieving the best results. These ﬁndings validate end-to-end
+multi-channel spatial modeling, indicating strong potential for
+the target-speaker-aware detection in complex acoustic scenarios.
+Index Terms: Keyword spotting, end-to-end, noise robustness,
+spatial prior
+
+1. Introduction
+Keyword spotting (KWS), also known as wake word detection
+(WWD), aims to detect a predetermined wake word from continuous speech audio streams. KWS is widely adopted as the
+entry point to voice interfaces and is widely deployed in many
+applications, particularly commercial assistants such as Amazon Alexa, Apple Siri, Google Assistant, and Microsoft Cortana [1] [2].
+Real-world applications of voice interfaces including KWS
+and ASR are often required to respond to speciﬁc target
+speaker’s command. Meanwhile, the acoustic environment in
+real scenes is also more complex, where background noise, reverberation, and overlapping speech degrade performance. A
+common remedy is a cascaded pipeline that inserts a front-end
+enhancement/beamforming stage before the acoustic model [3–
+9]. With the wider deployment of microphone arrays, multichannel processing has become increasingly important; studies show that leveraging spatial information about the target
+source can substantially improve separation/extraction when
+multi-channel signals are available [10–12]. Yet in traditional
+cascades, decoupling the front-end from the detector hinders
+joint optimization and risks objective mismatch [13–15]. Even
+with extensive data augmentation (e.g., additive noise, RIR convolution), robustness under noise and interference remains challenging [16].
+* Corresponding author.
+
+Recent advances on deep learning have shifted KWS toward end-to-end (E2E) modeling, which jointly learns feature
+extraction and detection [17, 18]. Toolkits such as WeKws
+provide standardized pipelines and practical streaming recipes
+[19]. Nevertheless, effective KWS toward target speaker in
+complex acoustics conditions like noisy environment remains
+challenging. Two main gaps remain in these E2E methods.
+First, many E2E systems assume single-channel inputs or treat
+multi-channel signals by simple channel stacking, leaving spatial cues underutilized and lacking a learnable spatial module [14]. Second, directional knowledge is rarely modeled explicitly, so target-speaker awareness in multi-speaker conditions
+is limited. Consequently, noise robustness and interference suppression are still constrained in realistic deployments. These
+gaps call for an end-to-end framework that incorporates spatial modeling within the recognizer and allows the injection of
+direction-aware priors.
+In this paper, we present an end-to-end direction-aware
+framework for multi-channel KWS in noisy environments. The
+core is an end-to-end integration of (i) a spatial encoder for feature extraction, (ii) a spatial embedding that injects directionaware priors derived from spatial cues, and (iii) a streaming
+KWS model. The spatial encoder learns inter-channel features
+from multi-microphone signals, while the spatial prior is associated with the multi-channel features, which enhance the KWS
+for target speaker in noisy environments. Compared with conventional single-channel methods and cascaded systems with
+an independent front-end enhancement module, the experimental results demonstrate clear advantages of the proposed uniﬁed architecture. The remainder of this paper is organized as
+follows. Section 2 details the proposed framework, including
+architecture and pipeline; Section 3 describes the experimental
+evaluations; Section 4 concludes the work.
+
+2. End-to-end direction-aware KWS
+2.1. Overview
+An end-to-end KWS system typically contains three components: (i) a feature extraction module as the preprocessing (e.g.,
+waveform or spectral features), (ii) an acoustic encoder (backbone) that maps frames/chunks to high-level representations,
+and (iii) a classiﬁer that converts posterior trajectories into keyword triggers. Most existing end-to-end pipelines are singlechannel and learn to detect predeﬁned commands from continuous speech using alignment-free pooling objectives or sequence
+criteria (e.g., CTC) [20] [21], but generally do not model spatial
+cues explicitly.
+
+Figure 1: Structure of the proposed KWS framework.
+
+2.2. Proposed E2E spatial-aware framework
+To address the above limitations, we propose a KWS framework as an end-to-end, direction-aware integration that jointly
+learns (i) a spatial encoder from multi-channel signals, (ii)
+a spatial embedding that injects spatial priors, and (iii) a
+streaming KWS model. The ﬁrst two provide complementary
+conditioning—audio-based spatial acoustics features and labelbased directional cues—while the entire network is optimized
+toward the ﬁnal KWS objective under a standard loss. The overall framework with the data ﬂowing is shown as Fig. 1. The
+following part of this section will describe the details of each
+module of the proposed framework and the pipeline in training
+and inference.
+
+the encoder output. The output of the spatial encoder preserves inter-channel cues—IPD/ILD-like (inter-channel phase
+and level differences) without explicit beam synthesis, and is
+trained end-to-end with the KWS objective.
+2.2.3. Spatial embedding
+We assume that the target’s direction-of-arrival (DOA) is known
+during training and evaluation; in deployment, the same interface can be fed by any DOA estimation method. We map a discrete directional label using a lightweight embedding network
+Emb, which converts the DOA-derived label θ into a compact
+prior
+eθ = Emb(θ),
+
+2.2.1. Data preparation and input presentation
+We use a multi-channel system in our implementation. Multichannel waveforms are converted to complex spectral features
+in the time-frequency (TF) domain, denoted as Xm (f, t), where
+m = represents the number of channels. These complex spectral features maintain inter-channel phase and magnitude relations. As a result, they carry spatial cues that are useful for
+downstream modules. Later sections will provide details on
+data generation and feature conﬁguration.
+
+H̃=H+eθ
+
+We operate directly on the multi-channel complex spectral features Xm (f, t) with a two-stage Conv2D subsampler: a complex 2-D convolution (stride along time–frequency) followed by
+ReLU, then a lightweight real Conv2D with stride. This reduces
+the temporal resolution by (e.g., T → T ′ ). The spatial encoder
+Encodersp outputs a time-aligned feature sequence.
+H∈R
+
+= Encodersp (Xm (f, t))
+
+(1)
+
+where B represents the batch size, T ′ is the number of time
+steps after subsampling, and d is the feature dimension of
+
+(2)
+
+where θ ∈ {1, . . . , K} and K represents the zone index in the
+acoustics space. The DOA label θ is discretized into K angular zones covering the array’s ﬁeld of view (FOV). Here, K
+controls the spatial resolution of the prior, with an approximate
+bin width of F OV /K. In the spatial embedding network, a
+two-layer MLP with ReLU nonlinearity reﬁnes the representation, followed by dropout and layer normalization to stabilize
+conditioning. We adopt linear feature merging of the output
+multi-channel features produced by the spatial encoder with the
+generated spatial prior as
+
+2.2.2. Spatial encoder
+
+B×T ′ ×d
+
+e θ ∈ Rd
+
+(3)
+
+This fusion biases the model toward the target direction
+while preserving acoustic evidence. The fused sequence H̃ is
+then processed by the streaming backbone described next.
+2.2.4. KWS module
+We adopt the multi-scale depthwise temporal convolution
+(MDTC) backbone [22] as the shared encoder. MDTC stacks
+causal depthwise temporal-convolution (DTC) blocks with
+varying dilations to capture multi-scale temporal context under
+streaming constraints, effectively enlarging the receptive ﬁeld
+without increasing parameter overhead. The encoder takes the
+
+fused sequence H̃ as input and produces a uniﬁed representation for the classiﬁer heads. Inference runs in a streaming manner with causal convolutions and cached left context; no future
+frames are used.
+To support multiple wake words, we attach independent
+binary classiﬁers after the shared encoder—one single-node
+sigmoid head per keyword—while the encoder parameters are
+shared across all keywords. This setup follows standard practice in prior KWS systems [19], keeping the backbone compact
+and allowing each keyword to be scored and triggered independently. In practice, this design also makes it easy to add or retire
+keywords by training only the corresponding small head while
+reusing the same shared encoder. At run time, the heads produce posteriors for their respective keywords; simple posterior
+smoothing and per-keyword thresholds are used to emit stable
+triggers.
+
+3. EXPERIMENT EVALUATION
+We carried out experimental evaluations on our proposed
+method and some baselines. In this section, we will introduce
+our setting and the evaluation results.
+
+mixed with the target at a signal-to-noise ratio (SNR) uniformly
+sampled in [0, 10] dB, during training.
+3.1.4. Objective
+The loss function for training was cross-entropy over C classes
+(keywords plus a non-keyword class). We averaged the loss
+over valid frames after ﬂattening the time axis; per-frame accuracy was also reported as a training diagnostic.
+3.2. Evaluation of KWS performance under noisy conditions
+3.2.1. Test rendering
+Testing multi-channel signals were generated with the same
+simulator, array, and DOA discretization as training, but with
+ﬁxed SNR conditions of 0, 5, and 10 dB. For each SNR, we
+rendered an independent test set of 6 835 test samples. Unless
+otherwise noted, spatial information used for priors in our proposed system comes from the rendering metadata of generated
+RIRs.
+3.3. Systems under comparison
+
+3.1. Training and testing setup
+
+3.3.1. Single-channel baseline
+
+3.1.1. Datasets
+
+We used the original WeKws implementation as a singlechannel KWS baseline with the same Mel-ﬁlter bank (Fbank)
+feature setting as in [19]. For the spatialized two-channel signals, we fed channel 1 only to the backend, so no spatial information is used.
+
+We used the Google Speech Commands v1 (GSC v1) [23] corpus as the source of clean speech and text labels for training.
+The GSC v1 corpus consists of 64 721 one-second-long recordings of 30 words by 1 881 different speakers. We followed the
+setup of train/validation/test split in [19], in which 10 of 30
+words are set as the keywords.
+3.1.2. Spatial signal simulation and DOA labels
+To obtain spatialized signals with DOA labels, we synthesized
+multi-channel recordings using gpuRIR [24].1 Because GSC v1
+is single-channel, each utterance was treated as a point source
+and spatialized by convolving it with room impulse responses
+(RIRs) generated for speciﬁc array geometries. The acoustic
+environments were consistent across all conﬁgurations: rooms
+were randomly sampled with lengths of 3–8 m, widths of 3–5
+m, heights of 2.5–4 m, and RT60 of 0.05–0.8 s, with the
+source–array distance drawn from 0.5–5 m.
+We simulated two microphone conﬁgurations. For the dualchannel setup, a linear array with 3 cm spacing was used. The
+target DOA θ was constrained to the front hemisphere (0◦ –
+180◦ ) and discretized into six 30◦ space zones (yielding labels
+1–6). For the extended three-channel setup, the spatial coverage was expanded to a full 360◦ azimuth, and the target DOA
+was correspondingly discretized into twelve uniform 30◦ zones
+(labels 1–12). In both conﬁgurations, an additional label 0 is
+reserved to denote the “no spatial prior” condition for baseline
+training and testing. Thus, each rendered utterance comes with
+a multi-channel waveform and a discrete zone label θ.
+3.1.3. Noise rendering
+Background noise was taken from the DEMAND dataset [25],
+which contains 17 categories of noise. We used 12 categories
+for training and another 5 categories for testing. Noise was
+spatialized by convolving with independently sampled multichannel RIRs (from the same simulator/room pool) and then
+1 https://github.com/DavidDiazGuerra/gpuRIR
+
+3.3.2. Enhanced cascaded baseline
+We inserted a generalized sidelobe canceller (GSC) [26] beamformer in front of the WeKws backend to form a cascaded system. The multi-channel input was ﬁrst enhanced using an independent GSC method; then one beam output was passed to
+the same WeKws pipeline as in Sec. 3.3.1. This baseline keeps
+access to spatial information via the beamformer but decouples
+it from the recognizer. We used it to assess how a cascaded
+design with spatial enhancement compares with our end-to-end
+approach under the same spatial conditions.
+3.3.3. Dual-channel E2E system without prior
+Our end-to-end dual-channel system without spatial prior (2ch
+E2E without prior): during both training and test, the DOA label was ﬁxed to θ = 0 (no-prior token). This baseline relies entirely on the internal convolutional layers of the spatial encoder
+to implicitly extract inter-channel phase differences across the
+two sensors. Other settings were unchanged.
+3.3.4. Proposed dual-channel spatial E2E system
+The same dual-channel end-to-end system with spatial priors
+(2ch Proposed spatial E2E) as we presented in Sec. 2.2. DOA
+labels (1–6) are embedded and fused with the encoder features
+as described in Sec. 2.2.
+3.3.5. Extension to three-channel system
+To rigorously evaluate the scalability of the spatial encoder and
+the impact of higher angular resolution, we extend the endto-end systems from a dual-channel to a three-channel system.
+This extension introduces modiﬁcations to the input dimensions
+and yields two additional conﬁgurations.
+
+Table 1: Average accuracy of KWS under different SNRs.
+Method
+Single-channel baseline [19]
+Enhanced cascaded baseline
+2ch E2E without prior
+3ch E2E without prior
+2ch Proposed spatial E2E
+3ch Proposed spatial E2E
+Method
+Single-channel baseline [19]
+Enhanced cascaded baseline
+2ch E2E without prior
+3ch E2E without prior
+2ch Proposed spatial E2E
+3ch Proposed spatial E2E
+Method
+Single-channel baseline [19]
+Enhanced cascaded baseline
+2ch E2E without prior
+3ch E2E without prior
+2ch Proposed spatial E2E
+3ch Proposed spatial E2E
+
+SNR = 0 dB
+parameters accuracy (%)
+164k
+69.86
+164k
+72.19
+279k
+76.92
+279k
+80.23
+279k
+77.67
+279k
+79.39
+SNR = 5 dB
+parameters accuracy(%)
+164k
+75.89
+164k
+78.19
+279k
+84.26
+279k
+85.85
+279k
+85.25
+279k
+85.22
+SNR = 10 dB
+parameters accuracy (%)
+164k
+81.68
+164k
+82.87
+279k
+88.57
+279k
+89.40
+279k
+89.42
+279k
+89.61
+
+First, for the 3ch E2E without prior, the acoustic front-end
+is adapted to ingest three-channel stacked audio inputs. The
+external DOA label is strictly ﬁxed to θ = 0 (the no-prior token)
+during both the training and testing phases.
+Second, for the 3ch Proposed spatial E2E, the system
+leverages the denser spatial sampling provided by the extra microphone. The target DOA space is mapped to the ﬁner 12-zone
+discrete labels (1–12), representing a full 360◦ azimuth. The
+spatial encoder is correspondingly expanded to accommodate
+this larger vocabulary of directional indices. Except for the input channel dimensions and the spatial embedding vocabulary
+size, all other network hyper-parameters and training criteria remain identical to the dual-channel setups.
+
+4. Results and Discussion
+4.1. Overall Performance and Baseline Comparison
+Table 1 summarizes the results and model parameters. Our
+dual-channel end-to-end KWS with a directional prior ranks
+ﬁrst among 2-channel setups across all SNRs. At 0 dB, it
+achieves 77.67% accuracy, outperforming the single-channel
+WeKws baseline by 11.18% relatively and the beamformer cascade by 5.48% absolutely.
+With a comparable parameter budget, end-to-end systems
+consistently outperform non-end-to-end baselines. Although
+the cascaded system improves upon the single-channel baseline, it remains limited by the separation of front-end and backend, where processing artifacts introduced during enhancement
+cannot be jointly optimized with the downstream recognizer.
+This conﬁrms that joint spatial and acoustic modeling in a
+uniﬁed end-to-end framework is more effective than separated
+pipelines.
+
+4.2. Impact of Spatial Priors
+Across both dual-channel and three-channel conﬁgurations, the
+performance margin between models with spatial priors and
+their no-prior baselines is relatively small. This is primarily
+because the current evaluation lacks distinct interfering speakers. Without strong directional interference, the multi-channel
+acoustic features alone are highly informative for robust keyword detection under background noise. Consequently, the noprior models remain strong, relying on learned spatial representations, dynamically adapting to spatial cues and achieving
+strong performance independently.
+Nevertheless, the directional prior affects the models differently depending on the spatial task complexity. In the dualchannel setup, discretizing the 180◦ space into 6 zones yields a
+coarse prior that is generally less sensitive to DOA mismatch.
+This broad cue provides a small but consistent gain over the noprior baseline across SNR conditions, even when noise degrades
+the acoustic cues.
+Conversely, the three-channel system expands the prior to a
+12-zone, 360◦ full-azimuth layout, doubling the spatial vocabulary. At lower SNRs (0 and 5 dB), conditioning this strict,
+high-resolution prior on noise-smeared features increases the
+risk of feature-prior mismatch. Thus, the no-prior baseline,
+retaining its data-driven ﬂexibility, slightly surpasses the proposed model. However, at 10 dB SNR, the clean acoustic features reliably align with the complex 12-zone prior. Here, the
+spatial prior acts as a stronger directional bias, allowing the
+proposed 3-channel model to achieve the overall highest accuracy (89.61%). This suggests that prior granularity should be
+matched to the reliability of spatial cues under varying noise
+intensities, which we will further analyze with DOA-error perturbations in more complex acoustic scenes.
+
+5. Conclusion
+This paper presented an end-to-end multi-channel KWS framework that uniﬁes a learnable spatial encoder, a direction-aware
+embedding, and a streaming shared backbone. By explicitly
+leveraging inter-channel cues and injecting a discrete spatial
+prior, the system achieves stronger noise robustness than a
+single-channel WeKws baseline and a beamformer-enhanced
+cascaded pipeline at a similar parameter budget. Evaluations
+across dual-channel and three-channel systems demonstrate that
+the model remains robust without priors, yet beneﬁts when they
+are present. Our analysis further highlights a practical tradeoff: while high-resolution priors act as precise spatial ﬁlters
+in clear conditions, lower-complexity priors offer better fault
+tolerance under heavy noise. These ﬁndings provide valuable
+architectural guidelines for deploying reliable voice-controlled
+interfaces in diverse, real-world acoustic environments.
+Our method is modular and extensible. In future work,
+a trainable DOA estimator can be integrated into a multi-task
+framework to dynamically provide zone-wise or continuous directions to condition the spatial embedding. We also plan to
+incorporate an enhancement front-end alongside the spatial encoder, yielding a joint localize–enhance–wake pipeline. This
+joint optimization is expected to further mitigate feature-prior
+mismatches in highly reverberant conditions. Richer prior designs, such as probabilistic spatial embeddings, will be explored
+to improve robustness against DOA mismatch. Finally, we will
+investigate on-device, weakly supervised ﬁne-tuning to deploy
+this uniﬁed system under strict streaming constraints on latency
+and memory.
+
+6. References
+[1] M. B. Hoy, “Alexa, siri, cortana, and more: an introduction to
+voice assistants,” Medical reference services quarterly, vol. 37,
+no. 1, pp. 81–88, 2018.
+[2] A. H. Michaely, X. Zhang, G. Simko, C. Parada, and P. Aleksic,
+“Keyword spotting for google assistant using contextual speech
+recognition,” in 2017 IEEE Automatic Speech Recognition and
+Understanding Workshop (ASRU). IEEE, 2017, pp. 272–278.
+[3] J. Heymann, L. Drude, and R. Haeb-Umbach, “Neural network
+based spectral mask estimation for acoustic beamforming,” in
+2016 IEEE International Conference on Acoustics, Speech and
+Signal Processing (ICASSP). IEEE, 2016, pp. 196–200.
+[4] H. Erdogan, J. R. Hershey, S. Watanabe, M. I. Mandel, and
+J. Le Roux, “Improved mvdr beamforming using single-channel
+mask prediction networks.” in Interspeech, 2016, pp. 1981–1985.
+
+[17] K. Zhang, Z. Wu, D. Yuan, J. Luan, J. Jia, H. Meng, and B. Song,
+“Re-weighted interval loss for handling data imbalance problem
+of end-to-end keyword spotting.” in INTERSPEECH, vol. 108,
+2020, pp. 2567–2571.
+[18] I. López-Espejo, Z.-H. Tan, J. H. Hansen, and J. Jensen, “Deep
+spoken keyword spotting: An overview,” IEEE Access, vol. 10,
+pp. 4169–4199, 2021.
+[19] J. Wang, M. Xu, J. Hou, B. Zhang, X.-L. Zhang, L. Xie, and
+F. Pan, “Wekws: A production ﬁrst small-footprint end-to-end
+keyword spotting toolkit,” in ICASSP 2023-2023 IEEE International Conference on Acoustics, Speech and Signal Processing
+(ICASSP). IEEE, 2023, pp. 1–5.
+[20] A. Graves, S. Fernández, F. Gomez, and J. Schmidhuber, “Connectionist temporal classiﬁcation: labelling unsegmented sequence data with recurrent neural networks,” in Proceedings of
+the 23rd international conference on Machine learning, 2006, pp.
+369–376.
+
+[5] T. Yoshioka, N. Ito, M. Delcroix, A. Ogawa, K. Kinoshita,
+M. Fujimoto, C. Yu, W. J. Fabian, M. Espi, T. Higuchi et al.,
+“The ntt chime-3 system: Advances in speech enhancement and
+recognition for mobile multi-microphone devices,” in 2015 IEEE
+Workshop on Automatic Speech Recognition and Understanding
+(ASRU). IEEE, 2015, pp. 436–443.
+
+[21] S. Jin, Y. Jung, S. Lee, J. Roh, C. Han, and H. Cho, “Ctcaligned audio-text embedding for streaming open-vocabulary keyword spotting,” arXiv preprint arXiv:2406.07923, 2024.
+
+[6] F. Weninger, H. Erdogan, S. Watanabe, E. Vincent, J. Le Roux,
+J. R. Hershey, and B. Schuller, “Speech enhancement with lstm
+recurrent neural networks and its application to noise-robust asr,”
+in International conference on latent variable analysis and signal
+separation. Springer, 2015, pp. 91–99.
+
+[23] P. Warden, “Speech commands: A dataset for limited-vocabulary
+speech recognition,” arXiv preprint arXiv:1804.03209, 2018.
+
+[7] T. Higuchi, N. Ito, T. Yoshioka, and T. Nakatani, “Robust mvdr
+beamforming using time-frequency masks for online/ofﬂine asr
+in noise,” in 2016 IEEE International Conference on Acoustics,
+Speech and Signal Processing (ICASSP). IEEE, 2016, pp. 5210–
+5214.
+[8] D. Bonet, G. Cámbara, F. López, P. Gómez, C. Segura, and
+J. Luque, “Speech enhancement for wake-up-word detection in
+voice assistants,” arXiv preprint arXiv:2101.12732, 2021.
+[9] C. Yang, Y. M. Saidutta, R. S. Srinivasa, C.-H. Lee, Y. Shen, and
+H. Jin, “Robust keyword spotting for noisy environments by leveraging speech enhancement and speech presence probability,” in
+Proc. Interspeech, vol. 2023, 2023, pp. 1638–1642.
+[10] L. C. Parra and C. V. Alvino, “Geometric source separation:
+Merging convolutive source separation with geometric beamforming,” IEEE Transactions on Speech and Audio Processing, vol. 10,
+no. 6, pp. 352–362, 2002.
+[11] L. Li and K. Koishida, “Geometrically constrained independent
+vector analysis for directional speech enhancement,” in ICASSP
+2020-2020 IEEE International Conference on Acoustics, Speech
+and Signal Processing (ICASSP). IEEE, 2020, pp. 846–850.
+[12] R. Wang and T. Toda, “Directional target speaker extraction under
+noisy underdetermined conditions through conditional variational
+autoencoder with global style tokens,” in 2023 IEEE Workshop on
+Applications of Signal Processing to Audio and Acoustics (WASPAA). IEEE, 2023, pp. 1–5.
+[13] M. L. Seltzer, “Bridging the gap: Towards a uniﬁed framework
+for hands-free speech recognition using microphone arrays,” in
+2008 hands-free speech communication and microphone arrays.
+IEEE, 2008, pp. 104–107.
+[14] H. Zhang, J. Zhang, and Y. Wang, “End-to-end models with auditory attention in multi-channel keyword spotting,” arXiv preprint
+arXiv:1811.00350, 2018.
+[15] Q. Yang, Q. Liu, and H. Li, “Deep residual spiking neural network
+for keyword spotting in low-resource settings.” in Interspeech,
+2022, pp. 3023–3027.
+[16] T. Higuchi, S. Saxena, M. Souden, T. D. Tran, M. Delfarah, and
+C. Dhir, “Dynamic curriculum learning via data parameters for
+noise robust keyword spotting,” in ICASSP 2021-2021 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP). IEEE, 2021, pp. 6848–6852.
+
+[22] J. Hou, L. Xie, and S. Zhang, “Two-stage streaming keyword detection and localization with multi-scale depthwise temporal convolution,” Neural Networks, vol. 150, pp. 28–42, 2022.
+
+[24] D. Diaz-Guerra, A. Miguel, and J. R. Beltran, “gpurir: A python
+library for room impulse response simulation with gpu acceleration,” Multimedia Tools and Applications, vol. 80, no. 4, pp.
+5653–5671, 2021.
+[25] J. Thiemann, N. Ito, and E. Vincent, “Demand: a collection of
+multi-channel recordings of acoustic noise in diverse environments,” (No Title), 2013.
+[26] L. Grifﬁths and C. Jim, “An alternative approach to linearly constrained adaptive beamforming,” IEEE Transactions on antennas
+and propagation, vol. 30, no. 1, pp. 27–34, 1982.
+
+

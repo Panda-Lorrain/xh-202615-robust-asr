@@ -1,0 +1,859 @@
+ADAPTIVE SPEAKER EMBEDDING SELF-AUGMENTATION FOR PERSONAL VOICE ACTIVITY DETECTION
+WITH SHORT ENROLLMENT SPEECH
+Fuyuan Feng1† , Wenbin Zhang2† , Yu Gao2∗ , Longting Xu1 , Xiaofeng Mou2 , Yi Xu2
+
+arXiv:2601.12769v1 [eess.AS] 19 Jan 2026
+
+1
+
+College of Information Science and Technology, Donghua University, Shanghai, China
+2
+AI Research Center, Midea Group (Shanghai) Co.,Ltd., Shanghai, China
+B 2232069@mail.dhu.edu.cn, {zhangwb87, gaoyu11}@midea.com
+ABSTRACT
+
+Personal Voice Activity Detection (PVAD) is crucial for identifying
+target speaker segments in the mixture, yet its performance heavily
+depends on the quality of speaker embeddings. A key practical limitation is the short enrollment speech—such as a wake-up word—which
+provides limited cues. This paper proposes a novel adaptive
+speaker embedding self-augmentation strategy that enhances PVAD
+performance by augmenting the original enrollment embeddings
+through additive fusion of keyframe embeddings extracted from
+mixed speech. Furthermore, we introduce a long-term adaptation
+strategy to iteratively refine embeddings during detection, mitigating
+speaker temporal variability. Experiments show significant gains in
+recall, precision, and F1-score under short enrollment conditions,
+matching full-length enrollment performance after five iterative
+updates. The source code is available at https://anonymous.
+4open.science/r/ASE-PVAD-E5D6.
+Index Terms— personal voice activity detection, embedding,
+self-augmentation, short enrollment
+1. INTRODUCTION
+Voice Activity Detection (VAD) is a technique that identifies speech
+and non-speech segments at the frame level [1], serving as a
+critical front-end for tasks such as automatic speech recognition
+(ASR) [2], speaker verification (SV) [3], and speaker diarization [4].
+A well-trained standard VAD system detects all speech segments
+regardless of the speaker, enhancing downstream performance by
+filtering noise and reducing computational costs. However, in
+multi-speaker environments, standard VAD may trigger false positives
+by detecting non-target speech. To address this limitation, Personal
+Voice Activity Detection (PVAD) is proposed [5], which specifically
+identifies a target speaker’s voice activity in multi-talker scenarios.
+PVAD systems typically operate in two stages: 1) extracting target
+speaker embeddings (e.g., i-vectors or d-vectors) from enrollment
+speech using a pre-trained speaker verification (SV) model [6], and
+2) utilizing these embeddings to identify target speaker segments in
+mixed speech [2, 3, 5]. This framework simply concatenates the target
+speaker’s embedding with the input acoustic features. Subsequent
+improvements introduced feature-wise linear modulation (FiLM)
+to adaptively condition speaker embeddings [7, 8]. While PVAD
+performance critically depends on embedding quality and enrollment
+duration, practical deployment scenarios are typically constrained to a
+short enrollment (e.g., wake-up words) that offer only limited speaker
+cues [9], posing significant challenges for conventional approaches.
+† Equal contribution. ∗ Corresponding author.
+
+Fig. 1: Adaptive speaker embedding self-augmentation (N Iterations)
+Recent related advances have focused on leveraging enrolled audio
+information more effectively. This includes employing superior
+models (e.g., ECAPA, CAM++, WavLM) or multi-scale methods
+to extract higher-quality speaker embeddings from enrolled speech
+[10–12], or using synthesis models to increase the duration of enrolled
+speech [13]. Some researchers have also explored the correlation
+between target speaker extraction (TSE) or VAD tasks and PVAD
+tasks, facilitating task interaction to achieve improvements [4, 14–17].
+A critical yet understudied consideration is that target speech
+inherently exists within the mixed speech input. Existing methods
+have employed shared encoders or cross-attention mechanisms
+to utilize mixed speech information, typically treating enrolled
+embeddings as key and value [15,18]. However, these approaches fail
+to explicitly capture additional speaker identity information from the
+mixture. Furthermore, performance degradation occurs in scenarios
+like smart homes, where a domain mismatch exists between near-field
+enrolled audio (typically recorded on mobile devices) and far-field
+mixed speech. This underscores the need for explicit modeling of
+mixed speech characteristics. Our contributions are as follows:
+• We propose a novel framework to augment short-enrollment
+embeddings, which leverages target-speaker frame embeddings
+extracted from mixed speech. These embeddings better retain natural acoustic properties and capture more speaker characteristics.
+• Recognizing PVAD’s inherent long-term nature (as illustrated
+in Fig. 1), we introduce iterative speaker embedding selfaugmentation to dynamically accommodate speaker state variations [19] and ensure genuine personalization.
+• Experimental results validate our iterative embedding update
+approach using mixed speech, demonstrating both enriched
+representation and the feasibility of long-term adaptive PVAD.
+2. PROPOSED METHODS
+This section details proposed speaker embedding self-augmentation
+framework for PVAD. We first review the PVAD 2.0 architecture
+[7], then comprehensively analyze the proposed speaker embedding
+self-augmentation component integrated into this framework.
+
+Fig. 2: Architecture of adaptive speaker embedding self-augmentation for personal VAD. (a) illustrates our self-augmentation method, where
+Eaugmented ((1-N) denotes the iterations of self-augmentation, as illustrates in Fig. 1) is derived by similarity-guided fusion of the original
+enrollment embedding Eenroll and the optimally matched frame-level embedding Eselected from the mixed speech. (b) illustrates our PVAD 2.0
+backbone architecture processing both the augmented speaker embedding Eaugmented and the acoustic features Fmix extracted from the mixed
+speech.
+2.1. PVAD Backbone
+As illustrated in the PVAD Backbone section (b) of Fig. 2, the
+model follows a standard embedding-conditioned PVAD architecture.
+The model takes two inputs: 1) Eenroll : target speaker embedding
+extracted from enrollment audio using a pre-trained SV model, and
+2) Fmix : acoustic features derived from mixed speech containing
+multiple speakers.
+p = PVAD Fmix , Eenroll
+
+
+
+where p, Con denotes the posterior of the target speaker’s speech and
+Conformer blocks, respectively.
+2.2. Speaker Embedding Self-Augmentation
+2.2.1. Self-Augmentation
+As illustrated in (a) of Fig. 2, we first perform a long-window frames
+level speaker embedding similarity calculation on the mixed speech,
+similar to a low temporal resolution PVAD detection. Mixed speech is
+segmented with a frame length of 1s and a frame shift of 0.2s, and the
+1
+speaker encoder is performed using a pre-trained model CAM++ to
+T ×D
+1×D
+obtain Emix ∈ R
+and Eenroll ∈ R
+[20, 21]. Then calculate
+the cosine similarity between Emix ∈ RT ×D and Eenroll ∈ R1×D
+along the T dimension, and find the key frame’s embedding that
+exceeds the set threshold and has the highest similarity, which we
+named Eselected ∈ R1×D .
+Although overlapping speakers may have an impact, in real
+conversation data, the speech of a single speaker usually occupies
+most of the time, and we only use one key frame in the mixed speech,
+greatly reducing the probability of being affected. Therefore, we have
+reason to believe that there are target speaker information in Eselected
+https://github.com/modelscope/3D-Speaker
+
+Eaugmented cat = [Eenroll ; Eselected ]
+
+(3)
+
+Eaugmented add = Eenroll + Eselected
+
+(4)
+
+(1)
+
+A four-layer stacked Conformer processes the Fmix , while FilM
+modulates the Eenroll [8]. Finally, the fused features are fed into a
+fully connected layer to produce the decision p of the PVAD model.
+The whole process can be formulated as:
+
+
+p = FC FilM Con(Fmix ), Eenroll
+(2)
+
+1
+
+that is not completely similar to Eenroll , and is more realistic and
+more representative of the actual mixed acoustic environment.
+Then, we perform feature fusion on Eselected and Eenroll . Based
+on the research of [18], we compared the simpler methods of addition
+and concatenation as fusion methods. The fused features are named
+Eaugmented :
+
+This is the process of speaker embedding self-augmentation.
+2.2.2. Long-term Speaker Embedding Adaptation
+The proposed speaker embedding self-augmentation from mixed
+speech addresses short-term needs, but activity detection is a longterm process (as illustrated in Fig. 1). A static enrollment audio may
+inadequate for detection as it fails to capture the speaker’s temporal
+vocal dynamics. We validate a long-term speaker embedding update
+strategy, where the reference embedding evolves progressively during
+PVAD. Specifically:
+• After processing Segment 1, the reference updates from Eenroll
+to Eaugmented 1 .
+• For Segment 2, we compute similarity between its Frame-level
+embedding and Eaugmented 1 , then fuse the selected Eselected 2
+with Eaugmented 1 to yield Eaugmented 2 .
+• This iterative process continues until Segment N, transforming
+the initial Eenroll into Eaugmented N .
+In order to achieve more robust embeddings in long-term fusion,
+we reformulate the long-term speaker embedding fusion and update
+rule as follows:
+Eavg add = 0.5(Eaugmented n−1 + Eselected )
+
+(5)
+
+Eaugmented n = λEenroll + (1 − λ)Eavg add
+
+(6)
+
+when n=1, Eenroll is used for Eaugmented n−1 . In this way, we obtain
+more enrolled speaker information in the long term detection, which
+are at different time points, and change the reference information
+from a brief Eenroll to a rich and accurate Eaugmented N .
+
+Table 1: Results for speaker embedding self-augmentation under different short enrollment speech scenarios in segment 1. Augmented cat/add
+denote concatenation/additive fusion (Eq. 3/ 4). Metrics: accuracy(ACC), recall (REC), precision (PRE), F1-score (F1), and average precision
+(AP) for non-speech (NS), non-target (NTSS), and target speech (TSS).
+3 Sperkers ( Segment 1 )
+
+3 Speakers + Noise ( Segment 1 )
+AP
+PRE
+F1
+[NS NTSS TSS]
+
+Enroll
+
+Exp
+
+Augment
+Embed
+
+Embed
+Source
+
+ACC
+
+REC
+
+PRE
+
+F1
+
+AP
+[NS NTSS TSS]
+
+ACC
+
+REC
+
+1.5s
+
+E1
+E2
+E3
+E4
+
+×
+×
+✓
+✓
+
+Enroll
+Selected
+Augmented cat
+Augmented add
+
+86.26
+87.14
+87.23
+87.85
+
+74.85
+79.84
+80.37
+81.71
+
+86.54
+87.38
+87.59
+88.19
+
+85.22
+86.12
+86.22
+86.87
+
+[92.74 95.40 89.41]
+[91.91 96.05 91.05]
+[91.61 96.48 92.27]
+[91.63 96.64 92.78]
+
+82.77
+82.68
+83.45
+83.64
+
+70.72
+73.28
+76.17
+76.64
+
+82.78
+82.28
+83.36
+83.18
+
+81.39
+81.36
+82.11
+82.34
+
+[88.46 93.77 85.95]
+[87.34 93.48 85.53]
+[86.40 94.59 88.70]
+[86.71 94.73 88.78]
+
+1s
+
+E5
+E6
+E7
+E8
+
+×
+×
+✓
+✓
+
+Enroll
+Selected
+Augmented cat
+Augmented add
+
+84.74
+86.52
+86.28
+87.14
+
+71.26
+78.51
+77.98
+80.09
+
+83.96
+86.28
+86.35
+87.15
+
+83.66
+85.51
+85.25
+86.16
+
+[92.72 94.18 86.37]
+[91.91 95.43 89.50]
+[91.58 95.70 90.50]
+[91.61 96.19 91.73]
+
+81.39
+82.38
+82.68
+83.22
+
+67.20
+72.68
+73.94
+74.50
+
+80.40
+81.70
+82.36
+83.20
+
+79.95
+81.06
+81.30
+81.75
+
+[88.42 92.56 82.91]
+[87.33 93.08 84.81]
+[86.39 93.96 87.02]
+[86.81 94.27 87.67]
+
+0.5s
+
+E9
+E10
+E11
+E12
+
+×
+×
+✓
+✓
+
+Enroll
+Selected
+Augmented cat
+Augmented add
+
+81.56
+84.88
+84.03
+85.34
+
+63.00
+75.78
+72.89
+75.34
+
+78.90
+82.67
+82.68
+84.68
+
+80.28
+83.92
+82.94
+84.3
+
+[92.46 91.30 78.98]
+[91.96 93.56 85.08]
+[91.40 94.22 86.55]
+[91.54 94.83 88.39]
+
+78.42
+80.21
+80.08
+80.79
+
+58.94
+68.44
+67.61
+68.12
+
+75.80
+77.35
+78.39
+80.05
+
+76.70
+78.92
+78.62
+79.31
+
+[88.23 89.47 75.43]
+[87.37 90.67 78.73]
+[86.09 91.78 81.77]
+[86.80 92.47 83.38]
+
+3. EXPERIMENTAL SETUP
+3.1. Datasets
+Following the experimental setup in [5, 22] for conversational
+speech simulation, we construct a multi-speaker training set using
+LibriSpeech’s 500-hour subsets [23], comprising 1,166 speakers.
+We generate 99,800 concatenated utterances, each containing three
+speakers with one randomly selected as the target. Frame-level PVAD
+labels were obtained using the Montreal Forced Aligner [24], where
+speech segments were classified as either target or non-target speaker
+activity.
+Additionally, we create ten evaluation sets (simulate 10 mixed
+segments (N=10 in Fig. 1)) from LibriSpeech’s test-clean and testother subsets, each containing approximately 3,700 concatenated
+utterances matching the training configuration. We augment both the
+train and test sets by adding noise from the MUSAN corpus [25] at
+randomized signal-to-noise ratios (SNR) between 0-20 dB to simulate
+realistic acoustic conditions.
+
+4. RESULTS AND DISCUSSION
+4.1. Speaker Embedding Self-Augmentation
+4.1.1. Performance in Segment 1
+Table 1 compares PVAD performance under three short enrollment
+for mixed speech Segment 1. The results (E1vsE2, E5vsE6, E9vsE10)
+demonstrate that the keyframe (1s) embedding Eselected selected
+from mixed speech achieves competitive performance across most
+metrics, even surpassing 1.5s enrollment audio in some cases, as it
+better matches the acoustic environment of mixed speech. Regarding
+the two fusion approaches (Eq. 3 and Eq. 4), our experimental
+results align with [18] in demonstrating that the additive fusion
+method achieves an optimal trade-off, exhibiting only marginal
+degradation in NS accuracy (-1.32 average) while delivering substantial improvements in both NTSS (+2.08 average) and TSS (+5.61
+average) performance. These findings validate its effectiveness, and
+consequently, we adopt the additive fusion as the default approach
+subsequent experiments.
+4.1.2. Performance in Segment 2
+
+3.2. Implementation Details
+We adopt PVAD2.0 [7] as baseline, where exclusively the 192-dim
+Eenroll extracted from the enrolled audio (via pre-train CAM++)
+serves as a reference. In all models, we input acoustic features Fmix
+with the same settings, i.e., 40-dim log Mel-filterbank energy with a
+frame length of 25 ms and a frame shift of 10 ms. The loss function
+uses Weighted Pairwise Loss [5], where the weights are set to w〈tss,
+ns〉 = w〈tss, ntss〉 =1 and w〈ns, ntss〉 = 0.5. During the training
+process, we use the Adam optimizer [26] with an initial learning rate
+of 5e-4. The weighting parameter λ in Eq. 6 was set to 0.1. We
+trained for 100 epochs and selected the best performing checkpoint
+as the final result.
+The Eenroll during training is extracted from the enrolled audio
+at 1.5s, while the Eenroll during testing is extracted from the enrolled
+audio at 0.5s, 1s, and 1.5s, ensuring that they correspond to the same
+audio. We evaluate performance using standard metrics: accuracy
+(ACC), recall (REC), precision (PRE), F1-score (F1), and class-wise
+average precision (AP) for non-speech (NS), non-target speaker
+speech (NTSS), and target speaker speech (TSS).
+
+Table 2 evaluates three short enrollment scenarios for Segment 2.
+Two key findings emerge:
+• Embedding quality enhancement: The performance of
+Eaugmented 1 (E14/E17/E20) consistently surpass original
+Eenroll , in agreement with the results presented in Table 1,
+further demonstrating the effectiveness of our self-augmentation
+approach.
+• Iterative gain: Further improvement in recall (+15.4% avg) and
+F1-score (+2.09 avg) is achieved through secondary augmentation
+(Eaugmented 2 , E15/E18/E21), demonstrating cumulative benefits
+from progressive refinement.
+These experimental findings demonstrate the feasibility of longterm self-augmentation in speaker embedding systems.
+4.2. Long-term Speaker Embedding Adaptation
+4.2.1. Performance in Segment 1-10
+Fig. 3 compares progressive enhancement of 0.5s enrollment speech
+across ten segments in clean (a,c) versus noisy (b,d) environments,
+using Eq. 4 for (a,b) and Eqs. 5–6 for (c,d). The fusion strategy
+
+Table 2: Results for speaker embedding self-augmentation under different short enrollment speech scenarios in segment 2. Augmented 1 is the
+embedding augmented once using Segment 1 and Augmented 2 is Augmented 1 further augmented using Segment 2, with both methods using
+additive fusion(Eq. 4).
+3 Sperkers ( Segment 2 )
+
+3 Speakers + Noise ( Segment 2 )
+AP
+PRE
+F1
+[NS NTSS TSS]
+
+Enroll
+
+Exp
+
+Augmnet
+Embed
+
+Embed
+Source
+
+ACC
+
+REC
+
+PRE
+
+F1
+
+AP
+[NS NTSS TSS]
+
+ACC
+
+REC
+
+1.5s
+
+E13
+E14
+E15
+
+×
+✓
+✓
+
+Enroll
+Augmented 1
+Augmented 2
+
+87.00
+87.47
+88.93
+
+75.99
+79.59
+88.32
+
+86.79
+87.27
+84.59
+
+86.10
+86.57
+88.29
+
+[95.00 95.99 90.23]
+[93.59 96.57 92.00]
+[93.33 97.35 93.85]
+
+82.18
+82.70
+83.94
+
+69.58
+73.07
+83.99
+
+81.35
+81.22
+77.24
+
+80.77
+81.40
+82.98
+
+[88.29 93.31 84.46]
+[88.48 94.22 86.61]
+[88.15 95.11 89.04]
+
+1s
+
+E16
+E17
+E18
+
+×
+✓
+✓
+
+Enroll
+Augmented 1
+Augmented 2
+
+85.47
+85.95
+87.82
+
+72.33
+76.09
+86.12
+
+84.19
+84.78
+82.82
+
+84.52
+85.03
+87.23
+
+[94.90 94.71 86.85]
+[93.64 95.46 89.25]
+[93.39 96.56 91.98]
+
+80.55
+81.89
+83.55
+
+65.39
+69.84
+81.98
+
+78.68
+80.87
+77.34
+
+79.04
+80.50
+82.56
+
+[88.10 91.94 80.96]
+[88.59 93.50 85.04]
+[88.31 94.74 88.06]
+
+0.5s
+
+E19
+E20
+E21
+
+×
+✓
+✓
+
+Enroll
+Augmented 1
+Augmented 2
+
+82.89
+85.40
+87.55
+
+64.90
+73.25
+84.91
+
+80.82
+85.34
+82.88
+
+81.71
+84.35
+86.93
+
+[94.76 92.36 81.01]
+[93.61 95.20 88.76]
+[93.34 96.45 91.77]
+
+78.08
+80.43
+82.25
+
+58.70
+65.61
+78.85
+
+74.65
+78.96
+75.51
+
+76.35
+78.90
+81.32
+
+[88.01 89.24 74.37]
+[88.49 92.05 81.21]
+[88.37 93.61 85.22]
+
+Fig. 3: Results for speaker embedding self-augmentation with 0.5s enrollment in segment 1-10 (where N=10, as defined in Fig. 1). Bars (left
+axis) show REC/PRE; lines (right axis) show F1; X-axis shows Segment 1-10. Experimental conditions: (a) Clean, Eq. 4 fusion; (b) Noisy,
+Eq. 4 fusion; (c) Clean, Eqs. 5–6 fusion; (d) Noisy, Eqs. 5–6 fusion. For comparison, the red dashed line in (c) and (d) replicates the F1 curve
+from (a) and (b), respectively.
+defined by Eq. 4 , as visualized in subfigures (a) and (b) of Fig. 3,
+results in a significant decrease in both precision and F1-score with
+more iterations of augmentation. We attribute this to the introduction
+of noise (which, in the clean scenario, refers to the speech of nontarget speakers) in the selection of Eselected , which is then amplified
+through iterative error accumulation.
+As shown in (c) and (d), the modified fusion strategy (Eqs. 5–6),
+incorporating weighted averaging and residual correction with
+enrolled embeddings, demonstrates consistent improvements in
+precision, recall, and F1-score across both conditions. Remarkably,
+Eaugmented 5 achieves performance parity with the embedding extracted from the full enrollment speech (7.4s avg) after 5 iterations,
+with this gain attributable exclusively to embedding-level augmenta-
+
+tion (model parameters remain fixed throughout the process).
+4.3. Ablation Study of λ (Eq. 6) and Visualization
+Fig. 4 (a) presents the F1-scores over 1–10 long-term iterations using
+Eqs. 5–6 with various values of λ. Consistent with earlier findings,
+iterations of speaker embedding enhancement typically improve the
+F1-scores. λ ∈ [0.05, 0.1] yields the best performance.
+Fig. 4 (b) compares PVAD performance on a Segment 5 sample
+using embeddings from: the original 0.5s enrollment, 5-iteration
+enhancement with Eq. 4, and 5-iteration enhancement using Eqs. 5–
+6. The short enrollment yields poor performance due to limited
+information, causing same-gender speaker confusion and detection
+errors. Iterative embedding enrichment mitigates this by providing
+more discriminative features, substantially improving same-gender
+differentiation and overall PVAD performance, especially with Eqs. 5–
+6.
+5. CONLUSION
+
+Fig. 4: (a) Ablation study of λ (0.05, 0.1, 0.2, 0.3, 0.4) in Eq. 6 for
+speaker embedding self-augmentation under 0.5s enrollment over
+1-10 iterations (where N=10 in Fig. 1) in noisy condition. (b) PVAD
+performance visualization comparison: Original 0.5s enrollment vs.
+5-iteration augmented embeddings (Eq. 4 vs. Eqs. 5–6).
+
+We propose a speaker embedding self-augmentation framework to
+address enrollment data scarcity in PVAD systems. By extracting
+and fusing target embeddings from key frames in mixed speech,
+our method enhances enrollment robustness while adapting to
+dynamic acoustics. An iterative update strategy ensures stable
+long-term detection without extra parameters. Experiments show
+significant gains in recall, precision, and F1-score, especially for
+short enrollments, demonstrating embedding-level augmentation as
+an effective solution for personalized speech processing with limited
+data.
+
+6. REFERENCES
+[1] S. Chang, B. Li, G. Simko, T. Sainath, A. Tripathi, A. van den
+Oord, and O. Vinyals, “Temporal modeling using dilated
+convolution and gating for voice-activity-detection,” in 2018
+IEEE international conference on acoustics, speech and signal
+processing (ICASSP). IEEE, 2018, pp. 5549–5553.
+[2] A. Jayasimha and P. Paramasivam, “Personalizing speech start
+point and end point detection in asr systems from speaker
+embeddings,” in 2021 IEEE Spoken Language Technology
+Workshop (SLT). IEEE, 2021, pp. 771–777.
+[3] Z. Kang, J. Wang, J. Peng, and J. Xiao, “Svvad: Personal
+voice activity detection for speaker verification,” arXiv preprint
+arXiv:2305.19581, 2023.
+[4] M. Cheng, Y. Lin, and M. Li, “Sequence-to-sequence neural
+diarization with automatic speaker detection and representation,”
+IEEE Transactions on Audio, Speech and Language Processing,
+vol. 33, pp. 2719–2734, 2025.
+[5] S. Ding, Q. Wang, S. Chang, L. Wan, and I. L. Moreno,
+“Personal vad: Speaker-conditioned voice activity detection,”
+arXiv preprint arXiv:1908.04284, 2019.
+[6] M. He, D. Raj, Z. Huang, J. Du, Z. Chen, and S. Watanabe,
+“Target-speaker voice activity detection with improved i-vector
+estimation for unknown number of speaker,” arXiv preprint
+arXiv:2108.03342, 2021.
+
+International Conference on Acoustics, Speech and Signal
+Processing (ICASSP). IEEE, 2025, pp. 1–5.
+[14] Z. Sun, L. Zhang, Q. Wang, P. Zhou, and L. Xie, “Towards
+robust overlapping speech detection: A speaker-aware progressive approach using wavlm,” arXiv preprint arXiv:2505.23207,
+2025.
+[15] B. Zeng and M. Li, “Usef-tse: Universal speaker embedding
+free target speaker extraction,” IEEE Transactions on Audio,
+Speech and Language Processing, vol. 33, pp. 2110–2124, 2025.
+[16] F. Liu, F. Xiong, Y. Hao, K. Zhou, C. Zhang, and J. Feng,
+“As-pvad: A frame-wise personalized voice activity detection
+network with attentive score loss,” in ICASSP 2024 - 2024
+IEEE International Conference on Acoustics, Speech and Signal
+Processing (ICASSP), 2024, pp. 11476–11480.
+[17] M. A. Jalal, L. Remaggi, V. Moschopoulos, T. Kotsiopoulos,
+V. Rajan, K. Saravanan, A. Drosou, J. Heo, H. Oh, and S. Jeong,
+“Robust target speaker diarization and separation via augmented
+speaker embedding sampling,” in Proc. Interspeech 2025, 2025,
+pp. 1913–1917.
+[18] K. Tripathi, C. Kumar, and P. Wasnik, “Attention is not always
+the answer: Optimizing voice activity detection with simple
+feature fusion,” arXiv preprint arXiv:2506.01365, 2025.
+[19] X. Qin, N. Li, C. Weng, D. Su, and M. Li, “Cross-age speaker
+verification: Learning age-invariant speaker embeddings,” arXiv
+preprint arXiv:2207.05929, 2022.
+
+[7] S. Ding, R. Rikhye, Q. Liang, Y. He, Q. Wang, A. Narayanan,
+T. O’Malley, and I. McGraw, “Personal vad 2.0: Optimizing personal voice activity detection for on-device speech recognition,”
+in Proc. Interspeech 2022, 2022, pp. 3744–3748.
+
+[20] H. Wang, S. Zheng, Y. Chen, L. Cheng, and Q. Chen, “Cam++:
+A fast and efficient network for speaker verification using
+context-aware masking,” arXiv preprint arXiv:2303.00332,
+2023.
+
+[8] E. Perez, F. Strub, H. De Vries, V. Dumoulin, and A. Courville,
+“Film: Visual reasoning with a general conditioning layer,” in
+Proceedings of the AAAI conference on artificial intelligence,
+2018, vol. 32.
+
+[21] Y. Chen, S. Zheng, H. Wang, L. Cheng, T. Zhu, R. Huang,
+C. Deng, Q. Chen, S. Zhang, W. Wang, et al.,
+“3dspeaker-toolkit: An open-source toolkit for multimodal speaker
+verification and diarization,” in ICASSP 2025-2025 IEEE
+International Conference on Acoustics, Speech and Signal
+Processing (ICASSP). IEEE, 2025, pp. 1–5.
+
+[9] B. Zeng, M. Cheng, Y. Tian, H. Liu, and M. Li, “Efficient
+personal voice activity detection with wake word reference
+speech,” in ICASSP 2024-2024 IEEE International Conference
+on Acoustics, Speech and Signal Processing (ICASSP). IEEE,
+2024, pp. 12241–12245.
+[10] H. Yin, Y. Xiao, J. Bai, and R. Das, “Leveraging llm and
+text-queried separation for noise-robust sound event detection,”
+in 2025 IEEE International Conference on Acoustics, Speech,
+and Signal Processing Workshops (ICASSPW), 2025, pp. 1–5.
+[11] S. He, H. Zhang, W. Rao, K. Zhang, Y. Ju, Y. Yang, and
+X. Zhang, “Hierarchical speaker representation for target
+speaker extraction,” in ICASSP 2024-2024 IEEE International Conference on Acoustics, Speech and Signal Processing
+(ICASSP). IEEE, 2024, pp. 10361–10365.
+[12] K. Zhang, J. Li, S. Wang, Y. Wei, Y. Wang, Y. Wang, and H. Li,
+“Multi-level speaker representation for target speaker extraction,”
+in ICASSP 2025-2025 IEEE International Conference on
+Acoustics, Speech and Signal Processing (ICASSP). IEEE, 2025,
+pp. 1–5.
+[13] Z. Huang, J. Lin, M. Ge, Y. Jiang, X. Wang, L. Wang, and
+J. Dang, “Augmenting short enrollment speech via synthesis
+for target speaker extraction,” in ICASSP 2025-2025 IEEE
+
+[22] L. Xu, M. Zhang, W. Zhang, T. Wang, J. Yin, and Y. Gao,
+“Personal voice activity detection with ultra-short reference
+speech,” in 2024 Asia Pacific Signal and Information Processing
+Association Annual Summit and Conference (APSIPA ASC).
+IEEE, 2024, pp. 1–6.
+[23] V. Panayotov, G. Chen, D. Povey, and S. Khudanpur, “Librispeech: an asr corpus based on public domain audio books,”
+in 2015 IEEE international conference on acoustics, speech and
+signal processing (ICASSP). IEEE, 2015, pp. 5206–5210.
+[24] M. McAuliffe, M. Socolof, S. Mihuc, M. Wagner, and M. Sonderegger, “Montreal forced aligner: Trainable text-speech
+alignment using kaldi.,” in Interspeech, 2017, vol. 2017, pp.
+498–502.
+[25] D. Snyder, G. Chen, and D. Povey, “Musan: A music, speech,
+and noise corpus,” arXiv preprint arXiv:1510.08484, 2015.
+[26] D. Kingma and J. Ba, “Adam: A method for stochastic
+optimization,” arXiv preprint arXiv:1412.6980, 2014.
+
+

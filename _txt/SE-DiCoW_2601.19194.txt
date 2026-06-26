@@ -1,0 +1,749 @@
+SE-DICOW: SELF-ENROLLED DIARIZATION-CONDITIONED WHISPER
+
+ABSTRACT
+
+Hello, how are you guys?
+
+Speaker-attributed automatic speech recognition (ASR) in multispeaker environments remains a major challenge. While some
+approaches achieve strong performance when fine-tuned on specific
+domains, few systems generalize well across out-of-domain datasets.
+Our prior work, Diarization-Conditioned Whisper (DiCoW), leverages speaker diarization outputs as conditioning information and,
+with minimal fine-tuning, demonstrated strong multilingual and
+multi-domain performance. In this paper, we address a key limitation of DiCoW: ambiguity in Silence–Target–Non-target–Overlap
+(STNO) masks, where two or more fully overlapping speakers may
+have nearly identical conditioning despite differing transcriptions.
+We introduce SE-DiCoW (Self-Enrolled Diarization-Conditioned
+Whisper), which uses diarization output to locate an enrollment
+segment anywhere in the conversation where the target speaker is
+most active. This enrollment segment is used as fixed conditioning
+via cross-attention at each encoder layer. We further refine DiCoW
+with improved data segmentation, model initialization, and augmentation. Together, these advances yield substantial gains: SE-DiCoW
+reduces macro-averaged tcpWER by 52.4% relative to the original
+DiCoW on the EMMA MT-ASR benchmark.
+
+Whisper Decoder
+
+Index Terms— target-speaker ASR, DiCoW, diarization conditioning, multi-speaker ASR, Whisper
+1. INTRODUCTION
+Speaker-attributed automatic speech recognition (ASR) is critical for
+applications such as meetings, interviews, and other multi-party conversations, where transcripts must capture who spoke what. Despite
+recent advances [1, 2, 3], current single-speaker ASR models perform poorly in multi-talker scenarios, struggling with overlapping
+speech, spontaneous dialogue, and, importantly, failing to provide
+speaker attribution. Over recent years, several challenges [4, 5, 6]
+have driven the development of novel solutions for these difficult
+conditions. Modular multi-talker ASR approaches that combine diarization, source separation, and ASR [7] have dominated the field,
+but they are complex, often fail to generalize across domains, and are
+prone to cascading errors. In contrast, simpler end-to-end strategies,
+such as speaker-token conditioning [8, 9] or multi-decoder architectures [10], alleviate some of these issues but generally underperform
+modular approaches.
+Target-speaker ASR (TS-ASR) offers a middle ground by directly conditioning ASR models on speaker identity using embeddings or enrollment audio [11, 12]. While effective in controlled
+settings, these methods often depend on speaker-specific representations [13] that are difficult to generalize, particularly when training
+data is limited, or speaker variability is high.
+
+Whisper Encoder
+Transformer block
+L
+FDDT
+
+....
+
+arXiv:2601.19194v1 [eess.AS] 27 Jan 2026
+
+Alexander Polok⋆
+Dominik Klement⋆
+Samuele Cornell‡
+Matthew Wiesner†
+Jan Černocký⋆
+Sanjeev Khudanpur†
+Lukáš Burget⋆
+⋆
+Speech@FIT, Brno University of Technology, Czechia
+‡
+Language Technologies Institute, Carnegie Mellon University, USA
+†
+CLSP & HLTCOE, Johns Hopkins University, USA
+
+MLP
+Transformer block
+1
+FDDT
+PE
+
+PE
+
+FDDT
+
+FDDT
+
+Conv1D
+
+Conv1D
+
+Input mixture
+
+Mary
+
+Transformer block
+1
+FDDT
+
+Cross Attention
+
+James
+
+Michael
+
+Mary STNO mask
+Silence
+Target speaker
+Non-target speaker
+Overlap
+
+Enrollment mixture
+
+Mary
+
+James
+Mary
+
+Michael
+
+mask
+Silence
+Target speaker
+Non-target speaker
+Overlap
+
+Fig. 1. Overview of the SE-DiCoW model architecture. Newly introduced parameter blocks are highlighted in red.
+To address limitations of TS-ASR approaches, we introduced
+Diarization-Conditioned Whisper (DiCoW) [14, 15, 16], a targetspeaker ASR framework that conditions Whisper [1] on frame-level
+diarization masks instead of speaker embeddings. By avoiding
+explicit speaker-identity modeling, DiCoW scales effectively to
+real-world conversations with unknown speakers and demonstrates
+good cross-domain performance. Notably, it outperformed several
+speech-augmented large language models [17] in a recent multilingual challenge [18]. The diarization-conditioning paradigm has
+since been extended beyond Whisper, including its adaptation to
+the Parakeet-TDT model [19], as well as DiCoW extensions that
+explore end-to-end multi-talker modeling with serialized output
+training [20] and inference-time scaling via speaker-agnostic activity streams [21].
+Despite these successes, DiCoW has a key limitation: while the
+diarization output is converted into speaker-specific Silence–Target–
+Non-target–Overlap (STNO) masks to condition the ASR model,
+
+in regions with fully overlapped speech, these masks can become
+ambiguous, providing nearly identical conditioning even though the
+transcriptions for different speakers should differ. To address this,
+we introduce SE-DiCoW (Self-Enrolled Diarization-Conditioned
+Whisper), which resolves this ambiguity by automatically selecting
+the best available segments of the target speaker’s speech based
+on diarization outputs and incorporating them as additional conditioning examples via cross-attention. In addition, we enhance the
+original DiCoW framework with improved model initialization, refined training data segmentation, and data augmentations. Combined
+with self-enrollment, these advances yield a substantially stronger
+system: on the EMMA MT-ASR benchmark1 , SE-DiCoW2 reduces
+macro-averaged tcpWER by 52.4 % over the original DiCoW3 with
+oracle diarization, and with real diarization attains state-of-the-art
+performance on AMI SDM [22] and Libri2Mix [23] while remaining
+comparable to domain-tuned systems on other datasets.
+2. METHOD
+This section reviews DiCoW and introduces our extensions. The
+enhanced SE-DiCoW architecture is shown in Figure 1, where the
+original DiCoW structure is also visible.
+
+DiCoW [16] builds upon the Whisper architecture to perform targetspeaker ASR by conditioning directly on frame-by-frame speaker
+activity probabilities, d(s, t), where s indexes speakers and t indexes
+time. This approach avoids explicit speaker identity modeling and
+enables generalization to unseen speakers.
+For a given target speaker sk , DiCoW constructs a Silence–
+Target–Non-target–Overlap (STNO) mask from the diarization output to capture four frame-level speech probabilities for: target
+speaker active, non-target active, overlap of target, or silence:
+S
+Y
+
+(1 − d(s, t)),
+
+ptT = d(sk , t)
+
+S
+Y
+
+(1 − d(s, t))
+
+s=1
+s̸=sk
+
+s=1
+
+
+ptN = 1 − ptS − d(sk , t),
+
+ptO = d(sk , t) − ptT .
+
+(1)
+
+Instead of directly masking the input audio, DiCoW integrates
+STNO masks through Frame-Level Diarization-Dependent Transformations (FDDT), which modulate the internal representations of
+each Transformer layer. Each layer is augmented with four learnable
+affine transformation matrices4 , (Wil , bli ), corresponding to the four
+STNO categories i ∈ {S, T , N , O}. The input to the Transformer
+encoder block at layer l and frame t is transformed as a probabilistic blend of corresponding transformations, weighted by the STNO
+probabilities:
+X
+ẑlt =
+(Wil zlt + bli )pti .
+(2)
+
+tend
+X
+
+[tstart , tend ] = arg max
+
+tstart ,tend
+
+ptT .
+
+(3)
+
+t=tstart
+
+This self-enrollment segment is then incorporated as additional
+conditioning via cross-attention at each encoder layer l. Let Z(l) =
+[zl1 , zl2 , . . . , zlT ] denote the sequence of hidden representations at
+layer l. The cross-attention mechanism operates as follows:
+(l)
+(l−1)
+Z(l)
+, STNOse )
+se = EncoderLayer (Zse
+
+C
+
+2.1. DiCoW: Diarization-Conditioned Whisper
+
+ptS =
+
+nearly identical STNO conditioning. This makes it difficult for the
+model to distinguish speakers and produce accurate transcriptions
+(see Figure 2). Such ambiguity fundamentally limits the model’s
+ability to maintain speaker-specific context in highly challenging
+scenarios, including recordings with multiple simultaneous conversations, as expected in the CHiME-9 MCoRec Challenge5 .
+To address this limitation, we introduce a self-enrollment mechanism that automatically selects the most relevant reference segment
+of the target speaker within a recording. The model scans the entire recording R to identify a segment [tstart , tend ] of fixed length6
+that maximizes the sum of target speaker probabilities ptT , derived
+during inference from the diarization output d(s, t):
+
+(l)
+
+= CrossAttention(Q = Z
+
+(l−1)
+
+(l)
+, K = Z(l)
+se , V = Zse )
+
+(l−1)
+Z(l)
+; C(l) ]) + Z(l−1)
+aug = MLP([Z
+
+Z
+
+(l)
+
+= EncoderLayer
+
+(l)
+
+(Z(l)
+aug , STNO),
+
+(4)
+(5)
+(6)
+(7)
+
+where Q, K, V stand for the query, key, and value matrices used in
+cross-attention, [Z(l−1) ; C(l) ] denotes concatenation along the feature dimension, and the MLP is a 2-layer feedforward network. The
+processing of the input mixture X, conditioned on its corresponding STNO mask and the self-enrollment segment Xse together with
+STNOse , is illustrated in the Figure 1. Newly added modules are
+highlighted in red. Loss is computed only on the representations of
+X and not on those coming from the self-enrollment segment Xse .
+This mechanism enables the model to maintain consistent speakerspecific representations even when the STNO masks are ambiguous,
+as illustrated in Figure 2.
+2.3. Additional DiCoW Improvements
+
+Despite DiCoW’s success, a critical limitation arises in fully overlapped speech regions, where different target speakers may receive
+
+Beyond the self-enrollment mechanism, we introduce several ad-hoc
+refinements to improve system performance. The model without
+self-enrollment, released as DiCoW v3.37 , represents an upgraded
+variant of the original DiCoW.
+Pre-Positional Embedding FDDT Layer: We introduce an additional FDDT module immediately after the convolutional subsampling and before summing with the positional embedding, as highlighted in Figure 1. In contrast, the original DiCoW applies the
+first FDDT only after the sequence has been augmented with positional embeddings. This new layer uses the same STNO conditioning mechanism as in Eq. (2). To mitigate overly aggressive suppression, we increase the initialization diagonal scaling factor [16] from
+0.1 to 0.5 for the non-target and silence transformation matrices. For
+further details on FDDT initialization, see Section 4.4 of our prior
+work [16].
+
+1 https://huggingface.co/spaces/BUT-FIT/EMMA_
+leaderboard
+2 https://huggingface.co/BUT-FIT/SE_DiCoW
+3 https://huggingface.co/BUT-FIT/DiCoW_v1
+4 Throughout this work, we restrict these matrices to diagonal form.
+
+5 https://www.chimechallenge.org/current/task1/
+index
+6 SE-DiCoW operates under Whisper’s long-form sequential decoding,
+processing the recording in 30 s windows.
+7 https://huggingface.co/BUT-FIT/DiCoW_v3_3
+
+i∈{S,T ,N ,O}
+
+2.2. Self-Enrolled Diarization-Conditioned Whisper
+
+James STNO mask
+
+James STNO mask
+
+Silence
+
+Silence
+
+Target speaker
+
+Target speaker
+
+Non-target speaker
+
+Non-target speaker
+
+Overlap
+
+Overlap
+
+Michael STNO mask
+
+Michael STNO mask
+
+Silence
+
+Silence
+
+Target speaker
+
+Target speaker
+
+Non-target speaker
+
+Non-target speaker
+
+Overlap
+
+Overlap
+
+Fig. 2. STNO ambiguity in highly overlapping speech regions. The STNO masks of James and Michael differ only at the positions highlighted
+in red, leaving a single (non-)target speaker frame for the model to exploit to track the target speaker.
+Data Augmentations: To improve robustness against diarization errors, we apply Gaussian noise ϵt ∼ N (0, 0.22 ) to STNO
+masks with probability 0.75, followed by re-normalization:
+
+max pt + ϵt , 0
+t
+p̃ = P
+t
+t
+i max (pi + ϵi , 0)
+Additional augmentations include segment-wise STNO most-likelyclass activity flips, applied to each training sample with probability 0.3. The recording is divided into segments with lengths sampled uniformly from [0.1, 1.0] s, and for each segment, the dominant
+class is flipped independently with probability 0.1. Further, we apply SpecAugment jointly to the concatenated input signal and STNO
+mask [24], and add MUSAN noises [25] with probability 0.3.
+Corrected Training Data Segmentation: In prior work [16],
+30 s training segments were prepared so that each segment ended
+with an explicit end-of-segment timestamp, which differs from
+Whisper’s original training data. We corrected this by not enforcing an end timestamp when an utterance extends beyond the 30 s
+window; such segment labels are now terminated solely with the
+end-of-sequence (EOS) token.
+3. EXPERIMENTAL SETUP
+We follow the experimental protocol of the DiCoW paper, training on a mixture of AMI [22], NOTSOFAR-18 [6], and Libri2Mix/
+3Mix [23]. In addition, we synthesize extra training mixtures from
+LibriSpeech [26] by randomly overlapping up to three segments with
+partial overlap ratios sampled uniformly in the range [0.8, 1.0]. For
+the LibriSpeech-based data, we construct on-the-fly enrollment mixtures Xse by mixing three segments: one from the target speaker
+(not used in the input mixture) and two from other speakers. The
+target speaker segment is overlapped with the others with an overlap ratio sampled uniformly from [0.3, 1.0], which can result in fully
+overlapped signals. This overlap distribution mimics conditions observed in real datasets such as AMI or NOTSOFAR-1.
+All models use Whisper-large-v3-turbo9 as the backbone, finetuned with a learning rate of 2 × 10−6 , batch size of 96, 2k warmup steps, and 40k total training steps under a cosine decay schedule. Performance is measured using time-constrained minimum8 We use version 240825.1, a subset of the original challenge dataset.
+9 https://huggingface.co/openai/
+
+whisper-large-v3-turbo
+
+permutation WER (tcpWER) [27] with a 5 s collar. Both the training10 and inference11 codes are publicly available.
+We report results under two diarization conditions. First, oracle
+diarization, which uses reference speaker activity to construct STNO
+masks, provides an upper bound on achievable performance. Second, real diarization, where STNO masks are derived from DiariZen,
+a Pyannote-style diarization system [28], which serves as a state-ofthe-art diarization front-end. For evaluation, we include multiple domains and recording conditions. On AMI, we report results on both
+the SDM (single distant microphone) and IHM-Mix (mixture of individual headset microphones) settings. On LibriSpeechMix [8], we
+evaluate mixtures of 1, 2, and 3 speakers. Unlike Libri2Mix/3Mix,
+these mixtures do not contain fully overlapped speech and better
+mimic real-world conversational patterns.
+4. RESULTS
+Table 1 reports tcpWER across both real and synthetic multi-speaker
+benchmarks. All results are obtained using the CHiME-8 text
+normalization and follow the evaluation protocol of the EMMA
+MT-ASR Benchmark. In addition to ASR performance, we also
+report the diarization error rate (DER)12 of DiariZen and the corresponding mean
+PN speaker counting error (MSCE), computed as
+MSCE = N1
+r=1 |Cr − Ch |, where N is the number of recordings
+in the dataset, Cr is the reference number of speakers, and Ch is the
+number of speakers inferred by the diarization system.
+We first evaluate oracle diarization to set upper bounds. While
+competitive, baseline DiCoW falters in heavy overlap—most notably in Libri3Mix-both, where three LibriSpeech recordings are
+mixed without temporal offsets, creating a scenario challenging even
+for humans.
+Corrected training data segmentation yields consistent improvements, particularly on AMI and NOTSOFAR-1, where long-form
+sequential decoding is employed. Refinements to model initialization further reduce error rates, and data augmentation provides additional gains. Consequently, DiCoW v3.3 shows further reductions in
+tcpWER across all evaluated benchmarks.
+SE-DiCoW outperforms all other variants, achieving the lowest
+10 https://github.com/BUTSpeechFIT/TS-ASR-Whisper
+11 https://github.com/BUTSpeechFIT/DiCoW
+12 Reported DER is computed using segment-level annotations, with a
+0.25 s collar applied to mitigate errors introduced by imprecise labels.
+
+Table 1. tcpWER (%) (5 s collar) on real and synthetic datasets using oracle and DiariZen diarization. SE-DiCoW consistently yields the
+lowest error rates, especially in high-overlap conditions. Dark grey indicates degradation caused by DiariZen’s limit of two concurrent
+speakers. (∗ ) Denotes models trained on the original NOTSOFAR-1 dataset, which is a superset of the currently public release (containing
+the restricted Dev-set-2 and using Dev-set-1 for training).
+NOTSOFAR-1
+Small-SDM
+
+SDM
+
+AMI
+IHM-Mix
+
+1
+
+LibriSpeechMix
+2
+3
+
+Libri2Mix
+Both Clean
+
+Libri3Mix
+Both
+Clean
+
+oracle diarization
+∗
+
+DiCoW
++ flexible data seg.
++ new model init..
++ augmentations [DiCoW v3.3]
+SE-DiCoW
+
+19.6
+17.6
+16.6
+16.0
+15.8
+
+17.5
+16.0
+15.4
+14.5
+14.3
+
+13.7
+12.5
+12.8
+11.0
+11.0
+
+1.8
+1.9
+1.8
+1.7
+1.7
+
+14.6
+7.1
+7.1
+3.3
+2.9
+
+15.9
+14.0
+10.4
+9.7
+7.7
+
+6.9
+6.6
+4.0
+3.8
+2.8
+
+49.1
+45.2
+39.6
+27.7
+19.9
+
+39.5
+35.9
+29.1
+16.0
+9.7
+
+DER [0.25 s collar]
+MSCE
+
+12.6
+0.37
+
+10.4
+0.38
+
+21.9
+0.69
+
+DiariZen diarization
+12.2
+13.2
+21.7
+0.0
+0.01
+0.67
+
+9.1
+0.0
+
+12.9
+0.0
+
+27.6
+0.99
+
+29.6
+0.94
+
+DiCoW∗
+DiCoW v3.3
+SE-DiCoW
+SOTA (as of September 2025)
+
+29.8
+26.6
+26.1
+23.6∗ [7]
+
+6.1
+3.3
+3.5
+2.1
+2.1
+
+21.4
+17.0
+6.4
+17.9
+32.5
+21.6
+16.1
+52.4
+47.1
+18.6
+15.2
+1.8
+3.1
+21.7
+9.7
+3.5
+38.6
+31.6
+18.5
+15.3
+1.8
+3.0
+21.1
+8.7
+3.4
+35.6
+29.3
+21.2 [29] 14.9 [29] 2.2 [19] 2.8 [19] 5.0 [19] 9.2 [30] 3.6 [30] 28.1 [30] 16.5 [30]
+
+Table 2. Analysis of self-enrollment mixture composition on
+Libri3Mix Clean test set. tcpWER (%) is reported for different numbers of speakers in the enrollment segment and varying overlap ratios
+with the target speaker.
+Enrollment Composition
+
+Overlap Ratio w/ Target Speaker
+0% 25% 50% 75% 100%
+
+Target speaker only
+Target + 1 interferer
+Target + 2 interferers
+
+9.67
+–
+–
+–
+–
+9.66 9.68 9.66
+–
+9.61 9.72 9.73
+
+–
+9.67
+9.87
+
+tcpWER across all benchmarks. On Libri3Mix-clean, SE-DiCoW
+reduces error by more than 75% relative to the original DiCoW. Crucially, these improvements are not limited to fully overlapped synthetic data; absolute tcpWER reductions of 0.2 are also observed
+on NOTSOFAR-1 and AMI-SDM. These results demonstrate that
+self-enrollment effectively resolves STNO ambiguity in overlapped
+regions and, combined with improved initialization, segmentation,
+and augmentation, produces a state-of-the-art system for TS-ASR.
+When moving from oracle to real diarization with DiariZen,
+performance degrades noticeably across datasets. Nevertheless,
+SE-DiCoW remains comparable to state-of-the-art approaches, each
+fine-tuned for a specific domain and typically evaluated using WER
+or cpWER—both of which represent lower bounds on tcpWER.
+The degradation is particularly pronounced on datasets with more
+than two simultaneously overlapping speakers, reflecting a limitation of the DiariZen [28] system, which models a powerset of 11
+classes with at most two active speakers at a time [31]. This issue is
+most evident in Libri3Mix, where the mean speaker counting error
+indicates that one speaker is consistently missing.
+4.1. Analysis of Self-Enrollment Mixture Composition
+In Table 1, SE-DiCoW was evaluated with enrollment overlap ratios
+sampled from U [0.3, 1.0], reflecting real conversational conditions.
+To analyze the effect of enrollment composition, we performed a
+controlled study on Libri3Mix clean by varying (1) the number of
+concurrent speakers and (2) the overlap ratio with the target speaker.
+Table 2 shows SE-DiCoW works best with 3 speakers (Target
++ 2 interferers) and minimal overlap (25%), achieving the lowest
+
+error rate of 9.61%. This appears to be the best scenario because
+the model can utilize context to learn what the target speaker sounds
+like when slightly overlapped. Notable degradation is observed only
+when the segment is fully overlapped with too many speakers: while
+performance remains stable at 9.87% with 3 speakers, it degrades
+to 12.2% and 12.4% with 4 and 5 speakers, respectively. Nevertheless, SE-DiCoW still significantly outperforms the baseline DiCoW.
+These results highlight SE-DiCoW’s practicality: even when clean
+segments are unavailable, the self-enrollment mechanism naturally
+selects regions with a high proportion of frames having large ptT values, thereby favoring cleaner references while preserving robustness
+in more challenging cases.
+5. CONCLUSION
+We introduced SE-DiCoW (Self-Enrolled Diarization-Conditioned
+Whisper), which addresses a key limitation of the original DiCoW:
+ambiguity in STNO conditioning during fully overlapped speech. By
+automatically selecting target-speaker reference segments and incorporating them via cross-attention, SE-DiCoW effectively resolves
+speaker disambiguation when different speakers receive nearly identical conditioning. Comprehensive evaluation shows substantial
+gains across the diverse datasets of the EMMA MT-ASR benchmark. SE-DiCoW reduces macro-average tcpWER by 52.4% over
+DiCoW, with over 75% relative improvement on Libri3Mix clean
+and consistent gains on real conversational data. Enrollment analysis
+further demonstrates robustness to imperfect reference enrollment
+segments, underscoring its practicality in real-world settings. In
+addition to self-enrollment, improvements in initialization, data
+segmentation, and augmentation contribute to overall effectiveness.
+The resulting framework achieves performance on par with the best
+domain-tuned systems reported in the literature, while preserving
+DiCoW’s strong cross-domain generalization. Future work will
+focus on jointly fine-tuning diarization and TS-ASR within a unified framework, aiming to mitigate the degradation observed with
+inferred diarization (Table 1).
+
+6. ACKNOWLEDGEMENTS
+This work, done at JSALT 2025, was partially supported by Ministry of Education, Youth and Sports of the Czech Republic (MoE)
+through the OP JAK project “Linguistics, Artificial Intelligence
+and Language and Speech Technologies: from Research to Applications” (ID:CZ.02.01.01/00/23 020/0008518), Brno Ph.D. Talent
+Scholarship Programme, and by Johns Hopkins University via corporate gifts. Computing on IT4I supercomputer was supported by
+MoE through the e-INFRA CZ (ID:90254).
+7. REFERENCES
+[1] A. Radford et al., “Robust speech recognition via large-scale
+weak supervision,” in International conference on machine
+learning. PMLR, 2023, pp. 28492–28518.
+[2] Y. Peng et al., “Reproducing Whisper-style training using an
+open-source toolkit and publicly available data,” in 2023 IEEE
+Automatic Speech Recognition and Understanding Workshop
+(ASRU), 2023, pp. 1–8.
+[3] K. C. Puvvada et al., “Less is more: Accurate speech recognition & translation without web-scale data,” in Interspeech
+2024, 2024, pp. 3964–3968.
+[4] S. Cornell et al., “The CHiME-7 DASR challenge: Distant
+meeting transcription with multiple devices in diverse scenarios,” in 7th International Workshop on Speech Processing in
+Everyday Environments (CHiME 2023), 2023, pp. 1–6.
+[5] S. Cornell et al., “The CHiME-8 DASR challenge for generalizable and array agnostic distant automatic speech recognition
+and diarization,” in 8th International Workshop on Speech Processing in Everyday Environments (CHiME 2024), 2024, pp.
+1–6.
+[6] A. Vinnikov et al., “NOTSOFAR-1 challenge: New datasets,
+baseline, and tasks for distant meeting transcription,” in Interspeech 2024, 2024, pp. 5003–5007.
+[7] S. Niu et al., “The USTC-NERCSLIP systems for the CHiME8 NOTSOFAR-1 challenge,” in 8th International Workshop on
+Speech Processing in Everyday Environments (CHiME 2024),
+2024, pp. 31–36.
+[8] N. Kanda et al., “Serialized output training for end-to-end overlapped speech recognition,” in Interspeech 2020, 2020, pp.
+2797–2801.
+[9] S. Cornell et al., “One model to rule them all? Towards endto-end joint speaker diarization and speech recognition,” in
+2024 IEEE International Conference on Acoustics, Speech and
+Signal Processing (ICASSP). IEEE, 2024, pp. 11856–11860.
+[10] D. Yu, X. Chang, Y. Qian, “Recognizing multi-talker speech
+with permutation invariant training,” in Interspeech 2017,
+2017, pp. 2456–2460.
+[11] N. Kanda et al., “Auxiliary interference speaker loss for targetspeaker speech recognition,” in Interspeech 2019, 2019, pp.
+236–240.
+[12] H. Ma et al., “Extending Whisper with prompt tuning to
+target-speaker ASR,” in 2024 IEEE International Conference
+on Acoustics, Speech and Signal Processing (ICASSP). IEEE,
+2024, pp. 12516–12520.
+[13] Z. Huang et al., “Adapting self-supervised models to multitalker speech recognition using speaker embeddings,” in 2023
+IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 2023, pp. 1–5.
+
+[14] A. Polok et al., “BUT/JHU system description for CHiME-8
+NOTSOFAR-1 challenge,” in 8th International Workshop on
+Speech Processing in Everyday Environments (CHiME 2024),
+2024, pp. 18–22.
+[15] A. Polok et al., “Target speaker ASR with Whisper,” in 2025
+IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 2025, pp. 1–5.
+[16] A. Polok et al., “DiCoW: Diarization-conditioned Whisper
+for target speaker automatic speech recognition,” Computer
+Speech & Language, vol. 95, pp. 101841, 2026.
+[17] Z. Chen et al., “SALM: Speech-augmented language model
+with in-context learning for speech recognition and translation,” in ICASSP 2024 - 2024 IEEE International Conference
+on Acoustics, Speech and Signal Processing (ICASSP), 2024,
+pp. 13521–13525.
+[18] A. Polok et al., “BUT system for the MLC-SLM challenge,”
+arXiv:2506.13414, 2025.
+[19] W. Wang et al., “Speaker targeting via self-speaker adaptation
+for multi-talker ASR,” in Interspeech 2025, 2025, pp. 5498–
+5502.
+[20] M. Kocour et al.,
+“Adapting diarization-conditioned
+Whisper for end-to-end multi-talker speech recognition,”
+arXiv:2510.03723, 2025.
+[21] X. He et al., “Scaling multi-talker ASR with speaker-agnostic
+activity streams,” arXiv:2510.03630, 2025.
+[22] I. Mccowan et al., “The AMI meeting corpus,” Int’l. Conf. on
+Methods and Techniques in Behavioral Research, 01 2005.
+[23] J. Cosentino et al., “LibriMix: An open-source dataset for
+generalizable speech separation,” arXiv: Audio and Speech
+Processing, 2020.
+[24] D. S. Park et al., “SpecAugment: A simple data augmentation method for automatic speech recognition,” in Interspeech
+2019. Sept. 2019, pp. 2613–2617, ISCA.
+[25] D. Snyder, G. Chen, D. Povey,
+“MUSAN: A music, speech, and noise corpus,” arXiv:1510.08484, 2015,
+arXiv:1510.08484v1.
+[26] V. Panayotov et al., “Librispeech: An ASR corpus based on
+public domain audio books,” in 2015 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP),
+2015, pp. 5206–5210.
+[27] T. v. Neumann et al., “MeetEval: A toolkit for computation
+of word error rates for meeting transcription systems,” in Proceedings of the 7th International Workshop on Speech Processing in Everyday Environments (CHiME 2023), 2023, pp. 27–
+32.
+[28] J. Han et al., “Fine-tune before structured pruning: Towards
+compact and accurate self-supervised models for speaker diarization,” in Interspeech 2025, 2025, pp. 1583–1587.
+[29] N. Kanda et al., “Large-scale pre-training of end-to-end multitalker ASR for meeting transcription with single distant microphone,” in Interspeech 2021, 2021, pp. 3430–3434.
+[30] H. Shi et al.,
+“Serialized output prompting for large
+language model-based multi-talker speech recognition,”
+arXiv:2509.04488, 2025.
+[31] A. Plaquet, H. Bredin, “Powerset multi-class cross entropy loss
+for neural speaker diarization,” in Interspeech 2023, 2023, pp.
+3222–3226.
+
+

@@ -1,0 +1,796 @@
+Variance-Preserving-Based Interpolation Diffusion Models
+for Speech Enhancement
+Zilu Guo1 , Jun Du1,∗ , Chin-Hui Lee2 , Yu Gao3 , Wenbin Zhang3
+1
+
+University of Science and Technology of China, Hefei 230027, China
+2
+Georgia Institute of Technology, Atlanta, GA. 30332-0250, USA
+3
+AI Innovation Center, Midea Group (Shanghai) Co.,Ltd., Shanghai 201702, China
+guozl@mail.ustc.edu.cn,
+jundu@ustc.edu.cn, chl@ece.gatech.edu,
+{gaoyu11, zhangwb87}@midea.com
+
+arXiv:2306.08527v2 [eess.AS] 17 Sep 2023
+
+Abstract
+The goal of this study is to implement diffusion models for
+speech enhancement (SE). The first step is to emphasize the
+theoretical foundation of variance-preserving (VP)-based interpolation diffusion under continuous conditions. Subsequently,
+we present a more concise framework that encapsulates both the
+VP- and variance-exploding (VE)-based interpolation diffusion
+methods. We demonstrate that these two methods are special
+cases of the proposed framework. Additionally, we provide a
+practical example of VP-based interpolation diffusion for the
+SE task. To improve performance and ease model training, we
+analyze the common difficulties encountered in diffusion models and suggest amenable hyper-parameters. Finally, we evaluate our model against several methods using a public benchmark
+to showcase the effectiveness of our approach.
+Index Terms: speech enhancement, speech denoising, diffusion models, score-based, interpolation diffusion
+
+1. Introduction
+Speech enhancement (SE) [1] has been the subject of research
+for several decades with the goal of diminishing or even eliminating the noise in a noisy speech while minimizing the distortion to speech quality. In recent years, SE has been approached
+as a supervised regressive task with the assistance of deep learning. The early attempts to deploy deep learning for SE involve
+employing off-the-shelf models to predict the targets that are
+typically utilized in traditional approaches. However, it is important to note that these approaches are sub-optimal since they
+are not able to obtain the clean phase of the speech. Common
+targets for these methods include the magnitude of the spectrogram [2], the log magnitude (Mapping) [3], the ideal ratio
+mask (IRM)[4], the spectral magnitude mask (SMM) [2], and
+etc. The real and imaginary parts of the spectrogram are utilized directly as the target to obtain the clean phase afterward
+[5, 6, 7]. Meanwhile, another main-stream SE method seeks
+to predict clean waveforms in an end-to-end (E2E) manner [8],
+rather than the spectrum. In addition to the regressive methods,
+some researchers have utilized generative models for the SE,
+such as, VAE [9, 10], GAN [11, 12, 13], flow [14, 15], and etc.
+Recently, Diffusion models have been successful in various
+generative tasks, including image generation [16, 17, 18], image
+editing [19], speech synthesis [20] and etc. Diffusion models involve two processes, i.e., diffusion (or forward) and reverse (or
+backward) processes. Another approach in the discrete domain
+is the score-based model [18]. Both the diffusion [16] and the
+score-based [18, 21] model are unified in [17, 22], and generalized to the continuous time domain, endowing the model with
+* corresponding author
+
+more capacity. Moreover, the authors in [17] have classified the
+diffusion models into two types: the variance-preserving(VP)based [16] and the variance-exploding(VE)-based [18] method
+grounded on their intuitive properties. The VE-based approach
+gradually increases the variance over time while keeping the
+clean component unaltered. In contrast, VP-based diffusion attempts to preserve the amplitude with fewer fluctuations. Besides their applications in the image processing field, diffusion
+models have also been explored for SE tasks.
+In their work, CDiffSE [23] proposes that a degraded signal is composed of three components, i.e, the clean signal , the
+noisy and the Gaussian noise. They suggest that the mean of
+the degraded signal in the diffusion process is obtained through
+a linear combination of the clean and noisy speech, specifically
+the linear interpolation of the two. They then apply this interpolation method to Diffwave [20], a model for speech synthesis, for the SE task. SRTNET [24] follows a similar approach,
+utilizing the interpolation diffusion to estimate the distortion
+between the clean speech and an enhanced speech predicted
+by a pre-trained discriminative model. However, the two-stage
+models commonly have higher computational overhead. Apart
+from the discrete diffusion models mentioned above, there are
+also several interpolation-based methods for SE under continuous conditions. In [25, 26], the authors formulate the theoretical foundation for the VE-based interpolation diffusion model
+(VEIDM) in the continuous time field and generalize it to the
+continuous time system. However, they leave the VP-based one
+untouched which showcases better performance in some tasks
+than the VE-based diffusion. In this paper, we attempt to apply
+linear interpolation to VP-based diffusion.
+The rest of the paper is organized as follows. The proposed
+method is introduced in Sec. 2. Specifically, we accentuate
+the proposed signal model, training method, and sampling algorithms in this section. Experiments settings, results, and analyses are presented in Sec. 3. we draw conclusions in Sec. 4.
+
+2. The proposed method
+In the forward process of the vanilla VP-based diffusion model,
+a clean signal (such as an image or speech) is gradually degraded by adding Gaussian noise in steps until it reaches an
+approximate Gaussian noise level. In this process, the mean of
+the state t is an affine function of the clean signal. However, in
+the VP-based interpolation diffusion, the mean is replaced with
+a linear interpolation of the clean and the noisy.
+2.1. The VP-based interpolation diffusion model (VPIDM)
+For tasks of SE, image editing, voice conversion and etc, there is
+an existing condition that holds copious information about the
+target. In the case of SE, for instance, the off-the-shelf noisy
+
+Algorithm 1 Training stage
+
+Algorithm 2 Sampling (enhancing) stage
+
+Batch size is B, number of training iterations Niter
+for i = 1 to Niter do
+Sample a batch of clean and noisy speech pairs [(x 10 , y 1 ),
+B
+b
+b
+. . . , (x b0 , y b ), ..., (x B
+0 , y )], (x 0 , y )) ∼ p(x0 , y )
+Sample a batch of the time indexes [t1 , t2 , ..., tB ], tb ∼
+U(ϵ, 1)
+Sample a batch of Gaussian noises [z 1 , z 2 , ..., z B ], z b ∼
+N (0 , I )
+Get a batch of [x 1 (t1 ), x 2 (t2 ), ..., x B (t2 )], x b (tb ) is sampled from Eq.(1)
+Input the [x 1 (t1 ), x 2 (t2 ), ..., x B (t2 )] to the neural network
+Get the output [θ (x 1 (t1 )), θ (x 2 (t2 )),. . . , θ (x B (tB ))]
+b
+b
+2
+Compute the loss L = {ΣB
+b=1 ||G(t )θ (x (t ) + z || }/B
+from Eq.(9)
+Update the parameters
+end for
+
+Suppose the number of sample steps is K, tk = (1−ϵ)
+k+ϵ
+K
+Sample x K = x (tK ) = x (1) = α1y + G(1)z
+for k = K − 1, K − 2, . . . , 1 do
+Input the x k+1 , get the θ̂ (x k+1 )
+Sample a Gaussian noise z , z ∼ N (0 , I )
+Compute the x k from Eq.(17)
+end for
+Input the x 1 , get the θ̂ (x 1 )
+x̂ 0 = x 1 − [f (x 1 , y ) − g12θ̂ (x 1 )]∆
+return x̂ 0
+
+the clean scale when t → 0, (βmax −βmin ) controls the changing
+speed of x t from the clean to the Gaussian.
+q
+Rt
+(4)
+g(t) = β(t) + 2λ(1 − e− 0 β(τ )dτ )
+where λt = e−λt . From Eq.(2), the dx (t)
+
+speech could be implemented to guide the diffusion process of
+the clean. We refer to this approach as the VP-based interpolation diffusion model (VPIDM). The signal model for VPIDM is
+defined as
+q
+x (t) = αt [λtx 0 + (1 − λt )y ] + 1 − αt2z
+(1)
+where x(t) is the degraded signal at t time index in the diffusion process, x 0 is the clean signal, y is the noisy speech, z is
+the Gaussian noise sampled from normal distribution, αt determines the diffusion process, λt is the slope of the interpolation
+process, αt and λt are functions of t. The differential of x (t) is
+′
+
+′
+
+dx (t) = [x (t) ln (αt λt ) − y αt ln λt ]dt + Σ t dw
+
+(2)
+
+′
+
+where w is the stochastic process, ln [·] is the derivative of ln[·]
+with respect to t, d[·] is the operation of differential. When Σ t
+is a diagonal matrix, suppose that Σ t = g(t)I . From Eq.(5.53)
+in [27], we get
+′
+dG2 (t)
+= 2G2 (t) ln (αt λt ) + g 2 (t)
+dt
+
+(3)
+
+where g(t) indicates the spread speed
+q of the stochastic process
+′
+
+′
+
+in the derivative of x (t), g(t) = −2G2 (t) ln λt − 2 ln αt ,
+G(t) is the coefficient of the Gaussian noise in x (t), G2 (t) =
+′
+′
+1 − αt2 , t ∈ (0, 1], ln αt ≤ 0 and ln λt ≤ 0, which means λt
+and αt are monotonous decrease functions. In this article, all
+constant superscripts represent powers, unless otherwise specified. When t → 0, then λt → 1,αt → 1.
+In principle, we hope λ1 → 0, which implies that the final state is a combination of the noisy signal and the Gaussian
+′
+noise. Therefore, the larger − ln λt appears to be more favor′
+able. However, empirical evidence suggests that − ln λt cannot be infinitely large. The reason behind this is that when we
+′
+sample a clean and − ln λt is set to sufficiently large, the linear
+interpolation tends to change quickly from y to x0 over several
+steps, it is difficult for neural networks to capture.
+In this paper, we adopt the similar αt schedule ofR the VPt
+based diffusion in [17] for the SE, i.e., αt = e−0.5 0 β(τ )dτ ,
+where β(t) = (βmax − βmin )t + βmin , βmin controls the slope of
+
+dx (t) = [−(0.5β(t) + λ)x (t) + λαty ]dt + g(t)dw
+
+(5)
+
+In the reverse
+p process, the x (1) is sampled from the distribution
+N (α1y , 1 − α12I ).
+2.2. The loss function and the training stage
+For unconditional diffusion, the neural network is trained for
+x)). This is equivalent to optimizing the
+predicting ∇x ln(pt (x
+following cost function
+L = Et,x 0 ,x (t) {W · ||θ (x (t)) − ∇x ln(pt (x ))||2 }
+
+(6)
+
+where θ (x (t)) is the output of the neural network.
+interpolation-based diffusion,
+
+For
+
+pt (x ) = p(x (t)|x 0 , y ) = N (m (x 0 , y ); G(t)I )
+
+(7)
+
+where pt (x ) is the conditional probability density function of
+x (t), m (x 0 , y ) = αt [λtx 0 + (1 − λt )y ] is the mean of pt (x ).
+∇x ln(pt (x )) = ∇x [−
+
+||x (t) − m (x 0 , y )||2
+z
+]=−
+(8)
+2G2 (t)
+G(t)
+
+here x (t) − m (x 0 , y ) = G(t)z . Then we get the loss function
+L = E{W · ||θ (x (t)) +
+
+z
+)||2 } = E||G(t)θ (x (t)) + z )||2
+G(t)
+(9)
+
+We follow the settings in [17, 18, 25], utilize the weighted loss,
+and set W = G2 (t) for better performance.
+The training algorithm is shown in Alg. 1, where ϵ represents the minimum sample time, where the superscript b in [·]b
+denotes the b-th sample of a batch, batch size is B, p(x0 , y )
+denotes the joint probability density function of the clean and
+noisy pair, i.e., x 0 , y .
+2.3. The reverse process for sampling a clean
+From [17, 28], the reverse process is also a diffusion process
+which can be represented as
+dx (t) = [f (x (t), y ) − g(t)2θ (x (t))]dt + g(t)dw̄
+
+(16)
+
+Table 1: Comparison of the VEIDM, VPIDM, and IDM.
+The state equations
+VEIDM [25]
+
+The stochastic differential equations
+
+s 
+ 2
+((σmax /σmin )2t − e−2λt )
+σmax σmin
+z
+x (t) = λtx 0 + (1 − λt )y + ln
+σmin
+λ + ln(σmax /σmin )
+
+VPIDM
+
+x (t) = αt [λtx 0 + (1 − λt )y ] +
+
+IDM
+
+q
+
+1 − αt2z
+
+x (t) = αt [λtx 0 + (1 − λt )y ] + G(t)z
+
+′
+
+(11)
+
+(12)
+
+dx (t) = [x (t) ln (αt λt ) − y αt ln λt ]dt + Σ t dw
+
+(13)
+
+(14)
+
+dx (t) = x (t)d ln (αt λt ) − y αt d ln λt + g(t)dw
+
+(15)
+
+dx (t) = λ(y − x (t))dt + σmin (
+
+x k−1 = x k − [f (x k , y ) − gk2θ (x k )]∆ + gkz
+
+(17)
+
+where the subscript k of x k and gk denote the discrete sampling
+time index, x k and gk represent the discrete samplings of x (t)
+and g(t).
+2.4. Comparison with the VEIDM
+Furthermore, the proposed VPIDM and the VEIDM proposed
+in [25] can be concluded as
+dx (t) = x (t)d ln (αt λt ) − y αt d ln λt + g(t)dw
+x(t) = αt [λt x0 + (1 − λt )yy ] + G(t)zz
+
+(18)
+
+(19)
+
+The relation between G and g is constrained by Eq.(3) which
+is referred to as the interpolation diffusion model (IDM). When
+G2 (t) = 1 − αt2 , the interpolation diffusion becomes a VPbased method. In the case of VE-based interpolation diffusion,
+αt in Eq.(18) and (19) is constant 1. Substitute αt with constant
+1 and solve the ordinary differential equation in Eq.(3), we get
+G(t)
+Z t
+G2 (t) = λ2t G(0)2 + λ2t
+g 2 (τ )/λ2τ dτ
+(20)
+0
+
+In [25], The interpolation coefficient λt is defined as e−λt . It
+can be verified that the VEIDM, which use G(t) from Eq.(10),
+and the g(t) from Eq.(11), satisfies Eq.(20) as a special case.
+Additionally, a comparison is made between the VEIDM, the
+proposed VPIDM, and IDM in Tab.1.
+In the reverse process, the initial sample of the VEIDM in
+[25] is taken as y + G(1)z , rather than the ground truth λ1x 0 +
+(1−λ1 )y +G(1)z because obtaining the clean is not possible at
+this stage. However, this can result in damage to the enhanced
+speech. To quantify this effect, we define the initial error (IE)
+IEVEIDM = [y + G(1)z ] − [λ1x 0 + (1 − λ1 )y + G(1)z ]
+(21)
+= λ1 (y − x 0 )
+
+(22)
+
+Whereas, the reverse of the proposed start from α1 y + G(1)zz ,
+and the truth is α1 (λ1x 0 + (1 − λ1 )y ) + G(1)z . The IE is
+IEVPIDM = α1 λ1 (y − x 0 )
+
+(23)
+
+When the same λt is utilized in the Sgmse+ and VPIDM,
+IEVPIDM ≪ IESgmse+ , where α1 → 0. That is, the VPIDM has a
+smaller IE than the VEIDM.
+
+σmax t
+)
+σmin
+
+′
+
+′
+
+x(t), y ) = x(t) ln (αt λt ) − y αt ln λt for the
+where f (x
+VPIDM and w̄ is another stochastic process but has the same
+distribution with w . Typically, the continuous process is discretized in the sampling stage. ∆ = 1−ϵ
+is set and let
+K
+√
+k(1−ϵ)
+xk = x( k(1−ϵ)
++ϵ) and gk = g( K +ϵ) ∆. The sampling
+K
+stage is elaborated in Alg. 2.
+
+s
+
+
+σmax
+dw
+σmin
+
+(10)
+
+
+2 ln
+
+′
+
+3. Experiments
+3.1. Training settings
+We conduct our experiments on the publicly available benchmark, i.e., VoiceBank-DEMAND(VBD) [29] Metrics in [30,
+31, 32], i.e., SI-SDR, SI-SIR, SI-SAR, PESQ, CSIG, CBAK,
+COVL, are adopted to compare the performance to other stateof-the-art methods. 25 speech clips from the test dataset are
+selected randomly as the validation dataset. We train the neural network for 120 epochs. The best checkpoint is saved when
+PESQ is in its optimal state during the validation phase.
+We use the neural network proposed in [26] as our backbone model, which is originally introduced in [17] for the image
+generation task. We treat the complex spectrum as a real-valued
+tensor to circumvent complex-valued computation where the
+real and imaginary parts of the complex are represented as two
+channels of the tensor. The tensor is scaled to ensure that its amplitude approximately falls within the range of −1 to 1 before
+being fed into the neural network. We follow the scaling function described in [25] where given a complex-valued spectrum
+x (t) = |x (t)|e∠x (t) , the scaled [x (t)]s = a|x (t)|c e∠x (t) , here
+a, c are two hyper-parameters, [·]s means the operation of the
+scaling function. We find that a50c ≈ 1, 0 < c ≤ 1 is of avail
+for the performance and c can not be set too small, as it compresses the dynamic range of the signal drastically and makes
+it more difficult to learn the structure of clean spectrum. In this
+paper, we empirically set a = 0.15 and c =
+p0.5, βmin = 0.1,
+βmax = 2 and λt = e−λt , λ = 1.5, G(t) = 1 − αt2 .
+3.2. Results and analyses
+For the continuum diffusion model, we typically sample t from
+the uniform distribution U(ϵ, 1), ϵ denotes the time index of the
+first state after the clean. Ideally, we want to set ϵ as small as
+possible. However, when ϵ is too small, it can lead to difficulties in achieving convergence during training and may result in
+unstable fluctuations in the optimization process.
+Table 2: Illustration of several metrics over different settings for
+VPIDM on the VBD dataset.
+Settings
+ϵ = 1 · 10−2
+ϵ = 3 · 10−2
+ϵ = 4 · 10−2
+ϵ = 5 · 10−2
+ϵ = 6 · 10−2
+ϵ = 7 · 10−2
+
+PESQ ↑
+3.01
+3.02
+3.13
+2.86
+2.95
+1.77
+
+SISDR ↑
+18.3
+18.9
+18.7
+18.6
+18.7
+16.1
+
+SISIR ↑
+31.9
+30.1
+28.6
+27.6
+26.6
+24.5
+
+SISAR ↑
+18.6
+19.4
+19.3
+19.4
+19.7
+16.9
+
+In Fig.2, we vary the value of ϵ for the model and observe
+the training loss with training steps. The results show that when
+the ϵ is too small, the training loss exhibits lots of fluctuations
+and becomes difficult to converge. In our view, the reason is
+
+ ) U H T X H Q F \  N + ] 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+    
+
+   
+
+   
+
+   
+
+ 7 L P H  V 
+ D   7 K H  F O H D Q  P D J Q L W X G H
+
+        
+
+   
+
+   
+
+   
+
+ 7 L P H  V 
+ E   7 K H  Q R L V \  P D J Q L W X G H
+
+        
+
+   
+
+   
+
+   
+
+        
+
+ 7 L P H  V 
+ F   7 K H  H Q K D Q F H G   6 J P V H   
+
+   
+
+   
+
+   
+
+   
+
+ 7 L P H  V 
+ G   7 K H  H Q K D Q F H G   9 3 , ' 0  
+
+Figure 1: The log spectrogram of the STFT magnitudes. a) the clean x 0 spectrogram; b) the noisy y spectrogram; c) the spectrogram
+of the estimated clean from the Sgmse+ (2); d) the spectrogram of the estimated clean from the VPIDM.
+
+= 1e
+= 1e
+= 1e
+= 1e
+
+    
+
+5
+4
+3
+2
+
+ / R V V
+
+    
+    
+    
+    
+ 
+ 
+
+    
+
+    
+
+    
+
+ W U D L Q L Q J  V W H S V
+
+    
+
+     
+
+Figure 2: The training loss when t ∼ U (ϵ, 1).
+
+that, when ϵ is too small, the model is required to estimate the
+target in a wider range of SNR conditions. We conduct experiments to check the model’s ability to predict the target in low
+SNR conditions using only one state (t = ϵ) as the input for
+the model. However, the model can not predict the target well
+when ϵ ≤ 10−2p
+. That is, when t → 0, αt → 1, λt → 1, then
+x (t) ≈ x 0 + 1 − αt2z . From the perspective of Gaussian
+1−α2
+
+noise, the SNR ≈ 10 log10 ( 1 t ) ≈ 10 log10 (βmin t). Therefore, when t = 10−5 , 10−4 , 10−3 , 10−2 , the model predicts the
+target at about −60dB, −50dB, −40dB, −30dB SNR, respectively. Based on these results, we choose ϵ ≥ 10−2 . We treat
+the ϵ as the minimum resolution of the model, so we set the
+number of sample steps in the reverse process to K ≈ [ 1ϵ ]. As a
+result, for ϵ = [10−2 , 3·10−2 , 4·10−2 , 5·10−2 , 6·10−2 , 10−1 ],
+the number of sampling steps are 100, 30, 25, 20, 15, 10, respectively. According to Tab.2, the best PESQ is achieved when
+ϵ = 4 · 10−2 , which corresponds to 25 sample steps. The
+model demonstrates strong performance across various evaluation metrics when the number of sample steps exceeds 15, but
+when the sample steps are less than 15, the performance drops
+significantly.
+In Tab.3, we compare our model to several SOTA methods.
+Sgmse+ (1) denotes the vanilla model without the corrector,
+while Sgmse+ (2) includes the corrector. The proposed model
+achieves the best CSIG, indicating the least speech distortion.
+This demonstrates that our generative model has learned the
+closest clean distribution to the ground truth that can preserve
+clean speech best. Sgmse+ (1) in [26] is the VE-based interpo-
+
+Table 3: The proposed method versus some SOTA methods with
+respect to different metrics.
+Model
+noisy
+PFP [33]
+MetricGAN [12]
+MetricGAN+ [13]
+CDiffuSE [23]
+SRTNet [24]
+CDSE [34]
+Sgmse+ (1) [26]
+Sgmse+ (2) [26]
+VPIDM
+
+PESQ ↑
+1.97
+3.15
+2.86
+3.15
+2.52
+2.69
+2.77
+2.80
+2.93
+3.13
+
+CSIG ↑
+3.35
+4.18
+3.99
+4.14
+3.72
+4.12
+3.91
+4.10
+4.12
+4.63
+
+CBAK ↑
+2.44
+3.60
+3.18
+3.16
+2.91
+3.19
+3.32
+3.24
+3.37
+3.41
+
+COVL ↑
+2.64
+3.67
+3.42
+3.64
+3.10
+3.39
+3.33
+3.44
+3.51
+3.94
+
+lation diffusion with 30 sampling steps. The proposed method
+with fewer steps, i.e., 25 steps (ϵ = 4 · 10−2 ), achieves 0.3
+PESQ increment over Sgmse+ (1). To further improve the performance, Sgmse+ (2) in [26] implements a corrector which
+requires 60 total steps. The proposed requires less than half
+steps of the Sgmse+ (2) and obtains a 0.2 PESQ improvement.
+In fact, the scaling of the signal, i.e., αt , on the right side of
+Eq.(1) is a type of data augmentation that is beneficial for the
+model to learn the intrinsic structure of clean speech. However, as shown in Fig.1, Sgmse+ (2) causes the neural network
+to consider some noises in y as the clean when starting from
+y + g(1)z in the sampling stage. Therefore, some noises in the
+noisy speech are not effaced thoroughly. From the two black
+ellipses in Fig.1, we can see that the Sgmse+ (2) has residual
+noise in 0 − 0.6(s) and 2 − 2.1(s) time intervals.
+
+4. Conclusions
+In this paper, we present the VP-based interpolation diffusion
+model in a continuous time system and summarize the VE- and
+VP-based interpolation diffusion models into a more concise
+framework called the IDM. The VE- and VP-based interpolation diffusion models serve as examples of the IDM. While we
+only apply the VPIDM to the SE task to showcase our proposed
+method, it is worth noting that the approach is a general method
+that can be used for other tasks as well.
+
+5. Acknowledgements
+This work was supported in part by the National Natural Science Foundation of China under Grant 62171427. We also
+thank Midea Group Co., Ltd for funding this work
+
+6. References
+[1] S. Boll, “Suppression of acoustic noise in speech using spectral
+subtraction,” IEEE Transactions on acoustics, speech, and signal
+processing, vol. 27, no. 2, pp. 113–120, 1979.
+[2] Y. Wang, A. Narayanan, and D. Wang, “On training targets for
+supervised speech separation,” IEEE/ACM transactions on audio,
+speech, and language processing, vol. 22, no. 12, pp. 1849–1858,
+2014.
+[3] Y. Xu, J. Du, L.-R. Dai, and C.-H. Lee, “A regression approach to speech enhancement based on deep neural networks,”
+IEEE/ACM Transactions on Audio, Speech, and Language Processing, vol. 23, no. 1, pp. 7–19, 2014.
+[4] A. Narayanan and D. Wang, “Ideal ratio mask estimation using deep neural networks for robust speech recognition,” in 2013
+IEEE International Conference on Acoustics, Speech and Signal
+Processing. IEEE, 2013, pp. 7092–7096.
+[5] D. S. Williamson, Y. Wang, and D. Wang, “Complex Ratio Masking for Monaural Speech Separation,” IEEE/ACM Transactions
+on Audio, Speech, and Language Processing, vol. 24, no. 3, pp.
+483–492, Mar. 2016.
+[6] K. Tan and D. Wang, “Complex spectral mapping with a convolutional recurrent network for monaural speech enhancement,” in
+ICASSP 2019 - 2019 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP). IEEE, pp. 6865–
+6869.
+[7] H.-S. Choi, J.-H. Kim, J. Huh, A. Kim, J.-W. Ha, and K. Lee,
+“Phase-aware speech enhancement with deep complex u-net,” in
+International Conference on Learning Representations, 2018.
+[8] S.-W. Fu, T.-W. Wang, Y. Tsao, X. Lu, and H. Kawai, “Endto-end waveform utterance enhancement for direct evaluation
+metrics optimization by fully convolutional neural networks,”
+IEEE/ACM Transactions on Audio, Speech, and Language Processing, vol. 26, no. 9, pp. 1570–1584, 2018.
+[9] H. Fang, G. Carbajal, S. Wermter, and T. Gerkmann, “Variational
+autoencoder for speech enhancement with a noise-aware encoder,”
+in ICASSP 2021-2021 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP). IEEE, 2021, pp.
+676–680.
+[10] Y. Bando, K. Sekiguchi, and K. Yoshii, “Adaptive Neural Speech
+Enhancement with a Denoising Variational Autoencoder,” in
+Proc. Interspeech 2020, 2020, pp. 2437–2441.
+[11] S. Pascual, A. Bonafonte, and J. Serrà, “Segan: Speech enhancement generative adversarial network,” in Proc. Interspeech 2017,
+2017, pp. 3642–3646.
+[12] S.-W. Fu, C.-F. Liao, Y. Tsao, and S.-D. Lin, “Metricgan: Generative adversarial networks based black-box metric scores optimization for speech enhancement,” in International Conference
+on Machine Learning. PMLR, 2019, pp. 2031–2041.
+[13] S.-W. Fu, C. Yu, T.-A. Hsieh, P. Plantinga, M. Ravanelli, X. Lu,
+and Y. Tsao, “MetricGAN+: An Improved Version of MetricGAN
+for Speech Enhancement,” in Proc. Interspeech 2021, 2021, pp.
+201–205.
+[14] A. A. Nugraha, K. Sekiguchi, and K. Yoshii, “A flow-based deep
+latent variable model for speech spectrogram modeling and enhancement,” IEEE/ACM Transactions on Audio, Speech, and Language Processing, vol. 28, pp. 1104–1117, 2020.
+[15] M. Strauss and B. Edler, “A flow-based neural network for time
+domain speech enhancement,” in ICASSP 2021-2021 IEEE International Conference on Acoustics, Speech and Signal Processing
+(ICASSP). IEEE, 2021, pp. 5754–5758.
+[16] J. Ho, A. Jain, and P. Abbeel, “Denoising diffusion probabilistic models,” Advances in Neural Information Processing Systems,
+vol. 33, pp. 6840–6851, 2020.
+[17] Y. Song, J. Sohl-Dickstein, D. P. Kingma, A. Kumar, S. Ermon, and B. Poole, “Score-based generative modeling through
+stochastic differential equations,” in 9th International Conference
+on Learning Representations, ICLR 2021, Virtual Event, Austria,
+May 3-7, 2021, 2021.
+
+[18] Y. Song and S. Ermon, “Generative modeling by estimating gradients of the data distribution,” Advances in neural information
+processing systems, vol. 32, 2019.
+[19] B. Kawar, S. Zada, O. Lang, O. Tov, H. Chang, T. Dekel,
+I. Mosseri, and M. Irani, “Imagic: Text-based real image editing
+with diffusion models,” in Conference on Computer Vision and
+Pattern Recognition 2023, 2023.
+[20] Z. Kong, W. Ping, J. Huang, K. Zhao, and B. Catanzaro, “Diffwave: A versatile diffusion model for audio synthesis,” in 9th International Conference on Learning Representations, ICLR 2021,
+Virtual Event, Austria, May 3-7, 2021, 2021.
+[21] D. P. Kingma and Y. Cun, “Regularized estimation of image statistics by score matching,” in Advances in Neural Information Processing Systems, vol. 23, 2010.
+[22] D. Kingma, T. Salimans, B. Poole, and J. Ho, “Variational diffusion models,” Advances in neural information processing systems,
+vol. 34, pp. 21 696–21 707, 2021.
+[23] Y.-J. Lu, Z.-Q. Wang, S. Watanabe, A. Richard, C. Yu, and
+Y. Tsao, “Conditional diffusion probabilistic model for speech
+enhancement,” in ICASSP 2022-2022 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP).
+IEEE, 2022, pp. 7402–7406.
+[24] Z. Qiu, M. Fu, Y. Yu, L. Yin, F. Sun, and H. Huang, “Srtnet:
+Time domain speech enhancement via stochastic refinement,” in
+ICASSP 2023 - 2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 2023, pp. 1–5.
+[25] S. Welker, J. Richter, and T. Gerkmann, “Speech enhancement
+with score-based generative models in the complex STFT domain,” in Proc. Interspeech 2022, 2022, pp. 2928–2932.
+[26] J. Richter, S. Welker, J.-M. Lemercier, B. Lay, and T. Gerkmann,
+“Speech enhancement and dereverberation with diffusion-based
+generative models,” arXiv preprint arXiv:2208.05830, 2022.
+[27] S. Särkkä and A. Solin, Applied Stochastic Differential Equations,
+ser. Institute of Mathematical Statistics Textbooks. Cambridge
+University Press, 2019.
+[28] B. D. Anderson, “Reverse-time diffusion equation models,”
+Stochastic Processes and their Applications, vol. 12, no. 3, pp.
+313–326, 1982.
+[29] C. Valentini-Botinhao, X. Wang, S. Takaki, and J. Yamagishi,
+“Investigating rnn-based speech enhancement methods for noiserobust text-to-speech.” in SSW, 2016, pp. 146–152.
+[30] J. Le Roux, S. Wisdom, H. Erdogan, and J. R. Hershey, “Sdr–
+half-baked or well done?” in ICASSP 2019-2019 IEEE International Conference on Acoustics, Speech and Signal Processing
+(ICASSP). IEEE, 2019, pp. 626–630.
+[31] A. W. Rix, J. G. Beerends, M. P. Hollier, and A. P. Hekstra,
+“Perceptual evaluation of speech quality (pesq)-a new method for
+speech quality assessment of telephone networks and codecs,” in
+2001 IEEE international conference on acoustics, speech, and
+signal processing. Proceedings (Cat. No. 01CH37221), vol. 2.
+IEEE, 2001, pp. 749–752.
+[32] Y. Hu and P. C. Loizou, “Evaluation of objective quality measures
+for speech enhancement,” IEEE Transactions on audio, speech,
+and language processing, vol. 16, no. 1, pp. 229–238, 2007.
+[33] T.-A. Hsieh, C. Yu, S.-W. Fu, X. Lu, and Y. Tsao, “Improving Perceptual Quality by Phone-Fortified Perceptual Loss Using Wasserstein Distance for Speech Enhancement,” in Proc. Interspeech
+2021, 2021, pp. 196–200.
+[34] H. Yen, F. G. Germain, G. Wichern, and J. L. Roux, “Cold diffusion for speech enhancement,” arXiv preprint arXiv:2211.02527,
+2022.
+
+
