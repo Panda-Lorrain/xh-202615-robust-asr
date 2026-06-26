@@ -58,6 +58,20 @@
 - 2026-06-27 T9：🎯 **STNO 控制实验成功**(答辩黄金素材)：A全target转398字 / B前半target只转前半 / C后半target只转后半 / **D全non-target→0字拒识**。验证 FDDT/STNO 机制可控制(target转/silence跳/non-target拒识)，印证 `fddt_init=disparagement` 抑制式初始化；组合主线 STNO→转写/拒识 链路证实，是完整 pipeline 的机制替代验证。结果见 RESULTS.md。git 提交。
 - 2026-06-27 T10：⚠️ 中文测试受阻：edge-tts(MS TTS)在系统级 Clash 全局代理下 SSL 失败(speech.platform.bing.com 证书 mismatch)，unset 环境变量无效。**W2 TTS 合成需关系统代理**或换本地 TTS。非阻塞，等真实中文数据或关代理后补。
 - 2026-06-27 T11：✅ **W6 评测脚本完成**(`code/eval_metrics.py`)：CER(中文字符级,jiwer)/RTF/拒识指标(precision/recall/f1/reject_rate)/batch_cer 批量。自测通过(CER 0.0/0.111/1.0, RTF 0.058, 拒识 F1 0.87)。真实数据来时直接复用。git 提交。
+- 2026-06-27 T12：✅ **W2 数据仿真 pipeline 完成**(`code/simulate_pipeline.py`)：add_noise(按SNR)/mix_overlap(重叠率)/simulate/build_set 批量。自测通过(重叠功率2x正确，写出 sim_test wav)。真实单人中文音频来时造重叠带噪集。git 提交。
+- 2026-06-27 T13：🔄 **完整 pipeline 第二次尝试**(ScheduleWakeup)：✅ 依赖/namespace/circular **全部解决**(diarizen import OK！补 pyannote __init__ pkgutil namespace patch + audio __init__ __version__ 硬编码 + matplotlib + pytorch-metric-learning)。⛔ 但 diarization 权重加载受阻：from_pretrained 需额外 **wespeaker embedding 模型**(pyannote/wespeaker-voceleb-resnet34-LM)，hf-mirror clone 超时(网络不稳)+ snapshot_download 连不上 Hub。**最终止损**，留作后续。
+
+## 🚧 完整 pipeline 解决方案（供后续 turn/人，已 90% 通）
+**已解决的 patch（在 fork 代码，DiCoW-inference/ 不入 git）**：
+1. `DiariZen/pyannote-audio/pyannote/__init__.py`：`declare_namespace` → `pkgutil.extend_path`（解 namespace 冲突）
+2. `DiariZen/pyannote-audio/pyannote/audio/__init__.py`：顶部加 `__version__="0.0.0-fork-patch"`（解 circular import）
+3. 依赖补齐：toml / setuptools<81(pkg_resources) / einops / semver / matplotlib / pytorch-metric-learning；transformers 4.42.4 + numpy<2 + hf-hub<1.0
+**待解决（下次）**：
+- 预下 wespeaker：`git clone https://hf-mirror.com/pyannote/wespeaker-voceleb-resnet34-LM E:/hf_cache/wespeaker-voceleb-resnet34-LM`（网络稳时）
+- patch `DiariZen/diarizen/pipelines/inference.py` from_pretrained 用本地路径（diarizen_hub=E:/hf_cache/diarizen-wavlm-large-s80-md, embedding_model=E:/hf_cache/wespeaker-voceleb-resnet34-LM/pytorch_model.bin）
+- PYTHONPATH=`DiCoW-inference;DiCoW-inference/DiariZen;DiCoW-inference/DiariZen/pyannote-audio`
+- 跑 `inference.py --input-folder <wav> --dicow-model E:/hf_cache/DiCoW_v3_2 --diarization-model <any>`（from_pretrained patch 后忽略 diarization-model）
+- **建议环境**：DiariZen 官方 conda Python 3.11（避开 Python 3.12 兼容坑）+ 稳定网络预下三权重
 
 ## 📊 overnight 阶段小结（T1-T10，git 4 提交）
 - ✅ **W1 minimal 推理跑通**：DiCoW_v3_2，RTF=0.058，params 0.89G，GPU 峰值 2.13GB（解除零实测红线）
