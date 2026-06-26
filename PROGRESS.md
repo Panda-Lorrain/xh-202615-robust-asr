@@ -57,6 +57,7 @@
 - 2026-06-27 T8：✅ diarizen 权重下完(531M)；🔧 装完整 pipeline 依赖(numpy<2/hf-hub<1.0/gradio/pyannote/lhotle/einops/setuptools<81 等连环冲突，均解)；⛔ **完整 pipeline 止损**：DiariZen/pyannote.audio fork 在 Python3.12+现代setuptools 深层不兼容(namespace 冲突→patch pkgutil→circular import)，~10 轮 debug 无底洞。**完整 pipeline 留作后续**(用 DiariZen 官方 conda Python3.11 环境，或独立 diarization 进程产 STNO 再喂 DiCoW)。**minimal 推理成果已 secure(git c2e5b8f)**。▶ 转 W6 评测/STNO 实验，ScheduleWakeup 接管
 - 2026-06-27 T9：🎯 **STNO 控制实验成功**(答辩黄金素材)：A全target转398字 / B前半target只转前半 / C后半target只转后半 / **D全non-target→0字拒识**。验证 FDDT/STNO 机制可控制(target转/silence跳/non-target拒识)，印证 `fddt_init=disparagement` 抑制式初始化；组合主线 STNO→转写/拒识 链路证实，是完整 pipeline 的机制替代验证。结果见 RESULTS.md。git 提交。
 - 2026-06-27 T10：⚠️ 中文测试受阻：edge-tts(MS TTS)在系统级 Clash 全局代理下 SSL 失败(speech.platform.bing.com 证书 mismatch)，unset 环境变量无效。**W2 TTS 合成需关系统代理**或换本地 TTS。非阻塞，等真实中文数据或关代理后补。
+- 2026-06-27 T11：✅ **W6 评测脚本完成**(`code/eval_metrics.py`)：CER(中文字符级,jiwer)/RTF/拒识指标(precision/recall/f1/reject_rate)/batch_cer 批量。自测通过(CER 0.0/0.111/1.0, RTF 0.058, 拒识 F1 0.87)。真实数据来时直接复用。git 提交。
 
 ## 📊 overnight 阶段小结（T1-T10，git 4 提交）
 - ✅ **W1 minimal 推理跑通**：DiCoW_v3_2，RTF=0.058，params 0.89G，GPU 峰值 2.13GB（解除零实测红线）
