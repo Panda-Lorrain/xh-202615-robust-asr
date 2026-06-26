@@ -55,7 +55,16 @@
 - 2026-06-27 T6b：🔧 trust_remote_code 踩坑连环解：① modules 缓存缺 SCBs/coattention/decoding/utils(手动补全)② transformers 4.55 缺 WHISPER_ATTENTION_CLASSES(降级 4.42.4)③ 缺 pandas(补装)；均解。
 - 2026-06-27 T7：🎉 **W1 最小推理跑通！** DiCoW_v3_2 加载 2.6s, **params 0.89G**(印证 turbo), 30s 音频推理 1.73s, **RTF=0.058**, 峰值显存 **2.13GB**(8GB 够)；**解除"零实测"答辩红线**；转 EN2002a 英文会议通顺；⚠️ 全-target STNO(非真 target-speaker)；结果见 RESULTS.md
 - 2026-06-27 T8：✅ diarizen 权重下完(531M)；🔧 装完整 pipeline 依赖(numpy<2/hf-hub<1.0/gradio/pyannote/lhotle/einops/setuptools<81 等连环冲突，均解)；⛔ **完整 pipeline 止损**：DiariZen/pyannote.audio fork 在 Python3.12+现代setuptools 深层不兼容(namespace 冲突→patch pkgutil→circular import)，~10 轮 debug 无底洞。**完整 pipeline 留作后续**(用 DiariZen 官方 conda Python3.11 环境，或独立 diarization 进程产 STNO 再喂 DiCoW)。**minimal 推理成果已 secure(git c2e5b8f)**。▶ 转 W6 评测/STNO 实验，ScheduleWakeup 接管
-- 2026-06-27 T9：🎯 **STNO 控制实验成功**(答辩黄金素材)：A全target转398字 / B前半target只转前半 / C后半target只转后半 / **D全non-target→0字拒识**。验证 FDDT/STNO 机制可控制(target转/silence跳/non-target拒识)，印证 `fddt_init=disparagement` 抑制式初始化；组合主线 STNO→转写/拒识 链路证实，是完整 pipeline 的机制替代验证。结果见 RESULTS.md。git 提交。▶ ScheduleWakeup(04:50)接管 W6/W2
+- 2026-06-27 T9：🎯 **STNO 控制实验成功**(答辩黄金素材)：A全target转398字 / B前半target只转前半 / C后半target只转后半 / **D全non-target→0字拒识**。验证 FDDT/STNO 机制可控制(target转/silence跳/non-target拒识)，印证 `fddt_init=disparagement` 抑制式初始化；组合主线 STNO→转写/拒识 链路证实，是完整 pipeline 的机制替代验证。结果见 RESULTS.md。git 提交。
+- 2026-06-27 T10：⚠️ 中文测试受阻：edge-tts(MS TTS)在系统级 Clash 全局代理下 SSL 失败(speech.platform.bing.com 证书 mismatch)，unset 环境变量无效。**W2 TTS 合成需关系统代理**或换本地 TTS。非阻塞，等真实中文数据或关代理后补。
+
+## 📊 overnight 阶段小结（T1-T10，git 4 提交）
+- ✅ **W1 minimal 推理跑通**：DiCoW_v3_2，RTF=0.058，params 0.89G，GPU 峰值 2.13GB（解除零实测红线）
+- ✅ **STNO 机制验证**：target→转/silence→跳/non-target→拒识（答辩黄金素材，FDDT 内建拒识证实）
+- ✅ **环境完备**：torch 2.5.1+cu124 / transformers 4.42.4 / 依赖齐 / 缓存落 E 盘
+- ⛔ 完整 pipeline 止损（pyannote namespace/circular，用官方 conda 环境）
+- ⛔ 中文 TTS 受阻（系统代理 SSL，关代理后补）
+- ▶ **下一步（ScheduleWakeup 04:50 接管）**：W6 评测脚本(jiwer CER+RTF) / W2 数据仿真(关代理后 TTS 或下 AISHELL) / 完整 pipeline(官方 conda) / STNO 深入实验
 
 ## 🚧 遇阻 / 决策记录
 - **TS-ASR-Whisper 是训练仓库不是推理**：README 明确"inference-only 用 BUTSpeechFIT/DiCoW"。训练仓库留作后续微调用，baseline 跑通用推理仓库。
