@@ -54,6 +54,7 @@
 - 2026-06-27 T6：✅ transformers 4.55+numpy 1.26.4 装好；✅ **DiCoW_v3_2 权重完整**(model.safetensors 3.6G lfs 拉全 + trust_remote_code 全套代码)；✅ config 印证 FDDT(`fddt_init=disparagement`抑制式/diagonal/四类)+ turbo(decoder 4 层)；✅ DiCoW_v3_2=非 enrollment；✅ 测试音频 EN2002a_30s.wav；✅ 最小推理脚本 minimal_infer.py 就绪；▶ 跑最小推理(验证模型+RTF)
 - 2026-06-27 T6b：🔧 trust_remote_code 踩坑连环解：① modules 缓存缺 SCBs/coattention/decoding/utils(手动补全)② transformers 4.55 缺 WHISPER_ATTENTION_CLASSES(降级 4.42.4)③ 缺 pandas(补装)；均解。
 - 2026-06-27 T7：🎉 **W1 最小推理跑通！** DiCoW_v3_2 加载 2.6s, **params 0.89G**(印证 turbo), 30s 音频推理 1.73s, **RTF=0.058**, 峰值显存 **2.13GB**(8GB 够)；**解除"零实测"答辩红线**；转 EN2002a 英文会议通顺；⚠️ 全-target STNO(非真 target-speaker)；结果见 RESULTS.md
+- 2026-06-27 T8：✅ diarizen 权重下完(531M)；🔧 装完整 pipeline 依赖(numpy<2/hf-hub<1.0/gradio/pyannote/lhotle/einops/setuptools<81 等连环冲突，均解)；⛔ **完整 pipeline 止损**：DiariZen/pyannote.audio fork 在 Python3.12+现代setuptools 深层不兼容(namespace 冲突→patch pkgutil→circular import)，~10 轮 debug 无底洞。**完整 pipeline 留作后续**(用 DiariZen 官方 conda Python3.11 环境，或独立 diarization 进程产 STNO 再喂 DiCoW)。**minimal 推理成果已 secure(git c2e5b8f)**。▶ 转 W6 评测/STNO 实验，ScheduleWakeup 接管
 
 ## 🚧 遇阻 / 决策记录
 - **TS-ASR-Whisper 是训练仓库不是推理**：README 明确"inference-only 用 BUTSpeechFIT/DiCoW"。训练仓库留作后续微调用，baseline 跑通用推理仓库。
