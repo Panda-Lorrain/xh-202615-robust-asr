@@ -46,6 +46,18 @@
 
 ## 📝 进度日志（append-only）
 - 2026-06-27 T0：创建 .gitignore + PROGRESS.md（loop 大脑）；启动环境探查
+- 2026-06-27 T1：✅ 环境探查→**有 RTX4060 8GB**，全力 W1；✅ git init + 首次提交 `c1cb258`(54 文件：文档+19 PDF+16 txt)；✅ setenv.sh(C盘重定向 HF/uv/torch→E 盘)；🔄 clone SE-DiCoW(bg bzuw3i1ez)
+- 2026-06-27 T2：✅ clone TS-ASR-Whisper(训练仓库)完成；⚠️ **决策：它是训练框架(Hydra/lhotse/SLURM/DiariZen)，纯推理 baseline 改用专门推理仓库 `BUTSpeechFIT/DiCoW`**；🔄 clone DiCoW 推理仓库(bg) + 🔄 uv 建 .venv 装 torch CUDA(bg)
+- 2026-06-27 T3：✅ clone DiCoW 推理仓库完成；分析推理流程=inference.py(DiCoWPipeline: DiariZen diarization→STNO→DiCoW 目标转写)，默认模型 `BUT-FIT/DiCoW_v3_2` + `BUT-FIT/diarizen-wavlm-large-s80-md`；⚠️ 坑：① requirements 有 `-e git+DiariZen#egg=pyannote.audio` + 要 submodule ② 推理仓库要 torch 2.5.1(我装 2.7.0)；**策略：优先装全跑完整 pipeline，坑则退最小推理(模型加载+generate 测 RTF)**；🔄 torch 装(bg bxfs8du58)
+- 2026-06-27 T4：⚠️ **torch 装成 CPU 版**(2.7.0+cpu, cuda False——清华源默认 CPU)；✅ git-lfs 3.7.1 / ffmpeg 7.1.1 已装；⚠️ DiariZen submodule 空(--depth1 未拉)；🔄 **重装 torch 2.5.1+cu124 CUDA**(pytorch.org 官方 wheel) + 🔄 拉 DiariZen submodule
+- 2026-06-27 T5：✅ **torch 2.5.1+cu124 CUDA 可用**(`cuda_avail True`, RTX4060 识别)；✅ DiariZen submodule 完整(diarizen/+dscore/+pyannote-audio/)；🔄 装 transformers 4.55 + 最小推理依赖(numpy/librosa/soundfile) + 🔄 DiCoW_v3_2 权重下载(bg bbjukzw0k, hf-mirror)
+- 2026-06-27 T6：✅ transformers 4.55+numpy 1.26.4 装好；✅ **DiCoW_v3_2 权重完整**(model.safetensors 3.6G lfs 拉全 + trust_remote_code 全套代码)；✅ config 印证 FDDT(`fddt_init=disparagement`抑制式/diagonal/四类)+ turbo(decoder 4 层)；✅ DiCoW_v3_2=非 enrollment；✅ 测试音频 EN2002a_30s.wav；✅ 最小推理脚本 minimal_infer.py 就绪；▶ 跑最小推理(验证模型+RTF)
+- 2026-06-27 T6b：🔧 trust_remote_code 踩坑连环解：① modules 缓存缺 SCBs/coattention/decoding/utils(手动补全)② transformers 4.55 缺 WHISPER_ATTENTION_CLASSES(降级 4.42.4)③ 缺 pandas(补装)；均解。
+- 2026-06-27 T7：🎉 **W1 最小推理跑通！** DiCoW_v3_2 加载 2.6s, **params 0.89G**(印证 turbo), 30s 音频推理 1.73s, **RTF=0.058**, 峰值显存 **2.13GB**(8GB 够)；**解除"零实测"答辩红线**；转 EN2002a 英文会议通顺；⚠️ 全-target STNO(非真 target-speaker)；结果见 RESULTS.md
+
+## 🚧 遇阻 / 决策记录
+- **TS-ASR-Whisper 是训练仓库不是推理**：README 明确"inference-only 用 BUTSpeechFIT/DiCoW"。训练仓库留作后续微调用，baseline 跑通用推理仓库。
+- **显存 8GB 偏紧**：Whisper-large-v3-turbo + SE-DiCoW 推理需分块/限 batch，RTF 测试时监控显存。
 
 ## 🚧 遇阻 / 决策记录
 - _（首轮填）_
