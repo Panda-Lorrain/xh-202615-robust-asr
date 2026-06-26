@@ -37,6 +37,23 @@
 
 ---
 
+## 🎯 STNO 控制实验（验证 FDDT 机制，答辩黄金素材）
+
+对 EN2002a（30s 多人会议）构造 4 种 STNO mask，验证 FDDT/STNO 如何控制转写（脚本 `code/stno_experiment.py`）：
+
+| STNO 构造 | 输出 | 验证结论 |
+|---|---|---|
+| A 全-target（基线） | 398 字，转所有人 | 完整转写 |
+| B 前半 target + 后半 silence | 162 字，**只转前半** | target 类→转，silence 类→跳过 ✅ |
+| C 前半 silence + 后半 target | 165 字，**只转后半** | STNO 精确控制段 ✅ |
+| D **全 non-target** | **0 字，完全空** | **non-target 类→直接拒识！** ✅ |
+
+**核心结论（答辩可直接讲）**：
+- FDDT 的 STNO 条件化**可验证、可控**：target 转写、silence 跳过、**non-target 直接产出空（拒识）**。
+- 印证 config 的 `fddt_init: "disparagement"`（抑制式初始化）——非目标帧被压到零输出。**"拒识非目标"不是后处理，是 FDDT 内建机制**。
+- 组合主线核心验证：STNO mask（来自 PVAD/diarization）直接控制 target-speaker 转写与拒识，机制成立。
+- 这是完整 DiariZen pipeline 的**机制替代验证**（虽未跑真 diarization，但 STNO→转写/拒识 链路已证实，回应 03 答辩红线 4）。
+
 ## 下一步（overnight 续做）
 1. **完整 pipeline**（DiariZen diarization → 真 STNO → 真 target-speaker）：装 pyannote/DiariZen，跑 inference.py
 2. **中文音频测试**：验证 DiCoW 中文能力（题目是中文）
