@@ -1,0 +1,35 @@
+[
+  {
+    "tag": "seq_clean",
+    "wav": "E:\\midea_target_asr\\test_wav\\overlap\\seq_clean.wav",
+    "dur_s": 5.74,
+    "mix_type": "seq",
+    "overlap_desc": "0%(顺序,可分离)",
+    "target_src": "zh_target_01",
+    "target_ref": "请把客厅的空调温度调到二十六度",
+    "nontarget_src": "zh_nontarget_01",
+    "nontarget_ref": "今天天气真不错，我们出去走走吧"
+  },
+  {
+    "tag": "partial50_clean",
+    "wav": "E:\\midea_target_asr\\test_wav\\overlap\\partial50_clean.wav",
+    "dur_s": 2.72,
+    "mix_type": "partial",
+    "overlap_desc": "50%(前段重叠)",
+    "target_src": "zh_target_01",
+    "target_ref": "请把客厅的空调温度调到二十六度",
+    "nontarget_src": "zh_nontarget_01",
+    "nontarget_ref": "今天天气真不错，我们出去走走吧"
+  },
+  {
+    "tag": "full_clean",
+    "wav": "E:\\midea_target_asr\\test_wav\\overlap\\full_clean.wav",
+    "dur_s": 2.72,
+    "mix_type": "full",
+    "overlap_desc": "100%(完全重叠)",
+    "target_src": "zh_target_01",
+    "target_ref": "请把客厅的空调温度调到二十六度",
+    "nontarget_src": "zh_nontarget_01",
+    "nontarget_ref": "今天天气真不错，我们出去走走吧"
+  }
+]

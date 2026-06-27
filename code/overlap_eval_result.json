@@ -1,0 +1,47 @@
+[
+  {
+    "tag": "seq_clean",
+    "overlap_desc": "0%(顺序,可分离)",
+    "n_speakers": 2,
+    "target_speaker_idx": 0,
+    "target_CER": 0.0,
+    "target_transcript": "请把客厅的空调温度调到二十六度",
+    "target_ref": "请把客厅的空调温度调到二十六度",
+    "nontarget_speakers": {
+      "1": "今天天气真不错我们出去走走吧"
+    },
+    "nontarget_ref": "今天天气真不错，我们出去走走吧",
+    "nontarget_transcribed": true,
+    "status": "ok"
+  },
+  {
+    "tag": "partial50_clean",
+    "overlap_desc": "50%(前段重叠)",
+    "n_speakers": 2,
+    "target_speaker_idx": 1,
+    "target_CER": 0.1333,
+    "target_transcript": "清白客厅的空调温度调到二十六度",
+    "target_ref": "请把客厅的空调温度调到二十六度",
+    "nontarget_speakers": {
+      "0": "今天天气真不错"
+    },
+    "nontarget_ref": "今天天气真不错，我们出去走走吧",
+    "nontarget_transcribed": true,
+    "status": "ok"
+  },
+  {
+    "tag": "full_clean",
+    "overlap_desc": "100%(完全重叠)",
+    "n_speakers": 2,
+    "target_speaker_idx": 0,
+    "target_CER": 1.0,
+    "target_transcript": "今天天气真不错我们出去走走吧",
+    "target_ref": "请把客厅的空调温度调到二十六度",
+    "nontarget_speakers": {
+      "1": "今天天气真不错我们出去走走吧"
+    },
+    "nontarget_ref": "今天天气真不错，我们出去走走吧",
+    "nontarget_transcribed": true,
+    "status": "ok"
+  }
+]
