@@ -4,7 +4,7 @@
 - **题目**：XH-202615《复杂交互场景的抗干扰语音指令识别技术》（美的集团发榜）
 - **任务**：给定唤醒音频（enrollment，目标说话人），在带噪（SNR −5~5dB）+ 多说话人重叠（≤2人，0–100%）的识别音频中**只转写目标说话人指令、拒识非目标**
 - **评分**：目标 CER 40%、拒识率 40%、推理效率 20%（L20 GPU）
-- **当前阶段**：✅ 资料收集完成 + 文档体系就绪（2026-06-27）；技术路线待**通道数确认**后定稿
+- **当前阶段**：✅ overnight 已推进至**实测阶段**（2026-06-27~28）：W1 DiCoW 最小推理跑通（RTF=0.058 / params 0.89G / GPU 峰值 2.13GB，**解除"零实测"答辩红线**）+ STNO 机制验证（target→转 / silence→跳 / non-target→0字拒识，答辩黄金素材）+ W2 数据仿真 `simulate_pipeline.py` + W6 评测 `eval_metrics.py` + 完整 DiariZen pipeline 90% 通（依赖/namespace/circular 已全解）。技术路线组合主线（通道无关）已可执行，**待通道数确认**后定稿空间增量（DSENet/KWS）
 
 ## 📂 文档导航（按此顺序读）
 | 文档 | 作用 |
@@ -55,7 +55,10 @@
 - IEEE 付费墙论文用校园网（广州大学权限）下载
 - 子 agent 精读统一用「pdftotext 提取 → Read → 7 节客观提炼」流程
 
-## 下一步候选
-1. **确认测试集通道数**（最关键，决定空间路线与整体架构走向）—— 向主办方确认或看 A 集数据
-2. **搭 baseline**：W1 跑通 SE-DiCoW（`E:\midea_target_asr\` 下用 uv 建环境 + 拉 HF 权重 + 跑官方 demo）
-3. 等 03 答辩文档就绪后做答辩演练
+## 下一步候选（W1 已跑通，2026-06-28）
+1. **接通完整 pipeline**：补 wespeaker 权重（用非 gated 镜像 `hbredin/wespeaker-voceleb-resnet34-LM`，规避 pyannote gated）→ patch DiariZen `from_pretrained` 本地路径 → 跑真 target-speaker 转 CER（步骤详见 `PROGRESS.md`「完整 pipeline 解决方案」）
+2. **中文能力验证**：用 mimo-tts 合成的 `test_wav/zh_target_*.wav` 测 DiCoW 中文 CER（`code/mimo_tts_zh.py` 生成，替代 SSL 受阻的 edge-tts）
+3. **W3 Personal VAD** + **W4 声纹(CAM++)**：STNO mask 的真实来源（目前 minimal 推理用手构造 STNO）
+4. **W5 LLM 拒识**：Qwen-2.5-3B 语义拒识（拒识占 40%，目前仅有 STNO 内建拒识这一机制层）
+5. **确认测试集通道数**（决定空间路线 DSENet/KWS 能否用）—— 向主办方确认或看 A 集数据；判断线索见 `00` 总纲第四节
+6. 等 03 答辩文档就绪后做答辩演练

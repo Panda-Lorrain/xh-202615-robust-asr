@@ -199,14 +199,20 @@ python stno_experiment.py
 
 ## 📅 开发进度
 
-- [x] **W1**: DiCoW baseline 最小推理跑通
-- [x] **W1**: STNO 控制实验验证
-- [ ] **W2**: 完整 DiariZen pipeline
-- [ ] **W2**: 中文音频测试
-- [ ] **W3**: 数据仿真 pipeline (SNR -5~5dB, 重叠 0-100%)
-- [ ] **W4**: LLM 拒识模块集成
-- [ ] **W5**: 评测脚本与优化
-- [ ] **W6**: 最终方案整合
+> W 编号对应 `00_技术路线总纲与行动地图.md` 行动地图（P0–P3）
+
+- [x] **W1**: DiCoW baseline 最小推理跑通（RTF=0.058, params 0.89G, GPU 峰值 2.13GB）
+- [x] **W1**: STNO 控制实验验证（target→转 / silence→跳 / non-target→0字拒识）
+- [x] **W2**: 数据仿真 pipeline（`simulate_pipeline.py`：SNR −5~5dB + 重叠 0–100% + 批量）
+- [x] **W6**: 评测脚本（`eval_metrics.py`：CER / RTF / 拒识 P·R·F1）
+- [ ] **W2**: 完整 DiariZen pipeline（依赖/namespace/circular 已全解，90% 通，差 wespeaker 权重）
+- [ ] 中文音频测试（edge-tts SSL 受阻，改用 mimo-tts）
+- [ ] **W3**: Personal VAD 前端（STNO mask 真实来源）
+- [ ] **W4**: enrollment 声纹（CAM++）
+- [ ] **W5**: LLM 拒识系统（Qwen-2.5-3B）
+- [ ] **W7**: 接入题目给定 enrollment
+- [ ] **D1/D2**: 数据增强 + 中文家居微调
+- [ ] **D5**: 效率优化（TS-RNNT 形态 / 量化 / 流式）
 
 详见 [`PROGRESS.md`](PROGRESS.md)。
 
@@ -230,7 +236,7 @@ python stno_experiment.py
 ## 📧 联系方式
 
 - GitHub: [@Panda_Lorrain](https://github.com/Panda_Lorrain)
-- Issues: [项目 Issues](https://github.com/ChenDeji123/xh-202615-robust-asr/issues)
+- Issues: [项目 Issues](https://github.com/Panda_Lorrain/midea_target_asr/issues)
 
 ---
 

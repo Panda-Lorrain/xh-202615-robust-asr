@@ -61,18 +61,27 @@
 - 2026-06-27 T12：✅ **W2 数据仿真 pipeline 完成**(`code/simulate_pipeline.py`)：add_noise(按SNR)/mix_overlap(重叠率)/simulate/build_set 批量。自测通过(重叠功率2x正确，写出 sim_test wav)。真实单人中文音频来时造重叠带噪集。git 提交。
 - 2026-06-27 T13：🔄 **完整 pipeline 第二次尝试**(ScheduleWakeup)：✅ 依赖/namespace/circular **全部解决**(diarizen import OK！补 pyannote __init__ pkgutil namespace patch + audio __init__ __version__ 硬编码 + matplotlib + pytorch-metric-learning)。⛔ 但 diarization 权重加载受阻：from_pretrained 需额外 **wespeaker embedding 模型**(pyannote/wespeaker-voceleb-resnet34-LM)，hf-mirror clone 超时(网络不稳)+ snapshot_download 连不上 Hub。**最终止损**，留作后续。
 - 2026-06-28 **项目改名** `midea_papers` → `midea_target_asr`（已从资料收集演进为参赛工程，旧名名不副实）。**阶段A 文件内容已全改**（8文件替换 + CLAUDE.md标题改贴切 + 3脚本项目内路径相对化 `__file__` + setenv注释通用化，py_compile通过）；**阶段B 目录物理改名 + projects目录迁移待用户会话外执行**（Windows不能重命名cwd；memory随projects目录搬走，勿漏）。**下一个agent先读 `RENAME_HANDOFF.md` 核查改名状态并 commit 这批改动。**
+- 2026-06-28 T14：🎉 **完整端到端 pipeline 跑通**（PROGRESS 最大里程碑，从 90%→100%）！wespeaker 解决(⚠️ VoxCeleb 拼写坑+token+离线cache) + from_pretrained patch(本地路径) → DiariZen diarization→STNO→DiCoW 真 target-speaker 转 EN2002a(4说话人分离各自转写，PIPELINE_EXIT=0)。同日：**中文 CER=0**(mimo-tts 合成"请把客厅的空调温度调到二十六度"一字不差，替代 SSL 受阻的 edge-tts)。HF token 存 `E:/hf_cache/.hf_token`(gitignore)。详见上方「完整 pipeline 已跑通」。
 
-## 🚧 完整 pipeline 解决方案（供后续 turn/人，已 90% 通）
-**已解决的 patch（在 fork 代码，DiCoW-inference/ 不入 git）**：
-1. `DiariZen/pyannote-audio/pyannote/__init__.py`：`declare_namespace` → `pkgutil.extend_path`（解 namespace 冲突）
-2. `DiariZen/pyannote-audio/pyannote/audio/__init__.py`：顶部加 `__version__="0.0.0-fork-patch"`（解 circular import）
-3. 依赖补齐：toml / setuptools<81(pkg_resources) / einops / semver / matplotlib / pytorch-metric-learning；transformers 4.42.4 + numpy<2 + hf-hub<1.0
-**待解决（下次）**：
-- 预下 wespeaker：`git clone https://hf-mirror.com/pyannote/wespeaker-voceleb-resnet34-LM E:/hf_cache/wespeaker-voceleb-resnet34-LM`（网络稳时）
-- patch `DiariZen/diarizen/pipelines/inference.py` from_pretrained 用本地路径（diarizen_hub=E:/hf_cache/diarizen-wavlm-large-s80-md, embedding_model=E:/hf_cache/wespeaker-voceleb-resnet34-LM/pytorch_model.bin）
-- PYTHONPATH=`DiCoW-inference;DiCoW-inference/DiariZen;DiCoW-inference/DiariZen/pyannote-audio`
-- 跑 `inference.py --input-folder <wav> --dicow-model E:/hf_cache/DiCoW_v3_2 --diarization-model <any>`（from_pretrained patch 后忽略 diarization-model）
-- **建议环境**：DiariZen 官方 conda Python 3.11（避开 Python 3.12 兼容坑）+ 稳定网络预下三权重
+## ✅ 完整 pipeline 已跑通（2026-06-28 T14，从 90% → 100%）
+**最后一块 wespeaker 补齐 + from_pretrained patch 后，端到端打通**：DiariZen diarization → STNO mask → DiCoW 真 target-speaker 转写。EN2002a_30s 正确分离 4 说话人并各自转写（Speaker 3=主说话人，含 "yeah yeah but i do not know about you..." 全段）。**从 minimal 推理(手构造全-target STNO)升级到完整端到端(真 diarization + 真 target-speaker)**。
+
+**全部修复（fork 代码，DiCoW-inference/ 不入 git）**：
+1. `DiariZen/pyannote-audio/pyannote/__init__.py`：`declare_namespace`→`pkgutil.extend_path`（namespace，T13）
+2. `DiariZen/pyannote-audio/pyannote/audio/__init__.py`：顶部 `__version__="0.0.0-fork-patch"`（circular import，T13）
+3. 依赖：toml/setuptools<81/einops/semver/matplotlib/pytorch-metric-learning；transformers 4.42.4+numpy<2+hf-hub<1.0
+4. **`DiariZen/diarizen/pipelines/inference.py` from_pretrained patch（T14）**：加 `if os.path.isdir(repo_id)` 分支——本地 diarizen 目录直用 + wespeaker `hf_hub_download(local_files_only=True)` 从 cache 取（避 gated 联网；原 `snapshot_download(repo_id=本地路径)` 被 HFValidationError 拒）
+5. **wespeaker 权重**：`pyannote/wespeaker-voxceleb-resnet34-LM`（⚠️ **VoxCeleb 带 x**！曾拼错 `voceleb` 导致 404）+ HF token 存 `E:/hf_cache/.hf_token`（gitignore）+ 下到 hub cache（26MB pytorch_model.bin）
+
+**运行命令（已验证 PIPELINE_EXIT=0）**：
+```bash
+source code/setenv.sh
+export HF_HUB_OFFLINE=1 PYTHONPATH="E:/midea_target_asr/code/DiCoW-inference;E:/midea_target_asr/code/DiCoW-inference/DiariZen;E:/midea_target_asr/code/DiCoW-inference/DiariZen/pyannote-audio"
+code/.venv/Scripts/python.exe code/DiCoW-inference/inference.py \
+  --dicow-model E:/hf_cache/DiCoW_v3_2 --diarization-model E:/hf_cache/diarizen-wavlm-large-s80-md \
+  --input-folder <wav目录> --file-pattern "*.wav" --output-folder <输出> --device cuda \
+  --embedding-batch-size 8 --segmentation-batch-size 8 --verbose
+```
 
 ## 📊 overnight 阶段小结（T1-T10，git 4 提交）
 - ✅ **W1 minimal 推理跑通**：DiCoW_v3_2，RTF=0.058，params 0.89G，GPU 峰值 2.13GB（解除零实测红线）
