@@ -44,3 +44,5 @@ Thumbs.db
 *.log
 tmp/
 temp/
+resampled.wav
+pipeline_out/
