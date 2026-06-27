@@ -20,9 +20,11 @@
 | `资料扩展_TS-ASR与开源资产.md` | TS-ASR 四件套 + 组合主线 + github 资产 |
 
 ## 资料结构（E:\midea_papers\）
-- **PDF 19 篇**：10 命名核心 + US-PVAD + SELD + 5 篇 TS-ASR（FDDT/DiCoW/SE-DiCoW/TS-RNNT/NOTSOFAR）+ CUSIDE-array + 智慧家庭语音意图综述
-- **`_txt/` 16 篇全文**（pdftotext 提取）：10 美的论文 + FDDT/DiCoW/SE-DiCoW/TS-RNNT + 智慧家庭综述 + CUSIDE
+- **`papers/` PDF 19 篇**：10 命名核心 + US-PVAD + SELD + 5 篇 TS-ASR（FDDT/DiCoW/SE-DiCoW/TS-RNNT/NOTSOFAR）+ CUSIDE-array + 智慧家庭语音意图综述
+- **`_txt/` 18 篇全文**（pdftotext 提取）：10 美的论文 + FDDT/DiCoW/SE-DiCoW/TS-RNNT + 智慧家庭综述 + CUSIDE + SELD
 - `pdf2txt.py` — 纯 Python zlib PDF 提取（无库时备用）
+- **`code/` 代码区**：DiCoW-inference（baseline 推理）、TS-ASR-Whisper（源码）、eval_metrics / simulate_pipeline / stno_experiment（评测与实验脚本）
+- **`test_wav/` / `test_wav_clean/` 测试音频**
 
 ## 核心结论
 1. **组合主线（稳健底盘，通道无关）**：`Personal VAD(产生STNO) + DiCoW/SE-DiCoW(Whisper TS-ASR转写) + Qwen-2.5-3B LLM语义拒识`。每环节开源。单通道即可跑通，是下限保障。
