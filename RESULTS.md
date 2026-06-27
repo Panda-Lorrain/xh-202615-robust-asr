@@ -107,3 +107,21 @@
 ### 工程备注（极端场景）
 - 完全重叠 + 短音频(2.7s) 还触发 Whisper 幻觉（早前 snr0 测试转出无关英文 "you can get some of the people..."）；加噪 −5dB 时 diarization 维度 crash（`negative dimensions are not allowed`）。极端场景需 robustness 改进（分块/更长上下文/异常兜底）。
 - 当前 diarization 路线会转写**所有** speaker（含 non-target）；题目"拒识 non-target"需叠加 enrollment 声纹匹配或 STNO 拒识路线。
+
+---
+
+## 🛡️ 中文 STNO 拒识验证（2026-06-28 T16，拒识 40% 路线补全）
+
+> **拒识占评分 40%**。STNO non-target mask 让 DiCoW 直接输出空 = 拒识非目标（FDDT 内建机制）。
+> 此前证据为英文（stno_experiment.py D 组 EN2002a→0字），本节补**中文**证据。脚本 `code/zh_stno_reject.py`，结果 `code/zh_stno_reject_result.json`。
+
+### 结果（zh_target_01「请把客厅的空调温度调到二十六度」）
+| STNO 构造 | 输出 | 字数 | 结论 |
+|---|---|---|---|
+| target `([0,1]=1)` | 请把客厅的空调温度调到二十六度 | 15 | ✅ 正确转写 target（CER=0） |
+| non-target `([0,2]=1)` | （空） | **0** | ✅ **拒识成功**（0字） |
+
+### 答辩意义
+1. **FDDT 的 STNO 条件化在中文上同样成立**：target 类→转写、non-target 类→直接产出空（拒识），与英文 EN2002a 结论一致。
+2. **拒识不是后处理，是 FDDT 内建机制**（`fddt_init=disparagement` 抑制式初始化把非目标帧压到零输出）——组合主线拒识侧的核心论证。
+3. **与重叠诊断（上方）互补**：diarization 路线转所有 speaker（需后续选 target），STNO 拒识路线直接 mask non-target→0字。两条路线共同支撑"只转 target、拒识 non-target"。

@@ -1,0 +1,10 @@
+{
+  "audio": "E:\\midea_target_asr\\test_wav\\zh_target_01.wav",
+  "ref": "请把客厅的空调温度调到二十六度",
+  "target_stno_transcript": "请把客厅的空调温度调到二十六度",
+  "target_stno_chars": 15,
+  "nontarget_stno_transcript": "",
+  "nontarget_stno_chars": 0,
+  "reject_success": true,
+  "conclusion": "non-target STNO → 0字输出 = FDDT 内建拒识(中文证实)"
+}
