@@ -36,6 +36,7 @@ code/*/
 # ===== IDE / OS =====
 .vscode/
 .idea/
+.obsidian/
 .DS_Store
 Thumbs.db
 
