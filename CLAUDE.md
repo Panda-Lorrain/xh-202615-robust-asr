@@ -1,4 +1,4 @@
-# 美的语音比赛资料库（XH-202615）
+# 美的目标说话人 ASR 参赛方案（XH-202615）
 
 ## 项目概况
 - **题目**：XH-202615《复杂交互场景的抗干扰语音指令识别技术》（美的集团发榜）
@@ -19,7 +19,7 @@
 | `论文精读_US-PVAD_超短参考.md` | #3 US-PVAD + 与 #2 对比 |
 | `资料扩展_TS-ASR与开源资产.md` | TS-ASR 四件套 + 组合主线 + github 资产 |
 
-## 资料结构（E:\midea_papers\）
+## 资料结构（E:\midea_target_asr\）
 - **`papers/` PDF 19 篇**：10 命名核心 + US-PVAD + SELD + 5 篇 TS-ASR（FDDT/DiCoW/SE-DiCoW/TS-RNNT/NOTSOFAR）+ CUSIDE-array + 智慧家庭语音意图综述
 - **`_txt/` 18 篇全文**（pdftotext 提取）：10 美的论文 + FDDT/DiCoW/SE-DiCoW/TS-RNNT + 智慧家庭综述 + CUSIDE + SELD
 - `pdf2txt.py` — 纯 Python zlib PDF 提取（无库时备用）
@@ -57,5 +57,5 @@
 
 ## 下一步候选
 1. **确认测试集通道数**（最关键，决定空间路线与整体架构走向）—— 向主办方确认或看 A 集数据
-2. **搭 baseline**：W1 跑通 SE-DiCoW（`E:\midea_papers\` 下用 uv 建环境 + 拉 HF 权重 + 跑官方 demo）
+2. **搭 baseline**：W1 跑通 SE-DiCoW（`E:\midea_target_asr\` 下用 uv 建环境 + 拉 HF 权重 + 跑官方 demo）
 3. 等 03 答辩文档就绪后做答辩演练

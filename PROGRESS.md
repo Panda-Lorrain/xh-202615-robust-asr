@@ -35,7 +35,7 @@
 ## 📋 Loop 步骤清单（勾选推进）
 - [ ] 0. git init + 首次提交文档体系（00/01/02/03 + 精读 + paper_index + CLAUDE.md + pdf + _txt）
 - [ ] 1. 配置 C 盘重定向：HF_HOME / UV_CACHE_DIR / TORCH_HOME → E 盘；HF_ENDPOINT=hf-mirror
-- [ ] 2. clone SE-DiCoW（github.com/BUTSpeechFIT/TS-ASR-Whisper）→ `E:\midea_papers\code\TS-ASR-Whisper\`
+- [ ] 2. clone SE-DiCoW（github.com/BUTSpeechFIT/TS-ASR-Whisper）→ `E:\midea_target_asr\code\TS-ASR-Whisper\`
 - [ ] 3. uv 建项目环境 + 装依赖（torch、transformers、datasets 等，落 E 盘）
 - [ ] 4. 下 HF 权重 `BUT-FIT/SE_DiCoW`（落 E:\hf_cache）
 - [ ] 5. 跑 SE-DiCoW 官方 demo（验证环境通）
@@ -60,6 +60,7 @@
 - 2026-06-27 T11：✅ **W6 评测脚本完成**(`code/eval_metrics.py`)：CER(中文字符级,jiwer)/RTF/拒识指标(precision/recall/f1/reject_rate)/batch_cer 批量。自测通过(CER 0.0/0.111/1.0, RTF 0.058, 拒识 F1 0.87)。真实数据来时直接复用。git 提交。
 - 2026-06-27 T12：✅ **W2 数据仿真 pipeline 完成**(`code/simulate_pipeline.py`)：add_noise(按SNR)/mix_overlap(重叠率)/simulate/build_set 批量。自测通过(重叠功率2x正确，写出 sim_test wav)。真实单人中文音频来时造重叠带噪集。git 提交。
 - 2026-06-27 T13：🔄 **完整 pipeline 第二次尝试**(ScheduleWakeup)：✅ 依赖/namespace/circular **全部解决**(diarizen import OK！补 pyannote __init__ pkgutil namespace patch + audio __init__ __version__ 硬编码 + matplotlib + pytorch-metric-learning)。⛔ 但 diarization 权重加载受阻：from_pretrained 需额外 **wespeaker embedding 模型**(pyannote/wespeaker-voceleb-resnet34-LM)，hf-mirror clone 超时(网络不稳)+ snapshot_download 连不上 Hub。**最终止损**，留作后续。
+- 2026-06-28 **项目改名** `midea_papers` → `midea_target_asr`（已从资料收集演进为参赛工程，旧名名不副实）。**阶段A 文件内容已全改**（8文件替换 + CLAUDE.md标题改贴切 + 3脚本项目内路径相对化 `__file__` + setenv注释通用化，py_compile通过）；**阶段B 目录物理改名 + projects目录迁移待用户会话外执行**（Windows不能重命名cwd；memory随projects目录搬走，勿漏）。**下一个agent先读 `RENAME_HANDOFF.md` 核查改名状态并 commit 这批改动。**
 
 ## 🚧 完整 pipeline 解决方案（供后续 turn/人，已 90% 通）
 **已解决的 patch（在 fork 代码，DiCoW-inference/ 不入 git）**：

@@ -2,11 +2,12 @@
 对 EN2002a(30s 英文会议,多人)构造 4 种 STNO,看 DiCoW 输出差异:
   A 全-target(基线,转所有人) B 前半target+后半silence C 前半silence+后半target D 全-non-target(应拒识/空)
 预期:B 只转前半 C 只转后半 D 空/拒识 → 证明 STNO 的 target/silence/nontarget 类控制转写。"""
-import time, torch, librosa
+import os, time, torch, librosa
 from transformers import AutoModelForSpeechSeq2Seq, AutoTokenizer, AutoFeatureExtractor
 
 MODEL = "E:/hf_cache/DiCoW_v3_2"
-AUDIO = "E:/midea_papers/code/DiCoW-inference/DiariZen/example/EN2002a_30s.wav"
+_CODE_DIR = os.path.dirname(os.path.abspath(__file__))
+AUDIO = os.path.join(_CODE_DIR, "DiCoW-inference", "DiariZen", "example", "EN2002a_30s.wav")
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
 dtype = torch.float16
 

@@ -3,12 +3,14 @@
 真实 target-speaker 需 DiariZen diarization STNO(后续完整 pipeline)。
 用法: python minimal_infer.py [audio.wav] [lang]
 """
-import time, sys, torch
+import os, time, sys, torch
 import librosa
 from transformers import AutoModelForSpeechSeq2Seq, AutoTokenizer, AutoFeatureExtractor
 
 MODEL = "E:/hf_cache/DiCoW_v3_2"
-AUDIO = sys.argv[1] if len(sys.argv) > 1 else "E:/midea_papers/code/DiCoW-inference/DiariZen/example/EN2002a_30s.wav"
+_CODE_DIR = os.path.dirname(os.path.abspath(__file__))
+_DEFAULT_AUDIO = os.path.join(_CODE_DIR, "DiCoW-inference", "DiariZen", "example", "EN2002a_30s.wav")
+AUDIO = sys.argv[1] if len(sys.argv) > 1 else _DEFAULT_AUDIO
 LANG = sys.argv[2] if len(sys.argv) > 2 else "en"
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
 dtype = torch.float16

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ===== C 盘重定向：所有下载/缓存落 E 盘（禁 C 盘）=====
-# 用法：每个需要下载的命令前 `source /e/midea_papers/code/setenv.sh`
+# 用法：在项目根目录执行 `source code/setenv.sh`
 
 # HuggingFace 模型权重 → E 盘
 export HF_HOME="E:/hf_cache"

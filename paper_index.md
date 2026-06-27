@@ -11,7 +11,7 @@
 | ✅ 已下载 PDF | **19 篇** | 10 篇命名核心 + US-PVAD + SELD + CUSIDE-array + 智慧家庭综述 + 5 篇 TS-ASR |
 | 🔒 付费墙未下载 | **5 篇** | **仅 jdkjjournal 与本题相关**；其余 4 篇（异常声检测×2、语音隐写、制冷噪声）均与本题无关 |
 
-本地目录：`E:\midea_papers\papers\`（PDF）  `E:\midea_papers\_txt\`（pdftotext 提取全文）
+本地目录：`E:\midea_target_asr\papers\`（PDF）  `E:\midea_target_asr\_txt\`（pdftotext 提取全文）
 文件命名规则：`序号_完整英文标题_原始ID.pdf`（仅去掉 Windows 非法字符 `?:`，不缩写、不翻译；分级与中文说明见本清单）
 
 ---
