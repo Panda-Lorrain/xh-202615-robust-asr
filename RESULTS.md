@@ -151,6 +151,21 @@
 
 （✓=选对 target，==两人 sim 相同无法区分，✗=选错 target；**全部 max_sim<0.5 → REJECT**）
 
+### 全集 450 条能力画像（wespeaker，`eval_enrollment.py`）
+| 维度 | n | 拒识率 | 均sim | 正确率(CER<0.5) |
+|---|---|---|---|---|
+| **总体** | 450 | **0.87** | 0.218 | **0.04** |
+| overlap 0% | 90 | 0.82 | 0.322 | 0.12 |
+| overlap 25% | 90 | 0.91 | 0.262 | 0.06 |
+| overlap 50% | 90 | 0.89 | 0.203 | 0.00 |
+| overlap 75% | 90 | 0.89 | 0.160 | 0.00 |
+| overlap 100% | 90 | 0.86 | 0.122 | 0.00 |
+| SNR −5 | 150 | 0.78 | 0.118 | 0.00 |
+| SNR 0 | 150 | 0.98 | 0.209 | 0.01 |
+| SNR +5 | 150 | 0.86 | 0.304 | 0.09 |
+
+**当前能力基线（诚实）**：wespeaker enrollment→target 在题目分布（带噪 −5~5dB + 重叠）**基本失效——87% 拒识、仅 4% 正确**。sim 随 overlap 单调降，SNR 越低越差。少数不拒识条在恶劣音频上出 Whisper 英文幻觉（ov0/ov100/snr+5 的 CER>5）。**根因：wespeaker（VoxCeleb 英文）声纹在中文+噪声退化严重 + 阈值 0.5 在题目分布太严**。→ CAM++ 对比的强烈动机（原生中文可能更鲁棒）。
+
 ### 关键发现（诚实）⚠️
 1. **带噪 sim 普遍退化**：所有重叠/加噪条件 0.05–0.48，**全 <0.5 误拒**。阈值 0.5 在题目分布（−5~5dB）太严。
 2. **噪声是退化主因**（非重叠）：ov000 无重叠但 snr-5 降到 0.205（vs 干净 0.816）；重叠是次要因素。
@@ -160,6 +175,11 @@
 ### 改进方向（数据驱动，答辩素材）
 - **CAM++ 引入有了数据理由**：wespeaker（VoxCeleb 英文训练）在中文+噪声退化严重 → CAM++（原生中英双语）可能更鲁棒。**修正此前"CAM++ 是沉没成本"判断为"带噪鲁棒性数据驱动备选"**。
 - enrollment 加噪增强（同分布噪声） / 声纹多段质心融合 / 阈值分场景自适应 / frontend SE 增强（RASTAR/VSAEC）再抽声纹。
+
+### CAM++ 对比实验（T17，本环境受阻）
+- 装了 modelscope 1.37.1（清华源，未坏 DiCoW 依赖 transformers 4.42.4），但 `from modelscope.pipelines import pipeline` **import 挂起**（无 proxy 也卡，datasets import 正常）——疑似 modelscope 1.37 + Windows + torch2.5 的 import 兼容问题。
+- 脚本 `code/campp_vs_wespeaker.py`（快速声纹 sim 对比）+ `code/eval_enrollment.py`（分档指标）就绪，待 modelscope import 解。
+- **后续**：独立干净 venv 装 modelscope，或用 sherpa-onnx 的 campplus/ERes2Net ONNX（隔离不碰 transformers）。
 
 ### 答辩意义
 概念验证成功（enrollment→锁定 target 完整链路打通，填补组合主线真正缺口），同时诚实展示带噪难点 + 明确改进路线（CAM++/增强/融合），体现工程深度。
