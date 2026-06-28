@@ -1,0 +1,22 @@
+[
+  {
+    "recognition": "E:/midea_target_asr/test_wav/dataset/final/t_01_n_03_ov050_snr+0_white.wav",
+    "enrollment": "E:/midea_target_asr/test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.23535162210464478,
+      "1": 0.006328405812382698
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.23535162210464478,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.20020529627799988
+  }
+]

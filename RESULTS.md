@@ -125,3 +125,55 @@
 1. **FDDT 的 STNO 条件化在中文上同样成立**：target 类→转写、non-target 类→直接产出空（拒识），与英文 EN2002a 结论一致。
 2. **拒识不是后处理，是 FDDT 内建机制**（`fddt_init=disparagement` 抑制式初始化把非目标帧压到零输出）——组合主线拒识侧的核心论证。
 3. **与重叠诊断（上方）互补**：diarization 路线转所有 speaker（需后续选 target），STNO 拒识路线直接 mask non-target→0字。两条路线共同支撑"只转 target、拒识 non-target"。
+
+---
+
+## 🎯 Part1: enrollment→wespeaker 锁定唯一 target（2026-06-28 T17，组合主线核心缺口补全）
+
+**缺口**：此前 pipeline（T14）把 diarization 找出的所有 speaker 各转一遍，**无"enrollment→锁定唯一 target"**。本节实现并验证。脚本 `code/enroll_infer.py`（方案B独立脚本：复用 `diar._embedding`(wespeaker 256d) 抽声纹 + 余弦匹配选 target + 构造 target STNO + DiCoW 只转 target + 兜底拒识；不动 pipeline.py/inference.py，向后兼容）。
+
+### 概念验证（干净场景）✅
+| 场景 | enrollment | recognition | sim | 判定 | 结果 |
+|---|---|---|---|---|---|
+| 同人锁定 | 冰糖长enroll 10.2s | 冰糖 t_01 | **0.816** | TRANSCRIBE | 「请把客厅的空调温度调到二十六度」15字 CER=0 ✅ |
+| 不同人拒识 | 苏打 n_01 | 冰糖 t_01 | **0.035** | REJECT | 0字空输出 ✅ |
+
+判别力鲜明：同人 0.816 vs 不同人 0.035，阈值 0.5 完美居中。**干净场景 enrollment 锁定 + 兜底拒识完全成立**。
+
+### 题目分布批量（t_01 × 5重叠 × 3SNR × white噪声，15条；3条 snr-5 触发 DiariZen reconstruct 边界 crash，已加容错跳过）
+| 重叠\SNR | +5 | 0 | -5 |
+|---|---|---|---|
+| 0% | 0.475 ✓ | 0.431 ✓ | 0.205 ✓ |
+| 25% | 0.345 ✓ | 0.349 ✓ | 0.261 ✗(选错) |
+| 50% | 0.263 ✓ | 0.235 ✓ | crash |
+| 75% | 0.054 ✓ | 0.327 ✗(选错) | crash |
+| 100% | 0.263 =(死区) | 0.209 ✗ | crash |
+
+（✓=选对 target，==两人 sim 相同无法区分，✗=选错 target；**全部 max_sim<0.5 → REJECT**）
+
+### 关键发现（诚实）⚠️
+1. **带噪 sim 普遍退化**：所有重叠/加噪条件 0.05–0.48，**全 <0.5 误拒**。阈值 0.5 在题目分布（−5~5dB）太严。
+2. **噪声是退化主因**（非重叠）：ov000 无重叠但 snr-5 降到 0.205（vs 干净 0.816）；重叠是次要因素。
+3. **多 speaker 选择偶反转**：高重叠 + 低 SNR 时两人 sim 接近/反转（ov025_snr-5、ov075_snr+0 选错）。
+4. **ov100 死区**：两人 sim 相同（0.263），无法区分（与 T15 重叠诊断一致）。
+
+### 改进方向（数据驱动，答辩素材）
+- **CAM++ 引入有了数据理由**：wespeaker（VoxCeleb 英文训练）在中文+噪声退化严重 → CAM++（原生中英双语）可能更鲁棒。**修正此前"CAM++ 是沉没成本"判断为"带噪鲁棒性数据驱动备选"**。
+- enrollment 加噪增强（同分布噪声） / 声纹多段质心融合 / 阈值分场景自适应 / frontend SE 增强（RASTAR/VSAEC）再抽声纹。
+
+### 答辩意义
+概念验证成功（enrollment→锁定 target 完整链路打通，填补组合主线真正缺口），同时诚实展示带噪难点 + 明确改进路线（CAM++/增强/融合），体现工程深度。
+
+---
+
+## 📦 数据集生成（T17，W2 实质化）
+- **mimo-tts 限时免费窗口**：合成 21 条 raw（3 enrollment 长/短 + 10 target 指令 + 8 nontarget 干扰），脚本 `code/tts_dataset_gen.py`（WSL 跑 MiMo-V2.5-TTS，冰糖女声/苏打男声）。
+- `code/build_dataset.py` 组装 **450 条矩阵**（10 target × 5 重叠 × 3 SNR × 3 程序噪声）+ ground truth manifest（target_ref 供 eval_metrics 算 CER）。
+- ESC-50 真实环境音下载失败（网络 HTTP/2 中断）→ fallback 程序噪声（white/pink/babble）；真实环境音待补（放 `test_wav/dataset/env_noise/` 重跑 build_dataset 自动加入）。
+
+## 🔧 fork patch 固化（T17，Part2）
+- Workflow 产出 `code/DiCoW-inference/repro/`：3 canonical patch + requirements-fork.txt + apply_patches.sh（幂等）+ REPRODUCE.md。
+- 校验：跑 apply_patches.sh → 3 patch 全 SKIP（marker 已存在）+ wespeaker 权重校验 OK，**EXIT=0** ✅。可复现。
+
+## 🏠 边缘部署规划（T17，战略级）
+- 用户提出**终态目标是边缘部署**。产出 `边缘部署规划.md`：当前路线有轻量化种子（turbo 0.89G/RTF0.058 + wespeaker 6.6M 天生轻量）但缺系统性规划（目标硬件未定义、量化/蒸馏/ONNX/流式未排进行动地图）；建议新增 **W8 部署轻量化模块**（量化/蒸馏/ONNX导出/流式改造/硬件基准）；**待确认目标硬件**（家电 MCU / 边缘网关 / 本地服务器，算力差几个数量级）。记忆已存。

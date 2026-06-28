@@ -1,0 +1,260 @@
+[
+  {
+    "recognition": "E:/midea_target_asr/test_wav/dataset/eval_subset\\t_01_n_01_ov025_snr-5_white.wav",
+    "enrollment": "E:/midea_target_asr/test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": -0.0645587146282196,
+      "1": 0.2606152594089508
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.2606152594089508,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.13290810234406414
+  },
+  {
+    "recognition": "E:/midea_target_asr/test_wav/dataset/eval_subset\\t_01_n_02_ov000_snr+5_white.wav",
+    "enrollment": "E:/midea_target_asr/test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.47451895475387573
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.47451895475387573,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.054687173927531516
+  },
+  {
+    "recognition": "E:/midea_target_asr/test_wav/dataset/eval_subset\\t_01_n_02_ov000_snr-5_white.wav",
+    "enrollment": "E:/midea_target_asr/test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.2045278251171112
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.2045278251171112,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.052849685444551354
+  },
+  {
+    "recognition": "E:/midea_target_asr/test_wav/dataset/eval_subset\\t_01_n_02_ov100_snr+0_white.wav",
+    "enrollment": "E:/midea_target_asr/test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.14268606901168823,
+      "1": 0.20865198969841003
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.20865198969841003,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.07674334680332856
+  },
+  {
+    "recognition": "E:/midea_target_asr/test_wav/dataset/eval_subset\\t_01_n_03_ov050_snr+0_white.wav",
+    "enrollment": "E:/midea_target_asr/test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.23535162210464478,
+      "1": 0.006328405812382698
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.23535162210464478,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.11023121575514476
+  },
+  {
+    "recognition": "E:/midea_target_asr/test_wav/dataset/eval_subset\\t_01_n_04_ov000_snr+0_white.wav",
+    "enrollment": "E:/midea_target_asr/test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.43057742714881897
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.43057742714881897,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.05154031164505902
+  },
+  {
+    "recognition": "E:/midea_target_asr/test_wav/dataset/eval_subset\\t_01_n_04_ov025_snr+0_white.wav",
+    "enrollment": "E:/midea_target_asr/test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.3485134243965149,
+      "1": 0.14897890388965607
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.3485134243965149,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.07682398838155409
+  },
+  {
+    "recognition": "E:/midea_target_asr/test_wav/dataset/eval_subset\\t_01_n_04_ov025_snr+5_white.wav",
+    "enrollment": "E:/midea_target_asr/test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.3451334238052368,
+      "1": 0.2309381365776062
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.3451334238052368,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.073585264823016
+  },
+  {
+    "recognition": "E:/midea_target_asr/test_wav/dataset/eval_subset\\t_01_n_04_ov100_snr+5_white.wav",
+    "enrollment": "E:/midea_target_asr/test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.2634051442146301,
+      "1": 0.2634051442146301
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.2634051442146301,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.07532440564211676
+  },
+  {
+    "recognition": "E:/midea_target_asr/test_wav/dataset/eval_subset\\t_01_n_05_ov050_snr+5_white.wav",
+    "enrollment": "E:/midea_target_asr/test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.2626597285270691,
+      "1": 0.037533972412347794
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.2626597285270691,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.11017968257268271
+  },
+  {
+    "recognition": "E:/midea_target_asr/test_wav/dataset/eval_subset\\t_01_n_06_ov075_snr+5_white.wav",
+    "enrollment": "E:/midea_target_asr/test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.05381980910897255,
+      "1": -0.006795791909098625
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.05381980910897255,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.1216009259223938
+  },
+  {
+    "recognition": "E:/midea_target_asr/test_wav/dataset/eval_subset\\t_01_n_06_ov075_snr-5_white.wav",
+    "enrollment": "E:/midea_target_asr/test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "error": "ValueError: negative dimensions are not allowed",
+    "rejected": true,
+    "transcript": "",
+    "chars": 0
+  },
+  {
+    "recognition": "E:/midea_target_asr/test_wav/dataset/eval_subset\\t_01_n_07_ov075_snr+0_white.wav",
+    "enrollment": "E:/midea_target_asr/test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.28373706340789795,
+      "1": 0.32651057839393616
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.32651057839393616,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.10985347131888072
+  },
+  {
+    "recognition": "E:/midea_target_asr/test_wav/dataset/eval_subset\\t_01_n_08_ov050_snr-5_white.wav",
+    "enrollment": "E:/midea_target_asr/test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "error": "ValueError: negative dimensions are not allowed",
+    "rejected": true,
+    "transcript": "",
+    "chars": 0
+  },
+  {
+    "recognition": "E:/midea_target_asr/test_wav/dataset/eval_subset\\t_01_n_08_ov100_snr-5_white.wav",
+    "enrollment": "E:/midea_target_asr/test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "error": "ValueError: negative dimensions are not allowed",
+    "rejected": true,
+    "transcript": "",
+    "chars": 0
+  }
+]

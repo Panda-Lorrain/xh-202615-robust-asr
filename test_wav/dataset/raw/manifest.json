@@ -1,0 +1,177 @@
+{
+  "voices": {
+    "target": "冰糖",
+    "nontarget": "苏打"
+  },
+  "count": 21,
+  "items": [
+    {
+      "name": "target_long_01",
+      "path": "/mnt/e/midea_target_asr/test_wav/dataset/raw/enrollment/target_long_01.wav",
+      "text": "你好，我是这个家的主人。请把客厅的空调温度调到二十六度，再把卧室的灯打开，最后帮我定一个明天早上七点的闹钟。",
+      "voice": "冰糖",
+      "role": "enrollment_long",
+      "ref": "你好，我是这个家的主人。请把客厅的空调温度调到二十六度，再把卧室的灯打开，最后帮我定一个明天早上七点的闹钟。"
+    },
+    {
+      "name": "target_short_01",
+      "path": "/mnt/e/midea_target_asr/test_wav/dataset/raw/enrollment/target_short_01.wav",
+      "text": "小美小美，我在这里。",
+      "voice": "冰糖",
+      "role": "enrollment_short",
+      "ref": "小美小美，我在这里。"
+    },
+    {
+      "name": "target_short_02",
+      "path": "/mnt/e/midea_target_asr/test_wav/dataset/raw/enrollment/target_short_02.wav",
+      "text": "小美小美。",
+      "voice": "冰糖",
+      "role": "enrollment_short",
+      "ref": "小美小美。"
+    },
+    {
+      "name": "t_01",
+      "path": "/mnt/e/midea_target_asr/test_wav/dataset/raw/target/t_01.wav",
+      "text": "请把客厅的空调温度调到二十六度",
+      "voice": "冰糖",
+      "role": "target_cmd",
+      "ref": "请把客厅的空调温度调到二十六度"
+    },
+    {
+      "name": "t_02",
+      "path": "/mnt/e/midea_target_asr/test_wav/dataset/raw/target/t_02.wav",
+      "text": "小美小美，打开卧室的灯",
+      "voice": "冰糖",
+      "role": "target_cmd",
+      "ref": "小美小美，打开卧室的灯"
+    },
+    {
+      "name": "t_03",
+      "path": "/mnt/e/midea_target_asr/test_wav/dataset/raw/target/t_03.wav",
+      "text": "把电视的声音关小一点",
+      "voice": "冰糖",
+      "role": "target_cmd",
+      "ref": "把电视的声音关小一点"
+    },
+    {
+      "name": "t_04",
+      "path": "/mnt/e/midea_target_asr/test_wav/dataset/raw/target/t_04.wav",
+      "text": "帮我定一个明天早上七点的闹钟",
+      "voice": "冰糖",
+      "role": "target_cmd",
+      "ref": "帮我定一个明天早上七点的闹钟"
+    },
+    {
+      "name": "t_05",
+      "path": "/mnt/e/midea_target_asr/test_wav/dataset/raw/target/t_05.wav",
+      "text": "打开扫地机器人开始清扫客厅",
+      "voice": "冰糖",
+      "role": "target_cmd",
+      "ref": "打开扫地机器人开始清扫客厅"
+    },
+    {
+      "name": "t_06",
+      "path": "/mnt/e/midea_target_asr/test_wav/dataset/raw/target/t_06.wav",
+      "text": "把窗帘拉上一半",
+      "voice": "冰糖",
+      "role": "target_cmd",
+      "ref": "把窗帘拉上一半"
+    },
+    {
+      "name": "t_07",
+      "path": "/mnt/e/midea_target_asr/test_wav/dataset/raw/target/t_07.wav",
+      "text": "启动空气净化器调成睡眠模式",
+      "voice": "冰糖",
+      "role": "target_cmd",
+      "ref": "启动空气净化器调成睡眠模式"
+    },
+    {
+      "name": "t_08",
+      "path": "/mnt/e/midea_target_asr/test_wav/dataset/raw/target/t_08.wav",
+      "text": "播放一首轻音乐",
+      "voice": "冰糖",
+      "role": "target_cmd",
+      "ref": "播放一首轻音乐"
+    },
+    {
+      "name": "t_09",
+      "path": "/mnt/e/midea_target_asr/test_wav/dataset/raw/target/t_09.wav",
+      "text": "打开热水器把水温调到四十五度",
+      "voice": "冰糖",
+      "role": "target_cmd",
+      "ref": "打开热水器把水温调到四十五度"
+    },
+    {
+      "name": "t_10",
+      "path": "/mnt/e/midea_target_asr/test_wav/dataset/raw/target/t_10.wav",
+      "text": "把客厅的灯调成暖色最低亮度",
+      "voice": "冰糖",
+      "role": "target_cmd",
+      "ref": "把客厅的灯调成暖色最低亮度"
+    },
+    {
+      "name": "n_01",
+      "path": "/mnt/e/midea_target_asr/test_wav/dataset/raw/nontarget/n_01.wav",
+      "text": "今天天气真不错，我们出去走走吧",
+      "voice": "苏打",
+      "role": "nontarget_cmd",
+      "ref": "今天天气真不错，我们出去走走吧"
+    },
+    {
+      "name": "n_02",
+      "path": "/mnt/e/midea_target_asr/test_wav/dataset/raw/nontarget/n_02.wav",
+      "text": "这个电影我觉得挺好看的，推荐你也看看",
+      "voice": "苏打",
+      "role": "nontarget_cmd",
+      "ref": "这个电影我觉得挺好看的，推荐你也看看"
+    },
+    {
+      "name": "n_03",
+      "path": "/mnt/e/midea_target_asr/test_wav/dataset/raw/nontarget/n_03.wav",
+      "text": "你晚上想吃什么，我来做",
+      "voice": "苏打",
+      "role": "nontarget_cmd",
+      "ref": "你晚上想吃什么，我来做"
+    },
+    {
+      "name": "n_04",
+      "path": "/mnt/e/midea_target_asr/test_wav/dataset/raw/nontarget/n_04.wav",
+      "text": "明天的会议几点开始，我差点忘了",
+      "voice": "苏打",
+      "role": "nontarget_cmd",
+      "ref": "明天的会议几点开始，我差点忘了"
+    },
+    {
+      "name": "n_05",
+      "path": "/mnt/e/midea_target_asr/test_wav/dataset/raw/nontarget/n_05.wav",
+      "text": "我刚看了一个很有趣的新闻",
+      "voice": "苏打",
+      "role": "nontarget_cmd",
+      "ref": "我刚看了一个很有趣的新闻"
+    },
+    {
+      "name": "n_06",
+      "path": "/mnt/e/midea_target_asr/test_wav/dataset/raw/nontarget/n_06.wav",
+      "text": "这个周末有什么安排吗",
+      "voice": "苏打",
+      "role": "nontarget_cmd",
+      "ref": "这个周末有什么安排吗"
+    },
+    {
+      "name": "n_07",
+      "path": "/mnt/e/midea_target_asr/test_wav/dataset/raw/nontarget/n_07.wav",
+      "text": "帮我倒杯水好吗，谢谢",
+      "voice": "苏打",
+      "role": "nontarget_cmd",
+      "ref": "帮我倒杯水好吗，谢谢"
+    },
+    {
+      "name": "n_08",
+      "path": "/mnt/e/midea_target_asr/test_wav/dataset/raw/nontarget/n_08.wav",
+      "text": "那本书我看完了，写得真不错",
+      "voice": "苏打",
+      "role": "nontarget_cmd",
+      "ref": "那本书我看完了，写得真不错"
+    }
+  ]
+}
