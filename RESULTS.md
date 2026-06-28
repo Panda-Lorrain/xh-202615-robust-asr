@@ -270,3 +270,23 @@
 - **HF 权重下载**：`huggingface_hub` snapshot_download 即使设 HF_ENDPOINT=hf-mirror 仍失败 → 改用 `curl -sSL 经代理(7897)+hf-mirror直链`（线C Qwen 6.17GB 此法下全）。
 - **HF csukuangfj 仓 401**：代理鉴权注入，易误判仓不存在 → 改 hf-mirror 直连无代理。
 - **新增 venv**：`.venv_se`(code/) / `.venv_campp`(code/) / `.venv_llm`(项目根)，已加 .gitignore。
+
+### T18续：SE条件化落地 + CAM++ per-speaker 定论（2026-06-29）
+
+**SE 条件化(任务1)——最优前置策略, CER −34%**
+测 atten-lim=6(温和) + 按 noise_type 分流(450条):
+
+| 策略 | overall CER | Δ vs baseline(4.274) |
+|---|---|---|
+| 降噪=0(全力) | 3.655 | −0.62 |
+| 降噪=6(温和) | 3.949 | −0.32 |
+| **条件化(babble/white=0, pink=6)** | **2.825** | **−1.45(改善34%)** |
+
+分流最优: babble Δ−4.20(=0全力保持) / pink Δ−0.29(=6解过消除) / SNR−5 Δ−3.04 / 所有 overlap 档改善。**SE 前置最优落地 = 按噪声类型条件化** + diar-fail 33→0。但 CER 绝对值仍 2.82(>1 幻觉严重), 需叠加中文微调/重叠分离。脚本 `code/merge_se_conditional.py`。
+
+**CAM++ per-speaker 公平对照(任务2)——证伪, 维持 wespeaker**
+enroll_infer_campp.py(跨 venv: 主 .venv diarization + .venv_campp CAM++ emb, per-speaker 与 wespeaker 同一份分离音频 = 公平) 跑 450 条:
+- CAM++ per-speaker: 均 sim **0.191** / 拒识率 0.92 / 正确率 0.00
+- vs wespeaker: 均 sim **0.218** / 拒识率 0.87 / 正确率 0.04
+- **CAM++ 0.191 < 0.218, 正确率 0.00 < 0.04 → 不值得替代 wespeaker(证伪)**; 唯一亮点 SNR−5 CAM++ 0.154 > wespeaker 0.118(低 SNR 略鲁棒), 但整体不如。
+- 定论: 主线声纹维持 wespeaker; sherpa-onnx CAM++ 留边缘部署备用(纯 ONNX 轻量)。脚本 `code/enroll_infer_campp.py` + `emb_campp.py`。干净负面结果, 排除 CAM++ 替代路线, 聚焦 wespeaker + 中文微调 + 重叠分离。

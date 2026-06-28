@@ -11,7 +11,8 @@
 
 - **线C W5-LLM 拒识** ✅强阳：Qwen2.5-3B 零样本 34 条 **F1=0.878 / Recall=1.0**（最难 case 全对；5 误拒是合法复杂指令→prompt 调优）。拒识 40% 核心层已验证。脚本 `code/llm_reject.py`。
 - **线A SE增强 一锤定音** ✅部分阳：DeepFilterNet3 降噪后 overall CER **4.27→3.65(Δ−0.62)**；**babble(人声,贴真实)Δ−4.20 巨大** / pink(稳态)+2.20 反伤；**diar-fail 33→0**（diarization 完全稳定）；CER 绝对值仍高(3.65)→瓶颈多元。**验证"瓶颈部分在音频质量"诊断**。脚本 `code/se_denoise.py`+`eval_se_cer.py`。
-- **线B CAM++** ⚠️证伪信号：sherpa-onnx 绕过 modelscope 挂起(import 即时)，但整段 sim 0.121 < wespeaker 0.218（**不公平**：CAM++ 无 diar 整段 vs wespeaker per-speaker）。per-speaker 公平对照(命令5/6)**待做=决定性**。
+- **线B CAM++** ❌证伪(已定论)：per-speaker 公平对照(CAM++ 0.191 vs wespeaker 0.218, 正确率 0.00<0.04)→ **不值得替代 wespeaker, 主线维持 wespeaker**; sherpa-onnx 留边缘部署备用。脚本 `code/enroll_infer_campp.py`。
+- **线A SE 条件化(新, 最优)** ✅：按 noise_type 分流(babble/white=0 全力, pink=6 温和) overall CER **2.82(−34%)**, 优于单一 =0(3.65)/=6(3.95); diar-fail 33→0。脚本 `code/merge_se_conditional.py`。
 
 **新 P0 优先级**：① SE 前置条件化落地(快赢：babble/低SNR 启用，pink/white 用 `--atten-lim-db=6`) ② CAM++ per-speaker 公平对照(定论去留) ③ 中文家居微调(重，攻 Whisper 中文) ④ SE-DiCoW 接入(攻 100% 重叠死区)。
 
