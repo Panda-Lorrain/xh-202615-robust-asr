@@ -33,11 +33,12 @@
 
 ## 3. 后续任务清单（优先级排序，直接可做）
 
-### 🔴 P0 — 攻带噪鲁棒性（直接攻 87% 误拒）
-1. **阈值扫 + enrollment 加噪增强结果分析**（本 agent 进行中）
-   - `enroll_aug_full.json` 跑完后：`eval_enrollment.py --enroll-json code/enroll_aug_full.json --threshold 0.1/0.2/0.3/0.4/0.5 --label augment` 扫阈值
-   - 若增强有效（同阈值下拒识率降/正确率升）→ 定最佳阈值；若无效 → 转其他杠杆
-   - **建议补跑 baseline always-generate**（不增强）做严格对照：`enroll_infer.py --always-generate --out-json enroll_baseline_full.json`，同扫阈值
+### 🔴 P0 — 攻带噪鲁棒性（瓶颈已诊断：转移至 Whisper 转写质量）
+1. ✅ **阈值扫 + enrollment 加噪增强（本 agent 已完成）**
+   - **增强有效**：enrollment 加噪 emb → 均 sim 0.218→0.348(+59%)；同阈值0.5 拒识率 0.87→0.72，正确率 0.04→0.11
+   - 阈值扫：拒识率 0.12(0.1)–0.72(0.5) 可调，但**正确率天花板~14%**
+   - **关键结论——瓶颈转移**：阈值旋钮解不了根本，**真正瓶颈从"声纹拒识"转到"Whisper 带噪+重叠转写质量"** → 下一步必须 frontend SE 增强（下条升最高优先）
+   - 数据：`code/enroll_aug_full.json`；最佳工作点 threshold~0.2
 2. **解 CAM++ 集成**（验证 wespeaker→CAM++ 改进，原生中文更鲁棒假设）
    - modelscope 本环境 import 卡 → **方案A**：独立干净 venv（`uv venv`）装 modelscope 跑 CAM++ 抽 emb 存文件，主 venv 读；**方案B**：sherpa-onnx 的 campplus/ERes2Net ONNX（隔离，不碰 transformers，推荐先试）
    - 脚本 `code/campp_vs_wespeaker.py` 已就绪，只待加载方式解
