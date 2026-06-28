@@ -92,6 +92,11 @@ def main():
     ap.add_argument("--diarization-model", default=DIAR_MODEL)
     ap.add_argument("--language", default="zh")
     ap.add_argument("--out-json", default=os.path.join(_HERE, "enroll_infer_result.json"))
+    ap.add_argument("--always-generate", action="store_true",
+                    help="总generate(不因sim拒识跳过), 供 eval 扫阈值; 拒识条仍记 transcript+rejected=True")
+    ap.add_argument("--enroll-augment", action="store_true",
+                    help="enrollment 加噪增强: 干净+多档加噪 emb 均值, 提声纹鲁棒")
+    ap.add_argument("--aug-snrs", default="10,5,0", help="enrollment 加噪增强的 SNR 档(逗号分)")
     args = ap.parse_args()
 
     device = torch.device(args.device if torch.cuda.is_available() else "cpu")
@@ -119,10 +124,21 @@ def main():
         emb = torch.as_tensor(emb, device=device, dtype=torch.float32)
         return torch.nn.functional.normalize(emb, dim=-1).squeeze(0)   # (dim,) 已归一化
 
-    # enrollment embedding
+    # enrollment embedding(可选加噪增强: 干净 + 多档加噪 emb 均值, 提带噪鲁棒)
     enroll_wav, _ = librosa.load(args.enrollment, sr=16000)
-    enroll_emb = get_emb(enroll_wav)
-    print(f"[enrollment] {args.enrollment} ({len(enroll_wav)/16000:.1f}s) → emb {tuple(enroll_emb.shape)}")
+    if args.enroll_augment:
+        from simulate_pipeline import add_noise
+        aug_snrs = [int(s) for s in args.aug_snrs.split(",") if s.strip()]
+        rng = np.random.default_rng(0)
+        embs = [get_emb(enroll_wav)]
+        for snr in aug_snrs:
+            noisy = add_noise(enroll_wav, rng.standard_normal(len(enroll_wav)).astype(np.float32), snr)
+            embs.append(get_emb(noisy))
+        enroll_emb = torch.nn.functional.normalize(torch.stack(embs).mean(0), dim=-1)
+        print(f"[enrollment] 加噪增强: 干净 + {len(aug_snrs)}档加噪{aug_snrs}dB emb 均值 → {tuple(enroll_emb.shape)}")
+    else:
+        enroll_emb = get_emb(enroll_wav)
+        print(f"[enrollment] {args.enrollment} ({len(enroll_wav)/16000:.1f}s) → emb {tuple(enroll_emb.shape)}")
 
     recs = sorted(glob.glob(os.path.join(args.recognition_folder, "*.wav"))) \
         if args.recognition_folder else [args.recognition]
@@ -171,7 +187,8 @@ def main():
         print(f"  [match] {{{sim_str}}} → target={speakers[target_idx]} sim={max_sim:.3f}")
 
         # 4) 兜底拒识 / 转写(ifp/diar_mask 已在 1.5 算好)
-        if max_sim < args.reject_threshold:
+        rejected = max_sim < args.reject_threshold
+        if rejected and not args.always_generate:
             text, verdict = "", f"REJECT(target 不在场, max_sim={max_sim:.3f}<{args.reject_threshold})"
         else:
             stno = get_stno_mask(diar_mask, target_idx)    # [4, T]
@@ -182,7 +199,8 @@ def main():
                                      language=args.language, task="transcribe", max_new_tokens=200)
             seqs = out["sequences"] if isinstance(out, dict) else out
             text = tok.batch_decode(seqs, skip_special_tokens=True)[0].strip()
-            verdict = f"TRANSCRIBE(target={speakers[target_idx]})"
+            verdict = (f"REJECT_GEN(max_sim={max_sim:.3f}<{args.reject_threshold}, always-generate 仍转)" if rejected
+                       else f"TRANSCRIBE(target={speakers[target_idx]})")
 
         dt = time.time() - t0
         print(f"  [{verdict}] {len(text)}字 ({dt:.1f}s, RTF={dt/dur:.3f}): {text}")

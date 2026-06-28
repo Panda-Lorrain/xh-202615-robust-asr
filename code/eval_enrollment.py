@@ -47,6 +47,8 @@ def main():
     ap.add_argument("--enroll-json", required=True)
     ap.add_argument("--manifest", default="E:/midea_target_asr/test_wav/dataset/final/final_manifest.json")
     ap.add_argument("--lock-cer-thresh", type=float, default=0.5)
+    ap.add_argument("--threshold", type=float, default=None,
+                    help="后处理拒识阈值(按 max_sim 重判, 覆盖 enroll JSON 的 rejected; 需 enroll always-generate)")
     ap.add_argument("--label", default="")
     args = ap.parse_args()
 
@@ -64,8 +66,10 @@ def main():
         if r.get("error"):
             s["diar_fail"] += 1
             continue
-        s["sims"].append(r.get("max_sim", 0))
-        if r.get("rejected"):
+        max_sim = r.get("max_sim", 0)
+        s["sims"].append(max_sim)
+        rejected = (max_sim < args.threshold) if args.threshold is not None else r.get("rejected", False)
+        if rejected:
             s["reject"] += 1
         else:
             c = cer(r.get("transcript", ""), m["target_ref"] if m else "")
