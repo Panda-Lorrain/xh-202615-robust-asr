@@ -1,11 +1,27 @@
 # Agent 交接文档（XH-202615 美的目标说话人 ASR）
 
 > **下个 agent 第一时间读此文件 → CLAUDE.md → PROGRESS.md → RESULTS.md → 边缘部署规划.md → 项目阶段盘点.md**
-> 更新：2026-06-29。上个 agent 推进至 T17（enrollment→target + TTS数据集 + patch固化 + 边缘部署 + 能力画像；阈值扫/enrollment加噪增强实验进行中）。
+> 更新：2026-06-29（T18）。T17 后**新会话接手**，用户选「多线并行铺开」→ Workflow 三线 de-risk 全 READY + 线A 一锤定音验证瓶颈。**先读下方🆕 T18 速览**，完整数字见 RESULTS.md T18。
 
 ---
 
-## 0. 项目一句话状态
+## 🆕 T18 速览（2026-06-29 接手后多线并行铺开）
+
+**三线 de-risk 全 READY**（Workflow 3 agent，各建独立 venv：`code/.venv_se` / `code/.venv_campp` / `.venv_llm`[项目根]）：
+
+- **线C W5-LLM 拒识** ✅强阳：Qwen2.5-3B 零样本 34 条 **F1=0.878 / Recall=1.0**（最难 case 全对；5 误拒是合法复杂指令→prompt 调优）。拒识 40% 核心层已验证。脚本 `code/llm_reject.py`。
+- **线A SE增强 一锤定音** ✅部分阳：DeepFilterNet3 降噪后 overall CER **4.27→3.65(Δ−0.62)**；**babble(人声,贴真实)Δ−4.20 巨大** / pink(稳态)+2.20 反伤；**diar-fail 33→0**（diarization 完全稳定）；CER 绝对值仍高(3.65)→瓶颈多元。**验证"瓶颈部分在音频质量"诊断**。脚本 `code/se_denoise.py`+`eval_se_cer.py`。
+- **线B CAM++** ⚠️证伪信号：sherpa-onnx 绕过 modelscope 挂起(import 即时)，但整段 sim 0.121 < wespeaker 0.218（**不公平**：CAM++ 无 diar 整段 vs wespeaker per-speaker）。per-speaker 公平对照(命令5/6)**待做=决定性**。
+
+**新 P0 优先级**：① SE 前置条件化落地(快赢：babble/低SNR 启用，pink/white 用 `--atten-lim-db=6`) ② CAM++ per-speaker 公平对照(定论去留) ③ 中文家居微调(重，攻 Whisper 中文) ④ SE-DiCoW 接入(攻 100% 重叠死区)。
+
+**数据增强暂缓**(用户定)：MUSAN/DEMAND+RIR+AISHELL 方案已评估存档(RESULTS T18)，等真实数据/通道数确认再定。
+
+**坑**：HF 下载用 `curl -sSL 经代理+hf-mirror 直链`(snapshot_download 失败)；csukuangfj 仓 401 改 hf-mirror 无代理。
+
+---
+
+## 0. 项目一句话状态（T17 历史）
 组合主线（STNO + DiCoW + 声纹enrollment + LLM拒识）的 **enrollment→target 锁定 + STNO 拒识链路已跑通验证**（干净场景完美），但 **带噪题目分布是当前瓶颈**：wespeaker 声纹在中文+噪声退化严重，导致 450 条全集 **87% 误拒、仅 4% 正确**。下一步核心是**攻带噪鲁棒性**（CAM++/阈值扫/enrollment增强/SE增强）。
 
 ---

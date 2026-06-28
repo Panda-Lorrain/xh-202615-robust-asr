@@ -1,0 +1,4502 @@
+[
+  {
+    "recognition": "t_01_n_02_ov000_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.20773550868034363,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_01_ov000_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.1643657386302948,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_05_ov000_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.00849480926990509,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_04_ov000_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.20686651766300201,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_04_ov000_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.18245626986026764,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_03_ov000_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.013511549681425095,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_02_ov000_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2100779414176941,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_02_ov000_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.18614035844802856,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_07_ov000_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.08294826000928879,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_01_ov025_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.1862211525440216,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_01_ov025_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.16058029234409332,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_02_ov025_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.1901302933692932,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_04_ov025_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.19409677386283875,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_04_ov025_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.18059059977531433,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_01_ov025_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.22791939973831177,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_04_ov025_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2154332995414734,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_07_ov025_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.041261520236730576,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_04_ov025_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.27261579036712646,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_08_ov050_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.27338486909866333,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_05_ov050_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.044584304094314575,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_01_ov050_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.16862350702285767,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_03_ov050_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.010895675048232079,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_07_ov050_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.050616513937711716,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_06_ov050_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.03202568739652634,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_05_ov050_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.049546170979738235,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_03_ov050_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.039333149790763855,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_04_ov050_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2586412727832794,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_06_ov075_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.031873706728219986,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_02_ov075_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.1515221893787384,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_02_ov075_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.1564878225326538,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_07_ov075_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.02155914530158043,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_02_ov075_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.1639200747013092,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_06_ov075_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.023781143128871918,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_06_ov075_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.007657136768102646,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_05_ov075_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.04728986322879791,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_01_ov075_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.26227831840515137,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_08_ov100_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.24491813778877258,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_02_ov100_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.14262747764587402,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_07_ov100_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.025800639763474464,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_02_ov100_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.19448426365852356,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_05_ov100_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.04002798721194267,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_06_ov100_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.04690937325358391,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_04_ov100_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.19666120409965515,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_02_ov100_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.17493033409118652,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_01_n_01_ov100_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.20002448558807373,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_04_ov000_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.024411549791693687,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_05_ov000_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.05657316744327545,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_02_ov000_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.031012743711471558,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_04_ov000_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.03703153133392334,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_02_ov000_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.07061459124088287,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_07_ov000_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.048227421939373016,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_05_ov000_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.043514277786016464,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_08_ov000_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.08793576061725616,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_06_ov000_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.11042999476194382,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_03_ov025_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.02494136057794094,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_06_ov025_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.016662705689668655,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_06_ov025_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.007575505413115025,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_04_ov025_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.04618540778756142,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_05_ov025_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.056080467998981476,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_02_ov025_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.0393839068710804,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_03_ov025_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.038565605878829956,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_04_ov025_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.061561599373817444,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_03_ov025_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.10704908519983292,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_08_ov050_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.004331042990088463,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_07_ov050_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.03857462853193283,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_05_ov050_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.02123451977968216,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_04_ov050_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.02376038208603859,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_06_ov050_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.010974900797009468,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_01_ov050_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.03966730833053589,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_04_ov050_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.07560353726148605,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_01_ov050_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.07112419605255127,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_06_ov050_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.09205716848373413,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_07_ov075_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.01951337605714798,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_05_ov075_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.04975367337465286,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_02_ov075_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.016967013478279114,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_04_ov075_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.021339572966098785,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_06_ov075_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.020115161314606667,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_04_ov075_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.02562573552131653,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_08_ov075_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.0119142085313797,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_07_ov075_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.04906520992517471,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_08_ov075_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.051609691232442856,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_03_ov100_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.0019976813346147537,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_05_ov100_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.04211527109146118,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_03_ov100_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.02101931720972061,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_04_ov100_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.015894826501607895,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_05_ov100_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.0588950477540493,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_07_ov100_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.03372126817703247,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_07_ov100_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.036156266927719116,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_06_ov100_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.0058783870190382,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_02_n_04_ov100_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.048677802085876465,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_03_ov000_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.025175221264362335,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_08_ov000_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.3581804633140564,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_02_ov000_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.37725311517715454,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_01_ov000_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.3781897723674774,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_02_ov000_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.37615084648132324,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_03_ov000_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.03040805086493492,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_03_ov000_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.04897365719079971,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_07_ov000_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.061958398669958115,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_02_ov000_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.40060877799987793,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_07_ov025_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.027274861931800842,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_07_ov025_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.04017267003655434,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_08_ov025_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2709360122680664,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_05_ov025_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.020397242158651352,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_01_ov025_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.3952963948249817,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_02_ov025_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.3901819586753845,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_05_ov025_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.038313571363687515,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_06_ov025_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.03440093994140625,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_02_ov025_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.39375707507133484,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_05_ov050_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.010798236355185509,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_07_ov050_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.053299158811569214,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_03_ov050_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.025469128042459488,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_08_ov050_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.3634328544139862,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_01_ov050_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.40064913034439087,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_05_ov050_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.03186442703008652,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_03_ov050_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.016105130314826965,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_02_ov050_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.37755322456359863,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_05_ov050_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.12772780656814575,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_04_ov075_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.3354838788509369,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_03_ov075_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.06118341162800789,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_06_ov075_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.03821398690342903,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_03_ov075_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.011359026655554771,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_01_ov075_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.37242764234542847,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_06_ov075_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.04077775031328201,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_08_ov075_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2915397584438324,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_01_ov075_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.3964926600456238,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_02_ov075_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.5592532157897949,
+    "reject_threshold": 0.5,
+    "rejected": false,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_06_ov100_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.027776136994361877,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_05_ov100_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.06902550160884857,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_04_ov100_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.21144014596939087,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_01_ov100_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.3726709187030792,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_04_ov100_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.3701920211315155,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_02_ov100_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.3960910439491272,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_02_ov100_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.3308791518211365,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_08_ov100_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2808357775211334,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_03_n_02_ov100_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.4622974395751953,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_03_ov000_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.012757420539855957,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_03_ov000_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.061671704053878784,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_08_ov000_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2341252714395523,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_03_ov000_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.031538739800453186,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_05_ov000_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.07039179652929306,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_07_ov000_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.044384948909282684,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_04_ov000_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.15367546677589417,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_04_ov000_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.1394181102514267,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_05_ov000_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.1019989550113678,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_07_ov025_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.012428289279341698,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_06_ov025_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.019622892141342163,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_08_ov025_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2343956083059311,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_08_ov025_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2823864221572876,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_02_ov025_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.1644749790430069,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_04_ov025_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.29179471731185913,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_04_ov025_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.14554256200790405,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_02_ov025_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.16120442748069763,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_06_ov025_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.13554078340530396,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_01_ov050_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.15745820105075836,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_04_ov050_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.17006915807724,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_04_ov050_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.15002384781837463,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_01_ov050_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.15851426124572754,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_02_ov050_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.15305040776729584,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_01_ov050_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.17295420169830322,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_04_ov050_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.1425124704837799,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_02_ov050_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.1305558979511261,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_01_ov050_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.28661972284317017,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_06_ov075_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.04266133904457092,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_02_ov075_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.14349302649497986,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_04_ov075_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.15314826369285583,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_05_ov075_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.03186432644724846,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_08_ov075_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2372867465019226,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_04_ov075_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2348315268754959,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_03_ov075_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.017125548794865608,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_08_ov075_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.21841061115264893,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_04_ov075_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2894788086414337,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_08_ov100_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.23598165810108185,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_07_ov100_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.05399950593709946,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_04_ov100_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.1869293451309204,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_02_ov100_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.15179343521595,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_02_ov100_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.16367685794830322,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_07_ov100_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.03248737379908562,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_06_ov100_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.008520690724253654,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_07_ov100_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.062104690819978714,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_04_n_07_ov100_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.11255497485399246,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_08_ov000_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.31690114736557007,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_01_ov000_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.20279210805892944,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_02_ov000_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.23143339157104492,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_01_ov000_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.21865907311439514,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_07_ov000_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.05382275581359863,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_06_ov000_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.0966634750366211,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_02_ov000_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2121584564447403,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_04_ov000_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.24280640482902527,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_04_ov000_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.3347966969013214,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_04_ov025_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.1786508560180664,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_08_ov025_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.25635913014411926,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_03_ov025_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.03653911501169205,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_07_ov025_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.0057408008724451065,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_03_ov025_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.04965580254793167,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_05_ov025_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.03304417431354523,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_08_ov025_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.33057624101638794,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_04_ov025_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.23960311710834503,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_02_ov025_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.33334505558013916,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_08_ov050_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.261459082365036,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_02_ov050_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.1863706111907959,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_01_ov050_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.18830499053001404,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_01_ov050_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.20087847113609314,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_02_ov050_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.20594945549964905,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_04_ov050_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2604988217353821,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_03_ov050_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.007829664275050163,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_07_ov050_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.044750895351171494,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_08_ov050_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.26422226428985596,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_08_ov075_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.25411975383758545,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_04_ov075_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2033405750989914,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_07_ov075_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.010744770988821983,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_01_ov075_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.20004241168498993,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_03_ov075_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.04486752673983574,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_07_ov075_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.03313177078962326,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_01_ov075_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.192977637052536,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_07_ov075_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.031943660229444504,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_05_ov075_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.07969702780246735,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_08_ov100_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2492140531539917,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_05_ov100_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.05770412087440491,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_07_ov100_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.026065198704600334,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_08_ov100_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.26217740774154663,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_03_ov100_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.027302231639623642,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_04_ov100_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.31668993830680847,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_05_ov100_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.02184576541185379,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_04_ov100_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.22291478514671326,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_05_n_01_ov100_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.23784616589546204,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_01_ov000_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.23941738903522491,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_06_ov000_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.018468303605914116,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_01_ov000_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.20664244890213013,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_01_ov000_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2267066389322281,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_08_ov000_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2868889570236206,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_03_ov000_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.04989083483815193,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_01_ov000_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2896246016025543,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_02_ov000_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.3370307385921478,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_03_ov000_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.10634228587150574,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_02_ov025_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2370363175868988,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_02_ov025_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.31948161125183105,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_04_ov025_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2527363896369934,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_07_ov025_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.020963000133633614,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_02_ov025_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.3419305086135864,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_04_ov025_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2689579725265503,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_01_ov025_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2695605158805847,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_02_ov025_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.3379775285720825,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_07_ov025_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.08701188862323761,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_06_ov050_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.03304987773299217,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_05_ov050_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.033036015927791595,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_04_ov050_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.22298943996429443,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_06_ov050_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.021362312138080597,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_04_ov050_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.28093206882476807,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_05_ov050_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.04088620841503143,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_07_ov050_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.04360507056117058,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_03_ov050_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.055932290852069855,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_05_ov050_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.06526052951812744,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_08_ov075_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.1912696659564972,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_06_ov075_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.0035705063492059708,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_02_ov075_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.15235131978988647,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_01_ov075_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.29617762565612793,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_08_ov075_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.21317964792251587,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_02_ov075_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.41661536693573,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_02_ov075_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.21451213955879211,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_04_ov075_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.3423444628715515,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_05_ov075_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.047949761152267456,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_03_ov100_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.0069628190249204636,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_06_ov100_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.018176399171352386,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_02_ov100_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.144278883934021,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_04_ov100_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.26808294653892517,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_06_ov100_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.00294475257396698,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_05_ov100_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.05179315805435181,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_03_ov100_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.004910653457045555,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_08_ov100_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.21339179575443268,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_06_n_05_ov100_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.07324724644422531,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_01_ov000_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.16220355033874512,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_05_ov000_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.057448968291282654,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_02_ov000_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.16414740681648254,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_03_ov000_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.01833789050579071,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_05_ov000_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.04653759300708771,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_02_ov000_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.28479039669036865,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_02_ov000_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.14497390389442444,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_03_ov000_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.048450127243995667,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_05_ov000_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.14123156666755676,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_05_ov025_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.02001972496509552,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_04_ov025_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.165551096200943,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_06_ov025_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.06216966733336449,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_04_ov025_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.14813849329948425,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_05_ov025_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.045567672699689865,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_08_ov025_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.31977176666259766,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_05_ov025_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.031091656535863876,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_01_ov025_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.1397501528263092,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_02_ov025_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.24476617574691772,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_07_ov050_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.006628591567277908,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_05_ov050_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.048318877816200256,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_01_ov050_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.15421929955482483,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_01_ov050_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.158937007188797,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_06_ov050_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.01281103864312172,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_03_ov050_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.02739192545413971,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_05_ov050_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.02290845476090908,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_03_ov050_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.04010423272848129,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_08_ov050_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.368246853351593,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_07_ov075_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.0006211679428815842,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_01_ov075_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.16154219210147858,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_02_ov075_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.15100833773612976,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_02_ov075_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.1628456711769104,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_03_ov075_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.04171719029545784,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_01_ov075_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.16792994737625122,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_06_ov075_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.010052713565528393,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_03_ov075_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.019743798300623894,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_07_ov075_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.04906069487333298,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_03_ov100_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.003385758027434349,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_01_ov100_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.16429010033607483,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_05_ov100_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.028691483661532402,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_06_ov100_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.021259790286421776,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_01_ov100_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.14410537481307983,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_06_ov100_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.044254109263420105,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_04_ov100_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.17227764427661896,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_04_ov100_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.15661752223968506,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_07_n_02_ov100_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.23604047298431396,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_06_ov000_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.04736657440662384,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_07_ov000_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.020743446424603462,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_03_ov000_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.041438229382038116,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_04_ov000_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.007581126876175404,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_03_ov000_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.043478239327669144,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_03_ov000_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.0765167623758316,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_07_ov000_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.025804825127124786,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_01_ov000_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.022003572434186935,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_03_ov000_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.17138810455799103,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_06_ov025_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.02849743887782097,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_07_ov025_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.02797756716609001,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_04_ov025_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.06821680814027786,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_05_ov025_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.009360416792333126,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_03_ov025_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.011724160052835941,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_02_ov025_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.04259151965379715,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_07_ov025_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.008868743665516376,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_01_ov025_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.036682046949863434,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_08_ov025_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.12258510291576385,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_04_ov050_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.03276688605546951,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_04_ov050_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.029177572578191757,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_08_ov050_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.027751458808779716,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_06_ov050_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.01581079140305519,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_05_ov050_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.038857653737068176,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_04_ov050_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.10480297356843948,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_04_ov050_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.023811601102352142,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_01_ov050_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.0360809750854969,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_04_ov050_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.1199859082698822,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_07_ov075_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.03749167546629906,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_06_ov075_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.010945828631520271,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_05_ov075_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.03555997461080551,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_02_ov075_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.011946490965783596,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_05_ov075_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.006781335920095444,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_06_ov075_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.0016192663460969925,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_07_ov075_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.0028776908293366432,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_06_ov075_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.017854515463113785,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_01_ov075_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.0802188366651535,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_02_ov100_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.043345868587493896,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_05_ov100_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.025869756937026978,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_03_ov100_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.035975392907857895,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_05_ov100_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.013245892710983753,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_01_ov100_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.026761531829833984,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_02_ov100_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.012355290353298187,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_07_ov100_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.007841718383133411,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_06_ov100_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.005907569080591202,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_08_n_06_ov100_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.05477073788642883,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_07_ov000_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.01099158450961113,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_02_ov000_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.1668325811624527,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_07_ov000_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.026993006467819214,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_04_ov000_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.19578835368156433,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_05_ov000_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.05552905052900314,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_01_ov000_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2537077069282532,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_07_ov000_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.020112279802560806,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_01_ov000_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.20965617895126343,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_04_ov000_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.32191288471221924,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_06_ov025_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.02493787184357643,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_07_ov025_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.061094850301742554,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_02_ov025_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.143655925989151,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_06_ov025_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.01744949445128441,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_06_ov025_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.024828728288412094,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_02_ov025_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.23820453882217407,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_05_ov025_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.025577114894986153,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_05_ov025_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.06506919860839844,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_07_ov025_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.06260252743959427,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_06_ov050_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.04153689742088318,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_07_ov050_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.06105773523449898,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_05_ov050_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.023848041892051697,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_03_ov050_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.006382649764418602,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_04_ov050_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.18037039041519165,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_07_ov050_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.03375672176480293,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_07_ov050_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.022853722795844078,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_03_ov050_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.0397176668047905,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_05_ov050_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.1129332110285759,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_07_ov075_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.0007034912705421448,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_01_ov075_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.18262365460395813,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_05_ov075_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.037657544016838074,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_05_ov075_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.019780388101935387,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_04_ov075_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.1961468756198883,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_07_ov075_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.033046163618564606,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_06_ov075_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.012578933499753475,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_08_ov075_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.20401287078857422,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_08_ov075_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2675580382347107,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_08_ov100_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.24502146244049072,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_04_ov100_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.161015585064888,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_08_ov100_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.21597975492477417,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_03_ov100_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.005476623773574829,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_02_ov100_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.15896587073802948,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_05_ov100_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.011533902958035469,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_06_ov100_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.015494802966713905,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_02_ov100_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.16408182680606842,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_09_n_04_ov100_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.23896721005439758,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_05_ov000_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.006003879010677338,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_04_ov000_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.1551477462053299,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_04_ov000_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.1723993420600891,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_03_ov000_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.004780156537890434,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_01_ov000_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.16480481624603271,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_01_ov000_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.13167870044708252,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_04_ov000_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.15175342559814453,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_08_ov000_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.259696900844574,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_02_ov000_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.20284715294837952,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_08_ov025_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2618831694126129,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_07_ov025_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.051164813339710236,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_04_ov025_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2004932463169098,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_07_ov025_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.001790359616279602,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_08_ov025_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.23668162524700165,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_07_ov025_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.02254728600382805,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_04_ov025_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.14560918509960175,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_03_ov025_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.052718549966812134,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_01_ov025_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.22422578930854797,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_02_ov050_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.14017724990844727,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_07_ov050_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.05355141684412956,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_04_ov050_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.12321951985359192,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_03_ov050_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.0008147396147251129,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_08_ov050_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2100180834531784,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_01_ov050_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.19159157574176788,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_04_ov050_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.151458740234375,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_02_ov050_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.14233556389808655,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_08_ov050_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2743177115917206,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_03_ov075_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.019926216453313828,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_08_ov075_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.22463685274124146,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_06_ov075_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.008285176008939743,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_08_ov075_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2442047894001007,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_07_ov075_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.03094310685992241,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_08_ov075_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.22187268733978271,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_03_ov075_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": -0.007145941257476807,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_08_ov075_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.19881021976470947,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_08_ov075_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.25696036219596863,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_05_ov100_snr-5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.01897154562175274,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_04_ov100_snr-5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.14980953931808472,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_05_ov100_snr-5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.012559376657009125,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_08_ov100_snr+0_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2665462791919708,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_04_ov100_snr+0_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.16763657331466675,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_05_ov100_snr+0_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.0056530870497226715,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_08_ov100_snr+5_white.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.2575247883796692,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_02_ov100_snr+5_pink.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.14433228969573975,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  },
+  {
+    "recognition": "t_10_n_05_ov100_snr+5_babble.wav",
+    "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "max_sim": 0.047105997800827026,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "_note": "CAM++ 整段声纹 sim (无 diar 分离); 转写需主 venv DiCoW"
+  }
+]

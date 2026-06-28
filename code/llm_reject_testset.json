@@ -1,0 +1,190 @@
+[
+  {
+    "text": "请把客厅的空调温度调到二十六度",
+    "gold": "accept",
+    "source": "raw/target",
+    "name": "t_01"
+  },
+  {
+    "text": "小美小美，打开卧室的灯",
+    "gold": "accept",
+    "source": "raw/target",
+    "name": "t_02"
+  },
+  {
+    "text": "把电视的声音关小一点",
+    "gold": "accept",
+    "source": "raw/target",
+    "name": "t_03"
+  },
+  {
+    "text": "帮我定一个明天早上七点的闹钟",
+    "gold": "accept",
+    "source": "raw/target",
+    "name": "t_04"
+  },
+  {
+    "text": "打开扫地机器人开始清扫客厅",
+    "gold": "accept",
+    "source": "raw/target",
+    "name": "t_05"
+  },
+  {
+    "text": "把窗帘拉上一半",
+    "gold": "accept",
+    "source": "raw/target",
+    "name": "t_06"
+  },
+  {
+    "text": "启动空气净化器调成睡眠模式",
+    "gold": "accept",
+    "source": "raw/target",
+    "name": "t_07"
+  },
+  {
+    "text": "播放一首轻音乐",
+    "gold": "accept",
+    "source": "raw/target",
+    "name": "t_08"
+  },
+  {
+    "text": "打开热水器把水温调到四十五度",
+    "gold": "accept",
+    "source": "raw/target",
+    "name": "t_09"
+  },
+  {
+    "text": "把客厅的灯调成暖色最低亮度",
+    "gold": "accept",
+    "source": "raw/target",
+    "name": "t_10"
+  },
+  {
+    "text": "今天天气真不错，我们出去走走吧",
+    "gold": "reject",
+    "source": "raw/nontarget",
+    "name": "n_01"
+  },
+  {
+    "text": "这个电影我觉得挺好看的，推荐你也看看",
+    "gold": "reject",
+    "source": "raw/nontarget",
+    "name": "n_02"
+  },
+  {
+    "text": "你晚上想吃什么，我来做",
+    "gold": "reject",
+    "source": "raw/nontarget",
+    "name": "n_03"
+  },
+  {
+    "text": "明天的会议几点开始，我差点忘了",
+    "gold": "reject",
+    "source": "raw/nontarget",
+    "name": "n_04"
+  },
+  {
+    "text": "我刚看了一个很有趣的新闻",
+    "gold": "reject",
+    "source": "raw/nontarget",
+    "name": "n_05"
+  },
+  {
+    "text": "这个周末有什么安排吗",
+    "gold": "reject",
+    "source": "raw/nontarget",
+    "name": "n_06"
+  },
+  {
+    "text": "帮我倒杯水好吗，谢谢",
+    "gold": "reject",
+    "source": "raw/nontarget",
+    "name": "n_07"
+  },
+  {
+    "text": "那本书我看完了，写得真不错",
+    "gold": "reject",
+    "source": "raw/nontarget",
+    "name": "n_08"
+  },
+  {
+    "text": "把客厅空调制冷模式打开",
+    "gold": "accept",
+    "source": "synth/type9"
+  },
+  {
+    "text": "小美小美，把电视音量调大一点",
+    "gold": "accept",
+    "source": "synth/wakeword+type9"
+  },
+  {
+    "text": "关闭卧室所有灯光",
+    "gold": "accept",
+    "source": "synth/type9"
+  },
+  {
+    "text": "设个十分钟后提醒我关火的闹钟",
+    "gold": "accept",
+    "source": "synth/type9"
+  },
+  {
+    "text": "让扫地机回充电站",
+    "gold": "accept",
+    "source": "synth/type9"
+  },
+  {
+    "text": "打开客厅的暖风机",
+    "gold": "accept",
+    "source": "synth/type10_other_brand"
+  },
+  {
+    "text": "你给我滚开，烦死了",
+    "gold": "reject",
+    "source": "synth/type1_illegal"
+  },
+  {
+    "text": "这这这",
+    "gold": "reject",
+    "source": "synth/type4_asrerror"
+  },
+  {
+    "text": "嗯啊那个就是",
+    "gold": "reject",
+    "source": "synth/type4_asrerror"
+  },
+  {
+    "text": "妈，晚饭做好了叫我一声",
+    "gold": "reject",
+    "source": "synth/type5_chat"
+  },
+  {
+    "text": "这游戏真好玩再来一局",
+    "gold": "reject",
+    "source": "synth/type5_chat"
+  },
+  {
+    "text": "把空调调到四十度",
+    "gold": "reject",
+    "source": "synth/type6_unreasonable"
+  },
+  {
+    "text": "热水器水温调到一百度",
+    "gold": "reject",
+    "source": "synth/type6_unreasonable"
+  },
+  {
+    "text": "你今天有没有好朋友呀",
+    "gold": "reject",
+    "source": "synth/type7_ambiguous"
+  },
+  {
+    "text": "推荐一下江苏的小吃",
+    "gold": "reject",
+    "source": "synth/type7_ambiguous_query"
+  },
+  {
+    "text": "汪汪汪",
+    "gold": "reject",
+    "source": "synth/type3_nonhuman"
+  }
+]

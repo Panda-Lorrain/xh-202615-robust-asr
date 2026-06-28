@@ -1,0 +1,289 @@
+{
+  "metrics": {
+    "precision": 0.7826,
+    "recall": 1.0,
+    "f1": 0.878,
+    "accuracy": 0.8529,
+    "tp": 18,
+    "fp": 5,
+    "fn": 0,
+    "tn": 11,
+    "n": 34,
+    "secs_total": 74.0,
+    "secs_per_item": 2.177
+  },
+  "rows": [
+    {
+      "text": "请把客厅的空调温度调到二十六度",
+      "gold": "accept",
+      "pred": "accept",
+      "entity": "空调",
+      "action": "调到",
+      "reason": "指令中包含了明确的家电实体（空调）和控制动作（调到），且参数（26度）在合理范围内。"
+    },
+    {
+      "text": "小美小美，打开卧室的灯",
+      "gold": "accept",
+      "pred": "accept",
+      "entity": "灯",
+      "action": "打开",
+      "reason": "文本明确指出了要操作的对象（卧室的灯）和动作（打开）。"
+    },
+    {
+      "text": "把电视的声音关小一点",
+      "gold": "accept",
+      "pred": "accept",
+      "entity": "电视",
+      "action": "关小",
+      "reason": "文本中提到了电视并且有明确的控制意图（关小声音）"
+    },
+    {
+      "text": "帮我定一个明天早上七点的闹钟",
+      "gold": "accept",
+      "pred": "accept",
+      "entity": "闹钟",
+      "action": "定时",
+      "reason": "文本中提到了具体的定时时间，符合设定闹钟的要求。"
+    },
+    {
+      "text": "打开扫地机器人开始清扫客厅",
+      "gold": "accept",
+      "pred": "accept",
+      "entity": "扫地机器人",
+      "action": "启动",
+      "reason": "文本中没有明确指出清扫的时长或频率，但启动清扫行为是可以接受的。"
+    },
+    {
+      "text": "把窗帘拉上一半",
+      "gold": "accept",
+      "pred": "reject",
+      "entity": "窗帘",
+      "action": "拉上",
+      "reason": "没有指定拉上的程度，不满足参数合理性要求"
+    },
+    {
+      "text": "启动空气净化器调成睡眠模式",
+      "gold": "accept",
+      "pred": "reject",
+      "entity": "空气净化器",
+      "action": "启动",
+      "reason": "文本中提到了空气净化器且有明确的启动意图，但缺少调成睡眠模式的具体动作。"
+    },
+    {
+      "text": "播放一首轻音乐",
+      "gold": "accept",
+      "pred": "accept",
+      "entity": "音箱",
+      "action": "播放",
+      "reason": "文本中提到了音箱并且有播放的动作，但没有具体的歌曲名称或类型限制。"
+    },
+    {
+      "text": "打开热水器把水温调到四十五度",
+      "gold": "accept",
+      "pred": "reject",
+      "entity": "热水器",
+      "action": "调到",
+      "reason": "参数45度超出了热水器水温的正常范围"
+    },
+    {
+      "text": "把客厅的灯调成暖色最低亮度",
+      "gold": "accept",
+      "pred": "reject",
+      "entity": "灯",
+      "action": "调到",
+      "reason": "文本中没有明确的亮度参数，仅描述为最低亮度，但没有具体数值。"
+    },
+    {
+      "text": "今天天气真不错，我们出去走走吧",
+      "gold": "reject",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条文本是纯闲聊，没有提及任何家电实体或控制动作。"
+    },
+    {
+      "text": "这个电影我觉得挺好看的，推荐你也看看",
+      "gold": "reject",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条文本是用户的个人评价和推荐，没有涉及任何具体的家电实体或控制动作。"
+    },
+    {
+      "text": "你晚上想吃什么，我来做",
+      "gold": "reject",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条指令是与设备无关的闲聊内容，不是对设备发出的指令。"
+    },
+    {
+      "text": "明天的会议几点开始，我差点忘了",
+      "gold": "reject",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为与设备无关的闲聊，没有提及具体的家电实体或控制动作。"
+    },
+    {
+      "text": "我刚看了一个很有趣的新闻",
+      "gold": "reject",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条文本为个人的自言自语，没有涉及任何家电实体或控制动作。"
+    },
+    {
+      "text": "这个周末有什么安排吗",
+      "gold": "reject",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为非设备相关的闲聊内容，没有提及具体的家电实体或控制动作。"
+    },
+    {
+      "text": "帮我倒杯水好吗，谢谢",
+      "gold": "reject",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条指令不是对设备发出的指令，而是与设备无关的请求。"
+    },
+    {
+      "text": "那本书我看完了，写得真不错",
+      "gold": "reject",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条文本是用户的自言自语，没有提及任何家电实体或控制动作。"
+    },
+    {
+      "text": "把客厅空调制冷模式打开",
+      "gold": "accept",
+      "pred": "accept",
+      "entity": "空调",
+      "action": "打开",
+      "reason": "文本中提到了具体的家电实体（空调）和明确的控制意图（打开制冷模式）"
+    },
+    {
+      "text": "小美小美，把电视音量调大一点",
+      "gold": "accept",
+      "pred": "accept",
+      "entity": "电视",
+      "action": "调大",
+      "reason": "文本中提到了电视且有明确的控制意图（调大音量）"
+    },
+    {
+      "text": "关闭卧室所有灯光",
+      "gold": "accept",
+      "pred": "accept",
+      "entity": "灯光",
+      "action": "关闭",
+      "reason": "文本中提到了具体的家电实体（灯光）和明确的控制意图（关闭）。"
+    },
+    {
+      "text": "设个十分钟后提醒我关火的闹钟",
+      "gold": "accept",
+      "pred": "reject",
+      "entity": "闹钟",
+      "action": "定时",
+      "reason": "文本中没有提及具体的家电实体，且提醒关火的动作与现有家电设备的功能不匹配。"
+    },
+    {
+      "text": "让扫地机回充电站",
+      "gold": "accept",
+      "pred": "accept",
+      "entity": "扫地机器人",
+      "action": "回充电站",
+      "reason": "文本中提到了可被控制的家电（扫地机器人）以及明确的控制意图（回充电站）。"
+    },
+    {
+      "text": "打开客厅的暖风机",
+      "gold": "accept",
+      "pred": "accept",
+      "entity": "暖风机",
+      "action": "打开",
+      "reason": "文本中提到了客厅的暖风机且有明确的打开意图，但暖风机并非所有智能家居设备都支持，需具体设备支持。"
+    },
+    {
+      "text": "你给我滚开，烦死了",
+      "gold": "reject",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为非设备相关的人际交流内容，没有提及任何家电实体或控制动作。"
+    },
+    {
+      "text": "这这这",
+      "gold": "reject",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为无意义短句，没有提及具体的家电实体和控制动作。"
+    },
+    {
+      "text": "嗯啊那个就是",
+      "gold": "reject",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为自言自语，没有提及具体的家电实体和控制动作。"
+    },
+    {
+      "text": "妈，晚饭做好了叫我一声",
+      "gold": "reject",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为非对设备说的闲聊内容，没有提及具体的家电实体和控制动作。"
+    },
+    {
+      "text": "这游戏真好玩再来一局",
+      "gold": "reject",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条指令是用户与设备无关的闲聊内容，没有提及具体的家电实体或控制动作。"
+    },
+    {
+      "text": "把空调调到四十度",
+      "gold": "reject",
+      "pred": "reject",
+      "entity": "空调",
+      "action": "调到",
+      "reason": "参数不合理，空调温度不应超过正常范围。"
+    },
+    {
+      "text": "热水器水温调到一百度",
+      "gold": "reject",
+      "pred": "reject",
+      "entity": "热水器",
+      "action": "调到",
+      "reason": "参数不合理，水温超过正常范围"
+    },
+    {
+      "text": "你今天有没有好朋友呀",
+      "gold": "reject",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条指令为与设备无关的闲聊内容，不是对设备发出的指令。"
+    },
+    {
+      "text": "推荐一下江苏的小吃",
+      "gold": "reject",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条指令是用户与设备的闲聊内容，没有提及具体的家电实体或控制动作。"
+    },
+    {
+      "text": "汪汪汪",
+      "gold": "reject",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为纯噪音，没有提及任何家电实体或控制动作。"
+    }
+  ]
+}

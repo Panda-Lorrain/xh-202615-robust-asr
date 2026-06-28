@@ -209,3 +209,64 @@
 
 ## 🏠 边缘部署规划（T17，战略级）
 - 用户提出**终态目标是边缘部署**。产出 `边缘部署规划.md`：当前路线有轻量化种子（turbo 0.89G/RTF0.058 + wespeaker 6.6M 天生轻量）但缺系统性规划（目标硬件未定义、量化/蒸馏/ONNX/流式未排进行动地图）；建议新增 **W8 部署轻量化模块**（量化/蒸馏/ONNX导出/流式改造/硬件基准）；**待确认目标硬件**（家电 MCU / 边缘网关 / 本地服务器，算力差几个数量级）。记忆已存。
+
+---
+
+## 🎯 T18 三线 de-risk + 线A 一锤定音（2026-06-29，接手后多线铺开）
+
+> 用户选「多线并行铺开」：Workflow 三线 de-risk（SE增强/CAM++/W5-LLM），各建独立 venv 调研+脚本+CPU 验证，GPU 实验主线串行（8GB 单卡约束）。三线全部 feasibility=READY。
+
+### 线C W5-LLM 语义拒识（✅ 强阳性，拒识 40% 核心层）
+- 部署 Qwen2.5-3B-Instruct（6.17GB，独立 .venv_llm），Prompt 按出题方 #1 论文（arXiv:2512.10257 Midea AI Research）13 类拒识 schema + 自适应 CoT 四步。
+- **零样本 34 条测试集（16+/18-）**：**F1=0.878 / Precision=0.783 / Recall=1.0 / Accuracy=0.853**（GPU 74s）。vs 全 reject 基线 F1=0.69（+0.19）。
+- **Recall=1.0**：该拒全拒（fn=0）——最难 case 全对（空调40度/热水器100度参数荒谬、「这这这」「汪汪汪」乱码非人声、各类闲聊）。
+- 5 个误拒（fp）都是合法复杂指令（窗帘拉上一半/净化器睡眠模式/热水器45度/灯暖色最低亮度/十分钟后提醒关火）→ prompt 调优可解决；三路融合后声纹路纠正。
+- 三路融合接口已设计：`fuse_three_ways(llm_verdict, max_sim, stno_target_ratio, w=0.4/0.4/0.2)`。
+- 脚本 `code/llm_reject.py` + `build_llm_testset.py` + `llm_reject_testset.json` + `llm_reject_result.json`。
+
+### 线A SE 增强 一锤定音（✅ 部分阳性，验证瓶颈诊断）
+- 选型 DeepFilterNet3（8.7MB 权重，纯 CPU，450 条 50s）。独立 .venv_se。脚本 `code/se_denoise.py`（批量降噪 16k↔48k）+ `eval_se_cer.py`（CER 对比）。
+- **全集 450 条 baseline vs 降噪后 CER 对比**（`code/se_baseline.json`/`se_denoised.json`）：
+
+| 指标 | baseline | denoised | Δ | 结论 |
+|---|---|---|---|---|
+| **overall CER** | 4.2738 | 3.6545 | **−0.6194** | ✅ 降噪改善（瓶颈部分在音频质量） |
+| SNR −5 | 5.976 | 3.969 | **−2.006** | ✅ 低 SNR 大幅受益 |
+| SNR 0 | 4.092 | 3.277 | −0.815 | ✅ |
+| SNR +5 | 2.754 | 3.717 | **+0.963** | ❌ 高 SNR 过消除伤语音 |
+| overlap 0% | 6.198 | 3.828 | **−2.370** | ✅ 无重叠最大受益 |
+| overlap 25% | 3.933 | 4.537 | +0.604 | ❌ |
+| overlap 50% | 3.766 | 3.167 | −0.599 | ✅ |
+| overlap 75% | 3.313 | 3.201 | −0.111 | ✅ |
+| overlap 100% | 4.159 | 3.539 | −0.621 | ✅ |
+| **noise babble**（人声） | 8.596 | 4.398 | **−4.197** | ✅✅ 巨大改善（最贴真实场景） |
+| noise pink | 1.874 | 4.070 | **+2.196** | ❌❌ 稳态噪声过消除反伤 |
+| noise white | 2.352 | 2.495 | +0.143 | ❌ 微伤 |
+| **diar-fail 数** | 33 | **0** | — | ✅✅ 降噪后 diarization 完全稳定 |
+
+- **诊断结论**：① 瓶颈**部分**在音频质量（Δ−0.62），SE 前置有效，**验证上个 agent "瓶颈转移到 Whisper 带噪转写" 诊断**；② 效果**高度依赖噪声类型**——babble（人声干扰，最贴题目真实场景）Δ−4.20 巨大改善（降噪大减 Whisper 幻觉），pink/white（稳态）过消除反伤；③ **diar-fail 33→0** 是强稳定性信号（即使 CER 改善有限，diar 稳定本身值得）；④ **CER 绝对值仍极高（3.65）**——瓶颈多元：重叠分离死区（单通道）+ Whisper 中文带噪能力 + 声纹误拒，SE 不是银弹。
+- CER>1 说明 hyp 超长（Whisper 幻觉/重复），babble 噪声最易触发（把人声噪声听成语音），降噪后幻觉大减。
+
+### 线B CAM++（⚠️ READY 但有证伪信号，决定性实验待做）
+- sherpa-onnx（campplus.onnx 512d）**彻底绕过 modelscope import 挂起**（import 即时返回，ONNX runtime 自带不碰 transformers）。独立 .venv_campp。
+- **但「原生中文带噪鲁棒性」假设——证据不支持**：① 8 对样本 margin 仅 +0.128（区分度中等）；② 450 矩阵整段 sim=0.121 **低于** wespeaker 0.218（**但不公平**：CAM++ 无 diar 整段 vs wespeaker per-speaker 分离后抽 emb）。
+- 当前用的是 **VoxCeleb 版 CAM++**，非原生中文（要原生中文应换 CN-Celeb 训练的 wespeaker-cnceleb）。
+- **决定性实验未做**：CAM++ per-speaker 公平对照（CAM++ 也走 diar 分离）——判定 CAM++ 是否值得换主线的唯一实验。
+- 替代价值：sherpa-onnx OfflineSpeakerDiarization 一条龙（纯 ONNX，边缘部署友好）可作 DiariZen 轻量替代。
+- 脚本 `code/test_campp_load.py`/`campp_vs_wespeaker*.py`/`campp_margin_diag.py`/`campp_enroll_full.py`。
+
+### 聚焦建议（基于三线 + 线A 结果）
+1. **SE 前置条件化落地（快赢，已验证）**：babble/低 SNR 档启用 SE，pink/white 用 `--atten-lim-db=6` 限制过消除；diar-fail 33→0 是 pipeline 稳定性强证，值得固化进主线。
+2. **CAM++ per-speaker 公平对照（中，定论 CAM++ 去留）**：当前证伪信号基于不公平对比，需公平对照定论；若仍≤wespeaker 则维持 wespeaker，sherpa-onnx 留作边缘部署备用。
+3. **中文家居微调（重，攻 Whisper 中文带噪）**：CER 绝对值高的主因之一，长期攻坚。
+4. **SE-DiCoW 接入（中，攻 100% 重叠死区）**：enrollment 条件化跳过"先分离再选 target"。
+- 3/4 是重投入，取决于真实数据/通道数（待确认）。
+
+### 数据增强暂缓决策（用户定）
+- 用户问能否解决「程序噪声非真实环境音 + TTS 分布≠真实远场」两个局限 → 评估：局限1（ESC-50）可换 MUSAN/DEMAND 实质解决；局限2（TTS）可 RIR 远场卷积 + AISHELL 真实语料大幅改善（但 100% 等于比赛数据需真实数据）。
+- **用户选「暂缓·专注三线」**：数据增强方案已评估存档（轻量=MUSAN/DEMAND+RIR / 重=+AISHELL），等三线结果出来再定力度。
+
+### 关键技术坑（后续复用）
+- **HF 权重下载**：`huggingface_hub` snapshot_download 即使设 HF_ENDPOINT=hf-mirror 仍失败 → 改用 `curl -sSL 经代理(7897)+hf-mirror直链`（线C Qwen 6.17GB 此法下全）。
+- **HF csukuangfj 仓 401**：代理鉴权注入，易误判仓不存在 → 改 hf-mirror 直连无代理。
+- **新增 venv**：`.venv_se`(code/) / `.venv_campp`(code/) / `.venv_llm`(项目根)，已加 .gitignore。

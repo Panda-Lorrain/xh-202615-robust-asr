@@ -7,6 +7,7 @@ __pycache__/
 
 # ===== 虚拟环境 =====
 .venv/
+.venv_*/
 venv/
 env/
 .uv/
@@ -49,5 +50,6 @@ pipeline_out/
 
 # ===== 数据集: 可重建的大批量 wav 不入 git, 保 raw TTS 种子(限时免费产物) =====
 test_wav/dataset/final/
+test_wav/dataset/se_denoised/
 test_wav/dataset/eval_subset/
 test_wav/dataset/env_noise_dl/

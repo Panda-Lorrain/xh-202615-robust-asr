@@ -66,6 +66,8 @@
 - 2026-06-28 T16：🛡️ **中文 STNO 拒识验证**(拒识40%路线补全)：zh_target_01 上 target STNO→15字正确转写(CER=0)、non-target STNO→**0字拒识成功**。FDDT 内建拒识机制中文证实(与英文 EN2002a 一致;非后处理,而是 `fddt_init=disparagement` 抑制式初始化把非目标帧压零)。脚本 `zh_stno_reject.py`,详见 RESULTS.md。
 - 2026-06-28~29 T17：🎯 **Part1 enrollment→wespeaker 锁定唯一 target**(组合主线核心缺口补全):`enroll_infer.py`(方案B独立脚本,复用 diar._embedding 抽256d声纹+余弦匹配+构造STNO+DiCoW只转target+兜底拒识,不动pipeline.py向后兼容)。**干净场景验证成功**(同人sim0.816→转写15字CER=0 / 不同人0.035→拒识空)。批量15条(题目分布)发现带噪sim退化0.05-0.48全误拒→**噪声是声纹退化主因**,多speaker选择偶反转→**CAM++有了数据驱动引入理由**(wespeaker中文+噪退化)。同日:📦数据集(mimo-tts 21条raw+build_dataset 450条矩阵,ESC-50下载失败fallback程序噪)/🔧fork patch固化(repro/幂等校验EXIT0)/🏠边缘部署规划(用户提终态边缘部署,产出边缘部署规划.md+W8建议+待确认硬件,记忆已存)。详见RESULTS.md。
 
+- 2026-06-29 T18：🔁 **新会话接手**（用户授权按 PROGRESS 进度接手）。核验地基完好(torch2.5.1+cu124/权重/12脚本/repro/450条manifest全在)。用户选**多线并行铺开**：Workflow 三线 de-risk(SE增强/CAM++/W5-LLM)全 READY。GPU 串行实验：线C W5-LLM 拒识零样本 34 条 **F1=0.878/Recall=1.0**(强阳,拒识40%核心层)；线A SE增强一锤定音 DeepFilterNet3 降噪后 CER **4.27→3.65(Δ−0.62)**, babble(人声)Δ−4.20 巨大/pink 反伤, **diar-fail 33→0**(diar完全稳定), **验证瓶颈部分在音频质量**；线B CAM++ 证伪信号(整段 sim0.121, 不公平, per-speaker 公平对照待做)。新增独立 venv .venv_se/.venv_campp/.venv_llm。数据增强暂缓(用户定)。详见 RESULTS.md T18。下步 P0: SE条件化落地/CAM++公平对照/中文微调/SE-DiCoW。
+
 ## ✅ 完整 pipeline 已跑通（2026-06-28 T14，从 90% → 100%）
 **最后一块 wespeaker 补齐 + from_pretrained patch 后，端到端打通**：DiariZen diarization → STNO mask → DiCoW 真 target-speaker 转写。EN2002a_30s 正确分离 4 说话人并各自转写（Speaker 3=主说话人，含 "yeah yeah but i do not know about you..." 全段）。**从 minimal 推理(手构造全-target STNO)升级到完整端到端(真 diarization + 真 target-speaker)**。
 

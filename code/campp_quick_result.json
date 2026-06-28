@@ -1,0 +1,11 @@
+{
+  "CAM++": {
+    "冰糖t_01干净(同人)": 0.465175986289978,
+    "冰糖t_01+白噪+5dB": 0.2029310166835785,
+    "冰糖t_01+白噪-5dB": 0.19664303958415985,
+    "苏打n_01干净(异人)": 0.48764750361442566
+  },
+  "verdict_note": "CAM++ 单独结果。wespeaker 对照需主 venv 跑 campp_vs_wespeaker_wespeaker.py (主 .venv 有 DiariZen._embedding)。主线 wespeaker 450 矩阵均 sim=0.218。",
+  "cp_noise_drop": 0.26224496960639954,
+  "cp_margin": -0.022471517324447632
+}

@@ -1,7 +1,11 @@
-"""快速验证 CAM++ vs wespeaker 声纹鲁棒性假设（中文+噪声）。T17 实验。
+"""快速验证 CAM++ vs wespeaker 声纹鲁棒性假设(中文+噪声)。T17 实验。
 
-不做 diarization/转写, 聚焦声纹质量: 对 enrollment + 各样本整段抽 emb, 比余弦 sim。
-若 CAM++ 带噪 sim 衰减更小 + 同人/不同人区分更好 → 假设成立, 值得换用 + 完整对比。
+CAM++ 加载方式 = sherpa-onnx(方案B, 隔离 .venv_campp, 不碰 transformers, ONNX runtime 自带)。
+  解了 modelscope 1.37+Windows+torch 挂起问题。
+  模型 = Wespeaker/wespeaker-voxceleb-campplus (voxceleb_CAM++.onnx, 512d, 已加 sherpa meta)。
+
+接口对齐 wespeaker: 输入 wav(np.float32@16k) → L2 归一化 emb 向量。
+  wespeaker(主线 DiariZen._embedding) 抽 256d; CAM++ 抽 512d —— 维度不同但接口同形(归一化向量, 余弦内积即可比)。
 
 样本(enrollment=冰糖长干净):
   - 冰糖 t_01 干净          → 同人干净, 两模型都应高 sim
@@ -9,62 +13,43 @@
   - 冰糖 t_01 + 白噪 -5dB   → 同人重噪
   - 苏打 n_01 干净          → 异人, 两模型都应低 sim
 
-环境: source code/setenv.sh && export HF_HUB_OFFLINE=1
-      code/.venv/Scripts/python.exe code/campp_vs_wespeaker.py
+运行(独立 venv, 不碰主 .venv):
+  E:/midea_target_asr/code/.venv_campp/Scripts/python.exe code/campp_vs_wespeaker.py
 """
-import os, sys, tempfile, json
+import os, sys, json
 import numpy as np
 import librosa
-import torch
-import torch.nn.functional as F
-import soundfile as sf
+import sherpa_onnx
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _ROOT = os.path.dirname(_HERE)
-DICOW_INF = os.path.join(_ROOT, "code", "DiCoW-inference")
-for _p in (DICOW_INF, os.path.join(DICOW_INF, "DiariZen"), os.path.join(DICOW_INF, "DiariZen", "pyannote-audio")):
-    if os.path.isdir(_p):
-        sys.path.insert(0, _p)
-sys.path.insert(0, _HERE)
+CAMPP_ONNX = "E:/hf_cache/campplus/campplus.onnx"
 
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-
-# wespeaker: 复用 DiariZen._embedding(已验证接口)
-print("[load] DiariZen (wespeaker via _embedding)")
-from diarizen.pipelines.inference import DiariZenPipeline
-diar = DiariZenPipeline.from_pretrained("E:/hf_cache/diarizen-wavlm-large-s80-md").to(device)
-
-# campp: modelscope
-print("[load] CAM++ (modelscope, 首次会下载 ~29MB)")
-from modelscope.pipelines import pipeline as ms_pipeline
-from modelscope.utils.constant import Tasks
-sv = ms_pipeline(task=Tasks.speaker_verification, model='iic/speech_campplus_sv_zh-cn_16k-common')
-
-
-def emb_wespeaker(wav_np):
-    w = torch.from_numpy(np.ascontiguousarray(wav_np.astype(np.float32))).to(device)
-    if w.dim() == 1:
-        w = w[None, None]
-    with torch.no_grad():
-        e = diar._embedding(w)            # (1,256) np
-    return torch.as_tensor(e, dtype=torch.float32).squeeze(0)
+print(f"[load] CAM++ (sherpa-onnx, 模型已含 meta) {CAMPP_ONNX}")
+_cfg = sherpa_onnx.SpeakerEmbeddingExtractorConfig(model=CAMPP_ONNX, num_threads=2, debug=False)
+_ext = sherpa_onnx.SpeakerEmbeddingExtractor(_cfg)
+print(f"    loaded, dim={_ext.dim}")
 
 
 def emb_campp(wav_np):
-    with tempfile.NamedTemporaryFile(suffix='.wav', delete=False) as f:
-        tmp = f.name
-    sf.write(tmp, wav_np.astype(np.float32), 16000)
-    res = sv(tmp, output_embs=True)
-    os.unlink(tmp)
-    # 接口容错: res 可能 dict/list, emb 在 'embs' 键
-    if isinstance(res, dict) and 'embs' in res:
-        e = res['embs']
-    elif isinstance(res, list) and isinstance(res[0], dict) and 'embs' in res[0]:
-        e = res[0]['embs']
-    else:
-        e = res
-    e = np.array(e).reshape(-1)
-    return torch.as_tensor(e, dtype=torch.float32)
+    """wav(np.float32@16k) → L2归一化 emb (np.float32, dim)。接口对齐 wespeaker。"""
+    w = np.ascontiguousarray(wav_np.astype(np.float32))
+    st = _ext.create_stream()
+    st.accept_waveform(16000, w)
+    st.input_finished()
+    e = np.asarray(_ext.compute(st), dtype=np.float32)   # (dim,)
+    n = np.linalg.norm(e) + 1e-9
+    return e / n   # 已归一化, 内积即余弦
+
+
+def cos(a, b):
+    return float(np.dot(a, b))   # a,b 已归一化
+
+
+# wespeaker emb: 本 venv 无 DiariZen/torch GPU pipeline, 不能直接抽。
+# → CAM++ 单独算, 与主线 enroll JSON 的 wespeaker 0.218 均值 / 450 矩阵结果对照(见 campp_450 命令)。
+# 此脚本聚焦"快速鲁棒性信号"(干净/带噪/异人 4 样本 sim), wespeaker 对照值由主 venv 跑 campp_vs_wespeaker_wespeaker.py。
+WESPEAKER_PLACEHOLDER = None  # 见下方对照说明
 
 
 from simulate_pipeline import add_noise
@@ -81,31 +66,31 @@ t01_snrn5 = add_noise(t01, rng.standard_normal(len(t01)).astype(np.float32), -5)
 samples = [("冰糖t_01干净(同人)", t01), ("冰糖t_01+白噪+5dB", t01_snr5),
            ("冰糖t_01+白噪-5dB", t01_snrn5), ("苏打n_01干净(异人)", n01)]
 
-results = {"wespeaker": {}, "CAM++": {}}
-for model, fn in [("wespeaker", emb_wespeaker), ("CAM++", emb_campp)]:
-    e_en = F.normalize(fn(enroll), dim=-1)
-    for nm, w in samples:
-        e = F.normalize(fn(w), dim=-1)
-        results[model][nm] = float(torch.dot(e_en, e))
+results = {"CAM++": {}}
+e_en = emb_campp(enroll)
+print(f"[enrollment] {os.path.basename(ENROLL)} ({len(enroll)/16000:.1f}s) → emb {e_en.shape}")
+for nm, w in samples:
+    e = emb_campp(w)
+    results["CAM++"][nm] = cos(e_en, e)
 
-print(f"\n{'样本':<24} {'wespeaker':>11} {'CAM++':>8}")
-print("-" * 46)
+print(f"\n{'样本':<24} {'CAM++(512d)':>12}")
+print("-" * 38)
 for nm, _ in samples:
-    print(f"{nm:<24} {results['wespeaker'][nm]:>11.3f} {results['CAM++'][nm]:>8.3f}")
+    print(f"{nm:<24} {results['CAM++'][nm]:>12.3f}")
 
-ws_same = results['wespeaker']['冰糖t_01干净(同人)']
 cp_same = results['CAM++']['冰糖t_01干净(同人)']
-ws_drop = ws_same - results['wespeaker']['冰糖t_01+白噪+5dB']
+cp_diff = results['CAM++']['苏打n_01干净(异人)']
 cp_drop = cp_same - results['CAM++']['冰糖t_01+白噪+5dB']
-print(f"\n同人干净 sim: wespeaker={ws_same:.3f}  CAM++={cp_same:.3f}")
-print(f"异人干净 sim: wespeaker={results['wespeaker']['苏打n_01干净(异人)']:.3f}  CAM++={results['CAM++']['苏打n_01干净(异人)']:.3f}")
-print(f"+5dB 带噪 sim 衰减: wespeaker={ws_drop:.3f}  CAM++={cp_drop:.3f}  (越小越鲁棒)")
-verdict = "✅ CAM++ 带噪更鲁棒(假设成立, 值得换用+完整对比)" if cp_drop < ws_drop - 0.02 else \
-          ("wespeaker 更鲁棒或持平(假设不成立)" if ws_drop < cp_drop - 0.02 else "两者接近")
-print(f"结论: {verdict}")
+print(f"\nCAM++ 同人干净 sim: {cp_same:.3f}")
+print(f"CAM++ 异人干净 sim: {cp_diff:.3f}")
+print(f"CAM++ +5dB 带噪 sim 衰减: {cp_drop:.3f}  (越小越鲁棒)")
+print(f"CAM++ 同人-异人 区分度(margin): {cp_same - cp_diff:+.3f}  (越大越能分同人/异人)")
 
-results["verdict"] = verdict
-results["ws_noise_drop"] = ws_drop
+results["verdict_note"] = ("CAM++ 单独结果。wespeaker 对照需主 venv 跑 campp_vs_wespeaker_wespeaker.py "
+                            "(主 .venv 有 DiariZen._embedding)。主线 wespeaker 450 矩阵均 sim=0.218。")
 results["cp_noise_drop"] = cp_drop
-json.dump(results, open(os.path.join(_HERE, 'campp_vs_wespeaker_result.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
-print(f"\n[done] → code/campp_vs_wespeaker_result.json")
+results["cp_margin"] = cp_same - cp_diff
+out = os.path.join(_HERE, 'campp_quick_result.json')
+json.dump(results, open(out, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
+print(f"\n[done] → {out}")
+print("[提示] 主 .venv 跑 wespeaker 对照: 见 code/campp_vs_wespeaker_wespeaker.py")
