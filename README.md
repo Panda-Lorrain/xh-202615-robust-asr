@@ -197,24 +197,51 @@ python stno_experiment.py
 
 ---
 
-## 📅 开发进度
+## 📅 项目推进时间线
 
-> W 编号对应 `00_技术路线总纲与行动地图.md` 行动地图（P0–P3）
+> 手机查看友好版。详细日志 [`PROGRESS.md`](PROGRESS.md)，结果 [`RESULTS.md`](RESULTS.md)。
 
-- [x] **W1**: DiCoW baseline 最小推理跑通（RTF=0.058, params 0.89G, GPU 峰值 2.13GB）
-- [x] **W1**: STNO 控制实验验证（target→转 / silence→跳 / non-target→0字拒识）
-- [x] **W2**: 数据仿真 pipeline（`simulate_pipeline.py`：SNR −5~5dB + 重叠 0–100% + 批量）
-- [x] **W6**: 评测脚本（`eval_metrics.py`：CER / RTF / 拒识 P·R·F1）
-- [ ] **W2**: 完整 DiariZen pipeline（依赖/namespace/circular 已全解，90% 通，差 wespeaker 权重）
-- [ ] 中文音频测试（edge-tts SSL 受阻，改用 mimo-tts）
-- [ ] **W3**: Personal VAD 前端（STNO mask 真实来源）
-- [ ] **W4**: enrollment 声纹（CAM++）
-- [ ] **W5**: LLM 拒识系统（Qwen-2.5-3B）
-- [ ] **W7**: 接入题目给定 enrollment
-- [ ] **D1/D2**: 数据增强 + 中文家居微调
-- [ ] **D5**: 效率优化（TS-RNNT 形态 / 量化 / 流式）
+### ✅ 已完成（06-27 → 06-30）
 
-详见 [`PROGRESS.md`](PROGRESS.md)。
+| 日期 | 阶段 | 关键产出 |
+|---|---|---|
+| 06-27 | W1 minimal 推理 | DiCoW 跑通：RTF=0.058 / 0.89G params / 峰值 2.13GB，解除"零实测"红线 |
+| 06-27 | STNO 机制验证 | target→转 / silence→跳 / non-target→0字拒识（FDDT 内建拒识）|
+| 06-27 | W6 评测 + W2 仿真 | `eval_metrics.py`(CER/RTF/拒识) + `simulate_pipeline.py`(SNR+重叠矩阵) |
+| 06-28 | **T14** 完整端到端 pipeline | diar+STNO+DiCoW 真 target-speaker 转写，PIPELINE_EXIT=0 |
+| 06-28 | 中文 CER=0 + 重叠诊断 | mimo-tts 合成；重叠 0/50/100% → CER 0.00/0.13/1.00（100% 单通道死区）|
+| 06-28 | **T17** enrollment 锁定 target | `enroll_infer.py` 干净场景 sim0.816/CER=0；450 条画像 87%拒/4%正确 |
+| 06-29 | **T18** 三线 de-risk | SE增强(CER 4.27→3.65) / CAM++证伪(维持 wespeaker) / LLM拒识 F1=0.878 |
+| 06-29 | **T19** 集成 + langfix 修复 | `fuse_eval.py` 真实组合指标；修 DiCoW language 死代码 bug（英文 90%→72%）|
+| 06-30 | **T20** SE 条件化 post-fix 重评 | =6 优于 =0（最优精细 2.022）；babble 归因深化（diar 误检+STNO 崩）|
+
+### 🔄 当前重心（2026-06-30 起：研究 → 交付）
+
+对照官方要求，**重心从"仿真性能深挖"转向"交付物标准化 + 真实评测"**：
+
+- ⏳ **等测试集 A**（报名后发邮箱）——到手即用真 A 评测，取代仿真 450 条
+- 🔧 **推理脚本标准化**（不依赖 A）：`submit_infer.py` 吃 enrollment+recognition → `result.json` + `timing.json`
+- 📄 **设计报告 / 使用说明**（不依赖 A）：00-03 文档 + T14-T20 实验 → 比赛格式
+- ⚡ **L20 耗时方案**：脚本显存自适应（48GB 大 batch）+ 租 AutoDL L40 验证
+
+### ⏭ 未来里程碑
+
+| 里程碑 | 预估 | 依赖 |
+|---|---|---|
+| 推理脚本标准化（json+耗时）| 1-2 天 | 无 |
+| 设计报告 + 使用说明 | 2-3 天 | 无 |
+| 测试集 A 真实评测 | 1-2 天 | **测试集 A** |
+| L20/L40 耗时验证 | 1 天 | 租云 |
+| 测试报告 | 1-2 天 | 真实 A 结果 |
+| **作品提交** | — | ≤ **2026-09-05** |
+
+### 📋 官方交付物清单
+
+- [ ] 模型权重（DiCoW + diarizen + wespeaker + Qwen-2.5-3B）
+- [ ] 推理脚本（python，吃 A → json 结果）
+- [ ] json 测试结果 + 运行耗时
+- [ ] 技术设计方案 + 测试验证方案 + 使用说明
+- 评分：CER 40% / RR 40% / 效率 20%（L20 GPU）
 
 ---
 

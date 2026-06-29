@@ -16,6 +16,25 @@
 
 ---
 
+## 🔄 工作重心转变（2026-06-30，对照官方要求后）—— 下个 agent 必读
+
+**从「仿真性能深挖 / 瓶颈研究」转向「交付物标准化 + 真实评测」**。
+
+对照官方首页要求，发现重心偏移：比赛评测**真实测试集 A** 上的 CER/RR/耗时（L20 GPU），而 T17-T20 约 80% 精力在 450 条仿真数据上深挖（精细策略 2.022、babble 归因等结论对真实 A 未必泛化）。
+
+**未来一段时间重心（按优先级）**：
+1. ⏳ **等测试集 A**（报名后发邮箱）——到手即用真 A 评测，取代仿真 450 条
+2. 🔧 **推理脚本标准化**（不依赖 A）：`submit_infer.py` 吃 enrollment+recognition → `result.json` + `timing.json`
+3. 📄 **设计报告 + 使用说明**（不依赖 A）：00-03 文档 + T14-T20 实验 → 比赛格式
+4. ⚡ **L20 耗时方案**：脚本显存自适应（48GB 大 batch）+ 租 AutoDL L40 验证（官方 L20 评测效率 20%；本机仅 RTX 4060 8GB）
+5. 📊 **测试报告**：真实 A 的 CER/RR/分档 + 端到端耗时（当前端到端耗时空缺，只测过 minimal RTF=0.058）
+
+**官方交付物**：模型 + 推理脚本 + json 结果 + 运行耗时 + 设计报告 + 测试报告 + 使用说明。提交截止 **2026-09-05**。
+
+**不要再做的事**：在仿真数据上继续深挖性能/归因（边际收益递减，结论可能不泛化）——详见 memory `stop-digging-on-sim-data`、`l20-eval-hardware`。T17-T20 的仿真深挖告一段落。
+
+---
+
 ## 🆕 T19 速览（2026-06-29 端到端集成 + 真实组合指标）
 
 **做了什么**：`code/fuse_eval.py`（核心）把 **SE条件化 → 声纹enrollment锁定target(wespeaker) → DiCoW(Whisper-turbo+FDDT)转写 → LLM拒识(Qwen2.5-3B) → 多策略融合** 串成单一分阶段 pipeline（多 venv 编排），450 集跑出**首个真实组合指标**。配套：`llm_reject.py --infer-json`、`enroll_infer.py` 加 `stno_target_ratio`、`build_reject_set.py`（72条target缺席）、`noise_classify.py`（噪声估计器）、`diag_transcript.py`+`test_zh_force.py`（诊断+实验）。
