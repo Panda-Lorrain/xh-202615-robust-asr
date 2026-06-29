@@ -1,7 +1,7 @@
 # Agent 交接文档（XH-202615 美的目标说话人 ASR）
 
 > **下个 agent 第一时间读此文件 → CLAUDE.md → PROGRESS.md → RESULTS.md → 边缘部署规划.md → 项目阶段盘点.md**
-> 更新：2026-06-29（T19）。T18 三线各自验证但**未集成**→ 用户选「集成三线+真实组合指标」→ `fuse_eval.py` 串成单一 pipeline 跑出真实组合指标，**瓶颈精准锁定=Whisper babble 英文幻觉（非融合/拒识）**。**先读下方🆕 T19 速览**，完整数字见 RESULTS.md T19。
+> 更新：2026-06-29（T19，含对抗审查后归因修正）。T18 三线各自验证但**未集成**→ 用户选「集成三线+真实组合指标」→ `fuse_eval.py` 串成单一 pipeline 跑出真实组合指标。**对抗审查发现 + 修复了一个 critical bug**：DiCoW `language="zh"` 死代码失效致 90% 出英文（已修，english 90%→72%），但残留瓶颈=Whisper 硬噪声转写质量（需微调/SE-DiCoW）。**先读下方🆕 T19 速览**，完整数字见 RESULTS.md T19。
 
 ---
 
@@ -9,11 +9,12 @@
 
 **做了什么**：`code/fuse_eval.py`（核心）把 **SE条件化 → 声纹enrollment锁定target(wespeaker) → DiCoW(Whisper-turbo+FDDT)转写 → LLM拒识(Qwen2.5-3B) → 多策略融合** 串成单一分阶段 pipeline（多 venv 编排），450 集跑出**首个真实组合指标**。配套：`llm_reject.py --infer-json`、`enroll_infer.py` 加 `stno_target_ratio`、`build_reject_set.py`（72条target缺席）、`noise_classify.py`（噪声估计器）、`diag_transcript.py`+`test_zh_force.py`（诊断+实验）。
 
-**决定性发现（瓶颈重定）**：
+**决定性发现（瓶颈重定，含对抗审查后的归因修正）**：
 - LLM 拒 **449/450（99.8%）**，最优 correct_rate **仅 6-9%** → **融合/阈值旋钮无解**（LLM 不是太严——34条合成测 F1=0.878 健康，是转写垃圾）。
-- 根因：**63% 转写 CER≥2（garbage），多为英文幻觉**——Whisper-large-v3-turbo 在 babble 噪声下中文语言漂移→英文（white 噪声 ov0 反而 33% 优秀，CER 0-0.4）。
-- `test_zh_force.py` 排除 initial_prompt（反而更差：前缀污染+重复循环）。
-- **结论**：瓶颈**铁定在 Whisper 转写质量（babble 英文幻觉），不在融合/拒识**。真实提升杠杆=①中文家居微调（治本但重）②SE-DiCoW（enrollment条件化攻重叠+babble死区）③更强babble SE——都需重投入，**待真实数据/通道数确认**。
+- ⚠️ **归因修正**：初版把英文幻觉判为"Whisper babble 模型漂移"是**错的**。Workflow 对抗审查逐行核 `generation.py` + 全量数据发现真因是 **DiCoW language 强制死代码 bug**——`language="zh"` 被静默忽略→`detect_language` 从退化音频误检英文→**450 集 90%(407) 输出英文**。**已打补丁修复**（`code/apply_dicow_langfix.py`，幂等；⚠️补丁在 HF cache，**cache 清了须重打此脚本**；注：DiCoW-inference/ 是嵌套 git 仓库，其 repro/ 内同名脚本无法被父仓库跟踪，故可跟踪副本放 code/ 根）。
+- **修复非银弹（诚实）**：全量 english 90%→72%（chinese 39→125，3 倍），good<0.5 5.8%→7.8%（+9 条），raw CER 3.65→3.54（仅 −0.11）。简单条件（white/pink）从英文→正确中文；**难条件（babble/重叠/低SNR）即使强制中文也是错字垃圾** → 残留瓶颈=Whisper 硬噪声鲁棒性。
+- `test_zh_force.py` 排除 initial_prompt（反而更差：前缀污染+重复循环）；三路融合现已在 450 跑通（enroll_regen 带 stno）但仍无济（转写垃圾）。
+- **结论（两层瓶颈）**：① language bug（**已修**，必要但不充分）② Whisper 硬噪声转写质量（**残留，主导**，需微调/SE-DiCoW）。真实提升杠杆=①中文家居微调 ②SE-DiCoW（enrollment条件化攻重叠+babble死区）③更强babble SE——都需重投入，**待真实数据/通道数确认**。
 
 **两个强阳交付**：
 - ✅ **SE 条件化可部署**：`noise_classify.py` 谱平坦度估计器 **99.78% 准确**（white/pink/babble 三类谱平坦度无重叠），**可部署 CER 2.82≈oracle 2.82**（不再依赖 manifest noise_type，测试时可估）。
@@ -21,7 +22,7 @@
 
 **新 P0（集成后重定）**：① 中文家居微调（攻 Whisper babble 英文幻觉，治本但重）② SE-DiCoW 接入（攻重叠+babble死区）③ **确认通道数/真实数据**（决定空间路线+微调数据）。**融合框架已就绪，转写质量上去即生效**——组合主线工程闭环成立，下限取决于 Whisper 带噪中文能力。
 
-**待办低优先**：450 集三路融合重跑（带 stno，因转写垃圾 CER 结论不变暂缓）；真实噪声再校准噪声估计器（合成噪声谱干净，真实会差）。
+**待办（下一棒）**：① **SE条件化(可部署) post-fix 重跑**——se0 已重跑(语言修复后 raw CER 3.54/7.8% good)，conditional(pink→=6) post-fix 未跑（预期 ~2.7，可选）；② 中文家居微调（攻残留 Whisper 硬噪声转写，治本）；③ SE-DiCoW 接入（攻重叠+babble死区）；④ 真实噪声再校准 noise_classify（合成噪声谱干净，真实会差）；⑤ **确认通道数/真实数据**（决定空间路线+微调数据，当务之急）。融合框架已就绪，转写质量上去即生效。
 
 ---
 

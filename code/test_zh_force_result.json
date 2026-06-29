@@ -4,18 +4,18 @@
     "snr": -5,
     "noise": "white",
     "ref": "请把客厅的空调温度调到二十六度",
-    "A_zh": "tune by clipping the central wind beat by balance will be",
-    "A_zh_cer": 3.133,
-    "B_zh+prompt": "以下是普通话的句子。请把特定的听到温度, 把你尽力比",
-    "B_zh+prompt_cer": 1.333
+    "A_zh": "先把特定的清潔溫度 超大一層",
+    "A_zh_cer": 0.8,
+    "B_zh+prompt": "以下是普通话的句子。请把特定的清朝温度调到一条约。",
+    "B_zh+prompt_cer": 1.2
   },
   {
     "file": "t_02_n_04_ov000_snr-5_white.wav",
     "snr": -5,
     "noise": "white",
     "ref": "小美小美，打开卧室的灯",
-    "A_zh": "dumay dumay",
-    "A_zh_cer": 1.0,
+    "A_zh": "dumay dumay 想看我去的费",
+    "A_zh_cer": 1.364,
     "B_zh+prompt": "以下是普通话的句子。",
     "B_zh+prompt_cer": 1.0
   },
@@ -34,8 +34,8 @@
     "snr": -5,
     "noise": "babble",
     "ref": "请把客厅的空调温度调到二十六度",
-    "A_zh": "well you got to wait on my lap actually see the",
-    "A_zh_cer": 2.467,
+    "A_zh": "我可以去找我了",
+    "A_zh_cer": 1.0,
     "B_zh+prompt": "以下是普通话的句子。我给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你",
     "B_zh+prompt_cer": 13.867
   },
@@ -44,10 +44,10 @@
     "snr": -5,
     "noise": "babble",
     "ref": "小美小美，打开卧室的灯",
-    "A_zh": "so i am not sure",
-    "A_zh_cer": 1.091,
-    "B_zh+prompt": "以下是普通话的句子。i know i should have said",
-    "B_zh+prompt_cer": 2.727
+    "A_zh": "i know i should have done it on the way",
+    "A_zh_cer": 2.727,
+    "B_zh+prompt": "以下是普通话的句子。i know i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the channel i should go to the",
+    "B_zh+prompt_cer": 63.727
   },
   {
     "file": "t_03_n_02_ov000_snr-5_babble.wav",
@@ -94,8 +94,8 @@
     "snr": 0,
     "noise": "babble",
     "ref": "请把客厅的空调温度调到二十六度",
-    "A_zh": "it is going to be a little bit of a little bit",
-    "A_zh_cer": 2.333,
+    "A_zh": "去吧 去吧 去吧",
+    "A_zh_cer": 1.0,
     "B_zh+prompt": "以下是普通话的句子。其中一个小小小的小小的小小的小小的小小的小小的小小的小小的小小的小小小的小小小的小小小小的小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小",
     "B_zh+prompt_cer": 13.933
   },
@@ -104,8 +104,8 @@
     "snr": 0,
     "noise": "babble",
     "ref": "小美小美，打开卧室的灯",
-    "A_zh": "stutters are more efficient than I am at the door",
-    "A_zh_cer": 3.636,
+    "A_zh": "这就是我一只想要开玩来做",
+    "A_zh_cer": 1.091,
     "B_zh+prompt": "以下是普通话的句子。这些是有些什么要不要买的",
     "B_zh+prompt_cer": 2.0
   },
@@ -114,10 +114,10 @@
     "snr": 0,
     "noise": "babble",
     "ref": "把电视的声音关小一点",
-    "A_zh": "i think i should show you the question",
-    "A_zh_cer": 3.1,
-    "B_zh+prompt": "以下是普通话的句子。i know you should be sure you may question you can",
-    "B_zh+prompt_cer": 4.9
+    "A_zh": "i know you should show me the question you can",
+    "A_zh_cer": 3.7,
+    "B_zh+prompt": "以下是普通话的句子。i can tell you the question",
+    "B_zh+prompt_cer": 3.1
   },
   {
     "file": "t_01_n_02_ov000_snr+5_white.wav",
@@ -154,18 +154,18 @@
     "snr": 5,
     "noise": "babble",
     "ref": "请把客厅的空调温度调到二十六度",
-    "A_zh": "i can you go to the other side of the screen?",
-    "A_zh_cer": 2.333,
-    "B_zh+prompt": "以下是普通话的句子。我可以在那里有些试试试试。",
-    "B_zh+prompt_cer": 1.467
+    "A_zh": "我可以用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用它用",
+    "A_zh_cer": 13.333,
+    "B_zh+prompt": "以下是普通话的句子。我可以在那里有些试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试",
+    "B_zh+prompt_cer": 7.533
   },
   {
     "file": "t_02_n_06_ov000_snr+5_babble.wav",
     "snr": 5,
     "noise": "babble",
     "ref": "小美小美，打开卧室的灯",
-    "A_zh": "It's not the same as the generalist of the time.",
-    "A_zh_cer": 3.545,
+    "A_zh": "这些东西都可以用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用来用",
+    "A_zh_cer": 18.182,
     "B_zh+prompt": "以下是普通话的句子。这些字是有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有",
     "B_zh+prompt_cer": 19.0
   },
@@ -174,8 +174,8 @@
     "snr": 5,
     "noise": "babble",
     "ref": "把电视的声音关小一点",
-    "A_zh": "but the actual resolution is in the one side you can",
-    "A_zh_cer": 4.2,
+    "A_zh": "你会召唤一张的手法吗 这一句",
+    "A_zh_cer": 1.1,
     "B_zh+prompt": "以下是普通话的句子。我会有点试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试�",
     "B_zh+prompt_cer": 11.0
   }

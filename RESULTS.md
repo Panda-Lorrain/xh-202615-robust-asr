@@ -297,6 +297,11 @@ enroll_infer_campp.py(跨 venv: 主 .venv diarization + .venv_campp CAM++ emb, p
 
 > **三线首次串成单一 pipeline + 跑出真实组合指标**（SE→enroll声纹锁定→DiCoW转写→LLM拒识→多策略融合）。三线此前三次单独验证（T18），但互不相连，450 集上没有单一组合分数。本节把它接通，**结果一锤定音地揭示了真正瓶颈**。
 
+> ### ⚠️ 本节归因已修正（Workflow 对抗审查后发现 + 复测）
+> 本节初版把英文幻觉归因为"Whisper 在 babble 上的模型漂移"——**这是错的**。对抗审查逐行核 generation.py + 全量数据交叉表发现真因是 **DiCoW `generation.py` 死代码 bug**：`language="zh"` 被静默忽略 → `detect_language` 从退化音频误检英文 → **450 集 90%(407) 输出英文**（干净音频检对了，故 T17 干净 CER=0 一直没暴露）。**已打补丁修复**（`repro/apply_dicow_langfix.py`）。
+> **但修复非银弹**：全量 english 90%→72%（chinese 39→125，3 倍），good<0.5 5.8%→7.8%（+9 条），raw CER 3.65→3.54（仅 −0.11）。简单条件（white/pink）从英文→正确中文；**难条件（babble/重叠/低 SNR）即使强制中文也是错字垃圾**（"你把水深的均等温度好像"）→ 残留瓶颈是 **Whisper 硬噪声鲁棒性**（需微调/SE-DiCoW）。故真实瓶颈**两层**：① language bug（已修，必要但不充分）② Whisper 硬噪声转写质量（残留，主导）。下文"根因"小节按此两层理解；初版"babble 特有漂移/white 良好"的 cherry-pick 结论（基于 n=4）已废弃——全量上 white/pink 亦 ~85%+ 曾出英文（bug 致），babble 更甚（99%）。
+
+
 ### 做了什么
 - `code/fuse_eval.py`（核心）：读 enroll_infer JSON（max_sim/transcript）+ LLM verdicts + manifest，对每个融合配置算 **cer_final（拒识计 1.0=漏 target）/ cer_accepted / correct_rate / reject_rate / RTF**，扫 sim_threshold × 策略（sim_only/llm_only/llm_or_sim/llm_and_sim/weighted/stno/three_way）排序找最优。
 - `code/llm_reject.py` 加 `--infer-json` 推理模式（无 gold 批量判 verdict，对接 enroll 转写）。
