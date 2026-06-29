@@ -1,11 +1,31 @@
 # Agent 交接文档（XH-202615 美的目标说话人 ASR）
 
 > **下个 agent 第一时间读此文件 → CLAUDE.md → PROGRESS.md → RESULTS.md → 边缘部署规划.md → 项目阶段盘点.md**
-> 更新：2026-06-29（T18）。T17 后**新会话接手**，用户选「多线并行铺开」→ Workflow 三线 de-risk 全 READY + 线A 一锤定音验证瓶颈。**先读下方🆕 T18 速览**，完整数字见 RESULTS.md T18。
+> 更新：2026-06-29（T19）。T18 三线各自验证但**未集成**→ 用户选「集成三线+真实组合指标」→ `fuse_eval.py` 串成单一 pipeline 跑出真实组合指标，**瓶颈精准锁定=Whisper babble 英文幻觉（非融合/拒识）**。**先读下方🆕 T19 速览**，完整数字见 RESULTS.md T19。
 
 ---
 
-## 🆕 T18 速览（2026-06-29 接手后多线并行铺开）
+## 🆕 T19 速览（2026-06-29 端到端集成 + 真实组合指标）
+
+**做了什么**：`code/fuse_eval.py`（核心）把 **SE条件化 → 声纹enrollment锁定target(wespeaker) → DiCoW(Whisper-turbo+FDDT)转写 → LLM拒识(Qwen2.5-3B) → 多策略融合** 串成单一分阶段 pipeline（多 venv 编排），450 集跑出**首个真实组合指标**。配套：`llm_reject.py --infer-json`、`enroll_infer.py` 加 `stno_target_ratio`、`build_reject_set.py`（72条target缺席）、`noise_classify.py`（噪声估计器）、`diag_transcript.py`+`test_zh_force.py`（诊断+实验）。
+
+**决定性发现（瓶颈重定）**：
+- LLM 拒 **449/450（99.8%）**，最优 correct_rate **仅 6-9%** → **融合/阈值旋钮无解**（LLM 不是太严——34条合成测 F1=0.878 健康，是转写垃圾）。
+- 根因：**63% 转写 CER≥2（garbage），多为英文幻觉**——Whisper-large-v3-turbo 在 babble 噪声下中文语言漂移→英文（white 噪声 ov0 反而 33% 优秀，CER 0-0.4）。
+- `test_zh_force.py` 排除 initial_prompt（反而更差：前缀污染+重复循环）。
+- **结论**：瓶颈**铁定在 Whisper 转写质量（babble 英文幻觉），不在融合/拒识**。真实提升杠杆=①中文家居微调（治本但重）②SE-DiCoW（enrollment条件化攻重叠+babble死区）③更强babble SE——都需重投入，**待真实数据/通道数确认**。
+
+**两个强阳交付**：
+- ✅ **SE 条件化可部署**：`noise_classify.py` 谱平坦度估计器 **99.78% 准确**（white/pink/babble 三类谱平坦度无重叠），**可部署 CER 2.82≈oracle 2.82**（不再依赖 manifest noise_type，测试时可估）。
+- ✅ **拒识侧 100% 真实拒识率**（72条target缺席集，sim/LLM/三路融合全对，0误放行）；发现 **stno 单独是坏拒识信号**（误放行非目标主导语音）、**sim 才是锚信号**。
+
+**新 P0（集成后重定）**：① 中文家居微调（攻 Whisper babble 英文幻觉，治本但重）② SE-DiCoW 接入（攻重叠+babble死区）③ **确认通道数/真实数据**（决定空间路线+微调数据）。**融合框架已就绪，转写质量上去即生效**——组合主线工程闭环成立，下限取决于 Whisper 带噪中文能力。
+
+**待办低优先**：450 集三路融合重跑（带 stno，因转写垃圾 CER 结论不变暂缓）；真实噪声再校准噪声估计器（合成噪声谱干净，真实会差）。
+
+---
+
+## T18 速览（历史，2026-06-29 接手后多线并行铺开）
 
 **三线 de-risk 全 READY**（Workflow 3 agent，各建独立 venv：`code/.venv_se` / `code/.venv_campp` / `.venv_llm`[项目根]）：
 

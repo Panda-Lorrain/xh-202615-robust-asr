@@ -1,0 +1,390 @@
+{
+  "label": "target缺席",
+  "n": 72,
+  "n_target_present": 0,
+  "n_diar_fail": 0,
+  "raw_cer_quality": NaN,
+  "raw_cer_good_rate": 0.0,
+  "best": {
+    "config": "sim_only(t=0.2)",
+    "n": 72,
+    "accept_rate": 0.0,
+    "reject_rate": 1.0,
+    "cer_final": 0.0,
+    "cer_accepted": null,
+    "correct_rate": 0.0,
+    "rtf": 0.297
+  },
+  "baseline_sim_t02": {
+    "config": "sim_only(t=0.2)",
+    "n": 72,
+    "accept_rate": 0.0,
+    "reject_rate": 1.0,
+    "cer_final": 0.0,
+    "cer_accepted": null,
+    "correct_rate": 0.0,
+    "rtf": 0.297
+  },
+  "all_configs": [
+    {
+      "config": "sim_only(t=0.2)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "sim_only(t=0.25)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "sim_only(t=0.3)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "sim_only(t=0.4)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "sim_only(t=0.5)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "llm_only",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "llm_or_sim(t=0.2)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "llm_or_sim(t=0.25)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "llm_or_sim(t=0.3)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "llm_or_sim(t=0.4)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "llm_or_sim(t=0.5)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "llm_and_sim(t=0.1)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "llm_and_sim(t=0.15)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "llm_and_sim(t=0.2)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "llm_and_sim(t=0.25)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "llm_and_sim(t=0.3)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "llm_and_sim(t=0.4)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "llm_and_sim(t=0.5)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "weighted(w_llm=0.3,t=0.2)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "weighted(w_llm=0.3,t=0.3)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "weighted(w_llm=0.5,t=0.2)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "weighted(w_llm=0.5,t=0.3)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "weighted(w_llm=0.7,t=0.2)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "weighted(w_llm=0.7,t=0.3)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "stno_only(t=0.1)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "stno_only(t=0.2)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "three_way(w_llm=0.4,w_sim=0.4,w_stno=0.2)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "three_way(w_llm=0.5,w_sim=0.3,w_stno=0.2)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "three_way(w_llm=0.6,w_sim=0.2,w_stno=0.2)",
+      "n": 72,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 0.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "sim_only(t=0.15)",
+      "n": 72,
+      "accept_rate": 0.014,
+      "reject_rate": 0.986,
+      "cer_final": 0.0139,
+      "cer_accepted": 1.0,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "llm_or_sim(t=0.15)",
+      "n": 72,
+      "accept_rate": 0.014,
+      "reject_rate": 0.986,
+      "cer_final": 0.0139,
+      "cer_accepted": 1.0,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "sim_only(t=0.1)",
+      "n": 72,
+      "accept_rate": 0.056,
+      "reject_rate": 0.944,
+      "cer_final": 0.0556,
+      "cer_accepted": 1.0,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "llm_or_sim(t=0.1)",
+      "n": 72,
+      "accept_rate": 0.056,
+      "reject_rate": 0.944,
+      "cer_final": 0.0556,
+      "cer_accepted": 1.0,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "stno_only(t=0.05)",
+      "n": 72,
+      "accept_rate": 0.681,
+      "reject_rate": 0.319,
+      "cer_final": 0.6806,
+      "cer_accepted": 1.0,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "llm_or_stno(t=0.05)",
+      "n": 72,
+      "accept_rate": 0.681,
+      "reject_rate": 0.319,
+      "cer_final": 0.6806,
+      "cer_accepted": 1.0,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    },
+    {
+      "config": "stno_only(t=0.01)",
+      "n": 72,
+      "accept_rate": 0.708,
+      "reject_rate": 0.292,
+      "cer_final": 0.7083,
+      "cer_accepted": 1.0,
+      "correct_rate": 0.0,
+      "rtf": 0.297
+    }
+  ]
+}

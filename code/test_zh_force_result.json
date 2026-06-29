@@ -1,0 +1,182 @@
+[
+  {
+    "file": "t_01_n_02_ov000_snr-5_white.wav",
+    "snr": -5,
+    "noise": "white",
+    "ref": "请把客厅的空调温度调到二十六度",
+    "A_zh": "tune by clipping the central wind beat by balance will be",
+    "A_zh_cer": 3.133,
+    "B_zh+prompt": "以下是普通话的句子。请把特定的听到温度, 把你尽力比",
+    "B_zh+prompt_cer": 1.333
+  },
+  {
+    "file": "t_02_n_04_ov000_snr-5_white.wav",
+    "snr": -5,
+    "noise": "white",
+    "ref": "小美小美，打开卧室的灯",
+    "A_zh": "dumay dumay",
+    "A_zh_cer": 1.0,
+    "B_zh+prompt": "以下是普通话的句子。",
+    "B_zh+prompt_cer": 1.0
+  },
+  {
+    "file": "t_03_n_03_ov000_snr-5_white.wav",
+    "snr": -5,
+    "noise": "white",
+    "ref": "把电视的声音关小一点",
+    "A_zh": "在电视的声音音高速点击",
+    "A_zh_cer": 0.5,
+    "B_zh+prompt": "以下是普通话的句子。在电视的声音音高小几点。",
+    "B_zh+prompt_cer": 1.5
+  },
+  {
+    "file": "t_01_n_05_ov000_snr-5_babble.wav",
+    "snr": -5,
+    "noise": "babble",
+    "ref": "请把客厅的空调温度调到二十六度",
+    "A_zh": "well you got to wait on my lap actually see the",
+    "A_zh_cer": 2.467,
+    "B_zh+prompt": "以下是普通话的句子。我给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你给你",
+    "B_zh+prompt_cer": 13.867
+  },
+  {
+    "file": "t_02_n_02_ov000_snr-5_babble.wav",
+    "snr": -5,
+    "noise": "babble",
+    "ref": "小美小美，打开卧室的灯",
+    "A_zh": "so i am not sure",
+    "A_zh_cer": 1.091,
+    "B_zh+prompt": "以下是普通话的句子。i know i should have said",
+    "B_zh+prompt_cer": 2.727
+  },
+  {
+    "file": "t_03_n_02_ov000_snr-5_babble.wav",
+    "snr": -5,
+    "noise": "babble",
+    "ref": "把电视的声音关小一点",
+    "A_zh": "这个是我给你用钱吗",
+    "A_zh_cer": 1.0,
+    "B_zh+prompt": "以下是普通话的句子。这个是我给你用签子的这个是我给你用签子的这个是我给你用签子的这个是我给你用签子的这个是我给你用签子的这个是我给你用签子的这个是我给你用签子的这个是我给你用签子的这个是我给你用签子的这个是我给你用签子的这个是我给你用签子的这个是我给你用签子的这个是我给你用签子的这个是我给你用签子的这个是我给你用签子的这个是我给你用签子的这个是我给你用签子的这个是我给你用签子的这个是我给你用签子的这个是我给你用签子",
+    "B_zh+prompt_cer": 20.8
+  },
+  {
+    "file": "t_01_n_04_ov000_snr+0_white.wav",
+    "snr": 0,
+    "noise": "white",
+    "ref": "请把客厅的空调温度调到二十六度",
+    "A_zh": "先把客厅的空调温度调到来十六度",
+    "A_zh_cer": 0.133,
+    "B_zh+prompt": "以下是普通话的句子。先把客厅的空调温度调到来十六度。",
+    "B_zh+prompt_cer": 0.867
+  },
+  {
+    "file": "t_02_n_04_ov000_snr+0_white.wav",
+    "snr": 0,
+    "noise": "white",
+    "ref": "小美小美，打开卧室的灯",
+    "A_zh": "小美小美打开卧室的灯",
+    "A_zh_cer": 0.091,
+    "B_zh+prompt": "以下是普通话的句子。小美小美打开卧室的东西。",
+    "B_zh+prompt_cer": 1.273
+  },
+  {
+    "file": "t_03_n_01_ov000_snr+0_white.wav",
+    "snr": 0,
+    "noise": "white",
+    "ref": "把电视的声音关小一点",
+    "A_zh": "把电视的声音关小了一点",
+    "A_zh_cer": 0.1,
+    "B_zh+prompt": "以下是普通话的句子。把电视的声音关小了一点点。",
+    "B_zh+prompt_cer": 1.3
+  },
+  {
+    "file": "t_01_n_03_ov000_snr+0_babble.wav",
+    "snr": 0,
+    "noise": "babble",
+    "ref": "请把客厅的空调温度调到二十六度",
+    "A_zh": "it is going to be a little bit of a little bit",
+    "A_zh_cer": 2.333,
+    "B_zh+prompt": "以下是普通话的句子。其中一个小小小的小小的小小的小小的小小的小小的小小的小小的小小的小小小的小小小的小小小小的小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小小",
+    "B_zh+prompt_cer": 13.933
+  },
+  {
+    "file": "t_02_n_07_ov000_snr+0_babble.wav",
+    "snr": 0,
+    "noise": "babble",
+    "ref": "小美小美，打开卧室的灯",
+    "A_zh": "stutters are more efficient than I am at the door",
+    "A_zh_cer": 3.636,
+    "B_zh+prompt": "以下是普通话的句子。这些是有些什么要不要买的",
+    "B_zh+prompt_cer": 2.0
+  },
+  {
+    "file": "t_03_n_03_ov000_snr+0_babble.wav",
+    "snr": 0,
+    "noise": "babble",
+    "ref": "把电视的声音关小一点",
+    "A_zh": "i think i should show you the question",
+    "A_zh_cer": 3.1,
+    "B_zh+prompt": "以下是普通话的句子。i know you should be sure you may question you can",
+    "B_zh+prompt_cer": 4.9
+  },
+  {
+    "file": "t_01_n_02_ov000_snr+5_white.wav",
+    "snr": 5,
+    "noise": "white",
+    "ref": "请把客厅的空调温度调到二十六度",
+    "A_zh": "先把客厅的空调温度调到二十六度",
+    "A_zh_cer": 0.067,
+    "B_zh+prompt": "以下是普通话的句子。先把客厅的空调温度调到二十六度",
+    "B_zh+prompt_cer": 0.733
+  },
+  {
+    "file": "t_02_n_05_ov000_snr+5_white.wav",
+    "snr": 5,
+    "noise": "white",
+    "ref": "小美小美，打开卧室的灯",
+    "A_zh": "小妹小妹打开卧室的东",
+    "A_zh_cer": 0.364,
+    "B_zh+prompt": "以下是普通话的句子。小妹小妹,打开卧室的东西。",
+    "B_zh+prompt_cer": 1.455
+  },
+  {
+    "file": "t_03_n_03_ov000_snr+5_white.wav",
+    "snr": 5,
+    "noise": "white",
+    "ref": "把电视的声音关小一点",
+    "A_zh": "把电视的声音关小一点",
+    "A_zh_cer": 0.0,
+    "B_zh+prompt": "以下是普通话的句子。把电视的声音关小一笔。",
+    "B_zh+prompt_cer": 1.2
+  },
+  {
+    "file": "t_01_n_07_ov000_snr+5_babble.wav",
+    "snr": 5,
+    "noise": "babble",
+    "ref": "请把客厅的空调温度调到二十六度",
+    "A_zh": "i can you go to the other side of the screen?",
+    "A_zh_cer": 2.333,
+    "B_zh+prompt": "以下是普通话的句子。我可以在那里有些试试试试。",
+    "B_zh+prompt_cer": 1.467
+  },
+  {
+    "file": "t_02_n_06_ov000_snr+5_babble.wav",
+    "snr": 5,
+    "noise": "babble",
+    "ref": "小美小美，打开卧室的灯",
+    "A_zh": "It's not the same as the generalist of the time.",
+    "A_zh_cer": 3.545,
+    "B_zh+prompt": "以下是普通话的句子。这些字是有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有点有",
+    "B_zh+prompt_cer": 19.0
+  },
+  {
+    "file": "t_03_n_02_ov000_snr+5_babble.wav",
+    "snr": 5,
+    "noise": "babble",
+    "ref": "把电视的声音关小一点",
+    "A_zh": "but the actual resolution is in the one side you can",
+    "A_zh_cer": 4.2,
+    "B_zh+prompt": "以下是普通话的句子。我会有点试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试试�",
+    "B_zh+prompt_cer": 11.0
+  }
+]

@@ -1,0 +1,1488 @@
+[
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_01_solo_snr+0_babble.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.04013000428676605,
+      "1": 0.04575847461819649
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.04575847461819649,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.09399999678134918,
+    "rejected": true,
+    "transcript": "need a lot of people are fortunate",
+    "chars": 34,
+    "rtf": 0.4545624057451884
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_01_solo_snr+0_pink.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.06104249507188797
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.06104249507188797,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.09333333373069763,
+    "target_active_ratio": 0.09333333373069763,
+    "rejected": true,
+    "transcript": "今天天气真不错我们出去走走吧",
+    "chars": 14,
+    "rtf": 0.29823291632864213
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_01_solo_snr+0_white.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": -0.01740308851003647
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": -0.01740308851003647,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.09533333033323288,
+    "target_active_ratio": 0.09533333033323288,
+    "rejected": true,
+    "transcript": "今天天气真不错我们出去走走吧",
+    "chars": 14,
+    "rtf": 0.3290642466810015
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_01_solo_snr+5_babble.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.05931764841079712,
+      "1": 0.06082402914762497
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.06082402914762497,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.07666666805744171,
+    "rejected": true,
+    "transcript": "you can go to the table",
+    "chars": 23,
+    "rtf": 0.35040395127402413
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_01_solo_snr+5_pink.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.046901486814022064
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.046901486814022064,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.09533333033323288,
+    "target_active_ratio": 0.09533333033323288,
+    "rejected": true,
+    "transcript": "今天天气真不错我们出去走走吧",
+    "chars": 14,
+    "rtf": 0.23818893565071955
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_01_solo_snr+5_white.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": -0.01737164705991745
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": -0.01737164705991745,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.09533333033323288,
+    "target_active_ratio": 0.09533333033323288,
+    "rejected": true,
+    "transcript": "今天天气真不错我们出去走走吧",
+    "chars": 14,
+    "rtf": 0.23530787891811797
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_01_solo_snr-5_babble.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.09652255475521088,
+      "1": 0.09550626575946808
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.09652255475521088,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.09533333033323288,
+    "rejected": true,
+    "transcript": "we can't wait to see the people who are talking about it we can't wait to see the people who are talking about it",
+    "chars": 113,
+    "rtf": 0.32768530978096855
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_01_solo_snr-5_pink.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": -0.043478794395923615
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": -0.043478794395923615,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.09200000017881393,
+    "target_active_ratio": 0.09200000017881393,
+    "rejected": true,
+    "transcript": "今天天气真的不动 我们出去走走",
+    "chars": 15,
+    "rtf": 0.2950481242603726
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_01_solo_snr-5_white.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": -0.00526011548936367
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": -0.00526011548936367,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.09200000017881393,
+    "target_active_ratio": 0.09200000017881393,
+    "rejected": true,
+    "transcript": "you can't get into the car but the woman could be told also",
+    "chars": 59,
+    "rtf": 0.2207722928788927
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_02_solo_snr+0_babble.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.06705822795629501,
+      "1": -0.08170036971569061
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.06705822795629501,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.02800000086426735,
+    "target_active_ratio": 0.09799999743700027,
+    "rejected": true,
+    "transcript": "这个电影有一次的重点 推荐你也算是",
+    "chars": 17,
+    "rtf": 0.22809538576338026
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_02_solo_snr+0_pink.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.008748523890972137
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.008748523890972137,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.09799999743700027,
+    "target_active_ratio": 0.09799999743700027,
+    "rejected": true,
+    "transcript": "这个电影我觉得挺好看的推荐你也看过",
+    "chars": 17,
+    "rtf": 0.19761249423027039
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_02_solo_snr+0_white.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": -0.07069521397352219
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": -0.07069521397352219,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.09866666793823242,
+    "target_active_ratio": 0.09866666793823242,
+    "rejected": true,
+    "transcript": "这个电影我觉得挺好看的天剑你也看他",
+    "chars": 17,
+    "rtf": 0.2011698153283861
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_02_solo_snr+5_babble.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": -0.012272242456674576,
+      "1": 0.012710299342870712
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.012710299342870712,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.0006666666595265269,
+    "target_active_ratio": 0.09399999678134918,
+    "rejected": true,
+    "transcript": "well i should just get some of the things that is more than you might just say",
+    "chars": 78,
+    "rtf": 0.2258741193347507
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_02_solo_snr+5_pink.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.00783383846282959
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.00783383846282959,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.09666666388511658,
+    "target_active_ratio": 0.09666666388511658,
+    "rejected": true,
+    "transcript": "这个电影我觉得挺好看的推荐你也看看",
+    "chars": 17,
+    "rtf": 0.1971699297428131
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_02_solo_snr+5_white.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.016045838594436646
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.016045838594436646,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.09866666793823242,
+    "target_active_ratio": 0.09866666793823242,
+    "rejected": true,
+    "transcript": "这个电影我觉得挺好看的推荐你也看看",
+    "chars": 17,
+    "rtf": 0.19803552163971797
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_02_solo_snr-5_babble.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.02590995654463768,
+      "1": 0.02590995654463768
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.02590995654463768,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.0013333333190530539,
+    "target_active_ratio": 0.09933333098888397,
+    "rejected": true,
+    "transcript": "jimmy do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you",
+    "chars": 789,
+    "rtf": 0.4931509494781494
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_02_solo_snr-5_pink.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.0003158925101161003
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.0003158925101161003,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.09200000017881393,
+    "target_active_ratio": 0.09200000017881393,
+    "rejected": true,
+    "transcript": "这个电影我已经挺好看了 推荐铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁",
+    "chars": 76,
+    "rtf": 0.43074695600403684
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_02_solo_snr-5_white.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": -0.040009088814258575
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": -0.040009088814258575,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.09866666793823242,
+    "target_active_ratio": 0.09866666793823242,
+    "rejected": true,
+    "transcript": "这个电影我觉得挺好看的 最近你也看了",
+    "chars": 18,
+    "rtf": 0.19687066475550336
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_03_solo_snr+0_babble.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.05481860041618347,
+      "1": 0.039401810616254807
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.05481860041618347,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.06199999898672104,
+    "rejected": true,
+    "transcript": "jeggy is a really true attraction",
+    "chars": 33,
+    "rtf": 0.34257074197133386
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_03_solo_snr+0_pink.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.13827301561832428
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.13827301561832428,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.06733333319425583,
+    "target_active_ratio": 0.06733333319425583,
+    "rejected": true,
+    "transcript": "你晚上想吃什么我来做",
+    "chars": 10,
+    "rtf": 0.3323075671990713
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_03_solo_snr+0_white.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": -0.06928279995918274
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": -0.06928279995918274,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.06733333319425583,
+    "target_active_ratio": 0.06733333319425583,
+    "rejected": true,
+    "transcript": "you write down transition mark i will go",
+    "chars": 40,
+    "rtf": 0.2906878789265951
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_03_solo_snr+5_babble.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.09052378684282303,
+      "1": 0.09052378684282303
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.09052378684282303,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.06400000303983688,
+    "rejected": true,
+    "transcript": "jain would have been a question for him to see",
+    "chars": 46,
+    "rtf": 0.3573813786109289
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_03_solo_snr+5_pink.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.17373248934745789
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.17373248934745789,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.06733333319425583,
+    "target_active_ratio": 0.06733333319425583,
+    "rejected": true,
+    "transcript": "你晚上想吃什么我来做",
+    "chars": 10,
+    "rtf": 0.2904478460550308
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_03_solo_snr+5_white.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.13482782244682312
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.13482782244682312,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.06733333319425583,
+    "target_active_ratio": 0.06733333319425583,
+    "rejected": true,
+    "transcript": "明晚上想吃什么我来做",
+    "chars": 10,
+    "rtf": 0.2949075152476629
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_03_solo_snr-5_babble.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.03185616061091423,
+      "1": 0.01465243473649025
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.03185616061091423,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.007333333138376474,
+    "target_active_ratio": 0.06733333319425583,
+    "rejected": true,
+    "transcript": "明晚想吃什么我来做",
+    "chars": 9,
+    "rtf": 0.34773473938306176
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_03_solo_snr-5_pink.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": -0.016171928495168686
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": -0.016171928495168686,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.06733333319425583,
+    "target_active_ratio": 0.06733333319425583,
+    "rejected": true,
+    "transcript": "you might tell us that she should not have to play well",
+    "chars": 55,
+    "rtf": 0.3474852691094081
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_03_solo_snr-5_white.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.03980163112282753
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.03980163112282753,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.06533333659172058,
+    "target_active_ratio": 0.06533333659172058,
+    "rejected": true,
+    "transcript": "you like something different about what i do",
+    "chars": 44,
+    "rtf": 0.28520834942658746
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_04_solo_snr+0_babble.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.032349593937397,
+      "1": 0.033344872295856476
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.033344872295856476,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.0033333334140479565,
+    "target_active_ratio": 0.09733333438634872,
+    "rejected": true,
+    "transcript": "oh you can't get away from the impression that you can't get away from the ground",
+    "chars": 81,
+    "rtf": 0.2276696264743805
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_04_solo_snr+0_pink.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.0930078998208046
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.0930078998208046,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.09733333438634872,
+    "target_active_ratio": 0.09733333438634872,
+    "rejected": true,
+    "transcript": "明天的会议几点开始我差点忘了",
+    "chars": 14,
+    "rtf": 0.23886702126926848
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_04_solo_snr+0_white.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.009929627180099487
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.009929627180099487,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.09733333438634872,
+    "target_active_ratio": 0.09733333438634872,
+    "rejected": true,
+    "transcript": "明天的会议几点开始 会差点忘了",
+    "chars": 15,
+    "rtf": 0.19431312878926596
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_04_solo_snr+5_babble.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.09832216799259186,
+      "1": 0.13548314571380615
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.13548314571380615,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.0013333333190530539,
+    "target_active_ratio": 0.09533333033323288,
+    "rejected": true,
+    "transcript": "the only way to the hostess said the general chief of relations",
+    "chars": 63,
+    "rtf": 0.2133494449986352
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_04_solo_snr+5_pink.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.09035380184650421
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.09035380184650421,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.09799999743700027,
+    "target_active_ratio": 0.09799999743700027,
+    "rejected": true,
+    "transcript": "明天的会议几点开始我差点忘了",
+    "chars": 14,
+    "rtf": 0.1929820411735111
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_04_solo_snr+5_white.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": -0.018444761633872986
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": -0.018444761633872986,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.09799999743700027,
+    "target_active_ratio": 0.09799999743700027,
+    "rejected": true,
+    "transcript": "明天的会议几点开始我差点忘了",
+    "chars": 14,
+    "rtf": 0.19366989533106488
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_04_solo_snr-5_babble.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.07479710131883621,
+      "1": 0.082691989839077
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.082691989839077,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.09200000017881393,
+    "rejected": true,
+    "transcript": "jiggy is not an option or just like your name",
+    "chars": 45,
+    "rtf": 0.22230611907111275
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_04_solo_snr-5_pink.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.012705914676189423
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.012705914676189423,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.09200000017881393,
+    "target_active_ratio": 0.09200000017881393,
+    "rejected": true,
+    "transcript": "明天的会议几点开始就差点忘了",
+    "chars": 14,
+    "rtf": 0.19347386227713692
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_04_solo_snr-5_white.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": -0.024986984208226204
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": -0.024986984208226204,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.09666666388511658,
+    "target_active_ratio": 0.09666666388511658,
+    "rejected": true,
+    "transcript": "明明真的会已经一点开始就差点忘了",
+    "chars": 16,
+    "rtf": 0.18996687399016488
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_05_solo_snr+0_babble.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.040771786123514175,
+      "1": 0.040771786123514175
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.040771786123514175,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.06533333659172058,
+    "rejected": true,
+    "transcript": "jimbald is also so on i said such",
+    "chars": 33,
+    "rtf": 0.3168075035015742
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_05_solo_snr+0_pink.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": -0.048130277544260025
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": -0.048130277544260025,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.06400000303983688,
+    "target_active_ratio": 0.06400000303983688,
+    "rejected": true,
+    "transcript": "我刚看到一个很有趣的新闻",
+    "chars": 12,
+    "rtf": 0.2785927305618922
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_05_solo_snr+0_white.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": -0.025917083024978638
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": -0.025917083024978638,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.06466666609048843,
+    "target_active_ratio": 0.06466666609048843,
+    "rejected": true,
+    "transcript": "我刚看了一个很有趣的新人",
+    "chars": 12,
+    "rtf": 0.2819286038478216
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_05_solo_snr+5_babble.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": -0.009584791958332062,
+      "1": -0.009334671311080456
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": -0.009334671311080456,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.06333333253860474,
+    "rejected": true,
+    "transcript": "joke please talk to his sitting",
+    "chars": 31,
+    "rtf": 0.31208693981170654
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_05_solo_snr+5_pink.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.038359932601451874
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.038359932601451874,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.06400000303983688,
+    "target_active_ratio": 0.06400000303983688,
+    "rejected": true,
+    "transcript": "我刚看了一个很有趣的新闻",
+    "chars": 12,
+    "rtf": 0.283051406343778
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_05_solo_snr+5_white.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.029771585017442703
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.029771585017442703,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.06533333659172058,
+    "target_active_ratio": 0.06533333659172058,
+    "rejected": true,
+    "transcript": "我刚看了一个很有趣的新闻",
+    "chars": 12,
+    "rtf": 0.28403339286645257
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_05_solo_snr-5_babble.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.049279697239398956,
+      "1": 0.05451403930783272
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.05451403930783272,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.06199999898672104,
+    "rejected": true,
+    "transcript": "我刚看了一个很有趣的新闻",
+    "chars": 12,
+    "rtf": 0.3218698004881541
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_05_solo_snr-5_pink.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": -0.06461253762245178
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": -0.06461253762245178,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.06066666543483734,
+    "target_active_ratio": 0.06066666543483734,
+    "rejected": true,
+    "transcript": "我刚看了一段很有趣的新的",
+    "chars": 12,
+    "rtf": 0.285421684384346
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_05_solo_snr-5_white.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.013032369315624237
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.013032369315624237,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.06466666609048843,
+    "target_active_ratio": 0.06466666609048843,
+    "rejected": true,
+    "transcript": "我刚才看到一个很有趣的新人",
+    "chars": 13,
+    "rtf": 0.28037379185358685
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_06_solo_snr+0_babble.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.002843005582690239,
+      "1": -0.019765272736549377
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.002843005582690239,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.004000000189989805,
+    "target_active_ratio": 0.06066666543483734,
+    "rejected": true,
+    "transcript": "jiggler is talking about",
+    "chars": 24,
+    "rtf": 0.3509915687821128
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_06_solo_snr+0_pink.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.055012211203575134
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.055012211203575134,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.05533333495259285,
+    "target_active_ratio": 0.05533333495259285,
+    "rejected": true,
+    "transcript": "这个周末有安排吗",
+    "chars": 8,
+    "rtf": 0.3072322769598527
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_06_solo_snr+0_white.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.025738846510648727
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.025738846510648727,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.054666668176651,
+    "target_active_ratio": 0.054666668176651,
+    "rejected": true,
+    "transcript": "这个周末有什么安排吗",
+    "chars": 10,
+    "rtf": 0.40285668589852075
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_06_solo_snr+5_babble.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.06561453640460968,
+      "1": 0.06561453640460968
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.06561453640460968,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.058666665107011795,
+    "rejected": true,
+    "transcript": "the isolation is a little less difficult",
+    "chars": 40,
+    "rtf": 0.3539490428837863
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_06_solo_snr+5_pink.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.08633851259946823
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.08633851259946823,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.054666668176651,
+    "target_active_ratio": 0.054666668176651,
+    "rejected": true,
+    "transcript": "这个周末也有什么安排吗",
+    "chars": 11,
+    "rtf": 0.3806582906029441
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_06_solo_snr+5_white.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.01784197986125946
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.01784197986125946,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.0560000017285347,
+    "target_active_ratio": 0.0560000017285347,
+    "rejected": true,
+    "transcript": "这个周末有什么安排吗",
+    "chars": 10,
+    "rtf": 0.346457687291232
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_06_solo_snr-5_babble.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      1,
+      2
+    ],
+    "sims": {
+      "1": -0.056129321455955505,
+      "2": -0.056129321455955505
+    },
+    "target_idx": 0,
+    "target_speaker": 1,
+    "max_sim": -0.056129321455955505,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.0033333334140479565,
+    "target_active_ratio": 0.06199999898672104,
+    "rejected": true,
+    "transcript": "这周末有什么安排吗",
+    "chars": 9,
+    "rtf": 0.3618295897137035
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_06_solo_snr-5_pink.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.020934857428073883
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.020934857428073883,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.0560000017285347,
+    "target_active_ratio": 0.0560000017285347,
+    "rejected": true,
+    "transcript": "you should be able to draw more on the timeline right",
+    "chars": 53,
+    "rtf": 0.3250039436600425
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_06_solo_snr-5_white.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.02108636312186718
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.02108636312186718,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.054666668176651,
+    "target_active_ratio": 0.054666668176651,
+    "rejected": true,
+    "transcript": "there is really no more of this i am like my",
+    "chars": 44,
+    "rtf": 0.3147973255677657
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_07_solo_snr+0_babble.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": -0.03928891569375992,
+      "1": -0.03928891569375992
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": -0.03928891569375992,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.06599999964237213,
+    "rejected": true,
+    "transcript": "这个是水的毛泡 谢谢",
+    "chars": 10,
+    "rtf": 0.358684981862704
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_07_solo_snr+0_pink.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.08521512895822525
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.08521512895822525,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.06533333659172058,
+    "target_active_ratio": 0.06533333659172058,
+    "rejected": true,
+    "transcript": "帮我倒杯水好吧谢谢",
+    "chars": 9,
+    "rtf": 0.3032534072796504
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_07_solo_snr+0_white.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": -0.023764366284012794
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": -0.023764366284012794,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.06599999964237213,
+    "target_active_ratio": 0.06599999964237213,
+    "rejected": true,
+    "transcript": "我倒杯水也好吗 谢谢",
+    "chars": 10,
+    "rtf": 0.29798150062561035
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_07_solo_snr+5_babble.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.09332325309515,
+      "1": -0.00448146928101778
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.09332325309515,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.012666666880249977,
+    "target_active_ratio": 0.06599999964237213,
+    "rejected": true,
+    "transcript": "帮我倒杯水好吗谢谢",
+    "chars": 9,
+    "rtf": 0.347673644622167
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_07_solo_snr+5_pink.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.04707912355661392
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.04707912355661392,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.06599999964237213,
+    "target_active_ratio": 0.06599999964237213,
+    "rejected": true,
+    "transcript": "帮我倒杯水好吗谢谢",
+    "chars": 9,
+    "rtf": 0.30415716270605725
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_07_solo_snr+5_white.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.0637742131948471
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.0637742131948471,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.06666667014360428,
+    "target_active_ratio": 0.06666667014360428,
+    "rejected": true,
+    "transcript": "帮我倒杯水好吗谢谢",
+    "chars": 9,
+    "rtf": 0.304063285390536
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_07_solo_snr-5_babble.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": -0.010861290618777275,
+      "1": -0.010861290618777275
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": -0.010861290618777275,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.06533333659172058,
+    "rejected": true,
+    "transcript": "well we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not",
+    "chars": 756,
+    "rtf": 0.7206390301386516
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_07_solo_snr-5_pink.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": -0.06549789011478424
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": -0.06549789011478424,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.06333333253860474,
+    "target_active_ratio": 0.06333333253860474,
+    "rejected": true,
+    "transcript": "然后我到hff",
+    "chars": 7,
+    "rtf": 0.2887524664402008
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_07_solo_snr-5_white.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.06276816129684448
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.06276816129684448,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.06533333659172058,
+    "target_active_ratio": 0.06533333659172058,
+    "rejected": true,
+    "transcript": "oh without vtf or vtf",
+    "chars": 21,
+    "rtf": 0.2926668773094813
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_08_solo_snr+0_babble.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": -0.02765628695487976,
+      "1": -0.026402726769447327
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": -0.026402726769447327,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.07333333045244217,
+    "rejected": true,
+    "transcript": "migall is the king of the city",
+    "chars": 30,
+    "rtf": 0.2730973561604818
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_08_solo_snr+0_pink.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.028383107855916023
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.028383107855916023,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.08266666531562805,
+    "target_active_ratio": 0.08266666531562805,
+    "rejected": true,
+    "transcript": "那本书我看完了写的真不错",
+    "chars": 12,
+    "rtf": 0.2797349294026693
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_08_solo_snr+0_white.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.03545292466878891
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.03545292466878891,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.0833333358168602,
+    "target_active_ratio": 0.0833333358168602,
+    "rejected": true,
+    "transcript": "那本书我看完了写的真不错",
+    "chars": 12,
+    "rtf": 0.2704307436943054
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_08_solo_snr+5_babble.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.06371179968118668
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.06371179968118668,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.07999999821186066,
+    "target_active_ratio": 0.07999999821186066,
+    "rejected": true,
+    "transcript": "jabber said i have to have a handle on the two points",
+    "chars": 53,
+    "rtf": 0.2466145157814026
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_08_solo_snr+5_pink.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.012259155511856079
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.012259155511856079,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.08133333176374435,
+    "target_active_ratio": 0.08133333176374435,
+    "rejected": true,
+    "transcript": "那本书我看完了写的真不错",
+    "chars": 12,
+    "rtf": 0.2394746740659078
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_08_solo_snr+5_white.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.028951242566108704
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.028951242566108704,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.0833333358168602,
+    "target_active_ratio": 0.0833333358168602,
+    "rejected": true,
+    "transcript": "那本书我看完了写的真不错",
+    "chars": 12,
+    "rtf": 0.2298863728841146
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_08_solo_snr-5_babble.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.05020621418952942,
+      "1": 0.0708082914352417
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.0708082914352417,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.004666666500270367,
+    "target_active_ratio": 0.0820000022649765,
+    "rejected": true,
+    "transcript": "you are just a single question to take it to you",
+    "chars": 48,
+    "rtf": 0.3369823098182678
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_08_solo_snr-5_pink.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": -0.07632547616958618
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": -0.07632547616958618,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.08133333176374435,
+    "target_active_ratio": 0.08133333176374435,
+    "rejected": true,
+    "transcript": "fabber if you want to come on up it is a legitimate thing",
+    "chars": 57,
+    "rtf": 0.29041677713394165
+  },
+  {
+    "recognition": "test_wav/dataset/reject_denoised\\n_08_solo_snr-5_white.wav",
+    "enrollment": "test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.030420515686273575
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.030420515686273575,
+    "reject_threshold": 0.2,
+    "stno_target_ratio": 0.0820000022649765,
+    "target_active_ratio": 0.0820000022649765,
+    "rejected": true,
+    "transcript": "meet the issue you have come and like you have a thing you can",
+    "chars": 62,
+    "rtf": 0.3289783000946045
+  }
+]

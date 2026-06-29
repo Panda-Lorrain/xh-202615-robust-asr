@@ -1,0 +1,656 @@
+{
+  "sr": 16000,
+  "count": 72,
+  "set": "target_absent_reject",
+  "enrollment": "冰糖(target_long_01)",
+  "items": [
+    {
+      "file": "n_01_solo_snr-5_white.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": -5,
+      "noise_type": "white",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_01_solo_snr-5_pink.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": -5,
+      "noise_type": "pink",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_01_solo_snr-5_babble.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": -5,
+      "noise_type": "babble",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_01_solo_snr+0_white.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 0,
+      "noise_type": "white",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_01_solo_snr+0_pink.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 0,
+      "noise_type": "pink",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_01_solo_snr+0_babble.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 0,
+      "noise_type": "babble",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_01_solo_snr+5_white.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 5,
+      "noise_type": "white",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_01_solo_snr+5_pink.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 5,
+      "noise_type": "pink",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_01_solo_snr+5_babble.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 5,
+      "noise_type": "babble",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_02_solo_snr-5_white.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": -5,
+      "noise_type": "white",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_02_solo_snr-5_pink.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": -5,
+      "noise_type": "pink",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_02_solo_snr-5_babble.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": -5,
+      "noise_type": "babble",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_02_solo_snr+0_white.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 0,
+      "noise_type": "white",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_02_solo_snr+0_pink.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 0,
+      "noise_type": "pink",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_02_solo_snr+0_babble.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 0,
+      "noise_type": "babble",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_02_solo_snr+5_white.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 5,
+      "noise_type": "white",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_02_solo_snr+5_pink.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 5,
+      "noise_type": "pink",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_02_solo_snr+5_babble.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 5,
+      "noise_type": "babble",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_03_solo_snr-5_white.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": -5,
+      "noise_type": "white",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_03_solo_snr-5_pink.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": -5,
+      "noise_type": "pink",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_03_solo_snr-5_babble.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": -5,
+      "noise_type": "babble",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_03_solo_snr+0_white.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 0,
+      "noise_type": "white",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_03_solo_snr+0_pink.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 0,
+      "noise_type": "pink",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_03_solo_snr+0_babble.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 0,
+      "noise_type": "babble",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_03_solo_snr+5_white.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 5,
+      "noise_type": "white",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_03_solo_snr+5_pink.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 5,
+      "noise_type": "pink",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_03_solo_snr+5_babble.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 5,
+      "noise_type": "babble",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_04_solo_snr-5_white.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": -5,
+      "noise_type": "white",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_04_solo_snr-5_pink.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": -5,
+      "noise_type": "pink",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_04_solo_snr-5_babble.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": -5,
+      "noise_type": "babble",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_04_solo_snr+0_white.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 0,
+      "noise_type": "white",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_04_solo_snr+0_pink.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 0,
+      "noise_type": "pink",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_04_solo_snr+0_babble.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 0,
+      "noise_type": "babble",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_04_solo_snr+5_white.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 5,
+      "noise_type": "white",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_04_solo_snr+5_pink.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 5,
+      "noise_type": "pink",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_04_solo_snr+5_babble.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 5,
+      "noise_type": "babble",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_05_solo_snr-5_white.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": -5,
+      "noise_type": "white",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_05_solo_snr-5_pink.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": -5,
+      "noise_type": "pink",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_05_solo_snr-5_babble.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": -5,
+      "noise_type": "babble",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_05_solo_snr+0_white.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 0,
+      "noise_type": "white",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_05_solo_snr+0_pink.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 0,
+      "noise_type": "pink",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_05_solo_snr+0_babble.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 0,
+      "noise_type": "babble",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_05_solo_snr+5_white.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 5,
+      "noise_type": "white",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_05_solo_snr+5_pink.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 5,
+      "noise_type": "pink",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_05_solo_snr+5_babble.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 5,
+      "noise_type": "babble",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_06_solo_snr-5_white.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": -5,
+      "noise_type": "white",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_06_solo_snr-5_pink.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": -5,
+      "noise_type": "pink",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_06_solo_snr-5_babble.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": -5,
+      "noise_type": "babble",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_06_solo_snr+0_white.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 0,
+      "noise_type": "white",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_06_solo_snr+0_pink.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 0,
+      "noise_type": "pink",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_06_solo_snr+0_babble.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 0,
+      "noise_type": "babble",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_06_solo_snr+5_white.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 5,
+      "noise_type": "white",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_06_solo_snr+5_pink.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 5,
+      "noise_type": "pink",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_06_solo_snr+5_babble.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 5,
+      "noise_type": "babble",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_07_solo_snr-5_white.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": -5,
+      "noise_type": "white",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_07_solo_snr-5_pink.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": -5,
+      "noise_type": "pink",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_07_solo_snr-5_babble.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": -5,
+      "noise_type": "babble",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_07_solo_snr+0_white.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 0,
+      "noise_type": "white",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_07_solo_snr+0_pink.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 0,
+      "noise_type": "pink",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_07_solo_snr+0_babble.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 0,
+      "noise_type": "babble",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_07_solo_snr+5_white.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 5,
+      "noise_type": "white",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_07_solo_snr+5_pink.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 5,
+      "noise_type": "pink",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_07_solo_snr+5_babble.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 5,
+      "noise_type": "babble",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_08_solo_snr-5_white.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": -5,
+      "noise_type": "white",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_08_solo_snr-5_pink.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": -5,
+      "noise_type": "pink",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_08_solo_snr-5_babble.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": -5,
+      "noise_type": "babble",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_08_solo_snr+0_white.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 0,
+      "noise_type": "white",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_08_solo_snr+0_pink.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 0,
+      "noise_type": "pink",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_08_solo_snr+0_babble.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 0,
+      "noise_type": "babble",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_08_solo_snr+5_white.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 5,
+      "noise_type": "white",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_08_solo_snr+5_pink.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 5,
+      "noise_type": "pink",
+      "overlap_ratio": 0.0
+    },
+    {
+      "file": "n_08_solo_snr+5_babble.wav",
+      "target_ref": "",
+      "target_present": false,
+      "speaker": "苏打",
+      "snr_db": 5,
+      "noise_type": "babble",
+      "overlap_ratio": 0.0
+    }
+  ]
+}

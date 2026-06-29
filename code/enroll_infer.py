@@ -182,6 +182,12 @@ def main():
         sims = torch.stack([torch.dot(enroll_emb, e) for e in spk_embs])
         target_idx = int(torch.argmax(sims))
         max_sim = float(sims[target_idx])
+        # STNO target 帧占比(target 独占无重叠帧 / 总帧) — 三路融合第三信号
+        non_tg = torch.ones((diar_mask.shape[0],), dtype=torch.bool)
+        non_tg[target_idx] = False
+        anyone_else = (1 - diar_mask[non_tg]).prod(axis=0)
+        stno_target_ratio = float((diar_mask[target_idx] * anyone_else).mean())
+        target_active_ratio = float(diar_mask[target_idx].mean())
         sim_str = ", ".join(f"{speakers[i]}:{float(sims[i]):.3f}" for i in range(len(speakers)))
         print(f"\n[rec] {os.path.basename(rec)} ({dur:.1f}s) speakers={speakers}")
         print(f"  [match] {{{sim_str}}} → target={speakers[target_idx]} sim={max_sim:.3f}")
@@ -210,6 +216,7 @@ def main():
             "sims": {speakers[i]: float(sims[i]) for i in range(len(speakers))},
             "target_idx": target_idx, "target_speaker": speakers[target_idx],
             "max_sim": max_sim, "reject_threshold": args.reject_threshold,
+            "stno_target_ratio": stno_target_ratio, "target_active_ratio": target_active_ratio,
             "rejected": max_sim < args.reject_threshold,
             "transcript": text, "chars": len(text), "rtf": dt / dur,
         })

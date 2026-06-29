@@ -1,0 +1,585 @@
+{
+  "n": 72,
+  "secs_total": 138.87,
+  "secs_per_item": 1.929,
+  "n_accept": 0,
+  "n_reject": 72,
+  "rows": [
+    {
+      "file": "n_01_solo_snr+0_babble.wav",
+      "text": "need a lot of people are fortunate",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为纯闲聊，没有提及任何家电实体或明确的控制动作。"
+    },
+    {
+      "file": "n_01_solo_snr+0_pink.wav",
+      "text": "今天天气真不错我们出去走走吧",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条文本是闲聊内容，没有提及具体的家电实体和控制动作。"
+    },
+    {
+      "file": "n_01_solo_snr+0_white.wav",
+      "text": "今天天气真不错我们出去走走吧",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条文本是闲聊内容，没有提及具体的家电实体和控制动作。"
+    },
+    {
+      "file": "n_01_solo_snr+5_babble.wav",
+      "text": "you can go to the table",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为非设备相关指令，属于闲聊。"
+    },
+    {
+      "file": "n_01_solo_snr+5_pink.wav",
+      "text": "今天天气真不错我们出去走走吧",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条文本是闲聊内容，没有提及具体的家电实体和控制动作。"
+    },
+    {
+      "file": "n_01_solo_snr+5_white.wav",
+      "text": "今天天气真不错我们出去走走吧",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条文本是闲聊内容，没有提及具体的家电实体和控制动作。"
+    },
+    {
+      "file": "n_01_solo_snr-5_babble.wav",
+      "text": "we can't wait to see the people who are talking about it we can't wait to see the people who are talking about it",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为纯闲聊，没有提及任何家电实体或明确的控制动作。"
+    },
+    {
+      "file": "n_01_solo_snr-5_pink.wav",
+      "text": "今天天气真的不动 我们出去走走",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为纯闲聊，没有提及任何家电实体或控制动作。"
+    },
+    {
+      "file": "n_01_solo_snr-5_white.wav",
+      "text": "you can't get into the car but the woman could be told also",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容与任何家电或功能无关，属于无关请求。"
+    },
+    {
+      "file": "n_02_solo_snr+0_babble.wav",
+      "text": "这个电影有一次的重点 推荐你也算是",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为闲聊内容，没有提及具体的家电实体或明确的控制动作。"
+    },
+    {
+      "file": "n_02_solo_snr+0_pink.wav",
+      "text": "这个电影我觉得挺好看的推荐你也看过",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条指令是用户与设备无关的闲聊，没有提及具体的家电实体或控制动作。"
+    },
+    {
+      "file": "n_02_solo_snr+0_white.wav",
+      "text": "这个电影我觉得挺好看的天剑你也看他",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为闲聊内容，没有提及具体的家电实体和明确的控制动作。"
+    },
+    {
+      "file": "n_02_solo_snr+5_babble.wav",
+      "text": "well i should just get some of the things that is more than you might just say",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为自言自语，没有提及具体的家电实体和明确的动作意图。"
+    },
+    {
+      "file": "n_02_solo_snr+5_pink.wav",
+      "text": "这个电影我觉得挺好看的推荐你也看看",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条文本是用户的个人评价和建议，没有提及具体的家电实体或控制动作。"
+    },
+    {
+      "file": "n_02_solo_snr+5_white.wav",
+      "text": "这个电影我觉得挺好看的推荐你也看看",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条文本是用户的个人评价和建议，没有提及具体的家电实体或控制动作。"
+    },
+    {
+      "file": "n_02_solo_snr-5_babble.wav",
+      "text": "jimmy do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you do not know you",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为纯自言自语，没有提及任何家电实体或控制动作。"
+    },
+    {
+      "file": "n_02_solo_snr-5_pink.wav",
+      "text": "这个电影我已经挺好看了 推荐铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁铁",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为纯闲聊内容，没有提及任何家电实体或明确的控制动作。"
+    },
+    {
+      "file": "n_02_solo_snr-5_white.wav",
+      "text": "这个电影我觉得挺好看的 最近你也看了",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为闲聊内容，没有提及具体的家电实体和控制动作。"
+    },
+    {
+      "file": "n_03_solo_snr+0_babble.wav",
+      "text": "jeggy is a really true attraction",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为与设备无关的闲聊，没有提及任何家电实体或明确的动作意图。"
+    },
+    {
+      "file": "n_03_solo_snr+0_pink.wav",
+      "text": "你晚上想吃什么我来做",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条指令是与设备无关的闲聊内容，不是对设备发出的指令。"
+    },
+    {
+      "file": "n_03_solo_snr+0_white.wav",
+      "text": "you write down transition mark i will go",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为英文且没有提及任何家电实体，也不包含明确的控制意图。"
+    },
+    {
+      "file": "n_03_solo_snr+5_babble.wav",
+      "text": "jain would have been a question for him to see",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为英文句子，没有提及任何家电实体或控制动作。"
+    },
+    {
+      "file": "n_03_solo_snr+5_pink.wav",
+      "text": "你晚上想吃什么我来做",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条指令是与设备无关的闲聊内容，不是对设备发出的指令。"
+    },
+    {
+      "file": "n_03_solo_snr+5_white.wav",
+      "text": "明晚上想吃什么我来做",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条指令是与设备无关的闲聊内容，不是对设备发出的指令。"
+    },
+    {
+      "file": "n_03_solo_snr-5_babble.wav",
+      "text": "明晚想吃什么我来做",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条指令不是对设备发出的指令，而是与烹饪计划的讨论，与设备无关。"
+    },
+    {
+      "file": "n_03_solo_snr-5_pink.wav",
+      "text": "you might tell us that she should not have to play well",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容与家电控制无关，属于闲聊。"
+    },
+    {
+      "file": "n_03_solo_snr-5_white.wav",
+      "text": "you like something different about what i do",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为与设备无关的闲聊内容，没有提及具体的家电实体或控制动作。"
+    },
+    {
+      "file": "n_04_solo_snr+0_babble.wav",
+      "text": "oh you can't get away from the impression that you can't get away from the ground",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为纯闲聊，没有提及任何家电实体或控制动作。"
+    },
+    {
+      "file": "n_04_solo_snr+0_pink.wav",
+      "text": "明天的会议几点开始我差点忘了",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为与设备无关的闲聊，没有提及具体的家电实体或控制动作。"
+    },
+    {
+      "file": "n_04_solo_snr+0_white.wav",
+      "text": "明天的会议几点开始 会差点忘了",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为与设备无关的闲聊，没有提及具体的家电实体或控制动作。"
+    },
+    {
+      "file": "n_04_solo_snr+5_babble.wav",
+      "text": "the only way to the hostess said the general chief of relations",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为英文且没有提及任何家电实体，也不包含明确的控制意图。"
+    },
+    {
+      "file": "n_04_solo_snr+5_pink.wav",
+      "text": "明天的会议几点开始我差点忘了",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为与设备无关的闲聊，没有提及具体的家电实体或控制动作。"
+    },
+    {
+      "file": "n_04_solo_snr+5_white.wav",
+      "text": "明天的会议几点开始我差点忘了",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为与设备无关的闲聊，没有提及具体的家电实体或控制动作。"
+    },
+    {
+      "file": "n_04_solo_snr-5_babble.wav",
+      "text": "jiggy is not an option or just like your name",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为非指令性质的闲聊，没有提及任何家电实体或明确的动作意图。"
+    },
+    {
+      "file": "n_04_solo_snr-5_pink.wav",
+      "text": "明天的会议几点开始就差点忘了",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为与设备无关的闲聊，没有提及具体的家电实体或控制动作。"
+    },
+    {
+      "file": "n_04_solo_snr-5_white.wav",
+      "text": "明明真的会已经一点开始就差点忘了",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为自言自语，没有提及任何家电实体或控制动作。"
+    },
+    {
+      "file": "n_05_solo_snr+0_babble.wav",
+      "text": "jimbald is also so on i said such",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为纯闲聊，没有提及任何家电实体或明确的控制动作。"
+    },
+    {
+      "file": "n_05_solo_snr+0_pink.wav",
+      "text": "我刚看到一个很有趣的新闻",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条文本为非设备相关的闲聊内容，没有提及任何家电实体或控制动作。"
+    },
+    {
+      "file": "n_05_solo_snr+0_white.wav",
+      "text": "我刚看了一个很有趣的新人",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为个人的自言自语，没有涉及任何家电或设备的操作请求。"
+    },
+    {
+      "file": "n_05_solo_snr+5_babble.wav",
+      "text": "joke please talk to his sitting",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为非设备相关闲聊，没有提及具体的家电实体和控制动作。"
+    },
+    {
+      "file": "n_05_solo_snr+5_pink.wav",
+      "text": "我刚看了一个很有趣的新闻",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条文本为个人的自言自语，没有涉及任何家电实体或控制动作。"
+    },
+    {
+      "file": "n_05_solo_snr+5_white.wav",
+      "text": "我刚看了一个很有趣的新闻",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条文本为个人的自言自语，没有涉及任何家电实体或控制动作。"
+    },
+    {
+      "file": "n_05_solo_snr-5_babble.wav",
+      "text": "我刚看了一个很有趣的新闻",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条文本为个人的自言自语，没有涉及任何家电实体或控制动作。"
+    },
+    {
+      "file": "n_05_solo_snr-5_pink.wav",
+      "text": "我刚看了一段很有趣的新的",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为个人感受和分享，没有提及具体的家电实体或控制动作。"
+    },
+    {
+      "file": "n_05_solo_snr-5_white.wav",
+      "text": "我刚才看到一个很有趣的新人",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为与设备无关的闲聊内容，没有提及具体的家电实体或控制动作。"
+    },
+    {
+      "file": "n_06_solo_snr+0_babble.wav",
+      "text": "jiggler is talking about",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为闲聊，没有提及具体的家电实体和明确的动作意图。"
+    },
+    {
+      "file": "n_06_solo_snr+0_pink.wav",
+      "text": "这个周末有安排吗",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为非设备相关的闲聊内容，没有提及具体的家电实体或控制动作。"
+    },
+    {
+      "file": "n_06_solo_snr+0_white.wav",
+      "text": "这个周末有什么安排吗",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为非设备相关的闲聊内容，没有提及具体的家电实体或控制动作。"
+    },
+    {
+      "file": "n_06_solo_snr+5_babble.wav",
+      "text": "the isolation is a little less difficult",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为英文，没有提及任何家电实体或控制动作。"
+    },
+    {
+      "file": "n_06_solo_snr+5_pink.wav",
+      "text": "这个周末也有什么安排吗",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为非设备相关的闲聊内容，没有提及具体的家电实体或控制动作。"
+    },
+    {
+      "file": "n_06_solo_snr+5_white.wav",
+      "text": "这个周末有什么安排吗",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为非设备相关的闲聊内容，没有提及具体的家电实体或控制动作。"
+    },
+    {
+      "file": "n_06_solo_snr-5_babble.wav",
+      "text": "这周末有什么安排吗",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条指令为非对设备说的闲聊内容，没有提及具体的家电实体和控制动作。"
+    },
+    {
+      "file": "n_06_solo_snr-5_pink.wav",
+      "text": "you should be able to draw more on the timeline right",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容与智能家居设备控制无关，且没有提及具体的家电实体或控制动作。"
+    },
+    {
+      "file": "n_06_solo_snr-5_white.wav",
+      "text": "there is really no more of this i am like my",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为纯闲聊，没有提及任何家电实体或明确的控制动作。"
+    },
+    {
+      "file": "n_07_solo_snr+0_babble.wav",
+      "text": "这个是水的毛泡 谢谢",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为纯闲聊，没有提及任何家电实体或控制动作。"
+    },
+    {
+      "file": "n_07_solo_snr+0_pink.wav",
+      "text": "帮我倒杯水好吧谢谢",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为非设备指令的闲聊，没有提及具体的家电实体和控制动作。"
+    },
+    {
+      "file": "n_07_solo_snr+0_white.wav",
+      "text": "我倒杯水也好吗 谢谢",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为非设备相关的闲聊内容，没有提及具体的家电实体和控制动作。"
+    },
+    {
+      "file": "n_07_solo_snr+5_babble.wav",
+      "text": "帮我倒杯水好吗谢谢",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为请求帮助倒水，而非对具体家电发出的指令或控制命令。"
+    },
+    {
+      "file": "n_07_solo_snr+5_pink.wav",
+      "text": "帮我倒杯水好吗谢谢",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为请求帮助倒水，而非对具体家电发出的指令或控制命令。"
+    },
+    {
+      "file": "n_07_solo_snr+5_white.wav",
+      "text": "帮我倒杯水好吗谢谢",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为请求帮助倒水，而非对具体家电发出的指令或控制命令。"
+    },
+    {
+      "file": "n_07_solo_snr-5_babble.wav",
+      "text": "well we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not sure if we are not",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为纯自言自语，没有提及任何家电实体或明确的控制动作。"
+    },
+    {
+      "file": "n_07_solo_snr-5_pink.wav",
+      "text": "然后我到hff",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为非设备相关的话语，没有提及具体的家电实体或控制动作。"
+    },
+    {
+      "file": "n_07_solo_snr-5_white.wav",
+      "text": "oh without vtf or vtf",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为纯闲聊，没有提及任何家电实体或明确的动作意图。"
+    },
+    {
+      "file": "n_08_solo_snr+0_babble.wav",
+      "text": "migall is the king of the city",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为英文歌词，与任何家电实体和控制动作无关。"
+    },
+    {
+      "file": "n_08_solo_snr+0_pink.wav",
+      "text": "那本书我看完了写的真不错",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条指令为用户个人的评价和建议，而非对设备发出的指令。"
+    },
+    {
+      "file": "n_08_solo_snr+0_white.wav",
+      "text": "那本书我看完了写的真不错",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条指令为用户个人的评价和建议，而非对设备发出的指令。"
+    },
+    {
+      "file": "n_08_solo_snr+5_babble.wav",
+      "text": "jabber said i have to have a handle on the two points",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容与任何家电实体或控制动作无关，属于非设备指令的闲聊。"
+    },
+    {
+      "file": "n_08_solo_snr+5_pink.wav",
+      "text": "那本书我看完了写的真不错",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条指令为用户个人的评价和建议，而非对设备发出的指令。"
+    },
+    {
+      "file": "n_08_solo_snr+5_white.wav",
+      "text": "那本书我看完了写的真不错",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "这条指令为用户个人的评价和建议，而非对设备发出的指令。"
+    },
+    {
+      "file": "n_08_solo_snr-5_babble.wav",
+      "text": "you are just a single question to take it to you",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为一句没有明确家电实体和控制动作的单字，无法识别为合法指令。"
+    },
+    {
+      "file": "n_08_solo_snr-5_pink.wav",
+      "text": "fabber if you want to come on up it is a legitimate thing",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为非设备指令的闲聊，没有提及任何家电实体或明确的动作意图。"
+    },
+    {
+      "file": "n_08_solo_snr-5_white.wav",
+      "text": "meet the issue you have come and like you have a thing you can",
+      "pred": "reject",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容为非设备相关的话语，没有提及任何家电实体或明确的控制动作。"
+    }
+  ]
+}

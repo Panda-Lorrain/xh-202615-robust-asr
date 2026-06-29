@@ -1,0 +1,22 @@
+[
+  {
+    "recognition": "E:/midea_target_asr/test_wav/dataset/final/t_01_n_01_ov000_snr-5_pink.wav",
+    "enrollment": "E:/midea_target_asr/test_wav/dataset/raw/enrollment/target_long_01.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.1677880585193634
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.1677880585193634,
+    "reject_threshold": 0.5,
+    "rejected": true,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.5818829816930434,
+    "_voicemodel": "CAMpp-per-speaker",
+    "_dim": 512
+  }
+]

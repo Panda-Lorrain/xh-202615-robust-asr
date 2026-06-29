@@ -185,13 +185,14 @@ def main():
     ap = argparse.ArgumentParser(description="LLM 语义拒识(Qwen2.5-3B)")
     ap.add_argument("--text", help="单条文本(CPU/GPU 小测)")
     ap.add_argument("--testset", help="批量测试集 JSON(每条 {text, gold})")
+    ap.add_argument("--infer-json", help="推理模式: 读 [{file,text}] 无 gold, 输出每条 verdict(对接 enroll 转写)")
     ap.add_argument("--model", default=DEFAULT_MODEL)
     ap.add_argument("--device", default="cuda:0")
     ap.add_argument("--out-json", default=os.path.join(_HERE, "llm_reject_result.json"))
     ap.add_argument("--no-load", action="store_true", help="不加载模型(只做 prompt/解析自测)")
     args = ap.parse_args()
 
-    if args.no_load or (not args.text and not args.testset):
+    if args.no_load or (not args.text and not args.testset and not args.infer_json):
         # 纯逻辑自测: 验证 parse_verdict + SYSTEM_PROMPT 文本可用
         print("[selftest] parse_verdict 容错:")
         for s in ['{"verdict":"accept","entity":"空调","action":"调到","reason":"x"}',
@@ -207,6 +208,35 @@ def main():
     if args.text:
         r = rej.reject(args.text)
         print(json.dumps(r, ensure_ascii=False, indent=2))
+        return
+
+    if args.infer_json:
+        # 推理模式: 无 gold, 对 enroll 转写批量判 accept/reject, 输出每条 verdict(供 fuse_eval 融合)
+        rows = json.load(open(args.infer_json, encoding="utf-8"))
+        print(f"[infer] {len(rows)} 条转写文本 on {args.device}")
+        out, t0 = [], time.time()
+        for i, r in enumerate(rows):
+            text = r.get("text", "") or ""
+            fkey = r.get("file") or os.path.basename(r.get("recognition", "") or "") or ""
+            if text.strip():
+                pred = rej.reject(text)
+            else:
+                pred = {"verdict": "reject", "entity": "none", "action": "none",
+                        "reason": "EMPTY_TRANSCRIPT(空转写, 视为拒识)"}
+            out.append({"file": fkey, "text": text, "pred": pred["verdict"],
+                        "entity": pred.get("entity"), "action": pred.get("action"),
+                        "reason": pred.get("reason")})
+            if i == 0 or (i + 1) % 25 == 0:
+                print(f"  [{i+1}/{len(rows)}] pred={pred['verdict']} | {text[:30]}")
+        dt = time.time() - t0
+        n_acc = sum(1 for r in out if r["pred"] == "accept")
+        res = {"n": len(out), "secs_total": round(dt, 2),
+               "secs_per_item": round(dt / max(len(out), 1), 3),
+               "n_accept": n_acc, "n_reject": len(out) - n_acc, "rows": out}
+        with open(args.out_json, "w", encoding="utf-8") as f:
+            json.dump(res, f, ensure_ascii=False, indent=2)
+        print(f"\n[infer] accept={n_acc}/{len(out)} reject={len(out)-n_acc} "
+              f"({dt:.0f}s, {dt/max(len(out),1):.2f}s/条) -> {args.out_json}")
         return
 
     # 批量跑测试集 + 算指标

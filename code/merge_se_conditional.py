@@ -26,6 +26,7 @@ def main():
     ap.add_argument("--result-0", required=True, help="denoised atten-lim=0 json")
     ap.add_argument("--result-6", required=True, help="denoised atten-lim=6 json")
     ap.add_argument("--manifest", default="E:/midea_target_asr/test_wav/dataset/final/final_manifest.json")
+    ap.add_argument("--noise-est", help="估计噪声类型 JSON(noise_classify 输出); 传则用估计值(可部署), 否则用 manifest(oracle)")
     ap.add_argument("--out", required=True, help="输出条件化 json")
     ap.add_argument("--rule", default="babble:0,white:0,pink:6",
                     help="noise_type:版本(0或6), 逗号分; 未列的 noise_type 默认用 0")
@@ -37,8 +38,14 @@ def main():
             k, v = pair.split(":", 1)
             rule[k.strip()] = v.strip()
 
-    m = json.load(open(args.manifest, encoding="utf-8"))
-    noise_map = {it["file"]: it["noise_type"] for it in m["items"]}
+    if args.noise_est:
+        est = json.load(open(args.noise_est, encoding="utf-8"))
+        noise_map = {r["file"]: r["est_noise"] for r in est}
+        src_label = "估计(可部署)"
+    else:
+        m = json.load(open(args.manifest, encoding="utf-8"))
+        noise_map = {it["file"]: it["noise_type"] for it in m["items"]}
+        src_label = "manifest(oracle)"
 
     r0 = {os.path.basename(r["recognition"]): r for r in json.load(open(args.result_0, encoding="utf-8"))}
     r6 = {os.path.basename(r["recognition"]): r for r in json.load(open(args.result_6, encoding="utf-8"))}
@@ -48,18 +55,17 @@ def main():
     miss = 0
     for f, nt in noise_map.items():
         ver = rule.get(nt, "0")
-        src = r0 if ver == "0" else r6
-        rec = src.get(f)
-        if rec is None:
-            rec = r0.get(f) or r6.get(f)  # 兜底: 任一有就用
-            miss += 1 if rec is None else 0
-        if rec is not None:
-            merged.append(rec)
-            used[ver if rec in (r0.get(f), r6.get(f)) and rec is src.get(f) else "0"] += 1
+        rec = (r0 if ver == "0" else r6).get(f)
+        if rec is None:                       # 该版本无此条, 兜底用另一版
+            rec = (r6 if ver == "0" else r0).get(f)
+            if rec is None:
+                miss += 1
+                continue
+        merged.append(rec)
+        used[ver] += 1
 
     json.dump(merged, open(args.out, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
-    print(f"条件化合并: {len(merged)} 条 | 规则={args.rule}")
-    print(f"  (babble/white→=0, pink→=6; 未匹配 manifest 的兜底用 =0)")
+    print(f"条件化合并[{src_label}]: {len(merged)} 条 | 规则={args.rule} | 用 =0:{used['0']} =6:{used['6']} | 缺失跳过:{miss}")
     print(f"→ {args.out}")
 
 

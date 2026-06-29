@@ -68,6 +68,8 @@
 
 - 2026-06-29 T18：🔁 **新会话接手**（用户授权按 PROGRESS 进度接手）。核验地基完好(torch2.5.1+cu124/权重/12脚本/repro/450条manifest全在)。用户选**多线并行铺开**：Workflow 三线 de-risk(SE增强/CAM++/W5-LLM)全 READY。GPU 串行实验：线C W5-LLM 拒识零样本 34 条 **F1=0.878/Recall=1.0**(强阳,拒识40%核心层)；线A SE增强一锤定音 DeepFilterNet3 降噪后 CER **4.27→3.65(Δ−0.62)**, babble(人声)Δ−4.20 巨大/pink 反伤, **diar-fail 33→0**(diar完全稳定), **验证瓶颈部分在音频质量**；线B CAM++ 证伪信号(整段 sim0.121, 不公平, per-speaker 公平对照待做)。新增独立 venv .venv_se/.venv_campp/.venv_llm。数据增强暂缓(用户定)。详见 RESULTS.md T18。下步 P0: SE条件化落地/CAM++公平对照/中文微调/SE-DiCoW。
 
+- 2026-06-29 T19：🎯 **端到端集成 + 真实组合指标 + 瓶颈精准诊断**（用户选"集成三线+真实组合指标"方向）。`fuse_eval.py` 把 SE→enroll声纹锁定→DiCoW转写→LLM拒识→多策略融合串成**单一 pipeline**（分阶段+多venv编排），450 集跑出真实组合指标。**决定性发现**：LLM 拒 449/450(99.8%)，**最优 correct_rate 仅 6-9%** → 融合/阈值旋钮无解，瓶颈不在拒识而在**转写质量**。诊断(`diag_transcript.py`)：63% 转写 CER≥2(garbage)，多为**英文幻觉**——Whisper-large-v3-turbo 在退化中文音频(babble 尤烈)语言漂移→英文；white 噪声 ov0 转写良好(33% 优秀 CER 0-0.4)。`test_zh_force.py` 排除 initial_prompt 方案(反而更差,前缀污染+重复循环)。`noise_classify.py` 谱平坦度噪声估计器 99.78% 准确→**SE条件化可部署**(CER 2.82≈oracle)。`build_reject_set.py` 造 72 条 target 缺席集→**拒识侧 100% 真实拒识率**(强阳)，并发现 stno 单独是坏拒识信号(误放行非目标)、sim 才是锚信号。**结论**：瓶颈铁定在 Whisper 转写质量(babble 英文幻觉)，真实提升杠杆=中文微调/SE-DiCoW/更强babble SE(都需重投入,待真实数据/通道数)。详见 RESULTS.md T19。
+
 ## ✅ 完整 pipeline 已跑通（2026-06-28 T14，从 90% → 100%）
 **最后一块 wespeaker 补齐 + from_pretrained patch 后，端到端打通**：DiariZen diarization → STNO mask → DiCoW 真 target-speaker 转写。EN2002a_30s 正确分离 4 说话人并各自转写（Speaker 3=主说话人，含 "yeah yeah but i do not know about you..." 全段）。**从 minimal 推理(手构造全-target STNO)升级到完整端到端(真 diarization + 真 target-speaker)**。
 

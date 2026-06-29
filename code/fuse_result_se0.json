@@ -1,0 +1,310 @@
+{
+  "label": "SE=0可部署",
+  "n": 450,
+  "n_target_present": 450,
+  "n_diar_fail": 0,
+  "raw_cer_quality": 3.6545,
+  "raw_cer_good_rate": 0.0578,
+  "best": {
+    "config": "sim_only(t=0.1)",
+    "n": 450,
+    "accept_rate": 0.576,
+    "reject_rate": 0.424,
+    "cer_final": 2.6858,
+    "cer_accepted": 3.9291,
+    "correct_rate": 0.058,
+    "rtf": 0.356
+  },
+  "baseline_sim_t02": {
+    "config": "sim_only(t=0.2)",
+    "n": 450,
+    "accept_rate": 0.242,
+    "reject_rate": 0.758,
+    "cer_final": 1.7371,
+    "cer_accepted": 4.0431,
+    "correct_rate": 0.049,
+    "rtf": 0.356
+  },
+  "all_configs": [
+    {
+      "config": "sim_only(t=0.1)",
+      "n": 450,
+      "accept_rate": 0.576,
+      "reject_rate": 0.424,
+      "cer_final": 2.6858,
+      "cer_accepted": 3.9291,
+      "correct_rate": 0.058,
+      "rtf": 0.356
+    },
+    {
+      "config": "llm_or_sim(t=0.1)",
+      "n": 450,
+      "accept_rate": 0.576,
+      "reject_rate": 0.424,
+      "cer_final": 2.6858,
+      "cer_accepted": 3.9291,
+      "correct_rate": 0.058,
+      "rtf": 0.356
+    },
+    {
+      "config": "sim_only(t=0.15)",
+      "n": 450,
+      "accept_rate": 0.391,
+      "reject_rate": 0.609,
+      "cer_final": 2.1331,
+      "cer_accepted": 3.897,
+      "correct_rate": 0.056,
+      "rtf": 0.356
+    },
+    {
+      "config": "llm_or_sim(t=0.15)",
+      "n": 450,
+      "accept_rate": 0.391,
+      "reject_rate": 0.609,
+      "cer_final": 2.1331,
+      "cer_accepted": 3.897,
+      "correct_rate": 0.056,
+      "rtf": 0.356
+    },
+    {
+      "config": "sim_only(t=0.2)",
+      "n": 450,
+      "accept_rate": 0.242,
+      "reject_rate": 0.758,
+      "cer_final": 1.7371,
+      "cer_accepted": 4.0431,
+      "correct_rate": 0.049,
+      "rtf": 0.356
+    },
+    {
+      "config": "llm_or_sim(t=0.2)",
+      "n": 450,
+      "accept_rate": 0.242,
+      "reject_rate": 0.758,
+      "cer_final": 1.7371,
+      "cer_accepted": 4.0431,
+      "correct_rate": 0.049,
+      "rtf": 0.356
+    },
+    {
+      "config": "weighted(w_llm=0.3,t=0.2)",
+      "n": 450,
+      "accept_rate": 0.242,
+      "reject_rate": 0.758,
+      "cer_final": 1.7371,
+      "cer_accepted": 4.0431,
+      "correct_rate": 0.049,
+      "rtf": 0.356
+    },
+    {
+      "config": "weighted(w_llm=0.5,t=0.2)",
+      "n": 450,
+      "accept_rate": 0.242,
+      "reject_rate": 0.758,
+      "cer_final": 1.7371,
+      "cer_accepted": 4.0431,
+      "correct_rate": 0.049,
+      "rtf": 0.356
+    },
+    {
+      "config": "llm_or_sim(t=0.25)",
+      "n": 450,
+      "accept_rate": 0.176,
+      "reject_rate": 0.824,
+      "cer_final": 1.5555,
+      "cer_accepted": 4.1645,
+      "correct_rate": 0.042,
+      "rtf": 0.356
+    },
+    {
+      "config": "sim_only(t=0.25)",
+      "n": 450,
+      "accept_rate": 0.173,
+      "reject_rate": 0.827,
+      "cer_final": 1.5569,
+      "cer_accepted": 4.2127,
+      "correct_rate": 0.04,
+      "rtf": 0.356
+    },
+    {
+      "config": "llm_or_sim(t=0.3)",
+      "n": 450,
+      "accept_rate": 0.113,
+      "reject_rate": 0.887,
+      "cer_final": 1.4579,
+      "cer_accepted": 5.0406,
+      "correct_rate": 0.033,
+      "rtf": 0.356
+    },
+    {
+      "config": "weighted(w_llm=0.5,t=0.3)",
+      "n": 450,
+      "accept_rate": 0.113,
+      "reject_rate": 0.887,
+      "cer_final": 1.4579,
+      "cer_accepted": 5.0406,
+      "correct_rate": 0.033,
+      "rtf": 0.356
+    },
+    {
+      "config": "sim_only(t=0.3)",
+      "n": 450,
+      "accept_rate": 0.111,
+      "reject_rate": 0.889,
+      "cer_final": 1.4593,
+      "cer_accepted": 5.1334,
+      "correct_rate": 0.031,
+      "rtf": 0.356
+    },
+    {
+      "config": "weighted(w_llm=0.3,t=0.3)",
+      "n": 450,
+      "accept_rate": 0.111,
+      "reject_rate": 0.889,
+      "cer_final": 1.4593,
+      "cer_accepted": 5.1334,
+      "correct_rate": 0.031,
+      "rtf": 0.356
+    },
+    {
+      "config": "llm_or_sim(t=0.4)",
+      "n": 450,
+      "accept_rate": 0.044,
+      "reject_rate": 0.956,
+      "cer_final": 1.199,
+      "cer_accepted": 5.4772,
+      "correct_rate": 0.016,
+      "rtf": 0.356
+    },
+    {
+      "config": "sim_only(t=0.4)",
+      "n": 450,
+      "accept_rate": 0.042,
+      "reject_rate": 0.958,
+      "cer_final": 1.2003,
+      "cer_accepted": 5.7444,
+      "correct_rate": 0.013,
+      "rtf": 0.356
+    },
+    {
+      "config": "llm_only",
+      "n": 450,
+      "accept_rate": 0.002,
+      "reject_rate": 0.998,
+      "cer_final": 0.9987,
+      "cer_accepted": 0.4,
+      "correct_rate": 0.002,
+      "rtf": 0.356
+    },
+    {
+      "config": "llm_and_sim(t=0.1)",
+      "n": 450,
+      "accept_rate": 0.002,
+      "reject_rate": 0.998,
+      "cer_final": 0.9987,
+      "cer_accepted": 0.4,
+      "correct_rate": 0.002,
+      "rtf": 0.356
+    },
+    {
+      "config": "llm_and_sim(t=0.15)",
+      "n": 450,
+      "accept_rate": 0.002,
+      "reject_rate": 0.998,
+      "cer_final": 0.9987,
+      "cer_accepted": 0.4,
+      "correct_rate": 0.002,
+      "rtf": 0.356
+    },
+    {
+      "config": "llm_and_sim(t=0.2)",
+      "n": 450,
+      "accept_rate": 0.002,
+      "reject_rate": 0.998,
+      "cer_final": 0.9987,
+      "cer_accepted": 0.4,
+      "correct_rate": 0.002,
+      "rtf": 0.356
+    },
+    {
+      "config": "weighted(w_llm=0.7,t=0.2)",
+      "n": 450,
+      "accept_rate": 0.002,
+      "reject_rate": 0.998,
+      "cer_final": 0.9987,
+      "cer_accepted": 0.4,
+      "correct_rate": 0.002,
+      "rtf": 0.356
+    },
+    {
+      "config": "weighted(w_llm=0.7,t=0.3)",
+      "n": 450,
+      "accept_rate": 0.002,
+      "reject_rate": 0.998,
+      "cer_final": 0.9987,
+      "cer_accepted": 0.4,
+      "correct_rate": 0.002,
+      "rtf": 0.356
+    },
+    {
+      "config": "llm_or_sim(t=0.5)",
+      "n": 450,
+      "accept_rate": 0.009,
+      "reject_rate": 0.991,
+      "cer_final": 1.0134,
+      "cer_accepted": 2.5038,
+      "correct_rate": 0.002,
+      "rtf": 0.356
+    },
+    {
+      "config": "llm_and_sim(t=0.25)",
+      "n": 450,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 1.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.356
+    },
+    {
+      "config": "llm_and_sim(t=0.3)",
+      "n": 450,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 1.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.356
+    },
+    {
+      "config": "llm_and_sim(t=0.4)",
+      "n": 450,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 1.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.356
+    },
+    {
+      "config": "llm_and_sim(t=0.5)",
+      "n": 450,
+      "accept_rate": 0.0,
+      "reject_rate": 1.0,
+      "cer_final": 1.0,
+      "cer_accepted": null,
+      "correct_rate": 0.0,
+      "rtf": 0.356
+    },
+    {
+      "config": "sim_only(t=0.5)",
+      "n": 450,
+      "accept_rate": 0.007,
+      "reject_rate": 0.993,
+      "cer_final": 1.0147,
+      "cer_accepted": 3.2051,
+      "correct_rate": 0.0,
+      "rtf": 0.356
+    }
+  ]
+}

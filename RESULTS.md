@@ -290,3 +290,63 @@ enroll_infer_campp.py(跨 venv: 主 .venv diarization + .venv_campp CAM++ emb, p
 - vs wespeaker: 均 sim **0.218** / 拒识率 0.87 / 正确率 0.04
 - **CAM++ 0.191 < 0.218, 正确率 0.00 < 0.04 → 不值得替代 wespeaker(证伪)**; 唯一亮点 SNR−5 CAM++ 0.154 > wespeaker 0.118(低 SNR 略鲁棒), 但整体不如。
 - 定论: 主线声纹维持 wespeaker; sherpa-onnx CAM++ 留边缘部署备用(纯 ONNX 轻量)。脚本 `code/enroll_infer_campp.py` + `emb_campp.py`。干净负面结果, 排除 CAM++ 替代路线, 聚焦 wespeaker + 中文微调 + 重叠分离。
+
+---
+
+## 🎯 T19 端到端集成 + 真实组合指标 + 瓶颈精准诊断（2026-06-29）
+
+> **三线首次串成单一 pipeline + 跑出真实组合指标**（SE→enroll声纹锁定→DiCoW转写→LLM拒识→多策略融合）。三线此前三次单独验证（T18），但互不相连，450 集上没有单一组合分数。本节把它接通，**结果一锤定音地揭示了真正瓶颈**。
+
+### 做了什么
+- `code/fuse_eval.py`（核心）：读 enroll_infer JSON（max_sim/transcript）+ LLM verdicts + manifest，对每个融合配置算 **cer_final（拒识计 1.0=漏 target）/ cer_accepted / correct_rate / reject_rate / RTF**，扫 sim_threshold × 策略（sim_only/llm_only/llm_or_sim/llm_and_sim/weighted/stno/three_way）排序找最优。
+- `code/llm_reject.py` 加 `--infer-json` 推理模式（无 gold 批量判 verdict，对接 enroll 转写）。
+- `code/enroll_infer.py` 加 `stno_target_ratio` 输出（三路第三信号）。
+- `code/build_reject_set.py`：造 **72 条 target 缺席集**（苏打+噪声，配冰糖 enrollment→应拒识），补拒识 40% 的"真实拒识率"画面。
+- `code/noise_classify.py`：谱平坦度噪声估计器（使 SE 条件化**可部署**）。
+
+### 真实组合指标（450 集，target 恒在场）
+**LLM 拒识 449/450（99.8%）**——这是决定性信号：
+
+| 配置 | accept | reject | cer_final | correct(CER<0.5) | 解读 |
+|---|---|---|---|---|---|
+| sim_only(t=0.2) | 24% | 76% | 1.74 | 5% | 当前主线 |
+| sim_only(t=0.15) | 39% | 61% | 2.13 | 6% | 放宽阈值 |
+| llm_only | 0.2% | 99.8% | 1.00 | 0% | 全靠语义 |
+| llm_or_sim | ≈sim_only | — | — | ≈6% | LLM 救不动 |
+
+**最优 correct_rate 仅 6–9%**（sim_only t=0.15/oracle 条件化）。**融合/阈值旋钮无解**——LLM 不是太严（34 条合成测试 F1=0.878 健康），而是 **DiCoW 转写本身是垃圾**，LLM 正确地把垃圾判为非指令而拒识，但 target 在场 → 这些是"因转写垃圾导致的误拒"，**垃圾文本无可救**。
+
+### 瓶颈精准诊断（根因锁定）
+转写质量分布（`diag_transcript.py`）：**good(CER<0.5) 5.8% / garbage(CER≥2) 63.1%**。逐条看失败模式：
+
+| 条件 | 转写 | 现象 |
+|---|---|---|
+| ov0/snr+5/white | "请把客厅的空调温度调到二十六鼻"(CER 0.07) / "把电视的声音关小一点"(CER 0.00) | ✅ **中文转写良好**（white 噪声 ov0 达 33% 优秀） |
+| ov0/snr-5/babble | "more like i think it is a lot of issues" / "take off the water i think..." | ❌ **英文幻觉** |
+| ov0/snr+5/babble | "i can you go to the other side" / "stutters are more efficient than I am" | ❌ **英文幻觉**（即使 SNR+5） |
+
+**根因 = Whisper-large-v3-turbo（DiCoW 基座）在退化中文音频上语言漂移→英文幻觉**，尤其 **babble（类人声噪声）**触发最烈（与 SE 数据吻合：babble CER 8.6 最差）。enroll_infer 已传 `language="zh"`，但 Whisper 只强制首位 token，序列中段在 babble 下漂英文。**这不是融合/拒识能修的——是转写模型本身的鲁棒性问题。**
+
+### 中文强制实验（`test_zh_force.py`，排除 prompt 方案）
+试 `initial_prompt="以下是普通话的句子。"`（Whisper 标准中文强制手段）：**反而更差**（ov0 均CER 1.62→5.58，CER<0.5 占比 33%→0%）。原因：①prompt 文本被前缀进输出（"以下是普通话的句子。把电视..."）抬高 CER；②难音频上触发重复循环（"小小小小..."）。**排除 initial_prompt 方案**。
+
+### SE 条件化可部署化（`noise_classify.py`）✅
+谱平坦度把 white(0.39)/pink(0.11)/babble(0.03) 三类噪声**完全分离**（无重叠），babble vs stationary 阈值 0.053 达 **100% 准确**，三分类整体 **99.78%（449/450）**。用**估计的**噪声类型从已有 =0/=6 两版挑条合并：**可部署条件化 CER = 2.823 ≈ oracle 2.825**。→ **SE 条件化从"需 manifest（测试时不可知）"变成纯运行时可部署**。⚠️⚠️ **诚实 caveat（审查指出）**：① 99.78% 是**在合成 450 集 in-sample 测的**，分离阈值 `sep=(max(babble)+min(nonbabble))/2` 直接由该同集极值算出——合成噪声谱特征干净（white/pink/babble 各自谱平坦度无重叠），真实噪声分布不同，准确率必然下降；② 估计器**机制成立**（谱平坦度区分稳态/非稳态噪声在原理上有效），但**阈值需在真实噪声上重新校准**，99.78% 数字**不可直接外推到比赛**。
+
+### target 缺席拒识测试（72 条，真实拒识率）✅ 强阳
+`build_reject_set.py` 造 72 条 target 缺席音频（苏打+噪声，配冰糖 enrollment→正确行为=拒识）：
+
+| 信号 | 拒识率 | cer_final | 解读 |
+|---|---|---|---|
+| **sim_only(t=0.2)** | **100%** | 0.000 | max_sim 均 0.026（苏打 vs 冰糖 enrollment），全部正确拒 |
+| llm_only / 三路融合 | 100% | 0.000 | LLM 把闲聊/英文幻觉判 reject，三路(sim+LLM 都拒)正确 |
+| stno_only(t=0.05) | 32%（**误放行 68%**） | 0.681 | ⚠️ stno 是坏拒识信号 |
+
+**关键发现**：`stno_target_ratio` 衡量"所选 speaker 的独占帧占比"，但所选 speaker 可能是苏打（错选）→ 它说话多→stno 高却非 target → **stno 单独会误放行非目标**。**验证 sim 是拒识锚信号**（声纹匹配才是"target 在不在场"的真证据），stno 只能作辅助（三路里 sim+LLM 双否决时 stno 权重 0.2 仍正确拒）。→ **拒识侧 100% 真实拒识率，强阳**，平衡了 CER 侧的瓶颈。
+**注**：72 条全是单说话人苏打（无第二非目标声音），真实比赛"≤2 说话人都非 target"会更难；本结果证明机制成立，真实数据来时需扩。
+
+### 结论与下一步（集成后的方向重定）
+1. **集成达成**：三线串成单一 pipeline，真实组合指标产出，机制全通。
+2. **瓶颈铁定在 Whisper 转写质量（babble 英文幻觉），不在融合/拒识**——融合调参是死路，这与 T17"瓶颈转移到 Whisper 带噪转写"一致且更强证。
+3. **真正提升 CER 的杠杆**（按可行性）：① 中文家居微调（让 Whisper 在 babble+中文上鲁棒，重但治本）② SE-DiCoW（enrollment 条件化，攻重叠+babble 死区）③ 更强 babble SE。三者都需重投入，**取决于真实数据/通道数确认**。
+4. **可部署交付物**：SE 条件化（可部署 CER 2.82）+ 三路融合框架（接口齐，待转写质量上去即生效）+ 噪声估计器 + target 缺席拒识集。组合主线"只转 target、拒识 non-target"闭环工程上已成立，**下限取决于 Whisper 带噪中文能力**。
