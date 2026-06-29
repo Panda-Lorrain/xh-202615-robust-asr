@@ -3,6 +3,7 @@
 > **这是自主 loop 的"大脑"。每次 wakeup 第一件事：读本文件，确认目标、看到哪了、下一步、遇阻什么。**
 > 用户授权 overnight 自主推进，明早看初步效果。
 > 创建：2026-06-27。
+> ⚠️ **2026-06-30 用户指示**：`docs/superpowers/` 下 `final-exam-*` 两份文档是无关的期末作业，与本项目无关，**忽略、不要执行**。本项目任务是参赛工程（见下方总目标 + AGENT_HANDOFF T19 待办）。
 
 ---
 
@@ -69,6 +70,8 @@
 - 2026-06-29 T18：🔁 **新会话接手**（用户授权按 PROGRESS 进度接手）。核验地基完好(torch2.5.1+cu124/权重/12脚本/repro/450条manifest全在)。用户选**多线并行铺开**：Workflow 三线 de-risk(SE增强/CAM++/W5-LLM)全 READY。GPU 串行实验：线C W5-LLM 拒识零样本 34 条 **F1=0.878/Recall=1.0**(强阳,拒识40%核心层)；线A SE增强一锤定音 DeepFilterNet3 降噪后 CER **4.27→3.65(Δ−0.62)**, babble(人声)Δ−4.20 巨大/pink 反伤, **diar-fail 33→0**(diar完全稳定), **验证瓶颈部分在音频质量**；线B CAM++ 证伪信号(整段 sim0.121, 不公平, per-speaker 公平对照待做)。新增独立 venv .venv_se/.venv_campp/.venv_llm。数据增强暂缓(用户定)。详见 RESULTS.md T18。下步 P0: SE条件化落地/CAM++公平对照/中文微调/SE-DiCoW。
 
 - 2026-06-29 T19：🎯 **端到端集成 + 真实组合指标 + 瓶颈精准诊断**（用户选"集成三线+真实组合指标"方向）。`fuse_eval.py` 把 SE→enroll声纹锁定→DiCoW转写→LLM拒识→多策略融合串成**单一 pipeline**（分阶段+多venv编排），450 集跑出真实组合指标。**决定性发现**：LLM 拒 449/450(99.8%)，**最优 correct_rate 仅 6-9%** → 融合/阈值旋钮无解，瓶颈不在拒识而在**转写质量**。诊断(`diag_transcript.py`)：63% 转写 CER≥2(garbage)，多为**英文幻觉**——Whisper-large-v3-turbo 在退化中文音频(babble 尤烈)语言漂移→英文；white 噪声 ov0 转写良好(33% 优秀 CER 0-0.4)。`test_zh_force.py` 排除 initial_prompt 方案(反而更差,前缀污染+重复循环)。`noise_classify.py` 谱平坦度噪声估计器 99.78% 准确→**SE条件化可部署**(CER 2.82≈oracle)。`build_reject_set.py` 造 72 条 target 缺席集→**拒识侧 100% 真实拒识率**(强阳)，并发现 stno 单独是坏拒识信号(误放行非目标)、sim 才是锚信号。**结论**：瓶颈铁定在 Whisper 转写质量(babble 英文幻觉)，真实提升杠杆=中文微调/SE-DiCoW/更强babble SE(都需重投入,待真实数据/通道数)。详见 RESULTS.md T19。**⚠️ 归因修正(对抗审查后)**：英文幻觉真因不是"Whisper babble 模型漂移"，而是 **DiCoW `generation.py` language 强制死代码 bug**(language=zh 被忽略→detect_language 误检英文→90% 出英文)。**已打补丁修复**(`repro/apply_dicow_langfix.py`)，全量 english 90%→72%(chinese 39→125,3倍)，good 5.8%→7.8%，raw CER 3.65→3.54。修复非银弹——难条件(babble/重叠/低SNR)即使强制中文也错字垃圾，残留瓶颈=Whisper 硬噪声鲁棒性(需微调/SE-DiCoW)。教训见 memory。
+
+- 2026-06-30 T20：🎯 **SE 条件化 post-fix 重评 + 归因深化**（用户选"SE条件化 post-fix 重跑"轻量快赢线）。跑 se6(=6) post-fix 转写(`enroll_regen_se6.json`)→merge→eval。**原任务**：旧 conditional post-fix overall **3.236**（pink→=6 档 Δ-0.92 改善，但规则 pre-fix 经验过时）。**5 策略对比**：精细二维 2.022 > 全se6 2.504 > 新conditional(white,pink→6,babble→0) **2.609 稳健** > 旧cond 3.236 > 全se0 3.542；post-fix 后 =6(se6) 全面优于 =0(se0)（正确率 7.8%→15.1% 翻倍/中文 30%→58%/幻觉 69%→50%）。**⭐归因深化(修正T19)**：babble 英文幻觉真因**更上游**——**DiariZen diar 误检 babble 人声噪声为第2 speaker**(ov0 本应单人却 speakers={2:30})→**stno_target_ratio=0**(target 独占帧清零,`enroll_infer.py:189`)→STNO mask target 行空→DiCoW 转写崩溃(714字英文循环)。抽样铁证: babble ov0 snr+5 max_sim0.545(声纹尚可)仍 stno=0→596字循环崩; white ov0 snr+5 max_sim0.440→「请把客厅的空调温度调到二十六度」完全正确。**与=0/=6反转自洽**: babble低重叠=0压噪防diar误检(2.68), =6保babble致误检崩(7.84)。langfix对white/pink有效、对babble无效(因STNO崩,非langfix)。**真瓶颈修正**: babble diar误检+STNO崩(非单纯Whisper)。改进杠杆: ①babble强降噪前置diar②声纹babble鲁棒(max_sim0.05-0.21)③STNO容错④中文微调(STNO崩时无效)⑤SE-DiCoW。绝对值仍差(se6正确率15.1%),2.504是相对改善非成功。详见 RESULTS.md T20。产出 `enroll_regen_se6.json`/`se_conditional_postfix.json`/`_diag_full.py`/`_diag_lock.py`。
 
 ## ✅ 完整 pipeline 已跑通（2026-06-28 T14，从 90% → 100%）
 **最后一块 wespeaker 补齐 + from_pretrained patch 后，端到端打通**：DiariZen diarization → STNO mask → DiCoW 真 target-speaker 转写。EN2002a_30s 正确分离 4 说话人并各自转写（Speaker 3=主说话人，含 "yeah yeah but i do not know about you..." 全段）。**从 minimal 推理(手构造全-target STNO)升级到完整端到端(真 diarization + 真 target-speaker)**。

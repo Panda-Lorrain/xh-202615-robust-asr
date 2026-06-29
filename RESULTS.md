@@ -355,3 +355,55 @@ enroll_infer_campp.py(跨 venv: 主 .venv diarization + .venv_campp CAM++ emb, p
 2. **瓶颈铁定在 Whisper 转写质量（babble 英文幻觉），不在融合/拒识**——融合调参是死路，这与 T17"瓶颈转移到 Whisper 带噪转写"一致且更强证。
 3. **真正提升 CER 的杠杆**（按可行性）：① 中文家居微调（让 Whisper 在 babble+中文上鲁棒，重但治本）② SE-DiCoW（enrollment 条件化，攻重叠+babble 死区）③ 更强 babble SE。三者都需重投入，**取决于真实数据/通道数确认**。
 4. **可部署交付物**：SE 条件化（可部署 CER 2.82）+ 三路融合框架（接口齐，待转写质量上去即生效）+ 噪声估计器 + target 缺席拒识集。组合主线"只转 target、拒识 non-target"闭环工程上已成立，**下限取决于 Whisper 带噪中文能力**。
+
+---
+
+## T20：SE 条件化 post-fix 重评 + 归因深化（2026-06-30，对抗审查后）
+
+> 背景：T19 修复 DiCoW language 死代码 bug（langfix）后，重跑 SE 条件化 post-fix。原任务=重跑 conditional（pink→=6）post-fix，预期 ~2.7。**结果颠覆预设：post-fix 后 =0/=6 优劣格局反转，并挖出 babble 失败的更上游根因（diarization 误检 babble 为 speaker + STNO target 帧清零，非 langfix/Whisper 本身）。**
+
+### 1. 6 集 overall CER 交叉表
+
+| 配置 | overall | white | pink | babble | 中文占比 | 正确率(CER<0.5) |
+|---|---|---|---|---|---|---|
+| pre-fix conditional（T18）| 2.825 | — | — | — | 17% | — |
+| post-fix se0（=0 全力）| 3.542 | 3.230 | 2.201 | 5.196 | 30% | 7.8%（35/450）|
+| post-fix se6（=6 温和）| **2.504** | 1.350 | 1.282 | 4.879 | 58% | 15.1%（68/450）|
+| post-fix 旧 conditional | 3.236 | 3.230（se0）| 1.282（se6）| 5.196（se0）| 38% | — |
+
+### 2. 5 策略对比（post-fix，450 条）
+
+| 策略 | overall | 工程定位 |
+|---|---|---|
+| 全 se0（=0）| 3.542 | 最差 |
+| 旧 conditional（babble,white→0, pink→6）| 3.236 | 原任务产出；规则系 pre-fix 经验，post-fix 后过时 |
+| 新 conditional（white,pink→6, babble→0）| 2.609 | **稳健推荐**（仅改 white→=6）|
+| 全 se6（=6）| 2.504 | 最简，但 babble 低重叠有牺牲 |
+| 精细二维（babble ov≤0.25→0，其余→6）| **2.022** | oracle 最优；过拟合风险（每档 n=30）|
+
+### 3. ⭐ 关键发现：babble 失败的更上游根因（修正 T19 归因）
+
+T19 把 babble 英文幻觉归因为"Whisper 硬噪声鲁棒性"。post-fix 重评 + 字段核查（`code/_diag_lock.py`）发现**更上游的级联根因**，babble 条失败链：
+
+1. **DiariZen diarization 误检**：babble ov0（overlap=0，本应单人）**100% 检出 2 个 speaker**（`speakers={2:30}`）——把 babble 人声噪声当成第 2 个 speaker。
+2. **声纹 max_sim 崩**：babble 各档 max_sim **0.051–0.209**（white 0.335 / pink 0.436），大量条 <0.2（16–26/30）。
+3. **STNO target 独占帧清零**：`stno_target_ratio`（=target 活跃且无其他 speaker 的帧占比，`enroll_infer.py:189`）在 babble 全档 = **0.00**——diar 把 target 与 babble-noise-speaker 判定帧级完全重叠，target 无任何独占帧。
+4. **DiCoW 转写崩溃**：STNO mask 的 target 行空 → DiCoW 在退化信号上英文幻觉/重复循环（714 字 "i don't know if you..."、596 字 "oh no no..."）。
+
+**抽样铁证**：babble ov0 snr+5 `max_sim=0.545`（声纹尚可）但仍 `stno_target=0` → 转写 596 字循环崩溃。**即使声纹锁住，STNO 崩也救不了**。对照：white ov0 snr+5 `max_sim=0.440` →「请把客厅的空调温度调到二十六度」**完全正确**。
+
+**与 =0/=6 优劣反转自洽**：babble 低重叠用 =0（全力降噪压 babble→diar 不误检→STNO 正常→CER 2.68），=6（保留 babble→diar 误检→STNO 崩→7.84）；white/pink 用 =6（温和保留语音→Whisper 转写好）。这解释了精细策略为何对 babble ov≤0.25 选 =0、ov≥0.5 选 =6。
+
+### 4. langfix 效果边界
+
+langfix 对 **white/pink 低重叠有效**（se6 中文 93%、正确率 60%@ov0）；对 **babble 无效**——但真因**不是 langfix**，而是上述 diar+STNO 崩溃级联（langfix 无关：STNO 都崩了，强制中文 token 起始压不住 decoder 后续幻觉）。T19"修复非银弹，残留瓶颈=Whisper 硬噪声"需修正为：**残留瓶颈=babble 条 diar 误检 + STNO 崩（更上游），Whisper 转写质量是第二层**。
+
+### 5. 结论与改进方向（诚实）
+
+- **原任务完成**：旧 conditional post-fix = 3.236（规则过时，非最优）。
+- **post-fix 最优**：精细二维 2.022（oracle，过拟合）/ 新 conditional 2.609（**稳健推荐**）/ 全 se6 2.504（最简）。
+- **绝对值仍差**：se6 正确率仅 15.1%、幻觉 50%，系统远未可用——"2.504"是相对 se0 的改善，**非成功**。
+- **真瓶颈（修正 T19）**：babble 条 **diarization 误检连续人声噪声为 speaker + STNO target 清零**（非单纯 Whisper）。改进杠杆（多元）：① babble 专用强降噪前置 diar（防误检，已证 =0 对 babble 低重叠有效）② 声纹 babble 鲁棒（CAM++/enrollment 增强，max_sim 0.05–0.21 太低）③ STNO 构造对"diar 误检连续噪声 speaker"的容错 ④ Whisper 中文微调（治转写层，但 STNO 崩时无效）⑤ SE-DiCoW。
+- **诚实声明**：450 条仿真数据，精细策略 oracle 选条过拟合风险；babble 误检根因基于字段关联（speakers=[0,1] + stno_target=0 + 英文幻觉的同现），因果链待真实数据/单步消融进一步确证（如同 T19 langfix bug 待对抗审查才定论）。
+
+**产出文件**：`code/enroll_regen_se6.json`（=6 post-fix 转写）、`code/se_conditional_postfix.json`（旧 conditional post-fix）、`code/_diag_full.py` / `_diag_lock.py`（复现诊断）。

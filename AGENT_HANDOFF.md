@@ -5,6 +5,17 @@
 
 ---
 
+## ⚠️⚠️ 隔离声明（2026-06-30 用户明确指示，后续 agent 必读）
+
+`docs/superpowers/specs/2026-06-29-final-exam-data-analysis-reframe-design.md` 与 `docs/superpowers/plans/2026-06-29-final-exam-deliverables.md` 这两份文档是用户**另一个独立的《Python与数据分析》课程期末作业**，与本项目（美的 XH-202615 参赛工程）**完全无关**。
+
+- ❌ **不要执行**那份 plan——不要创建 `期末作业/` 目录、不写 `analysis.ipynb`、不写课程设计报告 / 答辩 PPT / 分工表
+- ❌ **不要把项目方向**往「数据分析重构」带
+- ✅ 本项目当前真正任务仍是**参赛工程**的下一步（见下方「T19 速览·待办」与 `PROGRESS.md`）：① SE 条件化 post-fix 重跑 ② 中文家居微调 ③ SE-DiCoW 接入 ④ 真实噪声再校准 noise_classify ⑤ 确认通道数 / 真实数据
+- 这两份文件仅因用户在别处可能用到而保留在仓库中，**对本 loop 视作不存在**
+
+---
+
 ## 🆕 T19 速览（2026-06-29 端到端集成 + 真实组合指标）
 
 **做了什么**：`code/fuse_eval.py`（核心）把 **SE条件化 → 声纹enrollment锁定target(wespeaker) → DiCoW(Whisper-turbo+FDDT)转写 → LLM拒识(Qwen2.5-3B) → 多策略融合** 串成单一分阶段 pipeline（多 venv 编排），450 集跑出**首个真实组合指标**。配套：`llm_reject.py --infer-json`、`enroll_infer.py` 加 `stno_target_ratio`、`build_reject_set.py`（72条target缺席）、`noise_classify.py`（噪声估计器）、`diag_transcript.py`+`test_zh_force.py`（诊断+实验）。
@@ -20,9 +31,9 @@
 - ✅ **SE 条件化可部署**：`noise_classify.py` 谱平坦度估计器 **99.78% 准确**（white/pink/babble 三类谱平坦度无重叠），**可部署 CER 2.82≈oracle 2.82**（不再依赖 manifest noise_type，测试时可估）。
 - ✅ **拒识侧 100% 真实拒识率**（72条target缺席集，sim/LLM/三路融合全对，0误放行）；发现 **stno 单独是坏拒识信号**（误放行非目标主导语音）、**sim 才是锚信号**。
 
-**新 P0（集成后重定）**：① 中文家居微调（攻 Whisper babble 英文幻觉，治本但重）② SE-DiCoW 接入（攻重叠+babble死区）③ **确认通道数/真实数据**（决定空间路线+微调数据）。**融合框架已就绪，转写质量上去即生效**——组合主线工程闭环成立，下限取决于 Whisper 带噪中文能力。
+**新 P0（集成后重定，T20 修正 babble 归因）**：① **babble diar 误检 + STNO 崩攻坚**（T20 证实 babble 英文幻觉真因更上游=DiariZen diar 把 babble 人声噪声误检为第2 speaker→`stno_target_ratio=0`→STNO target 帧清零→DiCoW 转写崩；杠杆：babble 强降噪前置 diar / 声纹 babble 鲁棒 / STNO 容错）② SE-DiCoW 接入（攻重叠+babble死区）③ 中文家居微调（攻 Whisper 转写层，**但 STNO 崩时无效，须在 ① 之后**）④ **确认通道数/真实数据**（决定空间路线+微调数据）。**融合框架已就绪，转写质量上去即生效**——组合主线工程闭环成立，下限取决于 babble diar + Whisper 带噪中文。
 
-**待办（下一棒）**：① **SE条件化(可部署) post-fix 重跑**——se0 已重跑(语言修复后 raw CER 3.54/7.8% good)，conditional(pink→=6) post-fix 未跑（预期 ~2.7，可选）；② 中文家居微调（攻残留 Whisper 硬噪声转写，治本）；③ SE-DiCoW 接入（攻重叠+babble死区）；④ 真实噪声再校准 noise_classify（合成噪声谱干净，真实会差）；⑤ **确认通道数/真实数据**（决定空间路线+微调数据，当务之急）。融合框架已就绪，转写质量上去即生效。
+**待办（下一棒）**：① ✅ **SE条件化 post-fix 重跑已完成(2026-06-30 T20)**——旧 conditional post-fix overall **3.236**；post-fix 后 =6 全面优于 =0（最优精细二维 **2.022** / 新 conditional **2.609** 稳健推荐）；**归因深化修正 T19**：babble 英文幻觉真因更上游=**DiariZen diar 误检 babble 人声噪声为第2 speaker → stno_target_ratio=0 → STNO target 帧清零 → DiCoW 转写崩溃**（714字英文循环，非 langfix/Whisper 本身）；改进杠杆多元（babble 强降噪前置 diar / 声纹 babble 鲁棒 / STNO 容错 / SE-DiCoW），详见 RESULTS T20；② babble diar+STNO 崩攻坚（新 P0①，治本）；③ SE-DiCoW 接入（攻重叠+babble死区）；④ 真实噪声再校准 noise_classify（合成噪声谱干净，真实会差）；⑤ **确认通道数/真实数据**（决定空间路线+微调数据，当务之急）。融合框架已就绪，转写质量上去即生效。
 
 ---
 
