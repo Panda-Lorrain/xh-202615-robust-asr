@@ -5,16 +5,8 @@ enroll_infer / llm_reject。详见 spec:
 docs/superpowers/specs/2026-07-01-submit-infer-and-deliverables-design.md
 """
 import os
-import sys
-import json
-import argparse
-import subprocess
-import time
-import shutil
-import glob
 import wave
 import contextlib
-from datetime import datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))      # code/
 ROOT = os.path.dirname(HERE)                            # 项目根
