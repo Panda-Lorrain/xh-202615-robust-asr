@@ -216,7 +216,7 @@ python stno_experiment.py
 ## 🎯 技术亮点
 
 1. **STNO 内建拒识**: 通过 FDDT 的抑制式初始化，非目标帧被压到零输出，拒识成为模型内建能力
-2. **三层融合拒识**: 声纹（wespeaker 256d）+ LLM 语义（Qwen2.5-3B）+ STNO target 帧占比，target 缺席集真实拒识率 100%
+2. **双信号融合拒识(llm_or_sim)**: 声纹(wespeaker 256d) + LLM 语义(Qwen2.5-3B)，LLM 救回声纹误拒；target 缺席集真实拒识率 100%(72条 0 误放行)
 3. **SE 条件化可部署**: 谱平坦度运行时估噪声类型（babble/white→全力，pink→温和），无需 manifest，工程可落地
 4. **高效推理**: minimal 纯 DiCoW RTF=0.058，远快于实时，满足 20% 效率评分
 5. **可控转写**: STNO mask 精确控制哪些段落被转写，机制可解释
