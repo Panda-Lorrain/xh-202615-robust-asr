@@ -5,6 +5,8 @@ enroll_infer / llm_reject。详见 spec:
 docs/superpowers/specs/2026-07-01-submit-infer-and-deliverables-design.md
 """
 import os
+import json
+import glob
 import wave
 import contextlib
 
@@ -27,6 +29,20 @@ def audio_duration_s(p):
             return w.getnframes() / float(w.getframerate())
     except Exception:
         return 0.0
+
+
+def load_pairs(pairs_json):
+    """读 --pairs manifest: [{enrollment, recognition}, ...] -> [(enr, rec), ...]。"""
+    rows = json.load(open(pairs_json, encoding="utf-8"))
+    return [(r["enrollment"], r["recognition"]) for r in rows]
+
+
+def expand_inputs(args):
+    """把 CLI 输入展开为 [(enrollment, recognition), ...] 统一列表。"""
+    if args.pairs:
+        return load_pairs(args.pairs)
+    recs = sorted(glob.glob(os.path.join(args.recognition_folder, "*.wav")))
+    return [(args.enrollment, r) for r in recs]
 
 
 def main():
