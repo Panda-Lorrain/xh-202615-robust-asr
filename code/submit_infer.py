@@ -45,6 +45,19 @@ def expand_inputs(args):
     return [(args.enrollment, r) for r in recs]
 
 
+def decide_reject(max_sim, llm_verdict, strategy, sim_thr, use_llm):
+    """融合拒识决策。返回 True=拒识。
+    - 无 LLM 或 sim_only: 拒 iff max_sim < sim_thr
+    - llm_only:           拒 iff llm != accept
+    - llm_or_sim(默认):   拒 iff (llm != accept) AND (max_sim < sim_thr)
+    """
+    if not use_llm or strategy == "sim_only":
+        return max_sim < sim_thr
+    if strategy == "llm_only":
+        return llm_verdict != "accept"
+    return llm_verdict != "accept" and max_sim < sim_thr
+
+
 def main():
     # 占位,Task 6 实现
     print("[submit_infer] skeleton only — see Task 6 for full pipeline")

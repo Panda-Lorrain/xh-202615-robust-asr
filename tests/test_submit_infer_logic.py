@@ -2,6 +2,7 @@ import os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "code"))
 from submit_infer import utt_id_from_path, audio_duration_s
 from submit_infer import expand_inputs, load_pairs
+from submit_infer import decide_reject
 
 def test_utt_id():
     assert utt_id_from_path("E:/x/rec_001.wav") == "rec_001"
@@ -42,9 +43,22 @@ def test_expand_inputs_folder():
     assert len(out) == 2
     print("test_expand_inputs_folder OK")
 
+def test_decide_reject():
+    assert decide_reject(0.10, "accept", "sim_only", 0.2, True) == True
+    assert decide_reject(0.30, "reject", "sim_only", 0.2, True) == False
+    assert decide_reject(0.05, "accept", "llm_only", 0.2, True) == False
+    assert decide_reject(0.90, "reject", "llm_only", 0.2, True) == True
+    assert decide_reject(0.10, "accept", "llm_or_sim", 0.2, True) == False
+    assert decide_reject(0.30, "reject", "llm_or_sim", 0.2, True) == False
+    assert decide_reject(0.10, "reject", "llm_or_sim", 0.2, True) == True
+    assert decide_reject(0.10, "accept", "llm_or_sim", 0.2, False) == True
+    assert decide_reject(0.30, "accept", "llm_or_sim", 0.2, False) == False
+    print("test_decide_reject OK")
+
 if __name__ == "__main__":
     test_utt_id()
     test_audio_duration()
     test_load_pairs()
     test_expand_inputs_folder()
+    test_decide_reject()
     print("ALL PASS")
