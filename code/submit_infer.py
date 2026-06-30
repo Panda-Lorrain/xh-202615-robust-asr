@@ -58,6 +58,15 @@ def decide_reject(max_sim, llm_verdict, strategy, sim_thr, use_llm):
     return llm_verdict != "accept" and max_sim < sim_thr
 
 
+def bucket_by_atten(noise_rows):
+    """按 atten_lim_db 把识别音频分桶 -> {atten: [basename, ...]}。"""
+    buckets = {}
+    for r in noise_rows:
+        a = int(r.get("atten_lim_db", 0))
+        buckets.setdefault(a, []).append(r["file"])
+    return buckets
+
+
 def main():
     # 占位,Task 6 实现
     print("[submit_infer] skeleton only — see Task 6 for full pipeline")

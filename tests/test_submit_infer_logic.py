@@ -3,6 +3,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "code"))
 from submit_infer import utt_id_from_path, audio_duration_s
 from submit_infer import expand_inputs, load_pairs
 from submit_infer import decide_reject
+from submit_infer import bucket_by_atten
 
 def test_utt_id():
     assert utt_id_from_path("E:/x/rec_001.wav") == "rec_001"
@@ -55,10 +56,25 @@ def test_decide_reject():
     assert decide_reject(0.30, "accept", "llm_or_sim", 0.2, False) == False
     print("test_decide_reject OK")
 
+def test_bucket_by_atten():
+    rows = [
+        {"file": "a.wav", "atten_lim_db": 0},
+        {"file": "b.wav", "atten_lim_db": 6},
+        {"file": "c.wav", "atten_lim_db": 0},
+        {"file": "d.wav", "atten_lim_db": 6},
+    ]
+    b = bucket_by_atten(rows)
+    assert set(b.keys()) == {0, 6}
+    assert sorted(b[0]) == ["a.wav", "c.wav"]
+    assert sorted(b[6]) == ["b.wav", "d.wav"]
+    assert bucket_by_atten([]) == {}
+    print("test_bucket_by_atten OK")
+
 if __name__ == "__main__":
     test_utt_id()
     test_audio_duration()
     test_load_pairs()
     test_expand_inputs_folder()
     test_decide_reject()
+    test_bucket_by_atten()
     print("ALL PASS")
