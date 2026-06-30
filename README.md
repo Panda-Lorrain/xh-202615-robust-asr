@@ -25,46 +25,44 @@
 
 ## 🏗️ 技术架构
 
-### 整体方案
+### 整体方案（实际实现）
+
+> 已实现于 `code/submit_infer.py`（4 阶段 subprocess 编排）。理想态组件（CAM++/Personal VAD）T18 证伪/未用，详见 [`交付/设计报告.md`](交付/设计报告.md)。
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│  输入侧                                                      │
-│  ┌──────────────┐                                            │
-│  │  唤醒音频     │ ──→ CAM++ 声纹提取 ──→ 目标说话人嵌入        │
-│  │ (enrollment) │      (处理超短参考 0.2s)                     │
-│  └──────────────┘                                            │
-│  ┌──────────────┐                                            │
-│  │  识别音频     │ ──→ Personal VAD ──→ 帧级目标/非目标概率     │
-│  │ (混合/带噪)   │     (条件化于目标嵌入)                       │
-│  └──────────────┘                                            │
-└─────────────────────────────────────────────────────────────┘
-                           ↓
-┌─────────────────────────────────────────────────────────────┐
-│  转写侧（DiCoW / SE-DiCoW）                                  │
-│  · Whisper-large-v3-turbo 作为 backbone                      │
-│  · FDDT 仿射变换（STNO 条件化 encoder 每层）                  │
-│  · cross-attention（目标嵌入作 enrollment 条件）              │
-│  → 目标说话人 transcript                                      │
-└─────────────────────────────────────────────────────────────┘
-                           ↓
-┌─────────────────────────────────────────────────────────────┐
-│  拒识侧（LLM 语义拒识 + 声纹置信度）                         │
-│  · 判断指令是否针对当前设备                                    │
-│  · 语义层 + 声纹层联合判断                                    │
-└─────────────────────────────────────────────────────────────┘
+识别音频 (recognition.wav)
+   │
+   ├─[阶段0] noise_classify (谱平坦度)  ─→ 噪声类型 {white / pink / babble}
+   │
+   ├─[阶段1] SE 条件化降噪 (DeepFilterNet3)
+   │         babble/white → atten=0 全力   pink → atten=6 温和（防过消除）
+   │         ↓ denoised.wav
+   │
+   ├─[阶段2] enroll_infer
+   │         ├─ DiariZen(wavlm-large) diarization → 各 speaker 时间段
+   │         ├─ wespeaker 声纹（enrollment + 各 speaker, 256d）→ 余弦匹配选 target_idx
+   │         ├─ STNO mask（sil/target/nontarget/overlap 4 类，FDDT 仿射变换注入 encoder 每层）
+   │         └─ DiCoW（Whisper-large-v3-turbo + FDDT）只转 target → transcript
+   │
+   ├─[阶段3] llm_reject（Qwen2.5-3B-Instruct）
+   │         对 transcript 判 accept / reject（零样本，13 类拒识 schema + 自适应 CoT）
+   │
+   └─[阶段4] 融合（llm_or_sim）
+             rejected = (llm ≠ accept) AND (max_sim < sim_thr)   # 默认 sim_thr=0.2
+             ↓
+   result.json  +  timing.json
 ```
 
-### 核心技术栈
+### 核心技术栈（实际）
 
-| 模块 | 技术方案 | 作用 |
+| 模块 | 实际方案 | 作用 |
 |------|----------|------|
-| **声纹提取** | CAM++ (192d) | 从超短唤醒音频提取说话人嵌入 |
-| **语音活动检测** | Personal VAD (US-PVAD) | 帧级目标/非目标语音检测 |
-| **TS-ASR** | DiCoW / SE-DiCoW | 目标说话人条件化语音识别 |
-| **STNO 控制** | FDDT 仿射变换 | 通过 mask 控制转写/拒识 |
-| **语义拒识** | LLM-based Reject-or-Not | 判断指令合理性与针对性 |
-| **语音增强** | Diffusion-based SE | 低信噪比场景增强 |
+| **声纹锁定** | wespeaker-voceleleb-resnet34（256d，复用 `diar._embedding`） | enrollment → target 余弦匹配（CAM++ T18 per-speaker 公平对照证伪 sim 0.191<0.218，**未用**；Personal VAD **未用**） |
+| **说话人分离** | DiariZen（diarizen-wavlm-large-s80-md） | 多 speaker 时间段 |
+| **TS-ASR 转写** | DiCoW（BUT-FIT/DiCoW_v3_2，Whisper-large-v3-turbo + FDDT） | STNO 条件化只转 target |
+| **语音增强** | DeepFilterNet3（条件化，8.7MB） | babble/white → 全力，pink → 温和（=6） |
+| **语义拒识** | Qwen2.5-3B-Instruct | 指令合理性，救回声纹误拒 |
+| **融合决策** | llm_or_sim | `rejected = (llm ≠ accept) AND (max_sim < 0.2)` |
 
 ---
 
@@ -72,6 +70,11 @@
 
 ```
 xh-202615-robust-asr/
+├── 📦 交付（比赛提交物）
+│   ├── 设计报告.md                   # 实际实现版技术方案
+│   ├── 使用说明.md                   # submit_infer用法 + 3 venv + 权重 + 格式
+│   └── 测试验证方案.md               # 评测指标 + 仿真结果诚实表 + A集流程
+│
 ├── 📄 技术文档
 │   ├── 00_技术路线总纲与行动地图.md    # 全局架构与行动计划
 │   ├── 01_模块技术细节全解_答辩级.md   # 各模块详细技术方案
@@ -85,7 +88,13 @@ xh-202615-robust-asr/
 │
 ├── 💻 代码实现
 │   └── code/
-│       ├── minimal_infer.py           # 最小推理验证脚本
+│       ├── submit_infer.py            # ⭐ 标准化推理入口（result.json+timing.json）
+│       ├── enroll_infer.py            # wespeaker声纹锁定+diar+DiCoW转写
+│       ├── noise_classify.py          # 谱平坦度噪声估计（SE条件化可部署）
+│       ├── se_denoise.py              # DeepFilterNet3 降噪
+│       ├── llm_reject.py              # Qwen2.5-3B 语义拒识
+│       ├── fuse_eval.py               # 多策略融合扫工作点（评测用）
+│       ├── minimal_infer.py           # 最小推理验证脚本（机制验证）
 │       ├── stno_experiment.py         # STNO 控制实验
 │       ├── simulate_pipeline.py       # 数据仿真 pipeline
 │       └── eval_metrics.py            # 评测指标计算
@@ -114,12 +123,28 @@ xh-202615-robust-asr/
 
 ### 安装依赖
 
+> 主线推理用 3 个独立 venv（依赖冲突不可合并）：`code/.venv`（enroll_infer/DiariZen）、`code/.venv_se`（DeepFilterNet3）、`.venv_llm`（Qwen2.5-3B）。由 uv 管理。详见 [`交付/使用说明.md`](交付/使用说明.md)。
+
 ```bash
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 pip install transformers librosa pyannote.audio
 ```
 
-### 运行最小推理
+### 标准化推理（submit_infer.py，比赛提交入口）
+
+```bash
+source code/setenv.sh && export HF_HUB_OFFLINE=1
+code/.venv/Scripts/python.exe code/submit_infer.py \
+  --enrollment <enr.wav> --recognition-folder <rec_dir> --out-dir out/
+# → out/result.json + out/timing.json
+```
+
+- 一对一配对：`--pairs <manifest.json>`（`[{enrollment, recognition}, ...]`）
+- 降级：`--no-se`（跳 SE）/ `--no-llm`（跳 LLM，显存不足兜底）
+- 快测：`--limit N`；策略：`--strategy {llm_or_sim,sim_only,llm_only}`，默认 `--sim-thr 0.2`
+- 输出 schema 与常见报错见 [`交付/使用说明.md`](交付/使用说明.md)
+
+### 运行最小推理（机制验证，非提交入口）
 
 ```bash
 cd code
@@ -191,9 +216,10 @@ python stno_experiment.py
 ## 🎯 技术亮点
 
 1. **STNO 内建拒识**: 通过 FDDT 的抑制式初始化，非目标帧被压到零输出，拒识成为模型内建能力
-2. **超短 enrollment 支持**: CAM++ 支持 0.2s 参考音频，解决实际唤醒场景
-3. **高效推理**: RTF=0.058，远快于实时，满足 20% 效率评分
-4. **可控转写**: STNO mask 精确控制哪些段落被转写，机制可解释
+2. **三层融合拒识**: 声纹（wespeaker 256d）+ LLM 语义（Qwen2.5-3B）+ STNO target 帧占比，target 缺席集真实拒识率 100%
+3. **SE 条件化可部署**: 谱平坦度运行时估噪声类型（babble/white→全力，pink→温和），无需 manifest，工程可落地
+4. **高效推理**: minimal 纯 DiCoW RTF=0.058，远快于实时，满足 20% 效率评分
+5. **可控转写**: STNO mask 精确控制哪些段落被转写，机制可解释
 
 ---
 
