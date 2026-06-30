@@ -250,7 +250,9 @@ def main():
         llm_out = os.path.join(work_dir, "llm_out.json")
         l_wall = run_llm(llm_in, llm_out, args.device)
         phases["llm"] = {"wall_sec": round(l_wall, 3)}
-        for row in json.load(open(llm_out, encoding="utf-8")):
+        lj = json.load(open(llm_out, encoding="utf-8"))
+        verdicts = lj["rows"] if isinstance(lj, dict) else lj   # llm_reject 输出 {rows:[...]}, 兼容裸 list
+        for row in verdicts:
             llm_map[utt_id_from_path(row.get("file", ""))] = row.get("pred", "reject")
 
     # --- 阶段4: 融合 + 组装 result ---
