@@ -9,6 +9,7 @@ import json
 import glob
 import wave
 import contextlib
+from datetime import datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))      # code/
 ROOT = os.path.dirname(HERE)                            # 项目根
@@ -65,6 +66,30 @@ def bucket_by_atten(noise_rows):
         a = int(r.get("atten_lim_db", 0))
         buckets.setdefault(a, []).append(r["file"])
     return buckets
+
+
+def build_result(items, config):
+    """组装 result.json schema(见 spec §8)。"""
+    return {
+        "task_id": "XH-202615",
+        "generated_at": datetime.now().isoformat(timespec="seconds"),
+        "config": config,
+        "n_utt": len(items),
+        "results": items,
+    }
+
+
+def build_timing(device, n_utt, total_audio_sec, total_wall_sec, phases, per_utt):
+    """组装 timing.json schema(见 spec §8)。overall_rtf = wall/audio。"""
+    return {
+        "device": device,
+        "n_utt": n_utt,
+        "total_audio_sec": round(total_audio_sec, 3),
+        "total_wall_sec": round(total_wall_sec, 3),
+        "overall_rtf": round(total_wall_sec / total_audio_sec, 4) if total_audio_sec else None,
+        "phases": phases,
+        "per_utt": per_utt,
+    }
 
 
 def main():
