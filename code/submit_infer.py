@@ -38,7 +38,8 @@ def audio_duration_s(p):
 
 def load_pairs(pairs_json):
     """读 --pairs manifest: [{enrollment, recognition}, ...] -> [(enr, rec), ...]。"""
-    rows = json.load(open(pairs_json, encoding="utf-8"))
+    with open(pairs_json, encoding="utf-8") as f:
+        rows = json.load(f)
     return [(r["enrollment"], r["recognition"]) for r in rows]
 
 
@@ -180,12 +181,17 @@ def main():
     total_audio = sum(audio_duration_s(dst) for _, _, dst in rec_paths)
 
     # --- 阶段0+1: SE 条件化 ---
+    # noise_map: basename -> (est_noise, atten_lim_db)。SE 跳过时保持空 → result 字段为 null。
+    noise_map = {}
     rec_for_enroll = rec_in
     if use_se:
         t0 = time.perf_counter()
         noise_est = os.path.join(work_dir, "noise_est.json")
         phases.setdefault("noise_classify", {})["wall_sec"] = round(run_noise_classify(rec_in, noise_est), 3)
-        rows = json.load(open(noise_est, encoding="utf-8"))
+        with open(noise_est, encoding="utf-8") as f:
+            rows = json.load(f)
+        # 把 noise_classify 输出 join 回每条(按 basename),供阶段4 result 组装
+        noise_map = {r["file"]: (r.get("est_noise"), r.get("atten_lim_db")) for r in rows}
         buckets = bucket_by_atten(rows)
         se_out = os.path.join(work_dir, "se_out")
         os.makedirs(se_out, exist_ok=True)
@@ -224,7 +230,8 @@ def main():
             shutil.copy(d, os.path.join(gdir, os.path.basename(d)))
         out_json = os.path.join(work_dir, f"enroll_g{gi}.json")
         e_wall += run_enroll_infer(enr, gdir, out_json, args.device, args.sim_thr)
-        rows = json.load(open(out_json, encoding="utf-8"))
+        with open(out_json, encoding="utf-8") as f:
+            rows = json.load(f)
         for r in rows:
             sum_rtf += float(r.get("rtf", 0.0) or 0.0)
             n_rtf += 1
@@ -235,9 +242,10 @@ def main():
     # 汇总 enroll 输出(utt_id -> row)
     enr_map = {}
     for enr, out_json in enroll_jsons:
-        for r in json.load(open(out_json, encoding="utf-8")):
-            uid = utt_id_from_path(r.get("recognition", ""))
-            enr_map[uid] = r
+        with open(out_json, encoding="utf-8") as f:
+            for r in json.load(f):
+                uid = utt_id_from_path(r.get("recognition", ""))
+                enr_map[uid] = r
 
     # --- 阶段3: LLM 拒识 ---
     llm_map = {}
@@ -246,11 +254,13 @@ def main():
         llm_rows = [{"file": enr_map[uid].get("recognition", ""),
                      "text": enr_map[uid].get("transcript", "") or ""}
                     for uid in enr_map]
-        json.dump(llm_rows, open(llm_in, "w", encoding="utf-8"), ensure_ascii=False)
+        with open(llm_in, "w", encoding="utf-8") as f:
+            json.dump(llm_rows, f, ensure_ascii=False)
         llm_out = os.path.join(work_dir, "llm_out.json")
         l_wall = run_llm(llm_in, llm_out, args.device)
         phases["llm"] = {"wall_sec": round(l_wall, 3)}
-        lj = json.load(open(llm_out, encoding="utf-8"))
+        with open(llm_out, encoding="utf-8") as f:
+            lj = json.load(f)
         verdicts = lj["rows"] if isinstance(lj, dict) else lj   # llm_reject 输出 {rows:[...]}, 兼容裸 list
         for row in verdicts:
             llm_map[utt_id_from_path(row.get("file", ""))] = row.get("pred", "reject")
@@ -265,11 +275,14 @@ def main():
         llm_v = llm_map.get(uid, "reject") if use_llm else "accept"
         rejected = decide_reject(max_sim, llm_v, args.strategy, args.sim_thr, use_llm)
         text = "" if rejected else (r.get("transcript", "") or "")
+        # noise_type/atten_lim_db 来自阶段0的 noise_classify 输出(join by basename);
+        # --no-se 时 noise_map 为空 → (None, None) → null(合理: SE 跳过, 未估噪声)。
+        nt, atten = noise_map.get(os.path.basename(dst), (None, None))
         items.append({
             "utt_id": uid, "enrollment": enr, "recognition": rec,
             "text": text, "rejected": rejected, "score": round(max_sim, 4),
             "max_sim": round(max_sim, 4), "llm_verdict": llm_v if use_llm else None,
-            "noise_type": r.get("noise_type"), "atten_lim_db": r.get("atten_lim_db"),
+            "noise_type": nt, "atten_lim_db": atten,
             "diar_fail": bool(r.get("error")),
         })
         dur = audio_duration_s(dst)
@@ -283,8 +296,10 @@ def main():
 
     rj = os.path.join(args.out_dir, "result.json")
     tj = os.path.join(args.out_dir, "timing.json")
-    json.dump(result, open(rj, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
-    json.dump(timing, open(tj, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+    with open(rj, "w", encoding="utf-8") as f:
+        json.dump(result, f, ensure_ascii=False, indent=2)
+    with open(tj, "w", encoding="utf-8") as f:
+        json.dump(timing, f, ensure_ascii=False, indent=2)
     n_rej = sum(1 for it in items if it["rejected"])
     print(f"\n[done] {len(items)} 条 ({n_rej} 拒识) -> {rj}")
     print(f"       overall_rtf={timing['overall_rtf']} (audio={total_audio:.1f}s wall={total_wall:.1f}s)")
