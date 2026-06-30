@@ -109,6 +109,12 @@ def test_build_timing():
     assert len(t["per_utt"]) == 1
     print("test_build_timing OK")
 
+    # 除零防护: total_audio_sec=0 时 overall_rtf 应为 None(不抛 ZeroDivisionError)
+    t0 = build_timing(device="cuda:0", n_utt=0, total_audio_sec=0, total_wall_sec=1.0,
+                      phases={}, per_utt=[])
+    assert t0["overall_rtf"] is None
+    print("test_build_timing_zero OK")
+
 if __name__ == "__main__":
     test_utt_id()
     test_audio_duration()
