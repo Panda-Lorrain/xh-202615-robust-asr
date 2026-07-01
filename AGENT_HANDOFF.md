@@ -1,6 +1,9 @@
 # Agent 交接文档（XH-202615 美的目标说话人 ASR）
 
 > **下个 agent 第一时间读此文件 → CLAUDE.md → PROGRESS.md → RESULTS.md → 边缘部署规划.md → 项目阶段盘点.md**
+>
+> 🆕 **最新：2026-07-01 T21** — P0(`code/submit_infer.py` 标准化推理脚本,仅 stdlib subprocess 编排器,零侵入复用 noise_classify/se_denoise/enroll_infer/llm_reject)+P1(`交付/` 设计报告/使用说明/测试验证方案 + README 架构修正)**已完成并 push**,三档集成验收通过(`--limit 3` 最简/带SE/全量),端到端 timing 空缺填补。详见下方「🔄 工作重心转变」段顶部 + `PROGRESS.md` T21 + `RESULTS.md` Task 7。**下一棒优先级**:P2 babble 工程兜底(diar 前置过滤防 STNO 崩,唯一能直接抬绝对性能且对真A有效)/ 等测试集A / 确认通道数 / L20耗时验证(租AutoDL)。
+>
 > 更新：2026-06-29（T19，含对抗审查后归因修正）。T18 三线各自验证但**未集成**→ 用户选「集成三线+真实组合指标」→ `fuse_eval.py` 串成单一 pipeline 跑出真实组合指标。**对抗审查发现 + 修复了一个 critical bug**：DiCoW `language="zh"` 死代码失效致 90% 出英文（已修，english 90%→72%），但残留瓶颈=Whisper 硬噪声转写质量（需微调/SE-DiCoW）。**先读下方🆕 T19 速览**，完整数字见 RESULTS.md T19。
 
 ---
