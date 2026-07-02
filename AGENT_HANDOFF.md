@@ -2,6 +2,8 @@
 
 > **下个 agent 第一时间读此文件 → CLAUDE.md → PROGRESS.md → RESULTS.md → 边缘部署规划.md → 项目阶段盘点.md**
 >
+> 🆕 **最新：2026-07-02 T22（P2 启动·babble 工程兜底）** — 因果链双重确证：①**代码层** `code/TS-ASR-Whisper/src/models/dicow/FDDT.py:41-63` 是门控线性变换（每帧 hidden 按 STNO 四行加权各通道线性层），DiariZen 在 babble ov0 误检"幽灵 speaker2"→`anyone_else=0`→target 帧被错标进 **overlap 通道**（非"信号消失"，STNO 仍 one-hot）→FDDT 用 overlap 通道（为两人重叠训练）处理单人+babble→条件化错位→退化乱转；②**数据层** babble ov0 全量 ~30 条 **100% 误检 2 speaker**、stno_target≈0，**sim 0.52–0.62（声纹锁对 target）照样崩**（596/714/726 字英文循环），强证 **H1（STNO 错标主导）** 非 H2（babble 音频本身）。消融脚本 `code/stno_ablation.py` 就绪（同一 mel+锁定下 A 现状 / B 丢幽灵 / C 单 spk 三 STNO 对比，CER 判定 H1/H2），**待跑**。**Workflow 3-agent 诊断完成**：DiCoW 语义 `supports_H1=true`（每层 FDDT 把 target 帧误标 overlap→逐层 OOD 条件化→encoder 塌缩；white 反事实铁证：同 SNR+5 `stno_t==t_active`→完美中文，babble `stno_t=0`→596 字英文循环，且 babble max_sim 0.545>white 0.440 排除声纹/音频因素）；数据层 babble 全 overlap 档 100% 误检 2 人（se6/se0 各 150/150）。⚠️ 失败模式异质（低 sim 声纹锁失败的乱码中文，修 STNO 不救，需 enroll 增强）；英文翻转疑 language-force bug 次生。消融待跑以 100% 证伪 H2 加性。
+>
 > 🆕 **最新：2026-07-01 T21** — P0(`code/submit_infer.py` 标准化推理脚本,仅 stdlib subprocess 编排器,零侵入复用 noise_classify/se_denoise/enroll_infer/llm_reject)+P1(`交付/` 设计报告/使用说明/测试验证方案 + README 架构修正)**已完成并 push**,三档集成验收通过(`--limit 3` 最简/带SE/全量),端到端 timing 空缺填补。详见下方「🔄 工作重心转变」段顶部 + `PROGRESS.md` T21 + `RESULTS.md` Task 7。**下一棒优先级**:P2 babble 工程兜底(diar 前置过滤防 STNO 崩,唯一能直接抬绝对性能且对真A有效)/ 等测试集A / 确认通道数 / L20耗时验证(租AutoDL)。
 >
 > 更新：2026-06-29（T19，含对抗审查后归因修正）。T18 三线各自验证但**未集成**→ 用户选「集成三线+真实组合指标」→ `fuse_eval.py` 串成单一 pipeline 跑出真实组合指标。**对抗审查发现 + 修复了一个 critical bug**：DiCoW `language="zh"` 死代码失效致 90% 出英文（已修，english 90%→72%），但残留瓶颈=Whisper 硬噪声转写质量（需微调/SE-DiCoW）。**先读下方🆕 T19 速览**，完整数字见 RESULTS.md T19。
