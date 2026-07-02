@@ -21,7 +21,7 @@ import argparse
 from collections import defaultdict
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, _HERE)
+sys.path.insert(0, os.path.join(_HERE, '..'))  # eval_metrics 在 code/ 根
 from eval_metrics import cer  # noqa
 
 

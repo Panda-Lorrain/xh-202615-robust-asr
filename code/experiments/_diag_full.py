@@ -18,8 +18,8 @@ def load(p):
     return {bn(r['recognition']): r for r in json.load(open(p, encoding='utf-8'))}
 
 
-se0 = load('code/enroll_regen_se0.json')
-se6 = load('code/enroll_regen_se6.json')
+se0 = load('code/experiments/enroll_regen_se0.json')
+se6 = load('code/experiments/enroll_regen_se6.json')
 
 
 def cer_of(store, f):

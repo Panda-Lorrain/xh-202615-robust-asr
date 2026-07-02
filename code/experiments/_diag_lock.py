@@ -19,7 +19,7 @@ def parse(x):
         return x
 
 
-d6 = {bn(r['recognition']): r for r in json.load(open('code/enroll_regen_se6.json', encoding='utf-8'))}
+d6 = {bn(r['recognition']): r for r in json.load(open('code/experiments/enroll_regen_se6.json', encoding='utf-8'))}
 
 print("se6 按 (noise,overlap): n | max_sim均 | sim<0.2数 | speakers分布 | stno_target_ratio均")
 for nt in ['white', 'pink', 'babble']:

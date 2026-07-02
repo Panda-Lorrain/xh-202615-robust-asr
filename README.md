@@ -88,16 +88,17 @@ xh-202615-robust-asr/
 │
 ├── 💻 代码实现
 │   └── code/
-│       ├── submit_infer.py            # ⭐ 标准化推理入口（result.json+timing.json）
-│       ├── enroll_infer.py            # wespeaker声纹锁定+diar+DiCoW转写
-│       ├── noise_classify.py          # 谱平坦度噪声估计（SE条件化可部署）
-│       ├── se_denoise.py              # DeepFilterNet3 降噪
-│       ├── llm_reject.py              # Qwen2.5-3B 语义拒识
-│       ├── fuse_eval.py               # 多策略融合扫工作点（评测用）
-│       ├── minimal_infer.py           # 最小推理验证脚本（机制验证）
-│       ├── stno_experiment.py         # STNO 控制实验
-│       ├── simulate_pipeline.py       # 数据仿真 pipeline
-│       └── eval_metrics.py            # 评测指标计算
+│       ├── submit_infer.py              # ⭐ 标准化推理入口（result.json+timing.json）
+│       ├── enroll_infer.py              # wespeaker 声纹锁定 + diar + DiCoW 转写
+│       ├── se_denoise.py / noise_classify.py  # DeepFilterNet3 条件化降噪 + 噪声估计
+│       ├── llm_reject.py                # Qwen2.5-3B 语义拒识
+│       ├── eval_metrics.py / eval_full_test.py  # 评测（CER/RTF/拒识率）
+│       ├── simulate_pipeline.py / build_dataset.py  # 数据仿真
+│       ├── minimal_infer.py / stno_experiment.py    # 机制验证
+│       ├── babble_oracle_test.py / vanilla_whisper_test.py / stno_ablation.py  # T22 babble 归因
+│       ├── apply_dicow_langfix.py       # DiCoW language 死代码补丁
+│       ├── make_readme_progress.py      # README 进度图生成
+│       └── experiments/                 # 📦 归档区（CAM++ 证伪 / SE·enroll·LLM·fuse 实验 json + 评测脚本 fuse_eval/eval_se_cer 等 + 诊断）
 │
 ├── 📊 进度与结果
 │   ├── PROGRESS.md                    # 开发进度记录

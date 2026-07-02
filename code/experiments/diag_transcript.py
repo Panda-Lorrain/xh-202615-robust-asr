@@ -1,9 +1,9 @@
 """诊断转写质量分布 + 干净条件下是否选对 speaker(排查 target_idx/STNO bug)。"""
 import os, sys, json, collections
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 from eval_metrics import cer
 
-enroll = json.load(open("code/se_denoised.json", encoding="utf-8"))
+enroll = json.load(open("code/experiments/se_denoised.json", encoding="utf-8"))
 mani = {it["file"]: it for it in json.load(
     open("test_wav/dataset/final/final_manifest.json", encoding="utf-8"))["items"]}
 

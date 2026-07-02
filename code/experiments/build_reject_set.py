@@ -24,7 +24,7 @@ SR = 16000
 SNRS = [-5, 0, 5]
 NOISE_TYPES = ["white", "pink", "babble"]
 
-sys.path.insert(0, _HERE)
+sys.path.insert(0, os.path.join(_HERE, '..'))  # simulate_pipeline/build_dataset 在 code/ 根
 from simulate_pipeline import add_noise  # noqa
 from build_dataset import gen_white, gen_pink, gen_babble  # noqa
 

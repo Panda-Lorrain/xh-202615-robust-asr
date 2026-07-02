@@ -23,7 +23,7 @@ import librosa
 import soundfile as sf
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, _HERE)
+sys.path.insert(0, os.path.join(_HERE, '..'))  # simulate_pipeline/eval_metrics 在 code/ 根
 from simulate_pipeline import mix_overlap, add_noise
 from eval_metrics import cer
 
