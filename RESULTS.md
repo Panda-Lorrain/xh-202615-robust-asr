@@ -463,3 +463,19 @@ langfix 对 **white/pink 低重叠有效**（se6 中文 93%、正确率 60%@ov0�
 
 **产出**：`code/stno_ablation.py`、`code/babble_oracle_test.py` + 本节结论。
 
+### vanilla Whisper 三角定位（2026-07-03，H3 确证）
+
+补审查 P0#1：vanilla whisper-large-v3-turbo（**无 FDDT/STNO**，DiCoW 基座原版）转同样三场景：
+
+| 场景 | vanilla Whisper 输出 | DiCoW+diar STNO |
+|---|---|---|
+| ① babble 样本 t_01_n_07 | **「请把客厅的空调温度调整」(11字近全对)** | 英文幻觉 53字 |
+| ② 纯 babble(4中文叠加) | 中文循环「我刚看了一个很有趣的千贵...」216字 | — |
+| ③ 干净 target t_01 | 「请把客厅的空调温度调到26度」✓ | — |
+
+**三角定论**：
+- **H2 彻底证伪**：vanilla Whisper（无 STNO）在**同一个 babble 样本**上输出**正确中文** → Whisper 基座在 babble 上完全正常，不漂英文。babble 英文幻觉 **100% 是 DiCoW 的 FDDT/STNO 条件化病害**（H3 确证）。
+- **机制**：DiCoW FDDT（每层 encoder 门控）在低覆盖 STNO（diar 派生 0.067）下，大量帧走 overlap/silence 通道 → encoder 表征劣化 → langfix 只锁首位 token 压不住 decoder 后续 → 英文漂移。vanilla 无 FDDT，不劣化，language=zh 正常生效。
+- **杠杆指向（再修正）**：非 SE-DiCoW（H2 错），而是 ① 提高 STNO target 行覆盖率（避免 FDDT 劣化）② 更强 language forcing（constrained decode 锁全程 zh token）③ FDDT 鲁棒性。**洞察**：DiCoW STNO 条件化在 babble 上适得其反（vanilla 反而对），但 vanilla 失去 target-speaker 选择性，不能直接替代。
+- 下载：vanilla 权重 `E:/hf_cache/whisper-large-v3-turbo`（hf-mirror+代理 12MB/s，~2 分钟；无代理仅 0.5MB/s）。脚本 `code/vanilla_whisper_test.py`。
+
