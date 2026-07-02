@@ -54,3 +54,9 @@ test_wav/dataset/se_denoised*/
 test_wav/dataset/reject*/
 test_wav/dataset/eval_subset/
 test_wav/dataset/env_noise_dl/
+
+# ===== 期末作业（不属于参赛项目，防再混入）=====
+docs/superpowers/*final-exam*
+
+# ===== code 临时诊断脚本（下划线前缀，未来产物不进 git；已跟踪历史保留）=====
+code/_*.py

@@ -1,0 +1,39 @@
+{
+  "recognition": "test_wav/dataset/final/t_01_n_02_ov000_snr+5_white.wav",
+  "enrollment": "E:\\midea_target_asr\\test_wav/dataset/raw/enrollment/target_long_01.wav",
+  "ref": "请把客厅的空调温度调到二十六度",
+  "speakers": [
+    0
+  ],
+  "target_idx": 0,
+  "max_sim": 0.47451895475387573,
+  "sims": [
+    0.4745
+  ],
+  "ghost_diag": [],
+  "dropped": [],
+  "stno_target_ratio": {
+    "A_现状": 0.0913,
+    "B_丢幽灵": 0.0913,
+    "C_单spk": 0.0913
+  },
+  "transcripts": {
+    "A_现状": "先把客厅的空调温度调到二十六度",
+    "B_丢幽灵": "先把客厅的空调温度调到二十六度",
+    "C_单spk": "先把客厅的空调温度调到二十六度"
+  },
+  "cer_vs_ref": {
+    "A_现状": 0.067,
+    "B_丢幽灵": 0.067,
+    "C_单spk": 0.067
+  },
+  "gen_time_s": {
+    "A_现状": 0.5,
+    "B_丢幽灵": 0.2,
+    "C_单spk": 0.2
+  },
+  "a_crash": false,
+  "b_save": true,
+  "c_save": true,
+  "verdict": "混合: 部分恢复, 需细看(可能 STNO 错标 + 音频双层瓶颈)"
+}

@@ -101,7 +101,11 @@ xh-202615-robust-asr/
 │
 ├── 📊 进度与结果
 │   ├── PROGRESS.md                    # 开发进度记录
-│   └── RESULTS.md                     # 实测结果与分析
+│   ├── RESULTS.md                     # 实测结果与分析
+│   └── docs/
+│       ├── progress_overview.png        # 📊 README 进度概览图（工程迭代 + 实测画像）
+│       ├── cer_progress_dashboard.html  # 可交互看板（light/dark 自适应）
+│       └── superpowers/                 # 设计稿（plans/specs）
 │
 └── 📖 论文精读
     ├── 核心论文精读与方案.md
@@ -175,6 +179,14 @@ python stno_experiment.py
 ---
 
 ## 📈 实测结果
+
+### 📊 进度概览
+
+![实测进度概览](docs/progress_overview.png)
+
+> 450 条 mimo-tts 仿真集画像。**可用率 = CER<0.5 占比**——比 CER 均值更诚实的可用指标（babble 重复循环幻觉使 hyp 超长、拉高均值，反而掩盖退化）。**babble 全灭** 已确诊（T22）：FDDT/STNO 条件化在低 target 覆盖下劣化，非 Whisper 基座问题。可交互看板（light/dark 自适应）：[`docs/cer_progress_dashboard.html`](docs/cer_progress_dashboard.html)。
+>
+> ⚠️ 仿真集非比赛真实 A 集，绝对值不可外推到赛榜；两次独立跑可用率 14.0% / 15.1% 互证稳健。
 
 ### DiCoW Baseline 性能
 
@@ -289,7 +301,7 @@ python stno_experiment.py
 ## 📧 联系方式
 
 - GitHub: [@Panda_Lorrain](https://github.com/Panda_Lorrain)
-- Issues: [项目 Issues](https://github.com/Panda_Lorrain/midea_target_asr/issues)
+- Issues: [项目 Issues](https://github.com/Panda_Lorrain/xh-202615-robust-asr/issues)
 
 ---
 

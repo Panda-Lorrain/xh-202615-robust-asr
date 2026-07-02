@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>XH-202615 目标说话人 ASR · 模型能力看板（含 450 条实测）</title>
+<style>
+  :root{
+    --surface:#fcfcfb; --page:#f9f9f7;
+    --ink:#0b0b0b; --ink-2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7;
+    --accent:#2a78d6; --accent-deep:#1c5cab; --accent-soft:#cde2fb;
+    --deemph:#c3c2b7;
+    --good:#0ca30c; --crit:#d03b3b; --warn:#c98500;
+    --card-ring:rgba(11,11,11,0.08);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --surface:#1a1a19; --page:#0d0d0d;
+      --ink:#ffffff; --ink-2:#c3c2b7; --muted:#898781;
+      --grid:#2c2c2a; --base:#383835;
+      --accent:#3987e5; --accent-deep:#6da7ec; --accent-soft:#1c3a5a;
+      --deemph:#5a5953;
+      --good:#3cc66a; --crit:#e66767; --warn:#c98500;
+      --card-ring:rgba(255,255,255,0.08);
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  main{max-width:1080px;margin:0 auto;padding:32px 24px 80px;}
+  header h1{font-size:22px;margin:0 0 4px;font-weight:650;}
+  header .sub{color:var(--ink-2);font-size:13.5px;margin:0;}
+  header .meta{color:var(--muted);font-size:12px;margin-top:6px;}
+  .tag{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:10px;
+    background:var(--accent-soft);color:var(--accent-deep);margin-left:8px;vertical-align:middle;}
+  @media (prefers-color-scheme:dark){.tag{color:var(--accent-deep);}}
+
+  .hero{display:grid;grid-template-columns:1.1fr 1fr;gap:16px;margin:24px 0 8px;}
+  .tile{background:var(--surface);border:1px solid var(--card-ring);border-radius:12px;padding:18px 20px;}
+  .tile .lbl{color:var(--ink-2);font-size:12.5px;}
+  .tile .val{font-size:48px;font-weight:700;line-height:1.05;margin:4px 0 2px;font-variant-numeric:tabular-nums;}
+  .tile .delta{font-size:13px;font-weight:600;color:var(--ink-2);}
+  .tile .note{color:var(--muted);font-size:12px;margin-top:8px;}
+  .kpirow{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .kpi{background:var(--surface);border:1px solid var(--card-ring);border-radius:12px;padding:14px 16px;}
+  .kpi .lbl{color:var(--ink-2);font-size:11.5px;}
+  .kpi .val{font-size:24px;font-weight:650;font-variant-numeric:tabular-nums;margin:2px 0;}
+  .kpi .hint{color:var(--muted);font-size:11px;}
+
+  .part{margin-top:34px;}
+  .part>h2{font-size:16px;font-weight:650;margin:0 0 2px;border-left:3px solid var(--accent);padding-left:10px;}
+  .part>.psub{color:var(--muted);font-size:12px;margin:0 0 6px;padding-left:13px;}
+
+  .chart{background:var(--surface);border:1px solid var(--card-ring);border-radius:12px;padding:20px 20px 16px;margin-top:14px;}
+  .chart h3{font-size:15px;margin:0 0 2px;font-weight:650;}
+  .chart .desc{color:var(--ink-2);font-size:12.5px;margin:0 0 14px;}
+  .chart svg{width:100%;height:auto;display:block;}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;margin:4px 0 12px;font-size:12.5px;color:var(--ink-2);}
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .sw{width:12px;height:12px;border-radius:3px;display:inline-block;}
+  .sw.line{height:3px;border-radius:2px;}
+  rect.bar,circle.dot{transition:opacity .12s;}
+  rect.bar:hover,circle.dot:hover{opacity:.82;}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media (max-width:760px){.hero,.grid2{grid-template-columns:1fr}.tile .val{font-size:38px}}
+
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:12.5px;font-variant-numeric:tabular-nums;}
+  caption{text-align:left;color:var(--muted);font-size:11.5px;padding:6px 0;}
+  th,td{padding:6px 10px;text-align:right;border-bottom:1px solid var(--grid);}
+  th:first-child,td:first-child{text-align:left;}
+  thead th{color:var(--ink-2);font-weight:600;font-size:11.5px;}
+  tbody tr:last-child td{border-bottom:none;}
+
+  .footer{color:var(--muted);font-size:11.5px;margin-top:28px;line-height:1.75;border-top:1px solid var(--grid);padding-top:14px;}
+  .caveat{color:var(--crit);font-weight:600;}
+  .ok{color:var(--good);font-weight:600;}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>XH-202615 目标说话人 ASR · 模型能力看板<span class="tag">含 450 条实测</span></h1>
+    <p class="sub">450 条仿真测试集（10 指令 × 5 重叠 × 3 SNR × 3 噪声）· 当前 submit_infer 默认档（SE 条件化 + 声纹拒识，--no-llm）</p>
+    <p class="meta">基座 DiCoW_v3_2（Whisper-large-v3-turbo + FDDT）· 本机 RTX 4060 Laptop · 实测 2026-07-03 · 历史曲线引自 RESULTS.md（对抗审查后）</p>
+  </header>
+
+  <!-- ===== HERO：本次实测核心数字 ===== -->
+  <section class="hero">
+    <div class="tile">
+      <div class="lbl">本次实测 overall CER（450 条，拒识计 1.0）</div>
+      <div class="val">1.28</div>
+      <div class="delta">可用转写 <b style="color:var(--ink)">14.0%</b>（CER&lt;0.5，63/450）· 近完美 <b style="color:var(--ink)">4.7%</b>（CER&lt;0.1）</div>
+      <div class="note">与 T20 历史 15.1% 两次独立跑互证 → 14% 是稳健的真实水平。<span class="caveat">绝对值 &gt;1 = 整体仍在幻觉区，非系统可用。</span></div>
+    </div>
+    <div class="kpirow">
+      <div class="kpi"><div class="lbl">端到端稳态 RTF（效率 20%）</div><div class="val">0.27</div><div class="hint">实测 wall 269s / audio 984s · 纯 DiCoW 0.058</div></div>
+      <div class="kpi"><div class="lbl">拒识率（声纹 sim_only）</div><div class="val">50.2%</div><div class="hint">450 全 target 在场 → 全为误拒</div></div>
+      <div class="kpi"><div class="lbl">babble 可用转写</div><div class="val" style="color:var(--crit)">0.0%</div><div class="hint">150 条无一可用 · 绝对死区</div></div>
+      <div class="kpi"><div class="lbl">无重叠可用转写</div><div class="val" style="color:var(--good)">41.1%</div><div class="hint">ov0 最佳条件 · 可用上界</div></div>
+    </div>
+  </section>
+
+  <!-- ===== Part 1：本次实测能力画像 ===== -->
+  <section class="part">
+    <h2>Part 1 · 本次实测能力画像（correct_rate = CER&lt;0.5 占比，越诚实）</h2>
+    <p class="psub">correct_rate 比 CER 均值更诚实：babble 重复循环幻觉使 hyp 超长 → CER 均值被拉高失真，而"可用转写占比"直接回答"什么条件下能转对"。</p>
+
+    <div class="grid2">
+      <div class="chart">
+        <h3>图 D · 可用转写率随重叠率坍塌</h3>
+        <p class="desc">重叠越高越难。ov0 还有 41% 可用，ov100 几乎全灭（1.1%）——单通道重叠死区。</p>
+        <div id="svgD"></div>
+      </div>
+      <div class="chart">
+        <h3>图 E · 可用转写率按噪声类型</h3>
+        <p class="desc">babble（人声干扰）<b>0% 可用</b>，pink/white 稳态噪声尚有 17–25%。babble 是真瓶颈。</p>
+        <div id="svgE"></div>
+      </div>
+    </div>
+    <table id="tblDE"><caption>本次实测分维度汇总（n=450）</caption></table>
+  </section>
+
+  <!-- ===== Part 2：工程演进参考（历史） ===== -->
+  <section class="part">
+    <h2>Part 2 · 工程演进参考（历史曲线，RESULTS.md）</h2>
+    <p class="psub">CER 是怎么从 4.27 降到当前水平的，以及 SE 降噪对不同噪声/SNR 的效果。</p>
+
+    <div class="chart">
+      <h3>图 A · 450 集 overall CER 工程迭代（越低越好）</h3>
+      <p class="desc">逐步叠加工程改进。红虚线 = CER=1.0 可读阈值。注意：CER 均值受幻觉长度影响，故 Part 1 的 correct_rate 才是当前水平的诚实度量。</p>
+      <div class="legend"><span><i class="sw" style="background:var(--accent)"></i>工程阶段</span><span><i class="sw" style="background:var(--accent-deep)"></i>oracle 上界</span></div>
+      <div id="svgA"></div>
+      <table id="tblA"><caption>图 A · overall CER（post-langfix 可比序列）</caption></table>
+    </div>
+
+    <div class="grid2">
+      <div class="chart">
+        <h3>图 B · 按噪声类型 CER（SE 前后）</h3>
+        <p class="desc">babble 绝对瓶颈（8.60）；SE 对 babble 大幅改善（−4.20），对 pink 稳态过消除反伤。</p>
+        <div class="legend"><span><i class="sw" style="background:var(--deemph)"></i>基线</span><span><i class="sw" style="background:var(--accent)"></i>SE 降噪</span></div>
+        <div id="svgB"></div>
+      </div>
+      <div class="chart">
+        <h3>图 C · 按 SNR CER（SE 前后）</h3>
+        <p class="desc">低 SNR 受益最大（−2.01）；高 SNR 过消除反伤（+0.96）——条件化分流的依据。</p>
+        <div class="legend"><span><i class="sw line" style="background:var(--deemph)"></i>基线</span><span><i class="sw line" style="background:var(--accent)"></i>SE 降噪</span></div>
+        <div id="svgC"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <p><b>诚实声明：</b></p>
+    <p>① 450 条为 <b>mimo-tts 合成仿真集</b>，非比赛真实测试集 A；绝对值不可外推到赛榜，仅反映工程链路相对水平与条件退化。</p>
+    <p>② <span class="caveat">本次实测 overall CER 1.28、correct 14%</span>：两次独立跑（本次 14.0% / T20 历史 15.1%）互证稳健，但 <b>非系统可用</b>——CER&gt;1 即幻觉区，86% 的条转写不可用。</p>
+    <p>③ <span class="ok">强项</span>：效率（RTF 0.058 纯推理 / 0.27 端到端，L20 会更优）+ 拒识机制（target 缺席集 100% 拒识、LLM 零样本 F1 0.878）。<span class="caveat">短板</span>：带噪重叠中文转写（尤其 babble）。</p>
+    <p>④ 真瓶颈（T22 vanilla Whisper 三角定位，07-03 确证）：babble 英文幻觉/重复循环 100% 源自 DiCoW 的 FDDT/STNO 条件化在低覆盖率 STNO 下劣化，<b>非 Whisper 基座问题</b>（vanilla Whisper 同样本输出正确中文）。杠杆 = 提高 STNO target 覆盖率 / 全程 language forcing / babble 专用源分离。</p>
+    <p>⑤ LLM 拒识未在本跑（target 在场会因转写垃圾误拒 99.8%，掩盖转写水平）；拒识能力见 Hero KPI 与 RESULTS.md T18。</p>
+    <p>⑥ 待确认两件事卡真实进展：<b>真实测试集 A</b> + <b>通道数</b>（决定空间分离 DSENet 能否用）。</p>
+  </div>
+</main>
+
+<script>
+/* ===== 实测数据（eval_full_test.py 输出，2026-07-03） ===== */
+const real = {
+  overall_cer:1.284, correct:0.140, near_perfect:0.047, reject:0.502, rtf:0.27,
+  by_ov_correct:{0.0:0.411,0.25:0.189,0.5:0.056,0.75:0.033,1.0:0.011},
+  by_snr_correct:{'-5':0.027,'0':0.147,'+5':0.247},
+  by_noise_correct:{white:0.167,pink:0.253,babble:0.0},
+  by_noise_cer:{white:1.093,pink:0.973,babble:1.785},
+};
+/* ===== 历史数据（RESULTS.md） ===== */
+const dataA=[
+  {label:['基线','裸跑'],sub:'无SE · language bug 未修',v:4.274},
+  {label:['+SE','全局降噪'],sub:'=0 全力 · bug 仍在',v:3.655},
+  {label:['+langfix','修bug'],sub:'修 language 死代码',v:3.542},
+  {label:['+SE se6','温和'],sub:'=6 温和降噪',v:2.504},
+  {label:['+SE','条件化'],sub:'按噪声类型分流',v:2.609},
+  {label:['+精细','oracle'],sub:'噪声×重叠 二维分流',v:2.022,emph:true},
+];
+const dataB={baseline:{color:'var(--deemph)',values:[2.352,1.874,8.596]},se:{color:'var(--accent)',values:[2.495,4.070,4.398]}};
+const noiseCats=['white','pink','babble'];
+const dataC={baseline:{color:'var(--deemph)',values:[5.976,4.092,2.754]},se:{color:'var(--accent)',values:[3.969,3.277,3.717]}};
+const snrCats=['−5 dB','0 dB','+5 dB'];
+
+function el(id){return document.getElementById(id);}
+function niceMax(m,step){step=step||(m>5?1:0.5);return Math.ceil(m/step)*step+step;}
+
+/* ---- 图D/E：单序列 correct_rate(%) 柱状 ---- */
+function correctBar(id, labels, valsPct, critIdx){
+  const W=460,H=340,m={t:22,r:22,b:54,l:42},pw=W-m.l-m.r,ph=H-m.t-m.b;
+  const mx=niceMax(Math.max(...valsPct),10);
+  const y=v=>m.t+ph-(v/mx)*ph;
+  const n=labels.length,step=pw/n,bw=Math.min(64,step*0.5);
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img">`;
+  for(let t=0;t<=mx;t+=10){
+    s+=`<line x1="${m.l}" y1="${y(t)}" x2="${W-m.r}" y2="${y(t)}" stroke="var(--grid)" stroke-width="1"/>`;
+    s+=`<text x="${m.l-8}" y="${y(t)+4}" text-anchor="end" fill="var(--muted)" font-size="11">${t}%</text>`;
+  }
+  valsPct.forEach((v,i)=>{
+    const cx=m.l+step*i+step/2,bx=cx-bw/2,top=y(v),h=m.t+ph-top;
+    const fill=(i===critIdx)?'var(--crit)':'var(--accent)';
+    const hh=v<1.5?2:h; // 0% 给最小可见高度
+    s+=`<rect class="bar" x="${bx}" y="${top-(v<1.5?2:0)}" width="${bw}" height="${hh}" rx="3" fill="${fill}"><title>${labels[i]}: 可用率 ${v.toFixed(1)}%</title></rect>`;
+    s+=`<text x="${cx}" y="${(v<1.5?top-4:top-8)}" text-anchor="middle" fill="${i===critIdx?'var(--crit)':'var(--ink)'}" font-size="12.5" font-weight="650">${v.toFixed(1)}%</text>`;
+    s+=`<text x="${cx}" y="${H-m.b+20}" text-anchor="middle" fill="var(--ink-2)" font-size="11.5" font-weight="600">${labels[i]}</text>`;
+  });
+  s+=`</svg>`;
+  el(id).innerHTML=s;
+}
+function renderDE(){
+  correctBar('svgD', ['0%','25%','50%','75%','100%'], [41.1,18.9,5.6,3.3,1.1]);
+  correctBar('svgE', ['white','pink','babble'], [16.7,25.3,0.0], 2);
+  let t=`<thead><tr><th>维度</th><th>分组</th><th>可用率(CER&lt;0.5)</th><th>n</th></tr></thead><tbody>`;
+  const dims=[['重叠率','by_ov_correct',90],['SNR','by_snr_correct',150],['噪声类型','by_noise_correct',90]];
+  dims.forEach(([dim,key,n])=>{
+    Object.entries(real[key]).forEach(([k,v])=>{
+      const tag = key==='by_noise_correct'&&k==='babble'?'<span class="caveat">死区</span>':(key==='by_ov_correct'&&k==='0.0'?'<span class="ok">最佳</span>':'');
+      t+=`<tr><td style="color:var(--muted)">${dim}</td><td style="font-weight:600">${k}</td><td>${(v*100).toFixed(1)}% ${tag}</td><td>${n}</td></tr>`;
+    });
+  });
+  t+=`</tbody>`;
+  el('tblDE').innerHTML=t;
+}
+
+/* ---- 图A：迭代柱状 + CER=1 参考线 ---- */
+function colA(){
+  const W=820,H=420,m={t:24,r:28,b:78,l:46},pw=W-m.l-m.r,ph=H-m.t-m.b;
+  const mx=niceMax(Math.max(...dataA.map(d=>d.v)));
+  const y=v=>m.t+ph-(v/mx)*ph;
+  const n=dataA.length,step=pw/n,bw=Math.min(78,step*0.5);
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img">`;
+  for(let t=0;t<=mx;t+=1){s+=`<line x1="${m.l}" y1="${y(t)}" x2="${W-m.r}" y2="${y(t)}" stroke="var(--grid)" stroke-width="1"/><text x="${m.l-8}" y="${y(t)+4}" text-anchor="end" fill="var(--muted)" font-size="11">${t}</text>`;}
+  s+=`<line x1="${m.l}" y1="${y(1)}" x2="${W-m.r}" y2="${y(1)}" stroke="var(--crit)" stroke-width="1.5" stroke-dasharray="5 4"/><text x="${W-m.r-2}" y="${y(1)-7}" text-anchor="end" fill="var(--crit)" font-size="11" font-weight="600">可读阈值 CER=1.0</text>`;
+  dataA.forEach((d,i)=>{const cx=m.l+step*i+step/2,bx=cx-bw/2,top=y(d.v),h=m.t+ph-top;const fill=d.emph?'var(--accent-deep)':'var(--accent)';
+    s+=`<rect class="bar" x="${bx}" y="${top}" width="${bw}" height="${h}" rx="4" fill="${fill}"><title>${d.label.join('')}: CER ${d.v.toFixed(3)}</title></rect>`;
+    s+=`<text x="${cx}" y="${top-8}" text-anchor="middle" fill="var(--ink)" font-size="12.5" font-weight="650">${d.v.toFixed(2)}</text>`;
+    s+=`<text x="${cx}" y="${H-m.b+20}" text-anchor="middle" fill="var(--ink-2)" font-size="11.5" font-weight="600">${d.label[0]}</text>`;
+    s+=`<text x="${cx}" y="${H-m.b+35}" text-anchor="middle" fill="var(--muted)" font-size="11">${d.label[1]}</text>`;});
+  s+=`</svg>`;el('svgA').innerHTML=s;
+  let t=`<thead><tr><th>阶段</th><th>配置</th><th>overall CER</th><th>Δ vs 基线</th></tr></thead><tbody>`;
+  dataA.forEach(d=>{const delta=d.v-4.274,pct=(delta/4.274*100).toFixed(0);
+    t+=`<tr><td>${d.label.join(' ')}</td><td style="color:var(--muted)">${d.sub}</td><td>${d.v.toFixed(3)}</td><td style="color:${delta<0?'var(--good)':'var(--crit)'}">${delta>=0?'+':''}${delta.toFixed(3)} (${pct}%)</td></tr>`;});
+  el('tblA').innerHTML=t+'</tbody>';
+}
+
+/* ---- 图B：分组柱 ---- */
+function groupedB(){
+  const W=460,H=340,m={t:22,r:22,b:50,l:42},pw=W-m.l-m.r,ph=H-m.t-m.b;
+  const mx=niceMax(Math.max(...dataB.baseline.values,...dataB.se.values));
+  const y=v=>m.t+ph-(v/mx)*ph;const cats=noiseCats,n=cats.length,step=pw/n;
+  const grpW=step*0.6,bw=grpW/2-3;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img">`;
+  for(let t=0;t<=mx;t+=2){s+=`<line x1="${m.l}" y1="${y(t)}" x2="${W-m.r}" y2="${y(t)}" stroke="var(--grid)" stroke-width="1"/><text x="${m.l-8}" y="${y(t)+4}" text-anchor="end" fill="var(--muted)" font-size="11">${t}</text>`;}
+  s+=`<line x1="${m.l}" y1="${y(1)}" x2="${W-m.r}" y2="${y(1)}" stroke="var(--crit)" stroke-width="1.2" stroke-dasharray="5 4"/>`;
+  cats.forEach((c,i)=>{const gx=m.l+step*i+step/2-grpW/2;[['baseline',dataB.baseline],['se',dataB.se]].forEach(([k,ser],j)=>{const v=ser.values[i],bx=gx+j*(bw+6),top=y(v),h=m.t+ph-top;
+    s+=`<rect class="bar" x="${bx}" y="${top}" width="${bw}" height="${h}" rx="3" fill="${ser.color}"><title>${c} · ${k}: ${v.toFixed(3)}</title></rect>`;
+    s+=`<text x="${bx+bw/2}" y="${top-5}" text-anchor="middle" fill="var(--ink)" font-size="10.5" font-weight="600">${v.toFixed(1)}</text>`;});
+    s+=`<text x="${m.l+step*i+step/2}" y="${H-m.b+20}" text-anchor="middle" fill="var(--ink-2)" font-size="12" font-weight="600">${c}</text>`;});
+  el('svgB').innerHTML=s+'</svg>';
+}
+
+/* ---- 图C：双折线 ---- */
+function lineC(){
+  const W=460,H=340,m={t:22,r:88,b:50,l:42},pw=W-m.l-m.r,ph=H-m.t-m.b;
+  const mx=niceMax(Math.max(...dataC.baseline.values,...dataC.se.values));
+  const y=v=>m.t+ph-(v/mx)*ph;const cats=snrCats,n=cats.length;const x=i=>m.l+pw*i/(n-1);
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img">`;
+  for(let t=0;t<=mx;t+=1){s+=`<line x1="${m.l}" y1="${y(t)}" x2="${W-m.r}" y2="${y(t)}" stroke="var(--grid)" stroke-width="1"/><text x="${m.l-8}" y="${y(t)+4}" text-anchor="end" fill="var(--muted)" font-size="11">${t}</text>`;}
+  s+=`<line x1="${m.l}" y1="${y(1)}" x2="${W-m.r}" y2="${y(1)}" stroke="var(--crit)" stroke-width="1.2" stroke-dasharray="5 4"/>`;
+  [['baseline',dataC.baseline],['se',dataC.se]].forEach(([k,ser])=>{
+    s+=`<polyline points="${ser.values.map((v,i)=>`${x(i)},${y(v)}`).join(' ')}" fill="none" stroke="${ser.color}" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>`;
+    ser.values.forEach((v,i)=>{s+=`<circle class="dot" cx="${x(i)}" cy="${y(v)}" r="5" fill="${ser.color}" stroke="var(--surface)" stroke-width="2"><title>${cats[i]} · ${k}: ${v.toFixed(3)}</title></circle>`;
+      if(i===n-1)s+=`<text x="${x(i)+12}" y="${y(v)+4}" fill="var(--ink-2)" font-size="11" font-weight="600">${k}</text>`;});
+  });
+  cats.forEach((c,i)=>{s+=`<text x="${x(i)}" y="${H-m.b+20}" text-anchor="middle" fill="var(--ink-2)" font-size="12" font-weight="600">${c}</text>`;});
+  el('svgC').innerHTML=s+'</svg>';
+}
+
+renderDE();colA();groupedB();lineC();
+</script>
+</body>
+</html>
