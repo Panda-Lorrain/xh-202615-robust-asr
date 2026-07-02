@@ -4,7 +4,7 @@
 - **题目**：XH-202615《复杂交互场景的抗干扰语音指令识别技术》（美的集团发榜）
 - **任务**：给定唤醒音频（enrollment，目标说话人），在带噪（SNR −5~5dB）+ 多说话人重叠（≤2人，0–100%）的识别音频中**只转写目标说话人指令、拒识非目标**
 - **评分**：目标 CER 40%、拒识率 40%、推理效率 20%（L20 GPU）
-- **当前阶段**：✅ overnight 已推进至**实测阶段**（2026-06-27~28）：W1 DiCoW 最小推理跑通（RTF=0.058 / params 0.89G / GPU 峰值 2.13GB，**解除"零实测"答辩红线**）+ STNO 机制验证（target→转 / silence→跳 / non-target→0字拒识，答辩黄金素材）+ W2 数据仿真 `simulate_pipeline.py` + W6 评测 `eval_metrics.py` + 完整 DiariZen pipeline 90% 通（依赖/namespace/circular 已全解）。技术路线组合主线（通道无关）已可执行，**待通道数确认**后定稿空间增量（DSENet/KWS）
+- **当前阶段**：✅ **组合主线端到端跑通 + 标准化交付 + 仿真水平画像已出**（2026-07-03）：T14 完整 pipeline（diar+STNO+DiCoW 真 target 转写）→ T17 enrollment 锁定（wespeaker 256d）→ T18 SE增强 / CAM++证伪（per-speaker sim 0.191<0.218 弃，维持 wespeaker）/ LLM拒识 F1=0.878 → T19 langfix（修 DiCoW language 死代码 bug）→ T20 SE 条件化 post-fix → T22 babble 归因（H3 确证：FDDT/STNO 低 target 覆盖劣化，**非 Whisper 基座问题**，vanilla Whisper 三角定位已证）。标准化入口 `code/submit_infer.py`（→ result.json+timing.json）。**本次 450 仿真集全量实测**（`--no-llm` 聚焦 CER）：可用率 14.0%（CER<0.5）/ babble 死区 0% / overlap 0.41→0.01 / SNR −5:2.7%→+5:24.7% / RTF 0.058 纯·0.27 端到端（4060）。可视化 `docs/progress_overview.png` + `docs/cer_progress_dashboard.html`。⚠️ **真瓶颈已归因、卡在外部依赖**：真实 A 集 + 通道数（仿真深挖边际递减，见 memory `stop-digging-on-sim-data`）
 
 ## 📂 文档导航（按此顺序读）
 | 文档 | 作用 |
@@ -23,7 +23,7 @@
 - **`papers/` PDF 19 篇**：10 命名核心 + US-PVAD + SELD + 5 篇 TS-ASR（FDDT/DiCoW/SE-DiCoW/TS-RNNT/NOTSOFAR）+ CUSIDE-array + 智慧家庭语音意图综述
 - **`_txt/` 18 篇全文**（pdftotext 提取）：10 美的论文 + FDDT/DiCoW/SE-DiCoW/TS-RNNT + 智慧家庭综述 + CUSIDE + SELD
 - `pdf2txt.py` — 纯 Python zlib PDF 提取（无库时备用）
-- **`code/` 代码区**：DiCoW-inference（baseline 推理）、TS-ASR-Whisper（源码）、eval_metrics / simulate_pipeline / stno_experiment（评测与实验脚本）
+- **`code/` 代码区**：⭐`submit_infer.py`（标准化推理入口，4 阶段 subprocess）/ `enroll_infer.py`（wespeaker 声纹+diar+DiCoW 转 target）/ `se_denoise.py`+`noise_classify.py`（DeepFilterNet3 条件化）/ `llm_reject.py`（Qwen2.5-3B）/ `fuse_eval.py`（多策略融合扫工作点）/ `eval_metrics.py`+`eval_full_test.py`（评测，⚠️ `eval_metrics.py` 无 CLI，复用需 `import cer()` 或用 `eval_full_test.py` 包装）/ `simulate_pipeline.py`（仿真）/ `make_readme_progress.py`（README 进度图生成）/ DiCoW-inference、TS-ASR-Whisper（开源仓库，gitignore 不入库）
 - **`test_wav/` / `test_wav_clean/` 测试音频**
 
 ## 核心结论
@@ -54,11 +54,12 @@
 - **技术细节/架构演进必须对照原文核实**——曾把 DiCoW 误记为"decoder token+cross-attn"，核实原文后纠正：**DiCoW = FDDT+QKb（encoder 侧）；cross-attention 是 SE-DiCoW 才加的**（解决重叠歧义）。答辩讲错架构演进很危险
 - IEEE 付费墙论文用校园网（广州大学权限）下载
 - 子 agent 精读统一用「pdftotext 提取 → Read → 7 节客观提炼」流程
+- **文档与实现要核实**：`eval_metrics.py` 实际**无 CLI**（`__main__` 仅自测），`交付/使用说明.md` 写的 `--result/--manifest/--out` 是理想用法未实现；复用评测用 `import cer()` 或 `eval_full_test.py` 包装
+- **CER 均值会被幻觉扭曲，correct_rate 更诚实**：babble 重复循环幻觉使 hyp 超长、拉高 CER 均值，制造"SNR 越高 CER 反升"假象；看可用率用 correct_rate(CER<0.5 占比)，看绝对转写质量看 cer_accepted_only
 
-## 下一步候选（W1 已跑通，2026-06-28）
-1. **接通完整 pipeline**：补 wespeaker 权重（用非 gated 镜像 `hbredin/wespeaker-voceleb-resnet34-LM`，规避 pyannote gated）→ patch DiariZen `from_pretrained` 本地路径 → 跑真 target-speaker 转 CER（步骤详见 `PROGRESS.md`「完整 pipeline 解决方案」）
-2. **中文能力验证**：用 mimo-tts 合成的 `test_wav/zh_target_*.wav` 测 DiCoW 中文 CER（`code/mimo_tts_zh.py` 生成，替代 SSL 受阻的 edge-tts）
-3. **W3 Personal VAD** + **W4 声纹(CAM++)**：STNO mask 的真实来源（目前 minimal 推理用手构造 STNO）
-4. **W5 LLM 拒识**：Qwen-2.5-3B 语义拒识（拒识占 40%，目前仅有 STNO 内建拒识这一机制层）
-5. **确认测试集通道数**（决定空间路线 DSENet/KWS 能否用）—— 向主办方确认或看 A 集数据；判断线索见 `00` 总纲第四节
-6. 等 03 答辩文档就绪后做答辩演练
+## 下一步候选（2026-07-03：T14-T22 已完成，卡外部依赖）
+1. ⏳ **等真实测试集 A**（报名后发邮箱）—— 到手即用 `eval_full_test.py` 真测，取代仿真 450 条（**最高优先级，外部阻塞**；绝对值不可从仿真外推）
+2. ⏳ **确认测试集通道数**（决定 DSENet/KWS 空间路线能否用）—— 向主办方确认或看 A 集数据；判断线索见 `00` 总纲第四节（**外部阻塞**，单/多通道分水岭）
+3. 🔧 **攻 babble 工程兜底**（T22 杠杆已明，**不依赖 A**）：提 STNO target 覆盖率 / 全程 language forcing(zh) / babble 专用源分离 —— babble 当前 0% 可用是最大短板，归因已清
+4. ⚡ **L20 耗时验证**：推理脚本显存自适应（L20 48GB 大 batch）+ 租 AutoDL L40 验证端到端耗时（官方 L20 评效率分，本机仅 4060，见 memory `l20-eval-hardware`）
+5. 📄 **答辩演练**：等 `03_答辩FAQ与风险预案.md` 就绪后做（README 已有进度概览图可作答辩开场素材）
