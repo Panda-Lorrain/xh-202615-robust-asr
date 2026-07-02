@@ -432,3 +432,34 @@ langfix 对 **white/pink 低重叠有效**（se6 中文 93%、正确率 60%@ov0�
 
 **产出文件**:`code/submit_out_min/`(最简)、`code/submit_out_se/`(带SE)、`code/submit_out_verify/`(全量, 验收主目录) — 烟雾产物, 非提交结果。
 
+---
+
+## T22 — P2 babble 工程兜底：消融 + oracle 铁证 + 对抗审查反转（2026-07-02 晚）
+
+**背景**：T20 把 babble 英文幻觉归因为「diar 误检幽灵 speaker → STNO target 帧清零 → FDDT 错标 overlap 通道」（H1）；T19 归因为「Whisper 硬噪声」（H2）。两者**从未单步消融区分**。P2 用消融 + 对抗审查 + oracle 铁证钉死。
+
+**3 步**：①单步消融 `code/stno_ablation.py`（同一 babble 样本 t_01_n_07_ov000_snr+5，只改 STNO：A 现状/B 丢幽灵/C 单 spk，white 同 SNR+5 对照）②对抗审查（Workflow 3 agent）③oracle 铁证 `code/babble_oracle_test.py`（①babble+oracle 全程 target ②纯 babble ③干净 nontarget）。
+
+| 实验 | STNO target行 | 输出 | 语言 |
+|---|---|---|---|
+| stno_ablation A 现状 | 0.000 | 53字"i mean you can't wait..." | 英文 |
+| stno_ablation B 丢幽灵 | 0.067(diar派生) | 61字"i think you can do it..." | 英文 |
+| stno_ablation C 单spk | 0.067(diar派生) | 同 B | 英文 |
+| white 对照 A=B=C | 0.091 | 「先把客厅的空调温度调到二十六度」 | **中文** ✓ |
+| **oracle ①** babble+全程target | **1.0** | 200字「我可以用它用它...」循环 | **中文** |
+| **oracle ②** 纯babble(4中文叠加) | 全程 | 「我刚看了一个很有趣的...」片段 | **中文** |
+| **oracle ③** 干净nontarget n07 | 全程 | 「帮我倒杯水好吗谢谢」 | **中文** ✓ |
+
+**决定性发现（反转）**：
+1. **H2 强形式证伪**：纯 babble（②，4 条**中文** nontarget 叠加，无 target）输出**中文片段**，不漂英文 → **babble 音频本身不让 Whisper/DiCoW 漂英文**。之前"babble 音频致英文幻觉"归因错误。（用户质疑"babble 含英文"也核实排除：n_01~08 全中文 voice=苏打，见 `build_dataset.py:52` gen_babble + `raw/manifest.json`。）
+2. **STNO target 行覆盖率因果主导语言**：同一 babble 样本，diar 派生 0.067 → 英文；oracle 全程 1.0 → 中文（①）。唯一变量是 STNO 覆盖率。
+3. **内容层另有瓶颈**：① 虽中文却"我可以用它用它..."循环崩 → **双层瓶颈：语言层（STNO 可修）+ 内容层（babble 音频质量/Whisper 鲁棒性）**。
+
+**对抗审查救场（避免切向错误杠杆）**：原消融漏洞——C 用 diar 派生帧（非 oracle）/ B==C 退化（假冗余）/ 结果文件被 white 对照覆盖（babble H2 无产物）/ 无法区分 H2 vs **H3（language-drift，langfix 只锁首位 token 的残留）**。若无审查，会基于"H2 成立"切向 **SE-DiCoW**（错误杠杆）。memory `adversarial-review-before-milestone-commit` 完美体现。
+
+**未 100% 排除**：①②③ 都用"全程 target STNO"，未干净排除 STNO 混淆；vanilla Whisper（无 FDDT）本地无未跑，babble 独立效应未彻底排除。彻底分 H2/H3 需 vanilla Whisper + prefix-forced decode。
+
+**对 P2 的影响**：杠杆 A（修 STNO）**部分有效**——能救语言（英文→中文），内容需 SE/微调。但单纯"丢幽灵 speaker"（B/C）不够（diar 派生 0.067 仍英文），真正起作用的是"提高 target 行覆盖率"，机制疑为 H3（language drift 受 STNO 覆盖率影响），待确证。归因 slippery → 符合 `stop-digging-on-sim-data`，真瓶颈待真实 A 集/通道数。
+
+**产出**：`code/stno_ablation.py`、`code/babble_oracle_test.py` + 本节结论。
+
