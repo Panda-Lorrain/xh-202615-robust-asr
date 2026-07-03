@@ -131,6 +131,24 @@ def run_enroll_infer(enrollment, rec_dir, out_json, device, sim_thr, py=PY_MAIN)
                  "--device", device], py)
 
 
+def run_enroll_infer_pairs(pairs_json, out_json, device, sim_thr,
+                           enroll_augment=False, aug_snrs="10,5,0", aug_noise_dir=None, py=PY_MAIN):
+    """阶段2(批量化, datasetA 用): enroll_infer --pairs 单进程跑所有对,模型加载1次。
+    绕过"按 enrollment 分组多次 subprocess"的瓶颈(datasetA 每条 enr 不同 → 1838 次重载)。
+    enroll_augment=True 透传 --enroll-augment(干净+多档加噪 emb 均值,提 babble 鲁棒)。
+    aug_noise_dir 指定 babble 噪声池目录(比默认白噪更对症真实 babble)。"""
+    cmd = [os.path.join(HERE, "enroll_infer.py"),
+           "--pairs", pairs_json,
+           "--out-json", out_json, "--always-generate",
+           "--reject-threshold", str(sim_thr),
+           "--device", device]
+    if enroll_augment:
+        cmd += ["--enroll-augment", "--aug-snrs", aug_snrs]
+        if aug_noise_dir:
+            cmd += ["--aug-noise-dir", aug_noise_dir]
+    return _run(cmd, py)
+
+
 def run_llm(infer_json, out_json, device, py=PY_LLM):
     """阶段3: llm_reject 对每条 transcript 判 accept/reject。"""
     return _run([os.path.join(HERE, "llm_reject.py"),
@@ -147,6 +165,11 @@ def main():
     ap.add_argument("--no-se", action="store_true", help="跳过 SE 条件化降噪")
     ap.add_argument("--no-llm", action="store_true", help="跳过 LLM 拒识")
     ap.add_argument("--sim-thr", type=float, default=0.2, help="声纹拒识阈值(T20 最优)")
+    ap.add_argument("--enroll-augment", action="store_true",
+                    help="enrollment 加噪增强(干净+多档加噪 emb 均值,提 babble 下声纹鲁棒 → 提 sim)")
+    ap.add_argument("--aug-snrs", default="10,5,0", help="enrollment 加噪增强 SNR 档(逗号分)")
+    ap.add_argument("--aug-noise-dir", default=r"E:\midea_target_asr\datasetA\pos",
+                    help="babble 噪声池目录(默认 datasetA/pos; 比白噪更对症真实 babble)")
     ap.add_argument("--strategy", default="llm_or_sim",
                     choices=["llm_or_sim", "sim_only", "llm_only"], help="融合策略")
     ap.add_argument("--device", default="cuda:0")
@@ -214,38 +237,28 @@ def main():
         t1 = time.perf_counter()
         print(f"[se] 阶段0+1 用时 {t1-t0:.1f}s ({len(rows)} 条, 桶={list(buckets.keys())})")
 
-    # --- 阶段2: enroll_infer 转写(按 enrollment 分组,每组一次批量) ---
-    from collections import defaultdict
-    groups = defaultdict(list)
-    for enr, rec, dst in rec_paths:
-        groups[enr].append(dst)
-    enroll_jsons = []
-    e_wall = 0.0
-    sum_rtf = 0.0
-    n_rtf = 0
-    for gi, (enr, dsts) in enumerate(groups.items()):
-        gdir = os.path.join(work_dir, f"enroll_g{gi}")
-        os.makedirs(gdir, exist_ok=True)
-        for d in dsts:
-            shutil.copy(d, os.path.join(gdir, os.path.basename(d)))
-        out_json = os.path.join(work_dir, f"enroll_g{gi}.json")
-        e_wall += run_enroll_infer(enr, gdir, out_json, args.device, args.sim_thr)
-        with open(out_json, encoding="utf-8") as f:
-            rows = json.load(f)
-        for r in rows:
-            sum_rtf += float(r.get("rtf", 0.0) or 0.0)
-            n_rtf += 1
-        enroll_jsons.append((enr, out_json))
+    # --- 阶段2: enroll_infer 转写(单进程批量化: 所有对一次喂, 模型加载1次) ---
+    # 写 pairs manifest(enrollment=原enr 路径, recognition=work/rec_in/uttN.wav)。
+    # enroll_infer --pairs 内部按 enr 路径缓存 enroll_emb, 同说话人/同文件复用。
+    enroll_pairs = os.path.join(work_dir, "enroll_pairs.json")
+    with open(enroll_pairs, "w", encoding="utf-8") as f:
+        json.dump([{"enrollment": enr, "recognition": dst} for enr, rec, dst in rec_paths],
+                  f, ensure_ascii=False)
+    enroll_all = os.path.join(work_dir, "enroll_all.json")
+    e_wall = run_enroll_infer_pairs(enroll_pairs, enroll_all, args.device, args.sim_thr,
+                                    args.enroll_augment, args.aug_snrs, args.aug_noise_dir)
+    with open(enroll_all, encoding="utf-8") as f:
+        all_rows = json.load(f)
+    sum_rtf = sum(float(r.get("rtf", 0.0) or 0.0) for r in all_rows)
+    n_rtf = len(all_rows)
     phases["enroll_diar_dicow"] = {"wall_sec": round(e_wall, 3),
                                    "mean_rtf": round(sum_rtf / n_rtf, 4) if n_rtf else None}
 
     # 汇总 enroll 输出(utt_id -> row)
     enr_map = {}
-    for enr, out_json in enroll_jsons:
-        with open(out_json, encoding="utf-8") as f:
-            for r in json.load(f):
-                uid = utt_id_from_path(r.get("recognition", ""))
-                enr_map[uid] = r
+    for r in all_rows:
+        uid = utt_id_from_path(r.get("recognition", ""))
+        enr_map[uid] = r
 
     # --- 阶段3: LLM 拒识 ---
     llm_map = {}

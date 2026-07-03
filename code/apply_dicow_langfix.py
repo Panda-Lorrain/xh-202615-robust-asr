@@ -29,6 +29,8 @@ NEW = ('        if language is not None and hasattr(generation_config, "lang_to_
 TARGETS = [
     "E:/hf_cache/modules/transformers_modules/DiCoW_v3_2/generation.py",
     "E:/hf_cache/DiCoW_v3_2/generation.py",
+    "E:/hf_cache/SE_DiCoW/generation.py",
+    "E:/hf_cache/modules/transformers_modules/SE_DiCoW/generation.py",
 ]
 MARKER = "Midea-T19 fix"
 
