@@ -81,11 +81,24 @@ def collect_clean_audio(audio, diar_mask, i, sr=16000, frame_sec=0.02, min_seg_s
     return np.concatenate(pieces) if pieces else None
 
 
+def _sample_babble(noise_dir, n, rng):
+    """从 noise_dir/*.wav 随机采一段长 n 的 babble 噪声(真实语音, 比白噪更对症 babble 场景)。"""
+    wavs = sorted(glob.glob(os.path.join(noise_dir, "*.wav")))
+    if not wavs:
+        return rng.standard_normal(n).astype(np.float32)
+    pick = wavs[int(rng.integers(len(wavs)))]
+    nw, _ = librosa.load(pick, sr=16000)
+    if len(nw) < n:
+        nw = np.tile(nw, n // len(nw) + 1)
+    return nw[:n].astype(np.float32)
+
+
 def main():
     ap = argparse.ArgumentParser(description="enrollment→wespeaker 锁定唯一 target")
-    ap.add_argument("--enrollment", required=True, help="目标说话人参考音频 wav")
+    ap.add_argument("--enrollment", help="目标说话人参考音频 wav(配 --recognition / --recognition-folder)")
     ap.add_argument("--recognition", help="识别音频 wav(单条)")
     ap.add_argument("--recognition-folder", help="识别音频文件夹(批量)")
+    ap.add_argument("--pairs", help="[{enrollment,recognition}, ...] json(单进程批量化,模型加载1次;优先于 --enrollment)")
     ap.add_argument("--reject-threshold", type=float, default=0.5, help="兜底拒识余弦阈值")
     ap.add_argument("--device", default="cuda:0")
     ap.add_argument("--dicow-model", default=DICOW_MODEL)
@@ -97,7 +110,10 @@ def main():
     ap.add_argument("--enroll-augment", action="store_true",
                     help="enrollment 加噪增强: 干净+多档加噪 emb 均值, 提声纹鲁棒")
     ap.add_argument("--aug-snrs", default="10,5,0", help="enrollment 加噪增强的 SNR 档(逗号分)")
+    ap.add_argument("--aug-noise-dir", help="babble 噪声池目录(增强比白噪更对症真实 babble; 不填则用白噪)")
     args = ap.parse_args()
+    if not args.pairs and not args.enrollment:
+        ap.error("--pairs 与 --enrollment 至少填一个")
 
     device = torch.device(args.device if torch.cuda.is_available() else "cpu")
     dtype = torch.float16
@@ -124,27 +140,47 @@ def main():
         emb = torch.as_tensor(emb, device=device, dtype=torch.float32)
         return torch.nn.functional.normalize(emb, dim=-1).squeeze(0)   # (dim,) 已归一化
 
-    # enrollment embedding(可选加噪增强: 干净 + 多档加噪 emb 均值, 提带噪鲁棒)
-    enroll_wav, _ = librosa.load(args.enrollment, sr=16000)
-    if args.enroll_augment:
-        from simulate_pipeline import add_noise
-        aug_snrs = [int(s) for s in args.aug_snrs.split(",") if s.strip()]
-        rng = np.random.default_rng(0)
-        embs = [get_emb(enroll_wav)]
-        for snr in aug_snrs:
-            noisy = add_noise(enroll_wav, rng.standard_normal(len(enroll_wav)).astype(np.float32), snr)
-            embs.append(get_emb(noisy))
-        enroll_emb = torch.nn.functional.normalize(torch.stack(embs).mean(0), dim=-1)
-        print(f"[enrollment] 加噪增强: 干净 + {len(aug_snrs)}档加噪{aug_snrs}dB emb 均值 → {tuple(enroll_emb.shape)}")
+    # ---- 构造 (enrollment, recognition) 对列表(3 种输入归一) ----
+    if args.pairs:
+        pair_rows = json.load(open(args.pairs, encoding="utf-8"))
+        pairs = [(r["enrollment"], r["recognition"]) for r in pair_rows]
+        print(f"[pairs] {args.pairs}: {len(pairs)} 对 (单进程批量化, 模型加载 1 次)")
+    elif args.recognition_folder:
+        recs = sorted(glob.glob(os.path.join(args.recognition_folder, "*.wav")))
+        pairs = [(args.enrollment, rec) for rec in recs]
     else:
-        enroll_emb = get_emb(enroll_wav)
-        print(f"[enrollment] {args.enrollment} ({len(enroll_wav)/16000:.1f}s) → emb {tuple(enroll_emb.shape)}")
+        pairs = [(args.enrollment, args.recognition)]
 
-    recs = sorted(glob.glob(os.path.join(args.recognition_folder, "*.wav"))) \
-        if args.recognition_folder else [args.recognition]
+    # enrollment embedding 缓存(按路径;datasetA 每条不同 enr 也能命中同说话人复用,
+    # 且 --enrollment+folder 老模式同一 enr 只提一次)
+    _enroll_cache = {}
+    def get_enroll_emb(enr_path):
+        if enr_path in _enroll_cache:
+            return _enroll_cache[enr_path]
+        w, _ = librosa.load(enr_path, sr=16000)
+        if args.enroll_augment:
+            from simulate_pipeline import add_noise
+            aug_snrs = [int(s) for s in args.aug_snrs.split(",") if s.strip()]
+            rng = np.random.default_rng(0)
+            use_babble = bool(args.aug_noise_dir)
+            embs = [get_emb(w)]
+            for snr in aug_snrs:
+                noise = _sample_babble(args.aug_noise_dir, len(w), rng) if use_babble \
+                        else rng.standard_normal(len(w)).astype(np.float32)
+                noisy = add_noise(w, noise, snr)
+                embs.append(get_emb(noisy))
+            emb = torch.nn.functional.normalize(torch.stack(embs).mean(0), dim=-1)
+            src = f"babble({os.path.basename(os.path.dirname(args.aug_noise_dir.rstrip('/')))}{os.path.basename(args.aug_noise_dir.rstrip('/'))})" if use_babble else "白噪"
+            print(f"[enrollment] {os.path.basename(enr_path)} ({len(w)/16000:.1f}s) +{len(aug_snrs)}档{src}增强 → cached")
+        else:
+            emb = get_emb(w)
+            print(f"[enrollment] {os.path.basename(enr_path)} ({len(w)/16000:.1f}s) → cached")
+        _enroll_cache[enr_path] = emb
+        return emb
 
     results = []
-    for rec in recs:
+    for enr, rec in pairs:
+        enroll_emb = get_enroll_emb(enr)
         t0 = time.time()
         audio, sr = librosa.load(rec, sr=16000)
         dur = len(audio) / sr
@@ -154,7 +190,7 @@ def main():
             diar_out = diar(rec)
         except Exception as e:
             print(f"  [diar-fail] {os.path.basename(rec)} {type(e).__name__}: {str(e)[:80]} → 跳过该条")
-            results.append({"recognition": rec, "enrollment": args.enrollment,
+            results.append({"recognition": rec, "enrollment": enr,
                             "error": f"{type(e).__name__}: {str(e)[:120]}",
                             "rejected": True, "transcript": "", "chars": 0})
             continue
@@ -199,19 +235,62 @@ def main():
         else:
             stno = get_stno_mask(diar_mask, target_idx)    # [4, T]
             am = torch.ones(1, ifp.shape[-1], dtype=torch.bool, device=device)
+            gen_kwargs = dict(input_features=ifp, attention_mask=am,
+                              stno_mask=stno[None].to(device, dtype),
+                              language=args.language, task="transcribe", max_new_tokens=200)
+            # ---- SE-DiCoW(config.uses_enrollments=True): 自登记 enrollment, cross-attn 解重叠 ----
+            # 自登记 ≠ 外部 enrollment wav —— 从 recognition mel+target STNO 提 target 最密 30s 窗,
+            # 复刻 DiCoW-inference/pipeline.py::_process_enrollment_sample + max_ones_window。
+            if bool(getattr(dicow.config, "uses_enrollments", False) or getattr(dicow.config, "use_enrollments", False)):
+                if not getattr(dicow, "_se_setup_done", False):
+                    vocab = tok.get_vocab()
+                    tok.upper_cased_tokens = {}
+                    for _t, _i in vocab.items():
+                        if len(_t) < 1:
+                            continue
+                        _lo = (_t[0] + _t[1].lower() + (_t[2:] if len(_t) > 2 else '')) \
+                              if (_t[0] == 'Ġ' and len(_t) > 1) else (_t[0].lower() + _t[1:])
+                        if _lo != _t and vocab.get(_lo) is not None:
+                            tok.upper_cased_tokens[vocab[_lo]] = _i
+                    if hasattr(dicow, "set_tokenizer"):
+                        dicow.set_tokenizer(tok)
+                    dicow.config.model_type = "whisper"
+                    dicow._se_setup_done = True
+                    print("[load] SE-DiCoW uses_enrollments=True → cross-attn 内部启用(self-enrolled)")
+                # SE-DiCoW 的 self-enrollment 在模型内部从 stno_mask target 行自动提取,
+                # config.uses_enrollments 控制 cross-attn 路径; generate 接口与 DiCoW 相同(实测不接受 enrollments kwarg)。
             with torch.no_grad():
-                out = dicow.generate(input_features=ifp, attention_mask=am,
-                                     stno_mask=stno[None].to(device, dtype),
-                                     language=args.language, task="transcribe", max_new_tokens=200)
+                out = dicow.generate(**gen_kwargs)
             seqs = out["sequences"] if isinstance(out, dict) else out
             text = tok.batch_decode(seqs, skip_special_tokens=True)[0].strip()
+            # [langfix 加强] 英文漂移 → prompt_ids 中文偏置 + greedy 重生成(retry 复用 gen_kwargs 含 enrollments)
+            _L = [c for c in text if c.isalpha()]
+            _er = sum(c.isascii() for c in _L) / len(_L) if len(_L) >= 4 else 0.0
+            if _er > 0.4:
+                if not hasattr(dicow, "_zh_prompt_ids"):
+                    dicow._zh_prompt_ids = torch.tensor(
+                        tok("以下是普通话的句子。", add_special_tokens=False).input_ids, device=device)
+                retry_kwargs = dict(gen_kwargs)
+                retry_kwargs.update(num_beams=1, prompt_ids=dicow._zh_prompt_ids)
+                with torch.no_grad():
+                    out2 = dicow.generate(**retry_kwargs)
+                seqs2 = out2["sequences"] if isinstance(out2, dict) else out2
+                text2 = tok.batch_decode(seqs2, skip_special_tokens=True)[0].strip()
+                _PFX = "以下是普通话的句子。"
+                if text2.startswith(_PFX):
+                    text2 = text2[len(_PFX):].strip()
+                _L2 = [c for c in text2 if c.isalpha()]
+                _er2 = sum(c.isascii() for c in _L2) / len(_L2) if len(_L2) >= 4 else 0.0
+                if _er2 < _er:
+                    text = text2
+                print(f"  [langfix-retry] 英文率 {_er:.2f}→{_er2:.2f} {'采纳重生成' if _er2 < _er else '保留首次'}")
             verdict = (f"REJECT_GEN(max_sim={max_sim:.3f}<{args.reject_threshold}, always-generate 仍转)" if rejected
                        else f"TRANSCRIBE(target={speakers[target_idx]})")
 
         dt = time.time() - t0
         print(f"  [{verdict}] {len(text)}字 ({dt:.1f}s, RTF={dt/dur:.3f}): {text}")
         results.append({
-            "recognition": rec, "enrollment": args.enrollment,
+            "recognition": rec, "enrollment": enr,
             "speakers": speakers,
             "sims": {speakers[i]: float(sims[i]) for i in range(len(speakers))},
             "target_idx": target_idx, "target_speaker": speakers[target_idx],
