@@ -49,6 +49,10 @@ resampled.wav
 pipeline_out/
 
 # ===== 数据集: 可重建的大批量 wav 不入 git, 保 raw TTS 种子(限时免费产物) =====
+# datasetA: 比赛官方测试集(外部数据, 278M, 不入库; 用户本地放置后跑 make_pairs_from_datasetA.py 生成 manifest)
+datasetA/
+code/pos_pairs_datasetA.json
+code/neg_pairs_datasetA.json
 test_wav/dataset/final/
 test_wav/dataset/se_denoised*/
 test_wav/dataset/reject*/
