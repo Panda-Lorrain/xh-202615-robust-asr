@@ -4,7 +4,7 @@
 - **题目**：XH-202615《复杂交互场景的抗干扰语音指令识别技术》（美的集团发榜）
 - **任务**：给定唤醒音频（enrollment，目标说话人），在带噪（SNR −5~5dB）+ 多说话人重叠（≤2人，0–100%）的识别音频中**只转写目标说话人指令、拒识非目标**
 - **评分**：目标 CER 40%、拒识率 40%、推理效率 20%（L20 GPU）
-- **当前阶段**：✅ **组合主线端到端跑通 + 标准化交付 + 仿真水平画像已出**（2026-07-03）：T14 完整 pipeline（diar+STNO+DiCoW 真 target 转写）→ T17 enrollment 锁定（wespeaker 256d）→ T18 SE增强 / CAM++证伪（per-speaker sim 0.191<0.218 弃，维持 wespeaker）/ LLM拒识 F1=0.878 → T19 langfix（修 DiCoW language 死代码 bug）→ T20 SE 条件化 post-fix → T22 babble 归因（H3 确证：FDDT/STNO 低 target 覆盖劣化，**非 Whisper 基座问题**，vanilla Whisper 三角定位已证）。标准化入口 `code/submit_infer.py`（→ result.json+timing.json）。**本次 450 仿真集全量实测**（`--no-llm` 聚焦 CER）：可用率 14.0%（CER<0.5）/ babble 死区 0% / overlap 0.41→0.01 / SNR −5:2.7%→+5:24.7% / RTF 0.058 纯·0.27 端到端（4060）。可视化 `docs/progress_overview.png` + `docs/cer_progress_dashboard.html`。⚠️ **真瓶颈已归因、卡在外部依赖**：真实 A 集 + 通道数（仿真深挖边际递减，见 memory `stop-digging-on-sim-data`）
+- **当前阶段**：✅ **真实测试集 A 真测基线已出 + 组合主线架构极限确认**（2026-07-04）。历史：T14 pipeline(diar+STNO+DiCoW)→T17 wespeaker 锁定→T18 SE/CAM++证伪→T19 langfix→T20 SE 条件化→T22 babble 归因(H3 确证) + 仿真 450 画像(可用率 14%/babble 死区 0%)。**2026-07-04 真测**：datasetA 到手(pos 1364 测 CER + neg 474 测 RR，**单通道** 16k/16bit mono，enrollment ~1.8s 超短，唤醒词 20 种) → **单通道确认**(DSENet/VSAEC/DOA/KWS 空间路线全弃，组合主线是唯一路线)。真测适配(`make_pairs_from_datasetA`+`eval_datasetA`+繁简归一 zhconv) + Gap3 批量化(`enroll_infer --pairs` 模型加载1次，enroll 39→11s) + langfix 加强。**真实基线**：pos CER **1.25**(correct 31%)/neg RR **77%**(thr=0.2，可调 **99%**@thr=0.4)/RTF 0.16–0.24(4060，pos 全量 13.8min batch)。三方案攻短板全受挫：langfix 边际(英文 31.6%→18.5%，CER 仅降 0.028)/STNO 无效(babble 重 sim 0.024→0.038)/SE-DiCoW 架构不兼容(mt_num_speakers=2 多 speaker+self-enrollment 范式，短音频 OOD)。⚠️ **核心认知**：组合主线 cascaded(wespeaker+diar→STNO→DiCoW) 在极重 babble 下 CER **1.25–1.4 是能力极限**(target 声纹提不出 sim<0.06 + mel 退化转写崩)，调参/小改破不了。**保底决策**：langfix+sim_thr=0.4(RR 99%)+答辩归因。详见 memory `datasetA-spec`+`hf-download-method`
 
 ## 📂 文档导航（按此顺序读）
 | 文档 | 作用 |
@@ -57,9 +57,9 @@
 - **文档与实现要核实**：`eval_metrics.py` 实际**无 CLI**（`__main__` 仅自测），`交付/使用说明.md` 写的 `--result/--manifest/--out` 是理想用法未实现；复用评测用 `import cer()` 或 `eval_full_test.py` 包装
 - **CER 均值会被幻觉扭曲，correct_rate 更诚实**：babble 重复循环幻觉使 hyp 超长、拉高 CER 均值，制造"SNR 越高 CER 反升"假象；看可用率用 correct_rate(CER<0.5 占比)，看绝对转写质量看 cer_accepted_only
 
-## 下一步候选（2026-07-03：T14-T22 已完成，卡外部依赖）
-1. ⏳ **等真实测试集 A**（报名后发邮箱）—— 到手即用 `eval_full_test.py` 真测，取代仿真 450 条（**最高优先级，外部阻塞**；绝对值不可从仿真外推）
-2. ⏳ **确认测试集通道数**（决定 DSENet/KWS 空间路线能否用）—— 向主办方确认或看 A 集数据；判断线索见 `00` 总纲第四节（**外部阻塞**，单/多通道分水岭）
-3. 🔧 **攻 babble 工程兜底**（T22 杠杆已明，**不依赖 A**）：提 STNO target 覆盖率 / 全程 language forcing(zh) / babble 专用源分离 —— babble 当前 0% 可用是最大短板，归因已清
-4. ⚡ **L20 耗时验证**：推理脚本显存自适应（L20 48GB 大 batch）+ 租 AutoDL L40 验证端到端耗时（官方 L20 评效率分，本机仅 4060，见 memory `l20-eval-hardware`）
-5. 📄 **答辩演练**：等 `03_答辩FAQ与风险预案.md` 就绪后做（README 已有进度概览图可作答辩开场素材）
+## 下一步候选（2026-07-04：真测基线出，组合主线极限确认，已选保底）
+1. ✅ ~~真实测试集 A~~（到手，真测完成）+ ✅ ~~通道数~~（**单通道确认**，空间路线全弃）
+2. ⚠️ **CER 破局战略决策**（组合主线 CER 1.4 是架构极限）：①保底交付(langfix+sim_thr=0.4 RR 99%+答辩归因，确定) ②端到端联合 X(反 cascaded，CLAUDE.md 上限候选，大工程) ③babble 专用源分离(SepFormer 提 target mel，高成本) —— **已选①保底**
+3. 🔧 **保底交付**（进行中）：langfix 保留 + sim_thr=0.4 调 RR 99% + 效率 RTF 0.2 + 答辩重点(babble 归因/单通道确认/工程优化 Gap3·繁简·langfix/诚实组合主线极限)
+4. ⚡ **L20 耗时验证**：推理脚本显存自适应(L20 48GB 大 batch) + 租 AutoDL L40 验证端到端(官方 L20 评效率，本机 4060，memory `l20-eval-hardware`)
+5. 📄 **答辩演练**：等 `03_答辩FAQ与风险预案.md` 就绪后做(README 进度图作开场)
