@@ -1,192 +1,147 @@
-# Agent 交接文档（XH-202615 美的目标说话人 ASR）
+# AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
-> **下个 agent 第一时间读此文件 → CLAUDE.md → PROGRESS.md → RESULTS.md → 边缘部署规划.md → 项目阶段盘点.md**
->
-> 🆕 **最新：2026-07-02 T22（P2 启动·babble 工程兜底）** — 因果链双重确证：①**代码层** `code/TS-ASR-Whisper/src/models/dicow/FDDT.py:41-63` 是门控线性变换（每帧 hidden 按 STNO 四行加权各通道线性层），DiariZen 在 babble ov0 误检"幽灵 speaker2"→`anyone_else=0`→target 帧被错标进 **overlap 通道**（非"信号消失"，STNO 仍 one-hot）→FDDT 用 overlap 通道（为两人重叠训练）处理单人+babble→条件化错位→退化乱转；②**数据层** babble ov0 全量 ~30 条 **100% 误检 2 speaker**、stno_target≈0，**sim 0.52–0.62（声纹锁对 target）照样崩**（596/714/726 字英文循环），强证 **H1（STNO 错标主导）** 非 H2（babble 音频本身）。消融脚本 `code/stno_ablation.py` 就绪（同一 mel+锁定下 A 现状 / B 丢幽灵 / C 单 spk 三 STNO 对比，CER 判定 H1/H2），**待跑**。**Workflow 3-agent 诊断完成**：DiCoW 语义 `supports_H1=true`（每层 FDDT 把 target 帧误标 overlap→逐层 OOD 条件化→encoder 塌缩；white 反事实铁证：同 SNR+5 `stno_t==t_active`→完美中文，babble `stno_t=0`→596 字英文循环，且 babble max_sim 0.545>white 0.440 排除声纹/音频因素）；数据层 babble 全 overlap 档 100% 误检 2 人（se6/se0 各 150/150）。⚠️ 失败模式异质（低 sim 声纹锁失败的乱码中文，修 STNO 不救，需 enroll 增强）；英文翻转疑 language-force bug 次生。
->
-> 🔄 **消融 + oracle 铁证已跑（2026-07-02 晚），反转 H2 倾向**：`code/babble_oracle_test.py` 三场景皆出**中文**（①babble样本+oracle全程target→中文循环 ②纯babble(4中文叠加)→中文片段 ③干净nontarget→完美中文「帮我倒杯水」），唯独 `stno_ablation.py` 的 diar 派生低覆盖 STNO（target行0.067）→英文。**STNO target行覆盖率因果主导语言**（全程1.0→中文 vs 0.067→英文），非 babble 音频本身；但①中文仍循环→**内容层另有瓶颈（双层：语言层 STNO 可修 + 内容层 babble 音频质量）**。⚠️ 对抗审查救场（原消融漏洞：C 用 diar 帧非 oracle / B==C 退化 / 结果被 white 覆盖 / 无法分 H2 vs H3-language-drift），之前口头 H2 是**过度归因**。vanilla Whisper（无 FDDT）本地无已跑（✅）：vanilla Whisper 转 babble 样本→**正确中文「请把客厅的空调温度调整」**（11字近全对），纯 babble→中文循环 → **三角定论 H2 彻底证伪（Whisper 基座在 babble 上不漂英文）、H3（DiCoW FDDT/STNO 条件化）确证**；杠杆指向：提高 STNO 覆盖率 / 更强 language forcing / FDDT 鲁棒（非 SE-DiCoW）。洞察：DiCoW STNO 条件化在 babble 上适得其反（vanilla 反而对但失 target 选择性）。详见 RESULTS T22 vanilla 子节。
->
-> **🎯 P2 收尾（2026-07-03）：归因完成，仿真 stop-digging。** babble 英文幻觉 = DiCoW FDDT/STNO 条件化病害（H3，vanilla Whisper 证明基座在 babble 上正常出中文），**非 babble 音频本身、非单纯 STNO 通道清零**。下一步转向：①等真实 A 集 ②确认通道数 ③L20 耗时验证（租 AutoDL）④交付物打磨。技术候选（待真实数据验证，勿在仿真上再深挖）：提高 STNO target 行覆盖率 / 更强 language forcing（constrained decode）/ FDDT 鲁棒性。符合 `stop-digging-on-sim-data` + `l20-eval-hardware`。归因 slippery → 符合 `stop-digging-on-sim-data`，真瓶颈待真实 A 集/通道数。详见 PROGRESS T22。
->
-> 🆕 **最新：2026-07-01 T21** — P0(`code/submit_infer.py` 标准化推理脚本,仅 stdlib subprocess 编排器,零侵入复用 noise_classify/se_denoise/enroll_infer/llm_reject)+P1(`交付/` 设计报告/使用说明/测试验证方案 + README 架构修正)**已完成并 push**,三档集成验收通过(`--limit 3` 最简/带SE/全量),端到端 timing 空缺填补。详见下方「🔄 工作重心转变」段顶部 + `PROGRESS.md` T21 + `RESULTS.md` Task 7。**下一棒优先级**:P2 babble 工程兜底(diar 前置过滤防 STNO 崩,唯一能直接抬绝对性能且对真A有效)/ 等测试集A / 确认通道数 / L20耗时验证(租AutoDL)。
->
-> 更新：2026-06-29（T19，含对抗审查后归因修正）。T18 三线各自验证但**未集成**→ 用户选「集成三线+真实组合指标」→ `fuse_eval.py` 串成单一 pipeline 跑出真实组合指标。**对抗审查发现 + 修复了一个 critical bug**：DiCoW `language="zh"` 死代码失效致 90% 出英文（已修，english 90%→72%），但残留瓶颈=Whisper 硬噪声转写质量（需微调/SE-DiCoW）。**先读下方🆕 T19 速览**，完整数字见 RESULTS.md T19。
+> **交接时间**：2026-07-04（真测基线已出 + 组合主线极限确认 + 保底决策）
+> **下个 agent 读序**：本文件 → `CLAUDE.md`（当前阶段+下一步已更新）→ 关键 memory（见第 10 节）→ `交付/使用说明.md`
+> **当前 git**：`master` @ `c4fbadc`（已 push origin）— 本次 5 commit：datasetA 适配 / enroll_infer 批量化+langfix / submit_infer Gap3 / 分析脚本 / CLAUDE.md
 
 ---
 
-## ⚠️⚠️ 隔离声明（2026-06-30 用户明确指示，后续 agent 必读）
+## 0. 一句话现状
 
-`docs/superpowers/specs/2026-06-29-final-exam-data-analysis-reframe-design.md` 与 `docs/superpowers/plans/2026-06-29-final-exam-deliverables.md` 这两份文档是用户**另一个独立的《Python与数据分析》课程期末作业**，与本项目（美的 XH-202615 参赛工程）**完全无关**。
+真实测试集 A 到手 → 全量真测 → **组合主线 cascaded 在极重 babble 下 CER 1.25–1.4 是架构极限**（三方案攻短板全受挫）→ **已选保底**：langfix + sim_thr=0.4（RR 99% / CER 0.96 / RTF 0.2）+ 答辩讲归因。
 
-- ❌ **不要执行**那份 plan——不要创建 `期末作业/` 目录、不写 `analysis.ipynb`、不写课程设计报告 / 答辩 PPT / 分工表
-- ❌ **不要把项目方向**往「数据分析重构」带
-- ✅ 本项目当前真正任务仍是**参赛工程**的下一步（见下方「T19 速览·待办」与 `PROGRESS.md`）：① SE 条件化 post-fix 重跑 ② 中文家居微调 ③ SE-DiCoW 接入 ④ 真实噪声再校准 noise_classify ⑤ 确认通道数 / 真实数据
-- 这两份文件仅因用户在别处可能用到而保留在仓库中，**对本 loop 视作不存在**
+## 1. 当前真实基线（datasetA 全量真测，2026-07-04）
 
----
+| 评分维度 | 权重 | 当前基线 | 备注 |
+|---|---|---|---|
+| **pos CER**（1364 条）| 40% | **1.25**（thr=0.2）/ **0.96**（thr=0.4）/ correct_rate 31% | enroll_all 全转写口径 1.40；离目标很远 |
+| **neg RR**（474 条）| 40% | **77%**（thr=0.2）/ **99%**（thr=0.4）| sim_thr 调高即可达 99% |
+| **效率 RTF** | 20% | **0.16–0.24**（4060，L20 会更快）| pos 全量 13.8min（batch 模式） |
 
-## 🔄 工作重心转变（2026-06-30，对照官方要求后）—— 下个 agent 必读
+**数据集关键事实**：单通道 16k/16bit mono（**100% 单通道 → DSENet/VSAEC/DOA/KWS 空间路线全弃**）；pos.jsonl id 0–2999 稀疏(n=1364)，neg id 1000–5399 稀疏(n=474)，**id 区间重叠 → pos/neg 必须分两次跑**（utt_id `cmd_N` 冲突）；enrollment ~1.8s 超短；唤醒词 20 种（非固定）。
 
-> ✅ **2026-07-01 T21 更新**：下方重心 ②推理脚本标准化(`code/submit_infer.py`) + ③设计报告/使用说明(`交付/` 3 文档) **均已完成并三档集成验收通过**，详见 `PROGRESS.md` T21。剩 ①等A集 / ④L20耗时(租AutoDL) / ⑤测试报告(A集后) / **P2 babble 工程兜底**(唯一能直接抬绝对性能且对真A有效的技术动作)。
+## 2. 核心认知（最重要，决定一切后续）
 
-**从「仿真性能深挖 / 瓶颈研究」转向「交付物标准化 + 真实评测」**。
+**组合主线 cascaded 在极重 babble 下 CER 1.25–1.4 是架构能力极限**，调参/小改破不了。根因双重：
+1. **wespeaker+diar 提不出 target 声纹**：pos sim median 仅 0.28，30% <0.2 被误拒；babble 重子集 sim <0.06（硬骨头）
+2. **DiCoW mel 退化转写崩**：20% 输出英文（langfix 首位 token 锁不住漂移）+ 锁对 target 的高 sim 子集 CER 仍 0.43
 
-对照官方首页要求，发现重心偏移：比赛评测**真实测试集 A** 上的 CER/RR/耗时（L20 GPU），而 T17-T20 约 80% 精力在 450 条仿真数据上深挖（精细策略 2.022、babble 归因等结论对真实 A 未必泛化）。
+**sim 与 CER 强相关**：sim≥0.5 → CER 0.43 / correct 76%；sim 0.2–0.3 → CER 1.63。**误拒非 CER 主因**（降 sim_thr 不降 CER，因低 sim 样本转写也崩）。**攻 babble 转写质量是唯一出路**，但要根本改进。
 
-**未来一段时间重心（按优先级）**：
-1. ⏳ **等测试集 A**（报名后发邮箱）——到手即用真 A 评测，取代仿真 450 条
-2. 🔧 **推理脚本标准化**（不依赖 A）：`submit_infer.py` 吃 enrollment+recognition → `result.json` + `timing.json`
-3. 📄 **设计报告 + 使用说明**（不依赖 A）：00-03 文档 + T14-T20 实验 → 比赛格式
-4. ⚡ **L20 耗时方案**：脚本显存自适应（48GB 大 batch）+ 租 AutoDL L40 验证（官方 L20 评测效率 20%；本机仅 RTX 4060 8GB）
-5. 📊 **测试报告**：真实 A 的 CER/RR/分档 + 端到端耗时（当前端到端耗时空缺，只测过 minimal RTF=0.058）
+## 3. 三方案攻短板验证结论（全受挫，避免重试）
 
-**官方交付物**：模型 + 推理脚本 + json 结果 + 运行耗时 + 设计报告 + 测试报告 + 使用说明。提交截止 **2026-09-05**。
-
-**不要再做的事**：在仿真数据上继续深挖性能/归因（边际收益递减，结论可能不泛化）——详见 memory `stop-digging-on-sim-data`、`l20-eval-hardware`。T17-T20 的仿真深挖告一段落。
-
----
-
-## 🆕 T19 速览（2026-06-29 端到端集成 + 真实组合指标）
-
-**做了什么**：`code/fuse_eval.py`（核心）把 **SE条件化 → 声纹enrollment锁定target(wespeaker) → DiCoW(Whisper-turbo+FDDT)转写 → LLM拒识(Qwen2.5-3B) → 多策略融合** 串成单一分阶段 pipeline（多 venv 编排），450 集跑出**首个真实组合指标**。配套：`llm_reject.py --infer-json`、`enroll_infer.py` 加 `stno_target_ratio`、`build_reject_set.py`（72条target缺席）、`noise_classify.py`（噪声估计器）、`diag_transcript.py`+`test_zh_force.py`（诊断+实验）。
-
-**决定性发现（瓶颈重定，含对抗审查后的归因修正）**：
-- LLM 拒 **449/450（99.8%）**，最优 correct_rate **仅 6-9%** → **融合/阈值旋钮无解**（LLM 不是太严——34条合成测 F1=0.878 健康，是转写垃圾）。
-- ⚠️ **归因修正**：初版把英文幻觉判为"Whisper babble 模型漂移"是**错的**。Workflow 对抗审查逐行核 `generation.py` + 全量数据发现真因是 **DiCoW language 强制死代码 bug**——`language="zh"` 被静默忽略→`detect_language` 从退化音频误检英文→**450 集 90%(407) 输出英文**。**已打补丁修复**（`code/apply_dicow_langfix.py`，幂等；⚠️补丁在 HF cache，**cache 清了须重打此脚本**；注：DiCoW-inference/ 是嵌套 git 仓库，其 repro/ 内同名脚本无法被父仓库跟踪，故可跟踪副本放 code/ 根）。
-- **修复非银弹（诚实）**：全量 english 90%→72%（chinese 39→125，3 倍），good<0.5 5.8%→7.8%（+9 条），raw CER 3.65→3.54（仅 −0.11）。简单条件（white/pink）从英文→正确中文；**难条件（babble/重叠/低SNR）即使强制中文也是错字垃圾** → 残留瓶颈=Whisper 硬噪声鲁棒性。
-- `test_zh_force.py` 排除 initial_prompt（反而更差：前缀污染+重复循环）；三路融合现已在 450 跑通（enroll_regen 带 stno）但仍无济（转写垃圾）。
-- **结论（两层瓶颈）**：① language bug（**已修**，必要但不充分）② Whisper 硬噪声转写质量（**残留，主导**，需微调/SE-DiCoW）。真实提升杠杆=①中文家居微调 ②SE-DiCoW（enrollment条件化攻重叠+babble死区）③更强babble SE——都需重投入，**待真实数据/通道数确认**。
-
-**两个强阳交付**：
-- ✅ **SE 条件化可部署**：`noise_classify.py` 谱平坦度估计器 **99.78% 准确**（white/pink/babble 三类谱平坦度无重叠），**可部署 CER 2.82≈oracle 2.82**（不再依赖 manifest noise_type，测试时可估）。
-- ✅ **拒识侧 100% 真实拒识率**（72条target缺席集，sim/LLM/三路融合全对，0误放行）；发现 **stno 单独是坏拒识信号**（误放行非目标主导语音）、**sim 才是锚信号**。
-
-**新 P0（集成后重定，T20 修正 babble 归因）**：① **babble diar 误检 + STNO 崩攻坚**（T20 证实 babble 英文幻觉真因更上游=DiariZen diar 把 babble 人声噪声误检为第2 speaker→`stno_target_ratio=0`→STNO target 帧清零→DiCoW 转写崩；⚠️ **核实 se0 后再修正**：=0 也误检+stno≈0，是 =0/=6 都救不了的顽固现象，杠杆改为 **babble 专用源分离/更强降噪 / 声纹 babble 鲁棒 / STNO 构造绕过 diar 误检**）② SE-DiCoW 接入（攻重叠+babble死区）③ 中文家居微调（攻 Whisper 转写层，**但 diar 误检未解时收益有限，须在 ① 之后**）④ **确认通道数/真实数据**（决定空间路线+微调数据）。**融合框架已就绪，转写质量上去即生效**——组合主线工程闭环成立，下限取决于 babble diar + Whisper 带噪中文。
-
-**待办（下一棒）**：① ✅ **SE条件化 post-fix 重跑已完成(2026-06-30 T20)**——旧 conditional post-fix overall **3.236**；post-fix 后 =6 全面优于 =0（最优精细二维 **2.022** / 新 conditional **2.609** 稳健推荐）；**归因深化修正 T19**：babble 英文幻觉真因更上游=**DiariZen diar 误检 babble 人声噪声为第2 speaker → stno_target_ratio=0 → STNO target 帧清零 → DiCoW 转写崩溃**（714字英文循环，非 langfix/Whisper 本身）；改进杠杆多元（babble 强降噪前置 diar / 声纹 babble 鲁棒 / STNO 容错 / SE-DiCoW），详见 RESULTS T20；② babble diar+STNO 崩攻坚（新 P0①，治本）；③ SE-DiCoW 接入（攻重叠+babble死区）；④ 真实噪声再校准 noise_classify（合成噪声谱干净，真实会差）；⑤ **确认通道数/真实数据**（决定空间路线+微调数据，当务之急）。融合框架已就绪，转写质量上去即生效。
-
----
-
-## T18 速览（历史，2026-06-29 接手后多线并行铺开）
-
-**三线 de-risk 全 READY**（Workflow 3 agent，各建独立 venv：`code/.venv_se` / `code/.venv_campp` / `.venv_llm`[项目根]）：
-
-- **线C W5-LLM 拒识** ✅强阳：Qwen2.5-3B 零样本 34 条 **F1=0.878 / Recall=1.0**（最难 case 全对；5 误拒是合法复杂指令→prompt 调优）。拒识 40% 核心层已验证。脚本 `code/llm_reject.py`。
-- **线A SE增强 一锤定音** ✅部分阳：DeepFilterNet3 降噪后 overall CER **4.27→3.65(Δ−0.62)**；**babble(人声,贴真实)Δ−4.20 巨大** / pink(稳态)+2.20 反伤；**diar-fail 33→0**（diarization 完全稳定）；CER 绝对值仍高(3.65)→瓶颈多元。**验证"瓶颈部分在音频质量"诊断**。脚本 `code/se_denoise.py`+`eval_se_cer.py`。
-- **线B CAM++** ❌证伪(已定论)：per-speaker 公平对照(CAM++ 0.191 vs wespeaker 0.218, 正确率 0.00<0.04)→ **不值得替代 wespeaker, 主线维持 wespeaker**; sherpa-onnx 留边缘部署备用。脚本 `code/enroll_infer_campp.py`。
-- **线A SE 条件化(新, 最优)** ✅：按 noise_type 分流(babble/white=0 全力, pink=6 温和) overall CER **2.82(−34%)**, 优于单一 =0(3.65)/=6(3.95); diar-fail 33→0。脚本 `code/merge_se_conditional.py`。
-
-**新 P0 优先级**：① SE 前置条件化落地(快赢：babble/低SNR 启用，pink/white 用 `--atten-lim-db=6`) ② CAM++ per-speaker 公平对照(定论去留) ③ 中文家居微调(重，攻 Whisper 中文) ④ SE-DiCoW 接入(攻 100% 重叠死区)。
-
-**数据增强暂缓**(用户定)：MUSAN/DEMAND+RIR+AISHELL 方案已评估存档(RESULTS T18)，等真实数据/通道数确认再定。
-
-**坑**：HF 下载用 `curl -sSL 经代理+hf-mirror 直链`(snapshot_download 失败)；csukuangfj 仓 401 改 hf-mirror 无代理。
-
----
-
-## 0. 项目一句话状态（T17 历史）
-组合主线（STNO + DiCoW + 声纹enrollment + LLM拒识）的 **enrollment→target 锁定 + STNO 拒识链路已跑通验证**（干净场景完美），但 **带噪题目分布是当前瓶颈**：wespeaker 声纹在中文+噪声退化严重，导致 450 条全集 **87% 误拒、仅 4% 正确**。下一步核心是**攻带噪鲁棒性**（CAM++/阈值扫/enrollment增强/SE增强）。
-
----
-
-## 1. 最新进展（T17，2026-06-28~29，已 commit）
-| 产出 | 文件 | 状态 |
+| 方案 | 验证结果 | 处置 |
 |---|---|---|
-| **Part1** enrollment→wespeaker 锁定唯一 target | `code/enroll_infer.py` | ✅ 干净场景验证成功；带噪诊断完成 |
-| **TTS 数据集**（趁 mimo-tts 限时免费）| `code/tts_dataset_gen.py` + `build_dataset.py` | ✅ 21 条 raw + 450 条矩阵 |
-| **Part2** fork patch 固化 | `code/DiCoW-inference/repro/` | ✅ apply_patches.sh 幂等 EXIT=0 |
-| **Part3** 项目阶段盘点 | `项目阶段盘点.md` | ✅ |
-| **边缘部署规划** | `边缘部署规划.md` + memory | ✅ 战略级，待确认硬件 |
-| **能力画像** | `code/eval_enrollment.py` + `enroll_wespeaker_full.json` | ✅ 450条：87%拒识/4%正确 |
-| 阈值扫 + enrollment 加噪增强 | `code/enroll_infer.py --always-generate --enroll-augment` | 🔄 进行中（`enroll_aug_full.json`）|
+| enroll 加噪增强（`--enroll-augment`）| **证伪**：babble 池用脏 cmd（带噪重叠）污染 emb，sim 反降 0.378→0.362 | 默认关闭，代码留 |
+| langfix 加强（英文检测+prompt_ids 重生成）| **边际**：全量英文 31.6%→18.5%，但 CER 仅降 0.028（救回的中文也崩）| **保留**（确定边际收益 + LLM 拒识副作用正面）|
+| STNO 放宽（`collect_clean_audio` 弱重叠帧）| **无效**：前 50 未触发（独占充分）；babble 重 50 条 sim 0.024→0.038 仍极低 | 已 revert |
+| SE-DiCoW（cross-attn 解重叠）| **架构不兼容**：`mt_num_speakers=2` 多 speaker SCB + self-enrollment 范式，与 enroll_infer 单 target 范式根本不同；短音频 OOD 风险 | 放弃（4.4G 权重已下但用不了）|
 
----
+## 4. 代码现状（本次 commit 的文件）
 
-## 2. 当前能力画像（诚实，答辩核心）
-- **干净场景**：enrollment→锁定 target→转写「请把客厅的空调温度调到二十六度」(CER=0, sim=0.816)；不同人→兜底拒识空输出(sim=0.035)。**链路成立**。
-- **题目分布 450 条**（带噪 −5~5dB + 重叠 0-100%）：**87% 拒识 / 4% 正确**。sim 随 overlap 单调降(0.32→0.12)，SNR 越低越差。
-- **根因**：① wespeaker(VoxCeleb英文)声纹中文+噪声退化（噪声是主因，重叠次要）；② 阈值 0.5 在题目分布太严；③ 少数不拒识条出 Whisper 英文幻觉。
-- **CAM++ 对比受阻**：modelscope 1.37.1 装上但 `from modelscope.pipelines import pipeline` import 挂起（无 proxy 也卡）。
+| 文件 | 改动 |
+|---|---|
+| `code/enroll_infer.py` | `--pairs` 批量化（模型加载1次+enroll_emb 缓存，enroll 39→11s）+ langfix（英文检测+prompt_ids 重生成+前缀去除）+ SE-DiCoW 探索分支（保留不触发）+ `_sample_babble`（增强，默认关）|
+| `code/submit_infer.py` | Gap3 批量化（`run_enroll_infer_pairs` 单次调用）+ 透传 `--enroll-augment/--aug-noise-dir` |
+| `code/apply_dicow_langfix.py` | TARGETS 加 SE_DiCoW/generation.py（死代码 bug 同源重打）|
+| `code/eval_datasetA.py` | pos CER（误拒=1.0）/ neg RR + zhconv 繁简归一 |
+| `code/make_pairs_from_datasetA.py` | jsonl(中文key) → `--pairs` manifest(英文key+绝对路径) |
+| `code/analyze_pos_full.py` | max_sim 分布 + sim_thr 工作点扫描 + CER 分桶 + 分组诊断 |
 
----
+**实验产物**（`code/*/` 被 gitignore，不入库）：`code/patches/`（三方案 patch + extract 脚本）、`code/out_pos_full/`、`code/out_neg_full/`、`code/patches/enroll_full_langfix.json`（langfix 全量结果）。
 
-## 3. 后续任务清单（优先级排序，直接可做）
+## 5. 保底配置 + 执行命令（最高优先级待办）
 
-### 🔴 P0 — 攻带噪鲁棒性（瓶颈已诊断：转移至 Whisper 转写质量）
-1. ✅ **阈值扫 + enrollment 加噪增强（本 agent 已完成）**
-   - **增强有效**：enrollment 加噪 emb → 均 sim 0.218→0.348(+59%)；同阈值0.5 拒识率 0.87→0.72，正确率 0.04→0.11
-   - 阈值扫：拒识率 0.12(0.1)–0.72(0.5) 可调，但**正确率天花板~14%**
-   - **关键结论——瓶颈转移**：阈值旋钮解不了根本，**真正瓶颈从"声纹拒识"转到"Whisper 带噪+重叠转写质量"** → 下一步必须 frontend SE 增强（下条升最高优先）
-   - 数据：`code/enroll_aug_full.json`；最佳工作点 threshold~0.2
-2. **解 CAM++ 集成**（验证 wespeaker→CAM++ 改进，原生中文更鲁棒假设）
-   - modelscope 本环境 import 卡 → **方案A**：独立干净 venv（`uv venv`）装 modelscope 跑 CAM++ 抽 emb 存文件，主 venv 读；**方案B**：sherpa-onnx 的 campplus/ERes2Net ONNX（隔离，不碰 transformers，推荐先试）
-   - 脚本 `code/campp_vs_wespeaker.py` 已就绪，只待加载方式解
-3. **frontend SE 增强**（RASTAR/VSAEC，论文 #6/#7）再抽声纹/diarization — 攻噪声根源
+保底 = **langfix（已 apply）+ sim_thr=0.4**（RR 99% / pos CER 0.96 / RTF 0.2）。最终 submit_infer 全量确认数字（含 SE+LLM）：
 
-### 🟡 P1 — 拒识/效率/微调
-4. **W5 LLM 拒识**（Qwen-2.5-3B 语义拒识）— 拒识 40% 当前只有 STNO 这一层机制，缺语义层
-5. **D2 中文家居微调**（DiCoW 在家居指令微调）— CER 40% 提升
-6. **D5 效率/W8 边缘部署**（待确认目标硬件 MCU/网关/服务器 → 向主办方确认）
-
-### 🟢 P2 — 待外部输入
-7. **确认测试集通道数**（决定 DSENet/KWS 多通道能否用，待主办方或看 A 集数据）
-8. **真实比赛数据**来时：用 `eval_metrics.py` + `final/final_manifest.json` ground truth 跑全面 CER/拒识率
-
----
-
-## 4. 关键命令速查
 ```bash
-# 环境（每次新终端先 source）
-source code/setenv.sh && export HF_HUB_OFFLINE=1
+cd E:/midea_target_asr && source code/setenv.sh && export HF_HUB_OFFLINE=1
 
-# enrollment→target 推理（方案B，独立脚本）
-code/.venv/Scripts/python.exe code/enroll_infer.py \
-  --enrollment E:/midea_target_asr/test_wav/dataset/raw/enrollment/target_long_01.wav \
-  --recognition <wav或folder> --always-generate --enroll-augment --out-json <out.json>
+# 0) 用户本地放 datasetA/ 后, 先生成 manifest（pos/neg pairs，含 label，gitignore 不入库）
+code/.venv/Scripts/python.exe code/make_pairs_from_datasetA.py
 
-# 能力评估 + 扫阈值
-code/.venv/Scripts/python.exe code/eval_enrollment.py --enroll-json <out.json> --threshold 0.2 --label X
+# 1) pos 全量（thr=0.4，含 SE+LLM，4060 ~15min）
+code/.venv/Scripts/python.exe code/submit_infer.py \
+  --pairs code/pos_pairs_datasetA.json --out-dir code/out_pos_final --sim-thr 0.4
 
-# 完整 DiCoW pipeline（T14 验证过，PIPELINE_EXIT=0）
-code/.venv/Scripts/python.exe code/DiCoW-inference/inference.py \
-  --dicow-model E:/hf_cache/DiCoW_v3_2 --diarization-model E:/hf_cache/diarizen-wavlm-large-s80-md \
-  --input-folder <wav> --output-folder <out> --device cuda --verbose
+# 2) neg 全量（thr=0.4，~5min）—— pos/neg 分开跑(utt_id 冲突)
+code/.venv/Scripts/python.exe code/submit_infer.py \
+  --pairs code/neg_pairs_datasetA.json --out-dir code/out_neg_final --sim-thr 0.4
 
-# TTS 合成数据（WSL 跑，mimo-tts 限时免费窗口注意时效）
-wsl.exe -d Ubuntu-22.04 bash -lc 'python3 /mnt/e/midea_target_asr/code/tts_dataset_gen.py'
-# 组装矩阵（Windows）
-code/.venv/Scripts/python.exe code/build_dataset.py
-
-# fork patch 固化校验
-bash code/DiCoW-inference/repro/apply_patches.sh
+# 3) 评测
+code/.venv/Scripts/python.exe code/eval_datasetA.py code/out_pos_final/result.json code/pos_pairs_datasetA.json
+code/.venv/Scripts/python.exe code/eval_datasetA.py code/out_neg_final/result.json code/neg_pairs_datasetA.json
+# 深度分析 pos:
+code/.venv/Scripts/python.exe code/analyze_pos_full.py code/out_pos_full/result.json code/pos_pairs_datasetA.json
 ```
 
+**关键评测语义待确认**：readme 说 "pos 测 CER"，未明确 pos 被拒算多少。当前 eval_datasetA 对 pos 被拒（空 text）算 CER=1.0。若主办方对 pos 不允许拒（必须转写），则 sim_thr 对 pos 应=0（全转写），只 neg 用 thr 拒。这影响保底 thr 选择，**建议向主办方确认**。
+
+## 6. 待办优先级
+
+1. 🔧 **保底执行**（进行中）：上面命令跑 pos+neg 全量 thr=0.4，确认最终 CER/RR 提交数字
+2. ⚡ **L20 耗时验证**：submit_infer 显存自适应（L20 48GB 大 batch）+ 租 AutoDL L40 验证端到端（官方 L20 评效率，本机仅 4060，memory `l20-eval-hardware`）
+3. 📄 **答辩 FAQ + 演练**：`03_答辩FAQ与风险预案.md` 待写；答辩重点讲故事 = babble 归因清晰 / 单通道确认 / 工程优化（Gap3·繁简·langfix）/ 诚实组合主线极限 + 端到端 X 是未来方向
+4. ⚠️ **CER 破局战略**（如要冲，大工程）：①端到端联合训练 X（反 cascaded，出题方偏好，`docs/02_上限候选深读.md`）②babble 专用源分离（SepFormer 提 target mel 再喂 DiCoW，同时救 sim+转写）—— 已选保底，这两条留待时间充裕
+
+## 7. 环境与工具规范（必读，省踩坑）
+
+### venv（3 个独立，依赖冲突不可合并）
+- `code/.venv`（主：enroll_infer/noise_classify/DiariZen/DiCoW，torch 2.5.1+cu124）
+- `code/.venv_se`（se_denoise/DeepFilterNet3）/ `.venv_llm`（llm_reject/Qwen2.5-3B）
+- **Python 一律用 uv**（`uv pip install --python code/.venv/Scripts/python.exe <pkg>`），禁止裸 pip
+
+### 权重（全在 E 盘）
+- `E:/hf_cache/{DiCoW_v3_2, diarizen-wavlm-large-s80-md, Qwen2.5-3B-Instruct, SE_DiCoW}`
+- `E:/df_cache/DeepFilterNet`
+- ⚠️ **DiCoW langfix 补丁**：`code/apply_dicow_langfix.py`（幂等，含 SE_DiCoW 路径）。**HF cache 清/重下必须重跑**，否则 `language="zh"` 失效 → 中文音频 90% 出英文
+- ⚠️ **SE_DiCoW modules 补齐**：若重下 SE_DiCoW，trust_remote_code 的 .py 要复制到 `E:/hf_cache/modules/transformers_modules/SE_DiCoW/`（否则 `ModuleNotFoundError`）
+
+### HF 下载（省重试，详见 memory `hf-download-method`）
+```bash
+source code/setenv.sh && export HF_HUB_OFFLINE=0 && unset HF_ENDPOINT && \
+code/.venv/Scripts/python.exe -c "from huggingface_hub import snapshot_download; snapshot_download('<repo>', local_dir='E:/hf_cache/<name>', max_workers=2)"
+```
+**根因**：setenv 默认 `HF_ENDPOINT=hf-mirror.com`，但镜像 head 请求 308 重定向回 huggingface.co 主站 → 无代理直连超时秒失败。**解法 = unset HF_ENDPOINT + 保留代理 7897 直连主站**。别再试镜像。
+
+### git
+- **身份**：本机 `git config user` 是 `midea-overnight-loop`（loop bot），**手动 commit 必须显式指定**：
+  `git -c user.name=Panda_Lorrain -c user.email=2687571939@qq.com commit -m "..."`
+- remote: `ghfast.top` 代理 GitHub（push 慢但能成）
+- datasetA/ 278M 官方数据**不入库**（已 gitignore）；pos/neg_pairs_datasetA.json（含 label）也不入库
+
+## 8. 踩过的坑（避免重试）
+
+1. **enroll 加噪增强脏池**：用 datasetA/pos/cmd（带噪重叠）作 babble 池污染 enrollment emb，sim 反降。要试需干净 babble 源或更弱增强（SNR 20+），但前景不明（babble 重 sim 极低，增强难救）
+2. **SE-DiCoW 多 speaker 不兼容**：`SCBs.py:148 x.view(B//S, S, T, F)` 硬要求 B 是 mt_num_speakers(=2) 倍数；uses_enrollments 是内部 self-enrollment（从 stno_mask target 行自动提），**不接受外部 enrollments kwarg**（实测 generate 报 `model_kwargs not used`）。与 enroll_infer 单 target 范式根本不同
+3. **SE-DiCoW config 字段名**：是 `uses_enrollments`（复数 s），不是 sedicow agent 推断的 `use_enrollments`
+4. **繁简虚高 CER**：Whisper-large-v3 输出繁体（空調開到），ref 是简体 → 字符级 CER 每个繁体字都算错。`eval_datasetA.py` 已加 zhconv 繁→简归一（冒烟 CER 0.111→0.016）。**最终提交推理输出也要转简体**
+5. **评测 key 对齐**：submit_infer 把 recognition 复制为 `utt{N}_{cmd_id}.wav`，eval 时要 `re.sub(r'^utt\d+_', '', uid)` 去 utt 前缀才能匹配 manifest 的 `cmd_{id}`
+6. **langfix prompt_ids 前缀**：DiCoW generation.py 的 prompt_ids 会经 batch_decode 复述出来（"以下是普通话的句子。"前缀），必须 decode 后手动去掉（已修）
+7. **CER 均值被幻觉扭曲**：babble 重复循环幻觉使 hyp 超长拉高 CER 均值。看可用率用 correct_rate(CER<0.5)，看纯转写质量看 cer_accepted_only
+
+## 9. 关键 memory（~/.claude/.../memory/，跨会话已更新）
+
+- `datasetA-spec` — 数据集规格 + 单通道 + 真测基线 + 三方案验证结论（最全）
+- `hf-download-method` — HF 下载正确方法（unset 镜像+代理直连）
+- `diacow-language-force-bug` — DiCoW language 死代码 bug + langfix 补丁
+- `l20-eval-hardware` — L20 评测硬件 + 耗时验证方案
+- `stop-digging-on-sim-data` — 仿真深挖边际递减（真数据已到手）
+- `git-identity-mismatch` — git 身份不一致（手动 commit 指定 Panda_Lorrain）
+- `adversarial-review-before-milestone-commit` — 复杂诊断归因易错，commit 前对抗审查
+
+## 10. 历史归因基础（T14-T22，详见 `PROGRESS.md` / `RESULTS.md`）
+
+- **T14-T20**：pipeline 搭建（diar+STNO+DiCoW）+ wespeaker 锁定 + CAM++/SE 证伪 + langfix + SE 条件化
+- **T22 babble 归因**（2026-07-02/03 仿真集，本次真测印证）：vanilla Whisper 三角定位证 Whisper 基座在 babble 上**不漂英文** → **H3 确证**（DiCoW FDDT/STNO 条件化在 babble 上适得其反）。STNO target 行覆盖率因果主导语言（全程1.0→中文 vs 0.067→英文）
+- **2026-07-04 真测印证**：真数据 babble 89% 主导，20% 英文漂移（langfix 首位锁不住）+ sim 极低（锁不住 target），与 T22 仿真归因一致，且更严重（CER 1.25）。**仿真 → 真测，归因闭环**
+
 ---
 
-## 5. 已知坑（务必避开）
-- **modelscope 1.37 在本环境 import 挂起**（`pipelines` 卡，datasets 正常）→ CAM++ 待独立 venv/sherpa-onnx
-- **ESC-50 真实环境音下载失败**（GitHub HTTP/2 中断）→ 数据集用程序噪声(white/pink/babble)；真实环境音放 `test_wav/dataset/env_noise/` 重跑 build_dataset 自动加入
-- **git user = midea-overnight-loop**（非用户本人 Panda_Lorrain；本 overnight loop 项目用此身份是设计，手动 commit 注意）
-- **DiCoW-inference/ 整棵 gitignore**，但 `repro/` 已 force add 入 git；改动 fork 代码后 re-run apply_patches.sh 重新导出
-- **wespeaker 拼写 VoxCeleb 带 x**（曾拼错 voceleb 404）
-- **setenv.sh 必须 source**（设 HF_HOME=E:/hf_cache 等，否则权重找不到）
-- **uv 禁裸 pip**；PyPI SSL 失败用清华源 `-i https://pypi.tuna.tsinghua.edu.cn/simple`
-- **某些恶劣音频（ov100/snr-5）触发 DiariZen reconstruct `negative dimensions` crash** — enroll_infer 已加 try/except 容错跳过
+## ⚠️ 隔离声明（沿用，下个 agent 必读）
+
+`docs/superpowers/specs/2026-06-29-final-exam-*` 与 `docs/superpowers/plans/2026-06-29-final-exam-*` 是用户**另一个《Python与数据分析》课程期末作业**，与本项目（美的 XH-202615 参赛）**完全无关**。不要执行那份 plan、不要往「数据分析重构」带方向。对本 agent 视作不存在。
 
 ---
 
-## 6. 环境 & 资产位置
-- **GPU**：RTX 4060 Laptop 8GB / torch 2.5.1+cu124 / Python 3.12 / `code/.venv`
-- **权重**（全 E 盘）：`E:/hf_cache/DiCoW_v3_2`（0.89G）、`diarizen-wavlm-large-s80-md`、`hub/models--pyannote--wespeaker-voxceleb-resnet34-LM`（6.6M）
-- **数据集**：`test_wav/dataset/raw/`（21条TTS种子，入git）/`final/`（450条矩阵，ignore，可 build_dataset 重建）/`final/final_manifest.json`（ground truth，入git）
-- **文档**：`00_技术路线总纲与行动地图.md`（W1-W7 主路线）、`01-03` 模块/答辩、`papers/`（19 PDF）、`边缘部署规划.md`、`项目阶段盘点.md`
-- **WSL**（Ubuntu-22.04）：mimo-tts 在此跑，key 在 `~/.hermes/.env`
-
----
-
-## 7. 设计/决策记录（避免重复踩坑）
-- **W3/W4 重新定义**：原"Personal VAD + CAM++"证伪（Personal VAD 无开源实现），改为 enrollment→wespeaker 锁定 target（复用已跑通组件）。设计文档 `docs/superpowers/specs/2026-06-28-enrollment-target-and-patch-fixation-design.md`
-- **Part1 用方案B（独立脚本）非方案A（改pipeline.py）**：不碰跑通的 pipeline.py/inference.py，向后兼容天然
-- **CAM++ 从"沉没成本"修正为"带噪鲁棒性数据驱动备选"**：wespeaker 中文+噪声退化实测后，CAM++ 原生中文有了引入理由
-- **wespeaker 复用 diar._embedding**（不独立加载）：`diar._embedding(waveform[None,None])` → (batch,256)，零额外加载
-- **STNO 数据结构**：`[N_speakers, 4, T@50Hz]` float32，4 行=(sil/target/nontarget/overlap) 每帧 one-hot
+**给下一个 agent 的话**：组合主线 CER 1.4 是真实极限，别在 cascaded 框架内打转（langfix/STNO/enroll 增强/SE-DiCoW 全试过，边际/无效/不兼容）。保底已确定（langfix+thr=0.4，RR 99%），先把保底执行 + L20 验证 + 答辩做完。若要冲 CER，跳到端到端联合 X 或 babble 分离（都是大工程）。所有踩坑见第 8 节，别重试。
