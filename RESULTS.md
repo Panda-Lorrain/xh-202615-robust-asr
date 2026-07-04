@@ -479,3 +479,58 @@ langfix 对 **white/pink 低重叠有效**（se6 中文 93%、正确率 60%@ov0�
 - **杠杆指向（再修正）**：非 SE-DiCoW（H2 错），而是 ① 提高 STNO target 行覆盖率（避免 FDDT 劣化）② 更强 language forcing（constrained decode 锁全程 zh token）③ FDDT 鲁棒性。**洞察**：DiCoW STNO 条件化在 babble 上适得其反（vanilla 反而对），但 vanilla 失去 target-speaker 选择性，不能直接替代。
 - 下载：vanilla 权重 `E:/hf_cache/whisper-large-v3-turbo`（hf-mirror+代理 12MB/s，~2 分钟；无代理仅 0.5MB/s）。脚本 `code/vanilla_whisper_test.py`。
 
+---
+
+## T23 — 2026-07-04 datasetA 真测三档 + 关LLM 保底决策（pos 1364 / neg 474 全量真测）
+
+**背景**：datasetA 到手（单通道16k / enrollment ~1.8s），跑保底全量确认提交数字。三档对比（thr=0.2 基线 / thr=0.4 开LLM / thr=0.4 关LLM），评测 `eval_datasetA.py`（pos 误拒/空=CER1.0 + zhconv 繁简归一；neg RR=拒条/n）+ `analyze_pos_full.py`。
+
+| 配置 | pos CER均值 | pos **correct**(CER<0.5) | pos 误拒 | pos cer_accepted | neg **RR** | neg 漏拒 | RTF(pos/neg) |
+|---|---|---|---|---|---|---|---|
+| thr=0.2 sim_only（基线）| 1.248 | **31.30%** | 30.0% | 1.354 | 77.00% | 23%（均值20.8字）| ~0.25 |
+| thr=0.4 +LLM（llm_or_sim）| 0.987 | 15.84% | 76.9% | 0.944 | 96.20% | 3.8%（9.3字）| **1.01 / 0.70** |
+| **thr=0.4 关LLM**（sim_only `--no-llm`）| 1.007 | 13.93% | 79.0% | 1.031 | **98.52%** | **1.5%**（11.4字）| **0.257 / 0.203** |
+
+**⭐ 关LLM vs 开LLM = trade-off（⚠️ 3-agent 对抗审查修正：原「全面优于/pos 持平」被推翻，commit 前救场，详见末尾 7 GAP）**：
+- **关LLM 赢**：neg RR +2.32pp（98.52% vs 96.20%，`decide_reject` llm_or_sim 拒=(llm≠accept)且(max_sim<thr)，LLM 把 11 条 neg 误判 accept 漏拒）；RTF **4×**（0.257 vs 1.01，LLM 阶段独占 pos 73%/neg 70%）。**Qwen2.5-3B 零样本拒识在 neg 上是负贡献**。
+- **开LLM 赢 pos 救回（原"pos 持平"错）**：pos correct +1.91pp（15.84% vs 13.93%）、near_perfect +1.9pp（9.6% vs 7.7%）、cer_accepted_only -0.09（0.944 vs 1.031）。**铁证：28 条 LLM 救回的 pos（max_sim<0.4 但 llm=accept）里 26 条 CER=0.000 完美**（"关闭客厅空调""打开闹钟"，max_sim 低至 0.022/-0.039 —— Whisper 转对但声纹提不出被 sim_only 误杀，LLM 语义校验救回）。11 条 neg 泄漏（LLM 假接受）是语法合法家居指令幻觉（"打开洗碗机"），LLM 判不动 —— 固有盲区。
+- → 保底选关LLM 真实理由 = **为效率20%+RR40% 牺牲 pos 救回**（RTF 4× 硬伤；pos 40% 反正架构极限放弃）。**不是"全面优于"**。若 LLM 量化/蒸馏降到 RTF~0.4，pos 救回可能净赢（开放问题）。
+
+**⚠️ 两个陷阱（thr 选择关键）**：
+1. **CER 均值是幻觉陷阱**：thr 0.2→0.4 时 pos CER 1.248→1.007 看似改善，实是"误拒把 babble 幻觉超长样本（hyp 超长重复循环，CER>>1 如 66/39/20）换成 CER=1.0"的数学假象。**correct_rate 才诚实：31.3%→13.9% 是真退化**（印证 CLAUDE.md 教训）。
+2. **pos/neg thr 拉锯**：thr 高 → neg RR 升（拒识分↑）但 pos correct 降（CER 分↓）。同一 thr 无法两全。
+
+**pos CER ~1.0 是架构极限**（sim_thr 全档 0.10–0.50 扫描 CER 都 ~1.0，无 thr 能救）：
+- babble 89% 主导（n=1218/1364），cer_accepted_only 0.94–1.03（未拒的也几乎全错）
+- 两极分化：完美(CER<0.05) **9.2%** / 灾难(CER≥0.5) **81.5%**，中间几乎空
+- 极差样本全 babble：重复循环幻觉（id2323 hyp="先选民民民民..." ref="防直吹"）/ 英文漂移（id2429 hyp="i don't know what should" ref="把温度调到二十三度"）
+- pos max_sim median 0.283，≥0.5 仅 7.7%，≥0.8 为 0 → 声纹在 babble 下普遍提不出 target
+- 按 noise_type：babble correct 16.9% / pink 11.0% / white 1.6%；按唤醒词：小钱小钱 CER 2.73、小编小编 1.45（某些唤醒词 enrollment 质量差，全错）
+- **印证 T22 仿真归因 + AGENT_HANDOFF 核心认知**：组合主线 cascaded 在极重 babble 下 CER 是架构极限（target 声纹 sim<0.06 提不出 + DiCoW FDDT 在 babble STNO 下 mel 退化转写崩）。且 correct 比预期更差（13.9–15.8% vs 交接 31%）。
+
+**保底决策**：
+- **确定**：关LLM（trade-off：为效率20%+RR40% 牺牲 pos 救回，**非"全面优于"**；用 wrapper `code/run_baodi.sh` 锁死 `--no-llm --sim-thr`，防 submit_infer 默认 flag 灾难）
+- **thr 待主办方评测口径定**：CER 均值评分 → thr=0.4 或 0.45（within-noise 占优，RR 98.5%→99.2%）；correct_rate / pos 不许拒 → thr=0.2（31%）甚至 0
+- **临时占位**（评测口径确认前）：关LLM thr=0.4（neg RR 98.5% / RTF 0.24 / pos CER 1.0 架构极限）
+- **评分盘算**：pos CER ~1.0 → CER 40% 基本放弃；靠拒识 40%（RR 98.5%）+ 效率 20%（RTF 0.24）拿分。
+
+**⚠️ 待确认（最高优先，thr 决策前提）**：向主办方问评测口径 —— CER 均值 vs correct_rate？pos 被拒算多少（当前保守 CER=1.0）？pos 是否允许拒（不许则 pos thr=0 全转写）？pos/neg 能否不同 thr？（`datasetA/readme.txt` 仅"pos 测 CER / neg 测 RR"，未明确 pos 被拒处理）
+
+**产物**：`code/out_pos_full`+`out_neg_full`(thr=0.2 基线) / `out_pos_final`+`out_neg_final`(thr=0.4 开LLM) / `out_pos_noLLM`+`out_neg_noLLM`(thr=0.4 关LLM = 保底)；`code/analyze_pos_full.py`（max_sim 分布 + sim_thr 工作点扫描 + CER 分桶 + 噪声/唤醒词分组 + 极差样本）；`code/t1_fullrun.log`+`t1_nollm.log`；`code/run_baodi.sh`（保底 wrapper）；memory `baodi-config-no-llm`。
+
+### ⚠️ 3-agent 对抗审查 7 GAP（commit 前救场，memory `adversarial-review-before-milestone-commit` 教科书案例）
+
+原 T23 正文"关LLM 三项全胜/pos 持平"**被审查推翻**（见上"trade-off"修正）。其余 6 GAP：
+
+1. **【高】CER ±0.04 噪声底限**（DiCoW fp16 generate 非确定性）：同 thr=0.4 跨 run，反推自 out_pos_full=0.9644 vs 真跑 out_pos_noLLM=1.0066，Δ=0.042（21/287 accepted utt transcript 不同）。→ **langfix"边际 CER 0.028"在噪声内不可靠**（英文率 31.6%→18.5% 可靠，因 max_sim 确定）；**pos CER thr 0.35–0.55 差异全在噪声内**（thr 对 pos CER 不可区分）。需多 seed / 确定性 decode（beam/温度0/固定 seed）。
+2. **【高】L20 batch=1 硬编码未实现**：`enroll_infer.py:182` 单 utt 循环 + `:263` dicow.generate batch=1，全仓无 `--batch-size`/显存自适应。CLAUDE.md/memory"L20 48GB 大 batch"是 **TODO 未实现**。效率 20% 腿在 L20 实测前是猜测。
+3. **【高】提交默认 flag = 灾难**：submit_infer 默认 strategy=llm_or_sim / sim_thr=0.2 / llm=ON → RTF 1.0 + neg RR 0.77 两腿崩。**保底必须显式 `--no-llm --sim-thr 0.4`，已写 wrapper `code/run_baodi.sh` 锁死**。
+4. **【中】"三路融合拒识"被证伪**：`decide_reject` llm_or_sim 实为 **AND**（llm!=accept AND max_sim<thr），**LLM 只能减拒不能加拒**。final(LLM on) 全维度更差。**答辩别列三路融合为强项**（CLAUDE.md D4 差异化需改）。
+5. **"99%@thr=0.4"高估**：实测 neg RR@thr=0.4 = **98.52%**（7 漏），99% 需 thr=0.45（99.16%）。**thr=0.45 within-noise 占优 thr=0.4**（RR +0.7% 免费，pos CER Δ 在噪声内）。
+6. **【中】neg 漏拒口径**：7 漏拒含长新闻（"体育产业成资本新宠..."23 字 / "温必俧日前赴北京..."16 字），5/7 babble sim 膨胀 0.40–0.67。句准 vs char-weighted 未验证，若后者损失 >1.5%。**需问主办方**。
+7. **pos CER 40% 全口径 conceded**（rejected=1.0 / 排除误拒 cer_acc 1.03 / 必须转写空 hyp 都~1.0），100% 押 RR+效率，无冗余 —— 是"保底"非"稳健"。
+
+**doc 数字修正**：「target 声纹提不出 sim<0.06」**错** —— 实测 max_sim **median 0.283 / mean 0.286 / min -0.125**，sim<0.06 仅 7.7%。改用"median sim 0.28，低 sim 桶 correct 仅 30%"。**答辩别引用 sim<0.06**。
+
+**thr<0.2 盲区**：submit_infer 在 max_sim<thr 短路跳 DiCoW（被拒 text 强制空），thr=0/0.1 correct 无法直测（间接外推 ~35-39%，不会明显>31%）。`analyze_pos_full.py` 工作点扫描 thr<0.2 行被污染（empty 当 cer=1.0），**引用需限定 thr≥0.2**。
+

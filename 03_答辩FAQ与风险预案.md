@@ -3,6 +3,17 @@
 > 本文档由 **6 评委视角出题 → 47-agent 逐题对抗验证（skeptic 攻击）→ 10 类风险预案 → 完整性 critic** 生成。
 > **它不是自夸式 FAQ，而是"被攻击过、暴露过真实弱点"的诚实答辩准备。** 凡是被对抗验证击穿的硬伤，本文档都标注 ⚠️ 并给出诚实应对——答辩时绝不回避。
 > 创建：2026-06-27。配套：架构见 `00`、技术细节见 `01`、上限候选见 `02`。
+>
+> ⚠️ **2026-07-04 真测更新（本文档创建于仿真期，多处已过时；答辩前必读本横幅 + 重读下文，标注「已过时」处按本横幅为准）**：
+> - **已有全量真测基线**（pos 1364 / neg 474，详见 `RESULTS.md` T23 / memory `baodi-config-no-llm`）。第〇节总原则2「一行实测都没有」、红线6「零实测」**已过时**。
+> - **保底改为关LLM**（⚠️ 3-agent 对抗审查修正：**trade-off 非全面优于** —— 关LLM 赢 neg RR **98.5%**>96.2% + RTF **0.24**<1.01 4×；**开LLM 赢 pos 救回**：28 条 LLM 救回的 pos 里 **26 条 CER=0.000 完美**（"关闭客厅空调"等 max_sim 低至 0.022 被 sim_only 误杀，LLM 语义救回），原"pos 持平"错；选关LLM = 为效率20%+RR40% 牺牲 pos 救回，pos 反正架构极限放弃）。**「三路融合拒识」被证伪**（llm_or_sim 是 AND，LLM 只减拒不增拒）——**答辩别列为强项**。
+> - **SE-DiCoW 已证伪弃用**（架构不兼容：`mt_num_speakers=2` 多-speaker + self-enrollment 范式，与 `enroll_infer` 单-target 范式根本不同；短音频 OOD）—— 红线4/5、A4、B4 把 SE-DiCoW 当「主押/在用」的内容**已失效**，答辩**不得**再说在用 SE-DiCoW（诚实说法：尝试过、范式不兼容、放弃）。
+> - **单通道已确认**（datasetA 100% 单通道 16k）—— 风险1「通道数未定（最关键未知项）」、第四节「多通道分支零覆盖」**已过时**；空间路线（DSENet/VSAEC/DOA/KWS）**全弃**。
+> - **pos CER 真测值已出 = ~1.0（架构极限）**（babble 89% 主导，cer_accepted 0.94，sim_thr 全档扫描无 thr 能救）—— C1「目标 CER 需 W6 定」改为「真测 pos CER 1.0 是 cascaded 在极重 babble 下的架构极限」。**CER 均值是幻觉陷阱**（thr 升=误拒换幻觉超长，correct_rate 才诚实：31%@thr0.2 → 14%@thr0.4 真退化）。
+> - **效率真测**：关LLM RTF **0.24**（4060，sim_only），L20 待测 —— 红线3「未实测」部分过时。
+> - **第五节开场定位**仍为设计稿口吻，答辩前应改为：真测基线 + 关LLM + **诚实 CER 1.0 架构极限** + 拒识 98.5% / 效率 0.24 拿分 + 端到端联合 X 是未来方向。
+> - **答辩核心叙事（真测后）**：babble 归因清晰（T22 H3 确证：vanilla Whisper 在 babble 正常，英文幻觉 100% 是 DiCoW FDDT/STNO 条件化病害）+ 单通道确认 + 工程优化（Gap3 批量化 / 繁简归一 zhconv / langfix）+ **诚实组合主线 CER 1.0 是架构极限**（靠拒识 40% + 效率 20% 拿分，CER 40% 放弃）+ 端到端联合 X 是冲 CER 的未来方向。
+> - **待确认（最高优先，thr 决策前提）**：向主办方问评测口径 —— CER 均值 vs correct_rate？pos 被拒算多少？pos 是否允许拒？pos/neg 能否不同 thr？
 
 ---
 
@@ -41,7 +52,7 @@
 
 ### 红线 6：数据捏造红线（最致命的诚信问题）
 - **会被问**："你说 mask 在 −5dB 准确率 88–92%、贡献 60% CER——这些数据哪来的？文档里有吗？"
-- **诚实应对**：**这是答辩最大的诚信雷区**。当前 pipeline 零实测，任何具体数字都是编造。铁律：**未实测的指标一律说"W6 交付实测"**，绝不报虚数。评委一句"能否打开评测脚本"就能让虚数当场穿帮。
+- **诚实应对**：**已部分解除**——2026-07-04 datasetA 全量真测已出（pos CER ~1.0 / neg RR **98.5%** / RTF **0.24**，详见 `RESULTS.md` T23）。答辩**只报真测数字**。铁律不变：**未实测的指标（如 L20 RTF、各模块 ablation、mask 准确率）一律说"实测中/待交付"，绝不报虚数**——评委一句"打开评测脚本"就能让虚数穿帮。早期文档里的"mask 88-92%"等是设计期估算，**不作数**。
 
 ### 红线 7：参数量 / 资产事实错误
 - **会被问**："Whisper-turbo 多大？你说 1.5B？" / "SpeechBrain 的 Personal VAD recipe 在哪？"
@@ -70,8 +81,8 @@
 
 **A3. DiCoW 抛弃声纹 vs PVAD 用 CAM++ 的矛盾？** → 见红线 5。
 
-**A4. 你们主押 SE-DiCoW，可候选 X 又说反 cascaded——为什么不直接押 DSENet+空间 TSE？**
-答：SE-DiCoW 有现成 HF 权重（保交付），DSENet 无预训练权重、未测 −5dB、仅代码骨架（见 02/资料扩展）。**有现成权重的方案优先于需从零复现的方案**，这是工程现实。若多通道确认且时间允许，DSENet 作增量（见第四节遗漏补强）。
+**A4.（⚠️ 2026-07-04 已修正：SE-DiCoW 证伪弃用）为什么不押 DSENet+空间 TSE？**
+答：**SE-DiCoW 已尝试并放弃**——`mt_num_speakers=2` 多-speaker + self-enrollment 范式与 `enroll_infer` 单-target 范式根本不兼容，短音频 OOD（详见 `RESULTS.md` T23 / `AGENT_HANDOFF.md` 第3节）。DSENet 无预训练权重、未测 −5dB、仅代码骨架，且**单通道已确认**（datasetA 100% 单通道）→ 空间路线全弃。实际主线用 **DiCoW_v3_2**（wespeaker 声纹 + DiariZen diar 锁 target → STNO → DiCoW 转），有权重、单通道可跑通、全开源。
 
 ### B. 技术深度
 
@@ -83,8 +94,8 @@
 
 **B3. PVAD 三分类怎么出 STNO 四分类的 O 类？** → 见红线 4。
 
-**B4. SE-DiCoW 的 cross-attention 如何解重叠歧义？题目给定唤醒音频怎么接入？**
-答：完全重叠区两人 STNO 几乎相同但 transcript 不同；SE-DiCoW 用 self-enrollment 选目标最活跃片段经 cross-attention 注入 encoder 每层提供长时声纹条件，tcpWER 降 52.4%。本题改造：题目给定唤醒音频替代"自动选片段"作 enrollment 来源，cross-attention 接口不变；并保留自举机制补强。
+**B4.（⚠️ 2026-07-04 已修正：SE-DiCoW 证伪弃用）原计划用 SE-DiCoW cross-attention 解重叠，实际怎样？**
+答：**SE-DiCoW 架构不兼容，已放弃**（见 A4）。原设想"题目给定唤醒音频替代 self-enrollment"**实测失败**——SE-DiCoW 的 `uses_enrollments` 是内部 self-enrollment（从 stno_mask target 行自动提），**不接受外部 enrollments kwarg**（generate 报 `model_kwargs not used`），且 `SCBs.py` 硬要求 batch 是 `mt_num_speakers(=2)` 倍数。完全重叠区（100%）仍是单通道死区，靠 sim_thr 拒识兜底（诚实承认是最薄弱处，靠拒识冗余而非单信号解决）。
 
 **B5. TS-RNNT 为何 RTF=vanilla？**
 答：声纹 h_target 预计算（预注册），只在 RNN-T encoder 第 n 层做一次 Hadamard 积（逐元素乘，近零开销），不进逐帧递归路径 → 复杂度与 vanilla RNNT 相同。

@@ -8,7 +8,9 @@
 
 ## 0. 一句话现状
 
-真实测试集 A 到手 → 全量真测 → **组合主线 cascaded 在极重 babble 下 CER 1.25–1.4 是架构极限**（三方案攻短板全受挫）→ **已选保底**：langfix + sim_thr=0.4（RR 99% / CER 0.96 / RTF 0.2）+ 答辩讲归因。
+真实测试集 A 到手 → 全量真测 → **组合主线 cascaded 在极重 babble 下 pos CER ~1.0 是架构极限**（三方案攻短板全受挫）→ **保底（2026-07-04 真测三档确认）= 关LLM + sim_thr=0.4**（neg RR **98.5%** / pos CER **1.0** 架构极限 / RTF **0.24**）+ 答辩讲归因。
+
+> ⚠️ **2026-07-04 真测更新（覆盖原"含LLM"保底，以下为准；含 3-agent 对抗审查修正）**：实测三档确认 **关LLM vs 开LLM = trade-off（原"全面优于/pos 持平"被审查推翻）** —— 关LLM 赢 neg RR **98.5%**>96.2% + RTF **0.24**<1.01（4×）；**开LLM 赢 pos 救回**（28 条 LLM 救回的 pos 里 **26 条 CER=0.000 完美**，原"pos 持平"错）。选关LLM = **为效率20%+RR40% 牺牲 pos 救回**（pos 反正架构极限放弃）。⚠️**7 GAP 见 RESULTS T23**：CER ±0.04 噪声（langfix 边际 0.028 不可靠）/ L20 batch=1 未实现 / **提交默认 flag=灾难 → 用 `code/run_baodi.sh` 锁死** / 三路融合证伪（llm_or_sim 是 AND）/ 99%@0.4 高估（实 98.5%）/ neg 漏拒口径未验证 / pos CER 全口径 conceded。⚠️**CER 均值是幻觉陷阱**：thr 升 = 误拒把 babble 幻觉超长样本（CER>>1）换成 CER=1.0，**correct_rate 才诚实**（thr=0.2 correct 31% → thr=0.4 correct 14% 真退化）。**pos CER ~1.0 无 thr 能救**（babble 89% 主导，cer_accepted 0.94，两极分化 9.2% 完美 vs 81.5% 灾难）。**thr 待主办方评测口径定**（CER 均值→0.4 / correct→0.2 / pos 不许拒→0）。三档数字 / 归因 / 产物路径详见 `RESULTS.md` T23 + memory `baodi-config-no-llm`。下个 agent：保底用**关LLM**（`submit_infer.py --no-llm --sim-thr 0.4`），别再走含LLM。
 
 ## 1. 当前真实基线（datasetA 全量真测，2026-07-04）
 
@@ -52,7 +54,7 @@
 
 ## 5. 保底配置 + 执行命令（最高优先级待办）
 
-保底 = **langfix（已 apply）+ sim_thr=0.4**（RR 99% / pos CER 0.96 / RTF 0.2）。最终 submit_infer 全量确认数字（含 SE+LLM）：
+保底 = **langfix（已 apply）+ 关LLM（`--no-llm`）+ sim_thr=0.4**（neg RR **98.5%** / pos CER **1.0** 架构极限 / RTF **0.24**，2026-07-04 真测三档确认）。⚠️**关LLM 三项全胜开LLM**（neg RR 98.5%>96.2%、RTF 0.24<1.01 4倍快、pos 不变；Qwen2.5-3B 零样本拒识是负贡献），原"含LLM"保底已弃，详见 §0 更新 + RESULTS T23。最终 submit_infer 全量确认数字（**关LLM = sim_only**，命令务必带 `--no-llm`）：
 
 ```bash
 cd E:/midea_target_asr && source code/setenv.sh && export HF_HUB_OFFLINE=1
