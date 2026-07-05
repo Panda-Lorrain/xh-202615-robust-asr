@@ -115,6 +115,27 @@ def test_build_timing():
     assert t0["overall_rtf"] is None
     print("test_build_timing_zero OK")
 
+def test_run_enroll_pairs_backend():
+    # vanilla backend 应在 cmd 加 --asr-backend vanilla; dicow 默认不加(向后兼容)
+    import submit_infer as si
+    captured = {}
+    def fake_run(cmd, py):
+        captured["cmd"] = cmd
+        captured["py"] = py
+        return 0.5
+    orig = si._run
+    si._run = fake_run
+    try:
+        si.run_enroll_infer_pairs("p.json", "o.json", "cuda:0", 0.4, asr_backend="vanilla")
+        assert "--asr-backend" in captured["cmd"]
+        assert captured["cmd"][captured["cmd"].index("--asr-backend")+1] == "vanilla"
+        si.run_enroll_infer_pairs("p.json", "o.json", "cuda:0", 0.4, asr_backend="dicow")
+        assert "--asr-backend" not in captured["cmd"]  # dicow 默认不透传(向后兼容)
+    finally:
+        si._run = orig
+    print("test_run_enroll_pairs_backend OK")
+
+
 if __name__ == "__main__":
     test_utt_id()
     test_audio_duration()
@@ -124,4 +145,5 @@ if __name__ == "__main__":
     test_bucket_by_atten()
     test_build_result()
     test_build_timing()
+    test_run_enroll_pairs_backend()
     print("ALL PASS")

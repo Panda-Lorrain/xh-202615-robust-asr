@@ -134,7 +134,8 @@ def run_enroll_infer(enrollment, rec_dir, out_json, device, sim_thr, py=PY_MAIN)
 
 
 def run_enroll_infer_pairs(pairs_json, out_json, device, sim_thr,
-                           enroll_augment=False, aug_snrs="10,5,0", aug_noise_dir=None, py=PY_MAIN):
+                           enroll_augment=False, aug_snrs="10,5,0", aug_noise_dir=None,
+                           asr_backend="dicow", py=PY_MAIN):
     """阶段2(批量化, datasetA 用): enroll_infer --pairs 单进程跑所有对,模型加载1次。
     绕过"按 enrollment 分组多次 subprocess"的瓶颈(datasetA 每条 enr 不同 → 1838 次重载)。
     enroll_augment=True 透传 --enroll-augment(干净+多档加噪 emb 均值,提 babble 鲁棒)。
@@ -144,6 +145,8 @@ def run_enroll_infer_pairs(pairs_json, out_json, device, sim_thr,
            "--out-json", out_json, "--always-generate",
            "--reject-threshold", str(sim_thr),
            "--device", device]
+    if asr_backend != "dicow":
+        cmd += ["--asr-backend", asr_backend]
     if enroll_augment:
         cmd += ["--enroll-augment", "--aug-snrs", aug_snrs]
         if aug_noise_dir:
@@ -175,6 +178,8 @@ def main():
     ap.add_argument("--strategy", default="llm_or_sim",
                     choices=["llm_or_sim", "sim_only", "llm_only"],
                     help="融合策略（⚠️ llm_or_sim 实为 AND，LLM 只减拒不加拒；保底用 sim_only）")
+    ap.add_argument("--asr-backend", default="dicow", choices=["dicow", "vanilla"],
+                    help="ASR 后端(透传 enroll_infer): dicow(fallback) / vanilla(主线 CER 减半)")
     ap.add_argument("--device", default="cuda:0")
     ap.add_argument("--out-dir", default=os.path.join(HERE, "submit_out"))
     ap.add_argument("--work-dir", default=None, help="中间产物(默认 <out-dir>/_work)")
@@ -262,7 +267,8 @@ def main():
                   f, ensure_ascii=False)
     enroll_all = os.path.join(work_dir, "enroll_all.json")
     e_wall = run_enroll_infer_pairs(enroll_pairs, enroll_all, args.device, args.sim_thr,
-                                    args.enroll_augment, args.aug_snrs, args.aug_noise_dir)
+                                    args.enroll_augment, args.aug_snrs, args.aug_noise_dir,
+                                    args.asr_backend)
     with open(enroll_all, encoding="utf-8") as f:
         all_rows = json.load(f)
     sum_rtf = sum(float(r.get("rtf", 0.0) or 0.0) for r in all_rows)
@@ -296,6 +302,7 @@ def main():
 
     # --- 阶段4: 融合 + 组装 result ---
     total_wall = time.perf_counter() - t_total0
+    duration_infer_sec = sum(float(r.get("infer_sec", 0.0) or 0.0) for r in all_rows)
     items, per_utt = [], []
     for enr, rec, dst in rec_paths:
         uid = utt_id_from_path(dst)
@@ -319,9 +326,10 @@ def main():
                         "wall_sec": None, "rtf": round(float(r.get("rtf", 0.0) or 0.0), 4)})
 
     cfg = {"se": use_se, "llm": use_llm, "strategy": args.strategy if use_llm else "sim_only",
-           "sim_thr": args.sim_thr, "device": args.device}
+           "sim_thr": args.sim_thr, "device": args.device, "asr_backend": args.asr_backend}
     result = build_result(items, cfg)
     timing = build_timing(args.device, len(items), total_audio, total_wall, phases, per_utt)
+    timing["duration_infer_sec"] = round(duration_infer_sec, 3)
 
     rj = os.path.join(args.out_dir, "result.json")
     tj = os.path.join(args.out_dir, "timing.json")
