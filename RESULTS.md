@@ -602,3 +602,48 @@ diar（DiariZen wavlm-large）+ wespeaker 声纹
 
 ---
 
+## T25 — 2026-07-06 P2-① vanilla 集成 submit_infer 落地（提交数字 + 官方格式）
+
+T24 §7 第1条落地。方案 A：`enroll_infer.py` 加 `--asr-backend {dicow,vanilla}`，共享 diar+声纹+选target，转写分叉（dicow=stno 条件化 / vanilla=切 target timeline 拼接无 mask）。vanilla 作提交主线，dicow 保留 fallback。新增 `text_utils.py`（繁简归一+timeline 切割，单测）+ `to_submission.py`（result.json→官方格式）。繁简归一顺带修 HANDOFF §8 坑4。pyarrow 预热避 WinError 6714。
+
+### 全量提交数字（datasetA，vanilla 主线）
+
+| 评分腿 | 指标 | 数字 | dicow 保底对比 |
+|---|---|---|---|
+| **pos CER 40%** | overall CER（thr=0 全转写，1364 条）| **0.667** | dicow 1.25（~0 分）|
+| **neg RR 40%** | 句准拒识率（thr=0.4，474 条）| **98.52%** | dicow 98.5%（sim 复用持平）|
+| **效率 20%** | RTF / duration（batch=1）| RTF **0.19–0.22** / pos 503.7s + neg 181.3s | dicow RTF 0.24 |
+
+**CER 腿**：(1−0.667)×40 ≈ **13.3 分**（dicow ~0 分）→ vanilla 集成让 CER 腿从 0 分变 ~13 分。pos thr=0 全转写（误拒仅 0.88%），cer_accepted 0.664=overall（干净口径）。
+
+### 验证证据
+
+- 冒烟 100 条 vanilla transcript 与 exp 脚本逐条一致（集成正确）+ 繁简归一生效（输出简体）
+- dicow 回归 100 条 `asr_backend=dicow` 确认走条件化路径（fallback 不坏）
+- submission.json schema 完整（id/content/label/cer/final_cer/duration，id 无 utt 前缀，duration 对齐 batch=1）
+- 全部单测 PASS（text_utils / submit_infer / to_submission）
+
+### 提交命令
+
+```bash
+source code/setenv.sh && export HF_HUB_OFFLINE=1
+# pos 全量 vanilla（thr=0 全转写，CER 0.667）
+BAODI_OK=1 code/.venv/Scripts/python.exe code/submit_infer.py \
+  --pairs code/pos_pairs_datasetA.json --out-dir code/out_pos_vanilla_full \
+  --no-llm --sim-thr 0 --strategy sim_only --asr-backend vanilla
+# neg 全量 vanilla（thr=0.4，RR 98.5%）—— run_baodi 默认 vanilla
+bash code/run_baodi.sh neg 0.4
+# 转官方格式
+code/.venv/Scripts/python.exe code/to_submission.py --result-json <out>/result.json --pairs code/<set>_pairs_datasetA.json
+```
+
+⚠️ thr 待主办方口径（memory `official-scoring-spec`）：pos 不许拒→thr=0（CER 0.667）/ CER 均值→thr=0.4（overall 0.867）。run_baodi 默认 thr=0.4 是 neg 口径，pos 全转写需显式 thr=0。官方格式 6 点待确认（label 语义/pos 被拒 cer/neg cer 填法/final_cer 算法/duration 含 SE?/pos+neg 交法）做成 `to_submission.py` 的 `SUBMISSION_DEFAULTS` 常量，主办方回复只改常量。
+
+### 产物
+
+- `code/{text_utils,to_submission}.py` + `tests/test_{text_utils,to_submission,submit_infer}_logic.py`
+- `code/out_{pos,neg}_vanilla_full/{result,timing,submission}.json`
+- spec `docs/superpowers/specs/2026-07-06-vanilla-backend-submit-infer-design.md` + plan `docs/superpowers/plans/2026-07-06-vanilla-backend-submit-infer.md`
+
+---
+
