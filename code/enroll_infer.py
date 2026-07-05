@@ -26,6 +26,7 @@ import torch
 import numpy as np
 import librosa
 from transformers import AutoModelForSpeechSeq2Seq, AutoTokenizer, AutoFeatureExtractor
+from text_utils import to_simplified, cut_target_timeline
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _ROOT = os.path.dirname(_HERE)
@@ -111,6 +112,10 @@ def main():
                     help="enrollment 加噪增强: 干净+多档加噪 emb 均值, 提声纹鲁棒")
     ap.add_argument("--aug-snrs", default="10,5,0", help="enrollment 加噪增强的 SNR 档(逗号分)")
     ap.add_argument("--aug-noise-dir", help="babble 噪声池目录(增强比白噪更对症真实 babble; 不填则用白噪)")
+    ap.add_argument("--asr-backend", default="dicow", choices=["dicow", "vanilla"],
+                    help="ASR 后端: dicow(FDDT/STNO 条件化, fallback) / vanilla(切target timeline+whisper, 主线 CER 减半)")
+    ap.add_argument("--vanilla-model", default="E:/hf_cache/whisper-large-v3-turbo",
+                    help="vanilla 后端 Whisper 模型(默认 large-v3-turbo)")
     args = ap.parse_args()
     if not args.pairs and not args.enrollment:
         ap.error("--pairs 与 --enrollment 至少填一个")
@@ -118,11 +123,18 @@ def main():
     device = torch.device(args.device if torch.cuda.is_available() else "cpu")
     dtype = torch.float16
 
-    print(f"[load] DiCoW {args.dicow_model} on {device}")
-    dicow = AutoModelForSpeechSeq2Seq.from_pretrained(
-        args.dicow_model, trust_remote_code=True, torch_dtype=dtype).to(device).eval()
-    tok = AutoTokenizer.from_pretrained(args.dicow_model)
-    fe = AutoFeatureExtractor.from_pretrained(args.dicow_model)
+    if args.asr_backend == "vanilla":
+        print(f"[load] vanilla Whisper {args.vanilla_model} on {device}")
+        asr_model = AutoModelForSpeechSeq2Seq.from_pretrained(
+            args.vanilla_model, torch_dtype=dtype).to(device).eval()
+        _model_path = args.vanilla_model
+    else:
+        print(f"[load] DiCoW {args.dicow_model} on {device}")
+        asr_model = AutoModelForSpeechSeq2Seq.from_pretrained(
+            args.dicow_model, trust_remote_code=True, torch_dtype=dtype).to(device).eval()
+        _model_path = args.dicow_model
+    tok = AutoTokenizer.from_pretrained(_model_path)
+    fe = AutoFeatureExtractor.from_pretrained(_model_path)
 
     print(f"[load] DiariZen {args.diarization_model}")
     from diarizen.pipelines.inference import DiariZenPipeline
@@ -233,59 +245,74 @@ def main():
         if rejected and not args.always_generate:
             text, verdict = "", f"REJECT(target 不在场, max_sim={max_sim:.3f}<{args.reject_threshold})"
         else:
-            stno = get_stno_mask(diar_mask, target_idx)    # [4, T]
-            am = torch.ones(1, ifp.shape[-1], dtype=torch.bool, device=device)
-            gen_kwargs = dict(input_features=ifp, attention_mask=am,
-                              stno_mask=stno[None].to(device, dtype),
-                              language=args.language, task="transcribe", max_new_tokens=200)
-            # ---- SE-DiCoW(config.uses_enrollments=True): 自登记 enrollment, cross-attn 解重叠 ----
-            # 自登记 ≠ 外部 enrollment wav —— 从 recognition mel+target STNO 提 target 最密 30s 窗,
-            # 复刻 DiCoW-inference/pipeline.py::_process_enrollment_sample + max_ones_window。
-            if bool(getattr(dicow.config, "uses_enrollments", False) or getattr(dicow.config, "use_enrollments", False)):
-                if not getattr(dicow, "_se_setup_done", False):
-                    vocab = tok.get_vocab()
-                    tok.upper_cased_tokens = {}
-                    for _t, _i in vocab.items():
-                        if len(_t) < 1:
-                            continue
-                        _lo = (_t[0] + _t[1].lower() + (_t[2:] if len(_t) > 2 else '')) \
-                              if (_t[0] == 'Ġ' and len(_t) > 1) else (_t[0].lower() + _t[1:])
-                        if _lo != _t and vocab.get(_lo) is not None:
-                            tok.upper_cased_tokens[vocab[_lo]] = _i
-                    if hasattr(dicow, "set_tokenizer"):
-                        dicow.set_tokenizer(tok)
-                    dicow.config.model_type = "whisper"
-                    dicow._se_setup_done = True
-                    print("[load] SE-DiCoW uses_enrollments=True → cross-attn 内部启用(self-enrolled)")
-                # SE-DiCoW 的 self-enrollment 在模型内部从 stno_mask target 行自动提取,
-                # config.uses_enrollments 控制 cross-attn 路径; generate 接口与 DiCoW 相同(实测不接受 enrollments kwarg)。
-            with torch.no_grad():
-                out = dicow.generate(**gen_kwargs)
-            seqs = out["sequences"] if isinstance(out, dict) else out
-            text = tok.batch_decode(seqs, skip_special_tokens=True)[0].strip()
-            # [langfix 加强] 英文漂移 → prompt_ids 中文偏置 + greedy 重生成(retry 复用 gen_kwargs 含 enrollments)
-            _L = [c for c in text if c.isalpha()]
-            _er = sum(c.isascii() for c in _L) / len(_L) if len(_L) >= 4 else 0.0
-            if _er > 0.4:
-                if not hasattr(dicow, "_zh_prompt_ids"):
-                    dicow._zh_prompt_ids = torch.tensor(
-                        tok("以下是普通话的句子。", add_special_tokens=False).input_ids, device=device)
-                retry_kwargs = dict(gen_kwargs)
-                retry_kwargs.update(num_beams=1, prompt_ids=dicow._zh_prompt_ids)
+            if args.asr_backend == "vanilla":
+                # vanilla: 切 target timeline(含重叠区)拼接 → vanilla.generate 无条件化
+                target_audio = cut_target_timeline(audio, per_spk[target_idx], sr=sr)
+                ifp_v = fe(target_audio, sampling_rate=16000, return_tensors="pt").input_features.to(device, dtype)
+                am_v = torch.ones(1, ifp_v.shape[-1], dtype=torch.bool, device=device)
                 with torch.no_grad():
-                    out2 = dicow.generate(**retry_kwargs)
-                seqs2 = out2["sequences"] if isinstance(out2, dict) else out2
-                text2 = tok.batch_decode(seqs2, skip_special_tokens=True)[0].strip()
-                _PFX = "以下是普通话的句子。"
-                if text2.startswith(_PFX):
-                    text2 = text2[len(_PFX):].strip()
-                _L2 = [c for c in text2 if c.isalpha()]
-                _er2 = sum(c.isascii() for c in _L2) / len(_L2) if len(_L2) >= 4 else 0.0
-                if _er2 < _er:
-                    text = text2
-                print(f"  [langfix-retry] 英文率 {_er:.2f}→{_er2:.2f} {'采纳重生成' if _er2 < _er else '保留首次'}")
+                    out = asr_model.generate(input_features=ifp_v, attention_mask=am_v,
+                                             language=args.language, task="transcribe", max_new_tokens=200)
+                seqs = out["sequences"] if isinstance(out, dict) else out
+                text = tok.batch_decode(seqs, skip_special_tokens=True)[0].strip()
+                # vanilla 不跑 langfix(英文幻觉 0.59%, langfix 是 dicow 治标)
+            else:
+                # dicow: stno_mask 条件化 + SE-DiCoW 自登记 + langfix retry(原逻辑保留)
+                stno = get_stno_mask(diar_mask, target_idx)    # [4, T]
+                am = torch.ones(1, ifp.shape[-1], dtype=torch.bool, device=device)
+                gen_kwargs = dict(input_features=ifp, attention_mask=am,
+                                  stno_mask=stno[None].to(device, dtype),
+                                  language=args.language, task="transcribe", max_new_tokens=200)
+                # ---- SE-DiCoW(config.uses_enrollments=True): 自登记 enrollment, cross-attn 解重叠 ----
+                # 自登记 ≠ 外部 enrollment wav —— 从 recognition mel+target STNO 提 target 最密 30s 窗,
+                # 复刻 DiCoW-inference/pipeline.py::_process_enrollment_sample + max_ones_window。
+                if bool(getattr(asr_model.config, "uses_enrollments", False) or getattr(asr_model.config, "use_enrollments", False)):
+                    if not getattr(asr_model, "_se_setup_done", False):
+                        vocab = tok.get_vocab()
+                        tok.upper_cased_tokens = {}
+                        for _t, _i in vocab.items():
+                            if len(_t) < 1:
+                                continue
+                            _lo = (_t[0] + _t[1].lower() + (_t[2:] if len(_t) > 2 else '')) \
+                                  if (_t[0] == 'Ġ' and len(_t) > 1) else (_t[0].lower() + _t[1:])
+                            if _lo != _t and vocab.get(_lo) is not None:
+                                tok.upper_cased_tokens[vocab[_lo]] = _i
+                        if hasattr(asr_model, "set_tokenizer"):
+                            asr_model.set_tokenizer(tok)
+                        asr_model.config.model_type = "whisper"
+                        asr_model._se_setup_done = True
+                        print("[load] SE-DiCoW uses_enrollments=True → cross-attn 内部启用(self-enrolled)")
+                    # SE-DiCoW 的 self-enrollment 在模型内部从 stno_mask target 行自动提取,
+                    # config.uses_enrollments 控制 cross-attn 路径; generate 接口与 DiCoW 相同(实测不接受 enrollments kwarg)。
+                with torch.no_grad():
+                    out = asr_model.generate(**gen_kwargs)
+                seqs = out["sequences"] if isinstance(out, dict) else out
+                text = tok.batch_decode(seqs, skip_special_tokens=True)[0].strip()
+                # [langfix 加强] 英文漂移 → prompt_ids 中文偏置 + greedy 重生成(retry 复用 gen_kwargs 含 enrollments)
+                _L = [c for c in text if c.isalpha()]
+                _er = sum(c.isascii() for c in _L) / len(_L) if len(_L) >= 4 else 0.0
+                if _er > 0.4:
+                    if not hasattr(asr_model, "_zh_prompt_ids"):
+                        asr_model._zh_prompt_ids = torch.tensor(
+                            tok("以下是普通话的句子。", add_special_tokens=False).input_ids, device=device)
+                    retry_kwargs = dict(gen_kwargs)
+                    retry_kwargs.update(num_beams=1, prompt_ids=asr_model._zh_prompt_ids)
+                    with torch.no_grad():
+                        out2 = asr_model.generate(**retry_kwargs)
+                    seqs2 = out2["sequences"] if isinstance(out2, dict) else out2
+                    text2 = tok.batch_decode(seqs2, skip_special_tokens=True)[0].strip()
+                    _PFX = "以下是普通话的句子。"
+                    if text2.startswith(_PFX):
+                        text2 = text2[len(_PFX):].strip()
+                    _L2 = [c for c in text2 if c.isalpha()]
+                    _er2 = sum(c.isascii() for c in _L2) / len(_L2) if len(_L2) >= 4 else 0.0
+                    if _er2 < _er:
+                        text = text2
+                    print(f"  [langfix-retry] 英文率 {_er:.2f}→{_er2:.2f} {'采纳重生成' if _er2 < _er else '保留首次'}")
+            # 统一繁简归一(dicow + vanilla 都过)
+            text = to_simplified(text)
             verdict = (f"REJECT_GEN(max_sim={max_sim:.3f}<{args.reject_threshold}, always-generate 仍转)" if rejected
-                       else f"TRANSCRIBE(target={speakers[target_idx]})")
+                       else f"TRANSCRIBE(target={speakers[target_idx]}, backend={args.asr_backend})")
 
         dt = time.time() - t0
         print(f"  [{verdict}] {len(text)}字 ({dt:.1f}s, RTF={dt/dur:.3f}): {text}")
@@ -297,6 +324,8 @@ def main():
             "max_sim": max_sim, "reject_threshold": args.reject_threshold,
             "stno_target_ratio": stno_target_ratio, "target_active_ratio": target_active_ratio,
             "rejected": max_sim < args.reject_threshold,
+            "asr_backend": args.asr_backend,
+            "infer_sec": round(dt, 3),  # 单条纯推理(不含模型加载), 对齐官方 batch=1 duration
             "transcript": text, "chars": len(text), "rtf": dt / dur,
         })
 
