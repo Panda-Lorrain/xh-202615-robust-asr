@@ -319,6 +319,7 @@ def main():
             "text": text, "rejected": rejected, "score": round(max_sim, 4),
             "max_sim": round(max_sim, 4), "llm_verdict": llm_v if use_llm else None,
             "noise_type": nt, "atten_lim_db": atten,
+            "infer_sec": round(float(r.get("infer_sec", 0.0) or 0.0), 3),
             "diar_fail": bool(r.get("error")),
         })
         dur = audio_duration_s(dst)

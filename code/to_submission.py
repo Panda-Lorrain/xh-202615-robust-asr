@@ -81,7 +81,13 @@ def main():
                     help="batch=1 逐条推理总秒数(覆盖 infer_sec 累加)")
     ap.add_argument("--out", default=None)
     args = ap.parse_args()
-    sub = convert(args.result_json, args.pairs, args.duration)
+    # duration 优先级: --duration > 同目录 timing.json 的 duration_infer_sec > per-utt infer_sec 累加
+    duration = args.duration
+    if duration is None:
+        timing_json = args.result_json.replace("result.json", "timing.json")
+        if os.path.exists(timing_json):
+            duration = json.load(open(timing_json, encoding="utf-8")).get("duration_infer_sec")
+    sub = convert(args.result_json, args.pairs, duration)
     out = args.out or args.result_json.replace("result.json", "submission.json")
     with open(out, "w", encoding="utf-8") as f:
         json.dump(sub, f, ensure_ascii=False, indent=2)

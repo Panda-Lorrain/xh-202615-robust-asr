@@ -27,6 +27,7 @@ import numpy as np
 import librosa
 from transformers import AutoModelForSpeechSeq2Seq, AutoTokenizer, AutoFeatureExtractor
 from text_utils import to_simplified, cut_target_timeline
+import pyarrow  # 预热: 避免 import pyannote 时扫描 sys.path 的 DiariZen 目录触发 WinError 6714
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _ROOT = os.path.dirname(_HERE)
