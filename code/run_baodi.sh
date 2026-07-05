@@ -3,8 +3,9 @@
 # 对抗审查 GAP3（memory baodi-config-no-llm）：submit_infer 默认 strategy=llm_or_sim /
 #   sim_thr=0.2 / llm=ON → RTF 1.0 + neg RR 0.77 两腿崩。保底必须显式 --no-llm --sim-thr 0.4 --strategy sim_only。
 # 用法：
-#   bash code/run_baodi.sh pos        # pos 全量，thr=0.4（默认）
+#   bash code/run_baodi.sh pos        # pos 全量，thr=0.4（默认），vanilla 主线
 #   bash code/run_baodi.sh neg 0.45   # neg 全量，thr=0.45（within-noise 占优，RR 99.2%）
+#   BAODI_BACKEND=dicow bash code/run_baodi.sh pos   # 切回 dicow fallback/答辩对比基线
 # 评测：
 #   code/.venv/Scripts/python.exe code/eval_datasetA.py code/out_<set>_baodi/result.json code/<set>_pairs_datasetA.json
 set -euo pipefail
@@ -14,6 +15,8 @@ export HF_HUB_OFFLINE=1
 
 SET="${1:?用法: run_baodi.sh pos|neg [thr(默认0.4)]}"
 THR="${2:-0.4}"
+# vanilla 作提交主线(CER 0.664 减半, 反 cascaded); BAODI_BACKEND=dicow 切回 fallback/答辩对比基线
+BACKEND="${BAODI_BACKEND:-vanilla}"
 
 # thr 范围校验（防误传 2.0/-1 导致全 utt 同样被拒/放，result.json 静默错误输出）
 if ! awk "BEGIN{exit !($THR>=0 && $THR<=1)}" 2>/dev/null; then
@@ -31,6 +34,7 @@ if [[ ! -f "$PAIRS" ]]; then
   echo "[error] pairs 文件不存在: $PAIRS"; exit 1
 fi
 
-echo "[baodi] 关LLM(--no-llm) + thr=$THR + strategy=sim_only  → $OUT  (保底：防 submit_infer 默认 flag 灾难)"
+echo "[baodi] backend=$BACKEND 关LLM(--no-llm) + thr=$THR + strategy=sim_only  → $OUT  (vanilla 主线 / BAODI_BACKEND=dicow 切回)"
 exec code/.venv/Scripts/python.exe code/submit_infer.py \
-  --pairs "$PAIRS" --out-dir "$OUT" --no-llm --sim-thr "$THR" --strategy sim_only
+  --pairs "$PAIRS" --out-dir "$OUT" --no-llm --sim-thr "$THR" --strategy sim_only \
+  --asr-backend "$BACKEND"
