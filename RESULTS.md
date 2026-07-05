@@ -506,7 +506,7 @@ langfix 对 **white/pink 低重叠有效**（se6 中文 93%、正确率 60%@ov0�
 - 极差样本全 babble：重复循环幻觉（id2323 hyp="先选民民民民..." ref="防直吹"）/ 英文漂移（id2429 hyp="i don't know what should" ref="把温度调到二十三度"）
 - pos max_sim median 0.283，≥0.5 仅 7.7%，≥0.8 为 0 → 声纹在 babble 下普遍提不出 target
 - 按 noise_type：babble correct 16.9% / pink 11.0% / white 1.6%；按唤醒词：小钱小钱 CER 2.73、小编小编 1.45（某些唤醒词 enrollment 质量差，全错）
-- **印证 T22 仿真归因 + AGENT_HANDOFF 核心认知**：组合主线 cascaded 在极重 babble 下 CER 是架构极限（target 声纹 sim<0.06 提不出 + DiCoW FDDT 在 babble STNO 下 mel 退化转写崩）。且 correct 比预期更差（13.9–15.8% vs 交接 31%）。
+- **印证 T22 仿真归因 + AGENT_HANDOFF 核心认知**：组合主线 cascaded 在极重 babble 下 CER 是架构极限（target 声纹 max_sim median 0.283（⚠️ sim<0.06 仅 7.7% 非主流，旧"sim<0.06 提不出"数字错，见下文 doc 数字修正）+ DiCoW FDDT 在 babble STNO 下 mel 退化转写崩）。且 correct 比预期更差（13.9–15.8% vs 交接 31%）。
 
 **保底决策**：
 - **确定**：关LLM（trade-off：为效率20%+RR40% 牺牲 pos 救回，**非"全面优于"**；用 wrapper `code/run_baodi.sh` 锁死 `--no-llm --sim-thr`，防 submit_infer 默认 flag 灾难）

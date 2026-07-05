@@ -53,9 +53,11 @@ def expand_inputs(args):
 
 def decide_reject(max_sim, llm_verdict, strategy, sim_thr, use_llm):
     """融合拒识决策。返回 True=拒识。
-    - 无 LLM 或 sim_only: 拒 iff max_sim < sim_thr
+    - 无 LLM 或 sim_only: 拒 iff max_sim < sim_thr           （保底走这条）
     - llm_only:           拒 iff llm != accept
     - llm_or_sim(默认):   拒 iff (llm != accept) AND (max_sim < sim_thr)
+                          ⚠️ 命名历史遗留，实为 AND：LLM=accept 一票放过，故 LLM 只能
+                          【减拒】不能【加拒】（GAP4 证伪"三路融合"强项定位，答辩勿列）。
     """
     if not use_llm or strategy == "sim_only":
         return max_sim < sim_thr
@@ -171,7 +173,8 @@ def main():
     ap.add_argument("--aug-noise-dir", default=r"E:\midea_target_asr\datasetA\pos",
                     help="babble 噪声池目录(默认 datasetA/pos; 比白噪更对症真实 babble)")
     ap.add_argument("--strategy", default="llm_or_sim",
-                    choices=["llm_or_sim", "sim_only", "llm_only"], help="融合策略")
+                    choices=["llm_or_sim", "sim_only", "llm_only"],
+                    help="融合策略（⚠️ llm_or_sim 实为 AND，LLM 只减拒不加拒；保底用 sim_only）")
     ap.add_argument("--device", default="cuda:0")
     ap.add_argument("--out-dir", default=os.path.join(HERE, "submit_out"))
     ap.add_argument("--work-dir", default=None, help="中间产物(默认 <out-dir>/_work)")
@@ -182,6 +185,19 @@ def main():
         ap.error("--enrollment 需配 --recognition-folder")
     use_llm = not args.no_llm
     use_se = not args.no_se
+
+    # 保底守卫（GAP3，memory baodi-config-no-llm）：裸调默认 flag
+    # （LLM ON / sim_thr=0.2 / strategy=llm_or_sim）→ RTF~1.0 + neg RR~0.77 双崩。
+    # 保底提交必须用 run_baodi.sh 或显式 --no-llm --sim-thr>=0.4；实验配置显式 BAODI_OK=1 opt-in。
+    if not os.environ.get("BAODI_OK") and (use_llm or args.sim_thr < 0.35):
+        ap.error(
+            "检测到非保底配置（LLM ON 或 sim_thr<0.35），裸调默认即灾难"
+            "（RTF~1.0 + neg RR~0.77，见 memory baodi-config-no-llm）。\n"
+            "  保底提交: bash code/run_baodi.sh pos|neg [thr]\n"
+            "  实验配置: BAODI_OK=1 python code/submit_infer.py ... （显式 opt-in）"
+        )
+    if use_llm and not os.path.exists(PY_LLM):
+        ap.error(f"开 LLM 但 {PY_LLM} 不存在（.venv_llm 未部署）；保底请加 --no-llm。")
     work_dir = args.work_dir or os.path.join(args.out_dir, "_work")
     os.makedirs(args.out_dir, exist_ok=True)
     os.makedirs(work_dir, exist_ok=True)
@@ -317,6 +333,12 @@ def main():
     print(f"\n[done] {len(items)} 条 ({n_rej} 拒识) -> {rj}")
     print(f"       overall_rtf={timing['overall_rtf']} (audio={total_audio:.1f}s wall={total_wall:.1f}s)")
     print(f"       phases={ {k: v.get('wall_sec') for k, v in phases.items()} }")
+    # 后置 sanity check（GAP3）：防崩盘结果静默交付
+    if timing.get("overall_rtf") and timing["overall_rtf"] > 0.6:
+        print(f"[WARN] overall_rtf={timing['overall_rtf']} > 0.6，疑误开 LLM/SE（保底应 ~0.24）")
+    pairs_name = os.path.basename(args.pairs or "").lower()
+    if "neg" in pairs_name and len(items) and n_rej / len(items) < 0.9:
+        print(f"[WARN] neg 拒识率 {n_rej/len(items):.2%} < 90%，低于保底预期（thr 太低？）")
 
 
 if __name__ == "__main__":

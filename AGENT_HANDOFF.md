@@ -25,7 +25,7 @@
 ## 2. 核心认知（最重要，决定一切后续）
 
 **组合主线 cascaded 在极重 babble 下 CER 1.25–1.4 是架构能力极限**，调参/小改破不了。根因双重：
-1. **wespeaker+diar 提不出 target 声纹**：pos sim median 仅 0.28，30% <0.2 被误拒；babble 重子集 sim <0.06（硬骨头）
+1. **wespeaker+diar 提不出 target 声纹**：pos sim median 仅 0.28（实测 median 0.283/mean 0.286/min -0.125，**sim<0.06 仅 7.7% 非主流**，答辩别引用 sim<0.06），30% <0.2 被误拒
 2. **DiCoW mel 退化转写崩**：20% 输出英文（langfix 首位 token 锁不住漂移）+ 锁对 target 的高 sim 子集 CER 仍 0.43
 
 **sim 与 CER 强相关**：sim≥0.5 → CER 0.43 / correct 76%；sim 0.2–0.3 → CER 1.63。**误拒非 CER 主因**（降 sim_thr 不降 CER，因低 sim 样本转写也崩）。**攻 babble 转写质量是唯一出路**，但要根本改进。
