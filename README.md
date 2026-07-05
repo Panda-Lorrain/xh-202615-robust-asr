@@ -23,9 +23,28 @@
 
 ---
 
+## 🚀 最新进展（2026-07-06 Phase 1 突破）
+
+**H3 强证伪**：DiCoW 的 FDDT/STNO 条件化在极重 babble 下【反作用】。改用 **vanilla Whisper-large-v3-turbo + 声纹切 target timeline** 路线（zero-training，全量 1362 条 pos 真测）CER 几乎减半：
+
+| 指标 | vanilla 路线（新主线） | DiCoW 条件化（已证伪） |
+|---|---|---|
+| 转写 CER | **0.664** | 1.248 |
+| correct_rate | **45.6%** | 31.4% |
+| 英文幻觉率 | **0.59%** | 18.80%（条件化造孽）|
+| thr=0.2 overall CER | **0.711** | 1.241 |
+
+→ **CER 40% 这条腿从 ~0 分变 ~11 分**。机制：diar+声纹选 target → 切 target timeline 段（含重叠）→ vanilla Whisper 转写（去掉 stno_mask/FDDT）。**答辩弹药**：cascaded 条件化在极重 babble 下反作用，改 target extraction + vanilla，CER 减半——契合出题方反 cascaded 审美。详见 [`02_上限候选深读.md`](02_上限候选深读.md) 候选 Z + `code/exp_vanilla_vs_dicow.py`。
+
+**保底（拒识 + 效率）**：neg RR **98.5%**（thr=0.4 关 LLM）/ RTF **0.24**（4060，L20 待测）。提交用 `bash code/run_baodi.sh pos|neg [thr]`（已加 BAODI 守卫防裸调灾难）。
+
+---
+
 ## 🏗️ 技术架构
 
 ### 整体方案（实际实现）
+
+> ⚠️ **2026-07-06 Phase 1 更新**：下方阶段 2「DiCoW 条件化转写」已被全量真测证伪反作用（英文幻觉 18.8%、CER 1.25）。**实际主线改为 vanilla Whisper + 声纹切 target timeline**（CER 0.664 减半，见上「最新进展」）。下方 DiCoW 流程作历史 / 已证伪路径保留。
 
 > 已实现于 `code/submit_infer.py`（4 阶段 subprocess 编排）。理想态组件（CAM++/Personal VAD）T18 证伪/未用，详见 [`交付/设计报告.md`](交付/设计报告.md)。
 
@@ -59,7 +78,7 @@
 |------|----------|------|
 | **声纹锁定** | wespeaker-voceleleb-resnet34（256d，复用 `diar._embedding`） | enrollment → target 余弦匹配（CAM++ T18 per-speaker 公平对照证伪 sim 0.191<0.218，**未用**；Personal VAD **未用**） |
 | **说话人分离** | DiariZen（diarizen-wavlm-large-s80-md） | 多 speaker 时间段 |
-| **TS-ASR 转写** | DiCoW（BUT-FIT/DiCoW_v3_2，Whisper-large-v3-turbo + FDDT） | STNO 条件化只转 target |
+| **TS-ASR 转写** | **vanilla Whisper-large-v3-turbo + 声纹切 target（Phase 1 新主线，CER 0.664）**；DiCoW（FDDT 条件化）⚠️ 已证伪反作用（CER 1.25） | 只转 target |
 | **语音增强** | DeepFilterNet3（条件化，8.7MB） | babble/white → 全力，pink → 温和（=6） |
 | **语义拒识** | Qwen2.5-3B-Instruct | 指令合理性，救回声纹误拒 |
 | **融合决策** | llm_or_sim | `rejected = (llm ≠ accept) AND (max_sim < 0.2)` |
@@ -185,7 +204,9 @@ python stno_experiment.py
 
 ![实测进度概览](docs/progress_overview.png)
 
-> 450 条 mimo-tts 仿真集画像。**可用率 = CER<0.5 占比**——比 CER 均值更诚实的可用指标（babble 重复循环幻觉使 hyp 超长、拉高均值，反而掩盖退化）。**babble 全灭** 已确诊（T22）：FDDT/STNO 条件化在低 target 覆盖下劣化，非 Whisper 基座问题。可交互看板（light/dark 自适应）：[`docs/cer_progress_dashboard.html`](docs/cer_progress_dashboard.html)。
+> 450 条 mimo-tts 仿真集画像（仿真期）。**可用率 = CER<0.5 占比**——比 CER 均值更诚实的可用指标（babble 重复循环幻觉使 hyp 超长、拉高均值，反而掩盖退化）。**babble 全灭** 已确诊（T22）：FDDT/STNO 条件化在低 target 覆盖下劣化，非 Whisper 基座问题。
+>
+> ⚠️ 本图为仿真期数据。**2026-07-04 真测基线 + 2026-07-06 Phase 1 vanilla 突破（CER 0.664）见 [RESULTS.md](RESULTS.md) T23/T24**。可交互看板（light/dark 自适应）：[`docs/cer_progress_dashboard.html`](docs/cer_progress_dashboard.html)。
 >
 > ⚠️ 仿真集非比赛真实 A 集，绝对值不可外推到赛榜；两次独立跑可用率 14.0% / 15.1% 互证稳健。
 

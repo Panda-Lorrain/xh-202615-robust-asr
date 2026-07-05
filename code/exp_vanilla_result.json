@@ -1,0 +1,1002 @@
+[
+  {
+    "uid": "cmd_0",
+    "ref": "空调开到制热调到二十五度风量调到百分之三十",
+    "max_sim": 0.25389522314071655,
+    "vanilla_text": "空调开到自热调到25度风量调到30%",
+    "dicow_text": "空調開到自熱調到二十五度風量調到百分之三十",
+    "vanilla_cer": 0.42857142857142855,
+    "dicow_cer": 0.047619047619047616,
+    "rtf": 0.3995071857347401
+  },
+  {
+    "uid": "cmd_1",
+    "ref": "灯光亮度调到百分之三十",
+    "max_sim": 0.2936280071735382,
+    "vanilla_text": "灯光亮度调到30%",
+    "dicow_text": "灯光亮度调到百分之三十",
+    "vanilla_cer": 0.45454545454545453,
+    "dicow_cer": 0.0,
+    "rtf": 0.08718295244393369
+  },
+  {
+    "uid": "cmd_2",
+    "ref": "洗碗机暂停工作",
+    "max_sim": 0.41296595335006714,
+    "vanilla_text": "洗碗机暂停工作",
+    "dicow_text": "洗碗机暂停工作",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.0,
+    "rtf": 0.11673941634285431
+  },
+  {
+    "uid": "cmd_3",
+    "ref": "所有灯光调到百分之五十",
+    "max_sim": 0.4405903220176697,
+    "vanilla_text": "所有灯光调到50%",
+    "dicow_text": "所有燈光调到百分之五十",
+    "vanilla_cer": 0.45454545454545453,
+    "dicow_cer": 0.0,
+    "rtf": 0.0891996176717532
+  },
+  {
+    "uid": "cmd_4",
+    "ref": "音乐的声音小一点",
+    "max_sim": 0.46256282925605774,
+    "vanilla_text": "音樂的聲音小一點",
+    "dicow_text": "音乐的声音小一点",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.0,
+    "rtf": 0.18488032477242605
+  },
+  {
+    "uid": "cmd_5",
+    "ref": "打开回家模式吧",
+    "max_sim": 0.24617142975330353,
+    "vanilla_text": "大家回家",
+    "dicow_text": "now then we jump us",
+    "vanilla_cer": 0.7142857142857143,
+    "dicow_cer": 2.142857142857143,
+    "rtf": 0.16475337032428003
+  },
+  {
+    "uid": "cmd_6",
+    "ref": "播放权志龙的歌",
+    "max_sim": 0.3206774592399597,
+    "vanilla_text": "播放全智隆的歌",
+    "dicow_text": "",
+    "vanilla_cer": 0.42857142857142855,
+    "dicow_cer": 1.0,
+    "rtf": 0.14765762207678837
+  },
+  {
+    "uid": "cmd_7",
+    "ref": "我要出门了",
+    "max_sim": 0.5681838989257812,
+    "vanilla_text": "我要出門了",
+    "dicow_text": "我要出门了",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.0,
+    "rtf": 0.15697889267259343
+  },
+  {
+    "uid": "cmd_8",
+    "ref": "拉起窗帘",
+    "max_sim": 0.5297331809997559,
+    "vanilla_text": "拉起窗簾",
+    "dicow_text": "拉起窗",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.25,
+    "rtf": 0.18956737780789717
+  },
+  {
+    "uid": "cmd_9",
+    "ref": "元宵节灯会什么时候",
+    "max_sim": 0.4546070694923401,
+    "vanilla_text": "人将结灯会什么时候",
+    "dicow_text": "人家接登会什么时候",
+    "vanilla_cer": 0.3333333333333333,
+    "dicow_cer": 0.4444444444444444,
+    "rtf": 0.07747428667058319
+  },
+  {
+    "uid": "cmd_10",
+    "ref": "关闭悬浮空调",
+    "max_sim": 0.34934335947036743,
+    "vanilla_text": "關閉懸浮空調",
+    "dicow_text": "grunbi shenfu kong kiao",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 3.3333333333333335,
+    "rtf": 0.15415289463141027
+  },
+  {
+    "uid": "cmd_11",
+    "ref": "从医院回来的衣服",
+    "max_sim": 0.27249574661254883,
+    "vanilla_text": "从医院回来的衣服啊",
+    "dicow_text": "从医院回来的衣服",
+    "vanilla_cer": 0.125,
+    "dicow_cer": 0.0,
+    "rtf": 0.13104710314008924
+  },
+  {
+    "uid": "cmd_12",
+    "ref": "关闭客厅空调",
+    "max_sim": 0.376437783241272,
+    "vanilla_text": "关闭客厅空调",
+    "dicow_text": "want to be客廳空調",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 1.3333333333333333,
+    "rtf": 0.13148867935867783
+  },
+  {
+    "uid": "cmd_13",
+    "ref": "打开洗衣服",
+    "max_sim": 0.15514510869979858,
+    "vanilla_text": "好",
+    "dicow_text": "",
+    "vanilla_cer": 1.0,
+    "dicow_cer": 1.0,
+    "rtf": 0.13963067939526227
+  },
+  {
+    "uid": "cmd_14",
+    "ref": "空调二十六度风速最大",
+    "max_sim": 0.21548089385032654,
+    "vanilla_text": "空调26度风速最大",
+    "dicow_text": "空調二十六路風速最大",
+    "vanilla_cer": 0.3,
+    "dicow_cer": 0.1,
+    "rtf": 0.13844494098498497
+  },
+  {
+    "uid": "cmd_15",
+    "ref": "关掉顶灯",
+    "max_sim": 0.38860049843788147,
+    "vanilla_text": "关掉顶灯",
+    "dicow_text": "关掉鼎灯",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.25,
+    "rtf": 0.18387576481243512
+  },
+  {
+    "uid": "cmd_16",
+    "ref": "帮我做一个闹钟",
+    "max_sim": 0.41693344712257385,
+    "vanilla_text": "帮我做一个闹钟",
+    "dicow_text": "帮我做一个闹钟",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.0,
+    "rtf": 0.17920832884939095
+  },
+  {
+    "uid": "cmd_17",
+    "ref": "打开卷帘门呃不卷帘",
+    "max_sim": 0.5855294466018677,
+    "vanilla_text": "打開捲簾門 捲簾",
+    "dicow_text": "打開卷簾門 卷簾",
+    "vanilla_cer": 0.2222222222222222,
+    "dicow_cer": 0.2222222222222222,
+    "rtf": 0.10799771980676663
+  },
+  {
+    "uid": "cmd_18",
+    "ref": "关闭灯光",
+    "max_sim": 0.05781226232647896,
+    "vanilla_text": "我",
+    "dicow_text": "",
+    "vanilla_cer": 1.0,
+    "dicow_cer": 1.0,
+    "rtf": 0.2020372030062553
+  },
+  {
+    "uid": "cmd_19",
+    "ref": "我要吃我要我要我要准备做饭",
+    "max_sim": 0.38653820753097534,
+    "vanilla_text": "我要吃 我要準備做飯",
+    "dicow_text": "我要吃我要我要我要準備做飯",
+    "vanilla_cer": 0.3076923076923077,
+    "dicow_cer": 0.0,
+    "rtf": 0.09111277491068669
+  },
+  {
+    "uid": "cmd_20",
+    "ref": "客厅灯的色温调到最暖关闭窗关闭客厅窗帘关闭客厅空调",
+    "max_sim": 0.4024948477745056,
+    "vanilla_text": "客厅灯的室温调到最暖关闭客厅窗帘关闭客厅空调",
+    "dicow_text": "客廳登的色温調到最暖 one b 窗 one b 客廳窗簾 one b 客廳空調",
+    "vanilla_cer": 0.16,
+    "dicow_cer": 0.52,
+    "rtf": 0.06684929928993613
+  },
+  {
+    "uid": "cmd_21",
+    "ref": "把温度调到三十度风量调到百分之六十",
+    "max_sim": 0.5738177299499512,
+    "vanilla_text": "把温度调到30度风量调到60%",
+    "dicow_text": "把温度调到三十度风量调到百分之六次",
+    "vanilla_cer": 0.4117647058823529,
+    "dicow_cer": 0.058823529411764705,
+    "rtf": 0.10711258912584344
+  },
+  {
+    "uid": "cmd_22",
+    "ref": "打开烘干",
+    "max_sim": 0.324057936668396,
+    "vanilla_text": "打開空間",
+    "dicow_text": "大概用那",
+    "vanilla_cer": 0.5,
+    "dicow_cer": 1.0,
+    "rtf": 0.18717204823213465
+  },
+  {
+    "uid": "cmd_23",
+    "ref": "我准备做饭了",
+    "max_sim": 0.39122360944747925,
+    "vanilla_text": "我準備做飯了",
+    "dicow_text": "what is your major fan",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 3.0,
+    "rtf": 0.17603102340001495
+  },
+  {
+    "uid": "cmd_24",
+    "ref": "关灯关空调打开窗帘",
+    "max_sim": 0.3041471838951111,
+    "vanilla_text": "关灯关空调打开窗帘",
+    "dicow_text": "关灯关空调打开冲联",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.2222222222222222,
+    "rtf": 0.09609137242605208
+  },
+  {
+    "uid": "cmd_25",
+    "ref": "打开四G",
+    "max_sim": 0.28974834084510803,
+    "vanilla_text": "打開",
+    "dicow_text": "打開",
+    "vanilla_cer": 0.5,
+    "dicow_cer": 0.5,
+    "rtf": 0.1715887252086868
+  },
+  {
+    "uid": "cmd_26",
+    "ref": "啊把空调关了",
+    "max_sim": 0.3361635208129883,
+    "vanilla_text": "把空調關了",
+    "dicow_text": "把空掉光了",
+    "vanilla_cer": 0.16666666666666666,
+    "dicow_cer": 0.5,
+    "rtf": 0.1393975619982956
+  },
+  {
+    "uid": "cmd_27",
+    "ref": "打开闹钟",
+    "max_sim": 0.33664366602897644,
+    "vanilla_text": "打開鬧鐘",
+    "dicow_text": "打开闹钟",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.0,
+    "rtf": 0.17109133980490945
+  },
+  {
+    "uid": "cmd_28",
+    "ref": "客厅灯的色温调为冷色",
+    "max_sim": 0.5344671010971069,
+    "vanilla_text": "客廳燈的射溫條為冷射",
+    "dicow_text": "客丁灯的色门条为冷射",
+    "vanilla_cer": 0.3,
+    "dicow_cer": 0.4,
+    "rtf": 0.12231489707683695
+  },
+  {
+    "uid": "cmd_29",
+    "ref": "心脏灯的色温调到最冷亮度调到最亮",
+    "max_sim": 0.4089704751968384,
+    "vanilla_text": "心脏跟的測温调到最冷,亮度调到最亮",
+    "dicow_text": "心脏真的受温调到最冷亮度调到最亮",
+    "vanilla_cer": 0.1875,
+    "dicow_cer": 0.125,
+    "rtf": 0.07849007420248078
+  },
+  {
+    "uid": "cmd_30",
+    "ref": "打开窗帘烟机",
+    "max_sim": 0.21772676706314087,
+    "vanilla_text": "打回窗戀電機",
+    "dicow_text": "打合线维电机",
+    "vanilla_cer": 0.5,
+    "dicow_cer": 0.6666666666666666,
+    "rtf": 0.1775215753176917
+  },
+  {
+    "uid": "cmd_31",
+    "ref": "把前厅的灯光调到百分之百亮度",
+    "max_sim": 0.6165370345115662,
+    "vanilla_text": "把前厅的灯光调到百分之百亮度",
+    "dicow_text": "把前厅的灯光调到百分之百亮度",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.0,
+    "rtf": 0.07300290456351197
+  },
+  {
+    "uid": "cmd_32",
+    "ref": "LADY GAGA最新的专辑叫什么",
+    "max_sim": 0.5825312733650208,
+    "vanilla_text": "Lady Gaga最新的专辑叫什么",
+    "dicow_text": "lady gaga最新的專輯叫什么",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.0,
+    "rtf": 0.08138670371128963
+  },
+  {
+    "uid": "cmd_33",
+    "ref": "这一年我从直播小白到第一次扛相机去工地拍",
+    "max_sim": 0.2840864062309265,
+    "vanilla_text": "这一年我从直播小白到第一次砍相机去梦皮拍摄",
+    "dicow_text": "這一年我從直播小孩到第一次彈相機去夢幣拍攝",
+    "vanilla_cer": 0.2,
+    "dicow_cer": 0.25,
+    "rtf": 0.08282598949247791
+  },
+  {
+    "uid": "cmd_34",
+    "ref": "日光模式",
+    "max_sim": 0.388949453830719,
+    "vanilla_text": "日光模式",
+    "dicow_text": "浴光模式",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.25,
+    "rtf": 0.20672157087039536
+  },
+  {
+    "uid": "cmd_35",
+    "ref": "关掉音乐",
+    "max_sim": 0.49290621280670166,
+    "vanilla_text": "关掉音乐",
+    "dicow_text": "关掉音乐",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.0,
+    "rtf": 0.17085665176999396
+  },
+  {
+    "uid": "cmd_36",
+    "ref": "开启客厅灯光",
+    "max_sim": 0.45124512910842896,
+    "vanilla_text": "开启客厅灯光",
+    "dicow_text": "开启客厅灯光",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.0,
+    "rtf": 0.14889422961121773
+  },
+  {
+    "uid": "cmd_37",
+    "ref": "嗯打开油烟机",
+    "max_sim": 0.5019230842590332,
+    "vanilla_text": "打开留言键",
+    "dicow_text": "打开油烟键",
+    "vanilla_cer": 0.6666666666666666,
+    "dicow_cer": 0.3333333333333333,
+    "rtf": 0.1130016434271604
+  },
+  {
+    "uid": "cmd_38",
+    "ref": "我要做饭了然后它就自动降下",
+    "max_sim": 0.48447418212890625,
+    "vanilla_text": "我要做饭了腰台自动降下",
+    "dicow_text": "我来做饭了腰台自动渐下",
+    "vanilla_cer": 0.3076923076923077,
+    "dicow_cer": 0.46153846153846156,
+    "rtf": 0.15950580186481716
+  },
+  {
+    "uid": "cmd_39",
+    "ref": "打开客厅空调",
+    "max_sim": 0.383579820394516,
+    "vanilla_text": "打开客厅公帖",
+    "dicow_text": "打开客厅公条",
+    "vanilla_cer": 0.3333333333333333,
+    "dicow_cer": 0.3333333333333333,
+    "rtf": 0.17469156356084914
+  },
+  {
+    "uid": "cmd_40",
+    "ref": "关闭氛围灯",
+    "max_sim": 0.31522610783576965,
+    "vanilla_text": "关闭氛围灯",
+    "dicow_text": "关闭氛围灯",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.0,
+    "rtf": 0.2082405592265882
+  },
+  {
+    "uid": "cmd_41",
+    "ref": "室内有点暗调亮一点",
+    "max_sim": 0.46668797731399536,
+    "vanilla_text": "室内有点暗,调亮一点",
+    "dicow_text": "室内有点暗调亮一点",
+    "vanilla_cer": 0.1111111111111111,
+    "dicow_cer": 0.0,
+    "rtf": 0.1243711565109856
+  },
+  {
+    "uid": "cmd_42",
+    "ref": "帮我预约十四点",
+    "max_sim": 0.20856884121894836,
+    "vanilla_text": "幫我預約14點",
+    "dicow_text": "幫我預約十四點",
+    "vanilla_cer": 0.2857142857142857,
+    "dicow_cer": 0.0,
+    "rtf": 0.17163214959515635
+  },
+  {
+    "uid": "cmd_43",
+    "ref": "灯光有点暗",
+    "max_sim": 0.3195355534553528,
+    "vanilla_text": "燈光有點暗",
+    "dicow_text": "don't want to load it",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 3.4,
+    "rtf": 0.16144208358248943
+  },
+  {
+    "uid": "cmd_44",
+    "ref": "我想看电影",
+    "max_sim": 0.5565681457519531,
+    "vanilla_text": "我想看电影",
+    "dicow_text": "或是可以",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 1.0,
+    "rtf": 0.2072795370867722
+  },
+  {
+    "uid": "cmd_45",
+    "ref": "关闭纱帘",
+    "max_sim": 0.28731998801231384,
+    "vanilla_text": "關給三人",
+    "dicow_text": "quand we started",
+    "vanilla_cer": 0.75,
+    "dicow_cer": 3.5,
+    "rtf": 0.22723319018698487
+  },
+  {
+    "uid": "cmd_46",
+    "ref": "放周杰伦的歌",
+    "max_sim": 0.16997560858726501,
+    "vanilla_text": "那周杰伦的歌",
+    "dicow_text": "",
+    "vanilla_cer": 0.16666666666666666,
+    "dicow_cer": 1.0,
+    "rtf": 0.17129829668453478
+  },
+  {
+    "uid": "cmd_47",
+    "ref": "把空调温度调到二十八度",
+    "max_sim": 0.43925797939300537,
+    "vanilla_text": "把空调温度调到28度",
+    "dicow_text": "把空调温度调到二十八度",
+    "vanilla_cer": 0.2727272727272727,
+    "dicow_cer": 0.0,
+    "rtf": 0.12946826260106092
+  },
+  {
+    "uid": "cmd_48",
+    "ref": "灯光亮度调到最高",
+    "max_sim": 0.5002326369285583,
+    "vanilla_text": "灯光亮度调到最高",
+    "dicow_text": "灯光亮度调到最高",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.0,
+    "rtf": 0.15209405085979363
+  },
+  {
+    "uid": "cmd_49",
+    "ref": "烟机下降",
+    "max_sim": 0.238633930683136,
+    "vanilla_text": "岩阶下降",
+    "dicow_text": "盐寂下降",
+    "vanilla_cer": 0.5,
+    "dicow_cer": 0.5,
+    "rtf": 0.18112841082233216
+  },
+  {
+    "uid": "cmd_50",
+    "ref": "灯的色温调到五千",
+    "max_sim": 0.3683171570301056,
+    "vanilla_text": "蹲了4万条到5千",
+    "dicow_text": "真的 someone跑到五千",
+    "vanilla_cer": 0.75,
+    "dicow_cer": 1.125,
+    "rtf": 0.14745974325918934
+  },
+  {
+    "uid": "cmd_51",
+    "ref": "你好科慕你好科慕",
+    "max_sim": 0.3267468214035034,
+    "vanilla_text": "你好 方默",
+    "dicow_text": "ne alcoholne alcohol",
+    "vanilla_cer": 0.75,
+    "dicow_cer": 2.25,
+    "rtf": 0.07874841333194903
+  },
+  {
+    "uid": "cmd_52",
+    "ref": "空调换气",
+    "max_sim": 0.5802209973335266,
+    "vanilla_text": "空调换系",
+    "dicow_text": "空调换气",
+    "vanilla_cer": 0.25,
+    "dicow_cer": 0.0,
+    "rtf": 0.18764062215817853
+  },
+  {
+    "uid": "cmd_53",
+    "ref": "权志龙最新的歌专辑叫什么名字",
+    "max_sim": 0.5179058313369751,
+    "vanilla_text": "全智隆最新的专辑教程名字",
+    "dicow_text": "全智隆最新的 gu 專輯叫什么名字",
+    "vanilla_cer": 0.5,
+    "dicow_cer": 0.35714285714285715,
+    "rtf": 0.10043612610436083
+  },
+  {
+    "uid": "cmd_54",
+    "ref": "我要吃饭",
+    "max_sim": 0.275404155254364,
+    "vanilla_text": "我要吃饭",
+    "dicow_text": "我要吃飯",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.0,
+    "rtf": 0.1764554741247645
+  },
+  {
+    "uid": "cmd_55",
+    "ref": "打开烟机打开洗衣模式打开新风模式",
+    "max_sim": 0.38094425201416016,
+    "vanilla_text": "打开烟机打开洗衣模式打开新风模式",
+    "dicow_text": "打開眼鏡打開洗衣模式打開心風模式",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.1875,
+    "rtf": 0.09918487897010123
+  },
+  {
+    "uid": "cmd_56",
+    "ref": "羊绒大衣要怎么洗",
+    "max_sim": 0.24035432934761047,
+    "vanilla_text": "楊榮大英要怎麼洗",
+    "dicow_text": "羊绒大一要怎么洗",
+    "vanilla_cer": 0.375,
+    "dicow_cer": 0.125,
+    "rtf": 0.1809561122072874
+  },
+  {
+    "uid": "cmd_57",
+    "ref": "空调调为十二度",
+    "max_sim": 0.3235856294631958,
+    "vanilla_text": "所以",
+    "dicow_text": "",
+    "vanilla_cer": 1.0,
+    "dicow_cer": 1.0,
+    "rtf": 0.19563446965133938
+  },
+  {
+    "uid": "cmd_58",
+    "ref": "我要休息我要睡觉了",
+    "max_sim": 0.32711103558540344,
+    "vanilla_text": "我要睡覺了",
+    "dicow_text": "我要說我要睡覺了",
+    "vanilla_cer": 0.4444444444444444,
+    "dicow_cer": 0.2222222222222222,
+    "rtf": 0.14233756960237315
+  },
+  {
+    "uid": "cmd_59",
+    "ref": "关闭顶灯",
+    "max_sim": 0.49096256494522095,
+    "vanilla_text": "关闭顶灯",
+    "dicow_text": "关闭鼎灯",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.25,
+    "rtf": 0.18438088132980024
+  },
+  {
+    "uid": "cmd_60",
+    "ref": "打开chatgpt",
+    "max_sim": 0.28895777463912964,
+    "vanilla_text": "我看你有2PT",
+    "dicow_text": "like h m g p d",
+    "vanilla_cer": 0.7777777777777778,
+    "dicow_cer": 0.7777777777777778,
+    "rtf": 0.18635966610205687
+  },
+  {
+    "uid": "cmd_61",
+    "ref": "打开客厅空调温度调整到二十三最低风速打开窗帘",
+    "max_sim": 0.7142260074615479,
+    "vanilla_text": "打开客厅空调温度调整到23最低风速打开窗帘",
+    "dicow_text": "打开客厅空调温度调整到二十三最低风速打开窗帘",
+    "vanilla_cer": 0.13636363636363635,
+    "dicow_cer": 0.0,
+    "rtf": 0.07958076187588659
+  },
+  {
+    "uid": "cmd_62",
+    "ref": "风速最低",
+    "max_sim": 0.18917223811149597,
+    "vanilla_text": "放手上",
+    "dicow_text": "",
+    "vanilla_cer": 1.0,
+    "dicow_cer": 1.0,
+    "rtf": 0.24329681022494448
+  },
+  {
+    "uid": "cmd_63",
+    "ref": "所有灯光打开",
+    "max_sim": 0.26771244406700134,
+    "vanilla_text": "所有燈光打開",
+    "dicow_text": "所有燈光打開",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.0,
+    "rtf": 0.19796390449051307
+  },
+  {
+    "uid": "cmd_64",
+    "ref": "取消勃朗烤箱",
+    "max_sim": 0.1300860047340393,
+    "vanilla_text": "去一下國藍跑一下",
+    "dicow_text": "",
+    "vanilla_cer": 1.3333333333333333,
+    "dicow_cer": 1.0,
+    "rtf": 0.15642330484482847
+  },
+  {
+    "uid": "cmd_65",
+    "ref": "我回家啦",
+    "max_sim": 0.502194344997406,
+    "vanilla_text": "我回家了",
+    "dicow_text": "我回家了",
+    "vanilla_cer": 0.25,
+    "dicow_cer": 0.25,
+    "rtf": 0.20261108875274658
+  },
+  {
+    "uid": "cmd_66",
+    "ref": "油烟机打开",
+    "max_sim": 0.38849979639053345,
+    "vanilla_text": "油烟机打开",
+    "dicow_text": "油煙機打開",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.0,
+    "rtf": 0.1917503552861733
+  },
+  {
+    "uid": "cmd_67",
+    "ref": "备餐模式",
+    "max_sim": 0.40455079078674316,
+    "vanilla_text": "备餐模式",
+    "dicow_text": "备餐模式",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.0,
+    "rtf": 0.18320562515094008
+  },
+  {
+    "uid": "cmd_68",
+    "ref": "嵌入式饮水机",
+    "max_sim": 0.5894200801849365,
+    "vanilla_text": "嵌入市营水机",
+    "dicow_text": "嵌入市营水基",
+    "vanilla_cer": 0.3333333333333333,
+    "dicow_cer": 0.5,
+    "rtf": 0.13497192571272842
+  },
+  {
+    "uid": "cmd_69",
+    "ref": "恢复",
+    "max_sim": 0.4362390637397766,
+    "vanilla_text": "恢復",
+    "dicow_text": "wai foo",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 3.0,
+    "rtf": 0.1772222651638994
+  },
+  {
+    "uid": "cmd_70",
+    "ref": "我要用餐了",
+    "max_sim": 0.5356597900390625,
+    "vanilla_text": "我要用殘懒",
+    "dicow_text": "我要用餐了",
+    "vanilla_cer": 0.4,
+    "dicow_cer": 0.0,
+    "rtf": 0.19446353451544499
+  },
+  {
+    "uid": "cmd_71",
+    "ref": "把所有灯光调到亮度调到百分之一百",
+    "max_sim": 0.30728691816329956,
+    "vanilla_text": "把所有的亮度調到100%",
+    "dicow_text": "把所有的燈光調到亮度調到百分之一百",
+    "vanilla_cer": 0.5625,
+    "dicow_cer": 0.0625,
+    "rtf": 0.09190214307684648
+  },
+  {
+    "uid": "cmd_72",
+    "ref": "关闭冰箱",
+    "max_sim": 0.09206224977970123,
+    "vanilla_text": "關閉一瓶下",
+    "dicow_text": "",
+    "vanilla_cer": 0.75,
+    "dicow_cer": 1.0,
+    "rtf": 0.19838587542999717
+  },
+  {
+    "uid": "cmd_73",
+    "ref": "关掉油烟机",
+    "max_sim": 0.4241845905780792,
+    "vanilla_text": "關掉有ND",
+    "dicow_text": "关掉 your nd",
+    "vanilla_cer": 0.6,
+    "dicow_cer": 1.2,
+    "rtf": 0.1872729870580858
+  },
+  {
+    "uid": "cmd_74",
+    "ref": "灯的色温调暖一点空调温度调低一点关闭窗帘",
+    "max_sim": 0.4751310646533966,
+    "vanilla_text": "灯的身份调暖一点空调温度调低一点关闭窗帘",
+    "dicow_text": "灯子身份調暖一點空調溫度調低一點關閉窗簾",
+    "vanilla_cer": 0.1,
+    "dicow_cer": 0.15,
+    "rtf": 0.06977173438025126
+  },
+  {
+    "uid": "cmd_75",
+    "ref": "哎这个怎么没通电哈",
+    "max_sim": 0.13773062825202942,
+    "vanilla_text": "这个怎么没通电啊",
+    "dicow_text": "",
+    "vanilla_cer": 0.2222222222222222,
+    "dicow_cer": 1.0,
+    "rtf": 0.15233901126729069
+  },
+  {
+    "uid": "cmd_76",
+    "ref": "打开客厅所有灯",
+    "max_sim": 0.18545077741146088,
+    "vanilla_text": "打開客廳所有燈子",
+    "dicow_text": "",
+    "vanilla_cer": 0.14285714285714285,
+    "dicow_cer": 1.0,
+    "rtf": 0.16609134164246372
+  },
+  {
+    "uid": "cmd_77",
+    "ref": "打开厨房",
+    "max_sim": 0.5520660281181335,
+    "vanilla_text": "打开厨房",
+    "dicow_text": "打开厨房",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.0,
+    "rtf": 0.20541091429649228
+  },
+  {
+    "uid": "cmd_78",
+    "ref": "我要吃饭了啊不对",
+    "max_sim": 0.43093717098236084,
+    "vanilla_text": "我要吃饭了",
+    "dicow_text": "我要吃飯了",
+    "vanilla_cer": 0.375,
+    "dicow_cer": 0.375,
+    "rtf": 0.11918557686702386
+  },
+  {
+    "uid": "cmd_79",
+    "ref": "关掉客厅灯光",
+    "max_sim": 0.49662408232688904,
+    "vanilla_text": "关掉客厅灯光",
+    "dicow_text": "关掉客厅灯光",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.0,
+    "rtf": 0.17231844720386325
+  },
+  {
+    "uid": "cmd_80",
+    "ref": "打开唯一唤醒",
+    "max_sim": 0.32385849952697754,
+    "vanilla_text": "打开唯一换行",
+    "dicow_text": "打开唯一幻型",
+    "vanilla_cer": 0.3333333333333333,
+    "dicow_cer": 0.3333333333333333,
+    "rtf": 0.16975783287210666
+  },
+  {
+    "uid": "cmd_81",
+    "ref": "声音大一点",
+    "max_sim": 0.4177902340888977,
+    "vanilla_text": "生意大一点",
+    "dicow_text": "生意大一点",
+    "vanilla_cer": 0.4,
+    "dicow_cer": 0.4,
+    "rtf": 0.17755518212986454
+  },
+  {
+    "uid": "cmd_82",
+    "ref": "恢复日常模式",
+    "max_sim": 0.22619006037712097,
+    "vanilla_text": "恢复日常模式",
+    "dicow_text": "威風日常模式",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.3333333333333333,
+    "rtf": 0.13148283582643955
+  },
+  {
+    "uid": "cmd_83",
+    "ref": "关掉客厅的灯",
+    "max_sim": 0.35705330967903137,
+    "vanilla_text": "关掉客厅的灯",
+    "dicow_text": "关掉客厅的灯",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.0,
+    "rtf": 0.16772648925153316
+  },
+  {
+    "uid": "cmd_84",
+    "ref": "室内有点暗调亮一点然后把窗帘开到最大",
+    "max_sim": 0.4365595877170563,
+    "vanilla_text": "室内有点暗调亮一点然后把窗帘开到最大",
+    "dicow_text": "室内有点暗调亮一点然后把窗帘开到最大",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.0,
+    "rtf": 0.08623518031198521
+  },
+  {
+    "uid": "cmd_85",
+    "ref": "取消闹钟",
+    "max_sim": 0.21500182151794434,
+    "vanilla_text": "许笑闹钟",
+    "dicow_text": "去消闹中",
+    "vanilla_cer": 0.5,
+    "dicow_cer": 0.5,
+    "rtf": 0.22253434040716716
+  },
+  {
+    "uid": "cmd_86",
+    "ref": "怎么打开无风感",
+    "max_sim": 0.6041048765182495,
+    "vanilla_text": "怎么打开无风感",
+    "dicow_text": "怎么打开无风感",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.0,
+    "rtf": 0.16257927651139917
+  },
+  {
+    "uid": "cmd_87",
+    "ref": "座椅感化那个屏",
+    "max_sim": 0.35664069652557373,
+    "vanilla_text": "昨天刚画的那个品质",
+    "dicow_text": "昨天剛畫的那個品質",
+    "vanilla_cer": 1.0,
+    "dicow_cer": 1.0,
+    "rtf": 0.19133586591390864
+  },
+  {
+    "uid": "cmd_88",
+    "ref": "会议模式",
+    "max_sim": 0.4174625277519226,
+    "vanilla_text": "会议模式",
+    "dicow_text": "会议模式",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.0,
+    "rtf": 0.2052656142583816
+  },
+  {
+    "uid": "cmd_89",
+    "ref": "窗帘的叶片帮我调整到一百八十度",
+    "max_sim": 0.5677577257156372,
+    "vanilla_text": "窗簾的葉片幫我調整到180度",
+    "dicow_text": "窗簾的一片棒調整到一百八十度",
+    "vanilla_cer": 0.26666666666666666,
+    "dicow_cer": 0.2,
+    "rtf": 0.1223912142743968
+  },
+  {
+    "uid": "cmd_90",
+    "ref": "我有点热",
+    "max_sim": 0.31007689237594604,
+    "vanilla_text": "我有點熱",
+    "dicow_text": "我有点热",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.0,
+    "rtf": 0.1914107471431067
+  },
+  {
+    "uid": "cmd_91",
+    "ref": "开启窗帘",
+    "max_sim": 0.35576361417770386,
+    "vanilla_text": "开启窗帘",
+    "dicow_text": "开启窗帘",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.0,
+    "rtf": 0.13218835923306316
+  },
+  {
+    "uid": "cmd_92",
+    "ref": "我有点冷",
+    "max_sim": 0.4482079744338989,
+    "vanilla_text": "我有点乐",
+    "dicow_text": "我有点冷",
+    "vanilla_cer": 0.25,
+    "dicow_cer": 0.0,
+    "rtf": 0.18672924278552053
+  },
+  {
+    "uid": "cmd_93",
+    "ref": "约下午四点洗衣服",
+    "max_sim": 0.2395012378692627,
+    "vanilla_text": "下午四里洗衣服",
+    "dicow_text": "下午四里洗衣服",
+    "vanilla_cer": 0.25,
+    "dicow_cer": 0.25,
+    "rtf": 0.13050909449414508
+  },
+  {
+    "uid": "cmd_94",
+    "ref": "进入我要吃饭了场景设置",
+    "max_sim": 0.46938350796699524,
+    "vanilla_text": "进入我要吃饭了场景设置",
+    "dicow_text": "进入我要吃饭了场景设置",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.0,
+    "rtf": 0.1038154142678247
+  },
+  {
+    "uid": "cmd_95",
+    "ref": "开启一键净呼吸",
+    "max_sim": 0.45008111000061035,
+    "vanilla_text": "开启一键静呼吸",
+    "dicow_text": "开启一键静呼吸",
+    "vanilla_cer": 0.14285714285714285,
+    "dicow_cer": 0.14285714285714285,
+    "rtf": 0.15142142578522624
+  },
+  {
+    "uid": "cmd_96",
+    "ref": "打开洗衣机",
+    "max_sim": 0.13556773960590363,
+    "vanilla_text": "打开洗衣机",
+    "dicow_text": "",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 1.0,
+    "rtf": 0.13549736343459204
+  },
+  {
+    "uid": "cmd_97",
+    "ref": "把前厅灯光调到亮度百分之百",
+    "max_sim": 0.4849656820297241,
+    "vanilla_text": "把前厅灯光调到亮度百分之百",
+    "dicow_text": "把前厅灯光调到亮度百分之百",
+    "vanilla_cer": 0.0,
+    "dicow_cer": 0.0,
+    "rtf": 0.11462551876179222
+  },
+  {
+    "uid": "cmd_98",
+    "ref": "全智能",
+    "max_sim": 0.32891175150871277,
+    "vanilla_text": "全这种",
+    "dicow_text": "全這種",
+    "vanilla_cer": 0.6666666666666666,
+    "dicow_cer": 0.6666666666666666,
+    "rtf": 0.16220659017562866
+  },
+  {
+    "uid": "cmd_99",
+    "ref": "打开干衣机门",
+    "max_sim": 0.24771709740161896,
+    "vanilla_text": "打開乾液精門",
+    "dicow_text": "ok 乾一進來",
+    "vanilla_cer": 0.3333333333333333,
+    "dicow_cer": 0.8333333333333334,
+    "rtf": 0.17414112129287873
+  }
+]

@@ -534,3 +534,71 @@ langfix 对 **white/pink 低重叠有效**（se6 中文 93%、正确率 60%@ov0�
 
 **thr<0.2 盲区**：submit_infer 在 max_sim<thr 短路跳 DiCoW（被拒 text 强制空），thr=0/0.1 correct 无法直测（间接外推 ~35-39%，不会明显>31%）。`analyze_pos_full.py` 工作点扫描 thr<0.2 行被污染（empty 当 cer=1.0），**引用需限定 thr≥0.2**。
 
+---
+
+## T24 — 2026-07-06 Phase 1 vanilla vs DiCoW 全量对比（H3 强证伪，CER 减半）
+
+**背景**：T22 仿真 + T23 真测均显示组合主线 cascaded 在极重 babble 下 CER ~1.0–1.25 是架构极限。Phase 1 用 zero-training 思路验证：**去掉 DiCoW 的 FDDT/STNO 条件化，改用 vanilla Whisper-large-v3-turbo + 声纹切 target timeline**。脚本 `code/exp_vanilla_vs_dicow.py`（全量 1362 条 pos，always_generate 不拒；vanilla/dicow 同 max_sim 由 diar+wespeaker 计算）。
+
+### 1. 转写质量（不拒，全 1362 条）
+
+| 指标 | vanilla | dicow | Δ |
+|---|---|---|---|
+| **转写 CER** | **0.664** | 1.248 | **−0.584（几乎好一倍）** |
+| **correct_rate (CER<0.5)** | **45.6%** | 31.4% | +14.2pp |
+| near_perfect (CER<0.1) | **20.8%** | 14.8% | +6.0pp |
+| **英文幻觉率** | **0.59%** | **18.80%** | **−18.21pp ← DiCoW 条件化主动造孽** |
+
+**英文幻觉根因坐实**：DiCoW 条件化造 18.8% 英文幻觉，vanilla 仅 0.59%。之前 langfix 是在打 DiCoW 自己造的孽（治标），vanilla 路线从根消灭（治本）。
+
+### 2. thr 工作点（含拒识拒=1.0 = 提交 overall CER）
+
+| thr | vanilla overall CER | dicow overall CER | Δ |
+|---|---|---|---|
+| **0.20** | **0.711** | 1.241 | **−0.530 ← vanilla 终于把 overall 拉到 <1** |
+| 0.30 | 0.774 | 1.093 | −0.319 |
+| 0.40 | 0.867 | 0.964 | −0.097 |
+
+**评分盘算**：thr=0.20 时 overall CER 0.711 → **CER 40% 腿从 ~0 分变 ~11 分**（线性 (1-0.711)×40 ≈ 11.6，待主办方 CER 口径确认）。
+
+### 3. sim 分桶（DiCoW 条件化最毒的铁证）
+
+| sim 桶 | vanilla CER | dicow CER | Δ |
+|---|---|---|---|
+| [0.2,0.3) | 0.746 | **1.606** | **−0.860** |
+| [0.3,0.4) | 0.623 | **1.523** | **−0.900 ← 条件化最反作用** |
+| ≥0.4（轻 babble） | 0.364 | 0.830 | −0.466（仍优） |
+
+**机制**：sim 0.2–0.4 是 babble 重灾区，DiCoW 的 FDDT encoder 门控在低覆盖 STNO 下大量帧走 overlap/silence 通道 → encoder 表征劣化 → 英文漂移/重复循环幻觉；vanilla 无 FDDT，不劣化，language=zh 正常生效。**cascaded 条件化在中等 sim 桶反作用最烈**。
+
+### 4. 路线机制（zero-training）
+
+```
+diar（DiariZen wavlm-large）+ wespeaker 声纹
+  → 选 target speaker（复用 enroll_infer 锁定逻辑）
+  → 切 target timeline 段（含 target 活跃的重叠区）拼接
+  → vanilla Whisper-large-v3-turbo 转写（去掉 stno_mask/FDDT 条件化）
+```
+
+无任何训练/微调；与 DiCoW 共享前置 diar+声纹（公平对比），唯一变量是 ASR 后端（vanilla vs DiCoW+FDDT）。
+
+### 5. 答辩弹药
+
+「cascaded 条件化机制在极重 babble 下反作用（sim 0.2–0.4 桶 CER 1.5–1.6、英文幻觉 18.8%），改用 target extraction + vanilla Whisper，CER 几乎减半」——契合出题方反 cascaded 审美 + 诚实归因 + 真数据背书。比"端到端联合训练 X"轻得多（zero-training 即斩获大部分收益），是保底之上的现实破局路线。
+
+### 6. 产物
+
+- `code/exp_vanilla_vs_dicow.py` — 全量对比实验脚本（vanilla vs dicow 同 max_sim）
+- `code/analyze_vanilla_full.py` — vanilla 全量深度分析（thr 工作点 + sim 分桶 + 英文幻觉）
+- `code/exp_vanilla_full.json` — 实验结果数据
+- memory `h3-dicow-conditioning-backfire-vanilla`
+
+### 7. P2 待做（Phase 1 后续落地）
+
+1. **vanilla 集成 submit_infer**（最高优）：`--asr-backend {dicow,vanilla}` 切换，把 0.664/0.711 变提交数字
+2. **声纹强化**：CAM++ per-speaker / US-PVAD 改善 target timeline 切割（低 sim 桶当前是瓶颈）
+3. **数字 initial_prompt**：家居指令数字/温度场景的锦上添花
+4. **sim_thr 待主办方评测口径**：CER 均值→0.4 / correct→0.2 / pos 不许拒→0
+
+---
+

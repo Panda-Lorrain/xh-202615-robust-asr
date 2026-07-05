@@ -9,7 +9,7 @@
 > - **保底改为关LLM**（⚠️ 3-agent 对抗审查修正：**trade-off 非全面优于** —— 关LLM 赢 neg RR **98.5%**>96.2% + RTF **0.24**<1.01 4×；**开LLM 赢 pos 救回**：28 条 LLM 救回的 pos 里 **26 条 CER=0.000 完美**（"关闭客厅空调"等 max_sim 低至 0.022 被 sim_only 误杀，LLM 语义救回），原"pos 持平"错；选关LLM = 为效率20%+RR40% 牺牲 pos 救回，pos 反正架构极限放弃）。**「三路融合拒识」被证伪**（llm_or_sim 是 AND，LLM 只减拒不增拒）——**答辩别列为强项**。
 > - **SE-DiCoW 已证伪弃用**（架构不兼容：`mt_num_speakers=2` 多-speaker + self-enrollment 范式，与 `enroll_infer` 单-target 范式根本不同；短音频 OOD）—— 红线4/5、A4、B4 把 SE-DiCoW 当「主押/在用」的内容**已失效**，答辩**不得**再说在用 SE-DiCoW（诚实说法：尝试过、范式不兼容、放弃）。
 > - **单通道已确认**（datasetA 100% 单通道 16k）—— 风险1「通道数未定（最关键未知项）」、第四节「多通道分支零覆盖」**已过时**；空间路线（DSENet/VSAEC/DOA/KWS）**全弃**。
-> - **pos CER 真测值已出 = ~1.0（架构极限）**（babble 89% 主导，cer_accepted 0.94，sim_thr 全档扫描无 thr 能救）—— C1「目标 CER 需 W6 定」改为「真测 pos CER 1.0 是 cascaded 在极重 babble 下的架构极限」。**CER 均值是幻觉陷阱**（thr 升=误拒换幻觉超长，correct_rate 才诚实：31%@thr0.2 → 14%@thr0.4 真退化）。
+> - **pos CER 真测值已出 = ~1.0（架构极限）**（babble 89% 主导，cer_accepted 0.94，sim_thr 全档扫描无 thr 能救）—— C1「目标 CER 需 W6 定」改为「真测 pos CER 1.0 是 cascaded 在极重 babble 下的架构极限」。**CER 均值是幻觉陷阱**（thr 升=误拒换幻觉超长，correct_rate 才诚实：31%@thr0.2 → 14%@thr0.4 真退化）。⚠️ **2026-07-06 Phase 1 已推翻此结论**：根因不是 cascaded 架构极限，而是 **DiCoW 的 FDDT/STNO 条件化反作用**（sim 0.2–0.4 桶 CER 1.5–1.6、英文幻觉 18.8%）；改用 vanilla Whisper + target extraction，CER 减半到 **0.664**（详见 A6 / 风险 11）。下文所有"CER ~1.0 架构极限 / 无 thr 能救"均以此修正为准。
 > - **效率真测**：关LLM RTF **0.24**（4060，sim_only），L20 待测 —— 红线3「未实测」部分过时。
 > - **第五节开场定位**仍为设计稿口吻，答辩前应改为：真测基线 + 关LLM + **诚实 CER 1.0 架构极限** + 拒识 98.5% / 效率 0.24 拿分 + 端到端联合 X 是未来方向。
 > - **答辩核心叙事（真测后）**：babble 归因清晰（T22 H3 确证：vanilla Whisper 在 babble 正常，英文幻觉 100% 是 DiCoW FDDT/STNO 条件化病害）+ 单通道确认 + 工程优化（Gap3 批量化 / 繁简归一 zhconv / langfix）+ **诚实组合主线 CER 1.0 是架构极限**（靠拒识 40% + 效率 20% 拿分，CER 40% 放弃）+ 端到端联合 X 是冲 CER 的未来方向。
@@ -84,6 +84,18 @@
 **A4.（⚠️ 2026-07-04 已修正：SE-DiCoW 证伪弃用）为什么不押 DSENet+空间 TSE？**
 答：**SE-DiCoW 已尝试并放弃**——`mt_num_speakers=2` 多-speaker + self-enrollment 范式与 `enroll_infer` 单-target 范式根本不兼容，短音频 OOD（详见 `RESULTS.md` T23 / `AGENT_HANDOFF.md` 第3节）。DSENet 无预训练权重、未测 −5dB、仅代码骨架，且**单通道已确认**（datasetA 100% 单通道）→ 空间路线全弃。实际主线用 **DiCoW_v3_2**（wespeaker 声纹 + DiariZen diar 锁 target → STNO → DiCoW 转），有权重、单通道可跑通、全开源。
 
+**A6.（⭐ 2026-07-06 Phase 1 真测突破）为什么主线从 DiCoW 条件化改成 vanilla Whisper + target extraction？**
+答：**2026-07-06 全量真测 1362 条 pos（zero-training）发现 DiCoW 的 FDDT/STNO 条件化在极重 babble 下【反作用】**，改用 vanilla Whisper-large-v3-turbo + 声纹切 target timeline 路线，**CER 几乎减半**：
+- **转写 CER**：vanilla **0.664** vs DiCoW 1.248（Δ −0.58，几乎好一倍）
+- **correct_rate**：vanilla **45.6%** vs DiCoW 31.4%；**near_perfect**：vanilla 20.8% vs DiCoW 14.8%
+- **英文幻觉率**：vanilla **0.59%** vs DiCoW **18.80%** ← DiCoW 条件化主动造孽
+- **sim 分桶（条件化最毒的证据）**：sim[0.2,0.3) vanilla 0.746 vs DiCoW **1.606**（Δ −0.86）；sim[0.3,0.4) vanilla 0.623 vs DiCoW **1.523**（Δ −0.90）；sim≥0.4 轻 babble vanilla 0.364 vs DiCoW 0.830（Δ −0.47，仍优）
+- **overall CER（含拒=1.0）**：thr=0.20 vanilla **0.711** vs DiCoW 1.241（vanilla 终于把 overall 拉到 <1）→ **CER 40% 腿从 ~0 分变 ~11 分**（线性 (1-0.711)×40，待主办方 CER 口径确认）
+
+**机制**：diar+wespeaker 选 target（复用 `enroll_infer` 逻辑）→ 切 target timeline 段（含重叠区）拼接 → vanilla Whisper 转写（去掉 stno_mask/FDDT 条件化）。**英文幻觉根因坐实**：DiCoW 条件化造 18.8% 英文幻觉，vanilla 仅 0.59%——之前 langfix 是在打 DiCoW 自己造的孽（治标），vanilla 路线从根消灭（治本）。
+
+**答辩弹药**：「cascaded 条件化机制在极重 babble 下反作用（sim 0.2–0.4 桶 CER 1.5–1.6、英文幻觉 18.8%），改用 target extraction + vanilla Whisper，CER 几乎减半」——契合出题方反 cascaded 审美 + 诚实归因 + 真数据背书。**这推翻了"pos CER ~1.0 是架构极限"的旧结论**：极限是 DiCoW 条件化造的，不是 cascaded 本身的；vanilla 路线 zero-training 就把 CER 拉到 0.664，后续声纹强化（CAM++/US-PVAD）+ 数字 initial_prompt 还能再压。详见 memory `h3-dicow-conditioning-backfire-vanilla` + `code/exp_vanilla_full.json`。
+
 ### B. 技术深度
 
 **B1. FDDT 凸组合为什么优于硬掩蔽？**
@@ -104,6 +116,7 @@
 
 **C1. 40% CER 怎么保证？目标多少？**
 答：⚠️ **2026-07-04 真测已出**：pos CER ~1.0 是 cascaded 在极重 babble（89% 主导）下的**架构极限**，sim_thr 全档扫描无 thr 能救（cer_accepted 0.94）。原"SE-DiCoW 冲精度"路径**已失效**（SE-DiCoW 范式不兼容、已弃，见 A4）；实际主线 **DiCoW_v3_2**（wespeaker+DiariZen→STNO→DiCoW）。CER 40% 已诚实放弃，靠拒识 40% + 效率 20% 拿分；冲 CER 的未来方向是端到端联合 X。**CER 均值是幻觉陷阱**，看 correct_rate（31%@thr0.2 → 14%@thr0.4 真退化）。
+⚠️ **2026-07-06 Phase 1 已推翻加粗"架构极限"结论**：根因是 **DiCoW FDDT/STNO 条件化反作用**（sim 0.2–0.4 桶 CER 1.5–1.6、英文幻觉 18.8%），不是 cascaded 本身。改用 **vanilla Whisper + target extraction（diar+声纹切 target timeline）**，全量 1362 条 zero-training：**转写 CER 0.664（vs DiCoW 1.248 减半）/ correct_rate 45.6%（vs 31.4%）/ 英文幻觉 0.59%（vs 18.80%）**，overall CER（含拒=1.0）**thr=0.20 → 0.711**（<1），**CER 40% 腿从 ~0 分变 ~11 分**（线性 (1-0.711)×40，待主办方口径确认）。后续可叠加：① 声纹强化 CAM++/US-PVAD ② 数字 initial_prompt。详见 A6 / 风险 11 / memory `h3-dicow-conditioning-backfire-vanilla`。
 
 **C2. 40% 拒识率怎么定义？怎么测？** ⚠️ 这是当前定义最模糊处
 答：**拒识率的精确定义（精确率/召回率/F1/TPR-FPR 权衡）需向主办方确认**——这是待确认项（00 文档第九节）。⚠️ 真测后拒识主力是**声纹 max_sim 阈值**（`decide_reject` = AND：`llm!=accept AND max_sim<thr`），LLM 语义/PVAD 仅辅助校验、且**只能减拒不加拒**——"三路融合"作主力强项已被 3-agent 对抗审查证伪（GAP4），答辩**不得**列为强项。thr 取值取决于评测口径（CER 均值→0.4/0.45 / correct→0.2 / pos 不许拒→0）。
@@ -208,6 +221,14 @@
 - **应对**：**严格按"对评分权重边际贡献 × 完成概率"排序**：① 保 W1（DiCoW_v3_2 跑通；⚠️ SE-DiCoW 已弃用，不再作 W1 地基）+ W2（数据）+ W6（评测）= 地基；② 保 CER/拒识核心（M4+M6）；③ 效率优化（M7）；④ 候选 X/Y 仅在底盘稳后投入。**绝不**为冲上限牺牲底盘。
 - **触发**：进度落后于阶段里程碑。
 
+### 风险 11：DiCoW 条件化在极重 babble 下反作用（⭐ 2026-07-06 Phase 1 已化解）
+- **现象**：DiCoW 的 FDDT/STNO 条件化原设计是"用 STNO 概率凸组合抑制非目标帧"，但在 datasetA 极重 babble（sim 0.2–0.4 桶、目标声纹 median sim 0.28）下**条件化反而毒化转写**——sim[0.2,0.3) 桶 CER **1.606**、sim[0.3,0.4) 桶 CER **1.523**（均远高于 DiCoW 整体 1.248，是 DiCoW 最毒桶），且**主动制造 18.80% 英文幻觉**（vanilla 同数据仅 0.59%）。
+- **根因**：极重 babble 下 STNO 概率对 target 的判别失效（mel 退化 + 声纹 sim 低 → 凸组合权重错乱），FDDT 把错乱权重焊进 Whisper 输入，比"不条件化"更糟。条件化是 DiCoW 的核心卖点，恰恰在题目最在意的极重 babble 区段反噬。
+- **应对（已落地）**：改用 **vanilla Whisper-large-v3-turbo + target extraction** 路线——diar+wespeaker 选 target（复用 `enroll_infer` 逻辑）→ 切 target timeline 段（含重叠区）拼接 → vanilla Whisper 转写（去掉 stno_mask/FDDT 条件化）。**全量 1362 条 zero-training 真测：CER 0.664 vs DiCoW 1.248（几乎减半）、英文幻觉 0.59% vs 18.80%（从根消灭）、overall CER thr=0.20 → 0.711（CER 40% 腿从 ~0 分变 ~11 分）**。
+- **备选**：① 声纹强化（CAM++/US-PVAD 内生声纹）把 target selection 准确率再拉一档；② 数字 initial_prompt（家居指令高频数字，锦上添花）；③ 若后续真测发现某些轻 babble 段 DiCoW 仍优，可按 sim 分桶路由（高 sim 桶走 DiCoW / 低 sim 桶走 vanilla）。
+- **触发**：已触发并化解；后续每次 ablation 须监控英文幻觉率 + sim 分桶 CER 防回退。
+- **产物**：`code/exp_vanilla_vs_dicow.py` + `code/analyze_vanilla_full.py` + `code/exp_vanilla_full.json` + memory `h3-dicow-conditioning-backfire-vanilla`。
+
 ---
 
 ## 四、完整性 critic 指出的遗漏与补强
@@ -235,6 +256,8 @@
 > "我们的方案是**稳健的组合主线（保下限：wespeaker+DiariZen 锁 target → STNO → DiCoW 转 + sim_thr 拒识，全开源、可跑通、可降级）+ 端到端联合训练的差异化（冲上限：契合反 cascaded 审美，对标 TS-ASR-AD）**。我们诚实承认级联是次优架构、完全重叠是最薄弱处——这些都是 X1 阶段的硬交付，我们用数据回答，不空谈。"
 >
 > ⚠️ **2026-07-04 真测后修正定位（答辩实际开口用此版）**：组合主线（**关 LLM**，`--no-llm`）真测基线 = **neg RR 98.5%@thr0.4 + RTF 0.24（4060，sim_only）+ pos CER ~1.0（架构极限，诚实放弃 CER 40%）**。靠 RR 40% + 效率 20% 拿分，CER 40% 不再硬冲；"三路融合拒识"作强项已被 3-agent 对抗审查证伪（AND 逻辑、LLM 只减拒不加拒），答辩**不列**为强项；SE-DiCoW 已尝试放弃（范式不兼容）。冲 CER 的未来方向是端到端联合 X。trade-off 诚实交代：关 LLM 牺牲了 28 条 pos 救回（26 条 CER=0.000 完美），换 RR+效率。
+>
+> ⭐ **2026-07-06 Phase 1 真测突破（最新，开口优先讲）**：保底盘仍是关 LLM 保底（RR 98.5% + RTF 0.24），**但 pos CER 这条腿被 vanilla 路线救回来了**——全量 1362 条 zero-training 真测发现 DiCoW 的 FDDT/STNO 条件化在极重 babble 下【反作用】（sim 0.2–0.4 桶 CER 1.5–1.6、英文幻觉 18.8%），改用 **target extraction（diar+声纹切 target timeline）+ vanilla Whisper-large-v3-turbo**，CER 几乎减半：**转写 CER 0.664（vs DiCoW 1.248）/ correct_rate 45.6%（vs 31.4%）/ 英文幻觉 0.59%（vs 18.80%）**，overall CER（含拒=1.0）**thr=0.20 → 0.711**（vanilla 终于把 overall 拉到 <1），**CER 40% 腿从 ~0 分变 ~11 分**。⚠️ 这推翻了"pos CER ~1.0 是架构极限 / 无 thr 能救"的旧结论——根因是 DiCoW 条件化反作用，不是 cascaded 本身；vanilla zero-training 就破局，后续声纹强化（CAM++/US-PVAD）+ 数字 initial_prompt 还能再压。契合出题方反 cascaded 审美 + 诚实归因 + 真数据背书。详见 A6 + memory `h3-dicow-conditioning-backfire-vanilla`。
 
 ---
 

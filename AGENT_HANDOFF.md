@@ -1,14 +1,18 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
-> **交接时间**：2026-07-04（真测基线已出 + 组合主线极限确认 + 保底决策）
+> **交接时间**：2026-07-06（Phase 1 突破：vanilla 路线 CER 减半，H3 强证伪 DiCoW 条件化反作用；保底仍备用）
 > **下个 agent 读序**：本文件 → `CLAUDE.md`（当前阶段+下一步已更新）→ 关键 memory（见第 10 节）→ `交付/使用说明.md`
-> **当前 git**：`master` @ `c4fbadc`（已 push origin）— 本次 5 commit：datasetA 适配 / enroll_infer 批量化+langfix / submit_infer Gap3 / 分析脚本 / CLAUDE.md
+> **当前 git**：`master` @ `f09b2b6`（已 push origin）— 上次 5 commit：datasetA 适配 / enroll_infer 批量化+langfix / submit_infer Gap3 / 分析脚本 / CLAUDE.md
 
 ---
 
 ## 0. 一句话现状
 
-真实测试集 A 到手 → 全量真测 → **组合主线 cascaded 在极重 babble 下 pos CER ~1.0 是架构极限**（三方案攻短板全受挫）→ **保底（2026-07-04 真测三档确认）= 关LLM + sim_thr=0.4**（neg RR **98.5%** / pos CER **1.0** 架构极限 / RTF **0.24**）+ 答辩讲归因。
+真实测试集 A 到手 → 全量真测 → 组合主线 cascaded 在极重 babble 下 pos CER ~1.0 是架构极限 → **2026-07-06 Phase 1 突破**：zero-training 改用 **vanilla Whisper-large-v3-turbo + 声纹切 target timeline**（去掉 DiCoW FDDT/STNO 条件化），**CER 1.248 → 0.664 减半**，correct_rate 31%→**46%**，英文幻觉 18.8%→**0.59%**（DiCoW 条件化主动造孽坐实），thr=0.20 overall CER **0.711**（vanilla 终把 overall 拉到 <1，CER 40% 腿从 ~0 分变 ~11 分）。**保底（关LLM thr=0.4）仍备用**（neg RR 98.5% / RTF 0.24），但 Phase 1 给了一条现实破局路线。
+
+> ⚠️ **2026-07-06 Phase 1 突破（覆盖旧"保底为唯一选项"，以下为准）**：H3 强证伪——DiCoW 的 FDDT/STNO 条件化在极重 babble 下【反作用】。sim 分桶铁证：sim[0.2,0.3) vanilla 0.746 vs dicow **1.606** / sim[0.3,0.4) vanilla 0.623 vs dicow **1.523**（Δ-0.90，条件化最反作用）。机制：diar+wespeaker 选 target → 切 target timeline 段（含重叠区）拼接 → vanilla Whisper 转写（去 FDDT）。**英文幻觉根因坐实**：DiCoW 条件化造 18.8% 英文幻觉，vanilla 仅 0.59%——langfix 是治标（打 DiCoW 自己造的孽），vanilla 路线从根消灭（治本）。**zero-training**：无需大工程即可斩获大部分 CER 收益，比端到端联合 X 轻得多。**答辩弹药**：「cascaded 条件化机制在极重 babble 下反作用，改用 target extraction + vanilla Whisper，CER 几乎减半」——契合出题方反 cascaded 审美 + 诚实归因 + 真数据背书。完整数据表 / thr 工作点 / sim 分桶 / 产物路径见 `RESULTS.md` T24 + memory `h3-dicow-conditioning-backfire-vanilla`。**P2 最高优 = vanilla 集成 submit_infer**（`--asr-backend vanilla`），把 0.664/0.711 变提交数字。
+>
+> ⚠️ **2026-07-04 真测保底仍有效（保留作 fallback）**：关LLM vs 开LLM = trade-off（原"全面优于/pos 持平"被审查推翻）—— 关LLM 赢 neg RR **98.5%**>96.2% + RTF **0.24**<1.01（4×）；开LLM 赢 pos 救回（28 条 LLM 救回的 pos 里 **26 条 CER=0.000 完美**）。⚠️**提交默认 flag=灾难 → 用 `code/run_baodi.sh` 锁死**。⚠️**CER 均值是幻觉陷阱**（correct_rate 才诚实）。**thr 待主办方评测口径定**。三档数字 / 归因 / 产物路径详见 `RESULTS.md` T23 + memory `baodi-config-no-llm`。
 
 > ⚠️ **2026-07-04 真测更新（覆盖原"含LLM"保底，以下为准；含 3-agent 对抗审查修正）**：实测三档确认 **关LLM vs 开LLM = trade-off（原"全面优于/pos 持平"被审查推翻）** —— 关LLM 赢 neg RR **98.5%**>96.2% + RTF **0.24**<1.01（4×）；**开LLM 赢 pos 救回**（28 条 LLM 救回的 pos 里 **26 条 CER=0.000 完美**，原"pos 持平"错）。选关LLM = **为效率20%+RR40% 牺牲 pos 救回**（pos 反正架构极限放弃）。⚠️**7 GAP 见 RESULTS T23**：CER ±0.04 噪声（langfix 边际 0.028 不可靠）/ L20 batch=1 未实现 / **提交默认 flag=灾难 → 用 `code/run_baodi.sh` 锁死** / 三路融合证伪（llm_or_sim 是 AND）/ 99%@0.4 高估（实 98.5%）/ neg 漏拒口径未验证 / pos CER 全口径 conceded。⚠️**CER 均值是幻觉陷阱**：thr 升 = 误拒把 babble 幻觉超长样本（CER>>1）换成 CER=1.0，**correct_rate 才诚实**（thr=0.2 correct 31% → thr=0.4 correct 14% 真退化）。**pos CER ~1.0 无 thr 能救**（babble 89% 主导，cer_accepted 0.94，两极分化 9.2% 完美 vs 81.5% 灾难）。**thr 待主办方评测口径定**（CER 均值→0.4 / correct→0.2 / pos 不许拒→0）。三档数字 / 归因 / 产物路径详见 `RESULTS.md` T23 + memory `baodi-config-no-llm`。下个 agent：保底用**关LLM**（`submit_infer.py --no-llm --sim-thr 0.4`），别再走含LLM。
 
@@ -81,10 +85,14 @@ code/.venv/Scripts/python.exe code/analyze_pos_full.py code/out_pos_full/result.
 
 ## 6. 待办优先级
 
-1. 🔧 **保底执行**（进行中）：上面命令跑 pos+neg 全量 thr=0.4，确认最终 CER/RR 提交数字
-2. ⚡ **L20 耗时验证**：submit_infer 显存自适应（L20 48GB 大 batch）+ 租 AutoDL L40 验证端到端（官方 L20 评效率，本机仅 4060，memory `l20-eval-hardware`）
-3. 📄 **答辩 FAQ + 演练**：`03_答辩FAQ与风险预案.md` 待写；答辩重点讲故事 = babble 归因清晰 / 单通道确认 / 工程优化（Gap3·繁简·langfix）/ 诚实组合主线极限 + 端到端 X 是未来方向
-4. ⚠️ **CER 破局战略**（如要冲，大工程）：①端到端联合训练 X（反 cascaded，出题方偏好，`docs/02_上限候选深读.md`）②babble 专用源分离（SepFormer 提 target mel 再喂 DiCoW，同时救 sim+转写）—— 已选保底，这两条留待时间充裕
+1. 🔧 **P2-① vanilla 集成 submit_infer**（**最高优，Phase 1 落地**）：加 `--asr-backend {dicow,vanilla}` 切换，复用 enroll_infer 的 diar+声纹锁定 target timeline，转写用 vanilla Whisper-large-v3-turbo（去 FDDT/STNO 条件化）。把 CER 0.664 / overall 0.711 变成可提交数字。需测 vanilla 路径 RTF（基座 Whisper-large-v3-turbo 同 0.89G，预期与 DiCoW 相近或更快，无 FDDT 开销）
+2. 🔧 **P2-② 声纹强化**（中优，攻低 sim 桶）：CAM++ per-speaker / US-PVAD 改善 target timeline 切割。低 sim 桶（0.2–0.4）即便 vanilla CER 仍 0.6–0.75，切割错了 vanilla 也救不回。先前 CAM++ per-speaker 证伪（0.191 < wespeaker 0.218），但那是为 DiCoW 路线评的；vanilla 路线下声纹错→直接转错段，权重更高，值得复评
+3. 🔧 **P2-③ 数字 initial_prompt**（低优，锦上添花）：家居指令数字/温度场景（"调到二十六度"），vanilla 路线下可试 prompt（DiCoW 路线 T19 已证 prompt 反伤，vanilla 未测）
+4. ⚠️ **P2-④ sim_thr 待主办方评测口径**：CER 均值→thr=0.4 / correct_rate→thr=0.2 / pos 不许拒→thr=0。**Phase 1 改变格局**：thr=0.20 vanilla overall CER 0.711 已 <1，不像 dicow 路线 pos CER 全档 ~1.0 无 thr 能救——vanilla 路线下 thr 选择更宽松
+5. 🔧 **保底执行**（fallback，仍备用）：上面命令跑 pos+neg 全量 thr=0.4 关LLM，确认最终 CER/RR 提交数字（保底仍有效，Phase 1 失败时退路）
+6. ⚡ **L20 耗时验证**：submit_infer（含 vanilla 后端）显存自适应（L20 48GB 大 batch）+ 租 AutoDL L40 验证端到端（官方 L20 评效率，本机仅 4060，memory `l20-eval-hardware`）
+7. 📄 **答辩 FAQ + 演练**：`03_答辩FAQ与风险预案.md` 待写；答辩重点讲故事 = **Phase 1 vanilla 突破反 cascaded（新核心论点）** / babble 归因清晰 / 单通道确认 / 工程优化（Gap3·繁简·langfix）/ 诚实组合主线极限 + 端到端 X 是未来方向
+8. ⚠️ **CER 进一步破局**（如要冲，大工程）：①端到端联合训练 X（反 cascaded，出题方偏好，`docs/02_上限候选深读.md`）②babble 专用源分离（SepFormer 提 target mel 再喂 vanilla/DiCoW，同时救 sim+转写）—— Phase 1 已用 zero-training 拿大部分收益，这两条留待时间充裕
 
 ## 7. 环境与工具规范（必读，省踩坑）
 
@@ -146,4 +154,4 @@ code/.venv/Scripts/python.exe -c "from huggingface_hub import snapshot_download;
 
 ---
 
-**给下一个 agent 的话**：组合主线 CER 1.4 是真实极限，别在 cascaded 框架内打转（langfix/STNO/enroll 增强/SE-DiCoW 全试过，边际/无效/不兼容）。保底已确定（langfix+thr=0.4，RR 99%），先把保底执行 + L20 验证 + 答辩做完。若要冲 CER，跳到端到端联合 X 或 babble 分离（都是大工程）。所有踩坑见第 8 节，别重试。
+**给下一个 agent 的话**：⚠️ **2026-07-06 Phase 1 已破局**——组合主线 CER 1.4 是 **DiCoW 条件化路径**的极限（非任务极限），改用 vanilla Whisper + 声纹切 target timeline（zero-training）CER 已减半到 0.664、overall thr=0.2 拉到 0.711（CER 40% 腿 0→11 分）。**最高优 P2：vanilla 集成 submit_infer（`--asr-backend {dicow,vanilla}`）把 0.664 变提交数字**，无需大工程。保底（关 LLM+thr=0.4，RR 98.5%）仍作 fallback。langfix/STNO/enroll 增强/SE-DiCoW 在 cascaded 框架内试过无效，别重试。所有踩坑见第 8 节。
