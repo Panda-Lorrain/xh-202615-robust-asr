@@ -14,6 +14,7 @@ import argparse
 import subprocess
 import contextlib
 from datetime import datetime
+from repro import set_global_seed  # 可复现性: 主进程种子(子进程各自 set_global_seed)
 
 HERE = os.path.dirname(os.path.abspath(__file__))      # code/
 ROOT = os.path.dirname(HERE)                            # 项目根
@@ -111,31 +112,32 @@ def _run(cmd, py):
     return dt
 
 
-def run_noise_classify(rec_dir, out_json, py=PY_MAIN):
+def run_noise_classify(rec_dir, out_json, seed=42, py=PY_MAIN):
     """阶段0: 估每条噪声类型 -> out_json(list[{file,atten_lim_db,...}])。"""
     return _run([os.path.join(HERE, "noise_classify.py"),
-                 "--in-dir", rec_dir, "--out", out_json], py)
+                 "--in-dir", rec_dir, "--out", out_json,
+                 "--seed", str(seed)], py)
 
 
-def run_se_bucket(in_dir, out_dir, atten_db, py=PY_SE):
+def run_se_bucket(in_dir, out_dir, atten_db, seed=42, py=PY_SE):
     """阶段1(单桶): se_denoise 对 in_dir 全体用统一 atten_db 降噪 -> out_dir。"""
     return _run([os.path.join(HERE, "se_denoise.py"),
                  "--in-dir", in_dir, "--out-dir", out_dir,
-                 "--atten-lim-db", str(atten_db)], py)
+                 "--atten-lim-db", str(atten_db), "--seed", str(seed)], py)
 
 
-def run_enroll_infer(enrollment, rec_dir, out_json, device, sim_thr, py=PY_MAIN):
+def run_enroll_infer(enrollment, rec_dir, out_json, device, sim_thr, seed=42, py=PY_MAIN):
     """阶段2: enroll声纹锁定+diar+DiCoW批量转写 -> out_json(list[{...}])。"""
     return _run([os.path.join(HERE, "enroll_infer.py"),
                  "--enrollment", enrollment, "--recognition-folder", rec_dir,
                  "--out-json", out_json, "--always-generate",
                  "--reject-threshold", str(sim_thr),
-                 "--device", device], py)
+                 "--device", device, "--seed", str(seed)], py)
 
 
 def run_enroll_infer_pairs(pairs_json, out_json, device, sim_thr,
                            enroll_augment=False, aug_snrs="10,5,0", aug_noise_dir=None,
-                           asr_backend="dicow", py=PY_MAIN):
+                           asr_backend="dicow", seed=42, py=PY_MAIN):
     """阶段2(批量化, datasetA 用): enroll_infer --pairs 单进程跑所有对,模型加载1次。
     绕过"按 enrollment 分组多次 subprocess"的瓶颈(datasetA 每条 enr 不同 → 1838 次重载)。
     enroll_augment=True 透传 --enroll-augment(干净+多档加噪 emb 均值,提 babble 鲁棒)。
@@ -144,7 +146,7 @@ def run_enroll_infer_pairs(pairs_json, out_json, device, sim_thr,
            "--pairs", pairs_json,
            "--out-json", out_json, "--always-generate",
            "--reject-threshold", str(sim_thr),
-           "--device", device]
+           "--device", device, "--seed", str(seed)]
     if asr_backend != "dicow":
         cmd += ["--asr-backend", asr_backend]
     if enroll_augment:
@@ -154,11 +156,11 @@ def run_enroll_infer_pairs(pairs_json, out_json, device, sim_thr,
     return _run(cmd, py)
 
 
-def run_llm(infer_json, out_json, device, py=PY_LLM):
+def run_llm(infer_json, out_json, device, seed=42, py=PY_LLM):
     """阶段3: llm_reject 对每条 transcript 判 accept/reject。"""
     return _run([os.path.join(HERE, "llm_reject.py"),
                  "--infer-json", infer_json, "--out-json", out_json,
-                 "--device", device], py)
+                 "--device", device, "--seed", str(seed)], py)
 
 
 def main():
@@ -173,8 +175,8 @@ def main():
     ap.add_argument("--enroll-augment", action="store_true",
                     help="enrollment 加噪增强(干净+多档加噪 emb 均值,提 babble 下声纹鲁棒 → 提 sim)")
     ap.add_argument("--aug-snrs", default="10,5,0", help="enrollment 加噪增强 SNR 档(逗号分)")
-    ap.add_argument("--aug-noise-dir", default=r"E:\midea_target_asr\datasetA\pos",
-                    help="babble 噪声池目录(默认 datasetA/pos; 比白噪更对症真实 babble)")
+    ap.add_argument("--aug-noise-dir", default=None,
+                    help="babble 噪声池目录(默认 None; 比白噪更对症真实 babble)")
     ap.add_argument("--strategy", default="llm_or_sim",
                     choices=["llm_or_sim", "sim_only", "llm_only"],
                     help="融合策略（⚠️ llm_or_sim 实为 AND，LLM 只减拒不加拒；保底用 sim_only）")
@@ -184,7 +186,9 @@ def main():
     ap.add_argument("--out-dir", default=os.path.join(HERE, "submit_out"))
     ap.add_argument("--work-dir", default=None, help="中间产物(默认 <out-dir>/_work)")
     ap.add_argument("--limit", type=int, default=0, help="只处理前 N 条(0=全部)")
+    ap.add_argument("--seed", type=int, default=42, help="全局种子(透传 4 子进程 + 主进程)")
     args = ap.parse_args()
+    set_global_seed(args.seed)  # 可复现性: 主进程 random/numpy(子进程各自 set_global_seed)
 
     if not args.pairs and not args.recognition_folder:
         ap.error("--enrollment 需配 --recognition-folder")
@@ -231,7 +235,7 @@ def main():
     if use_se:
         t0 = time.perf_counter()
         noise_est = os.path.join(work_dir, "noise_est.json")
-        phases.setdefault("noise_classify", {})["wall_sec"] = round(run_noise_classify(rec_in, noise_est), 3)
+        phases.setdefault("noise_classify", {})["wall_sec"] = round(run_noise_classify(rec_in, noise_est, args.seed), 3)
         with open(noise_est, encoding="utf-8") as f:
             rows = json.load(f)
         # 把 noise_classify 输出 join 回每条(按 basename),供阶段4 result 组装
@@ -248,7 +252,7 @@ def main():
                 if os.path.exists(src):
                     shutil.copy(src, os.path.join(bin_, f))
             bout = os.path.join(work_dir, f"se_out_{atten}")
-            se_wall += run_se_bucket(bin_, bout, atten)
+            se_wall += run_se_bucket(bin_, bout, atten, args.seed)
             for f in files:
                 s = os.path.join(bout, f)
                 if os.path.exists(s):
@@ -268,7 +272,7 @@ def main():
     enroll_all = os.path.join(work_dir, "enroll_all.json")
     e_wall = run_enroll_infer_pairs(enroll_pairs, enroll_all, args.device, args.sim_thr,
                                     args.enroll_augment, args.aug_snrs, args.aug_noise_dir,
-                                    args.asr_backend)
+                                    args.asr_backend, args.seed)
     with open(enroll_all, encoding="utf-8") as f:
         all_rows = json.load(f)
     sum_rtf = sum(float(r.get("rtf", 0.0) or 0.0) for r in all_rows)
@@ -292,7 +296,7 @@ def main():
         with open(llm_in, "w", encoding="utf-8") as f:
             json.dump(llm_rows, f, ensure_ascii=False)
         llm_out = os.path.join(work_dir, "llm_out.json")
-        l_wall = run_llm(llm_in, llm_out, args.device)
+        l_wall = run_llm(llm_in, llm_out, args.device, args.seed)
         phases["llm"] = {"wall_sec": round(l_wall, 3)}
         with open(llm_out, encoding="utf-8") as f:
             lj = json.load(f)
@@ -320,6 +324,8 @@ def main():
             "max_sim": round(max_sim, 4), "llm_verdict": llm_v if use_llm else None,
             "noise_type": nt, "atten_lim_db": atten,
             "infer_sec": round(float(r.get("infer_sec", 0.0) or 0.0), 3),
+            "batch_size": r.get("batch_size", 1),  # 可复现性: per-utt batch(FAQ 核查可见)
+            "peak_mem_mib": r.get("peak_mem_mib"),  # 可复现性: per-utt 峰值显存(FAQ 核查硬要求 5)
             "diar_fail": bool(r.get("error")),
         })
         dur = audio_duration_s(dst)

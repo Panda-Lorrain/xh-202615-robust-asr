@@ -17,6 +17,7 @@ noise_type, 但**测试时不可知**。本模块用谱特征估计噪声类型,
 import os, sys, json, argparse, glob
 import numpy as np
 import librosa
+from repro import set_global_seed  # 可复现性: 防御性种子(谱特征无随机)
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _ROOT = os.path.dirname(_HERE)
@@ -125,7 +126,9 @@ def main():
     ap.add_argument("--audio-dir", default=os.path.join(_ROOT, "test_wav", "dataset", "final"))
     ap.add_argument("--in-dir", help="估计目录每条噪声类型→atten-lim")
     ap.add_argument("--out", default=os.path.join(_HERE, "noise_est.json"))
+    ap.add_argument("--seed", type=int, default=42, help="全局种子(可复现性)")
     args = ap.parse_args()
+    set_global_seed(args.seed)  # 可复现性: 防御性(谱特征无随机, 但接受 --seed 透传)
     if args.calibrate:
         calibrate(args.manifest, args.audio_dir)
         return

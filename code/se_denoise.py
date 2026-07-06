@@ -29,6 +29,7 @@ import os
 import sys
 import argparse
 import warnings
+from repro import set_global_seed, resolve_df_base_dir  # 可复现性: 种子 + DF3 路径 env override
 
 warnings.filterwarnings("ignore")
 
@@ -51,12 +52,14 @@ def main():
     ap.add_argument("--limit", type=int, default=0, help="只处理前 N 条(0=全部, CPU 验证用)")
     ap.add_argument("--device", default="cpu", help="cpu / cuda (DF3 显存极小)")
     ap.add_argument("--model", default="DeepFilterNet3", choices=["DeepFilterNet2", "DeepFilterNet3"])
-    ap.add_argument("--model-base-dir", default="E:/df_cache/DeepFilterNet/Cache/DeepFilterNet3",
-                    help="DeepFilterNet3 权重目录(默认 E 盘缓存, 避免落 C 盘 AppData)")
+    ap.add_argument("--model-base-dir", default=resolve_df_base_dir("E:/df_cache/DeepFilterNet/Cache/DeepFilterNet3"),
+                    help="DeepFilterNet3 权重目录(env DF_MODEL_BASE_DIR override; 原始权重来自 GitHub Rikorose/DeepFilterNet)")
     ap.add_argument("--post-filter", action="store_true", default=True, help="残余音乐噪后滤波")
     ap.add_argument("--atten-lim-db", type=int, default=0,
                     help="最大衰减 dB(0=不限制, DF3 自适应); 设 6/12 可减少过消除")
+    ap.add_argument("--seed", type=int, default=42, help="全局种子(可复现性)")
     args = ap.parse_args()
+    set_global_seed(args.seed)  # 可复现性: DF3 随机性小, 防御性固定
 
     _patch_df_cache_to_e()
 

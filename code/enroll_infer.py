@@ -27,12 +27,12 @@ import numpy as np
 import librosa
 from transformers import AutoModelForSpeechSeq2Seq, AutoTokenizer, AutoFeatureExtractor
 from text_utils import to_simplified, cut_target_timeline
+from repro import set_global_seed, resolve_model, reset_peak_gpu, peak_gpu_mib
 import pyarrow  # 预热: 避免 import pyannote 时扫描 sys.path 的 DiariZen 目录触发 WinError 6714
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _ROOT = os.path.dirname(_HERE)
-DICOW_MODEL = "E:/hf_cache/DiCoW_v3_2"
-DIAR_MODEL = "E:/hf_cache/diarizen-wavlm-large-s80-md"
+# 模型路径走 repro.resolve_model(env override → HF repo id), 不再裸硬编码(spec 可复现性 C5)
 
 # 自包含: 把 DiCoW-inference / DiariZen / pyannote-audio 加入 sys.path(等价运行时 export PYTHONPATH)
 DICOW_INF = os.path.join(_ROOT, "code", "DiCoW-inference")
@@ -103,8 +103,8 @@ def main():
     ap.add_argument("--pairs", help="[{enrollment,recognition}, ...] json(单进程批量化,模型加载1次;优先于 --enrollment)")
     ap.add_argument("--reject-threshold", type=float, default=0.5, help="兜底拒识余弦阈值")
     ap.add_argument("--device", default="cuda:0")
-    ap.add_argument("--dicow-model", default=DICOW_MODEL)
-    ap.add_argument("--diarization-model", default=DIAR_MODEL)
+    ap.add_argument("--dicow-model", default=resolve_model("DICOW"))
+    ap.add_argument("--diarization-model", default=resolve_model("DIAR"))
     ap.add_argument("--language", default="zh")
     ap.add_argument("--out-json", default=os.path.join(_HERE, "enroll_infer_result.json"))
     ap.add_argument("--always-generate", action="store_true",
@@ -115,9 +115,11 @@ def main():
     ap.add_argument("--aug-noise-dir", help="babble 噪声池目录(增强比白噪更对症真实 babble; 不填则用白噪)")
     ap.add_argument("--asr-backend", default="dicow", choices=["dicow", "vanilla"],
                     help="ASR 后端: dicow(FDDT/STNO 条件化, fallback) / vanilla(切target timeline+whisper, 主线 CER 减半)")
-    ap.add_argument("--vanilla-model", default="E:/hf_cache/whisper-large-v3-turbo",
+    ap.add_argument("--vanilla-model", default=resolve_model("VANILLA"),
                     help="vanilla 后端 Whisper 模型(默认 large-v3-turbo)")
+    ap.add_argument("--seed", type=int, default=42, help="全局种子(可复现性, repro.set_global_seed)")
     args = ap.parse_args()
+    set_global_seed(args.seed)  # 可复现性: 固定 torch/numpy/cudnn(FAQ 核查硬要求 2)
     if not args.pairs and not args.enrollment:
         ap.error("--pairs 与 --enrollment 至少填一个")
 
@@ -174,7 +176,7 @@ def main():
         if args.enroll_augment:
             from simulate_pipeline import add_noise
             aug_snrs = [int(s) for s in args.aug_snrs.split(",") if s.strip()]
-            rng = np.random.default_rng(0)
+            rng = np.random.default_rng(args.seed)  # 可复现性: 消费全局 seed(避免双套种子)
             use_babble = bool(args.aug_noise_dir)
             embs = [get_emb(w)]
             for snr in aug_snrs:
@@ -194,6 +196,7 @@ def main():
     results = []
     for enr, rec in pairs:
         enroll_emb = get_enroll_emb(enr)
+        reset_peak_gpu()  # 可复现性: 每条循环开始重置, 记每条整条峰值(不被 langfix retry 二次 generate 重置)
         t0 = time.time()
         audio, sr = librosa.load(rec, sr=16000)
         dur = len(audio) / sr
@@ -316,7 +319,8 @@ def main():
                        else f"TRANSCRIBE(target={speakers[target_idx]}, backend={args.asr_backend})")
 
         dt = time.time() - t0
-        print(f"  [{verdict}] {len(text)}字 ({dt:.1f}s, RTF={dt/dur:.3f}): {text}")
+        peak = peak_gpu_mib()  # 可复现性: 每条峰值显存(FAQ 核查硬要求 5)
+        print(f"  [{verdict}] {len(text)}字 ({dt:.1f}s, RTF={dt/dur:.3f}, batch=1, peak_mem={peak}MiB): {text}")
         results.append({
             "recognition": rec, "enrollment": enr,
             "speakers": speakers,
@@ -327,6 +331,7 @@ def main():
             "rejected": max_sim < args.reject_threshold,
             "asr_backend": args.asr_backend,
             "infer_sec": round(dt, 3),  # 单条纯推理(不含模型加载), 对齐官方 batch=1 duration
+            "batch_size": 1, "peak_mem_mib": peak,  # 可复现性: batch/显存(FAQ 核查硬要求 4/5)
             "transcript": text, "chars": len(text), "rtf": dt / dur,
         })
 

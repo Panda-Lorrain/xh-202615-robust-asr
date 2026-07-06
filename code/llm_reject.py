@@ -32,9 +32,10 @@ inference.py (pipeline) 在拿到 DiCoW 转写文本后调用, 与另外两路�
   E:/midea_target_asr/.venv_llm  (transformers 4.46.3 + torch 2.12)
 """
 import os, sys, json, argparse, time
+from repro import set_global_seed, resolve_model  # 可复现性: 种子 + Qwen repo id
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
-DEFAULT_MODEL = "E:/hf_cache/Qwen2.5-3B-Instruct"
+DEFAULT_MODEL = resolve_model("QWEN")  # env MODEL_QWEN override → HF repo id(可复现性 C5)
 
 # ---- 自适应 CoT prompt(家电实体+动作+参数合理性+非闲话) ----
 # few-shot 正负样例取自本数据集 target(合法)/nontarget(干扰闲话) + #1 论文 reject 类别样例
@@ -190,7 +191,9 @@ def main():
     ap.add_argument("--device", default="cuda:0")
     ap.add_argument("--out-json", default=os.path.join(_HERE, "llm_reject_result.json"))
     ap.add_argument("--no-load", action="store_true", help="不加载模型(只做 prompt/解析自测)")
+    ap.add_argument("--seed", type=int, default=42, help="全局种子(可复现性)")
     args = ap.parse_args()
+    set_global_seed(args.seed)  # 可复现性: Qwen do_sample=False 已确定, seed 防御性双保险
 
     if args.no_load or (not args.text and not args.testset and not args.infer_json):
         # 纯逻辑自测: 验证 parse_verdict + SYSTEM_PROMPT 文本可用
