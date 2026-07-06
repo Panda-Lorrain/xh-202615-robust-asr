@@ -6,6 +6,30 @@
 
 ---
 
+## 【2026-07-07 最新】统一 thr 选点 T27 完成（B 集 A 集模拟 + 5-agent 对抗验证）
+
+### 一句话现状
+B 集按 FAQ C9 必须单一 thr → 用 A 集模拟 B 集混合场景选 thr → **统一 thr=0.27**（区间 [0.26,0.29]，bootstrap CI，与 0.28 不可分取 pos 占优）。5-agent 对抗验证修正初版 0.28（0.01 网格伪影）+ 发现 3 critical（守卫拦截/无混合产物/caliber-A 未坐实，前 2 已修代码）。下个 agent 焦点 = **闭环主办方 CER 口径（零成本高杠杆）+ B 集到手跑混合提交端到端**。
+
+### T27 决策摘要
+- **统一 thr=0.27**：pos_CER 0.7418 / neg_RR 0.9051 / 总分 46.53（线性估算 (1-CER)×40+RR×40）。分 thr oracle 52.99（A 集用了 label，B 集不可达）→ 损失 6.46 分 = B 集必须统一 thr 的代价
+- **核心张力**：pos sim<0.4 占 79% / neg sim≥0.4 仅 1.5% → pos/neg sim 在 [0,0.4] 严重重叠 → thr=0.28≈pos sim 中位数拒掉~47% pos 换 RR。纯 thr 调参破不了
+- **稳健证据**：bootstrap CI IQR=[0.27,0.28] / 真压力 max 损失 2.59（sim 扩张 α=1.2）/ 双口径收敛 / 跨噪声类型一致
+
+### 已修代码（本 session）
+- `code/scan_unified_thr.py` v2：bootstrap CI(B=400)+0.005 细扫+诊断(cer_text>1 占 9.0%/丢弃数/neg 漏拒)+真压力(方差缩放+重尾)+修 split_oracle(neg 真 oracle 0.45)
+- `code/run_baodi.sh`：加 `B|mixed` 模式（统一 thr 默认 0.27，混合 pairs 无 ref）+ export BAODI_OK=1（opt-in 绕守卫）
+- `code/submit_infer.py`：守卫报错引导 B 模式（thr=0.27<0.35 不再裸调死路）
+
+### ⚠️ follow-up must_fix（提交 B 集前）
+1. 🔴 **闭环主办方口径**（零成本高杠杆）：书面确认 (a) pos 被拒 CER 计法（1.0?额外惩罚?必须转写? — memory official-scoring-spec 待问第1条，**caliber-A 是 thr=0.27 全部价值依托**）(b) CER→分排名还是归一化 (c) CER:RR 权重比是否 40:40（RR-heavy→最优 thr 上移 0.35-0.40）(d) per-sample CER 是否封顶 min(·,1.0)（封顶→thr 下移 0.20-0.25）。未确认前预生成 thr=0 fallback（pos 全转写，口径C contingency）
+2. 🔴 **B 集混合提交端到端**：B 集到手 → make_pairs 产无 ref 混合 manifest（pos/neg 不作输入，utt_id 不冲突）→ `bash code/run_baodi.sh B 0.27` → to_submission（cer 空，label 由 thr，final_cer 主办方算）→ 自检整份同一 thr
+3. 🟡 **灰区选择性 LLM A/B**（可选高价值）：对 max_sim∈[0.2,0.4]（~30% pos+5% neg）跑 LLM 二次校验，测能否救回 2.87 RR 腿（RTF 0.24→0.35-0.45 仍<1.0）。答辩前应测过避免被追问
+
+详见 RESULTS.md T27 + memory `unified-thr-decision`。
+
+---
+
 ## 【2026-07-06 晚 最新】可复现性改造完成 + FAQ 口径全确认
 
 ### 一句话现状

@@ -197,13 +197,15 @@ def main():
 
     # 保底守卫（GAP3，memory baodi-config-no-llm）：裸调默认 flag
     # （LLM ON / sim_thr=0.2 / strategy=llm_or_sim）→ RTF~1.0 + neg RR~0.77 双崩。
-    # 保底提交必须用 run_baodi.sh 或显式 --no-llm --sim-thr>=0.4；实验配置显式 BAODI_OK=1 opt-in。
+    # ⚠️ 统一 thr=0.27(B 集, T27 对抗验证推荐)< 0.35 守卫阈值 → 必须经 run_baodi.sh B
+    # （export BAODI_OK=1 opt-in）或显式 BAODI_OK=1, 已由对抗验证背书非裸调灾难。
     if not os.environ.get("BAODI_OK") and (use_llm or args.sim_thr < 0.35):
         ap.error(
             "检测到非保底配置（LLM ON 或 sim_thr<0.35），裸调默认即灾难"
             "（RTF~1.0 + neg RR~0.77，见 memory baodi-config-no-llm）。\n"
-            "  保底提交: bash code/run_baodi.sh pos|neg [thr]\n"
-            "  实验配置: BAODI_OK=1 python code/submit_infer.py ... （显式 opt-in）"
+            "  A 集分thr保底: bash code/run_baodi.sh pos|neg [thr]\n"
+            "  B 集统一thr(推荐0.27, T27对抗验证): bash code/run_baodi.sh B [thr]\n"
+            "  实验裸调: BAODI_OK=1 python code/submit_infer.py ... （显式 opt-in）"
         )
     if use_llm and not os.path.exists(PY_LLM):
         ap.error(f"开 LLM 但 {PY_LLM} 不存在（.venv_llm 未部署）；保底请加 --no-llm。")

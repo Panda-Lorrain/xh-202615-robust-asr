@@ -684,3 +684,85 @@ pos 拒 CER1.0 / 排名制 / B 集 dir1/dir2 混合统一 thr / pos-neg 不作�
 
 ---
 
+## T27 — 2026-07-07 统一 thr 选点(B 集 A 集模拟 + 5-agent 对抗验证)
+
+> B 集是赛事方最终评测题(参赛方拿不到, 否则作弊), pos/neg 混合不预分, **必须用单一 thr 处理所有音频**(FAQ C9)。本次用 A 集(已知 label)当验证集模拟 B 集混合场景, 选定稳健统一 thr, 并经 5-agent 对抗验证修正。
+
+### 决策: 统一 thr=0.27(区间 [0.26,0.29])
+
+| 项 | 值 | 说明 |
+|---|---|---|
+| **推荐统一 thr** | **0.27** | bootstrap 中位 0.28, IQR=[0.27,0.28], 80%CI=[0.27,0.34] |
+| 细扫真峰(0.005) | 0.275 | 防 0.01 网格伪影(thr=0.28 argmax 是 Δ0.03 噪声峰) |
+| thr=0.27 数字 | pos_CER **0.7418** / neg_RR **0.9051** / 总分 **46.53**(CER腿10.33+RR腿36.20) | 线性估算 (1-CER)×40+RR×40 |
+| 取 0.27 而非 0.28 | 总分差 0.03(噪声内, ~15 样本翻转) | 0.27 在 pos 侧严格占优(pos_CER 0.7418<0.7496 / pos_correct 0.3013>0.294) + pos 单边下移场景 oracle_thr 恰为 0.27(抗 B 集 babble 加重) |
+| 分 thr oracle | 52.99(pos thr=0 + neg thr=0.45 RR 0.9916) | A 集上界(用了 pos/neg label, B 集不可达) |
+| **损失** | **6.46 分** | B 集必须统一 thr(无 label)的代价(原估 6.18 低估: neg 真 oracle 是 0.45 非 0.4) |
+
+### 方法(纯后置拒识, 无需重跑推理)
+
+pos_result(thr=0 全转写, 每条 max_sim+text 都在)+neg_result(有 max_sim)。扫任意 thr: pos `max_sim<thr→CER=1.0`(FAQ Q1 pos 拒=CER1.0), 否则 cer(text,ref); neg `max_sim<thr→正确拒`(neg 只算 RR, 不需 text)。后置模拟与 submit_infer `--always-generate` 前置拒识对 CER/RR 等价(已核实 enroll_infer:249 always-generate 恒真不跳转写)。
+
+### 核心张力(决定 thr 选择的根因)
+
+```
+pos sim: p25=0.179 med=0.283 p75=0.380   ← pos sim<0.4 占 79%(升 thr 误拒他们)
+neg sim: p25=0.054 med=0.116 p75=0.189   ← neg sim≥0.4 仅 1.5%(降 thr 漏拒少)
+```
+pos/neg sim 在 [0,0.4] **严重重叠** → 统一 thr 在重叠区做取舍: thr=0.28≈pos sim 中位数 → 拒掉约 47-50% pos 换 RR 腿。这是 pos/neg sim 分布结构性重叠决定的, 纯 thr 调参破不了(进一步提 RR 需灰区二级信号, 见 follow-up)。
+
+### 稳健性证据(支持 thr=0.27 提交)
+
+1. **bootstrap CI**(B=400 重采样选 thr): IQR=[0.27,0.28], 被选 thr 80% 落 [0.27,0.34] → thr 选点方差可控, 非过拟合尖峰
+2. **真压力**(固定 thr\*=0.27, 替代退化的对称平移): sim 收缩 α=0.8 损失 1.20 / sim 扩张 α=1.2 损失 2.59(最大风险) / neg 重尾 5% 损失 0.03 / pos 单边下移 0.10 损失 0.00 → 固定 0.27 在形状变化下损失 <2.6 分
+3. **双口径收敛**: overall_CER 与 correct_rate 两种 CER 口径独立都选 thr≈0.28(与 0.27 不可分) → 不依赖主办方最终 CER 口径
+4. **跨噪声类型一致**: babble(n=1218) 0.28 / pink(n=82) 0.27 / white(n=64) 0.27 → 子群体一致(小样本仅看方向)
+
+### 诊断(透明度)
+
+- pos cer_text>1(babble 重复循环幻觉使 hyp 超长)占 **9.0%(123 条)** → 决定 overall_CER 口径最优 thr 漂移(若官方 per-sample CER 封顶 min(·,1.0), 最优 thr 下移至 0.20-0.25, 待主办方确认)
+- pos/neg manifest 丢弃 0(1364/474 全匹配, 无静默丢失)
+- thr=0.27 处 neg 漏拒 45/474(9.5%, label=accept 进提交); ⚠️ neg_result 在 thr=0.4 生成, [0.27,0.4) 段漏拒文本已置空, 漏拒转写内容质量无法评估(若主办方有漏拒严重度惩罚需重跑 neg≤0.27)
+
+### 对抗验证(5-agent fan-out + 综合, 修正初版 thr=0.28)
+
+初版推 thr=0.28, 经口径/稳健/方法论/基线/决策风险 5 维度独立审查发现:
+
+| severity | 问题 | 处置 |
+|---|---|---|
+| 🔴 critical | submit_infer:201 保底守卫 `sim_thr<0.35→abort` 拦 thr=0.28, run_baodi 不 export BAODI_OK → 推荐策略跑不起来 | ✅ 已修: run_baodi.sh export BAODI_OK=1(opt-in)+守卫报错引导 B 模式 |
+| 🔴 critical | 无真实"统一 thr 混合提交"产物(现有 out_pos/out_neg 是 split-thr 用了 label=oracle 上界, B 集禁用) | ✅ 已修路径: run_baodi.sh 加 B\|mixed 模式(混合 pairs 无 ref, 统一 thr); ⚠️ 端到端待 B 集到手跑通 |
+| 🔴 critical | caliber-A 假设(pos 拒=CER1.0)未主办方坐实, thr=0.28≈pos sim 中位数拒掉~47%目标, 全部价值压此一条 | ⚠️ follow-up: 书面确认 pos 被拒 CER 计法(1.0?额外惩罚?必须转写?)+预生成 thr=0 fallback |
+| 🟡 major | thr=0.28 是 0.01 网格伪影(与 0.27 Δ0.03 噪声内) | ✅ 已修: 报区间+bootstrap CI+0.005 细扫(真峰 0.275), 推荐 0.27 |
+| 🟡 major | 无 bootstrap/held-out, thr 在全集选又在全集验证=in-sample 偏差 | ✅ 已修: bootstrap B=400 CI |
+| 🟡 major | 压力测试数学退化(对称平移≡thr 反向移, 测不出独立泛化) | ✅ 已修: 真压力(方差缩放 α+neg 重尾注入+pos 单边下移) |
+| 🟡 major | 权重比敏感(40:40 假设; RR-heavy 20:60→最优 thr 0.40 反超) | ⚠️ 标注假设边界, 待主办方口径 |
+| 🟡 major | 效率腿剔除仅 --always-generate 下成立; 去 flag 后高 thr 可降 RTF | ⚠️ 标注假设; follow-up 可测去 flag RTF |
+| 🟡 major | 灰区[0.2,0.4]选择性 LLM 未探索(全局 --no-llm 切掉), 可能挽回 2.87 RR 腿 | ⚠️ follow-up A/B 实验(可选高价值) |
+
+### 提交用法
+
+```bash
+# B 集统一 thr=0.27(B 集到手后, make_pairs 产无 ref 混合 manifest)
+BAODI_PAIRS=code/B_pairs_datasetB.json bash code/run_baodi.sh B 0.27
+# 或默认路径: bash code/run_baodi.sh B   # thr 默认 0.27
+
+# thr 待主办方口径定: RR-heavy→bash code/run_baodi.sh B 0.40 / pos不许拒→B 0
+# A 集初评仍分 thr(oracle 上界): bash code/run_baodi.sh pos 0.4 ; bash code/run_baodi.sh neg 0.45
+```
+
+### follow-up must_fix(提交 B 集前)
+
+1. 🔴 **闭环主办方口径**(零成本高杠杆): 书面确认 (a) pos 被拒 CER 计法(1.0?额外惩罚?必须转写?) (b) CER→分排名还是归一化 (c) CER:RR 权重比是否 40:40 (d) per-sample CER 是否封顶 min(·,1.0)。未确认前预生成 thr=0 fallback(pos 全转写, 口径C contingency)
+2. 🔴 **B 集混合提交端到端跑通**: B 集到手 → make_pairs 产无 ref 混合 manifest(pos/neg 不作输入, utt_id 不冲突) → run_baodi B 0.27 → to_submission(cer 空, label 由 thr, final_cer 主办方算) → 自检整份用同一 thr
+3. 🟡 **灰区选择性 LLM A/B**(可选高价值): 对 max_sim∈[0.2,0.4](~30% pos+5% neg) 跑 LLM 二次校验, 测能否救回 2.87 RR 腿(RTF 预估 0.24→0.35-0.45 仍<1.0)。即使不用也应答辩前测过
+
+### 产物
+
+- `code/scan_unified_thr.py`(v2: bootstrap CI+0.005 细扫+诊断+真压力+修 split_oracle) + `code/scan_unified_thr.json`
+- `code/run_baodi.sh`(加 B\|mixed 模式 + export BAODI_OK=1) + `code/submit_infer.py`(守卫报错引导 B)
+- spec `docs/superpowers/specs/2026-07-07-unified-thr-selection-design.md`(待补) + memory `unified-thr-decision`
+- 对抗验证 workflow journal: `subagents/workflows/wf_5211d738-83b/`(5 agent findings + 综合)
+
+---
+
