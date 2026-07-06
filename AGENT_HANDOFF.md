@@ -1,8 +1,55 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
-> **交接时间**：2026-07-06（Phase 1 突破：vanilla 路线 CER 减半，H3 强证伪 DiCoW 条件化反作用；保底仍备用）
-> **下个 agent 读序**：本文件 → `CLAUDE.md`（当前阶段+下一步已更新）→ 关键 memory（见第 10 节）→ `交付/使用说明.md`
-> **当前 git**：`master` @ `f09b2b6`（已 push origin）— 上次 5 commit：datasetA 适配 / enroll_infer 批量化+langfix / submit_infer Gap3 / 分析脚本 / CLAUDE.md
+> **交接时间**：2026-07-06 晚（可复现性改造 T26 完成 + FAQ 口径全确认；vanilla 集成 T25 已完成）
+> **下个 agent 读序**：本文件【晚】段（↓）→ CLAUDE.md → 关键 memory（reproducibility-hardening / h3-dicow-conditioning-backfire-vanilla / baodi-config-no-llm / submit-script-verification）→ REPRO_SETUP.md
+> **当前 git**：`master` @ `621ffc9`（已 push origin）— 最近 6 commit：可复现性改造 spec/repro.py/5脚本/verify/DiCoW文档/RESULTS-T26
+
+---
+
+## 【2026-07-06 晚 最新】可复现性改造完成 + FAQ 口径全确认
+
+### 一句话现状
+vanilla 路线集成（T25，pos CER 0.667 / neg RR 98.52%）+ 可复现性改造（T26，核查 6 项硬要求全达标，fp16 run-twice delta=0）双完成。下个 agent 焦点 = follow-up（统一 thr 选点 / 攻 CER / L20 真测）。
+
+### FAQ 2026-07-06 已确认口径（所有 thr/路线决策依据，必读）
+- **Q1 pos 拒 = CER 1.0**（字符级 Levenshtein，无额外惩罚）；neg 只 RR，pos 只 CER
+- **Q2 排名制**（CER40+RR40+效率20 加权排名，不公布归一化公式）
+- **Q4 统一 L20-46G**，其他算力内存不限；**batch 默认 1**（允许 batch 须结果一致，RTF 用 batch=1 测）
+- **CER = 系统输出 vs 标准答案识别文本**，字符级；主办方过阵子给 CER 计算脚本
+- **B 集不预分 pos/neg**（dir1/dir2 混合，结构同 A 但不给识别标签 + 不给 pos/neg 先验）→ **统一 thr，pos/neg 不作输入**（C9）
+- **数据增广不限，可引外部样本**（vanilla zero-training 不受影响）
+- **提交 JSON**（官方）：`{result:{results:[{id,content,label,cer}],final_cer,duration}}`，id=测试音频名，duration=batch=1 总推理时间
+- **核查 = 完整复现结果比对**（非仅看代码），6 项硬要求
+
+### 可复现性改造产物（T26，已 push）
+- `code/repro.py`（公共模块：set_global_seed/resolve_model/peak_gpu_mib）+ `tests/test_repro_logic.py`（5 单测 PASS）
+- 5 脚本改造（submit_infer/enroll_infer/se_denoise/llm_reject/noise_classify）：import repro + set_global_seed + `--seed` 透传 4 子进程 + 模型 `resolve_model`(env→HF repo id) + 显存日志
+- `code/verify_reproducibility.py`（run-twice：limit=10 vanilla **text 一致 100%, CER delta=0**，fp16 确定**无需 fp32**）
+- `REPRO_SETUP.md`（部署：DiCoW clone + 模型 HF + DF3 + 种子 + 验证）
+- spec `docs/superpowers/specs/2026-07-06-reproducibility-hardening-design.md` + memory `reproducibility-hardening`
+
+### 4 模型 HF repo id（代码 default，本地 setenv MODEL_* env override）
+`openai/whisper-large-v3-turbo` / `BUT-FIT/DiCoW_v3_2` / `BUT-FIT/diarizen-wavlm-large-s80-md` / `Qwen/Qwen2.5-3B-Instruct`；DF3 例外（GitHub Rikorose/DeepFilterNet + `DF_MODEL_BASE_DIR` env）
+
+### ⚠️ Phase 3 坑（DiCoW submodule 阻塞 → 方案 C）
+`.gitignore` `code/*/` 通配的 negation `!code/DiCoW-inference/` 在 git 不生效（`git check-ignore` 确认仍被忽略）→ 切方案 C 文档化（`REPRO_SETUP.md` 写手动 clone `BUTSpeechFIT/DiCoW` + `--recursive` 拉 `Lakoc/DiariZen`/pyannote）。若要自动 submodule，试 `git add -f code/DiCoW-inference`（gitlink）+ 手动 `.gitmodules`。
+
+### 下个 agent 待办（follow-up，按优先级）
+1. 🔧 **统一 thr 选点**（B 集混合集必需）：扫统一 thr 优化 CER40+RR40 加权。A 集初评 pos/neg 分开 thr 合规（独立测试集），B 集必须统一。⚠️ **建议向主办方确认"A 集初评可否分 thr"**（合规风险）
+2. 🔧 **攻 CER**（声纹强化）：CAM++ per-speaker / US-PVAD 改善低 sim 桶（0.2-0.4）timeline 切割。vanilla 路线下声纹错→直接转错段；先前 CAM++ 证伪是 DiCoW 路线评的，vanilla 下值得复评
+3. ⚡ **L20 端到端耗时真测**：submit_infer（vanilla）显存自适应（L20 48G 大 batch）+ 租 AutoDL L40 验证（官方 L20 评效率，本机 4060，memory `l20-eval-hardware`）
+4. 📄 **答辩 FAQ + 演练**：`03_答辩FAQ与风险预案.md` 待写；答辩核心 = Phase 1 vanilla 反 cascaded 突破 + 可复现性工程化 + 诚实归因
+5. ⚠️ **CER 进一步破局**（大工程）：端到端联合 X / babble 专用源分离（SepFormer 提 target mel）
+
+### 关键 commit（master，已 push）
+`621ffc9` T26 / `7b7ca17` DiCoW 文档 / `88d676d` verify / `fbff320` 5脚本 / `1e0ca55` repro.py / `609779c` spec；更早 `58f8bed` T25 vanilla 集成 / `d7b1240` FAQ 待确认
+
+### 保底仍有效（fallback）
+关 LLM + thr=0.4（neg RR 98.5% / RTF 0.24，memory `baodi-config-no-llm`）；vanilla 主线 pos CER 0.667。提交用 `code/run_baodi.sh`（默认 vanilla，`BAODI_BACKEND=dicow` 切回）。pos/neg 分开跑（utt_id 冲突）。⚠️ 提交用 run_baodi 锁 flag（裸调默认 flag 灾难，memory `baodi-config-no-llm`）。
+
+---
+
+（↓ §0-§10 是 2026-07-06 白天 Phase 1 突破版历史交接，作参考；**最新状态以上面【晚】段为准**。其中 §6.1 "vanilla 集成最高优" 已完成 T25；§0 "保底为唯一选项" 已被 Phase 1 vanilla + 可复现性 T26 覆盖）
 
 ---
 
