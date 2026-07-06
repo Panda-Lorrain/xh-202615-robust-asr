@@ -647,3 +647,40 @@ code/.venv/Scripts/python.exe code/to_submission.py --result-json <out>/result.j
 
 ---
 
+## T26 — 2026-07-06 可复现性改造落地（FAQ 核查 6 项硬要求，5 Phase 全验证）
+
+FAQ 2026-07-06 公布：**核查方式 = 完整复现结果比对**（非仅看代码），6 项硬要求（零外部依赖/种子固定/禁缓存/日志/显存/run-twice）。本次让 submit_infer 全链路可复现，过核查。spec `docs/superpowers/specs/2026-07-06-reproducibility-hardening-design.md`。
+
+### 5 Phase 落地
+
+| Phase | 内容 | 验证 |
+|---|---|---|
+| P1 repro.py | 公共模块 set_global_seed/resolve_model/peak_gpu_mib | 5 单测 PASS |
+| P2 5 脚本+setenv | import repro + set_global_seed + --seed 透传 4 子进程 + 模型 resolve + 显存日志 | 冒烟 pos limit=3 全链路跑通 + batch/peak 字段齐全 |
+| P3 DiCoW 部署 | 方案 C 文档化 REPRO_SETUP.md（submodule 阻塞：.gitignore `code/*/` negation 在 git 不生效）| — |
+| P4 verify run-twice | 同 seed 跑两遍 enroll_infer 比对 | **text 一致 100%, CER delta=0**（fp16 确定，无需 fp32）|
+| P5 回归 | pos/neg/dicow limit 验证 | pos CER 0.27(前100易样本)/neg RR 96%/dicow 不坏 |
+
+### 关键结论
+
+- **fp16 完全确定**：set_global_seed + cudnn.deterministic=True/benchmark=False 使 vanilla Whisper run-twice CER delta=0，**无需升 fp32**（效率腿不伤）。
+- **模型走 HF repo id**：4 模型 default `from_pretrained(repo_id)`，本地 setenv 设 MODEL_* env override 复用缓存；DF3 例外（GitHub Rikorose/DeepFilterNet + env）。
+- **B 集混合集**：submit_infer 天然支持（一个 manifest + 一个 thr），pos/neg 不作输入（C9）；统一 thr 选点是 follow-up。
+
+### 约束 C1-C11（FAQ + 用户确认）
+
+pos 拒 CER1.0 / 排名制 / B 集 dir1/dir2 混合统一 thr / pos-neg 不作输入 / batch 默认1（允许但须一致，RTF 用1测）/ CER=输出 vs 标准答案识别文本 / 主办方联网 HF / 三 venv 隔离。
+
+### 范围外（follow-up）
+
+统一 thr 选点（B 集必需）/ batch 推理加速 / 攻 CER（声纹强化 CAM++/US-PVAD）。
+
+### 产物
+
+- `code/repro.py` + `tests/test_repro_logic.py` + `code/verify_reproducibility.py` + `REPRO_SETUP.md`
+- 5 脚本改造（submit_infer/enroll_infer/se_denoise/llm_reject/noise_classify）+ `code/setenv.sh`
+- 5 commit: 609779c(spec) / 1e0ca55(P1) / fbff320(P2) / 88d676d(P4) / 7b7ca17(P3)
+- memory `reproducibility-hardening`
+
+---
+
