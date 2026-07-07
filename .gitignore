@@ -64,3 +64,11 @@ docs/superpowers/*final-exam*
 
 # ===== code 临时诊断脚本（下划线前缀，未来产物不进 git；已跟踪历史保留）=====
 code/_*.py
+code/_*.json
+
+# ===== API keys / 凭据（敏感，禁入 git）=====
+code/.mimo_apikey
+code/.*_apikey
+*.apikey
+.env
+.env.*

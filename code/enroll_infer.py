@@ -26,7 +26,7 @@ import torch
 import numpy as np
 import librosa
 from transformers import AutoModelForSpeechSeq2Seq, AutoTokenizer, AutoFeatureExtractor
-from text_utils import to_simplified, cut_target_timeline
+from text_utils import to_simplified, cut_target_timeline, digit_postproc
 from repro import set_global_seed, resolve_model, reset_peak_gpu, peak_gpu_mib
 import pyarrow  # 预热: 避免 import pyannote 时扫描 sys.path 的 DiariZen 目录触发 WinError 6714
 
@@ -315,6 +315,8 @@ def main():
                     print(f"  [langfix-retry] 英文率 {_er:.2f}→{_er2:.2f} {'采纳重生成' if _er2 < _er else '保留首次'}")
             # 统一繁简归一(dicow + vanilla 都过)
             text = to_simplified(text)
+            # 数字后处理: 阿拉伯→中文数字对齐 ref 口径(从 MiMo 对比学到的 quick win, 两口径都不亏)
+            text = digit_postproc(text)
             verdict = (f"REJECT_GEN(max_sim={max_sim:.3f}<{args.reject_threshold}, always-generate 仍转)" if rejected
                        else f"TRANSCRIBE(target={speakers[target_idx]}, backend={args.asr_backend})")
 
