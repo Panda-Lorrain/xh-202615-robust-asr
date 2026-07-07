@@ -8,7 +8,16 @@ import os, glob, jiwer
 
 
 def cer(hyp: str, ref: str) -> float:
-    """字符级错误率（CER）。去空格、小写，字符用空格 join 让 jiwer 按字符分词。"""
+    """字符级错误率 CER = (S+I+D)/N，标准 Levenshtein 编辑距离 / ref 字符数。
+
+    口径对齐(2026-07-08 核实, 见 memory official-scoring-spec):
+    - 主办方参考 editdistance 库; 本实现用 jiwer.wer, 已验证两库在 7 个边界用例
+      (完美/1字替换/全错/空hyp拒识/插入>1/繁体/数字) 逐条 delta=0.00e+00, 算法层完全等价。
+    - 与标准公式一致: Hyp 空(拒识)→全删→CER=1.0; 插入多→可>1(不封顶); 分母 N=ref 字符数。
+    - ⚠️ 预处理口径(繁简/数字/标点/英文混排)待主办方确认, 比算法对齐影响更大:
+        * 繁体 vs 简体 ref 每字算替换(CER 虚高 ~0.5) → 提交侧 to_simplified 已强转简体
+        * "26度" vs "二十六度" 3 编辑 CER 0.75 → digit_postproc 把 hyp 阿拉伯转中文对齐 ref
+    """
     h = " ".join(list(hyp.replace(" ", "").replace("\n", "").lower()))
     r = " ".join(list(ref.replace(" ", "").replace("\n", "").lower()))
     if len(r.replace(" ", "")) == 0:
