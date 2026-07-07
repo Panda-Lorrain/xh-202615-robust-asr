@@ -1,8 +1,8 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
-> **交接时间**：2026-07-06 晚（可复现性改造 T26 完成 + FAQ 口径全确认；vanilla 集成 T25 已完成）
-> **下个 agent 读序**：本文件【晚】段（↓）→ CLAUDE.md → 关键 memory（reproducibility-hardening / h3-dicow-conditioning-backfire-vanilla / baodi-config-no-llm / submit-script-verification）→ REPRO_SETUP.md
-> **当前 git**：`master` @ `621ffc9`（已 push origin）— 最近 6 commit：可复现性改造 spec/repro.py/5脚本/verify/DiCoW文档/RESULTS-T26
+> **交接时间**：2026-07-07（统一 thr 选点 T27 完成 + push；接 2026-07-06 晚 T26 可复现性 + T25 vanilla 集成）
+> **下个 agent 读序**：本文件【2026-07-07】段（↓）→ CLAUDE.md → 关键 memory（**unified-thr-decision** / h3-dicow-conditioning-backfire-vanilla / baodi-config-no-llm / reproducibility-hardening / submit-script-verification / official-scoring-spec）→ REPRO_SETUP.md
+> **当前 git**：`master` @ `30c479d`（已 push origin，工作区干净）— 最近 commit：T27 统一 thr 选点（scan_unified_thr v2 / run_baodi B 模式 / 守卫 / RESULTS T27 / memory）。更早：89ab62a T26 指针 / 621ffc9 T26 / 58f8bed T25
 
 ---
 
@@ -16,8 +16,8 @@ B 集按 FAQ C9 必须单一 thr → 用 A 集模拟 B 集混合场景选 thr �
 - **核心张力**：pos sim<0.4 占 79% / neg sim≥0.4 仅 1.5% → pos/neg sim 在 [0,0.4] 严重重叠 → thr=0.28≈pos sim 中位数拒掉~47% pos 换 RR。纯 thr 调参破不了
 - **稳健证据**：bootstrap CI IQR=[0.27,0.28] / 真压力 max 损失 2.59（sim 扩张 α=1.2）/ 双口径收敛 / 跨噪声类型一致
 
-### 已修代码（本 session）
-- `code/scan_unified_thr.py` v2：bootstrap CI(B=400)+0.005 细扫+诊断(cer_text>1 占 9.0%/丢弃数/neg 漏拒)+真压力(方差缩放+重尾)+修 split_oracle(neg 真 oracle 0.45)
+### 已修代码（本 session，commit `30c479d` 已 push origin）
+- `code/scan_unified_thr.py` v2：bootstrap CI(B=400)+0.005 细扫+诊断(cer_text>1 占 9.0%/丢弃数/neg 漏拒)+真压力(方差缩放+重尾)+修 split_oracle(neg 真 oracle 0.45)；产物 `code/scan_unified_thr.json`
 - `code/run_baodi.sh`：加 `B|mixed` 模式（统一 thr 默认 0.27，混合 pairs 无 ref）+ export BAODI_OK=1（opt-in 绕守卫）
 - `code/submit_infer.py`：守卫报错引导 B 模式（thr=0.27<0.35 不再裸调死路）
 
@@ -27,6 +27,18 @@ B 集按 FAQ C9 必须单一 thr → 用 A 集模拟 B 集混合场景选 thr �
 3. 🟡 **灰区选择性 LLM A/B**（可选高价值）：对 max_sim∈[0.2,0.4]（~30% pos+5% neg）跑 LLM 二次校验，测能否救回 2.87 RR 腿（RTF 0.24→0.35-0.45 仍<1.0）。答辩前应测过避免被追问
 
 详见 RESULTS.md T27 + memory `unified-thr-decision`。
+
+### 下个 agent 全景待办（按优先级，合并 T27 follow-up + 历史方向）
+
+1. 🔴 **闭环主办方 CER 口径**（零成本高杠杆，决定最终 thr 值）：见上 follow-up #1 的 4 问。**这是 thr=0.27 全部价值依托（caliber-A: pos 拒=CER1.0 未坐实），未确认前 thr 最终值不定**。已预生成 thr=0 fallback contingency
+2. 🔴 **B 集混合提交端到端**（B 集到手后）：见上 follow-up #2。`make_pairs` 产无 ref 混合 manifest → `bash code/run_baodi.sh B 0.27` → to_submission → 自检整份同一 thr
+3. 🟡 **灰区选择性 LLM A/B**（可选高价值）：见上 follow-up #3。对 max_sim∈[0.2,0.4] 跑 LLM 二次校验救 RR 腿
+4. 🔧 **攻 CER 声纹强化**（本机可跑，研究性）：CAM++ per-speaker / US-PVAD 在 vanilla 路线下复评（先前 CAM++ 证伪 0.191<wespeaker 0.218 是 dicow 路线评的，vanilla 下声纹错→直接转错段权重更高，值得复评），攻低 sim 桶(0.2-0.4 CER 0.6-0.75)timeline 切割
+5. 📄 **答辩 FAQ + 演练**：`03_答辩FAQ与风险预案.md` 待写；核心论点 = Phase1 vanilla 反 cascaded 突破 + 可复现性工程化 + T27 统一 thr（含 caliber-A 风险诚实披露）+ babble 归因 + 诚实组合主线极限
+6. ⚡ **L20 端到端耗时真测**：submit_infer 显存自适应（L20 48G 大 batch）+ 租 AutoDL L40 验证（官方 L20 评效率，本机仅 4060，memory `l20-eval-hardware`）
+7. ⚠️ **CER 进一步破局**（大工程，时间充裕再做）：端到端联合训练 X（反 cascaded，出题方偏好）/ SepFormer 提 target mel 再喂 vanilla
+
+> 注：原【2026-07-06 晚】段 follow-up #1"统一 thr 选点"已由 T27 完成（本段）；#2-#5 对应上方 4-7。保底（关 LLM+thr=0.4，A 集分 thr RR 98.5%）仍作 fallback，但 B 集必须统一 thr=0.27。
 
 ---
 
