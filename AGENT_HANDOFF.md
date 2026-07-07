@@ -1,8 +1,37 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
-> **交接时间**：2026-07-07（统一 thr 选点 T27 完成 + push；接 2026-07-06 晚 T26 可复现性 + T25 vanilla 集成）
-> **下个 agent 读序**：本文件【2026-07-07】段（↓）→ CLAUDE.md → 关键 memory（**unified-thr-decision** / h3-dicow-conditioning-backfire-vanilla / baodi-config-no-llm / reproducibility-hardening / submit-script-verification / official-scoring-spec）→ REPRO_SETUP.md
-> **当前 git**：`master` @ `30c479d`（已 push origin，工作区干净）— 最近 commit：T27 统一 thr 选点（scan_unified_thr v2 / run_baodi B 模式 / 守卫 / RESULTS T27 / memory）。更早：89ab62a T26 指针 / 621ffc9 T26 / 58f8bed T25
+> **交接时间**：2026-07-07 晚（MiMo-V2.5-ASR 调研闭环 + 数字后处理集成，**未 push**；接 2026-07-07 T27 统一 thr 选点）
+> **下个 agent 读序**：本文件【2026-07-07 晚】段（↓）→ CLAUDE.md → 关键 memory（**mimo-asr-backend-potential** / unified-thr-decision / h3-dicow-conditioning-backfire-vanilla / baodi-config-no-llm / reproducibility-hardening / submit-script-verification / official-scoring-spec）→ REPRO_SETUP.md
+> **当前 git**：`master` @ `0aea5ca`（**未 push**，本地超前 origin/30c479d）— 最近 commit：0aea5ca MiMo+数字后处理 / 30c479d T27 统一 thr（已 push）/ 89ab62a T26 指针 / 621ffc9 T26 / 58f8bed T25
+
+---
+
+## 【2026-07-07 晚 最新】MiMo-V2.5-ASR 调研闭环 + 数字后处理集成
+
+### 一句话现状
+调研小米 MiMo-V2.5-ASR（开源 audio-LLM ASR）作 cascaded 后端候选：全量 1362 条实测 CER **0.417 vs vanilla 0.661**（纯文字句 0.428 vs 0.637 验证非口径红利），但云端不能进提交（L20/数据安全/可复现三红线）+ 蒸馏不现实（数据/容量/范式三障碍）。从对比中学到**数字后处理 quick win**（vanilla 阿拉伯→中文数字对齐 ref，全量 0.661→0.632），已集成 text_utils/enroll_infer（commit `0aea5ca` 未 push）。下个 agent 焦点 = T27 follow-up（闭环主办方口径/B 集混合提交）仍是最高优 + 本次 MiMo follow-up（cn2an 依赖/本地 RTF/答辩素材）中优。
+
+### MiMo 调研结论（详见 memory `mimo-asr-backend-potential`）
+- **定位**（源码核实）：MiMo 是通用/多说话人 ASR，**不支持 enrollment**（`asr_sft` 只 audio+audio_tag 两参数；WebSearch 说有 enrollment 是 LLM 幻觉）。非 TS-ASR，只能当 cascaded 后端转写器，配合 diar+声纹选 target。
+- **全量实测**（`code/exp_mimo_asr.py`）：MiMo 0.417 vs vanilla 0.661；纯文字句 0.428 vs 0.637（真实能力，非口径）；英文幻觉 2.1%（vs DiCoW 18.8%）；逐条 mimo 更优 654/更差 130/持平 578。
+- **不能进提交**：云端（`token-plan-cn.xiaomimimo.com`，tp-key 专用 base URL，非按量 `api.xiaomimimo.com`）不满足 L20 本地 RTF + 测试集上传 + 可复现性。进提交唯一路径=本地部署开源 MiMo，但 audio-LLM RTF 风险高，**未测**。
+- **蒸馏不可行**：伪标签蒸馏传"输出标签"非"听音能力"，重 babble 是 student 盲区；数据硬伤（真实测试集不能用，仿真≠真实）。完整蒸馏不现实。
+- **能力边界**：MiMo 依赖 target 切片质量，低 sim 重 babble（diar 切错）MiMo 也翻车。
+
+### 已集成（commit `0aea5ca`，未 push）
+- `code/text_utils.py` `digit_postproc`：百分比/纯数字(1-3 位,0-999)→中文，≥4 位幻觉串保留；graceful cn2an（未装不崩）；code-review 修正则加 `(?<!\d)` 防≥4 位末尾部分转换。
+- `code/enroll_infer.py` 第 317 行 `to_simplified` 后统一调用（dicow+vanilla 覆盖，默认开无需 flag）。
+- 效果：vanilla 全量 0.661→**0.632**，含数字句 0.739→**0.608**，121/315 条改善。稳健：两口径都不亏（不归一化数字→赚 0.029；归一化→平），对冲 caliber-A。
+- `code/exp_mimo_asr.py` + `exp_mimo_asr_result.json`：实测脚本 + 全量结果（对照基准）。
+- 修 DiariZen 恢复活路径（从 `.bak` 备份挪回 `code/DiCoW-inference/DiariZen/`，修 enroll_infer/submit_infer 的 diarizen import；`.bak` 保留双保险）。
+- `.gitignore`：API keys 节（`.mimo_apikey`/`.env`）+ `code/_*.json`。
+
+### ⚠️ follow-up（本次新增，中优）
+1. 🟡 **cn2an 依赖记录**（可复现性）：已装 `code/.venv`，项目无 pyproject/requirements，复现需 `uv pip install cn2an`（text_utils docstring 已注）。建议建 `code/requirements.txt` 或补 `REPRO_SETUP.md`。
+2. 🟡 **MiMo 本地部署 RTF**（进提交前提）：下开源 MiMo + 测 L20 RTF。RTF 可接受→集成 `--asr-backend mimo`；不行→仅答辩用。
+3. 🟡 **答辩素材固化**：MiMo 对比（CER 减半/纯文字句验证/英文幻觉低）作"业界强基座对标，证明 cascaded 后端天花板可压"素材补进 `03_答辩FAQ`。
+
+> T27 follow-up（🔴 闭环主办方口径 / 🔴 B 集混合提交 / 🟡 灰区 LLM）仍是最高优，见下【2026-07-07】段。本次未 push（`0aea5ca` 本地），下个 agent 决定是否合并 push。
 
 ---
 
