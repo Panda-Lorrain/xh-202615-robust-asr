@@ -1,0 +1,825 @@
+{
+  "summary": {
+    "verdict": "GO=偏是(改选流)",
+    "reason": "SepFormer argmax CER 0.859 未胜基线, 但 oracle(两流取优)0.752 显著低于 vanilla 0.918 → 分离拎出了干净 target, 只是声纹选流选错。改进 target 流选择(如 enrollment 更强声纹/diar 配合)能救。",
+    "n_sample": 40,
+    "n_valid": 40,
+    "n_paired": 40,
+    "sep_cer_mean": 0.8588,
+    "sep_correct_rate": 0.225,
+    "sep_near_perfect_rate": 0.05,
+    "vanilla_cer_mean_paired": 0.9176,
+    "vanilla_correct_rate_paired": 0.25,
+    "delta_mean": -0.0588,
+    "n_sepformer_better": 10,
+    "n_sepformer_worse": 17,
+    "n_tie": 13,
+    "sepformer_oracle_cer_mean": 0.7516,
+    "target_stream_pick_correct_rate": 0.775,
+    "sep_sim_mean": 0.1602,
+    "model": "speechbrain/sepformer-whamr16k",
+    "total_min": 0.41
+  },
+  "results": [
+    {
+      "uid": "cmd_240",
+      "ref": "没事退下",
+      "max_sim_vanilla": 0.1759629100561142,
+      "n_src": 2,
+      "stream_sims": [
+        0.219,
+        0.0773
+      ],
+      "target_idx": 0,
+      "target_sim": 0.219,
+      "sep_text": "没事推训",
+      "sep_cer": 0.5,
+      "other_idx": 1,
+      "other_cer": 1.0,
+      "vanilla_cer_baseline": 0.0,
+      "vanilla_text_baseline": "没事 退下",
+      "delta_vs_vanilla": 0.5,
+      "rec_sec": 2.57
+    },
+    {
+      "uid": "cmd_331",
+      "ref": "变成日常模式灯光常亮冷色调",
+      "max_sim_vanilla": 0.16190961003303528,
+      "n_src": 2,
+      "stream_sims": [
+        0.2062,
+        0.1297
+      ],
+      "target_idx": 0,
+      "target_sim": 0.2062,
+      "sep_text": "变成日常模式 灯光常亮冷射料",
+      "sep_cer": 0.1538,
+      "other_idx": 1,
+      "other_cer": 0.2308,
+      "vanilla_cer_baseline": 0.07692307692307693,
+      "vanilla_text_baseline": "变成日常模式灯光常亮等色调",
+      "delta_vs_vanilla": 0.0769,
+      "rec_sec": 0.8
+    },
+    {
+      "uid": "cmd_2036",
+      "ref": "脚气病适宜吃什么",
+      "max_sim_vanilla": 0.07863534241914749,
+      "n_src": 2,
+      "stream_sims": [
+        0.0911,
+        0.1304
+      ],
+      "target_idx": 1,
+      "target_sim": 0.1304,
+      "sep_text": "今天是H三",
+      "sep_cer": 1.0,
+      "other_idx": 0,
+      "other_cer": 1.0,
+      "vanilla_cer_baseline": 0.625,
+      "vanilla_text_baseline": "小七零食也吃什么",
+      "delta_vs_vanilla": 0.375,
+      "rec_sec": 0.47
+    },
+    {
+      "uid": "cmd_2041",
+      "ref": "开启防直吹模式",
+      "max_sim_vanilla": 0.13942968845367432,
+      "n_src": 2,
+      "stream_sims": [
+        0.0942,
+        0.1035
+      ],
+      "target_idx": 1,
+      "target_sim": 0.1035,
+      "sep_text": "谢谢大家",
+      "sep_cer": 1.0,
+      "other_idx": 0,
+      "other_cer": 0.4286,
+      "vanilla_cer_baseline": 0.7142857142857143,
+      "vanilla_text_baseline": "推模式",
+      "delta_vs_vanilla": 0.2857,
+      "rec_sec": 0.52
+    },
+    {
+      "uid": "cmd_2051",
+      "ref": "播放卡尔经典绘本音频",
+      "max_sim_vanilla": 0.11630597710609436,
+      "n_src": 2,
+      "stream_sims": [
+        0.0792,
+        0.0555
+      ],
+      "target_idx": 0,
+      "target_sim": 0.0792,
+      "sep_text": "中套卡尔经典绘本音词",
+      "sep_cer": 0.3,
+      "other_idx": 1,
+      "other_cer": 1.0,
+      "vanilla_cer_baseline": 0.3,
+      "vanilla_text_baseline": "中号塔尔经典绘本音频",
+      "delta_vs_vanilla": 0.0,
+      "rec_sec": 0.63
+    },
+    {
+      "uid": "cmd_2059",
+      "ref": "风速最小",
+      "max_sim_vanilla": 0.1590053141117096,
+      "n_src": 2,
+      "stream_sims": [
+        0.177,
+        0.0425
+      ],
+      "target_idx": 0,
+      "target_sim": 0.177,
+      "sep_text": "方数解消",
+      "sep_cer": 1.0,
+      "other_idx": 1,
+      "other_cer": 1.0,
+      "vanilla_cer_baseline": 1.0,
+      "vanilla_text_baseline": "否則是笑",
+      "delta_vs_vanilla": 0.0,
+      "rec_sec": 0.52
+    },
+    {
+      "uid": "cmd_2092",
+      "ref": "启动自动模式",
+      "max_sim_vanilla": 0.15934503078460693,
+      "n_src": 2,
+      "stream_sims": [
+        0.1855,
+        0.0546
+      ],
+      "target_idx": 0,
+      "target_sim": 0.1855,
+      "sep_text": "结果目前",
+      "sep_cer": 1.0,
+      "other_idx": 1,
+      "other_cer": 1.1667,
+      "vanilla_cer_baseline": 1.0,
+      "vanilla_text_baseline": "截至目前机械",
+      "delta_vs_vanilla": 0.0,
+      "rec_sec": 0.49
+    },
+    {
+      "uid": "cmd_2099",
+      "ref": "开启自动模式",
+      "max_sim_vanilla": 0.141678586602211,
+      "n_src": 2,
+      "stream_sims": [
+        0.161,
+        0.1611
+      ],
+      "target_idx": 1,
+      "target_sim": 0.1611,
+      "sep_text": "我认为",
+      "sep_cer": 1.0,
+      "other_idx": 0,
+      "other_cer": 1.0,
+      "vanilla_cer_baseline": 6.166666666666667,
+      "vanilla_text_baseline": "优优独播剧场——YoYo Television Series Exclusive",
+      "delta_vs_vanilla": -5.1667,
+      "rec_sec": 0.46
+    },
+    {
+      "uid": "cmd_2102",
+      "ref": "关掉智控温",
+      "max_sim_vanilla": 0.03864724934101105,
+      "n_src": 2,
+      "stream_sims": [
+        0.0109,
+        0.2158
+      ],
+      "target_idx": 1,
+      "target_sim": 0.2158,
+      "sep_text": "好, good morning",
+      "sep_cer": 2.4,
+      "other_idx": 0,
+      "other_cer": 1.0,
+      "vanilla_cer_baseline": 1.0,
+      "vanilla_text_baseline": "欢迎订阅",
+      "delta_vs_vanilla": 1.4,
+      "rec_sec": 0.46
+    },
+    {
+      "uid": "cmd_2111",
+      "ref": "开启制冷模式",
+      "max_sim_vanilla": 0.12338566780090332,
+      "n_src": 2,
+      "stream_sims": [
+        0.1773,
+        0.0428
+      ],
+      "target_idx": 0,
+      "target_sim": 0.1773,
+      "sep_text": "切成",
+      "sep_cer": 1.0,
+      "other_idx": 1,
+      "other_cer": 0.8333,
+      "vanilla_cer_baseline": 0.16666666666666666,
+      "vanilla_text_baseline": "开启智冷模式",
+      "delta_vs_vanilla": 0.8333,
+      "rec_sec": 0.52
+    },
+    {
+      "uid": "cmd_2136",
+      "ref": "开屏幕",
+      "max_sim_vanilla": 0.190811887383461,
+      "n_src": 2,
+      "stream_sims": [
+        0.0809,
+        -0.0626
+      ],
+      "target_idx": 0,
+      "target_sim": 0.0809,
+      "sep_text": "开简单",
+      "sep_cer": 0.6667,
+      "other_idx": 1,
+      "other_cer": 33.3333,
+      "vanilla_cer_baseline": 0.0,
+      "vanilla_text_baseline": "開屏幕",
+      "delta_vs_vanilla": 0.6667,
+      "rec_sec": 1.77
+    },
+    {
+      "uid": "cmd_2176",
+      "ref": "开到十六度",
+      "max_sim_vanilla": 0.15662868320941925,
+      "n_src": 2,
+      "stream_sims": [
+        0.1219,
+        0.2927
+      ],
+      "target_idx": 1,
+      "target_sim": 0.2927,
+      "sep_text": "谢谢",
+      "sep_cer": 1.0,
+      "other_idx": 0,
+      "other_cer": 0.8,
+      "vanilla_cer_baseline": 0.4,
+      "vanilla_text_baseline": "開到16度",
+      "delta_vs_vanilla": 0.6,
+      "rec_sec": 0.43
+    },
+    {
+      "uid": "cmd_2226",
+      "ref": "风速调自动",
+      "max_sim_vanilla": 0.13475999236106873,
+      "n_src": 2,
+      "stream_sims": [
+        0.2138,
+        0.0021
+      ],
+      "target_idx": 0,
+      "target_sim": 0.2138,
+      "sep_text": "丰树桥四栋",
+      "sep_cer": 1.0,
+      "other_idx": 1,
+      "other_cer": 2.8,
+      "vanilla_cer_baseline": 0.8,
+      "vanilla_text_baseline": "风险 陶素东",
+      "delta_vs_vanilla": 0.2,
+      "rec_sec": 0.66
+    },
+    {
+      "uid": "cmd_2257",
+      "ref": "播放正能量纯音乐",
+      "max_sim_vanilla": 0.19516542553901672,
+      "n_src": 2,
+      "stream_sims": [
+        0.2234,
+        0.158
+      ],
+      "target_idx": 0,
+      "target_sim": 0.2234,
+      "sep_text": "播放正能量全音乐",
+      "sep_cer": 0.125,
+      "other_idx": 1,
+      "other_cer": 1.125,
+      "vanilla_cer_baseline": 0.5,
+      "vanilla_text_baseline": "核放正能量全一月",
+      "delta_vs_vanilla": -0.375,
+      "rec_sec": 0.58
+    },
+    {
+      "uid": "cmd_2276",
+      "ref": "混乱博物馆我想听",
+      "max_sim_vanilla": 0.12314058095216751,
+      "n_src": 2,
+      "stream_sims": [
+        0.1069,
+        0.258
+      ],
+      "target_idx": 1,
+      "target_sim": 0.258,
+      "sep_text": "是的",
+      "sep_cer": 1.0,
+      "other_idx": 0,
+      "other_cer": 1.0,
+      "vanilla_cer_baseline": 1.0,
+      "vanilla_text_baseline": "随便来一首",
+      "delta_vs_vanilla": 0.0,
+      "rec_sec": 0.5
+    },
+    {
+      "uid": "cmd_2315",
+      "ref": "安胎不适合吃什么",
+      "max_sim_vanilla": 0.18972966074943542,
+      "n_src": 2,
+      "stream_sims": [
+        0.2517,
+        0.0907
+      ],
+      "target_idx": 0,
+      "target_sim": 0.2517,
+      "sep_text": "阿财不适合吃什么",
+      "sep_cer": 0.25,
+      "other_idx": 1,
+      "other_cer": 1.0,
+      "vanilla_cer_baseline": 0.25,
+      "vanilla_text_baseline": "还不适合吃什么",
+      "delta_vs_vanilla": 0.0,
+      "rec_sec": 0.56
+    },
+    {
+      "uid": "cmd_2333",
+      "ref": "空调二十一度",
+      "max_sim_vanilla": 0.1951902210712433,
+      "n_src": 2,
+      "stream_sims": [
+        0.0318,
+        0.0046
+      ],
+      "target_idx": 0,
+      "target_sim": 0.0318,
+      "sep_text": "送给美国之后实际上",
+      "sep_cer": 1.5,
+      "other_idx": 1,
+      "other_cer": 1.5,
+      "vanilla_cer_baseline": 1.5,
+      "vanilla_text_baseline": "輸給美國之後實際上",
+      "delta_vs_vanilla": 0.0,
+      "rec_sec": 0.54
+    },
+    {
+      "uid": "cmd_2346",
+      "ref": "大点风",
+      "max_sim_vanilla": 0.15759319067001343,
+      "n_src": 2,
+      "stream_sims": [
+        0.2389,
+        0.067
+      ],
+      "target_idx": 0,
+      "target_sim": 0.2389,
+      "sep_text": "好 先走了",
+      "sep_cer": 1.3333,
+      "other_idx": 1,
+      "other_cer": 1.6667,
+      "vanilla_cer_baseline": 1.0,
+      "vanilla_text_baseline": "好",
+      "delta_vs_vanilla": 0.3333,
+      "rec_sec": 0.48
+    },
+    {
+      "uid": "cmd_2357",
+      "ref": "播放女神的贴身高手",
+      "max_sim_vanilla": 0.18573907017707825,
+      "n_src": 2,
+      "stream_sims": [
+        0.0572,
+        0.2305
+      ],
+      "target_idx": 1,
+      "target_sim": 0.2305,
+      "sep_text": "观望女神的贴身高手",
+      "sep_cer": 0.2222,
+      "other_idx": 0,
+      "other_cer": 1.1111,
+      "vanilla_cer_baseline": 1.0,
+      "vanilla_text_baseline": "自三人情人",
+      "delta_vs_vanilla": -0.7778,
+      "rec_sec": 0.75
+    },
+    {
+      "uid": "cmd_2384",
+      "ref": "关掉节能模式",
+      "max_sim_vanilla": 0.06624263525009155,
+      "n_src": 2,
+      "stream_sims": [
+        0.2164,
+        0.1582
+      ],
+      "target_idx": 0,
+      "target_sim": 0.2164,
+      "sep_text": "完全有节能模式",
+      "sep_cer": 0.5,
+      "other_idx": 1,
+      "other_cer": 1.0,
+      "vanilla_cer_baseline": 0.6666666666666666,
+      "vanilla_text_baseline": "玩脑截的模式",
+      "delta_vs_vanilla": -0.1667,
+      "rec_sec": 0.48
+    },
+    {
+      "uid": "cmd_2394",
+      "ref": "开开空调",
+      "max_sim_vanilla": 0.14998097717761993,
+      "n_src": 2,
+      "stream_sims": [
+        0.1607,
+        0.1518
+      ],
+      "target_idx": 0,
+      "target_sim": 0.1607,
+      "sep_text": "正式实现",
+      "sep_cer": 1.0,
+      "other_idx": 1,
+      "other_cer": 0.75,
+      "vanilla_cer_baseline": 1.0,
+      "vanilla_text_baseline": "正式实现",
+      "delta_vs_vanilla": 0.0,
+      "rec_sec": 0.45
+    },
+    {
+      "uid": "cmd_2432",
+      "ref": "播放寻找快活林完",
+      "max_sim_vanilla": 0.1382882297039032,
+      "n_src": 2,
+      "stream_sims": [
+        0.0107,
+        -0.0324
+      ],
+      "target_idx": 0,
+      "target_sim": 0.0107,
+      "sep_text": "四 发生的历史",
+      "sep_cer": 1.0,
+      "other_idx": 1,
+      "other_cer": 1.0,
+      "vanilla_cer_baseline": 1.0,
+      "vanilla_text_baseline": "想要下线拉的",
+      "delta_vs_vanilla": 0.0,
+      "rec_sec": 0.61
+    },
+    {
+      "uid": "cmd_2474",
+      "ref": "往中间吹",
+      "max_sim_vanilla": 0.1321306824684143,
+      "n_src": 2,
+      "stream_sims": [
+        0.1145,
+        0.0233
+      ],
+      "target_idx": 0,
+      "target_sim": 0.1145,
+      "sep_text": "往中间吹",
+      "sep_cer": 0.0,
+      "other_idx": 1,
+      "other_cer": 1.0,
+      "vanilla_cer_baseline": 0.0,
+      "vanilla_text_baseline": "往中间吹",
+      "delta_vs_vanilla": 0.0,
+      "rec_sec": 0.45
+    },
+    {
+      "uid": "cmd_2476",
+      "ref": "播放费烟的民谣",
+      "max_sim_vanilla": 0.1539294719696045,
+      "n_src": 2,
+      "stream_sims": [
+        0.1361,
+        0.2675
+      ],
+      "target_idx": 1,
+      "target_sim": 0.2675,
+      "sep_text": "都放肥炎到不利",
+      "sep_cer": 0.8571,
+      "other_idx": 0,
+      "other_cer": 1.5714,
+      "vanilla_cer_baseline": 1.5714285714285714,
+      "vanilla_text_baseline": "但有一天晚上他們在睡覺",
+      "delta_vs_vanilla": -0.7143,
+      "rec_sec": 0.57
+    },
+    {
+      "uid": "cmd_2502",
+      "ref": "风向下吹",
+      "max_sim_vanilla": 0.04019621014595032,
+      "n_src": 2,
+      "stream_sims": [
+        -0.0428,
+        0.2004
+      ],
+      "target_idx": 1,
+      "target_sim": 0.2004,
+      "sep_text": "方向下降是否",
+      "sep_cer": 1.0,
+      "other_idx": 0,
+      "other_cer": 2.0,
+      "vanilla_cer_baseline": 1.0,
+      "vanilla_text_baseline": "像下水水",
+      "delta_vs_vanilla": 0.0,
+      "rec_sec": 0.56
+    },
+    {
+      "uid": "cmd_2509",
+      "ref": "开到二十八度",
+      "max_sim_vanilla": 0.10381962358951569,
+      "n_src": 2,
+      "stream_sims": [
+        0.1005,
+        0.0681
+      ],
+      "target_idx": 0,
+      "target_sim": 0.1005,
+      "sep_text": "嗨到阿什巴黎",
+      "sep_cer": 0.8333,
+      "other_idx": 1,
+      "other_cer": 1.0,
+      "vanilla_cer_baseline": 0.5,
+      "vanilla_text_baseline": "开到28度",
+      "delta_vs_vanilla": 0.3333,
+      "rec_sec": 0.48
+    },
+    {
+      "uid": "cmd_2590",
+      "ref": "风速减小",
+      "max_sim_vanilla": 0.1356278657913208,
+      "n_src": 2,
+      "stream_sims": [
+        0.1666,
+        0.1764
+      ],
+      "target_idx": 1,
+      "target_sim": 0.1764,
+      "sep_text": "财富财",
+      "sep_cer": 1.0,
+      "other_idx": 0,
+      "other_cer": 0.0,
+      "vanilla_cer_baseline": 1.5,
+      "vanilla_text_baseline": "储备自己适合",
+      "delta_vs_vanilla": -0.5,
+      "rec_sec": 0.5
+    },
+    {
+      "uid": "cmd_2632",
+      "ref": "关闭省电模式",
+      "max_sim_vanilla": 0.19777661561965942,
+      "n_src": 2,
+      "stream_sims": [
+        0.1282,
+        0.1246
+      ],
+      "target_idx": 0,
+      "target_sim": 0.1282,
+      "sep_text": "会继续行业增长速度",
+      "sep_cer": 1.5,
+      "other_idx": 1,
+      "other_cer": 1.6667,
+      "vanilla_cer_baseline": 1.3333333333333333,
+      "vanilla_text_baseline": "不会毕日行业增长",
+      "delta_vs_vanilla": 0.1667,
+      "rec_sec": 0.61
+    },
+    {
+      "uid": "cmd_2640",
+      "ref": "打开睡眠模式",
+      "max_sim_vanilla": 0.11491832137107849,
+      "n_src": 2,
+      "stream_sims": [
+        0.0901,
+        0.2001
+      ],
+      "target_idx": 1,
+      "target_sim": 0.2001,
+      "sep_text": "不可能是",
+      "sep_cer": 1.0,
+      "other_idx": 0,
+      "other_cer": 1.1667,
+      "vanilla_cer_baseline": 1.1666666666666667,
+      "vanilla_text_baseline": "你找本 有什么事",
+      "delta_vs_vanilla": -0.1667,
+      "rec_sec": 0.5
+    },
+    {
+      "uid": "cmd_2641",
+      "ref": "打开显示屏",
+      "max_sim_vanilla": 0.17417004704475403,
+      "n_src": 2,
+      "stream_sims": [
+        0.2357,
+        0.2682
+      ],
+      "target_idx": 1,
+      "target_sim": 0.2682,
+      "sep_text": "大牌新疾病",
+      "sep_cer": 1.0,
+      "other_idx": 0,
+      "other_cer": 2.0,
+      "vanilla_cer_baseline": 2.0,
+      "vanilla_text_baseline": "当初就已经开始成为很多",
+      "delta_vs_vanilla": -1.0,
+      "rec_sec": 0.56
+    },
+    {
+      "uid": "cmd_2683",
+      "ref": "降低温度",
+      "max_sim_vanilla": 0.1231883093714714,
+      "n_src": 2,
+      "stream_sims": [
+        0.0143,
+        -0.009
+      ],
+      "target_idx": 0,
+      "target_sim": 0.0143,
+      "sep_text": "阿比特晓雅",
+      "sep_cer": 1.25,
+      "other_idx": 1,
+      "other_cer": 1.0,
+      "vanilla_cer_baseline": 1.0,
+      "vanilla_text_baseline": "叫您问我",
+      "delta_vs_vanilla": 0.25,
+      "rec_sec": 0.45
+    },
+    {
+      "uid": "cmd_2684",
+      "ref": "风大一点",
+      "max_sim_vanilla": -0.003808598965406418,
+      "n_src": 2,
+      "stream_sims": [
+        -0.001,
+        -0.1091
+      ],
+      "target_idx": 0,
+      "target_sim": -0.001,
+      "sep_text": "一番小的",
+      "sep_cer": 1.0,
+      "other_idx": 1,
+      "other_cer": 1.0,
+      "vanilla_cer_baseline": 0.75,
+      "vanilla_text_baseline": "光大",
+      "delta_vs_vanilla": 0.25,
+      "rec_sec": 0.45
+    },
+    {
+      "uid": "cmd_2744",
+      "ref": "高血压不推荐吃什么",
+      "max_sim_vanilla": 0.19830238819122314,
+      "n_src": 2,
+      "stream_sims": [
+        0.3679,
+        0.1847
+      ],
+      "target_idx": 0,
+      "target_sim": 0.3679,
+      "sep_text": "高血压不推荐吃什么",
+      "sep_cer": 0.0,
+      "other_idx": 1,
+      "other_cer": 1.0,
+      "vanilla_cer_baseline": 0.0,
+      "vanilla_text_baseline": "高血压不推荐吃什么",
+      "delta_vs_vanilla": 0.0,
+      "rec_sec": 0.54
+    },
+    {
+      "uid": "cmd_2762",
+      "ref": "开防直吹",
+      "max_sim_vanilla": 0.15516194701194763,
+      "n_src": 2,
+      "stream_sims": [
+        0.0474,
+        0.0974
+      ],
+      "target_idx": 1,
+      "target_sim": 0.0974,
+      "sep_text": "开防止吹",
+      "sep_cer": 0.25,
+      "other_idx": 0,
+      "other_cer": 0.75,
+      "vanilla_cer_baseline": 0.75,
+      "vanilla_text_baseline": "拍房直追",
+      "delta_vs_vanilla": -0.5,
+      "rec_sec": 0.47
+    },
+    {
+      "uid": "cmd_2784",
+      "ref": "播放小飞鱼二",
+      "max_sim_vanilla": -0.12474656105041504,
+      "n_src": 2,
+      "stream_sims": [
+        0.0779,
+        -0.1043
+      ],
+      "target_idx": 0,
+      "target_sim": 0.0779,
+      "sep_text": "不怕所非于二",
+      "sep_cer": 0.8333,
+      "other_idx": 1,
+      "other_cer": 2.1667,
+      "vanilla_cer_baseline": 0.16666666666666666,
+      "vanilla_text_baseline": "播放小飞鱼2",
+      "delta_vs_vanilla": 0.6667,
+      "rec_sec": 0.62
+    },
+    {
+      "uid": "cmd_2806",
+      "ref": "把温度调到十六度",
+      "max_sim_vanilla": 0.09878972172737122,
+      "n_src": 2,
+      "stream_sims": [
+        0.0684,
+        0.0761
+      ],
+      "target_idx": 1,
+      "target_sim": 0.0761,
+      "sep_text": "床件和系列是必要有过",
+      "sep_cer": 1.25,
+      "other_idx": 0,
+      "other_cer": 1.0,
+      "vanilla_cer_baseline": 1.0,
+      "vanilla_text_baseline": "很多条路就行了",
+      "delta_vs_vanilla": 0.25,
+      "rec_sec": 0.52
+    },
+    {
+      "uid": "cmd_2819",
+      "ref": "关一下空调",
+      "max_sim_vanilla": 0.08792636543512344,
+      "n_src": 2,
+      "stream_sims": [
+        0.1465,
+        -0.0088
+      ],
+      "target_idx": 0,
+      "target_sim": 0.1465,
+      "sep_text": "乖您说不得了",
+      "sep_cer": 1.2,
+      "other_idx": 1,
+      "other_cer": 1.0,
+      "vanilla_cer_baseline": 0.8,
+      "vanilla_text_baseline": "官员卸空",
+      "delta_vs_vanilla": 0.4,
+      "rec_sec": 0.5
+    },
+    {
+      "uid": "cmd_2840",
+      "ref": "更年期吃什么好",
+      "max_sim_vanilla": 0.15910112857818604,
+      "n_src": 2,
+      "stream_sims": [
+        0.1437,
+        0.1154
+      ],
+      "target_idx": 0,
+      "target_sim": 0.1437,
+      "sep_text": "跟年轻人吃什么好",
+      "sep_cer": 0.4286,
+      "other_idx": 1,
+      "other_cer": 1.0,
+      "vanilla_cer_baseline": 1.0,
+      "vanilla_text_baseline": "你联系三万人",
+      "delta_vs_vanilla": -0.5714,
+      "rec_sec": 0.5
+    },
+    {
+      "uid": "cmd_2959",
+      "ref": "开开空调",
+      "max_sim_vanilla": 0.12778624892234802,
+      "n_src": 2,
+      "stream_sims": [
+        0.0914,
+        0.1377
+      ],
+      "target_idx": 1,
+      "target_sim": 0.1377,
+      "sep_text": "好",
+      "sep_cer": 1.0,
+      "other_idx": 0,
+      "other_cer": 1.0,
+      "vanilla_cer_baseline": 1.0,
+      "vanilla_text_baseline": "誰要哄掉",
+      "delta_vs_vanilla": 0.0,
+      "rec_sec": 0.45
+    },
+    {
+      "uid": "cmd_2996",
+      "ref": "防直吹",
+      "max_sim_vanilla": 0.10126857459545135,
+      "n_src": 2,
+      "stream_sims": [
+        0.0262,
+        -0.0002
+      ],
+      "target_idx": 0,
+      "target_sim": 0.0262,
+      "sep_text": "快点",
+      "sep_cer": 1.0,
+      "other_idx": 1,
+      "other_cer": 1.0,
+      "vanilla_cer_baseline": 1.0,
+      "vanilla_text_baseline": "方志飞",
+      "delta_vs_vanilla": 0.0,
+      "rec_sec": 0.41
+    }
+  ]
+}

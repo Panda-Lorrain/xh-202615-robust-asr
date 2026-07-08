@@ -4,6 +4,12 @@
 > **它不是自夸式 FAQ，而是"被攻击过、暴露过真实弱点"的诚实答辩准备。** 凡是被对抗验证击穿的硬伤，本文档都标注 ⚠️ 并给出诚实应对——答辩时绝不回避。
 > 创建：2026-06-27。配套：架构见 `00`、技术细节见 `01`、上限候选见 `02`。
 >
+> ⭐ **2026-07-08 最新横幅（决赛交付刷新，4 件新事；以下为准）**：
+> 1. **主办方 CER 口径脚本到手并坐实 + caliber-A 彻底解除**：`normalize_text`(NFKC + lower + strip + 去所有 Unicode P* 标点和空白) + `CERMetric`(累计池 total_err/total_char，editdistance 库)，**不繁简归一、不数字归一**。`code/eval_metrics.py` 已照抄实现，4-agent 对抗验证逐行等价、12 边界 Δ=0。重算全量 1362 条（提交归一后）：vanilla 转写 overall **0.595**（原项目口径逐条均 0.664；correct 48.8%）/ dicow **1.189** / 英文幻觉 vanilla 0.6% vs dicow 18.7% / thr0.27 含拒累计池 **0.703** / H3 dicow sim[0.2,0.3)=**1.609** 反作用更稳。主办方问题二/三确认：**pos 隐含允许被拒**（拒=CER1.0 无额外惩罚）+ 排名公式 **`TotalScore = w1*(1−CER) + w2*RR`**（线性、无惩罚项、per-sample 不封顶）+ **RTF 按 batch=1 测** → caliber-A 彻底解除，**thr=0.27 定稿**（w1=w2 时 T27 目标函数与公布公式等价）。同时修了提交归一漏洞（cn2an/zhconv 原未声明依赖→主办方环境必缺→digit_postproc 静默失效→CER 0.595 实际回 0.661；已建 `code/requirements.txt` + RuntimeWarning + to_submission SSOT）。详见 memory `official-scoring-spec` + `recompute_official_cer.json`。
+> 2. **content_gate（转写内容有效性二次拒识）集成 — hold-out 多 seed 证泛化**：对 sim≥thr 的 accept 再判转写是否有效家居指令（`text_utils.is_valid_command`），非指令（新闻/英文/乱码）则加拒。A 集分 train/val hold-out（回应"A 集是开发集"过拟合担忧），**10 个 seed 划分 10/10 全正**，val ΔTS min=+0.0019（+0.24 分）max=+0.0357 mean=**+0.0199（+2.5 分）**，bootstrap CI p5>0 稳赚，L 不敏感（18-30 全正）。集成进 `submit_infer.decide_reject` 独立加拒通道，**默认关（`BAODI_GATE=1` 开）**——保守不拿收益换不反噬 B 集（B 集干扰分布未知）。Pareto 改进：提 RR 不损 pos/效率。详见 memory `content-gate-decision`。
+> 3. **P1 oracle POC 证伪声纹强化 → 死区是 babble 摧毁 mel 的物理极限（诚实归因硬证据）**：oracle 实验（`code/exp_spk_oracle.py`，60 条死区抽样）四组证据全指向 GO=否：① argmax 选对率 66.7%（多数选对 target）② oracle_sim≥0.2 占 0%（正确 target 声纹也全不可识别）③ miss 20/20 声纹反向指错 ④ **单 speaker 控制组 n=18 CER 0.436**（target 唯一零歧义仍转不出 = 纯音频摧毁）。oracle_CER 0.607（作弊完美选 target 仍>0.5 不及格）。**不投 CAM++/帧选择/US-PVAD**（避免五连受挫）。答辩弹药升级：死区=物理极限非工程缺陷，契合反 cascaded 审美。详见 memory `spk-oracle-poc`。
+> 4. **MiMo-V2.5-ASR 作诊断标尺（非后端，合规）补 E 类创新性**：用小米开源 audio-LLM ASR（MiMo CER 0.417 vs vanilla 0.661，纯文字句 0.428 vs 0.637 验证非口径红利）当**尺子**而非后端（云端不能进提交三红线：L20 本地 RTF/测试集上传/可复现性），同 target 切片输入控制变量定位瓶颈分布：**切片死区 30%（sim<0.2，连 SOTA MiMo 都翻车）/ 转写器为主 50%（sim[0.2,0.4)）/ 接近解决 20%（sim≥0.4）**。据此集中火力攻切片层而非盲目堆转写器。答辩弹药："用 SOTA 作诊断标尺定位瓶颈分布"= 学术诚实 + 合规 + 主动。详见 memory `mimo-asr-backend-potential`。
+>
 > ⚠️ **2026-07-04 真测更新（本文档创建于仿真期，多处已过时；答辩前必读本横幅 + 重读下文，标注「已过时」处按本横幅为准）**：
 > - **已有全量真测基线**（pos 1364 / neg 474，详见 `RESULTS.md` T23 / memory `baodi-config-no-llm`）。第〇节总原则2「一行实测都没有」、红线6「零实测」**已过时**。
 > - **保底改为关LLM**（⚠️ 3-agent 对抗审查修正：**trade-off 非全面优于** —— 关LLM 赢 neg RR **98.5%**>96.2% + RTF **0.24**<1.01 4×；**开LLM 赢 pos 救回**：28 条 LLM 救回的 pos 里 **26 条 CER=0.000 完美**（"关闭客厅空调"等 max_sim 低至 0.022 被 sim_only 误杀，LLM 语义救回），原"pos 持平"错；选关LLM = 为效率20%+RR40% 牺牲 pos 救回，pos 反正架构极限放弃）。**「三路融合拒识」被证伪**（llm_or_sim 是 AND，LLM 只减拒不增拒）——**答辩别列为强项**。
@@ -52,7 +58,7 @@
 
 ### 红线 6：数据捏造红线（最致命的诚信问题）
 - **会被问**："你说 mask 在 −5dB 准确率 88–92%、贡献 60% CER——这些数据哪来的？文档里有吗？"
-- **诚实应对**：**已部分解除**——2026-07-04 datasetA 全量真测已出（pos CER ~1.0 / neg RR **98.5%** / RTF **0.24**，详见 `RESULTS.md` T23）。答辩**只报真测数字**。铁律不变：**未实测的指标（如 L20 RTF、各模块 ablation、mask 准确率）一律说"实测中/待交付"，绝不报虚数**——评委一句"打开评测脚本"就能让虚数穿帮。早期文档里的"mask 88-92%"等是设计期估算，**不作数**。
+- **诚实应对**：**已解除**——2026-07-08 主办方 CER 口径脚本到手坐实后，全量真测 1362 条（提交归一后，累计池）：vanilla 转写 overall **0.595**（correct 48.8%）/ thr0.27 含拒 **0.703**（B 集统一 thr）/ dicow **1.189**（已证伪 fallback）/ neg RR **90.5%**（thr0.27 统一）/ RTF **0.2543**（4060 pos 全量 3498s 音频；**L20 待测**）。详见 `recompute_official_cer.json` + `RESULTS.md` T27。答辩**只报真测数字**。铁律不变：**未实测的指标（如 L20 RTF、各模块 ablation、mask 准确率）一律说"实测中/待交付"，绝不报虚数**——评委一句"打开评测脚本"就能让虚数穿帮。早期文档里的"mask 88-92%"等是设计期估算，**不作数**。
 
 ### 红线 7：参数量 / 资产事实错误
 - **会被问**："Whisper-turbo 多大？你说 1.5B？" / "SpeechBrain 的 Personal VAD recipe 在哪？"
@@ -164,7 +170,7 @@
 
 ---
 
-## 三、10 类风险预案（现象 / 根因 / 应对 / 备选 / 触发条件）
+## 三、13 类风险预案（现象 / 根因 / 应对 / 备选 / 触发条件）
 
 ### 风险 1：测试集通道数未定（架构分水岭）
 - **现象**：① 实际多通道但我方押单通道 → 漏做多通道增益；② 实际单通道但白做空间前端；③ 误判远场缺 AEC。早期信号：A 集样例出现"阵列/多路/6 麦/远场采集"措辞；wav 形状 [C,T]。
@@ -228,6 +234,20 @@
 - **备选**：① 声纹强化（CAM++/US-PVAD 内生声纹）把 target selection 准确率再拉一档；② 数字 initial_prompt（家居指令高频数字，锦上添花）；③ 若后续真测发现某些轻 babble 段 DiCoW 仍优，可按 sim 分桶路由（高 sim 桶走 DiCoW / 低 sim 桶走 vanilla）。
 - **触发**：已触发并化解；后续每次 ablation 须监控英文幻觉率 + sim 分桶 CER 防回退。
 - **产物**：`code/exp_vanilla_vs_dicow.py` + `code/analyze_vanilla_full.py` + `code/exp_vanilla_full.json` + memory `h3-dicow-conditioning-backfire-vanilla`。
+
+### 风险 12：L20 端到端耗时未真测（威胁效率 20%）
+- **现象**：官方在 **L20 48GB** 上评效率分（推理时间 10% + 内存 10%，RTF 按 **batch=1** 测），但本机只有 RTX 4060 Laptop 8GB，当前 RTF **0.2543**（4060 pos 全量 3498s 音频，关 LLM + vanilla + thr0.27）**不能直接当 L20 数字报**——L20 算力更强、显存更大，RTF 会更低，但**未实测**。
+- **根因**：本机硬件 ≠ 评测硬件；submit_infer 显存自适应（L20 48G 可大 batch，但 RTF 按 batch=1 测，大 batch 不加分）未在 L20/L40 上验证。
+- **诚实应对**：① 答辩报 RTF 0.2543 时**明确标注"4060 实测，L20 待测"**，绝不把 4060 数字当 L20 数字；② 给 L20 预期推断（算力比 4060 强数倍，RTF 必然更低，方向有利）；③ **租 AutoDL L40（L20 同芯 Ada）跑端到端 batch=1 验证**（memory `l20-eval-hardware`），赛前完成；④ 提交脚本已做显存自适应 + per-utt 显存日志（`repro.peak_gpu_mib`），L20 直接可跑。
+- **备选**：若 L20 实测 RTF 仍偏高，turbo 已是蒸馏版（比 large-v3 快 ~8×），叠加 INT8/4 量化 + 流式 chunking 兜底。
+- **触发**：L20 实测 RTF > 1.0（效率腿丢分）；或显存 OOM。
+
+### 风险 13：边缘部署目标硬件未定义（落地可行性 20%）
+- **现象**：决赛评分"应用价值和落地可行性 20%"需讲部署路径，但**赛事方未定义终态目标硬件**（家电 MCU / 边缘网关 / 本地服务器算力差几个数量级）。当前方案依赖 Whisper-large-v3-turbo(809M) + Qwen-3B，只能在 GPU 服务器/L20 跑，**离 MCU 量级差太远**。
+- **根因**：题目聚焦"识别技术"非"端侧部署"，落地硬件口径空缺（memory `edge-deployment-end-goal`）。
+- **诚实应对**：① **承认当前是服务器级方案**，落地分讲"云端/网关级可落地"+ 给 MCU 级降级路线（INT4 量化 + Whisper-tiny 蒸馏 + 流式 + 拒识前置 KWS 唤醒，作未来工作）；② **不夸大**"已可上家电"——评委追问"放洗碗机 MCU 上 RTF 多少"会穿帮；③ 向主办方确认目标硬件口径（若只是云端/网关，当前方案已达标）。
+- **备选**：若确认需 MCU 级，量化蒸馏 + KWS 前置漏斗（唤醒词先过 KWS，仅命中再跑全 pipeline）。
+- **触发**：评委追问部署硬件 / 落地分被压。
 
 ---
 
