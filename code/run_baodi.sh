@@ -63,7 +63,10 @@ fi
 # 故 B 集统一 thr 必须经 run_baodi 或显式 BAODI_OK=1, 已由 T27 对抗验证背书)
 export BAODI_OK=1
 
-echo "[baodi] backend=$BACKEND 关LLM(--no-llm) + thr=$THR + strategy=sim_only  → $OUT  (vanilla 主线 / BAODI_BACKEND=dicow 切回)"
+# content_gate(2026-07-08): 默认关(hold-out 证泛化但 B 集未知先保守); BAODI_GATE=1 开
+GATE_FLAG=""
+if [[ "${BAODI_GATE:-0}" == "1" ]]; then GATE_FLAG="--content-gate"; fi
+echo "[baodi] backend=$BACKEND 关LLM(--no-llm) + thr=$THR + strategy=sim_only + content_gate=${BAODI_GATE:-0}  → $OUT  (vanilla 主线 / BAODI_BACKEND=dicow 切回)"
 exec code/.venv/Scripts/python.exe code/submit_infer.py \
   --pairs "$PAIRS" --out-dir "$OUT" --no-llm --sim-thr "$THR" --strategy sim_only \
-  --asr-backend "$BACKEND"
+  --asr-backend "$BACKEND" $GATE_FLAG

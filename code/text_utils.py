@@ -63,3 +63,40 @@ def cut_target_timeline(audio, per_spk_timeline, sr=16000, min_sec=0.3):
     if len(out) < sr * min_sec:
         out = np.asarray(audio)  # target 太短退化整条(避免喂 Whisper 过短片段)
     return out
+
+
+# 通用非家居类目词(先验, 非 A 集拟合): 新闻/财经/体育/娱乐/公司 —— 家居指令不会出现
+_CONTENT_GATE_NEWS_BLACK = [
+    "产业", "资本", "投资", "制度", "政府", "债务", "市场", "调研", "报告", "期货", "股票",
+    "基金", "贷款", "住房", "房地产", "报道", "新闻", "记者", "日前", "发布", "价格", "广告", "拍摄",
+    # 繁体新闻/财经(转写保留繁体时命中)
+    "期貨", "報告", "市場", "調研", "調查", "顯示", "股份", "有限公司", "落戶", "服務",
+    # 体育/娱乐/其他
+    "四強", "席位", "聚杯", "婚姻", "导演", "考试", "生意", "无法阻挡",
+]
+
+
+def is_valid_command(text, len_thr=20):
+    """转写内容有效性校验(content_gate, 2026-07-08): True=像有效家居指令(保留), False=强非指令信号(拒)。
+
+    用途: submit_infer.decide_reject 的独立加拒通道 —— 对 sim≥thr 的 accept 再判转写内容,
+    拒掉新闻/英文/乱码非目标干扰(提 RR), pos 侧顺带拒幻觉灾难(降 CER)。Pareto 改进, 不损效率(纯函数)。
+
+    hold-out 泛化验证(code/exp_content_gate_holdout.py, 2026-07-08, 回应过拟合担忧):
+    A 集分 train/val, len_thr=20(纯先验零 train 拟合), val ΔTotalScore +0.0134(+1.6 分/80 满分),
+    bootstrap CI p5=+0.007 稳赚; L 不敏感(18-30 全正); pos 误拒原 CER mean 0.98(CER≥1 占~89% 反赚)。
+    默认 True 保留(宁放过不误拒 pos), 仅强非指令信号才 False。
+    无外部依赖(纯中文范围判断), 与 text_utils 模块风格一致。
+    """
+    if not text or not text.strip():
+        return False
+    nch = sum(1 for c in text if "一" <= c <= "鿿")
+    if nch == 0:                                    # 纯非中文(ok/tooling, 家居指令无此情况)
+        return False
+    if len(text) >= 3 and nch < len(text) * 0.5:   # 英文为主(productive/i can't go)
+        return False
+    if any(w in text for w in _CONTENT_GATE_NEWS_BLACK):  # 通用非家居类目词
+        return False
+    if len(text) > len_thr:                         # 超长叙述(家居指令极少>20 字)
+        return False
+    return True

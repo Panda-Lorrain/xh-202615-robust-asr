@@ -1,15 +1,15 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
-> **交接时间**：2026-07-08（主办方 CER 口径坐实 + 提交归一漏洞修复，**未 commit**；接 2026-07-07 晚 MiMo+数字后处理）
-> **下个 agent 读序**：本文件【2026-07-08】段（↓）→ CLAUDE.md → 关键 memory（**official-scoring-spec** / reproducibility-hardening / mimo-asr-backend-potential / unified-thr-decision / h3-dicow-conditioning-backfire-vanilla / baodi-config-no-llm / submit-script-verification）→ REPRO_SETUP.md
-> **当前 git**：`master` @ `0aea5ca`（**未 push，本地超前 origin/30c479d**；2026-07-08 改动未 commit）— 最近 commit：0aea5ca MiMo+数字后处理 / 30c479d T27 统一 thr（已 push）/ 89ab62a T26 指针 / 621ffc9 T26 / 58f8bed T25
+> **交接时间**：2026-07-08（CER 口径+提交归一已 push `78e0576`；**问题二/三 caliber-A 彻底解除**；**content_gate 集成(hold-out 证泛化 val+1.6 分, 默认关 BAODI_GATE=1 开)**，未 commit）
+> **下个 agent 读序**：本文件【2026-07-08】段（↓）→ CLAUDE.md → 关键 memory（**content-gate-decision** / official-scoring-spec / dataset-split-spec / reproducibility-hardening / mimo-asr-backend-potential / unified-thr-decision / h3-dicow-conditioning-backfire-vanilla / baodi-config-no-llm / submit-script-verification）→ REPRO_SETUP.md
+> **当前 git**：`master` @ `78e0576`（已 push，origin 同步）— `78e0576` 官方 CER 口径对齐+提交归一漏洞修复（Panda_Lorrain 身份）/ 3b2d4f5 MiMo 诊断标尺 / 0aea5ca MiMo+数字后处理 / 30c479d T27 统一 thr。⚠️ 本轮(问题二/三 + content_gate)改 `待确认...md`+`text_utils/submit_infer/run_baodi`(content_gate)+`exp_content_gate_*`(hold-out/PoC)+memory，未 commit。
 
 ---
 
 ## 【2026-07-08 最新】主办方 CER 口径坐实 + 提交归一漏洞修复
 
 ### 一句话现状
-主办方 CER 口径脚本到手并坐实对齐（normalize_text: NFKC+lower+去 P* 标点和空白; CERMetric 累计池 total_err/total_char, editdistance 库）。落地 3 件：eval_metrics 加官方口径（逐行等价，12 边界 Δ=0）/ recompute_official_cer 重算全量 / **修 4-agent 对抗验证发现的提交归一漏洞**（cn2an/zhconv 原未声明依赖→主办方环境必缺→digit_postproc 静默失效→CER 0.595 实际回 0.661；已建 requirements.txt + RuntimeWarning 告警 + to_submission SSOT）。口径切换利好：vanilla overall 0.664→**0.595** / thr0.27 含拒 **0.703** / H3 dicow sim[0.2,0.3) **1.609** 更稳 / digit_postproc 收益 -0.033 坐实。caliber-A 风险降级。
+主办方 CER 口径脚本到手并坐实对齐（normalize_text: NFKC+lower+去 P* 标点和空白; CERMetric 累计池 total_err/total_char, editdistance 库）。落地 3 件：eval_metrics 加官方口径（逐行等价，12 边界 Δ=0）/ recompute_official_cer 重算全量 / **修 4-agent 对抗验证发现的提交归一漏洞**（cn2an/zhconv 原未声明依赖→主办方环境必缺→digit_postproc 静默失效→CER 0.595 实际回 0.661；已建 requirements.txt + RuntimeWarning 告警 + to_submission SSOT）。口径切换利好：vanilla overall 0.664→**0.595** / thr0.27 含拒 **0.703** / H3 dicow sim[0.2,0.3) **1.609** 更稳 / digit_postproc 收益 -0.033 坐实。**caliber-A 彻底解除**（2026-07-08 主办方问题二/三：pos 隐含允许拒 + 排名公式 `TotalScore=w1*(1-CER)+w2*RR` 公布 + RTF 按 batch=1 测）。
 
 ### 口径坐实（主办方脚本, 2026-07-08）
 - 归一化：NFKC + lower + strip + 去所有 Unicode P* 标点和空白（含内部空格）。**不繁简归一、不数字归一**。
@@ -36,8 +36,31 @@
 
 ### ⚠️ follow-up
 1. 🟡 **commit + push**：本批改动未 commit（本地超前 `0aea5ca`）。建议合一个 commit「feat(eval): 官方 CER 口径对齐 + 提交归一漏洞修复」。注意 git 身份用 **Panda_Lorrain**（[[git-identity-mismatch]]），本机默认 midea-overnight-loop 需显式指定。
-2. 🟢 **caliber-A 降级但未全消**：主办方脚本明确不归一繁简/数字（与我们提交侧归一对齐），但 pos 被拒 CER 计法 / CER:RR 权重比 / per-sample 封顶 仍待口头确认（memory `official-scoring-spec` 待问 1/2/3）。
+2. ✅ **caliber-A 2026-07-08 彻底解除**（主办方问题二/三确认）：pos **隐含允许被拒**（拒=CER1.0 无额外惩罚）+ 排名公式 **`TotalScore=w1*(1-CER)+w2*RR`** 公布（线性无惩罚项，per-sample 不封顶）+ **RTF 按 batch=1 测**（不做 batch 改造）。w1=w2（最可能 0.4/0.4）则 **thr=0.27 定稿**（T27 目标函数 (1-CER)×40+RR×40 与公布公式等价，无需重扫）；仅 RR-heavy 才上移。剩 w1/w2 具体值口头确认即闭环。
 3. 🟡 **抽验（低风险）**：workflow② 提示 enroll_infer vanilla 与 exp json 的 attention_mask/seed 分歧（no-op 级），可抽 5 条 `enroll_infer --asr-backend vanilla` 输出 vs `exp_vanilla_full.json` 逐字比对彻底消除。
+
+---
+
+## 【2026-07-08 content_gate】转写内容有效性二次拒识（集成, 默认关, 详见 memory content-gate-decision）
+
+### 一句话
+RR 卡 90.5%（thr0.27）的 45 条漏拒 neg 转写多为新闻/英文/乱码 → 加 content_gate（sim≥thr 的 accept 再判转写是否家居指令, 非指令则拒）。**hold-out 证泛化（val +1.6 分, CI p5>0, L 不敏感）, 集成进 decide_reject 独立加拒通道, 默认关（BAODI_GATE=1 开）**。Pareto 改进：提 RR 不损 pos/效率, pos 侧顺带拒幻觉灾难降 CER。
+
+### 用户方法论纠正（关键, 2026-07-08）
+PoC 初版 +2.3 是 **in-sample 上界**（黑名单词看全 A 集漏拒 neg 定的）。用户指出过拟合风险（A 集是开发集 PDF 坐实, B 集不公开永拿不到, [[dataset-split-spec]]）。修正：**A 集分 train/val hold-out 验证泛化**（规则先验版, 唯一 train 拟合参数 len_thr, 最终用纯先验 20）。val ΔTS +0.0134, 全集 +0.0248 vs PoC +0.0256（过拟合水分仅 0.0008）。
+
+### 集成（file:line）
+- `text_utils.is_valid_command(text, len_thr=20)`：先验版（拒纯非中文/英文为主/通用非家居类目词繁简/超长, 默认保留）
+- `submit_infer.decide_reject`（:55）：加 text+use_content_gate 参数 + 独立加拒通道（sim≥thr 且 not is_valid_command→拒, 不改原 sim/llm 逻辑）; :174 `--content-gate` flag（默认关）; :318 调用传 transcript
+- `run_baodi.sh`：`BAODI_GATE=1` env 开关（保"锁死 flag 防灾难"语义）
+- enroll_infer/to_submission 不改（transcript 字段, gate 在融合层）
+- smoke 确认：sim0.371 '解剩所有的物料画面价格比较'（乱码）→ 拒; sim0.351 '关门的吗'（指令）→ 放
+
+### hold-out 数字（code/exp_content_gate_holdout.py）
+分割 pos 688/674 neg 228/246（uid md5 hash 固定）。val（len_thr=20 先验）：ΔTS +0.0134（+1.6 分/80 满分）| ΔRR +0.045（主力）| ΔCER +0.011（微亏, pos 误拒代价小）| bootstrap CI（B=400）p5=+0.007 p95=+0.024 稳赚 | L 不敏感（18-30 全正）| pos 误拒 9 条原 CER mean 0.98（CER≥1 占 89% 反赚）。
+
+### 决策：默认关
+hold-out 证泛化但 B 集未知（B 集干扰分布可能不同）→ 默认关, BAODI_GATE=1 开。这次提交保守不拿收益, 换不反噬 B 集。赛后 B 集复盘（赛事方测）再定默认开。
 
 ---
 

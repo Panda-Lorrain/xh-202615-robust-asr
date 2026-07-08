@@ -15,6 +15,7 @@ import subprocess
 import contextlib
 from datetime import datetime
 from repro import set_global_seed  # 可复现性: 主进程种子(子进程各自 set_global_seed)
+from text_utils import is_valid_command  # content_gate(2026-07-08): 转写内容有效性二次拒
 
 HERE = os.path.dirname(os.path.abspath(__file__))      # code/
 ROOT = os.path.dirname(HERE)                            # 项目根
@@ -52,14 +53,21 @@ def expand_inputs(args):
     return [(args.enrollment, r) for r in recs]
 
 
-def decide_reject(max_sim, llm_verdict, strategy, sim_thr, use_llm):
+def decide_reject(max_sim, llm_verdict, strategy, sim_thr, use_llm,
+                  text="", use_content_gate=False):
     """融合拒识决策。返回 True=拒识。
     - 无 LLM 或 sim_only: 拒 iff max_sim < sim_thr           （保底走这条）
     - llm_only:           拒 iff llm != accept
     - llm_or_sim(默认):   拒 iff (llm != accept) AND (max_sim < sim_thr)
                           ⚠️ 命名历史遗留，实为 AND：LLM=accept 一票放过，故 LLM 只能
                           【减拒】不能【加拒】（GAP4 证伪"三路融合"强项定位，答辩勿列）。
+    - content_gate(2026-07-08): sim≥thr 的 accept 若转写内容非有效家居指令(is_valid_command=False)
+                          → 加拒。独立加拒通道(对 neg 提 RR, pos 侧顺带拒幻觉灾难降 CER), 不改原 sim/llm 逻辑。
+                          hold-out 验证 val +1.6 分(L 不敏感 18-30 全正, bootstrap CI p5>0), 默认关(--content-gate 开)。
     """
+    # content_gate 独立加拒通道: sim 过线但转写内容非指令 → 拒(只在 sim≥thr 时加拒, 不影响 sim<thr 的原决策)
+    if use_content_gate and max_sim >= sim_thr and not is_valid_command(text):
+        return True
     if not use_llm or strategy == "sim_only":
         return max_sim < sim_thr
     if strategy == "llm_only":
@@ -172,6 +180,9 @@ def main():
     ap.add_argument("--no-se", action="store_true", help="跳过 SE 条件化降噪")
     ap.add_argument("--no-llm", action="store_true", help="跳过 LLM 拒识")
     ap.add_argument("--sim-thr", type=float, default=0.2, help="声纹拒识阈值(T20 最优)")
+    ap.add_argument("--content-gate", action="store_true",
+                    help="开 content_gate: sim≥thr 的 accept 若转写非有效家居指令则加拒"
+                         "(hold-out val +1.6分证泛化, 默认关; run_baodi 用 BAODI_GATE=1 开)")
     ap.add_argument("--enroll-augment", action="store_true",
                     help="enrollment 加噪增强(干净+多档加噪 emb 均值,提 babble 下声纹鲁棒 → 提 sim)")
     ap.add_argument("--aug-snrs", default="10,5,0", help="enrollment 加噪增强 SNR 档(逗号分)")
@@ -315,7 +326,9 @@ def main():
         r = enr_map.get(uid, {})
         max_sim = float(r.get("max_sim", 0.0) or 0.0)
         llm_v = llm_map.get(uid, "reject") if use_llm else "accept"
-        rejected = decide_reject(max_sim, llm_v, args.strategy, args.sim_thr, use_llm)
+        rejected = decide_reject(max_sim, llm_v, args.strategy, args.sim_thr, use_llm,
+                                 text=r.get("transcript", "") or "",
+                                 use_content_gate=args.content_gate)
         text = "" if rejected else (r.get("transcript", "") or "")
         # noise_type/atten_lim_db 来自阶段0的 noise_classify 输出(join by basename);
         # --no-se 时 noise_map 为空 → (None, None) → null(合理: SE 跳过, 未估噪声)。
