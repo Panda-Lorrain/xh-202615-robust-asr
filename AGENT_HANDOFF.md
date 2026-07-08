@@ -64,6 +64,22 @@ hold-out 证泛化但 B 集未知（B 集干扰分布可能不同）→ 默认�
 
 ---
 
+## 【2026-07-08 P1 oracle】证伪声纹强化攻死区 → 死区是 babble 摧毁 mel 物理极限
+
+### 一句话
+oracle POC（code/exp_spk_oracle.py, 60 条死区抽样, 详见 memory spk-oracle-poc）四组证据全指向 **GO=否**: 死区（pos sim<0.2, 29%）是 babble 摧毁 mel 的物理极限, 非选择器工程缺陷。**不投 CAM++/帧选择/US-PVAD**（避免五连受挫）。CER 腿破局只剩 SepFormer 源分离（高成本）或接受 vanilla 0.595 天花板。
+
+### 四组证据
+1. argmax 选对率 66.7%（多数选对）2. oracle_sim≥0.2 占 0%（正确 target 声纹也全不可识别）3. miss 20/20 声纹反向指错 4. 单 speaker 控制组 n=18 CER 0.436（target 唯一仍转不出）。
+- oracle_CER 0.607（作弊完美选 target 仍>0.5 不及格）vs argmax_CER 0.788; diar 确定性 |Δ|=0.0025。
+
+### 决策影响
+- CER 腿声纹入口关闭（证伪 mimo-asr-backend-potential "声纹强化最高杠杆"）
+- 答辩弹药升级: 单 spk 控制组 + miss 声纹反向 = 诚实归因硬证据（死区=物理极限非工程缺陷, 契合反 cascaded 审美）
+- 下一步: 转 P2 答辩交付刷新（决赛 70 分）或 SepFormer 源分离 POC（高成本, 需另立项）
+
+---
+
 ## 【2026-07-07 晚 最新】MiMo-V2.5-ASR 调研闭环 + 数字后处理集成
 
 ### 一句话现状
