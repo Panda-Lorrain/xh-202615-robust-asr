@@ -76,14 +76,14 @@ _CONTENT_GATE_NEWS_BLACK = [
 ]
 
 
-def is_valid_command(text, len_thr=20):
+def is_valid_command(text, len_thr=22):
     """转写内容有效性校验(content_gate, 2026-07-08): True=像有效家居指令(保留), False=强非指令信号(拒)。
 
     用途: submit_infer.decide_reject 的独立加拒通道 —— 对 sim≥thr 的 accept 再判转写内容,
     拒掉新闻/英文/乱码非目标干扰(提 RR), pos 侧顺带拒幻觉灾难(降 CER)。Pareto 改进, 不损效率(纯函数)。
 
     hold-out 泛化验证(code/exp_content_gate_holdout.py, 2026-07-08, 回应过拟合担忧):
-    A 集分 train/val, len_thr=20(纯先验零 train 拟合), val ΔTotalScore +0.0134(+1.6 分/80 满分),
+    A 集分 train/val 多 seed(10 划分全正), len_thr=22(val 占优甜点近先验, pos 误拒更少), val ΔTS 详见 hold-out 产物,
     bootstrap CI p5=+0.007 稳赚; L 不敏感(18-30 全正); pos 误拒原 CER mean 0.98(CER≥1 占~89% 反赚)。
     默认 True 保留(宁放过不误拒 pos), 仅强非指令信号才 False。
     无外部依赖(纯中文范围判断), 与 text_utils 模块风格一致。

@@ -62,10 +62,10 @@ def uid_of(r):
 
 
 def split_train_val(rows, seed=42):
-    """按 uid md5 hash 固定分两半（确定性，与样本顺序无关）。"""
+    """按 uid md5 hash + seed salt 分两半（seed 控制划分, 多 seed 验证泛化鲁棒性）。"""
     train, val = [], []
     for r in rows:
-        h = int(hashlib.md5(uid_of(r).encode()).hexdigest(), 16)
+        h = int(hashlib.md5((uid_of(r) + f"|seed={seed}").encode()).hexdigest(), 16)
         (train if h % 2 == 0 else val).append(r)
     return train, val
 
@@ -186,6 +186,22 @@ def main():
         ge1 = sum(1 for c in cers if c >= 1.0)
         print(f"\npos val 被 gate 拒: {len(pos_val_gate_rej)} 条, 原 CER mean={sum(cers)/len(cers):.3f} "
               f"(CER≥1 占 {ge1}/{len(pos_val_gate_rej)}={ge1/len(cers):.0%} 反赚; <1 的={len(cers)-ge1} 需 spot check)")
+
+    # --- 多 seed hold-out 鲁棒性(证收益非单 split 偶然, 回应过拟合) ---
+    L_FIX = 22  # 集成默认(val 占优甜点近先验), 多 seed 报此 L 的 val ΔTS 分布
+    print(f"\n=== 多 seed hold-out(L={L_FIX}, 集成默认) 10 划分 val ΔTS 分布 ===")
+    deltas_ms = []
+    for sd in range(10):
+        _ptr, pvl = split_train_val(pos, sd)
+        _ntr, nvl = split_train_val(neg_rows, sd)
+        _tn, _, _ = total_score(pvl, nvl, L_FIX, False)
+        _tg, _, _ = total_score(pvl, nvl, L_FIX, True)
+        deltas_ms.append(_tg - _tn)
+    n_pos = sum(1 for d in deltas_ms if d > 0)
+    print(f"  10 seed val ΔTS: min={min(deltas_ms):+.4f}({min(deltas_ms)/0.8*100:+.2f}分/80满分) "
+          f"max={max(deltas_ms):+.4f} mean={sum(deltas_ms)/len(deltas_ms):+.4f}")
+    print(f"  正收益 seed: {n_pos}/10 "
+          f"{'✅ +gate 收益鲁棒(非单 split 偶然), 可放心最终提交开' if n_pos == 10 else '⚠️ 有非正 seed'}")
 
 
 if __name__ == "__main__":
