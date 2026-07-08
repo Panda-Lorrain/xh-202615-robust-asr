@@ -1,8 +1,38 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
-> **交接时间**：2026-07-08（CER 口径+提交归一已 push `78e0576`；**问题二/三 caliber-A 彻底解除**；**content_gate 集成(hold-out 证泛化 val+1.6 分, 默认关 BAODI_GATE=1 开)**，未 commit）
-> **下个 agent 读序**：本文件【2026-07-08】段（↓）→ CLAUDE.md → 关键 memory（**content-gate-decision** / official-scoring-spec / dataset-split-spec / reproducibility-hardening / mimo-asr-backend-potential / unified-thr-decision / h3-dicow-conditioning-backfire-vanilla / baodi-config-no-llm / submit-script-verification）→ REPRO_SETUP.md
-> **当前 git**：`master` @ `78e0576`（已 push，origin 同步）— `78e0576` 官方 CER 口径对齐+提交归一漏洞修复（Panda_Lorrain 身份）/ 3b2d4f5 MiMo 诊断标尺 / 0aea5ca MiMo+数字后处理 / 30c479d T27 统一 thr。⚠️ 本轮(问题二/三 + content_gate)改 `待确认...md`+`text_utils/submit_infer/run_baodi`(content_gate)+`exp_content_gate_*`(hold-out/PoC)+memory，未 commit。
+> **交接时间**：2026-07-09（**数据驱动错误分析优先, 模型路线全延后**; Paraformer+声纹注入调研完成; 未满分 CSV+HTML 标注界面交付; 用户正在人工过 1084 条未满分标难点）
+> **下个 agent 读序**：本文件【2026-07-09 最新】段（↓）→ CLAUDE.md → 关键 memory（**cer-breakthrough-candidates** / content-gate-decision / official-scoring-spec / dataset-split-spec / reproducibility-hardening / mimo-asr-backend-potential / unified-thr-decision / h3-dicow-conditioning-backfire-vanilla / spk-oracle-poc / baodi-config-no-llm / submit-script-verification / lessons-pitfalls）→ REPRO_SETUP.md
+> **当前 git**：`master` @ `78e0576`（已 push，origin 同步）。⚠️ 2026-07-08 content_gate 改动 + 2026-07-09 本轮(error_analysis CSV/HTML标注/memory cer-breakthrough-candidates/AGENT_HANDOFF)均**未 commit**。下个 agent 先 `git status` 核对。
+
+---
+
+## 【2026-07-09 最新】数据驱动错误分析优先 + Paraformer/声纹注入调研（模型路线全延后）
+
+### 一句话现状
+用户听过死区样本(cmd_2102 音量小+语速快 / cmd_2788 语速慢+babble, rec_sec 4.28s 印证"拖很慢")后决策: **先人工过全部未满分音频提取难点(数据驱动错误分析), 模型路线(Paraformer/声纹注入/端到端/TSE/LLM纠正)全延后**。方向正确(先理解数据再调模型, 契合 lessons-pitfalls 先证机制)。
+
+### Workflow B 调研结论(方向修正, tasks/wiupwi5ca.output, 4路WebSearch 454K tokens)
+- ⚠️ **"Paraformer+声纹注入合并"工程不成立**: Paraformer 无任何 speaker-conditioned/TS 变体(CIF 非自回归, 注入全自定义无先例); 声纹注入有公开模板的是 **Whisper(TS-Whisper Ma ICASSP2024)**, 不是 Paraformer。
+- **Paraformer drop-in(选项A)明确利好**: <1人天零训练(enroll_infer 已有 `--asr-backend` 机制, 集成点已核查); 中文原生(干净 CER SenseVoice 7.81% vs Whisper-turbo 21.71%, 2.8x, ⚠️babble 场景未证需 POC); 效率(RTF 0.008 vs 0.022, 2.6x); **数字ITN(use_itn 原生中文数字, 消除 cn2an/zhconv 依赖, 化解提交归一漏洞)**; License Apache 2.0。
+- **声纹注入(走Whisper)双重红线**: ①enrollment 1.8s<5s 红线(Maeda2025 坐实) ②重babble下条件化反作用(H3铁证 DiCoW sim[0.2,0.3) CER1.606; FiLM/prompt同族)。选项B轻量注入1-2周, C端到端联合4-8周(上限候选X, 理论可能超MiMo但风险最高)。
+- 🔴 **A集合规 GRAY ZONE(最高杠杆未知项, 必问主办方)**: 决定 B/C 可行性。推荐顺序: 选项A必做首选, B/C条件触发(待数据结论+合规+GPU+时间)。
+
+### 未满分错误分析(用户主导, 数据驱动)
+- pos 1364 条: 满分(CER=0) 280, **未满分(CER>0) 1084**。分档: 1_死区CER>1 **126** / 2_严重0.5-1 **554** / 3_中等0.1-0.5 **392** / 4_轻微0-0.1 **12**。
+- 产物: `code/error_analysis_pos_unfull.csv`(分档, Excel 友好) + `code/error_annotator.html`(标注界面, 双击打开, **推荐 Firefox**; Chrome 禁 file:// 则 `python -m http.server`; 播放+难点多选+快捷键 ←→翻条/空格播放/1-9选难点+导出 error_annot_export.csv)。难点9类: 音量小/语速快/语速慢/babble强/重叠/英文干扰/静音未说话/循环幻觉/其他。
+- 死区听音清单 18 条代表(tasks/wxl93pp09.output): 物理极限铁证(MiMo同翻车 ~61%) / 切错target·声纹反向(oracle本可救 ~28%, 唯一有改进空间) / 循环幻觉OOD / 英文水印。
+- **下个 agent**: 等用户标注结果 → 聚类难点分布 → 决定攻哪个模型路线(音量小集中→前端增益可能救; babble强主导→物理地板守保底)。
+
+### 产物(本 session, 未 commit)
+- `code/extract_error_list.py` + `code/error_analysis_pos_unfull.csv`(1084条分档)
+- `code/build_error_annotator.py` + `code/error_annotator.html`(标注界面)
+- `memory/cer-breakthrough-candidates.md`(路线backlog+2026-07-09延后决策) + MEMORY.md 索引
+- Workflow 产物: `tasks/wxl93pp09.output`(死区清单) + `tasks/wiupwi5ca.output`(4路调研+设计选项A/B/C)
+
+### ⚠️ follow-up
+1. 🟡 等**用户标注结果**(难点分布) → 决定模型路线; 2. 🟡 commit 本轮(Panda_Lorrain 身份); 3. ⏸ 模型路线全等数据结论+用户决策; 4. 🟡 A集合规待用户问主办方。
+
+关联 memory: [[cer-breakthrough-candidates]] [[spk-oracle-poc]] [[h3-dicow-conditioning-backfire-vanilla]] [[mimo-asr-backend-potential]] [[content-gate-decision]] [[dataset-split-spec]] [[lessons-pitfalls]]。
 
 ---
 
@@ -77,6 +107,17 @@ oracle POC（code/exp_spk_oracle.py, 60 条死区抽样, 详见 memory spk-oracl
 - CER 腿声纹入口关闭（证伪 mimo-asr-backend-potential "声纹强化最高杠杆"）
 - 答辩弹药升级: 单 spk 控制组 + miss 声纹反向 = 诚实归因硬证据（死区=物理极限非工程缺陷, 契合反 cascaded 审美）
 - 下一步: 转 P2 答辩交付刷新（决赛 70 分）或 SepFormer 源分离 POC（高成本, 需另立项）
+
+---
+
+## 【2026-07-08 SepFormer+P2】SepFormer 源分离 POC 证伪 + 答辩交付刷新
+
+### SepFormer = NO-GO（CER 天花板确认）
+SepFormer POC（code/exp_sepformer_poc.py, 40 条死区）证伪: 盲分离拎不出 target（CER 0.859 vs vanilla 0.918 Δ-0.059 噪声带, correct 反降, oracle 0.752 反劣 diar-oracle 0.607 = 分离动作本身劣化 target）。**六连受挫**（langfix/STNO/SE-DiCoW/enroll-augment/声纹强化/SepFormer）→ 组合主线极重 babble 下 CER 能力极限。接受 vanilla 0.595 天花板。唯一剩 enrollment-conditioned TSE（SpEx/TF-GridNet）大工程（P1 单 spk 0.436 地板, 收益不确定, 超 POC 范围）。详见 memory spk-oracle-poc。
+
+### P2 答辩交付刷新（4 文件, commit 5156fd5）
+03FAQ（07-08 横幅 + 红线6 真测 + 风险12 L20未测/13 边缘部署）/ 使用说明（删虚构CLI + run_baodi 入口 + content_gate + JSON schema）/ 测试验证方案（仿真450→真测1362）/ 设计报告（主线 vanilla 反 cascaded）。
+⚠️ follow-up: make_readme_progress.py 仍读仿真（PNG 标题 CER4.27）, 需重写读真测（答辩开场视觉矛盾风险）。PPT/演练待 ppt-master。
 
 ---
 
