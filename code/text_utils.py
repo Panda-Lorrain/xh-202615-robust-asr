@@ -4,10 +4,19 @@ import numpy as np
 
 
 def to_simplified(text):
-    """繁→简归一(zhconv)。空值直通。转写后归一 + submission 兜底都用。"""
+    """繁→简归一(zhconv)。空值直通。转写后归一 + submission 兜底都用。
+    zhconv 缺失 graceful 跳过+告警(与 eval_datasetA._norm_zh 失败模式一致, 避免裸崩阻塞整批推理)。"""
     if not text:
         return text
-    import zhconv
+    try:
+        import zhconv
+    except ImportError:
+        import warnings
+        warnings.warn(
+            "zhconv 未装: to_simplified 跳过(繁体不转简), 官方CER口径下 CER 虚高。"
+            "装: uv pip install -r code/requirements.txt",
+            RuntimeWarning, stacklevel=2)
+        return text
     return zhconv.convert(text, "zh-cn")
 
 
@@ -24,6 +33,13 @@ def digit_postproc(text):
     try:
         import cn2an
     except ImportError:
+        # 2026-07-08: 静默跳过→告警。官方CER口径不归一数字, cn2an 缺则阿拉伯数字直进提交,
+        # 含数字句 CER 虚高(~0.03 全量, 含数字句更甚)。cn2an 已声明 code/requirements.txt。
+        import warnings
+        warnings.warn(
+            "cn2an 未装: digit_postproc 跳过(阿拉伯数字不转中文), 官方CER口径下 CER 虚高。"
+            "装: uv pip install -r code/requirements.txt",
+            RuntimeWarning, stacklevel=2)
         return text
     text = re.sub(r"(\d+)%", lambda m: "百分之" + cn2an.an2cn(m.group(1)), text)
     # (?<!\d) 前置: 确保≥4位幻觉串(如916213)整串不匹配, 只转独立的1-3位数字(0-999)

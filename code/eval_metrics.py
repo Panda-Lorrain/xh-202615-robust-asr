@@ -59,6 +59,107 @@ def batch_cer(hyp_dir: str, ref_dir: str) -> tuple:
     return results, avg
 
 
+# ===== 主办方官方 CER 口径(2026-07-08 坐实, 见 memory official-scoring-spec) =====
+# 来源: 主办方参考脚本(unicodedata.NFKC + lower + 去 P*/空白 + editdistance 累计池)。
+# 与上方 cer()(jiwer 逐条, 由调用方算术平均) 的三处差异:
+#   1. 归一化 normalize_text: NFKC + lower + 去所有标点(Unicode P*)和空白(含内部空格)
+#      —— 旧 cer 仅 replace(" ","")+lower, 不去标点不 NFKC
+#   2. 聚合: 累计池 total_errors/total_chars —— 旧 cer 由 eval_datasetA/实验脚本逐条平均
+#   3. 不做繁简归一 —— 旧链路 _norm_zh 用 zhconv; 提交侧 to_simplified 已把 pred 转简体对齐 ref
+# 实测(1364 条 vanilla, 2026-07-08): overall 两口径差<0.01; 提交侧归一(digit+to_simplified)后
+#   vanilla overall 0.664→0.595, dicow 1.248→1.214; vanilla-dicow 优势 Δ 不变(-0.62)。
+import unicodedata
+import string as _string
+try:
+    import editdistance as _editdistance
+except ImportError:
+    _editdistance = None
+
+
+def normalize_text(text: str) -> str:
+    """主办方归一化(照抄主办方脚本): NFKC + lower + strip + 去所有标点(P*)和空白。"""
+    if text is None:
+        return ""
+    text = str(text)
+    text = unicodedata.normalize("NFKC", text)
+    text = text.lower()
+    text = text.strip()
+    out = []
+    for ch in text:
+        if ch in _string.whitespace or unicodedata.category(ch).startswith("P"):
+            continue
+        out.append(ch)
+    return "".join(out)
+
+
+class CERMetric:
+    """主办方 CER 累计池度量(照抄主办方脚本): total_errors / total_chars 聚合, 非逐条平均。
+
+    边界与主办方一致: target 空 → errors==0 给 0.0 否则 1.0; 非空 → errors/char_cnt(可>1, 不封顶)。
+    拒识条(text 空)天然贡献 errors=len(ref), char=len(ref) → CER=1.0, 无需特殊处理。
+    """
+    def __init__(self):
+        self.reset()
+
+    def reset(self):
+        self.total_chars = 0
+        self.total_errors = 0
+        self.per_sample_results = []
+
+    def update(self, preds, targets):
+        if isinstance(preds, str):
+            preds = [preds]
+        if isinstance(targets, str):
+            targets = [targets]
+        assert len(preds) == len(targets), "preds 和 targets 长度必须一致"
+        assert _editdistance is not None, "editdistance 未装: uv pip install editdistance"
+        for pred, target in zip(preds, targets):
+            norm_pred = normalize_text(pred)
+            norm_target = normalize_text(target)
+            errors = _editdistance.eval(norm_pred, norm_target)
+            char_cnt = len(norm_target)
+            if char_cnt == 0:
+                cer_value = 0.0 if errors == 0 else 1.0
+            else:
+                cer_value = errors / char_cnt
+            self.total_errors += errors
+            self.total_chars += char_cnt
+            self.per_sample_results.append({
+                "norm_pred": norm_pred, "norm_target": norm_target,
+                "errors": errors, "target_chars": char_cnt, "cer": cer_value,
+            })
+
+    def compute(self):
+        if self.total_chars == 0:
+            overall = 0.0 if self.total_errors == 0 else 1.0
+        else:
+            overall = self.total_errors / self.total_chars
+        return {"cer": overall, "total_errors": self.total_errors,
+                "total_chars": self.total_chars, "per_sample": self.per_sample_results}
+
+
+def cer_pool(preds, refs):
+    """便捷: 官方累计池 CER(total_errors/total_chars)。preds/refs 为 list[str](单条 str 自动包裹)。"""
+    if isinstance(preds, str):
+        preds = [preds]
+    if isinstance(refs, str):
+        refs = [refs]
+    m = CERMetric()
+    m.update(preds, refs)
+    return m.compute()["cer"]
+
+
+def cer_official(pred: str, ref: str) -> float:
+    """官方口径单条 CER = editdistance(norm_pred, norm_ref) / len(norm_ref); 空 ref 同 CERMetric 边界。"""
+    if _editdistance is None:
+        raise ImportError("editdistance 未装: uv pip install editdistance")
+    norm_pred = normalize_text(pred)
+    norm_ref = normalize_text(ref)
+    if len(norm_ref) == 0:
+        return 0.0 if len(norm_pred) == 0 else 1.0
+    return _editdistance.eval(norm_pred, norm_ref) / len(norm_ref)
+
+
 if __name__ == "__main__":
     print("=== W6 评测脚本自测 ===")
     print("\n[CER 中文]")

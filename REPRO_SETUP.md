@@ -35,9 +35,12 @@ cd ../..
 
 ```bash
 # Python 一律用 uv（禁止裸 pip）
-uv sync                          # 或按各 venv requirements 安装
-# 3 venv: code/.venv(主 enroll_infer/DiariZen/vanilla) / code/.venv_se(DeepFilterNet) / .venv_llm(Qwen)
+# 主 venv(code/.venv: enroll_infer/DiariZen/vanilla/评测) 依赖已声明 code/requirements.txt
+uv pip install -r code/requirements.txt   # cn2an/zhconv/editdistance/jiwer 等(2026-07-08 新增声明)
+# 3 venv: code/.venv(主) / code/.venv_se(DeepFilterNet) / .venv_llm(Qwen); 后两者按各自 requirements
 ```
+
+⚠️ **cn2an/zhconv 必装**（2026-07-08 workflow④ 发现并修复）：`text_utils.digit_postproc`/`to_simplified` 在缺包时 graceful 跳过 + RuntimeWarning 告警（不崩），但官方 CER 口径**不归一繁体/数字** → 缺包会让提交 content 残留繁体/阿拉伯数字，对齐简体中文数字 ref 时 CER 虚高（数字 ~0.03 全量、含数字句更甚；繁体更多）。`code/requirements.txt` 已声明，**务必 `uv pip install -r code/requirements.txt`**。`to_submission.py` 已加 digit_postproc 兜底（SSOT），enroll_infer:317-319 双归一。
 
 ## 4. 运行提交推理
 

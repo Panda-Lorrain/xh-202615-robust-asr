@@ -1,0 +1,12 @@
+# code/.venv 主推理+评测 venv 依赖(2026-07-08 声明, 修 workflow④ leak#1: cn2an/zhconv 原未声明)
+# 主办方复现: 在 code/.venv 执行  uv pip install -r code/requirements.txt
+# 大件 DiCoW/DiariZen/pyannote 由 REPRO_SETUP.md §1 git clone 管, 不在此列
+cn2an==0.5.24            # text_utils.digit_postproc 阿拉伯→中文数字(缺则官方口径CER虚高~0.03)
+zhconv==1.4.3           # text_utils.to_simplified 繁→简(缺则官方口径CER虚高)
+editdistance==0.8.1     # eval_metrics 官方CER口径(主办方同库, 2026-07-08 坐实)
+jiwer==4.0.0            # eval_metrics 旧 cer()(向后兼容, 逐条 jiwer.wer)
+numpy==1.26.4
+soundfile==0.14.0
+librosa==0.10.2.post1
+torch==2.5.1            # CUDA build: 本机 +cu124; 主办方 L20 按 CUDA 驱动选 index-url(见 pytorch.org)
+transformers==4.42.4

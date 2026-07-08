@@ -1,5 +1,7 @@
 # 美的目标说话人 ASR 参赛方案（XH-202615）
 
+> ⚠️ **2026-07-08 更新**：主办方 CER 口径脚本到手并**坐实对齐**——`normalize_text`(NFKC+lower+去 P*标点和空白) + `CERMetric` 累计池(total_err/total_char, editdistance 库)。落地三件：①`eval_metrics.py` 加官方口径(逐行等价,12 边界全 Δ=0)；②`recompute_official_cer.py` 重算全量；③**修提交归一漏洞**(4-agent 对抗验证发现 cn2an/zhconv **原未声明依赖**→主办方环境必缺→digit_postproc 静默失效→CER 0.595 实际回 0.661；已建 `code/requirements.txt` + RuntimeWarning 告警 + to_submission SSOT)。**口径切换利好**：vanilla overall 0.664→**0.595** / thr0.27 含拒 **0.703** / H3 dicow sim[0.2,0.3) **1.609** 更稳 / digit_postproc -0.033 坐实。caliber-A 风险降级。详见 `AGENT_HANDOFF.md`【2026-07-08】段 + memory `official-scoring-spec`。
+
 > ⚠️ **2026-07-07 晚更新**：MiMo-V2.5-ASR 调研闭环（全量 1362 条实测 CER **0.417 vs vanilla 0.661**，纯文字句验证非口径红利；云端不能进提交三红线 + 蒸馏不现实数据/容量/范式三障碍）+ **数字后处理集成**（vanilla 阿拉伯→中文数字对齐 ref，全量 0.661→**0.632** / 含数字句 0.739→0.608；`text_utils.digit_postproc` + enroll_infer，commit `0aea5ca`）。**最新状态/待办见 `AGENT_HANDOFF.md`【2026-07-07 晚】段（下个 agent 必读）**。
 
 > ⚠️ **2026-07-07 更新**：统一 thr 选点 **T27 完成**（B 集 A 集模拟 + 5-agent 对抗验证 → **统一 thr=0.27** 区间 [0.26,0.29]，分 thr oracle 损失 6.46 分；已修守卫/run_baodi B 模式；⚠️ thr 待主办方 CER 口径定，caliber-A 假设未坐实是核心风险）。
@@ -63,6 +65,7 @@
 - 子 agent 精读统一用「pdftotext 提取 → Read → 7 节客观提炼」流程
 - **文档与实现要核实**：`eval_metrics.py` 实际**无 CLI**（`__main__` 仅自测），`交付/使用说明.md` 写的 `--result/--manifest/--out` 是理想用法未实现；复用评测用 `import cer()` 或 `eval_full_test.py` 包装
 - **CER 均值会被幻觉扭曲，correct_rate 更诚实**：babble 重复循环幻觉使 hyp 超长、拉高 CER 均值，制造"SNR 越高 CER 反升"假象；看可用率用 correct_rate(CER<0.5 占比)，看绝对转写质量看 cer_accepted_only
+- **可选依赖必须显式声明 + 缺失可见（2026-07-08 workflow④ 教训）**：cn2an/zhconv 只在本地 .venv、项目无 requirements.txt → 主办方全新环境必缺 → digit_postproc 静默 graceful 跳过 → 提交 text 数字不归一 → 官方口径 CER 0.595 实际回 0.661（数字后处理 0.033 收益全丢）。规则：任何 graceful skip 的可选依赖必须 ①声明到 `code/requirements.txt` ②缺失时 RuntimeWarning 可见（非静默 except return）③提交链路末端（to_submission）SSOT 兜底
 
 ## 下一步候选（2026-07-06：Phase 1 突破，vanilla 路线 CER 减半，保底不再是仅选项）
 1. ✅ ~~真实测试集 A~~（到手，真测完成）+ ✅ ~~通道数~~（**单通道确认**，空间路线全弃）

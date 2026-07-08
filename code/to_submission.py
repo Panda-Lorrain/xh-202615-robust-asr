@@ -9,7 +9,7 @@ import os, sys, json, re, argparse
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, _HERE)
-from text_utils import to_simplified
+from text_utils import to_simplified, digit_postproc
 from eval_datasetA import _norm_zh
 from eval_metrics import cer as _cer
 
@@ -46,7 +46,8 @@ def convert(result_json, pairs_json, duration_infer_sec=None):
     rows_out, pos_cers = [], []
     for r in result.get("results", []):
         uid = _utt_id_stripped(r.get("recognition", ""))
-        text = to_simplified(r.get("text", "") or "")
+        # 提交归一 SSOT(2026-07-08 workflow④): digit+繁简, 与 enroll_infer:317-319 / recompute submit_norm 对齐
+        text = digit_postproc(to_simplified(r.get("text", "") or ""))
         rejected = bool(r.get("rejected"))
         label = SUBMISSION_DEFAULTS["label_reject"] if rejected else SUBMISSION_DEFAULTS["label_accept"]
         is_neg = is_neg_map.get(uid, False)

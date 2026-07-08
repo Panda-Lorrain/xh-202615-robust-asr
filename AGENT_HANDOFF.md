@@ -1,8 +1,43 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
-> **交接时间**：2026-07-07 晚（MiMo-V2.5-ASR 调研闭环 + 数字后处理集成，**未 push**；接 2026-07-07 T27 统一 thr 选点）
-> **下个 agent 读序**：本文件【2026-07-07 晚】段（↓）→ CLAUDE.md → 关键 memory（**mimo-asr-backend-potential** / unified-thr-decision / h3-dicow-conditioning-backfire-vanilla / baodi-config-no-llm / reproducibility-hardening / submit-script-verification / official-scoring-spec）→ REPRO_SETUP.md
-> **当前 git**：`master` @ `0aea5ca`（**未 push**，本地超前 origin/30c479d）— 最近 commit：0aea5ca MiMo+数字后处理 / 30c479d T27 统一 thr（已 push）/ 89ab62a T26 指针 / 621ffc9 T26 / 58f8bed T25
+> **交接时间**：2026-07-08（主办方 CER 口径坐实 + 提交归一漏洞修复，**未 commit**；接 2026-07-07 晚 MiMo+数字后处理）
+> **下个 agent 读序**：本文件【2026-07-08】段（↓）→ CLAUDE.md → 关键 memory（**official-scoring-spec** / reproducibility-hardening / mimo-asr-backend-potential / unified-thr-decision / h3-dicow-conditioning-backfire-vanilla / baodi-config-no-llm / submit-script-verification）→ REPRO_SETUP.md
+> **当前 git**：`master` @ `0aea5ca`（**未 push，本地超前 origin/30c479d**；2026-07-08 改动未 commit）— 最近 commit：0aea5ca MiMo+数字后处理 / 30c479d T27 统一 thr（已 push）/ 89ab62a T26 指针 / 621ffc9 T26 / 58f8bed T25
+
+---
+
+## 【2026-07-08 最新】主办方 CER 口径坐实 + 提交归一漏洞修复
+
+### 一句话现状
+主办方 CER 口径脚本到手并坐实对齐（normalize_text: NFKC+lower+去 P* 标点和空白; CERMetric 累计池 total_err/total_char, editdistance 库）。落地 3 件：eval_metrics 加官方口径（逐行等价，12 边界 Δ=0）/ recompute_official_cer 重算全量 / **修 4-agent 对抗验证发现的提交归一漏洞**（cn2an/zhconv 原未声明依赖→主办方环境必缺→digit_postproc 静默失效→CER 0.595 实际回 0.661；已建 requirements.txt + RuntimeWarning 告警 + to_submission SSOT）。口径切换利好：vanilla overall 0.664→**0.595** / thr0.27 含拒 **0.703** / H3 dicow sim[0.2,0.3) **1.609** 更稳 / digit_postproc 收益 -0.033 坐实。caliber-A 风险降级。
+
+### 口径坐实（主办方脚本, 2026-07-08）
+- 归一化：NFKC + lower + strip + 去所有 Unicode P* 标点和空白（含内部空格）。**不繁简归一、不数字归一**。
+- 聚合：累计池 total_errors/total_chars（非逐条平均）。
+- 库：editdistance.eval(norm_pred, norm_target)/len(norm_target)；空 target: errors==0→0 else→1.0；拒识条 pred 空→errors=len(ref)→CER=1.0 天然。
+- 实测（1362 条）：overall 两口径差<0.01（可忽略）；ref 全简体+全中文数字+无标点（各 0/1364）；vanilla 243/1364 含繁体（提交侧 to_simplified 对冲）、49 含标点。
+
+### 重算关键数字（recompute_official_cer.py，提交归一后, 累计池）
+- 转写（不拒）：vanilla **0.5947** correct 48.8% / dicow **1.1894** correct 31.4% / 英文幻觉 vanilla 0.6% vs dicow 18.7%
+- thr 含拒累计池：thr0.2 vanilla **0.6571** / thr0.27 **0.7030**（B 集统一 thr）/ thr0.4 0.8246
+- sim 分桶：dicow sim[0.2,0.3)=**1.609** / [0.3,0.4)=1.522（H3 条件化反作用，官方口径更稳）；vanilla 0.659/0.641
+- digit_postproc 收益：vanilla 仅繁简 0.6281 → +转数字 0.5947（**-0.033 坐实**）
+
+### 已修代码（本 session，未 commit）
+- `code/eval_metrics.py`：加 normalize_text / CERMetric（累计池）/ cer_pool / cer_official（照抄主办方，保留旧 cer）；cer_pool 防单条 str 误拆（workflow③）
+- `code/recompute_official_cer.py`（新）：官方口径全量重算（转写/thr 工作点/sim 分桶/数字），产物 `recompute_official_cer.json`
+- `code/requirements.txt`（新）：声明 cn2an/zhconv/editdistance/jiwer/numpy/soundfile/librosa/torch/transformers（修 workflow④ leak#1 根因）
+- `code/text_utils.py`：digit_postproc / to_simplified 缺包 graceful 跳过改 RuntimeWarning（不再静默）
+- `code/to_submission.py:49`：加 digit_postproc 成提交归一 SSOT（与 enroll_infer:317-319 / recompute submit_norm 对齐）
+- `REPRO_SETUP.md §3`：补 `uv pip install -r code/requirements.txt` + cn2an/zhconv 必装警告
+
+### 4-agent 对抗验证结论（workflow w1ry9l23r，全过）
+①独立复算 `matches_mine=true`（0.5947/1.1894/thr0.27 0.703 零差异）；②转写一致性「核心一致，DF3 两文件均不前置，0.5947 可代表提交侧」+5 个 no-op 级低风险（attention_mask/seed/enroll-augment 等）；③口径实现逐行等价，12 边界全 Δ=0.00e+00；④提交漏洞发现 cn2an/zhconv 未声明（high，已修）+ to_submission 非 SSOT（medium，已修）。
+
+### ⚠️ follow-up
+1. 🟡 **commit + push**：本批改动未 commit（本地超前 `0aea5ca`）。建议合一个 commit「feat(eval): 官方 CER 口径对齐 + 提交归一漏洞修复」。注意 git 身份用 **Panda_Lorrain**（[[git-identity-mismatch]]），本机默认 midea-overnight-loop 需显式指定。
+2. 🟢 **caliber-A 降级但未全消**：主办方脚本明确不归一繁简/数字（与我们提交侧归一对齐），但 pos 被拒 CER 计法 / CER:RR 权重比 / per-sample 封顶 仍待口头确认（memory `official-scoring-spec` 待问 1/2/3）。
+3. 🟡 **抽验（低风险）**：workflow② 提示 enroll_infer vanilla 与 exp json 的 attention_mask/seed 分歧（no-op 级），可抽 5 条 `enroll_infer --asr-backend vanilla` 输出 vs `exp_vanilla_full.json` 逐字比对彻底消除。
 
 ---
 
