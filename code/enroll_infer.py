@@ -21,6 +21,13 @@
   target 选择:    enrollment=target 音频, recognition=重叠(target+nontarget) → 锁定 target
   兜底拒识:       enrollment 与 recognition 不同人 → sim 低 → 拒识空输出
 """
+import inspect as _inspect  # 2026-07-10: speechbrain 1.1 lazy proxy 注册到 sys.modules, inspect.getmodule 遍历时触发 lazy resolve 失败(ImportError, hasattr 不捕获)→librosa.load 等(经 lazy_loader→inspect)连锁崩溃。patch 捕获返 None, 不破坏 speechbrain 正常 lazy。
+_orig_getmodule = _inspect.getmodule
+def _safe_getmodule(*a, **k):
+    try: return _orig_getmodule(*a, **k)
+    except (ImportError, AttributeError): return None
+_inspect.getmodule = _safe_getmodule
+
 import os, sys, json, argparse, glob, time
 import torch
 import numpy as np
@@ -113,8 +120,9 @@ def main():
                     help="enrollment 加噪增强: 干净+多档加噪 emb 均值, 提声纹鲁棒")
     ap.add_argument("--aug-snrs", default="10,5,0", help="enrollment 加噪增强的 SNR 档(逗号分)")
     ap.add_argument("--aug-noise-dir", help="babble 噪声池目录(增强比白噪更对症真实 babble; 不填则用白噪)")
-    ap.add_argument("--asr-backend", default="dicow", choices=["dicow", "vanilla"],
+    ap.add_argument("--asr-backend", default="dicow", choices=["dicow", "vanilla", "qwen"],
                     help="ASR 后端: dicow(FDDT/STNO 条件化, fallback) / vanilla(切target timeline+whisper, 主线 CER 减半)")
+    ap.add_argument("--save-target-audio", help="存 vanilla 切出的 target timeline 切片 wav 到此目录(uid 命名, POC 供其他后端转写)")
     ap.add_argument("--vanilla-model", default=resolve_model("VANILLA"),
                     help="vanilla 后端 Whisper 模型(默认 large-v3-turbo)")
     ap.add_argument("--seed", type=int, default=42, help="全局种子(可复现性, repro.set_global_seed)")
@@ -123,6 +131,9 @@ def main():
     if not args.pairs and not args.enrollment:
         ap.error("--pairs 与 --enrollment 至少填一个")
 
+    if args.asr_backend == "qwen" and not getattr(args, "save_target_audio", None):
+        args.save_target_audio = "E:/target_slices_qwen"
+        print(f"[qwen] 自动设 --save-target-audio {args.save_target_audio}")
     device = torch.device(args.device if torch.cuda.is_available() else "cpu")
     dtype = torch.float16
 
@@ -131,12 +142,16 @@ def main():
         asr_model = AutoModelForSpeechSeq2Seq.from_pretrained(
             args.vanilla_model, torch_dtype=dtype).to(device).eval()
         _model_path = args.vanilla_model
+    elif args.asr_backend == "qwen":
+        print(f"[load] qwen 后端: 跳过 asr_model(Qwen3-ASR 由 qwen_asr_backend.py 独立 venv_qwen 进程转写), 仅加载 fe 算 audio_len")
+        asr_model = None
+        _model_path = args.vanilla_model  # 复用 vanilla fe 算 mel/audio_len(diar_mask 用)
     else:
         print(f"[load] DiCoW {args.dicow_model} on {device}")
         asr_model = AutoModelForSpeechSeq2Seq.from_pretrained(
             args.dicow_model, trust_remote_code=True, torch_dtype=dtype).to(device).eval()
         _model_path = args.dicow_model
-    tok = AutoTokenizer.from_pretrained(_model_path)
+    tok = AutoTokenizer.from_pretrained(_model_path) if args.asr_backend != "qwen" else None
     fe = AutoFeatureExtractor.from_pretrained(_model_path)
 
     print(f"[load] DiariZen {args.diarization_model}")
@@ -252,6 +267,12 @@ def main():
             if args.asr_backend == "vanilla":
                 # vanilla: 切 target timeline(含重叠区)拼接 → vanilla.generate 无条件化
                 target_audio = cut_target_timeline(audio, per_spk[target_idx], sr=sr)
+                if getattr(args, "save_target_audio", None):  # POC: 存切片供其他后端(Qwen3-ASR/FireRedASR)转写
+                    import soundfile as sf
+                    os.makedirs(args.save_target_audio, exist_ok=True)
+                    _uid = os.path.splitext(os.path.basename(rec))[0]
+                    sf.write(os.path.join(args.save_target_audio, _uid + ".wav"),
+                             target_audio.astype(np.float32), sr)
                 ifp_v = fe(target_audio, sampling_rate=16000, return_tensors="pt").input_features.to(device, dtype)
                 am_v = torch.ones(1, ifp_v.shape[-1], dtype=torch.bool, device=device)
                 with torch.no_grad():
@@ -260,6 +281,15 @@ def main():
                 seqs = out["sequences"] if isinstance(out, dict) else out
                 text = tok.batch_decode(seqs, skip_special_tokens=True)[0].strip()
                 # vanilla 不跑 langfix(英文幻觉 0.59%, langfix 是 dicow 治标)
+            elif args.asr_backend == "qwen":
+                # qwen: 切 target timeline 存盘 → text 空(末尾 qwen_asr_backend.py 批量转写填, venv_qwen 隔离)
+                target_audio = cut_target_timeline(audio, per_spk[target_idx], sr=sr)
+                import soundfile as sf
+                os.makedirs(args.save_target_audio, exist_ok=True)
+                _uid_q = os.path.splitext(os.path.basename(rec))[0]
+                sf.write(os.path.join(args.save_target_audio, _uid_q + ".wav"),
+                         target_audio.astype(np.float32), sr)
+                text = ""  # pending qwen_asr_backend(末尾批量填)
             else:
                 # dicow: stno_mask 条件化 + SE-DiCoW 自登记 + langfix retry(原逻辑保留)
                 stno = get_stno_mask(diar_mask, target_idx)    # [4, T]
@@ -336,6 +366,26 @@ def main():
             "batch_size": 1, "peak_mem_mib": peak,  # 可复现性: batch/显存(FAQ 核查硬要求 4/5)
             "transcript": text, "chars": len(text), "rtf": dt / dur,
         })
+
+    if args.asr_backend == "qwen":
+        # 批量 Qwen3-ASR 转写切片(code/.venv_qwen, venv 隔离), 填 transcript + 提交归一(与 vanilla 一致)
+        import subprocess
+        uid2text_path = os.path.join(args.save_target_audio, "_uid2text.json")
+        qwen_py = r"E:/midea_target_asr/code/.venv_qwen/Scripts/python.exe"
+        qwen_script = os.path.join(os.path.dirname(os.path.abspath(__file__)), "qwen_asr_backend.py")
+        print(f"\n[qwen] 批量 Qwen3-ASR 转写切片 {args.save_target_audio} ...")
+        subprocess.check_call([qwen_py, qwen_script, "--slice-dir", args.save_target_audio,
+                               "--out", uid2text_path])
+        uid2text = json.load(open(uid2text_path, encoding="utf-8"))
+        n_filled = 0
+        for r in results:
+            _uid_q = os.path.splitext(os.path.basename(r.get("recognition", "")))[0]
+            if _uid_q in uid2text:
+                t = digit_postproc(to_simplified(uid2text[_uid_q]))  # 提交归一(繁→简 + 数字, 与 vanilla SSOT 一致)
+                r["transcript"] = t
+                r["chars"] = len(t)
+                n_filled += 1
+        print(f"[qwen] 填 {n_filled}/{len(results)} 条 transcript")
 
     with open(args.out_json, "w", encoding="utf-8") as f:
         json.dump(results, f, ensure_ascii=False, indent=2)

@@ -1,0 +1,490 @@
+{
+  "n": 60,
+  "qwen_cer": 0.1463095238095238,
+  "vanilla_cer": 0.45362803862803863,
+  "delta": -0.3073185148185148,
+  "qwen_win_rate": 0.7,
+  "rtf": 0.3216820597648621,
+  "rows": [
+    {
+      "uid": "cmd_0",
+      "ref": "空调开到制热调到二十五度风量调到百分之三十",
+      "vanilla": "空调开到自热调到25度风量调到30%",
+      "qwen": "空调开到制热，调到二十五度，风量调到百分之三十。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.42857142857142855
+    },
+    {
+      "uid": "cmd_1",
+      "ref": "灯光亮度调到百分之三十",
+      "vanilla": "灯光亮度调到30%",
+      "qwen": "灯光亮度调到百分之三十。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.45454545454545453
+    },
+    {
+      "uid": "cmd_10",
+      "ref": "关闭悬浮空调",
+      "vanilla": "關閉懸浮空調",
+      "qwen": "关闭悬浮空调。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.6666666666666666
+    },
+    {
+      "uid": "cmd_100",
+      "ref": "拉杆洗烘套装",
+      "vanilla": "大概是紅套裝的",
+      "qwen": "那该是红头船了。",
+      "qwen_cer": 1.1666666666666667,
+      "vanilla_cer": 1.0
+    },
+    {
+      "uid": "cmd_102",
+      "ref": "关闭图灵厨房的灯",
+      "vanilla": "關閉圖靈廚房的燈",
+      "qwen": "关闭图灵厨房的灯。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.75
+    },
+    {
+      "uid": "cmd_103",
+      "ref": "灯光常亮冷色调",
+      "vanilla": "灯光闪亮灯射掉",
+      "qwen": "灯光呈亮的色调。",
+      "qwen_cer": 0.2857142857142857,
+      "vanilla_cer": 0.5714285714285714
+    },
+    {
+      "uid": "cmd_104",
+      "ref": "那窗帘要关吗这些",
+      "vanilla": "那窗簾要關嗎謝謝",
+      "qwen": "那窗帘要关吗？谢谢。",
+      "qwen_cer": 0.25,
+      "vanilla_cer": 0.625
+    },
+    {
+      "uid": "cmd_105",
+      "ref": "墅智专家墅智专家的灯",
+      "vanilla": "数字专家数字专家等",
+      "qwen": "数助专家，数字专家的灯。",
+      "qwen_cer": 0.4,
+      "vanilla_cer": 0.6
+    },
+    {
+      "uid": "cmd_106",
+      "ref": "关闭洗衣机",
+      "vanilla": "关闭席机",
+      "qwen": "关闭洗衣机。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.4
+    },
+    {
+      "uid": "cmd_107",
+      "ref": "室内有点暗",
+      "vanilla": "室内有点暗",
+      "qwen": "室内有点暗。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.0
+    },
+    {
+      "uid": "cmd_108",
+      "ref": "因为我叫colmo就是唤醒它",
+      "vanilla": "因为我叫Komo就是唤醒他",
+      "qwen": "因为我叫库姆，就是唤醒他。",
+      "qwen_cer": 0.42857142857142855,
+      "vanilla_cer": 0.21428571428571427
+    },
+    {
+      "uid": "cmd_11",
+      "ref": "从医院回来的衣服",
+      "vanilla": "从医院回来的衣服啊",
+      "qwen": "从医院回来的衣服啊。",
+      "qwen_cer": 0.125,
+      "vanilla_cer": 0.125
+    },
+    {
+      "uid": "cmd_12",
+      "ref": "关闭客厅空调",
+      "vanilla": "关闭客厅空调",
+      "qwen": "关闭客厅空调。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.0
+    },
+    {
+      "uid": "cmd_120",
+      "ref": "干衣机怎么使用",
+      "vanilla": "乾衣機怎麼使用",
+      "qwen": "干衣机怎么使用？",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.42857142857142855
+    },
+    {
+      "uid": "cmd_121",
+      "ref": "空调调为二十六度",
+      "vanilla": "空调调为26度",
+      "qwen": "空调调为二十六度。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.375
+    },
+    {
+      "uid": "cmd_124",
+      "ref": "空调调为最低风速",
+      "vanilla": "空調調為最低風速",
+      "qwen": "空调调为最低风速。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.5
+    },
+    {
+      "uid": "cmd_125",
+      "ref": "预约下午十四",
+      "vanilla": "EUASR",
+      "qwen": "预约下午四四。",
+      "qwen_cer": 0.16666666666666666,
+      "vanilla_cer": 1.0
+    },
+    {
+      "uid": "cmd_126",
+      "ref": "客厅灯光亮度调到百分之十",
+      "vanilla": "客厅灯光亮度调到10%",
+      "qwen": "客厅灯光亮度调到百分之十。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.3333333333333333
+    },
+    {
+      "uid": "cmd_128",
+      "ref": "关闭窗帘客厅的灯调为暖色空调二十四度最低风速",
+      "vanilla": "关闭窗帘客厅的灯调热暖色空调24度最低风速",
+      "qwen": "关闭窗帘，客厅的灯调为暖色，空调二十四度，最低风速。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.18181818181818182
+    },
+    {
+      "uid": "cmd_14",
+      "ref": "空调二十六度风速最大",
+      "vanilla": "空调26度风速最大",
+      "qwen": "空调二十六度，风速最大。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.3
+    },
+    {
+      "uid": "cmd_15",
+      "ref": "关掉顶灯",
+      "vanilla": "关掉顶灯",
+      "qwen": "关掉顶灯。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.0
+    },
+    {
+      "uid": "cmd_19",
+      "ref": "我要吃我要我要我要准备做饭",
+      "vanilla": "我要吃 我要準備做飯",
+      "qwen": "我要吃，我要，我要，我要准备做饭。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.5384615384615384
+    },
+    {
+      "uid": "cmd_22",
+      "ref": "打开烘干",
+      "vanilla": "打開空間",
+      "qwen": "打开烘干。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.75
+    },
+    {
+      "uid": "cmd_23",
+      "ref": "我准备做饭了",
+      "vanilla": "我準備做飯了",
+      "qwen": "我准备做饭了。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.5
+    },
+    {
+      "uid": "cmd_24",
+      "ref": "关灯关空调打开窗帘",
+      "vanilla": "关灯关空调打开窗帘",
+      "qwen": "关灯，关空调，打开窗帘。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.0
+    },
+    {
+      "uid": "cmd_25",
+      "ref": "打开四G",
+      "vanilla": "打開",
+      "qwen": "打开手机。",
+      "qwen_cer": 0.5,
+      "vanilla_cer": 0.75
+    },
+    {
+      "uid": "cmd_26",
+      "ref": "啊把空调关了",
+      "vanilla": "把空調關了",
+      "qwen": "啊，把空调关了。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.5
+    },
+    {
+      "uid": "cmd_27",
+      "ref": "打开闹钟",
+      "vanilla": "打開鬧鐘",
+      "qwen": "打开闹钟。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.75
+    },
+    {
+      "uid": "cmd_30",
+      "ref": "打开窗帘烟机",
+      "vanilla": "打回窗戀電機",
+      "qwen": "打开窗帘电机。",
+      "qwen_cer": 0.16666666666666666,
+      "vanilla_cer": 0.6666666666666666
+    },
+    {
+      "uid": "cmd_33",
+      "ref": "这一年我从直播小白到第一次扛相机去工地拍",
+      "vanilla": "这一年我从直播小白到第一次砍相机去梦皮拍摄",
+      "qwen": "这一年，我从直播小白到第一次扛相机去蒙地拍。",
+      "qwen_cer": 0.05,
+      "vanilla_cer": 0.2
+    },
+    {
+      "uid": "cmd_34",
+      "ref": "日光模式",
+      "vanilla": "日光模式",
+      "qwen": "日光模式。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.0
+    },
+    {
+      "uid": "cmd_39",
+      "ref": "打开客厅空调",
+      "vanilla": "打开客厅公帖",
+      "qwen": "打开客厅空调。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.3333333333333333
+    },
+    {
+      "uid": "cmd_40",
+      "ref": "关闭氛围灯",
+      "vanilla": "关闭氛围灯",
+      "qwen": "关闭氛围灯。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.0
+    },
+    {
+      "uid": "cmd_42",
+      "ref": "帮我预约十四点",
+      "vanilla": "幫我預約14點",
+      "qwen": "帮我预约十四点。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.8571428571428571
+    },
+    {
+      "uid": "cmd_43",
+      "ref": "灯光有点暗",
+      "vanilla": "燈光有點暗",
+      "qwen": "灯光有点暗。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.4
+    },
+    {
+      "uid": "cmd_45",
+      "ref": "关闭纱帘",
+      "vanilla": "關給三人",
+      "qwen": "关闭窗帘。",
+      "qwen_cer": 0.25,
+      "vanilla_cer": 1.0
+    },
+    {
+      "uid": "cmd_49",
+      "ref": "烟机下降",
+      "vanilla": "岩阶下降",
+      "qwen": "沿街下降。",
+      "qwen_cer": 0.5,
+      "vanilla_cer": 0.5
+    },
+    {
+      "uid": "cmd_5",
+      "ref": "打开回家模式吧",
+      "vanilla": "大家回家",
+      "qwen": "打开回家模式吧。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.7142857142857143
+    },
+    {
+      "uid": "cmd_50",
+      "ref": "灯的色温调到五千",
+      "vanilla": "蹲了4万条到5千",
+      "qwen": "跟着升温调到五千。",
+      "qwen_cer": 0.375,
+      "vanilla_cer": 0.75
+    },
+    {
+      "uid": "cmd_51",
+      "ref": "你好科慕你好科慕",
+      "vanilla": "你好 方默",
+      "qwen": "你好，高某。你好，高某。",
+      "qwen_cer": 0.5,
+      "vanilla_cer": 0.75
+    },
+    {
+      "uid": "cmd_54",
+      "ref": "我要吃饭",
+      "vanilla": "我要吃饭",
+      "qwen": "我要吃饭。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.0
+    },
+    {
+      "uid": "cmd_55",
+      "ref": "打开烟机打开洗衣模式打开新风模式",
+      "vanilla": "打开烟机打开洗衣模式打开新风模式",
+      "qwen": "打开烟机，打开洗衣模式，打开新风模式。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.0
+    },
+    {
+      "uid": "cmd_56",
+      "ref": "羊绒大衣要怎么洗",
+      "vanilla": "楊榮大英要怎麼洗",
+      "qwen": "羊绒大衣要怎么洗？",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.5
+    },
+    {
+      "uid": "cmd_57",
+      "ref": "空调调为十二度",
+      "vanilla": "所以",
+      "qwen": "工作。",
+      "qwen_cer": 1.0,
+      "vanilla_cer": 1.0
+    },
+    {
+      "uid": "cmd_58",
+      "ref": "我要休息我要睡觉了",
+      "vanilla": "我要睡覺了",
+      "qwen": "我要休息，我要睡觉了。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.5555555555555556
+    },
+    {
+      "uid": "cmd_6",
+      "ref": "播放权志龙的歌",
+      "vanilla": "播放全智隆的歌",
+      "qwen": "播放权志龙的歌。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.42857142857142855
+    },
+    {
+      "uid": "cmd_60",
+      "ref": "打开chatgpt",
+      "vanilla": "我看你有2PT",
+      "qwen": "打开ChatGPT。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.7777777777777778
+    },
+    {
+      "uid": "cmd_63",
+      "ref": "所有灯光打开",
+      "vanilla": "所有燈光打開",
+      "qwen": "所有灯光打开。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.3333333333333333
+    },
+    {
+      "uid": "cmd_66",
+      "ref": "油烟机打开",
+      "vanilla": "油烟机打开",
+      "qwen": "抽油烟机打开，冰。",
+      "qwen_cer": 0.4,
+      "vanilla_cer": 0.0
+    },
+    {
+      "uid": "cmd_71",
+      "ref": "把所有灯光调到亮度调到百分之一百",
+      "vanilla": "把所有的亮度調到100%",
+      "qwen": "把所有灯光调到亮度调到百分之一百。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.625
+    },
+    {
+      "uid": "cmd_80",
+      "ref": "打开唯一唤醒",
+      "vanilla": "打开唯一换行",
+      "qwen": "打开唯一唤醒。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.3333333333333333
+    },
+    {
+      "uid": "cmd_82",
+      "ref": "恢复日常模式",
+      "vanilla": "恢复日常模式",
+      "qwen": "恢复日常模式。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.0
+    },
+    {
+      "uid": "cmd_83",
+      "ref": "关掉客厅的灯",
+      "vanilla": "关掉客厅的灯",
+      "qwen": "关掉客厅的灯。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.0
+    },
+    {
+      "uid": "cmd_85",
+      "ref": "取消闹钟",
+      "vanilla": "许笑闹钟",
+      "qwen": "取消闹钟。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.5
+    },
+    {
+      "uid": "cmd_87",
+      "ref": "座椅感化那个屏",
+      "vanilla": "昨天刚画的那个品质",
+      "qwen": "昨天刚换的那个屏。",
+      "qwen_cer": 0.7142857142857143,
+      "vanilla_cer": 1.0
+    },
+    {
+      "uid": "cmd_90",
+      "ref": "我有点热",
+      "vanilla": "我有點熱",
+      "qwen": "我有点热。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.5
+    },
+    {
+      "uid": "cmd_91",
+      "ref": "开启窗帘",
+      "vanilla": "开启窗帘",
+      "qwen": "开启窗帘。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.0
+    },
+    {
+      "uid": "cmd_93",
+      "ref": "约下午四点洗衣服",
+      "vanilla": "下午四里洗衣服",
+      "qwen": "约下午四点洗衣服。",
+      "qwen_cer": 0.0,
+      "vanilla_cer": 0.25
+    },
+    {
+      "uid": "cmd_98",
+      "ref": "全智能",
+      "vanilla": "全这种",
+      "qwen": "权志龙。",
+      "qwen_cer": 1.0,
+      "vanilla_cer": 0.6666666666666666
+    },
+    {
+      "uid": "cmd_99",
+      "ref": "打开干衣机门",
+      "vanilla": "打開乾液精門",
+      "qwen": "打开感应进门。",
+      "qwen_cer": 0.5,
+      "vanilla_cer": 0.8333333333333334
+    }
+  ]
+}

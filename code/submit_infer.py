@@ -191,8 +191,8 @@ def main():
     ap.add_argument("--strategy", default="llm_or_sim",
                     choices=["llm_or_sim", "sim_only", "llm_only"],
                     help="融合策略（⚠️ llm_or_sim 实为 AND，LLM 只减拒不加拒；保底用 sim_only）")
-    ap.add_argument("--asr-backend", default="dicow", choices=["dicow", "vanilla"],
-                    help="ASR 后端(透传 enroll_infer): dicow(fallback) / vanilla(主线 CER 减半)")
+    ap.add_argument("--asr-backend", default="dicow", choices=["dicow", "vanilla", "qwen"],
+                    help="ASR 后端(透传 enroll_infer): dicow(fallback) / vanilla(主线) / qwen(Qwen3-ASR 中文原生, 候选2 CER 腿+10分)")
     ap.add_argument("--device", default="cuda:0")
     ap.add_argument("--out-dir", default=os.path.join(HERE, "submit_out"))
     ap.add_argument("--work-dir", default=None, help="中间产物(默认 <out-dir>/_work)")
