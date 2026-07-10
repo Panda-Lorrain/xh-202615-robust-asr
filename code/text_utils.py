@@ -100,3 +100,50 @@ def is_valid_command(text, len_thr=22):
     if len(text) > len_thr:                         # 超长叙述(家居指令极少>20 字)
         return False
     return True
+
+
+# Bag-of-Hallucinations: Whisper 训练数据水印/字幕签名(先验, 非 A 集拟合 —— 家居指令绝不出现)
+# 保守收录: 仅 unmistakably 非家居指令的签名(频道/换台等可能进真实指令, 不收)。
+_BAG_OF_HALLUCINATIONS = [
+    # YouTube/视频字幕水印(Whisper 训练集字幕残留, 重 babble 下高频幻觉)
+    "独播剧场", "YoYo", "Television", "Series Exclusive",
+    # 字幕致谢/署名
+    "字幕志愿者", "字幕由",
+]
+
+
+def bag_of_hallucinations_reject(text, boh_dict=None, min_repeat=3,
+                                  unit_min=2, unit_max=6, min_len=4):
+    """babble 循环幻觉 + 训练水印签名检测(独立加拒通道, 2026-07-10 POC)。
+
+    返回 True=判定为幻觉→拒; False=未命中(放行给后续 gate)。
+    设计为叠加在 content_gate 之上的独立通道, 不改 sim/llm 逻辑。
+
+    两类检测:
+    ① delooping: 同一 2-6 字片段连续重复 ≥min_repeat 次(如 帮×60 / 口吐×30 / 订阅×20)。
+       这是重 babble 下 Whisper 的标志性循环幻觉, CER 可飙到 7-25。单字重复≥6 次也被
+       覆盖(`.{2,6}` 可取同字对作 unit)。正确转写(CER<0.5)上 0 误命中(682 条验证)。
+    ② BoH 字典: Whisper 训练集水印/字幕签名(优优独播剧场/YoYo Television/字幕志愿者),
+       先验知识(非 A 集拟合), 家居指令绝不出现。
+
+    hold-out 验证(code/exp_boh_delooping.py, 2026-07-10, 回应过拟合 + 边际收益担忧):
+    delooping 在 A 集 pos 抓 7 条极端 CER(1.5-25.25, mean 16.0), 但 **100% 已被
+    content_gate 捕获**(6 条 len>22 + 1 条纯数字非中文 "232323") → 叠加 content_gate 之上
+    pos ΔCER≈0 / neg ΔRR≈0(漏拒 neg 为空/新闻/类指令, 无循环)。
+    => NO-GO 作主 gate(与 content_gate 冗余, content_gate 的 len>22 是 delooping 的超集);
+       保留价值 = content_gate len_thr 放宽时的 0-FP 安全网(defense-in-depth)。
+
+    无外部依赖(纯正则 + 关键词), 与 text_utils 模块风格一致。
+    """
+    if not text or not text.strip():
+        return False                                   # 空文本交给 content_gate, BoH 只管幻觉文本
+    # ① delooping: 片段循环(unit 重复 min_repeat 次及以上)
+    if len(text) >= min_len:
+        pat = r'(.{' + str(unit_min) + ',' + str(unit_max) + r'})\1{' + str(min_repeat - 1) + r',}'
+        if re.search(pat, text):
+            return True
+    # ② BoH 字典(训练水印/字幕签名)
+    dic = boh_dict if boh_dict is not None else _BAG_OF_HALLUCINATIONS
+    if any(w in text for w in dic):
+        return True
+    return False
