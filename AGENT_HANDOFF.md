@@ -1,8 +1,36 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
-> **交接时间**：2026-07-09（**数据驱动错误分析优先, 模型路线全延后**; Paraformer+声纹注入调研完成; 未满分 CSV+HTML 标注界面交付; 用户正在人工过 1084 条未满分标难点）
-> **下个 agent 读序**：本文件【2026-07-09 最新】段（↓）→ CLAUDE.md → 关键 memory（**cer-breakthrough-candidates** / content-gate-decision / official-scoring-spec / dataset-split-spec / reproducibility-hardening / mimo-asr-backend-potential / unified-thr-decision / h3-dicow-conditioning-backfire-vanilla / spk-oracle-poc / baodi-config-no-llm / submit-script-verification / lessons-pitfalls）→ REPRO_SETUP.md
-> **当前 git**：`master` @ `78e0576`（已 push，origin 同步）。⚠️ 2026-07-08 content_gate 改动 + 2026-07-09 本轮(error_analysis CSV/HTML标注/memory cer-breakthrough-candidates/AGENT_HANDOFF)均**未 commit**。下个 agent 先 `git status` 核对。
+> **交接时间**：2026-07-10（**多人标注分发工具链交付**: 2队员各标全量1084+比对仲裁替代原自标; CER分布检视; commit 53a6521本地未push）。上一轮 2026-07-09（数据驱动错误分析优先/模型路线全延后/未满分CSV+HTML标注界面）。
+> **下个 agent 读序**：本文件【2026-07-10 最新】段（↓）→ CLAUDE.md → 关键 memory（**multi-annotator-dispatch** / cer-breakthrough-candidates / content-gate-decision / official-scoring-spec / dataset-split-spec / reproducibility-hardening / mimo-asr-backend-potential / unified-thr-decision / h3-dicow-conditioning-backfire-vanilla / spk-oracle-poc / baodi-config-no-llm / submit-script-verification / lessons-pitfalls）→ REPRO_SETUP.md
+> **当前 git**：`master` @ `53a6521`（本地未 push）。2026-07-08/09/10 改动均已 commit（53a6521 多人标注工具链 / 14d0c58 error_analysis / 78e0576 官方口径）。⚠️ annot_pack/(2168音频+116M zip) 被 .gitignore(`*.zip`+`code/*/`)忽略不入库。下个 agent 先 `git status` 核对。
+
+---
+
+## 【2026-07-10 最新】多人标注分发工具链（2队员全量标+比对仲裁）+ CER分布检视
+
+### 一句话现状
+用户决定把 1084 条未满分标注**从自己标改为分发给 2 个队员各标全量 + 交叉比对仲裁**（防误判）。工具链已交付 + mock 验证 + commit(53a6521)，等队员标注回收。副产品 CER 分布检视界面。
+
+### 工具链（commit 53a6521）
+- `code/build_annotator_pack.py`：读 error_analysis_pos_unfull.csv(1084) → 自包含标注包 `code/annot_pack/`（`标注.html`: 相对路径 `pos/*.wav` + 标注员ID输入框 + 全量导出带 annotator 列 + 文件名 `annot_<ID>.csv`; `pos/` 2168音频）。`--copy-audio` 拷音频。产物 `annot_pack.zip`(116.6M) 微信发队员（.gitignore 忽略不入库）。
+- `code/compare_annotations.py`：回收 2 份 `annot_<名>.csv` → 比对(一致/分歧/未标) → `consistency_report.txt` + `merged_annotation.csv`(一致条定共识) + `annot_disputes.html`(分歧仲裁: 听音+两人难点对比+交集默认勾+导出 `arbitrated.csv`)。mock 验证通过(一致2/分歧3/未标1 逻辑对)。
+- `code/build_cer_viewer.py` + `code/cer_distribution_viewer.html`（子agent生成）：全量1364条CER分布检视(分档柱状+逐条ref/vanilla对比+听音+档筛选/搜索/排序/分页)。
+
+### 流程
+1. 发包: `annot_pack.zip` → 2队员解压 → 双击 `标注.html`(Firefox优先; Chrome禁file://则 annot_pack 目录跑 `python -m http.server 8000` 开 `localhost:8000/标注.html`) → 填名 → 标1084难点(←→翻条/空格播放/1-9选难点) → 导出 `annot_<名>.csv` → 回收
+2. 比对: `code/.venv/Scripts/python.exe code/compare_annotations.py annot_A.csv annot_B.csv` → 看一致率 + 仲裁分歧
+3. 仲裁: `annot_disputes.html` 逐条听音定 → `arbitrated.csv`
+4. 最终全集 = merged(一致) + arbitrated(仲裁) → 聚类难点分布 → 定模型路线
+
+### CER 分布（全量1364，vanilla_cer 排序）
+满分CER=0: 280(20.5%) / 轻微0-0.1: 12 / 中等0.1-0.5: 392(28.7%) / 严重0.5-1: 554(40.6%) / 死区1-2: 112 / 极重>2: 14。均值0.663/中位0.50。死区声纹sim<0.2占29.9%（吻合 [[spk-oracle-poc]] P1 oracle 30%物理死区）。
+
+### ⚠️ follow-up
+1. 🟡 等队员标注回收 → compare → 仲裁 → 聚类难点分布 → 定模型路线（接 [[cer-breakthrough-candidates]]）
+2. 🟡 commit 53a6521 未 push（用户测 annot_pack 能否正常用后再 push）
+3. ⏸ 模型路线全等标注聚类结论 + 用户决策
+
+关联 memory: [[multi-annotator-dispatch]] [[cer-breakthrough-candidates]] [[dataset-split-spec]] [[lessons-pitfalls]]。
 
 ---
 
