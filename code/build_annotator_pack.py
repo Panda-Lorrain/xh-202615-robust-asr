@@ -47,27 +47,45 @@ HP_ENW = ["背景嘈杂", "有其他说话人", "唤醒词不清", "音量小", 
 
 TPL = r"""<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>未满分音频标注</title>
 <style>
-body{font-family:system-ui;margin:0;background:#fafafa}
-.card{max-width:900px;margin:auto;background:#fff;padding:18px;min-height:100vh;box-sizing:border-box}
-.nav{display:flex;justify-content:space-between;align-items:center;margin:8px 0}
-.meta{color:#555;font-size:13px;margin:6px 0}.meta b{color:#1976d2}
-.ref{background:#e8f5e9;padding:8px 10px;border-left:4px solid #4caf50;margin:6px 0;border-radius:3px}
-.hyp{background:#ffebee;padding:8px 10px;border-left:4px solid #f44336;margin:6px 0;border-radius:3px;word-break:break-all}
-audio{width:100%;margin:4px 0}
-.section{border:1px solid #e0e0e0;border-radius:6px;padding:10px;margin:10px 0;background:#fff}
-.section h3{margin:0 0 8px;font-size:15px;color:#333;border-bottom:2px solid #1976d2;padding-bottom:4px}
-.section.enw h3{border-bottom-color:#fb8c00}
-.tags{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0}
-.tag{padding:4px 10px;border:1px solid #888;border-radius:12px;cursor:pointer;font-size:13px;user-select:none;background:#fff}
-.tag.on{background:#1976d2;color:#fff;border-color:#1976d2}
-.section.enw .tag.on{background:#fb8c00;border-color:#fb8c00}
-button{padding:6px 14px;margin:2px;cursor:pointer;border:1px solid #888;border-radius:4px;background:#fff}
-button:hover{background:#f0f0f0}
-textarea{width:100%;height:48px;margin:6px 0;box-sizing:border-box}
-progress{width:100%;height:6px}
-.hint{color:#999;font-size:12px;margin:4px 0}
-.idbox{padding:4px 8px;border:1px solid #1976d2;border-radius:4px;font-size:14px}
-.lbl{font-size:12px;color:#666;margin-top:6px}
+*{box-sizing:border-box}
+body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;margin:0;background:#f0f2f5;color:#2c3e50;line-height:1.6;font-size:14px}
+.card{max-width:940px;margin:0 auto;padding:20px;min-height:100vh}
+.nav{display:flex;justify-content:space-between;align-items:center;background:#fff;border-radius:12px;padding:12px 18px;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.nav #pos{font-weight:700;color:#1976d2;font-size:15px}
+progress{width:100%;height:7px;-webkit-appearance:none;appearance:none;border:none;border-radius:4px;margin-bottom:14px;display:block}
+progress::-webkit-progress-bar{background:#e4e7ed;border-radius:4px}
+progress::-webkit-progress-value{background:linear-gradient(90deg,#1976d2,#42a5f5);border-radius:4px}
+.toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#fff;border-radius:12px;padding:12px 18px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.tlbl{color:#78909c;font-size:13px;font-weight:600}
+.toolbar .hint{margin-left:auto}
+.idbox{padding:6px 12px;border:1.5px solid #cfd8dc;border-radius:8px;font-size:14px;outline:none;transition:border-color .2s;background:#fff}
+.idbox:focus{border-color:#1976d2;box-shadow:0 0 0 3px rgba(25,118,210,.12)}
+select{padding:6px 12px;border:1.5px solid #cfd8dc;border-radius:8px;font-size:13px;background:#fff;outline:none;cursor:pointer;color:#455a64}
+.meta{background:#fff;border-radius:12px;padding:12px 18px;margin-bottom:18px;box-shadow:0 2px 8px rgba(0,0,0,.06);font-size:14px;color:#546e7a}
+.meta b{color:#1976d2;font-weight:700}
+.section{background:#fff;border-radius:14px;padding:20px;margin-bottom:20px;box-shadow:0 2px 12px rgba(0,0,0,.08);border:1px solid #eceff1;overflow:hidden}
+.section h3{margin:-20px -20px 18px;padding:14px 20px;font-size:15px;font-weight:700;color:#fff;background:#1976d2}
+.section.enw h3{background:#fb8c00}
+.ref{background:#f1f8f4;border:1px solid #c8e6c9;border-left:4px solid #4caf50;padding:10px 14px;margin:10px 0;border-radius:8px}
+.ref b{color:#2e7d32}
+.hyp{background:#fdf3f4;border:1px solid #ffcdd2;border-left:4px solid #f44336;padding:10px 14px;margin:10px 0;border-radius:8px;word-break:break-all}
+.hyp b{color:#c62828}
+audio{width:100%;margin:12px 0;display:block}
+.lbl{font-size:11px;color:#90a4ae;font-weight:700;margin:14px 0 6px;text-transform:uppercase;letter-spacing:.8px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 4px}
+.tag{padding:6px 14px;border:1.5px solid #cfd8dc;border-radius:20px;cursor:pointer;font-size:13px;user-select:none;background:#fff;color:#546e7a;transition:all .15s;font-weight:500}
+.tag:hover{border-color:#1976d2;color:#1976d2}
+.tag.on{background:#1976d2;color:#fff;border-color:#1976d2;box-shadow:0 2px 6px rgba(25,118,210,.3)}
+.section.enw .tag:hover{border-color:#fb8c00;color:#fb8c00}
+.section.enw .tag.on{background:#fb8c00;border-color:#fb8c00;box-shadow:0 2px 6px rgba(251,140,0,.3)}
+textarea{width:100%;margin:8px 0;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:10px;font-size:14px;font-family:inherit;resize:vertical;outline:none;transition:border-color .2s;line-height:1.5;display:block}
+textarea:focus{border-color:#1976d2;box-shadow:0 0 0 3px rgba(25,118,210,.1)}
+.section.enw textarea:focus{border-color:#fb8c00;box-shadow:0 0 0 3px rgba(251,140,0,.1)}
+button{padding:8px 16px;cursor:pointer;border:1.5px solid #cfd8dc;border-radius:8px;background:#fff;color:#455a64;font-size:13px;font-weight:500;transition:all .15s}
+button:hover{background:#f5f7fa;border-color:#1976d2;color:#1976d2}
+button.primary{background:#1976d2;color:#fff;border-color:#1976d2;font-weight:600}
+button.primary:hover{background:#1565c0;border-color:#1565c0;color:#fff}
+.hint{color:#90a4ae;font-size:12px}
 </style></head><body><div class="card">
 <div class="nav">
  <button onclick="prev()">◀ 上一条 (←)</button>
@@ -75,10 +93,10 @@ progress{width:100%;height:6px}
  <button onclick="next()">下一条 (▶)</button>
 </div>
 <progress id="prog" max="100" value="0"></progress>
-<div style="margin:6px 0;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
- <span>标注员:</span><input id="annotid" class="idbox" placeholder="填你的名字(导出文件名会带它)" oninput="saveId()">
- <span>档筛选:</span><select id="filt" onchange="applyFilt()"><option value="">全部</option></select>
- <button onclick="exportCsv()">⬇ 导出标注CSV</button>
+<div class="toolbar">
+ <span class="tlbl">标注员</span><input id="annotid" class="idbox" placeholder="填你的名字(导出文件名会带它)" oninput="saveId()">
+ <span class="tlbl">档筛选</span><select id="filt" onchange="applyFilt()"><option value="">全部</option></select>
+ <button class="primary" onclick="exportCsv()">⬇ 导出标注CSV</button>
  <span class="hint">←→翻条 / 空格播recognition / 1-9选rec难点</span>
 </div>
 <div class="meta" id="meta"></div>
