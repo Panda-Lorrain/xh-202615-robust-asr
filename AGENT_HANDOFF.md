@@ -1,8 +1,56 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
-> **交接时间**：2026-07-11（**标注分发成果已全 push(b377054)+检验文档就绪**: 2队员各标全量1084 rec/enw分块+比对仲裁; CER分布检视; 视觉重构; 等队员回收。下个 agent 跑 `docs/标注分发成果检验_2026-07-11.md` 验收）。上一轮 2026-07-10 多人标注分发工具链交付。
-> **下个 agent 读序**：本文件【2026-07-10 最新】段（↓）→ CLAUDE.md → 关键 memory（**multi-annotator-dispatch** / cer-breakthrough-candidates / content-gate-decision / official-scoring-spec / dataset-split-spec / reproducibility-hardening / mimo-asr-backend-potential / unified-thr-decision / h3-dicow-conditioning-backfire-vanilla / spk-oracle-poc / baodi-config-no-llm / submit-script-verification / lessons-pitfalls）→ REPRO_SETUP.md
+> **交接时间**：2026-07-11（**前沿探索闭环 + Qwen3-ASR 候选2 证实(CER 腿+10分) + 集成落地**：19路并行探索报告 docs/前沿探索报告_2026-07-10.md + faster-whisper/BoH no-go + code/.venv speechbrain 修复 + Qwen3-ASR 全量1350条官方口径 overall CER **0.344**(vs vanilla 0.595) + enroll_infer/submit_infer --asr-backend qwen 集成）。上一轮标注分发成果已 push(b377054), 等队员回收。
+> **下个 agent 读序**：本文件【2026-07-11 最新】段（↓）→ CLAUDE.md → 关键 memory（**cer-breakthrough-candidates** / multi-annotator-dispatch / content-gate-decision / official-scoring-spec / dataset-split-spec / reproducibility-hardening / mimo-asr-backend-potential / unified-thr-decision / h3-dicow-conditioning-backfire-vanilla / spk-oracle-poc / baodi-config-no-llm / submit-script-verification / lessons-pitfalls）→ REPRO_SETUP.md
 > **当前 git**：`master` @ `53a6521`（本地未 push）。2026-07-08/09/10 改动均已 commit（53a6521 多人标注工具链 / 14d0c58 error_analysis / 78e0576 官方口径）。⚠️ annot_pack/(2168音频+116M zip) 被 .gitignore(`*.zip`+`code/*/`)忽略不入库。下个 agent 先 `git status` 核对。
+
+---
+
+## 【2026-07-11 最新】前沿探索(19路) + Qwen3-ASR 候选2 证实(CER 腿+10分) + 集成落地
+
+### 一句话现状
+用户做数据标注(1084条未满分, 分发2队员)期间, agent 完成"前沿探索者"任务闭环: 19路并行探索(报告 docs/前沿探索报告_2026-07-10.md) → 3 POC(faster-whisper/BoH no-go, **Qwen3-ASR +10分**) → code/.venv speechbrain 修复 → Qwen3-ASR 集成 enroll_infer/submit_infer。**Qwen3-ASR 全量1350条官方口径 overall CER 0.344(vs vanilla 0.595), CER 40%腿 16.2→26.3分(+10.1)**, drop-in 集成(submit_infer --asr-backend qwen)。首个经数据验证的 CER 突破。
+
+### 前沿探索(19路, docs/前沿探索报告_2026-07-10.md)
+12方向SOTA搜索 + 7组已有论文重读 + 综合路线图。候选裁决:
+- 候选1 LLM后纠: 🔴 NO-GO(ASR-EC benchmark+Apple+Cambridge+langfix0.028 四重证伪"纯文本后纠天花板封顶")
+- 候选2 中文原生ASR: 🟢✅ Qwen3-ASR 全量证实(+10分)
+- 候选3 TSE: 🟡 降级(EoW 2026 arXiv:2602.15519 几乎1:1本项目场景证伪级联TSE→ASR对WER无效)
+- 候选4 端到端: 🟡 Whisper-Sidecar落地实例(github LingweiMeng/Whisper-Sidecar, 开源+Aishell1Mix中文数据+3s enrollment)
+- 候选5 RR/效率: faster-whisper/BoH no-go(见下)
+
+### Qwen3-ASR 突破(候选2, 全量证实, 首个CER收益方向)
+- 探针60条: 主战场桶(sim[0.2,0.4)) CER 0.146 vs vanilla 0.454, Δ-0.31
+- 全量1350条官方口径累计池(total_err/total_char, 与vanilla 0.595同口径): overall **0.3436** vs vanilla 0.6635(未归一)/0.595(官方归一), **Δ-0.32**
+- 分桶: 死区(<0.2,n=396) Qwen 0.459 vs vanilla 0.828(Δ-0.37, **比MiMo 0.554强, 挑战"物理地板"叙事, 需对抗验证**)/ 主战场[0.2,0.4)(n=668) 0.360 vs 0.718(Δ-0.36)/ 接近解决≥0.4(n=286) 0.182 vs 0.375
+- Qwen更优 55%(746/1350), RTF 0.289s/条(4060, L20待测)
+- **CER 40%腿(线性 (1-CER)×40): vanilla 16.2→Qwen3-ASR 26.3分(+10.1)**
+- 机制: 复用 enroll_infer diar+wespeaker 切 target timeline, Qwen3-ASR drop-in 转写切片(language="Chinese"), 不改diar, zero-training, Apache2.0可进提交
+- HF核实: ExtremeNoise WER 16.17 vs Whisper-large-v3 63.17(≈4×), 中文原生+鲁棒对症babble
+- 产物: code/poc_qwen_asr.py + poc_qwen_asr_full_result.json + E:/target_slices_full/(1350切片)
+
+### code/.venv speechbrain 修复(关键解锁, 影响后续所有切片路线)
+speechbrain 1.1 lazy proxy 注册 sys.modules, inspect.getmodule 遍历时触发 lazy resolve失败(ImportError, hasattr不捕获) → enroll_infer(librosa.load经lazy_loader→inspect)连锁崩。
+**修复**: patch inspect.getmodule 固化 enroll_infer 顶部(捕获 ImportError/AttributeError 返None, 不破坏speechbrain正常lazy)。验证: enroll_infer直接跑通(diar+vanilla, cmd_0 TRANSCRIBE)。
+**教训⚠️**: 装 faster-whisper到主 code/.venv 连带升级共享包触发此问题(已卸载faster-whisper+回滚typing_extensions)。**后续新依赖一律独立venv**(如 code/.venv_qwen), 不污染主venv。已记 lessons-pitfalls 待补。
+
+### Qwen3-ASR 集成(drop-in 落地, submit_infer --asr-backend qwen 可提交)
+- enroll_infer 加 --asr-backend qwen 分支: 切片存盘+text空 → 末尾 subprocess 调 code/qwen_asr_backend.py[code/.venv_qwen, venv隔离] 批量转写 → 填transcript + to_simplified/digit_postproc 提交归一
+- code/qwen_asr_backend.py(code/.venv_qwen, Qwen3-ASR批量转写切片→uid2text.json)
+- submit_infer choices 加 qwen(透传机制 line 158-159 已有, 非dicow即透传)
+- 验证: 5条 transcript 填充(Qwen3-ASR识"制热""权志龙"等vanilla错的, 输出含标点官方口径去掉)
+- code/.venv_qwen: qwen-asr(transformers backend, Windows兼容) + torch2.6.0+cu124(强制reinstall覆盖CPU版) + Qwen3-ASR-1.7B权重E:/hf_cache/Qwen3-ASR-1.7B
+
+### ⚠️ follow-up(本 session 未做完, 下个 agent 接)
+1. 🟡 **submit_infer qwen 全流程 run-twice 验证**(可复现性, FAQ核查硬要求; 当前只验证 enroll_infer qwen 5条)
+2. 🟡 **L20 RTF 真测**(Qwen3-ASR RTF 0.289@4060 慢于vanilla 0.16-0.24, L20待测, 效率腿时间分可能小失分-1~2; 租AutoDL L40)
+3. 🟡 **FireRedASR 横评**(定 Qwen3-ASR vs FireRedASR 选型; FireRedASR干净CER 2.89%略优Qwen3-ASR 3.76% + RTF0.087更快; 需clone repo)
+4. 🟡 **Qwen3-ASR 提交归一后 overall**(to_simplified+digit_postproc, 未测, 可能更低; Qwen3-ASR输出含标点+可能阿拉伯数字)
+5. 🟡 **死区 Qwen3-ASR 0.459 对抗验证**(比MiMo 0.554强, 挑战"物理地板"叙事; 别急着改答辩归因, 先确认非切片偶然)
+6. ⏸ **等用户标注回收**(1084条错误类型×sim分桶交叉表, 定thr+看死区可改进空间)
+
+### 关联
+docs/前沿探索报告_2026-07-10.md | memory cer-breakthrough-candidates(候选2全量数据+集成完成) | RESULTS.md T28 | REPRO_SETUP.md §2/§3(Qwen3-ASR+venv_qwen+patch)
 
 ---
 

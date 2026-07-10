@@ -766,3 +766,59 @@ BAODI_PAIRS=code/B_pairs_datasetB.json bash code/run_baodi.sh B 0.27
 
 ---
 
+## T28 — 2026-07-11 Qwen3-ASR 中文原生后端(候选2 全量证实, CER 腿+10分, 首个CER收益方向)
+
+> 19路前沿探索(`docs/前沿探索报告_2026-07-10.md`)证伪 faster-whisper/BoH(零风险动作实测不成立)后, 候选2 中文原生 ASR 经全量数据证实为**首个真正 CER 收益方向**。Qwen3-ASR-1.7B drop-in 替换 vanilla 后端(复用 diar+wespeaker 切 target timeline, 不改 diar, zero-training, Apache2.0)。
+
+### 全量数据(1350条 pos target 切片, 官方口径累计池 total_err/total_char, 与 vanilla 0.595 同口径)
+
+| 桶 | n | Qwen3-ASR CER | vanilla CER | Δ |
+|---|---|---|---|---|
+| **overall** | 1350 | **0.3436** | 0.6635(未归一)/0.595(官方) | **−0.32** |
+| 死区 <0.2 | 396 | 0.459 | 0.828 | −0.37 |
+| 主战场 [0.2,0.4) | 668 | 0.360 | 0.718 | −0.36 |
+| 接近解决 ≥0.4 | 286 | 0.182 | 0.375 | −0.19 |
+
+- 探针60条主战场桶: CER 0.146 vs vanilla 0.454(Δ-0.31) → 全量证实
+- Qwen 更优 55%(746/1350), RTF 0.289s/条(4060, L20 待测)
+- **CER 40%腿(线性 (1-CER)×40): vanilla 16.2 → Qwen3-ASR 26.3 分(+10.1)**
+
+### 关键发现
+
+1. **ExtremeNoise 4× 鲁棒性真迁移**: Qwen3-ASR HF 官方 ExtremeNoise WER 16.17 vs Whisper-large-v3 63.17(≈4×), 本项目 babble 切片全桶大幅优(Δ-0.32)
+2. **死区挑战"物理地板"**: 死区 Qwen3-ASR 0.459 比 MiMo 0.554 还强(Δ-0.37 vs vanilla 0.828) → 更强转写器能多救回一截; ⚠️ 0.459 仍不及格, 需对抗验证(别急着改"物理地板"答辩叙事)
+3. **机制**: diar+wespeaker 切 target timeline → Qwen3-ASR 转写切片(language="Chinese") → to_simplified+digit_postproc 提交归一。drop-in, 不改 diar, zero-training
+
+### 集成(submit_infer --asr-backend qwen, drop-in 落地)
+
+- enroll_infer 加 `--asr-backend qwen` 分支(切片存盘+text空→末尾 subprocess 调 code/qwen_asr_backend.py[code/.venv_qwen, venv隔离]批量转写→填transcript+提交归一)
+- submit_infer choices 加 qwen(透传机制 line 158-159 已有)
+- code/.venv_qwen: qwen-asr(transformers backend) + torch2.6+cu124 + Qwen3-ASR-1.7B 权重 E:/hf_cache/Qwen3-ASR-1.7B
+- 验证: 5条 transcript 填充(Qwen3-ASR 识"制热""权志龙"等 vanilla 错的)
+- code/.venv speechbrain lazy 修复: patch inspect.getmodule 固化 enroll_infer 顶部(解锁后续所有切片路线)
+
+### 诚实边界
+
+- Qwen3-ASR overall 0.344 是**纯转写**(不含 thr 拒识层); 提交归一后可能更低(未测)
+- RTF 0.289 慢于 vanilla 0.16-0.24, 效率腿时间分可能小失分(-1~2); L20 待测
+- 55% 更优(45% 持平/更差, 如 cmd_66 抽油烟机/cmd_98 权志龙 Qwen 反劣)
+
+### follow-up
+
+1. 🟡 submit_infer qwen 全流程 run-twice 验证(可复现性, FAQ 硬要求)
+2. 🟡 L20 RTF 真测(租 AutoDL L40)
+3. 🟡 FireRedASR 横评定选型(FireRedASR 干净 CER 2.89% 略优 + RTF 0.087 更快)
+4. 🟡 Qwen3-ASR 提交归一后 overall + thr 含拒 overall
+5. 🟡 死区 0.459 对抗验证
+
+### 产物
+
+- `code/poc_qwen_asr.py` + `code/poc_qwen_asr_full_result.json`(全量1350条逐条)
+- `code/qwen_asr_backend.py`(code/.venv_qwen 批量转写)
+- `code/enroll_infer.py`(--asr-backend qwen 分支 + patch inspect.getmodule 固化 + --save-target-audio)
+- `code/submit_infer.py`(choices 加 qwen)
+- E:/target_slices_full/(1350 切片, 外部 E 盘不入库)
+- 报告 `docs/前沿探索报告_2026-07-10.md` + memory `cer-breakthrough-candidates`
+
+---
+
