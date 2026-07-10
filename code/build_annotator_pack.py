@@ -23,9 +23,17 @@ ap.add_argument("--copy-audio", action="store_true", help="拷贝1084条音频�
 args = ap.parse_args()
 
 rows = list(csv.DictReader(open(CSV, encoding="utf-8-sig")))
+# 唤醒词参考文本 (enrollment 音频对应的文字, 从 pos_pairs_datasetA.json 的 kws_txt 按 id 取)
+POS_PAIRS = r"E:\midea_target_asr\code\pos_pairs_datasetA.json"
+KWS = {}
+if os.path.isfile(POS_PAIRS):
+    for p in json.load(open(POS_PAIRS, encoding="utf-8")):
+        KWS[p["id"]] = p.get("kws_txt", "")
 for r in rows:
     r["rec_src"] = "pos/" + os.path.basename(r["recognition_path"])
     r["enw_src"] = "pos/" + os.path.basename(r["enrollment_path"])
+    _id = int(r["uid"].replace("cmd_", "")) if r["uid"].startswith("cmd_") else -1
+    r["kws_txt"] = KWS.get(_id, "")
 HP = ["音量小", "语速快", "语速慢", "babble强", "重叠", "英文干扰", "静音/未说话", "循环幻觉", "其他"]
 
 TPL = r"""<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>未满分音频标注</title>
@@ -65,7 +73,7 @@ progress{width:100%;height:6px}
 <div class="hyp" id="hyp"></div>
 <div class="hint">recognition (带噪, 听这个判断 target 说了什么):</div>
 <audio id="rec" controls></audio>
-<div class="hint">enrollment (target 唤醒词, 音色参考):</div>
+<div class="hint">enrollment (target 唤醒词, 音色参考) — <b id="kws" style="color:#1976d2"></b></div>
 <audio id="enw" controls></audio>
 <div class="tags" id="tags"></div>
 <textarea id="note" placeholder="备注..." oninput="save()"></textarea>
@@ -92,7 +100,7 @@ function render(){
   $('meta').innerHTML='<b>'+d['档']+'</b> | '+d['uid']+' | CER <b>'+d['vanilla_cer']+'</b> | sim '+d['max_sim']+' | '+d['rec_sec']+'s';
   $('ref').innerHTML='<b>ref(正确):</b> '+d['ref'];
   $('hyp').innerHTML='<b>vanilla(ASR输出):</b> '+(d['vanilla_text']||'').slice(0,500);
-  $('rec').src=d['rec_src']; $('enw').src=d['enw_src'];
+  $('rec').src=d['rec_src']; $('enw').src=d['enw_src']; $('kws').textContent=d['kws_txt']||'(无)';
   $('note').value=(store[key]&&store[key].note)||'';
   const tags=(store[key]&&store[key].tags)||[];
   $('tags').innerHTML=HP.map((h,j)=>'<span class="tag '+(tags.includes(h)?'on':'')+'" onclick="toggle('+j+')">'+(j+1)+'.'+h+'</span>').join('');
