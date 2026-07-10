@@ -1,6 +1,6 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
-> **交接时间**：2026-07-10（**多人标注分发工具链交付**: 2队员各标全量1084+比对仲裁替代原自标; CER分布检视; commit 53a6521本地未push）。上一轮 2026-07-09（数据驱动错误分析优先/模型路线全延后/未满分CSV+HTML标注界面）。
+> **交接时间**：2026-07-11（**标注分发成果已全 push(b377054)+检验文档就绪**: 2队员各标全量1084 rec/enw分块+比对仲裁; CER分布检视; 视觉重构; 等队员回收。下个 agent 跑 `docs/标注分发成果检验_2026-07-11.md` 验收）。上一轮 2026-07-10 多人标注分发工具链交付。
 > **下个 agent 读序**：本文件【2026-07-10 最新】段（↓）→ CLAUDE.md → 关键 memory（**multi-annotator-dispatch** / cer-breakthrough-candidates / content-gate-decision / official-scoring-spec / dataset-split-spec / reproducibility-hardening / mimo-asr-backend-potential / unified-thr-decision / h3-dicow-conditioning-backfire-vanilla / spk-oracle-poc / baodi-config-no-llm / submit-script-verification / lessons-pitfalls）→ REPRO_SETUP.md
 > **当前 git**：`master` @ `53a6521`（本地未 push）。2026-07-08/09/10 改动均已 commit（53a6521 多人标注工具链 / 14d0c58 error_analysis / 78e0576 官方口径）。⚠️ annot_pack/(2168音频+116M zip) 被 .gitignore(`*.zip`+`code/*/`)忽略不入库。下个 agent 先 `git status` 核对。
 
@@ -27,8 +27,9 @@
 
 ### ⚠️ follow-up
 1. 🟡 等队员标注回收 → compare → 仲裁 → 聚类难点分布 → 定模型路线（接 [[cer-breakthrough-candidates]]）
-2. 🟡 commit 53a6521 未 push（用户测 annot_pack 能否正常用后再 push）
-3. ⏸ 模型路线全等标注聚类结论 + 用户决策
+2. ✅ 成果已全 push（6 commit 至 b377054：工具链/kws/v2分块/视觉重构/README/handoff）。annot_pack.zip 116.6M 待发组员。
+3. 🔍 **下一个 agent 检验这些成果**：跑 `docs/标注分发成果检验_2026-07-11.md` 的检验脚本对照预期，按其第 8 节模板报告 PASS/FAIL（只检验+报告，不改实现）
+4. ⏸ 模型路线全等标注聚类结论 + 用户决策
 
 关联 memory: [[multi-annotator-dispatch]] [[cer-breakthrough-candidates]] [[dataset-split-spec]] [[lessons-pitfalls]]。
 
