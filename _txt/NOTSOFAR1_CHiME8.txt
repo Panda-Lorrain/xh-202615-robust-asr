@@ -1,0 +1,448 @@
+                                             The USTC-NERCSLIP Systems for the CHiME-8 NOTSOFAR-1 Challenge
+                                           Shutong Niu1 , Ruoyu Wang1 , Jun Du1,∗ , Gaobin Yang1 , Yanhui Tu2 , Siyuan Wu2 , Shuangqing Qian2 ,
+                                                 Huaxin Wu2 , Haitao Xu2 , Xueyang Zhang2 , Guolong Zhong2 , Xindi Yu2 , Jieru Chen2 ,
+                                                Mengzhi Wang2 , Di Cai2 , Tian Gao2 , Genshun Wan2 , Feng Ma2 , Jia Pan2 , Jianqing Gao2
+                                                                          1
+                                                                              University of Science and Technology of China, China
+                                                                                            2
+                                                                                              iFlytek Research, China
+                                                                         {niust,wangruoyu}@mail.ustc.edu.cn, jundu@ustc.edu.cn
+
+
+                                                                                                                                                                                                     Sys-2 RTTM
+                                                                        Abstract                                                                                      Non-overlap
+                                                                                                                                                                       Segments
+                                                                                                                                                                                    Beamforming
+
+                                                                                                                   Multi-channal                    Overlap                                             CSD
+                                                                                                                                      WPE
+                                           This technical report outlines our submission system for the                Data                        Detection
+                                                                                                                                                                       Overlap
+                                           CHiME-8 NOTSOFAR-1 Challenge [1]. The primary diffi-                                                                       Segments
+                                                                                                                                                                                     3-Sec CSS
+
+
+
+
+arXiv:2409.02041v2 [eess.AS] 24 Oct 2024
+                                           culty of this challenge is the dataset recorded across various                                                 Initialization
+
+                                           conference rooms, which captures real-world complexities such
+                                                                                                                                    cACGMM
+                                                                                                                     NSD                                 NSD                GSS             CSD        Sys-1 RTTM
+                                           as high overlap rates, background noises, a variable number of                          Rectification
+
+                                           speakers, and natural conversation styles. To address these is-                                                                  Sys-3 RTTM （Fixed Speaker Number）
+                                           sues, we optimized the system in several aspects: For front-                              GSS           CSD
+
+                                           end speech signal processing, we introduced a data-driven joint                                                                  Sys-4 RTTM
+
+                                           training method for diarization and separation (JDS) to en-
+                                           hance audio quality. Additionally, we also integrated tradi-           Figure 2: The diarization pipeline for multi-channel system.
+                                           tional guided source separation (GSS) for multi-channel track
+                                           to provide complementary information for the JDS. For back-
+                                           end speech recognition, we enhanced Whisper with WavLM,               sliding window length to 800 frames (12.8 seconds) and modi-
+                                           ConvNeXt, and Transformer innovations, applying multi-task            fied the final prediction output to the frame-level binary clas-
+                                           training and Noise KLD augmentation, to significantly advance         sification using a linear layer. For the detected overlapping
+                                           ASR robustness and accuracy. Our system attained a Time-              segments, we employ the multi-channel 3-second continuous
+                                           Constrained minimum Permutation Word Error Rate (tcpWER)              speech separation (CSS) method to effectively isolate each
+                                           of 14.265% and 22.989% on the CHiME-8 NOTSOFAR-1 Dev-                 speaker’s speech. We modified the official baseline architecture
+                                           set-2 multi-channel and single-channel tracks, respectively.          [2] for the CSS on overlapping segments by adding a classifi-
+                                           Index Terms: CHiME challenge, speaker diarization, speech             cation network for overlapping segment detection and conduct-
+                                           separation, speech recognition, joint training                        ing joint training for separation and overlap segment detection.
+                                                                                                                 We used the official model for initialization and conducted joint
+                                                           1. System Description                                 training to enhance the separation model’s ability to differen-
+                                                                                                                 tiate between overlapping and non-overlapping segments. We
+                                           Our overall system follows the process illustrated in Fig. 1.         only used the predicted results from the separated parts. The
+                                           First, the diarization system is used to predict the speaker’s time   sliding window length was kept at 3 seconds. We used the same
+                                           distribution, which is then utilized to perform speech separa-        training and inference procedures as the official baseline. The
+                                           tion. Then, the separated speech is sent to the speech recog-         training data remained consistent with the baseline, utilizing
+                                           nition system. In the following sections, we will describe the        only the official simulated data [3]. For non-overlapping seg-
+                                           single-channel and multi-channel systems in detail.                   ments, we enhance the multi-channel speech using the MVDR
+                                                                                                                 beamformer [4].
+                                                                                                                      We conduct the clustering-based speaker diarization (CSD)
+                                                                                                                 method on these pre-processed speech, resulting in prelimi-
+                                                                                                                 nary speaker diarization priors, referred to as ‘Sys-2 RTTM’
+                                                     Figure 1: Overall framework of the system.                  in Fig. 2. For CSD system, we use the spectral clustering al-
+                                                                                                                 gorithm. We leverage the ResNet-221 model for speaker em-
+                                                                                                                 bedding extraction, which is trained on the VoxCeleb [5] and
+                                           1.1. Multi-channel System                                             LibriSpeech datasets. To obtain different diarization priors, we
+                                                                                                                 further apply various processing techniques to the speech used
+                                           1.1.1. Diarization                                                    for clustering. Firstly, we use the results obtained from cluster-
+                                           Fig. 2 illustrates the diarization component of the multi-channel     ing as initial priors, and feeding them into the neural network-
+                                           system. For the original multi-channel data, we first perform         based speaker diarization (NSD) system to achieve more pre-
+                                           weighted prediction error (WPE) algorithm, followed by over-          cise speaker boundary information. The NSD employed in
+                                           lap segment detection. We used the same architecture as the           our system is the memory-aware multi-speaker embedding with
+                                           separation model of the official CSS baseline [2] for the over-       sequence-to-sequence architecture (NSD-MS2S) [6, 7], which
+                                           lapping segment detection model. However, we changed the              combines the advantages of memory-aware multi-speaker em-
+                                                                                                                 bedding and sequence-to-sequence architecture. For the multi-
+                                               * Corresponding author                                            channel track, we input different channels separately and then
+   Sys-N
+                 NSD
+                               T-F mask
+                                                GSS         ASR             Target-speaker                      Target-speaker
+   RTTM                       Estimation
+                                                                              VAD Label                         T-F Mask Label
+                                                MVDR
+
+                         V1       V2       V3
+                                                                               BCE Loss             +           𝜆𝜆 × MSE Loss    =     Overall Loss
+
+ Figure 3: The separation pipeline for multi-channel system.
+                                                                          Target-speaker VAD                 Target-speaker T-F Mask
+
+
+averaged the posterior probabilities of the different channels to             Time-Mask         Dimension          Conformer
+obtain the final result for one session. The NSD uses the 800-                (Range 0-1)       Extension       Separation Model
+frame window length with a frame length of 10ms, resulting
+in a total window length of 8 seconds. Then, following our
+                                                                                 NSD                                  Mag                      IPDs
+previous methods in CHiME-7 DASR Challenge [8], we con-
+duct cACGMM rectification on the original audios, adopting a                                 Fbank Extraction           Ref Channel
+
+window length of 120 seconds and a window shift of 60 sec-                                     Ref Channel               STFT
+onds. This rectification utilizes the previous NSD decoding re-
+                                                                         Speaker Embeddings                  Multi-channel Audios
+sult as the initialization mask. By implementing a threshold
+on the spectrum mask of the cACGMM, we obtain a refined
+secondary initialization of diarization results for the NSD sys-        Figure 4: Overall framework of multi-channel JDS method.
+tem. After the official GSS initialized with the second NSD
+decoding results, we perform the re-clustering to obtain better
+diarization priors (Sys-1 RTTM). Additionally, the decoding re-
+sults from the first NSD can be directly utilized to initialize the
+GSS, thereby generating separated audios. For these separated
+audios, we conducted re-clustering with the fixed number of
+speakers (maintaining the global number of speakers within a
+session) and the non-fix number of speakers (the original ver-
+sion), resulting in two initial diarization priors, namely ‘Sys-3
+RTTM’ and ‘Sys-4 RTTM’, respectively.
+
+
+1.1.2. Separation
+
+After obtaining the RTTMs from the diarization system, we ac-
+quire information about the speaker distribution. Utilizing this
+information, we proceed with various versions of speech sep-
+aration as depicted in Fig. 3. For the first system (V1), we
+utilize the NSD to optimize the time boundaries. The optimized               Figure 5: The architecture of Enhanced Whisper.
+results are then used to initialize the GSS algorithm, resulting
+in the separated audios. For the second system (V2), we uti-
+lize the time masks estimated from the NSD as the inputs for          1.1.3. Speech Recognition
+JDS system. This guides the JDS system in estimating time-
+frequency (T-F) soft masks. These T-F masks are then employed         For automatic speech recognition tasks, we leverage Whisper
+to initialize the GSS in the T-F domain, thus providing the GSS       [9], a state-of-the-art open-source model renowned for its high
+with initialization information in both time and frequency di-        accuracy. Whisper follows an encoder-decoder architecture
+mensions. For the third system (V3), we directly utilize the T-F      based on the Transformer framework. The input to the model
+masks predicted by the JDS system to guide the MVDR beam-             is represented as a log Mel-spectrogram. Both the encoder and
+forming, while still employing the time boundaries provided by        decoder components feature absolute positional encoding and
+the NSD to get the separated speech segments. Fig. 4 shows            are composed of several transformer layers. Notably, the en-
+the overall framework of multi-channel joint training method          coder contains two layers of 1D convolution preceding the ab-
+for diarization and separation (JDS). The JDS system comprises        solute positional encoding stage, which aids in extracting local
+two main components: the speaker diarization module and the           features from the input audio data.
+speech separation module. Based on the original end-to-end                 We introduce Enhanced Whisper, a variant that introduces
+speaker diarization systems, the JDS system serially integrates       a series of enhancements to the base Whisper model. An
+the separation module. This helps the speech separation system        overview of the modified architecture is illustrated in Fig. 5. To
+accurately identify the number of speakers and the correspond-        refine input feature representation, we drew inspiration from the
+ing identities. This information also facilitates the speech sepa-    CHiME-7 DASR Challenge [8], leveraging features extracted
+ration model in more effectively distinguishing between differ-       from self-supervised pre-trained models, particularly WavLM
+ent speakers. Consequently, the separation module in JDS sys-         [10]. Our experiments involved systematically integrating these
+tem primarily maps the time information of various speakers to        WavLM-derived features at various stages within the Whisper
+time-frequency information, which significantly simplifies the        encoder, including the initial, intermediate, and final layers. We
+speech separation process. In our system, the JDS uses a win-         observed that injecting these features at the intermediate layer
+dow length of 800 frames with a frame length of 16ms, resulting       of the encoder resulted in a slight yet noticeable improvement
+in a total window length of 12.8 seconds.                             in performance. The outputs from WavLM and the intermedi-
+                                                Non-overlap
+                                                                                      Table 1: The training sets of speech recognition.
+                                                 Segments     Original Data
+
+      Single-channal              Overlap
+           Data                  Detection                                     Duration (h)                  Corpus                   Sample Scale
+                                                  Overlap
+                                                 Segments      3-Sec CSS            14                 Train-set-1 MC GSS                    1
+                                                                                    16                 Train-set-2 MC GSS                    1
+                                                                                    10                  Dev-set-1 MC GSS                     1
+                       Re-clustering                                                14         Train-set-1 MC GSS with timestamp             1
+                                         T-F mask                                   16         Train-set-2 MC GSS with timestamp             1
+          CSD            NSD                                    ASR
+                                        Estimation                                  10         Dev-set-1 MC GSS with timestamp               1
+                                                                                    14                 Train-set-1 MC NN                     1
+                                                                                    16                 Train-set-2 MC NN                     1
+      Figure 6: The framework of single-channel system.                             10                  Dev-set-1 MC NN                      1
+                                                                                    14               Train-set-1 MC ch0 NN                   1
+                                                                                    16               Train-set-2 MC ch0 NN                   1
+                                                                                    10                Dev-set-1 MC ch0 NN                    1
+                                                                                   960                     LibriSpeech                       1
+ate layer of the Whisper encoder are integrated via a concate-
+nation operation, followed by a linear transformation to ensure
+compatibility with the original feature dimensions of the model.
+Concerning downsampling convolutions, the baseline Whisper                    1.3. Datasets
+model utilizes two layers of 1D convolution. Inspired by recent               1.3.1. Diarization and Separation
+advancements like NextFormer [11], we augmented the original
+Whisper model with a ConvNeXt structure, running in parallel                  For the speaker diarization system, the training data comprises
+to the standard 1D convolutions. The ConvNeXt output is added                 the officially simulated training dataset [3], Train-set-1 [18],
+to the original Conv1D output after a linear transformation and               Train-set-2 [18] and Dev-set-1 [18]. We also employed Lib-
+then input into the transformer.                                              riSpeech, MUSAN noise [19] and the noises in officially sim-
+                                                                              ulated training dataset [18] to simulate the diarization training
+     Regarding positional encoding, Whisper initially relies on
+                                                                              data1 . Additionally, we also use the near-field recordings from
+absolute positional encoding. However, empirical evidence sug-
+                                                                              Train-set-1, Train-set-2 and Dev-set-1 as clean data to simulate
+gests that absolute positional encoding exhibits limitations in
+                                                                              multi-channel speaker diarization training data. For speech sep-
+robustness compared to relative positional encoding [12]. Mo-
+                                                                              aration, we use the officially simulated training dataset and also
+tivated by these findings, we adopted bias relative positional
+                                                                              use the near-field recordings from Train-set-1, Train-set-2 and
+encoding [13] within our enhanced model, aiming to improve
+                                                                              Dev-set-1 to simulate the separation training data.
+its resilience and performance consistency across varying input
+lengths.
+                                                                              1.3.2. Speech Recognition
+     In terms of the Transformer block, we took cues from rele-
+vant research [14, 15] to integrate a sigmoid gating mechanism.               The ASR systems were trained using official NOTSOFAR-1
+Specifically, the input is projected through a weight matrix (W),             training data and the open-source LibriSpeech dataset with data
+followed by a sigmoid activation function. The output of this                 augmentation methods. The data augmentation methods in-
+operation is then scaled by a factor of 2 before being element-               cluded speed perturbation and MUSAN noise [19] addition.
+wise multiplied with the original output, effectively controlling             The specific composition of the training data is shown in Ta-
+the flow of information within the Transformer block. Addi-                   ble 1. We utilized multi-channel (MC) data processed by both
+tionally, we explored the insertion of a depthwise convolution                Guided Source Separation (GSS) and Neural Networks (NN),
+module, akin to those featured in Conformer [16] models, fol-                 and introduced a word-level timestamp prediction task into the
+lowing the Multi-Head Attention (MHA) layers. This architec-                  GSS data. Specifically, for GSS, we used oracle RTTM la-
+ture enhances the model’s ability for localized modeling. Fur-                bels on the multi-channel data to perform GSS, resulting in
+thermore, we augmented the final layer of the encoder with a                  separated speech segments with corresponding speaker identi-
+Mixture of Experts (MoE) [17] component, aimed at enhancing                   ties and timestamps that match the ASR annotations. Through
+the model’s representational capacity.                                        this correspondence, we matched the recognition labels to the
+                                                                              separated results. For NN-based separation, we directly apply
+                                                                              the JDS method for separation and segment the separated au-
+1.2. Single-channel System                                                    dios according to the time steps of oracle RTTM. We found
+                                                                              that this multitask training approach led to a slight improve-
+The framework of the single-channel system is illustrated in                  ment in recognition accuracy. We also adopted the practice
+Fig. 6. Like the multi-channel system, the single-channel sys-                from Whisper of providing the transcribed text from the pre-
+tem also begins with speaker diarization followed by speech                   ceding utterance as previous-text conditioning, which has no-
+separation and ASR. However, unlike the multi-channel sys-                    ticeably improved the recognition rate. Contrary to using of-
+tem, each module in the single-channel system (including the                  ficial single-channel (SC) data, we selected NN-processed MC
+overlap detection, CSS, CSD, NSD, and T-F mask estimation)                    channel 0 (ch0) data as our single-channel training input, ob-
+receives only single-channel audios or features as inputs. To                 serving superior performance with this choice. Drawing inspi-
+get the separated audios for each speaker, the amplitude spec-                ration from the principles of RDrop [20], we developed a novel
+tral features of the original mixed audio are multiplied by the               data augmentation technique called Noise KLD. This approach
+T-F masks, and an inverse STFT transformation is performed.                   entails separately feeding both the original and augmented data
+Furthermore, re-clustering the separated audios can enhance the               samples into the model. Consistency between the model’s pre-
+precision of the speaker diarization priors, as illustrated at the            dictions for the original and augmented data is ensured by ap-
+bottom of the Fig. 6. For ASR, we use the same model for
+decoding as in the multi-channel system.                                         1 https://github.com/jsalt2020-asrdiar/jsalt2020 simulate
+plying Kullback-Leibler divergence (KLD) loss as a regular-          Table 3: TcpWER (%) comparisons on the single-channel track
+izer. Through extensive experimentation, we discovered that          on Dev-set-2.
+this method outperforms conventional data augmentation strate-
+gies in terms of boosting model performance and generaliza-                                         Dia
+                                                                                                              NSD           Re-clustering
+tion.                                                                                   Sep
+
+                                                                                              JDS            24.611               22.989
+                          2. Results
+For diarization, the training requires approximately 88 hours,
+and testing all sentences in Dev-set-2 takes about 1 hour. For       Table 4: Evaluation results [21] of the proposed diariza-
+the JDS system, training takes approximately 4 days, while test-     tion module on Dev-set-2 multi-channel track. The ASR
+ing all sentences in Dev-set-2 requires about 1 hour. For ASR,       model is based on Whisper-large-v3, fine-tuned on Train-set-1/2
+training requires about 20 hours, and testing all sentences in       datasets. Note that we removed the anomalous session ‘MTG-
+Dev-set-2 consumes about 6 hours. Typically, we conduct our          30522’.
+training on A100 GPUs and perform testing on V100 or A40
+                                                                                                 Initialization               NSD Decoding      ASR
+GPUs.                                                                                        FA MISS SpkErr DER            FA MISS SpkErr DER tcpWER
+                                                                      Stage 1 (w/o CSS)      4.72   25.36   2.56   32.65   4.82   7.46   2.96   15.24     -
+2.1. Overall Results                                                  Stage 1                5.90   15.17   2.36   23.43   4.77   7.37   2.26   14.40   12.87
+                                                                      Stage 2                7.51   11.67   1.89   21.07   4.51   7.00   2.47   13.97   14.13
+2.1.1. Multi-channel System                                           Stage 3 (w/o filter)   3.50   8.38    4.25   16.12   4.13   7.44   3.00   14.58   13.65
+                                                                      Stage 3                3.71   13.87   1.50   19.09   4.50   7.47   2.21   14.19   12.83
+Table 2 presents the tcpWER (%) of our multi-channel system
+on Dev-set-2, where ‘Sys-N RTTM’ corresponds to the system
+depicted in Fig. 2, and ‘V∗’ corresponds to the system shown
+in Fig. 3. For each system, we fused the posterior probabilities     results of three main modules: diarization, speech separation,
+from three different Whisper models (enhanced large-v2, en-          and speech recognition, respectively.
+hanced large-v3, and enhanced large-v3 trained with more data
+simulated from Librispeech). The enhanced Whisper models             2.2.1. Diarization
+were fine-tuned using the official Whisper large v2 (enhanced        Table 4 presents the diarization results at different stages on
+large-v2) and v3 (enhanced large-v3 and enhanced large-v3            Dev-set-2, where we define the stages based on the number of
+trained with more data simulated from Librispeech) parameters        NSD decodings in Fig. 2. The first stage corresponds to the
+for initialization. The last row ‘Fusion’ indicates the average of   first decoding of NSD in Fig. 2 and the CSD results used for
+posterior probabilities across 9 (3 × 3) systems using the same      initialization. The second stage refers to the second decoding
+speaker diarization priors. Finally, in the multi-channel track,     of NSD in Fig. 2 and the cACGMM rectification-based diariza-
+we submit the fusion results of each ‘Sys-N RTTM’ (last col-         tion results used for initialization. The third stage corresponds
+umn).                                                                to the CSD results ‘Sys-1 RTTM’ in Fig. 2, along with the cor-
+                                                                     responding NSD results. For more detailed definitions, please
+Table 2: TcpWER (%) comparisons on the multi-channel track           refer to this paper [21]. The term ‘filter’ refers to the process of
+on Dev-set-2.                                                        eliminating segments that contain fewer than one word using a
+                                                                     speech recognition model to prevent interference from incom-
+       Dia                                                           plete or very short segments. As we can see, the introduction
+             Sys-1 RTTM   Sys-2 RTTM    Sys-3 RTTM   Sys-4 RTTM
+ Sep                                                                 of CSS significantly improves the performance of the diariza-
+    V1         14.953        14.649       15.116        14.571       tion in stage 1, effectively reducing the MISS errors in the CSD
+    V2         14.911        14.595       15.086        14.547       results. At the same time, stage 2 shows a relatively effective
+    V3         15.577        15.160       15.703        15.018       improvement in DER compared to stage 1, but the recognition
+   Fusion      14.681        14.286       14.847        14.265       performance actually become worsens. Finally, the filtering op-
+                                                                     eration in stage 3 can effectively reduce SpkErr errors. How-
+                                                                     ever, the final DERs still don’t show improvement compared
+                                                                     to stage 2. To explore the performance improvements brought
+2.1.2. Single-channel System                                         by real data to the diarization module, we provide a brief com-
+Table 3 presents the tcpWER (%) of our single-channel system         parison of the performance of diarization models trained with
+on Dev-set-2. The diarization priors are derived from NSD and        different datasets in Table 5. As shown in the table, adding
+re-clustering, as illustrated in Fig. 6. These priors are then in-   real training data in NOTSOFAR [18] leads to a substantial im-
+put into the JDS system, from which separated audio is obtained      provement (DER from 21.51% to 16.52%).
+via multiplying T-F masks and amplitude spectrum. Similarly,
+for each subsystem, we have fused posterior probabilities from       2.2.2. Separation
+three different Whisper models (enhanced large-v2, enhanced
+large-v3, and enhanced large-v3 trained with more data simu-         Table 6 presents the results of different speech separation meth-
+lated from Librispeech).                                             ods with a fixed back-end recognition model. From this table,
+                                                                     we can observe that adding a classification network for overlap-
+                                                                     ping segment detection brings some improvement to the speech
+2.2. Ablation Results
+                                                                     separation results (from 26.68% to 25.14%). Additionally, JDS
+To better illustrate our system, we present some ablation exper-     shows a noticeable improvement compared to the CSS method
+iments conducted during the challenge, along with some dis-          (from 25.14% to 20.62%), primarily due to its ability to uti-
+cussions in this section. We will focus on showing the ablation      lize more accurate speaker time boundaries. Furthermore, we
+Table 5: DER (%) comparisons of different NSD training data         Table 7: TcpWER (%) comparisons of different ASR models on
+sets on Dev-set-1 multi-channel track (without ‘rockfall 1’).       Dev-set-1 (Oracle GSS using RTTM label). The training sets is
+                                                                    ‘Train-set-1/2 MC GSS‘.
+ Training Data Sets                                       DER (%)
+
+ LibriSpeech Simulated Data + NOTSOFAR Simulated Data       21.51           Models                                  TcpWER (%)
+ + Train-set-1/2 MC (split into single channel)             16.52           Whisper large v3                                8.46
+                                                                            Whisper large v3 + RPE                          8.42
+Table 6: TcpWER (%) comparisons of different separation                     Whisper large v3 + MOE                          8.34
+method on Train-set-1 multi-channel track (plaza 0). The ASR                + Timestamp (as showed in Table 1)              8.25
+model is based on original Whisper-large-v3. The separation                 + RPE + Long Prompt + Noise KLD                 7.61
+training dataset is NOTSOFAR simulated data [3].                            + WavLM                                         7.50
+
+   Separation Methods                               TcpWER (%)
+                                                                    Table 8: TcpWER (%) comparisons of Whisper large v3 models
+   CSS (3-Sec) + MVDR                                   26.68
+                                                                    with different training data sets on Dev-set-2 (Oracle GSS us-
+   CSS (3-Sec) + Overlap Detection (3-Sec) + MVDR       25.14       ing RTTM label). Note that we removed the anomalous session
+   JDS (3-Sec) + MVDR                                   20.62       ‘MTG-30522’.
+   JDS (3-Sec) + Dia Mask + MVDR                        20.29
+   JDS (3-Sec) + Dia Mask + CSD RTTM + MVDR             19.95
+                                                                     Training Data Set                                        TcpWER (%)
+   JDS (8-Sec) + CSD RTTM + MVDR                        18.57
+   JDS (8-Sec) + Dia Mask + CSD RTTM + MVDR             17.47        Original Datasets                                             16.57
+                                                                     Original Datasets + Train-set-1/2 MC GSS                      12.07
+                                                                     All-set MC GSS/NN + LibriSpeech Simulated Data                 9.87
+can improve performance further (from 20.62% to 20.29%) by
+using speaker boundaries trained on more data (referred to as
+‘Dia Mask’ in the table) instead of only relying on the speaker     driven JDS models for speech separation, as well as the con-
+time boundaries from JDS (the ‘Time-Mask’ in Fig 4). During         struction of speech recognition training data and the modifica-
+the decoding process, we can also select matching CSD RTTM          tion of speech recognition model architecture. In this challenge,
+to segment the speech separation results. Since CSD results         we found that the NSD method requires effectively matched
+may have lower confusion errors, this can positively impact         training data to improve performance, including both real and
+recognition results (from 20.29% to 19.95%). Finally, extend-       simulated datasets. Additionally, multi-stage optimization of
+ing the window length of JDS from 3 seconds to 8 seconds leads      the diarization priors of NSD proved to be an important factor
+to further improvements in speech separation performance.           for diarization performance. Furthermore, incorporating time
+                                                                    boundary information from diarization can help the speech sep-
+2.2.3. Speech Recognition                                           aration model achieve better separation results with more ac-
+                                                                    curate time boundaries, thereby effectively improving speech
+Table 7 presents the performance improvements achieved
+                                                                    recognition performance. Finally, fine-tuning with matched
+through various modifications to the speech recognition model
+                                                                    datasets and improving model architecture are still crucial meth-
+architecture. The term ‘Long Prompt’ refers to using the pre-
+                                                                    ods for enhancing speech recognition performance. In the
+vious decoding history as a decoder prompt, which follows the
+                                                                    NOTSOFAR-1 challenge, our system achieved the tcpWERs
+methods used in Whisper. The results indicate that both the
+                                                                    of 22.2% and 10.8% in the single-channel and multi-channel
+MOE and RPE methods effectively enhance speech recognition
+                                                                    tracks of the evaluation set, respectively, winning first place in
+performance. Additionally, incorporating WavLM features fur-
+                                                                    both tracks.
+ther improves the performance of the speech recognition model.
+Table 8 shows the results of the backend ASR with different
+training datasets. ‘All-set MC GSS/NN’ means the sum of                              4. Acknowledgements
+‘Train-set-1/2 MC NN/GSS’ and ‘Dev-set-1 MC NN/GSS’ in              This work was supported by the National Natural Science Foun-
+Table 1. It demonstrates that real training data in NOTSO-          dation of China under Grants No. 62171427.
+FAR [18], processed through oracle GSS, can significantly im-
+prove the performance of the backend ASR.
+                                                                                            5. References
+                        3. Conclusion                                [1] A. Vinnikov, A. Ivry, A. Hurvitz, I. Abramovski, S. Koubi, I. Gur-
+                                                                         vich, S. Peer, X. Xiao, B. M. Elizalde, N. Kanda, X. Wang,
+The NOTSOFAR-1 challenge explored a meaningful scenario,                 S. Shaer, S. Yagev, Y. Asher, S. Sivasankaran, Y. Gong, M. Tang,
+namely real-world far-field multi-speaker meeting environ-               H. Wang, and E. Krupka, “Notsofar-1 challenge: New datasets,
+ments. This includes many challenges that speech signal pro-             baseline, and tasks for distant meeting transcription,” in Inter-
+                                                                         speech 2024, 2024, pp. 5003–5007.
+cessing systems need to deal with in practical applications, in-
+cluding speaker movement, high speech overlap rates, rapid           [2] “CHiME-8 Baseline System,” https:// www.chimechallenge.org/
+changes in speakers, various noise and reverberation, and a vari-        current/ task2/ baseline, 2024.
+able number of speakers. In order to deal with these challenges,     [3] “CHiME-8           Simulated          Training             Dataset,”
+we proposed some methods from the front-end signal process-              https:// www.chimechallenge.org/ current/ task2/
+ing and back-end speech recognition, mainly including the use            datasimulated-training-dataset, 2024.
+of data-driven NSD models to predict speaker time boundaries,        [4] T. Higuchi, N. Ito, S. Araki, T. Yoshioka, M. Delcroix, and
+combining traditional spatial information-based GSS and data-            T. Nakatani, “Online MVDR beamformer based on complex
+     Gaussian mixture model with spatial prior for noise robust ASR,”   [18] “CHiME-8           Meetings         Recordings          Dataset,”
+     IEEE/ACM Transactions on Audio, Speech, and Language Pro-               https:// www.chimechallenge.org/ current/ task2/
+     cessing, vol. 25, no. 4, pp. 780–793, 2017.                             datasimulated-training-dataset, 2024.
+ [5] A. Nagrani, J. S. Chung, W. Xie, and A. Zisserman, “Voxceleb:      [19] D. Snyder, G. Chen, and D. Povey, “MUSAN: A Music, Speech,
+     Large-scale speaker verification in the wild,” Computer Speech &        and Noise Corpus,” 2015, arXiv:1510.08484v1.
+     Language, vol. 60, p. 101027, 2020.
+                                                                        [20] W. Ji, S. Zan, G. Zhou, and X. Wang, “Research on an improved
+ [6] M.-K. He, J. Du, Q.-F. Liu, and C.-H. Lee, “ANSD-MA-                    conformer end-to-end speech recognition model with r-drop
+     MSE: Adaptive Neural Speaker Diarization Using Memory-                  structure,” ArXiv, vol. abs/2306.08329, 2023. [Online]. Available:
+     Aware Multi-Speaker Embedding,” IEEE/ACM Transactions on                https://api.semanticscholar.org/CorpusID:259165369
+     Audio, Speech, and Language Processing, vol. 31, pp. 1561–1573,
+     2023.                                                              [21] R. Wang, S. Niu, G. Yang, J. Du, S. Qian, T. Gao, and J. Pan,
+                                                                             “Incorporating spatial cues in modular speaker diarization for
+ [7] G. Yang, M. He, S. Niu, R. Wang, Y. Yue, S. Qian, S. Wu,                multi-channel multi-party meetings,” 2024. [Online]. Available:
+     J. Du, and C.-H. Lee, “Neural speaker diarization using memory-         https://arxiv.org/abs/2409.16803
+     aware multi-speaker embedding with sequence-to-sequence archi-
+     tecture,” in ICASSP 2024-2024 IEEE International Conference on
+     Acoustics, Speech and Signal Processing (ICASSP). IEEE, 2024,
+     pp. 11 626–11 630.
+ [8] R. Wang, M. He, J. Du, H. Zhou, S. Niu, H. Chen,
+     Y. Yue, G. Yang, S. Wu, L. Sun, Y. Tu, H. Tang,
+     S. Qian, T. Gao, M. Wang, G. Wan, J. Pan, J. Gao,
+     and C.-H. Lee, “The ustc-nercslip systems for the chime-7
+     dasr challenge,” ArXiv, vol. abs/2308.14638, 2023. [Online].
+     Available: https://api.semanticscholar.org/CorpusID:261244449
+ [9] A. Radford, J. W. Kim, T. Xu, G. Brockman, C. McLeavey,
+     and I. Sutskever, “Robust speech recognition via large-scale
+     weak supervision,” ArXiv, vol. abs/2212.04356, 2022. [Online].
+     Available: https://api.semanticscholar.org/CorpusID:252923993
+[10] S. Chen, C. Wang, Z. Chen, Y. Wu, S. Liu, Z. Chen,
+     J. Li, N. Kanda, T. Yoshioka, X. Xiao, J. Wu, L. Zhou,
+     S. Ren, Y. Qian, Y. Qian, M. Zeng, and F. Wei, “Wavlm:
+     Large-scale self-supervised pre-training for full stack speech
+     processing,” IEEE Journal of Selected Topics in Signal
+     Processing, vol. 16, pp. 1505–1518, 2021. [Online]. Available:
+     https://api.semanticscholar.org/CorpusID:239885872
+[11] Y. Jiang, J. Yu, W. Yang, B. Zhang, and Y. Wang,
+     “Nextformer: A convnext augmented conformer for end-to-
+     end speech recognition,” 2022. [Online]. Available: https:
+     //api.semanticscholar.org/CorpusID:250113612
+[12] P. Zhou, R. Fan, W. Chen, and J. Jia, “Improving
+     generalization of transformer for speech recognition with
+     parallel schedule sampling and relative positional embed-
+     ding,” ArXiv, vol. abs/1911.00203, 2019. [Online]. Available:
+     https://api.semanticscholar.org/CorpusID:207870654
+[13] Z. Dai, H. Liu, Q. V. Le, and M. Tan, “Coat-
+     net:     Marrying convolution and attention for all data
+     sizes,” ArXiv, vol. abs/2106.04803, 2021. [Online]. Available:
+     https://api.semanticscholar.org/CorpusID:235376986
+[14] Y. Sun, L. Dong, S. Huang, S. Ma, Y. Xia, J. Xue, J. Wang, and
+     F. Wei, “Retentive network: A successor to transformer for large
+     language models,” ArXiv, vol. abs/2307.08621, 2023. [Online].
+     Available: https://api.semanticscholar.org/CorpusID:259937453
+[15] B. Peng, E. Alcaide, Q. G. Anthony, A. Albalak, S. Arcadinho,
+     S. Biderman, H. Cao, X. Cheng, M. Chung, M. Grella,
+     G. Kranthikiran, X. He, H. Hou, P. Kazienko, J. Kocoń, J. Kong,
+     B. Koptyra, H. Lau, K. S. I. Mantri, F. Mom, A. Saito,
+     X. Tang, B. Wang, J. S. Wind, S. Wozniak, R. Zhang, Z. Zhang,
+     Q. Zhao, P. Zhou, J. Zhu, and R. Zhu, “Rwkv: Reinventing rnns
+     for the transformer era,” in Conference on Empirical Methods
+     in Natural Language Processing, 2023. [Online]. Available:
+     https://api.semanticscholar.org/CorpusID:258832459
+[16] A. Gulati, J. Qin, C.-C. Chiu, N. Parmar, Y. Zhang,
+     J. Yu, W. Han, S. Wang, Z. Zhang, Y. Wu, and R. Pang,
+     “Conformer: Convolution-augmented transformer for speech
+     recognition,” ArXiv, vol. abs/2005.08100, 2020. [Online].
+     Available: https://api.semanticscholar.org/CorpusID:218674528
+[17] Z. You, S. Feng, D. Su, and D. Yu, “Speechmoe: Scaling
+     to large acoustic models with dynamic routing mixture of
+     experts,” in Interspeech, 2021. [Online]. Available: https:
+     //api.semanticscholar.org/CorpusID:234094030
+
