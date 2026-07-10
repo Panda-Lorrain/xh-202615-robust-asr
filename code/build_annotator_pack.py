@@ -188,6 +188,62 @@ html = (TPL.replace("__DATA__", json.dumps(rows, ensure_ascii=False))
 open(HTML_OUT, "w", encoding="utf-8").write(html)
 print(f"HTML -> {HTML_OUT} ({len(rows)} 条, recognition+enrollment 分块标注 v2)")
 
+README = """══════════════════════════════════════════
+       未满分音频标注 · 组员使用说明
+══════════════════════════════════════════
+
+■ 任务
+标注 1084 条"模型转写有误"的音频，每条分两块：
+  ① recognition（带噪识别音频）— 标 target 说了什么 + 识别难点
+  ② enrollment（唤醒词音频）— 标 target 声纹 / 唤醒词质量难点
+两人各自独立标全量，之后比对找分歧。
+
+■ 步骤
+1) 解压整个文件夹到任意位置（如桌面）
+2) 双击「标注.html」打开
+   ⚠ 浏览器优先用 Firefox。
+     若用 Chrome 音频不响：在解压后的文件夹里打开命令行(cmd)，
+     运行  python -m http.server 8000  再浏览器访问  localhost:8000/标注.html
+3) 顶部「标注员」框填你的名字（导出文件名会带它，别填错）
+4) 逐条标注（共 1084 条）：
+
+   【① recognition 块（蓝标题）】
+   听 recognition 音频（按空格播放），判断 target 说了什么、为什么转错。
+   · 按 1~9 选识别难点（可多选）：
+     1音量小  2语速快  3语速慢  4babble强  5重叠
+     6英文干扰  7静音/未说话  8循环幻觉  9其他
+   · 9 类形容不了的，在「自然语言标注」里自由文字描述（重要！回收后AI统一分类）
+
+   【② enrollment 块（橙标题）】
+   听 enrollment 音频（唤醒词，上方有唤醒词文字参考），判断声纹质量。
+   · 鼠标点选难点（可多选）：
+     背景嘈杂 / 有其他说话人 / 唤醒词不清 / 音量小 /
+     唤醒词截断 / 多人同说 / 静音·无有效语音 / 其他
+   · 填自然语言标注
+
+   · ← → 翻条
+   · 「档筛选」可只标某一档（如只标"死区CER>1"最难的）
+
+5) 标满 1084 条后，点「⬇ 导出标注CSV」
+   → 得到 annot_你的名字.csv → 发回给项目负责人
+
+■ 快捷键
+  ← / →    上一条 / 下一条
+  空格     播放 recognition 音频
+  1 ~ 9    选 recognition 难点
+  （enrollment 难点用鼠标点选）
+
+■ ⚠ 重要提醒
+  · 标注自动存在浏览器里，可分多次标，关掉再开还在（同一电脑 + 同一浏览器）
+  · 别清浏览器缓存！清了标注会丢
+  · 自然语言标注很关键：词条形容不准的，一定用文字描述清楚
+  · 拿不准就选「其他」+ 自然语言描述
+
+══════════════════════════════════════════
+"""
+open(os.path.join(PACK, "README.txt"), "w", encoding="utf-8").write(README)
+print(f"README -> {os.path.join(PACK, 'README.txt')}")
+
 if args.copy_audio:
     os.makedirs(POS_OUT, exist_ok=True)
     n = miss = 0
