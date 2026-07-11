@@ -825,7 +825,7 @@ BAODI_PAIRS=code/B_pairs_datasetB.json bash code/run_baodi.sh B 0.27
 
 ### follow-up
 
-1. 🟡 submit_infer qwen 全流程 run-twice 验证(可复现性, FAQ 硬要求)
+1. ✅ submit_infer qwen 全流程 run-twice 验证(2026-07-11 完成: verify_reproducibility --backend qwen limit=10, **text 一致率 100%, CER delta=0**, 与 vanilla 对齐; 改 verify:47 choices 加 qwen + qwen_asr_backend 加 --seed 内联 + enroll_infer:377 透传)
 2. 🟡 L20 RTF 真测(租 AutoDL L40)
 3. 🟡 FireRedASR 横评定选型(FireRedASR 干净 CER 2.89% 略优 + RTF 0.087 更快)
 4. ✅ Qwen3-ASR 提交归一后 overall + thr 含拒 overall(2026-07-11 P0 完成, 见"双口径核实"; 归一零效应, 含拒 thr0.27=0.5934, CER 腿真实 +4.29)

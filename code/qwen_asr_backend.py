@@ -15,7 +15,22 @@ def main():
     ap.add_argument("--model", default="E:/hf_cache/Qwen3-ASR-1.7B")
     ap.add_argument("--out", required=True, help="uid→text json 输出")
     ap.add_argument("--limit", type=int, default=0, help="只转前 N 条(0=全部)")
+    ap.add_argument("--seed", type=int, default=42, help="随机种子(可复现性, 透传自 enroll_infer)")
     args = ap.parse_args()
+
+    # 可复现性: 固定 seed(独立 venv 不依赖 repro.py, 内联 set_seed; Qwen3-ASR generate 默认
+    # greedy do_sample=False, seed 主要锁 cudnn 算子 + 初始化, 对贪心 argmax 鲁棒)
+    import random
+    random.seed(args.seed)
+    try:
+        import numpy as np
+        np.random.seed(args.seed)
+    except ImportError:
+        pass
+    torch.manual_seed(args.seed)
+    torch.cuda.manual_seed_all(args.seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
 
     from qwen_asr import Qwen3ASRModel
     print(f"[load] Qwen3-ASR {args.model} bf16 ...")

@@ -52,7 +52,7 @@ speechbrain 1.1 lazy proxy 注册 sys.modules, inspect.getmodule 遍历时触发
 - code/.venv_qwen: qwen-asr(transformers backend, Windows兼容) + torch2.6.0+cu124(强制reinstall覆盖CPU版) + Qwen3-ASR-1.7B权重E:/hf_cache/Qwen3-ASR-1.7B
 
 ### ⚠️ follow-up(P0 收尾后状态: #4 已完成, #6 wesep 已 defer, 剩 A3/A2/B1 + 阻塞项)
-1. 🟡 **submit_infer qwen 全流程 run-twice 验证**(可复现性, FAQ核查硬要求; 当前只验证 enroll_infer qwen 5条; verify_reproducibility:47 choices 加 qwen + qwen_asr_backend 加 --seed + enroll_infer:377 透传, 改 <15 行)
+1. ✅ **submit_infer qwen 全流程 run-twice 验证**(2026-07-11 完成: verify_reproducibility --backend qwen limit=10, **text 一致率 100%, CER delta=0**, 与 vanilla 对齐; 改 verify:47 choices 加 qwen + qwen_asr_backend 加 --seed 内联 set_seed(独立 venv 不依赖 repro.py) + enroll_infer:377 subprocess 透传 --seed)
 2. 🟡 **L20 RTF 真测**(Qwen3-ASR RTF 0.289@4060 慢于vanilla 0.16-0.24, L20待测, 效率腿时间分可能小失分-1~2; 租AutoDL L40)
 3. 🟡 **FireRedASR 横评**(定 Qwen3-ASR vs FireRedASR 选型; FireRedASR干净CER 2.89%略优Qwen3-ASR 3.76% + RTF0.087更快; 需clone repo; 45% no-go 无 babble 训练)
 4. ✅ **Qwen3-ASR 提交归一后 overall**(2026-07-11 P0 完成: 归一零效应 0 阿拉伯数字 0 繁体 raw==归一==0.3436; 含拒 thr0.27=0.5934, CER腿真实 +4.29; 见 P0 收尾段)

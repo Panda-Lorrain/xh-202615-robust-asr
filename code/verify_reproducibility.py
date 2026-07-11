@@ -44,7 +44,7 @@ def main():
     ap.add_argument("--limit", type=int, default=20, help="前 N 条(0=全部)")
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--device", default="cuda:0")
-    ap.add_argument("--backend", default="vanilla", choices=["vanilla", "dicow"])
+    ap.add_argument("--backend", default="vanilla", choices=["vanilla", "dicow", "qwen"])
     ap.add_argument("--out-dir", default=os.path.join(_HERE, "verify_repro_out"))
     args = ap.parse_args()
 

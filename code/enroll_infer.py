@@ -375,7 +375,7 @@ def main():
         qwen_script = os.path.join(os.path.dirname(os.path.abspath(__file__)), "qwen_asr_backend.py")
         print(f"\n[qwen] 批量 Qwen3-ASR 转写切片 {args.save_target_audio} ...")
         subprocess.check_call([qwen_py, qwen_script, "--slice-dir", args.save_target_audio,
-                               "--out", uid2text_path])
+                               "--out", uid2text_path, "--seed", str(args.seed)])
         uid2text = json.load(open(uid2text_path, encoding="utf-8"))
         n_filled = 0
         for r in results:
