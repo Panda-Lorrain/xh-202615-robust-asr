@@ -1,8 +1,8 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
-> **交接时间**：2026-07-11（**前沿探索闭环 + Qwen3-ASR 候选2 证实(CER 腿+10分) + 集成落地**：19路并行探索报告 docs/前沿探索报告_2026-07-10.md + faster-whisper/BoH no-go + code/.venv speechbrain 修复 + Qwen3-ASR 全量1350条官方口径 overall CER **0.344**(vs vanilla 0.595) + enroll_infer/submit_infer --asr-backend qwen 集成）。上一轮标注分发成果已 push(b377054), 等队员回收。
+> **交接时间**：2026-07-11（**Qwen3-ASR 突破全收尾 + 双 SOTA 横评 + 声纹强化证伪**：本 session 续 5 commit——`00416f9` P0 数字收尾(双口径含拒 thr0.27=0.5934→CER 腿真实 **+4.29** 提交口径, 修 +10.1 transcribe 水分) / `f007d83` A3 qwen run-twice(text 一致 100% delta=0) / `081ac91` A2 死区听音坐实 **H1 真实突破**(spk-oracle-poc 物理地板→vanilla OOD 伪地板) / `d129dea` 声纹强化 CAM++ POC **证伪关闭**(B/A margin 0 原理性) / `859f87e` B1 FireRedASR 横评(firered 0.3501≈qwen 0.3436 **双 SOTA**, RTF 快 17%)。Qwen3-ASR 集成 submit_infer --asr-backend qwen 为主线）。标注分发等队员回收。
 > **下个 agent 读序**：本文件【2026-07-11 最新】段（↓）→ CLAUDE.md → 关键 memory（**cer-breakthrough-candidates** / multi-annotator-dispatch / content-gate-decision / official-scoring-spec / dataset-split-spec / reproducibility-hardening / mimo-asr-backend-potential / unified-thr-decision / h3-dicow-conditioning-backfire-vanilla / spk-oracle-poc / baodi-config-no-llm / submit-script-verification / lessons-pitfalls）→ REPRO_SETUP.md
-> **当前 git**：`master` @ `53a6521`（本地未 push）。2026-07-08/09/10 改动均已 commit（53a6521 多人标注工具链 / 14d0c58 error_analysis / 78e0576 官方口径）。⚠️ annot_pack/(2168音频+116M zip) 被 .gitignore(`*.zip`+`code/*/`)忽略不入库。下个 agent 先 `git status` 核对。
+> **当前 git**：`master` @ `859f87e`（**已 push origin**）。2026-07-11 本 session 续 5 commit：`00416f9` P0 数字收尾 / `f007d83` A3 run-twice / `081ac91` A2 死区对抗 / `d129dea` 声纹强化证伪 / `859f87e` B1 FireRedASR 横评（更早 `07f3ed2` 标注分发 / `763c826` 19 路探索 / `d7da0a2` Qwen3 集成）。⚠️ annot_pack/(2168音频+116M zip) + code/FireRedASR/(clone) + code/_*.json(qwen/firered 转写结果) 被 .gitignore(`*.zip`+`code/*/`+`code/_*.json`)忽略不入库。下个 agent 先 `git status` 核对。
 
 ---
 
@@ -16,7 +16,7 @@
 - **死区 0.459 坐实(官方累计池)**：n=396 qwen 0.459 vs vanilla 0.784；0.459 < oracle 0.607。✅ **A2 对抗验证已完成**(见 follow-up#5 + RESULTS A2 段): 用户听音 cmd_2091/2137 坐实 **H1 真实突破**(音频可辨 qwen 听对, 非LM幻觉), 死区是混合桶(B类声纹失败但音频可辨qwen突破 + A类真摧毁H2少数), spk-oracle-poc 物理地板修正为 vanilla OOD 伪地板。
 - **含拒 thr 扫描**(官方池)：0.20 qwen0.4912/vanilla0.6544 | **0.27 qwen0.5934/vanilla0.7007** | 0.30 qwen0.6435 | 0.35 qwen0.7221 | 0.40 qwen0.7993。全档 qwen 优于 vanilla。
 - **提交数字(thr0.27, w1=w2=0.4)**：qwen CER腿16.26+RR腿36.20=52.46 | vanilla 11.97+36.20=48.17 | Δ+4.29(效率腿20待L20)。neg RR 0.9051 与转写器无关。
-- **下个 agent 焦点(核实后优先级)**：🟡 A3 qwen run-twice(改 15 行+20min, FAQ 硬要求, verify_reproducibility:47 choices 加 qwen + seed 透传子进程) → 🟡 A2 死区对抗验证(纯分析+听音 30 条, 定答辩核心归因) → 🟡 B1 FireRedASR 横评(切片就绪, 选型+效率腿, 45% no-go) → ⏸ 等标注回收 / 03_答辩FAQ / L20 RTF。**C1 wesep / C2 beam 均 P2 defer**(wesep 零 upside + emb-mismatch 可能产模糊结论 + EoW2026/SepFormer/STNO 三重同构预警 no-go 85%)。
+- **下个 agent 焦点(A3/A2/B1 本 session 已全完成, 见 follow-up ✅)**：🟡 **03_答辩FAQ 数字/归因固化**(把本轮 5 成果——双口径防穿帮/H1 真实突破/双SOTA横评/声纹强化七连受挫诚实归因——写进 03_答辩FAQ与风险预案.md, 现有版基于 vanilla/DiCoW 待刷新) / 🟡 drop-in 集成 firered 到 enroll_infer(效率腿备选, 镜像 qwen 分支 ~30 行) / ⏸ L20 RTF 真测(租 AutoDL) / ⏸ 等标注回收。**C1 wesep / C2 beam / 声纹强化 均 defer/证伪关闭**。
 
 ### 一句话现状
 用户做数据标注(1084条未满分, 分发2队员)期间, agent 完成"前沿探索者"任务闭环: 19路并行探索(报告 docs/前沿探索报告_2026-07-10.md) → 3 POC(faster-whisper/BoH no-go, **Qwen3-ASR +10分**) → code/.venv speechbrain 修复 → Qwen3-ASR 集成 enroll_infer/submit_infer → **2026-07-11 P0 数字收尾(7-agent 路线核实 + 双口径坐实 + wesep defer, 见上 P0 收尾段)**。**Qwen3-ASR 全量1350条 transcribe CER 0.3436(vs vanilla 0.5954); 含拒 thr0.27 提交口径 0.5934(CER 腿真实 +4.29, transcribe 不拒 +10.07 为诊断上限)**, drop-in 集成(submit_infer --asr-backend qwen)。首个经数据验证的 CER 突破。⚠️ 答辩/提交须报含拒 +4.29 口径, 勿用 transcribe +10.07 虚高。
