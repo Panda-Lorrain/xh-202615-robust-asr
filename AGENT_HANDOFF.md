@@ -54,7 +54,7 @@ speechbrain 1.1 lazy proxy 注册 sys.modules, inspect.getmodule 遍历时触发
 ### ⚠️ follow-up(P0 收尾后状态: #4 已完成, #6 wesep 已 defer, 剩 A3/A2/B1 + 阻塞项)
 1. ✅ **submit_infer qwen 全流程 run-twice 验证**(2026-07-11 完成: verify_reproducibility --backend qwen limit=10, **text 一致率 100%, CER delta=0**, 与 vanilla 对齐; 改 verify:47 choices 加 qwen + qwen_asr_backend 加 --seed 内联 set_seed(独立 venv 不依赖 repro.py) + enroll_infer:377 subprocess 透传 --seed)
 2. 🟡 **L20 RTF 真测**(Qwen3-ASR RTF 0.289@4060 慢于vanilla 0.16-0.24, L20待测, 效率腿时间分可能小失分-1~2; 租AutoDL L40)
-3. 🟡 **FireRedASR 横评**(定 Qwen3-ASR vs FireRedASR 选型; FireRedASR干净CER 2.89%略优Qwen3-ASR 3.76% + RTF0.087更快; 需clone repo; 45% no-go 无 babble 训练)
+3. ✅ **FireRedASR 横评**(2026-07-11 完成, 见 RESULTS T29: firered 0.3501 ≈ qwen 0.3436 不可分, RTF 0.24 vs 0.289 firered 快 17%; B1 预判 45% no-go 未发生, WenetSpeech-meeting 训练对 babble 适应好; qwen 保持主线 firered drop-in 备选)
 4. ✅ **Qwen3-ASR 提交归一后 overall**(2026-07-11 P0 完成: 归一零效应 0 阿拉伯数字 0 繁体 raw==归一==0.3436; 含拒 thr0.27=0.5934, CER腿真实 +4.29; 见 P0 收尾段)
 5. ✅ **死区 Qwen3-ASR 0.459 对抗验证**(2026-07-11 完成: 纯分析+用户听音 cmd_2091/2137 坐实 **H1 真实听音**(非LM幻觉); 死区混合桶 B类声纹失败但音频可辨qwen突破 + A类真摧毁H2少数; **spk-oracle-poc 物理地板修正为 vanilla OOD 伪地板**; 连带声纹强化 CAM++ POC **证伪关闭**(B/A margin 0, 声纹 emb 编码who不编码audio clarity→任何声纹器都救不了B类, exp_spk_campp_deadzone.py); 产物 analyze_dead_zone_qwen.py + exp_spk_campp_deadzone.py)
 6. ⏸ **wesep TSE POC**(2026-07-11 用户决策 defer/drop: 零 upside + emb-mismatch 可能产模糊结论 + EoW2026/SepFormer/STNO 三重同构预警 no-go 85%)

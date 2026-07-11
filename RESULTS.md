@@ -838,9 +838,9 @@ BAODI_PAIRS=code/B_pairs_datasetB.json bash code/run_baodi.sh B 0.27
 
 1. ✅ submit_infer qwen 全流程 run-twice 验证(2026-07-11 完成: verify_reproducibility --backend qwen limit=10, **text 一致率 100%, CER delta=0**, 与 vanilla 对齐; 改 verify:47 choices 加 qwen + qwen_asr_backend 加 --seed 内联 + enroll_infer:377 透传)
 2. 🟡 L20 RTF 真测(租 AutoDL L40)
-3. 🟡 FireRedASR 横评定选型(FireRedASR 干净 CER 2.89% 略优 + RTF 0.087 更快)
+3. ✅ FireRedASR 横评定选型(2026-07-11 完成, 见 T29: firered 0.3501 ≈ qwen 0.3436 不可分, RTF 0.24 vs 0.289 firered 快 17%; B1 预判 45% no-go 未发生)
 4. ✅ Qwen3-ASR 提交归一后 overall + thr 含拒 overall(2026-07-11 P0 完成, 见"双口径核实"; 归一零效应, 含拒 thr0.27=0.5934, CER 腿真实 +4.29)
-5. 🟡 死区 0.459 对抗验证
+5. ✅ 死区 0.459 对抗验证(2026-07-11 完成, 见上 A2 段: 听音坐实 H1 真实突破; 连带声纹强化 CAM++ POC 证伪关闭)
 
 ### 产物
 
@@ -851,6 +851,48 @@ BAODI_PAIRS=code/B_pairs_datasetB.json bash code/run_baodi.sh B 0.27
 - `code/submit_infer.py`(choices 加 qwen)
 - E:/target_slices_full/(1350 切片, 外部 E 盘不入库)
 - 报告 `docs/前沿探索报告_2026-07-10.md` + memory `cer-breakthrough-candidates`
+
+---
+
+## T29 — 2026-07-11 FireRedASR-AED-L 横评(中文原生 ASR 双 SOTA 选型, CER≈Qwen RTF 更优)
+
+> B1 任务: Qwen3-ASR vs FireRedASR-AED-L 选型 + 效率腿。复用 enroll_infer 切的 E:/target_slices_full/ 1350 切片(同源公平), FireRedASR-AED-L drop-in 转写, 官方口径 CER 对比。
+
+### 横评数据(官方累计池, 提交归一后, 1350 条 pos)
+
+| 口径 | qwen | firered | vanilla | firered-qwen Δ |
+|---|---|---|---|---|
+| transcribe 不拒 | 0.3436 | 0.3501 | 0.5954 | +0.0065(噪声带) |
+| 含拒 thr0.27(提交) | 0.5934 | 0.5948 | 0.7007 | +0.0014 |
+| 死区[0,0.2) | 0.459 | 0.460 | 0.784 | +0.001 |
+| 主战场[0.2,0.4) | 0.360 | 0.369 | 0.649 | +0.009 |
+| 接近解决[0.4,1.0) | 0.182 | 0.190 | 0.280 | +0.008 |
+| RTF@4060 | 0.289 | **0.24** | 0.16-0.24 | firered 快 ~17% |
+
+逐条: firered 更优 167 / qwen 更优 206 / 持平 977(72% 持平)。
+
+### 结论
+
+- **CER: firered ≈ qwen**(全档 Δ<0.01 噪声带内, 不可分; 两者都远超 vanilla 0.595, 中文原生 ASR 替换 Whisper 路线双 SOTA 坐实)。B1 agent 预判"firered 无 babble 训练 45% no-go"**未发生**——firered WenetSpeech-meeting 训练对真实 babble 适应良好。
+- **RTF: firered 0.24 vs qwen 0.289(4060), firered 快 ~17%**(效率腿潜在补强, L20 待测)。
+- **选型**: qwen CER 微优 + 已集成主线; firered RTF 微优 + 无标点直出(归一更干净)。两者均有效, qwen 保持, firered 作 drop-in 备选(`firered_asr_backend.py` 镜像 qwen, 集成到 enroll_infer 仅 ~30 行)。
+- **答辩弹药**: 「中文原生 ASR 双 SOTA(Qwen3-ASR+FireRedASR)横评选型, CER 都 ~0.35 vs vanilla 0.595」——选型严谨性 + 路线正确性双弹药。
+
+### 环境(踩坑)
+
+- code/.venv_firered: python3.10 + torch2.6.0+cu124(默认装 CPU 版需 --index-url cu124 重装) + kaldi_native_fbank1.22.3(Windows 有预编译 wheel, B1 主要风险点过)
+- E:/hf_cache/FireRedASR-AED-L(8 files, HF 下)
+- ⚠️ **torch2.6 weights_only=True 默认阻塞 FireRedASR 旧 checkpoint(argparse.Namespace)**, 已 patch code/FireRedASR/fireredasr/models/fireredasr.py 加 weights_only=False(信任官方权重; FireRedASR 不入库 gitignore code/*/)
+
+### 产物
+
+- `code/firered_asr_backend.py`(code/.venv_firered, 镜像 qwen_asr_backend, 批量转写切片)
+- `code/exp_firered_eval.py` + `exp_firered_eval.json`(横评 + 结果)
+
+### follow-up
+
+- 🟡 L20 RTF 真测(qwen 0.289 / firered 0.24 @4060, L20 都待测, 定效率腿)
+- 🟡 若效率腿需要, drop-in 集成 --asr-backend firered 到 enroll_infer(镜像 qwen 分支 ~30 行)
 
 ---
 

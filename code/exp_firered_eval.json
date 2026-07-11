@@ -1,0 +1,72 @@
+{
+  "n": 1350,
+  "transcribe": {
+    "qwen": {
+      "overall": 0.3436,
+      "correct": 0.6644,
+      "near": 0.5111
+    },
+    "vanilla": {
+      "overall": 0.5954,
+      "correct": 0.4874,
+      "near": 0.2615
+    },
+    "firered": {
+      "overall": 0.3501,
+      "correct": 0.66,
+      "near": 0.5178
+    }
+  },
+  "thr_workpoints": {
+    "0.2": {
+      "qwen": 0.4912,
+      "vanilla": 0.6544,
+      "firered": 0.4975
+    },
+    "0.27": {
+      "qwen": 0.5934,
+      "vanilla": 0.7007,
+      "firered": 0.5948
+    },
+    "0.3": {
+      "qwen": 0.6435,
+      "vanilla": 0.7347,
+      "firered": 0.646
+    },
+    "0.35": {
+      "qwen": 0.7221,
+      "vanilla": 0.7814,
+      "firered": 0.7233
+    },
+    "0.4": {
+      "qwen": 0.7993,
+      "vanilla": 0.8232,
+      "firered": 0.8012
+    }
+  },
+  "sim_buckets": {
+    "[0,0.2)": {
+      "n": 396,
+      "qwen": 0.4592,
+      "vanilla": 0.784,
+      "firered": 0.46
+    },
+    "[0.2,0.4)": {
+      "n": 668,
+      "qwen": 0.3603,
+      "vanilla": 0.6494,
+      "firered": 0.3693
+    },
+    "[0.4,1.0)": {
+      "n": 286,
+      "qwen": 0.1823,
+      "vanilla": 0.2799,
+      "firered": 0.1901
+    }
+  },
+  "pairwise": {
+    "firered_better": 167,
+    "qwen_better": 206,
+    "tie": 977
+  }
+}
