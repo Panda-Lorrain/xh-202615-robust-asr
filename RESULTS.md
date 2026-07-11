@@ -818,7 +818,7 @@ BAODI_PAIRS=code/B_pairs_datasetB.json bash code/run_baodi.sh B 0.27
 - **关键反转**: cmd_2137 sim0.004(wespeaker 声纹近乎随机)但音频清晰 → **sim 是声纹代理 ≠ 音频质量**。
 - **A 类(真摧毁+LM幻觉H2, 少数)**: 翻车条 cmd_2808"风速五十"→"邮政银行被打出个一比五"、cmd_2488"把空调关上"→"点一首刘德华的《冰雨》"(编造)。
 - **归因修正**: spk-oracle-poc"死区物理地板不可破" → **vanilla 转写器 OOD 伪地板**(oracle 0.607/单spk 0.436 全程 vanilla 评估); qwen 凭 ExtremeNoise 训练突破到 0.459。
-- **路线影响**: 声纹强化(CAM++/US-PVAD)**可能重新打开**——B 类音频可辨, 若更强声纹器提对 target 把 sim 拉高≥thr, B 类不被拒+qwen H1 转写→overall 再降; 原 wespeaker oracle 证伪有 sim 代理缺陷, 需新 POC 确认。
+- **路线影响(2026-07-11 CAM++ POC 证伪, 声纹强化原理性关闭)**: A2 听音后疑声纹强化重开, 跑 CAM++ 真 POC(code/exp_spk_campp_deadzone.py, 396 死区条)。CAM++ 死区 sim 均值 0.39(vs wespeaker 0.13)但 **B类(转对)0.373 vs A类(翻车)0.374, B-A margin=-0.000**——两声纹器都无 B/A 区分力。**原理性: 声纹 emb 编码"who"不编码"audio clarity", B/A 区分在 mel 层声纹层看不到 → 任何声纹器都救不了 B 类(救 B 连 A 一起误放)**。A2 H1 突破成立但只能靠转写器。副产品: 支持"转写器置信度拒识>声纹 sim 拒识"(BLEMU/FA 置信度)。声纹强化方向关闭(七连受挫最新)。
 
 ### 集成(submit_infer --asr-backend qwen, drop-in 落地)
 

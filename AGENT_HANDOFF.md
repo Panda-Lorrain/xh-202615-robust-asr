@@ -56,7 +56,7 @@ speechbrain 1.1 lazy proxy 注册 sys.modules, inspect.getmodule 遍历时触发
 2. 🟡 **L20 RTF 真测**(Qwen3-ASR RTF 0.289@4060 慢于vanilla 0.16-0.24, L20待测, 效率腿时间分可能小失分-1~2; 租AutoDL L40)
 3. 🟡 **FireRedASR 横评**(定 Qwen3-ASR vs FireRedASR 选型; FireRedASR干净CER 2.89%略优Qwen3-ASR 3.76% + RTF0.087更快; 需clone repo; 45% no-go 无 babble 训练)
 4. ✅ **Qwen3-ASR 提交归一后 overall**(2026-07-11 P0 完成: 归一零效应 0 阿拉伯数字 0 繁体 raw==归一==0.3436; 含拒 thr0.27=0.5934, CER腿真实 +4.29; 见 P0 收尾段)
-5. ✅ **死区 Qwen3-ASR 0.459 对抗验证**(2026-07-11 完成: 纯分析+用户听音 cmd_2091/2137 坐实 **H1 真实听音**(非LM幻觉); 死区是混合桶 B类声纹失败但音频可辨qwen突破 + A类真摧毁H2少数; **spk-oracle-poc "物理地板"修正为 vanilla OOD 伪地板**(oracle全程vanilla评估); 连带: 声纹强化CAM++/US-PVAD 可能重开需新POC; 产物 analyze_dead_zone_qwen.py)
+5. ✅ **死区 Qwen3-ASR 0.459 对抗验证**(2026-07-11 完成: 纯分析+用户听音 cmd_2091/2137 坐实 **H1 真实听音**(非LM幻觉); 死区混合桶 B类声纹失败但音频可辨qwen突破 + A类真摧毁H2少数; **spk-oracle-poc 物理地板修正为 vanilla OOD 伪地板**; 连带声纹强化 CAM++ POC **证伪关闭**(B/A margin 0, 声纹 emb 编码who不编码audio clarity→任何声纹器都救不了B类, exp_spk_campp_deadzone.py); 产物 analyze_dead_zone_qwen.py + exp_spk_campp_deadzone.py)
 6. ⏸ **wesep TSE POC**(2026-07-11 用户决策 defer/drop: 零 upside + emb-mismatch 可能产模糊结论 + EoW2026/SepFormer/STNO 三重同构预警 no-go 85%)
 7. ⏸ **等用户标注回收**(1084条错误类型×sim分桶交叉表, 定thr+看死区可改进空间)
 
