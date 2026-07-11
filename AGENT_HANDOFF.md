@@ -13,7 +13,7 @@
 - **7-agent 路线核实 workflow**（ultracode，375K tokens/104 tool calls）：fan-out 评估 7 候选方向(A1 归一/A2 死区对抗/A3 run-twice/A4 提交数字/B1 FireRedASR/C1 wesep/C2 beam)，每 agent 核实 file:line 现状 + 收益/成本/风险/答辩价值。用户决策：**P0 数字收尾先做** + **wesep defer**。
 - **两个洞堵上**：①**+10.1 是 transcribe 不拒口径虚高**——提交进排名公式用【含拒 overall】(pos 允许拒, 2026-07-08 确认)，qwen 含拒 thr0.27=**0.5934**(CER 腿 +4.29) vs transcribe 0.3436(+10.07 为诊断上限)；②**0.3436 此前不可复现**(poc json 仅 per-sample 0.3848)，`code/recompute_qwen_official.py` 独立坐实落盘 `qwen_official_cer_workpoints.json`。
 - **归一零效应坐实**：1350 条 qwen 输出 0 阿拉伯数字 0 真繁体(原生中文"二十五度")，digit_postproc/to_simplified 均 no-op，raw==归一==0.3436 逐位相等。提交侧 enroll_infer:384 已接归一，无 cn2an/zhconv 式漏洞。
-- **死区 0.459 坐实(官方累计池)**：n=396 qwen 0.459 vs vanilla 0.784；0.459 < oracle 0.607(完美选 target)挑战 spk-oracle-poc "物理地板"叙事，待 A2 对抗验证(最大威胁=中文家居 LM 先验幻觉)。
+- **死区 0.459 坐实(官方累计池)**：n=396 qwen 0.459 vs vanilla 0.784；0.459 < oracle 0.607。✅ **A2 对抗验证已完成**(见 follow-up#5 + RESULTS A2 段): 用户听音 cmd_2091/2137 坐实 **H1 真实突破**(音频可辨 qwen 听对, 非LM幻觉), 死区是混合桶(B类声纹失败但音频可辨qwen突破 + A类真摧毁H2少数), spk-oracle-poc 物理地板修正为 vanilla OOD 伪地板。
 - **含拒 thr 扫描**(官方池)：0.20 qwen0.4912/vanilla0.6544 | **0.27 qwen0.5934/vanilla0.7007** | 0.30 qwen0.6435 | 0.35 qwen0.7221 | 0.40 qwen0.7993。全档 qwen 优于 vanilla。
 - **提交数字(thr0.27, w1=w2=0.4)**：qwen CER腿16.26+RR腿36.20=52.46 | vanilla 11.97+36.20=48.17 | Δ+4.29(效率腿20待L20)。neg RR 0.9051 与转写器无关。
 - **下个 agent 焦点(核实后优先级)**：🟡 A3 qwen run-twice(改 15 行+20min, FAQ 硬要求, verify_reproducibility:47 choices 加 qwen + seed 透传子进程) → 🟡 A2 死区对抗验证(纯分析+听音 30 条, 定答辩核心归因) → 🟡 B1 FireRedASR 横评(切片就绪, 选型+效率腿, 45% no-go) → ⏸ 等标注回收 / 03_答辩FAQ / L20 RTF。**C1 wesep / C2 beam 均 P2 defer**(wesep 零 upside + emb-mismatch 可能产模糊结论 + EoW2026/SepFormer/STNO 三重同构预警 no-go 85%)。
@@ -56,7 +56,7 @@ speechbrain 1.1 lazy proxy 注册 sys.modules, inspect.getmodule 遍历时触发
 2. 🟡 **L20 RTF 真测**(Qwen3-ASR RTF 0.289@4060 慢于vanilla 0.16-0.24, L20待测, 效率腿时间分可能小失分-1~2; 租AutoDL L40)
 3. 🟡 **FireRedASR 横评**(定 Qwen3-ASR vs FireRedASR 选型; FireRedASR干净CER 2.89%略优Qwen3-ASR 3.76% + RTF0.087更快; 需clone repo; 45% no-go 无 babble 训练)
 4. ✅ **Qwen3-ASR 提交归一后 overall**(2026-07-11 P0 完成: 归一零效应 0 阿拉伯数字 0 繁体 raw==归一==0.3436; 含拒 thr0.27=0.5934, CER腿真实 +4.29; 见 P0 收尾段)
-5. 🟡 **死区 Qwen3-ASR 0.459 对抗验证**(比MiMo 0.554强, 挑战"物理地板"叙事; 别急着改答辩归因, 先确认非切片偶然/LM幻觉; 纯分析+听音本地可做)
+5. ✅ **死区 Qwen3-ASR 0.459 对抗验证**(2026-07-11 完成: 纯分析+用户听音 cmd_2091/2137 坐实 **H1 真实听音**(非LM幻觉); 死区是混合桶 B类声纹失败但音频可辨qwen突破 + A类真摧毁H2少数; **spk-oracle-poc "物理地板"修正为 vanilla OOD 伪地板**(oracle全程vanilla评估); 连带: 声纹强化CAM++/US-PVAD 可能重开需新POC; 产物 analyze_dead_zone_qwen.py)
 6. ⏸ **wesep TSE POC**(2026-07-11 用户决策 defer/drop: 零 upside + emb-mismatch 可能产模糊结论 + EoW2026/SepFormer/STNO 三重同构预警 no-go 85%)
 7. ⏸ **等用户标注回收**(1084条错误类型×sim分桶交叉表, 定thr+看死区可改进空间)
 

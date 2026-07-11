@@ -809,6 +809,17 @@ BAODI_PAIRS=code/B_pairs_datasetB.json bash code/run_baodi.sh B 0.27
 
 **提交数字(thr0.27, w1=w2=0.4)**: qwen CER腿16.26+RR腿36.20=52.46 | vanilla CER腿11.97+RR腿36.20=48.17 | Δ+4.29(效率腿20待L20)。neg RR 0.9051 与转写器无关(qwen 不转写 neg)。
 
+### 🔬 死区对抗验证 A2（2026-07-11, 用户听音坐实 H1, 修正"物理地板"归因）
+
+死区 sim<0.2(n=396) qwen 官方池 0.459 vs vanilla 0.784(Δ-0.33) 经听音对抗验证(`code/analyze_dead_zone_qwen.py`)，**不是 LM 幻觉红利，是真实转写突破(H1)**：
+
+- **完美句 154/396=38.9%**(vs vanilla 10.9%, 3.6×), qwen vs vanilla win219/loss38/tie139。
+- **听音坐实 H1**: 用户确认 cmd_2091(sim0.092 "儿童要少吃什么")+cmd_2137(sim**0.004** "打开睡眠模式") 音频清晰、qwen 听对 → 真实听音非 LM 幻觉。
+- **关键反转**: cmd_2137 sim0.004(wespeaker 声纹近乎随机)但音频清晰 → **sim 是声纹代理 ≠ 音频质量**。
+- **A 类(真摧毁+LM幻觉H2, 少数)**: 翻车条 cmd_2808"风速五十"→"邮政银行被打出个一比五"、cmd_2488"把空调关上"→"点一首刘德华的《冰雨》"(编造)。
+- **归因修正**: spk-oracle-poc"死区物理地板不可破" → **vanilla 转写器 OOD 伪地板**(oracle 0.607/单spk 0.436 全程 vanilla 评估); qwen 凭 ExtremeNoise 训练突破到 0.459。
+- **路线影响**: 声纹强化(CAM++/US-PVAD)**可能重新打开**——B 类音频可辨, 若更强声纹器提对 target 把 sim 拉高≥thr, B 类不被拒+qwen H1 转写→overall 再降; 原 wespeaker oracle 证伪有 sim 代理缺陷, 需新 POC 确认。
+
 ### 集成(submit_infer --asr-backend qwen, drop-in 落地)
 
 - enroll_infer 加 `--asr-backend qwen` 分支(切片存盘+text空→末尾 subprocess 调 code/qwen_asr_backend.py[code/.venv_qwen, venv隔离]批量转写→填transcript+提交归一)
