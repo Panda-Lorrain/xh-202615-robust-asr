@@ -892,7 +892,7 @@ BAODI_PAIRS=code/B_pairs_datasetB.json bash code/run_baodi.sh B 0.27
 ### follow-up
 
 - 🟡 L20 RTF 真测(qwen 0.289 / firered 0.24 @4060, L20 都待测, 定效率腿)
-- 🟡 若效率腿需要, drop-in 集成 --asr-backend firered 到 enroll_infer(镜像 qwen 分支 ~30 行)
+- ✅ drop-in 集成 --asr-backend firered 到 enroll_infer/submit_infer(2026-07-11 完成 commit 7aa77cb: 通用化 qwen 分支为 qwen/firered 共用 backend_cfg; smoke 5/5 cmd_0/1 完美匹配 ref; 现四后端可选 dicow/vanilla/qwen/firered)
 
 ---
 

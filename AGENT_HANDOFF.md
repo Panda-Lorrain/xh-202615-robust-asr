@@ -16,7 +16,7 @@
 - **死区 0.459 坐实(官方累计池)**：n=396 qwen 0.459 vs vanilla 0.784；0.459 < oracle 0.607。✅ **A2 对抗验证已完成**(见 follow-up#5 + RESULTS A2 段): 用户听音 cmd_2091/2137 坐实 **H1 真实突破**(音频可辨 qwen 听对, 非LM幻觉), 死区是混合桶(B类声纹失败但音频可辨qwen突破 + A类真摧毁H2少数), spk-oracle-poc 物理地板修正为 vanilla OOD 伪地板。
 - **含拒 thr 扫描**(官方池)：0.20 qwen0.4912/vanilla0.6544 | **0.27 qwen0.5934/vanilla0.7007** | 0.30 qwen0.6435 | 0.35 qwen0.7221 | 0.40 qwen0.7993。全档 qwen 优于 vanilla。
 - **提交数字(thr0.27, w1=w2=0.4)**：qwen CER腿16.26+RR腿36.20=52.46 | vanilla 11.97+36.20=48.17 | Δ+4.29(效率腿20待L20)。neg RR 0.9051 与转写器无关。
-- **下个 agent 焦点(A3/A2/B1 本 session 已全完成, 见 follow-up ✅)**：🟡 **03_答辩FAQ 数字/归因固化**(把本轮 5 成果——双口径防穿帮/H1 真实突破/双SOTA横评/声纹强化七连受挫诚实归因——写进 03_答辩FAQ与风险预案.md, 现有版基于 vanilla/DiCoW 待刷新) / 🟡 drop-in 集成 firered 到 enroll_infer(效率腿备选, 镜像 qwen 分支 ~30 行) / ⏸ L20 RTF 真测(租 AutoDL) / ⏸ 等标注回收。**C1 wesep / C2 beam / 声纹强化 均 defer/证伪关闭**。
+- **下个 agent 焦点(A3/A2/B1/答辩固化/firered 集成 本 session 已全完成)**：🟡 03_答辩FAQ 下文红线/FAQ 按新数字全文细化(2026-07-11 横幅已加, 可选) / ⏸ L20 RTF 真测(租 AutoDL L40, qwen 0.289/firered 0.24 @4060) / ⏸ 等标注回收(定模型路线)。**C1 wesep / C2 beam / 声纹强化 均 defer/证伪关闭**。
 
 ### 一句话现状
 用户做数据标注(1084条未满分, 分发2队员)期间, agent 完成"前沿探索者"任务闭环: 19路并行探索(报告 docs/前沿探索报告_2026-07-10.md) → 3 POC(faster-whisper/BoH no-go, **Qwen3-ASR +10分**) → code/.venv speechbrain 修复 → Qwen3-ASR 集成 enroll_infer/submit_infer → **2026-07-11 P0 数字收尾(7-agent 路线核实 + 双口径坐实 + wesep defer, 见上 P0 收尾段)**。**Qwen3-ASR 全量1350条 transcribe CER 0.3436(vs vanilla 0.5954); 含拒 thr0.27 提交口径 0.5934(CER 腿真实 +4.29, transcribe 不拒 +10.07 为诊断上限)**, drop-in 集成(submit_infer --asr-backend qwen)。首个经数据验证的 CER 突破。⚠️ 答辩/提交须报含拒 +4.29 口径, 勿用 transcribe +10.07 虚高。
