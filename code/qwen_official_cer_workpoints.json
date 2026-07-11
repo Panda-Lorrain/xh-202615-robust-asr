@@ -1,0 +1,142 @@
+{
+  "n": 1350,
+  "source": "poc_qwen_asr_full_result.json",
+  "transcribe": {
+    "qwen": {
+      "overall": 0.3436,
+      "correct": 0.6644,
+      "near": 0.5111,
+      "eng_halluc": 0.0044
+    },
+    "vanilla": {
+      "overall": 0.5954,
+      "correct": 0.4874,
+      "near": 0.2615,
+      "eng_halluc": 0.0059
+    }
+  },
+  "thr_workpoints": {
+    "0.2": {
+      "qwen": 0.4912,
+      "qwen_correct": 0.4985,
+      "vanilla": 0.6544,
+      "vanilla_correct": 0.3874,
+      "delta_q_minus_v": -0.1632,
+      "qwen_cer_leg_40": 20.35,
+      "vanilla_cer_leg_40": 13.82
+    },
+    "0.27": {
+      "qwen": 0.5934,
+      "qwen_correct": 0.3948,
+      "vanilla": 0.7007,
+      "vanilla_correct": 0.3207,
+      "delta_q_minus_v": -0.1073,
+      "qwen_cer_leg_40": 16.26,
+      "vanilla_cer_leg_40": 11.97
+    },
+    "0.3": {
+      "qwen": 0.6435,
+      "qwen_correct": 0.3393,
+      "vanilla": 0.7347,
+      "vanilla_correct": 0.2837,
+      "delta_q_minus_v": -0.0912,
+      "qwen_cer_leg_40": 14.26,
+      "vanilla_cer_leg_40": 10.61
+    },
+    "0.35": {
+      "qwen": 0.7221,
+      "qwen_correct": 0.257,
+      "vanilla": 0.7814,
+      "vanilla_correct": 0.2185,
+      "delta_q_minus_v": -0.0594,
+      "qwen_cer_leg_40": 11.12,
+      "vanilla_cer_leg_40": 8.74
+    },
+    "0.4": {
+      "qwen": 0.7993,
+      "qwen_correct": 0.1741,
+      "vanilla": 0.8232,
+      "vanilla_correct": 0.157,
+      "delta_q_minus_v": -0.024,
+      "qwen_cer_leg_40": 8.03,
+      "vanilla_cer_leg_40": 7.07
+    },
+    "0.45": {
+      "qwen": 0.8596,
+      "qwen_correct": 0.1163,
+      "vanilla": 0.8764,
+      "vanilla_correct": 0.1044,
+      "delta_q_minus_v": -0.0168,
+      "qwen_cer_leg_40": 5.62,
+      "vanilla_cer_leg_40": 4.95
+    }
+  },
+  "submission_thr027": {
+    "qwen": {
+      "pos_CER_containing_reject": 0.5934,
+      "neg_RR": 0.9051,
+      "CER_leg_40": 16.26,
+      "RR_leg_40": 36.2
+    },
+    "vanilla": {
+      "pos_CER_containing_reject": 0.7007,
+      "neg_RR": 0.9051,
+      "CER_leg_40": 11.97,
+      "RR_leg_40": 36.2
+    },
+    "delta_CER_leg_qwen_minus_vanilla": 4.29,
+    "neg_RR_source": "out_neg_vanilla_full/result.json (n=474, @0.27, 与转写器无关)",
+    "efficiency_leg_20": "待 L20 RTF 真测(Qwen3 RTF0.289@4060, L20 待测)"
+  },
+  "dual_caliber_honest": {
+    "transcribe_no_reject (pos全转写, 诊断/能力上限)": {
+      "qwen": 0.3436,
+      "vanilla": 0.5954,
+      "delta_CER_leg_40": 10.07
+    },
+    "containing_reject thr0.27 (提交口径, 排名公式用)": {
+      "qwen": 0.5934,
+      "vanilla": 0.7007,
+      "delta_CER_leg_40": 4.29
+    },
+    "note": "提交用含拒口径(pos 隐含允许拒, 主办方 2026-07-08 确认); 答辩须报含拒, 勿用 transcribe 虚高"
+  },
+  "sim_buckets": {
+    "qwen": {
+      "[0.0,0.2)": {
+        "n": 396,
+        "cer": 0.4592
+      },
+      "[0.2,0.3)": {
+        "n": 332,
+        "cer": 0.3526
+      },
+      "[0.3,0.4)": {
+        "n": 336,
+        "cer": 0.3676
+      },
+      "[0.4,1.0)": {
+        "n": 286,
+        "cer": 0.1823
+      }
+    },
+    "vanilla": {
+      "[0.0,0.2)": {
+        "n": 396,
+        "cer": 0.784
+      },
+      "[0.2,0.3)": {
+        "n": 332,
+        "cer": 0.6587
+      },
+      "[0.3,0.4)": {
+        "n": 336,
+        "cer": 0.6406
+      },
+      "[0.4,1.0)": {
+        "n": 286,
+        "cer": 0.2799
+      }
+    }
+  }
+}

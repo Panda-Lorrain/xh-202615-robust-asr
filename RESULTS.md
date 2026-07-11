@@ -781,13 +781,33 @@ BAODI_PAIRS=code/B_pairs_datasetB.json bash code/run_baodi.sh B 0.27
 
 - 探针60条主战场桶: CER 0.146 vs vanilla 0.454(Δ-0.31) → 全量证实
 - Qwen 更优 55%(746/1350), RTF 0.289s/条(4060, L20 待测)
-- **CER 40%腿(线性 (1-CER)×40): vanilla 16.2 → Qwen3-ASR 26.3 分(+10.1)**
+- **CER 40%腿(双口径, 2026-07-11 P0 核实坐实)**:
+  - transcribe 不拒口径(pos 全转写, 诊断/能力上限): vanilla 16.2 → Qwen3-ASR **26.3** 分(**+10.1**)
+  - **含拒 thr0.27 提交口径(排名公式实际用, pos 允许拒 2026-07-08 确认)**: vanilla 11.97 → Qwen3-ASR **16.26** 分(**+4.29**) ← 答辩/提交须报此口径, 勿用 transcribe 虚高
+  - 详见下"双口径核实"子段 + `code/qwen_official_cer_workpoints.json`
 
 ### 关键发现
 
 1. **ExtremeNoise 4× 鲁棒性真迁移**: Qwen3-ASR HF 官方 ExtremeNoise WER 16.17 vs Whisper-large-v3 63.17(≈4×), 本项目 babble 切片全桶大幅优(Δ-0.32)
 2. **死区挑战"物理地板"**: 死区 Qwen3-ASR 0.459 比 MiMo 0.554 还强(Δ-0.37 vs vanilla 0.828) → 更强转写器能多救回一截; ⚠️ 0.459 仍不及格, 需对抗验证(别急着改"物理地板"答辩叙事)
 3. **机制**: diar+wespeaker 切 target timeline → Qwen3-ASR 转写切片(language="Chinese") → to_simplified+digit_postproc 提交归一。drop-in, 不改 diar, zero-training
+
+### ⚠️ 双口径核实（2026-07-11 P0 收尾, 修正 +10.1 水分 + 补 0.3436 不可复现隐患）
+
+**缘起**: 7-agent 路线核实 workflow 发现 CLAUDE.md/handoff/RESULTS 头条「+10.1」是基于【不含拒 transcribe CER】0.3436 算的, 而提交进排名公式用【含拒 overall】(pos 允许拒 2026-07-08 确认); 且 0.3436 此前未入库(poc json 仅 per-sample 均值 0.3848, 非官方池)。`code/recompute_qwen_official.py` 独立坐实(同集合 1350 条公平对比):
+
+| 口径 | qwen | vanilla | CER 腿 Δ | 用途 |
+|---|---|---|---|---|
+| transcribe 不拒(pos 全转写) | 0.3436 | 0.5954 | **+10.07** | 诊断/能力上限 |
+| **含拒 thr0.27(提交)** | **0.5934** | 0.7007 | **+4.29** | **排名公式用** |
+
+含拒 thr 扫描(官方累计池): thr0.20 qwen0.4912/vanilla0.6544 | **0.27 qwen0.5934/vanilla0.7007** | 0.30 qwen0.6435 | 0.35 qwen0.7221 | 0.40 qwen0.7993。全档 qwen 优于 vanilla, 低 thr 优势更大(-0.1632@0.20 → -0.0168@0.45)。
+
+**归一零效应坐实**: 1350 条 qwen 输出 0 阿拉伯数字 0 真繁体(原生中文数字"二十五度"), digit_postproc/to_simplified 均 no-op, raw==归一==0.3436 逐位相等。对照 vanilla 150/1350 含阿拉伯数字, 归一收益 -0.033。提交侧 enroll_infer:384 已接归一, 无 cn2an/zhconv 式漏洞。
+
+**死区 0.459 坐实(官方池)**: 死区[0,0.2) n=396 qwen 0.459 vs vanilla 0.784(Δ-0.325)。0.459 是官方累计池口径(per-row 均值 0.499 为另一口径), 挑战 spk-oracle-poc "物理地板"叙事(qwen 0.459 < oracle 0.607 完美选 target), 待 A2 对抗验证(最大威胁=中文家居 LM 先验幻觉)。
+
+**提交数字(thr0.27, w1=w2=0.4)**: qwen CER腿16.26+RR腿36.20=52.46 | vanilla CER腿11.97+RR腿36.20=48.17 | Δ+4.29(效率腿20待L20)。neg RR 0.9051 与转写器无关(qwen 不转写 neg)。
 
 ### 集成(submit_infer --asr-backend qwen, drop-in 落地)
 
@@ -799,7 +819,7 @@ BAODI_PAIRS=code/B_pairs_datasetB.json bash code/run_baodi.sh B 0.27
 
 ### 诚实边界
 
-- Qwen3-ASR overall 0.344 是**纯转写**(不含 thr 拒识层); 提交归一后可能更低(未测)
+- Qwen3-ASR transcribe 0.344 是**纯转写诊断口径**(pos 全转写); 提交含拒 thr0.27=**0.5934**(CER腿+4.29, 已测见"双口径核实"); 归一零效应(0 阿拉伯数字 0 繁体, raw==归一==0.3436)
 - RTF 0.289 慢于 vanilla 0.16-0.24, 效率腿时间分可能小失分(-1~2); L20 待测
 - 55% 更优(45% 持平/更差, 如 cmd_66 抽油烟机/cmd_98 权志龙 Qwen 反劣)
 
@@ -808,11 +828,12 @@ BAODI_PAIRS=code/B_pairs_datasetB.json bash code/run_baodi.sh B 0.27
 1. 🟡 submit_infer qwen 全流程 run-twice 验证(可复现性, FAQ 硬要求)
 2. 🟡 L20 RTF 真测(租 AutoDL L40)
 3. 🟡 FireRedASR 横评定选型(FireRedASR 干净 CER 2.89% 略优 + RTF 0.087 更快)
-4. 🟡 Qwen3-ASR 提交归一后 overall + thr 含拒 overall
+4. ✅ Qwen3-ASR 提交归一后 overall + thr 含拒 overall(2026-07-11 P0 完成, 见"双口径核实"; 归一零效应, 含拒 thr0.27=0.5934, CER 腿真实 +4.29)
 5. 🟡 死区 0.459 对抗验证
 
 ### 产物
 
+- `code/recompute_qwen_official.py` + `code/qwen_official_cer_workpoints.json`(2026-07-11 P0: 官方口径坐实 transcribe 0.3436 + 含拒 thr 工作点 + 双口径诚实标注, 修 +10.1 水分)
 - `code/poc_qwen_asr.py` + `code/poc_qwen_asr_full_result.json`(全量1350条逐条)
 - `code/qwen_asr_backend.py`(code/.venv_qwen 批量转写)
 - `code/enroll_infer.py`(--asr-backend qwen 分支 + patch inspect.getmodule 固化 + --save-target-audio)
