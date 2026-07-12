@@ -29,10 +29,21 @@ torch_cache/
 .cache/
 cache/
 
-# ===== 第三方开源仓库（各自有 .git，不纳入主仓库）=====
+# ===== 第三方开源仓库 + 运行产物（不入库; demo_web 是本项目源码需跟踪, 故不在此列）=====
 code/TS-ASR-Whisper/
 code/3D-Speaker/
-code/*/
+code/FireRedASR/
+code/DiCoW-inference/
+code/annot_pack/
+code/experiments/
+code/out_*/
+code/submit_out*/
+code/verify_repro_out/
+code/patches/
+code/pipeline_*out/
+
+# ===== demo web session 音频(运行时产物, 不入库) =====
+code/demo_web/sessions/*.wav
 
 # ===== IDE / OS =====
 .vscode/
