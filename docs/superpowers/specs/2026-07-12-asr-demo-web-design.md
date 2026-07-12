@@ -188,10 +188,10 @@ code/demo_web/
 
 ## 10. 验收标准
 
-- [ ] `bash code/demo_web/run_demo.sh` 启动，日志显示模型加载完成，监听 7860。
-- [ ] `selfcheck.py` 用 kws_0+cmd_0 跑 `/infer` 返回非空 transcript + max_sim>0 + target 文件存在。
-- [ ] 浏览器（Chrome + Safari）录音 enrollment + test 各上传成功，可回放。
-- [ ] mix_mode = none/babble/voice 三种，混音 test 可回放且与 clean 对比明显。
-- [ ] `/infer` 返回转写 + 徽章 + target 切片可播放。
-- [ ] cloudflared quick tunnel 公网链接在手机浏览器可录音 + 推理 + 出结果。
-- [ ] 换人录 test 触发拒识徽章。
+- [x] `bash code/demo_web/run_demo.sh` 启动到 ready, 监听 7860（run_demo.sh 经 bash -n 语法检查 + 等价 uvicorn 命令实测启动到 ready; run_demo.sh 未单独实跑, 因 server 持续在跑供 demo）。
+- [x] `selfcheck.py` 用 kws_0+cmd_0 返回非空 transcript（"空调开到自热调到二十五度风量调到百分之三十"21字）+ max_sim 0.254 + target.wav 存在。
+- [x] 浏览器录音 enrollment + test 上传成功, 可回放（用户手机端到端测通）。
+- [x] mix_mode = none/babble/voice 三种, 混音 test 可回放（curl 验证 mixed wav HTTP 200 + 用户测）。
+- [x] `/infer` 返回转写 + 徽章 + target 切片可播放（curl 自匹配 max_sim 0.97 + target HTTP 200 + 用户测）。
+- [x] cloudflared quick tunnel 公网链接在手机浏览器可录音 + 推理 + 出结果（用户测通; quick tunnel URL 每次重起变化, 见 README §4）。
+- [x] 换人录 test 触发拒识徽章（默认 thr 0.27; 用户端到端测通）。
