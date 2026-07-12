@@ -41,7 +41,7 @@ from repro import resolve_model, set_global_seed, reset_peak_gpu, peak_gpu_mib
 class InferenceEngine:
     """启动 load_models() 一次; 之后 infer() 5-15s/条。线程安全(单 GPU 串行锁)。"""
 
-    def __init__(self, device="cuda:0", reject_threshold=0.5,
+    def __init__(self, device="cuda:0", reject_threshold=0.27,  # 项目 unified thr(T27); enroll_infer 默认 0.5 对 demo 太严(datasetA sim 普遍 0.2-0.4)
                  vanilla_model=None, diarization_model=None, language="zh", seed=42):
         self.device = torch.device(device if torch.cuda.is_available() else "cpu")
         self.dtype = torch.float16
