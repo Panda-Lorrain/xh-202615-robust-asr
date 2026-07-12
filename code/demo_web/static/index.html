@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>目标说话人 ASR Demo</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>🎯 目标说话人 ASR 现场演示</h1>
+    <p class="hint">朗读声纹注册 → 朗读测试(可混噪声/人声) → 现场推理。仅转写目标说话人, 拒识非目标。</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>① Enrollment(声纹注册)</h2>
+      <p class="hint">朗读 1~3 秒, 比如唤醒词或报数字。</p>
+      <div class="row">
+        <button id="enrRec">● 录音</button>
+        <button id="enrPlay" disabled>▶ 试听</button>
+        <span id="enrStatus" class="status"></span>
+      </div>
+      <audio id="enrAudio" controls></audio>
+    </section>
+
+    <section class="card">
+      <h2>② Test(测试音频)</h2>
+      <p class="hint">朗读一句家居指令, 如「把空调调到 26 度」。</p>
+      <div class="row">
+        <button id="testRec">● 录音</button>
+        <button id="testPlay" disabled>▶ 试听</button>
+        <span id="testStatus" class="status"></span>
+      </div>
+      <audio id="testAudio" controls></audio>
+
+      <div class="mix">
+        <label><input type="radio" name="mix" value="none" checked> 不混(干净)</label>
+        <label><input type="radio" name="mix" value="babble"> 混 babble 噪声</label>
+        <label><input type="radio" name="mix" value="voice"> 混第二人声</label>
+      </div>
+      <div id="babbleCtrl" class="ctrl hidden">
+        SNR: <input id="snr" type="range" min="-5" max="10" value="0" step="1">
+        <span id="snrVal">0</span> dB(越低越吵)
+      </div>
+      <div id="voiceCtrl" class="ctrl hidden">
+        干扰人声: <select id="interferer"><option value="">加载中...</option></select>
+        重叠度: <input id="overlap" type="range" min="0" max="100" value="80" step="5">
+        <span id="overlapVal">80</span>%
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="row">
+        <button id="infer" class="primary" disabled>🚀 开始推理</button>
+        <span id="inferStatus" class="status"></span>
+      </div>
+      <div id="result" class="result hidden">
+        <div id="badge" class="badge"></div>
+        <div class="sim-bar"><span>声纹匹配分</span> <b id="simScore">-</b></div>
+        <h3>转写</h3>
+        <div id="transcript" class="transcript">-</div>
+        <div id="simsList" class="sims"></div>
+        <div id="timing" class="timing"></div>
+        <h3>🎧 切出的目标音(模型只听到了这段)</h3>
+        <audio id="targetAudio" controls></audio>
+        <h3>混音后的 test(对照)</h3>
+        <audio id="mixedAudio" controls></audio>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

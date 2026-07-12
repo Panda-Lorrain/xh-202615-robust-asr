@@ -1,0 +1,46 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0; font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+  background: #0f172a; color: #e2e8f0; line-height: 1.5;
+}
+header { background: #1e293b; padding: 20px; text-align: center; border-bottom: 1px solid #334155; }
+header h1 { margin: 0 0 6px; font-size: 22px; }
+.hint { color: #94a3b8; font-size: 13px; }
+main { max-width: 760px; margin: 0 auto; padding: 16px; }
+.card {
+  background: #1e293b; border: 1px solid #334155; border-radius: 12px;
+  padding: 18px; margin-bottom: 16px;
+}
+.card h2 { margin: 0 0 8px; font-size: 17px; }
+.card h3 { margin: 14px 0 6px; font-size: 14px; color: #cbd5e1; }
+.row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+button {
+  background: #334155; color: #e2e8f0; border: 0; border-radius: 8px;
+  padding: 9px 16px; font-size: 14px; cursor: pointer;
+}
+button:hover:not(:disabled) { background: #475569; }
+button:disabled { opacity: 0.4; cursor: not-allowed; }
+button.primary { background: #2563eb; }
+button.primary:hover:not(:disabled) { background: #3b82f6; }
+button.recording { background: #dc2626; animation: pulse 1s infinite; }
+@keyframes pulse { 50% { opacity: 0.6; } }
+.status { color: #94a3b8; font-size: 13px; }
+audio { width: 100%; margin-top: 8px; }
+.mix { display: flex; gap: 14px; flex-wrap: wrap; margin: 12px 0 8px; font-size: 14px; }
+.mix label { cursor: pointer; }
+.ctrl { margin: 8px 0; font-size: 14px; color: #cbd5e1; }
+.ctrl input[type=range] { vertical-align: middle; }
+.hidden { display: none; }
+.result .badge { display: inline-block; padding: 8px 14px; border-radius: 8px; font-weight: bold; margin-bottom: 10px; }
+.badge.ok { background: #16a34a; }
+.badge.rej { background: #dc2626; }
+.badge.err { background: #b45309; }
+.sim-bar { margin: 8px 0; }
+.transcript {
+  font-size: 22px; font-weight: 600; background: #0f172a; border-radius: 8px;
+  padding: 14px; min-height: 28px; border-left: 4px solid #2563eb;
+}
+.sims { margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
+.sim-pill { background: #334155; padding: 4px 10px; border-radius: 6px; font-size: 13px; }
+.sim-pill.tgt { background: #2563eb; }
+.timing { color: #94a3b8; font-size: 13px; margin-top: 6px; }
