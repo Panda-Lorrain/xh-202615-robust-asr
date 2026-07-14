@@ -123,6 +123,8 @@ def main():
     ap.add_argument("--asr-backend", default="dicow", choices=["dicow", "vanilla", "qwen", "firered"],
                     help="ASR 后端: dicow(FDDT/STNO 条件化, fallback) / vanilla(切target timeline+whisper, 主线) / qwen(Qwen3-ASR 中文原生, CER腿+4.29) / firered(FireRedASR-AED-L 中文原生, RTF 更优备选)")
     ap.add_argument("--save-target-audio", help="存 vanilla 切出的 target timeline 切片 wav 到此目录(uid 命名, POC 供其他后端转写)")
+    ap.add_argument("--multi-voice", action="store_true",
+                    help="多声纹LLM路由POC: recognition 每 speaker 各切 timeline 转写(不只 argmax target), result 存 spk_texts 字段; 不在本进程挑(离线 llm_reject 后处理)")
     ap.add_argument("--vanilla-model", default=resolve_model("VANILLA"),
                     help="vanilla 后端 Whisper 模型(默认 large-v3-turbo)")
     ap.add_argument("--seed", type=int, default=42, help="全局种子(可复现性, repro.set_global_seed)")
@@ -261,26 +263,41 @@ def main():
 
         # 4) 兜底拒识 / 转写(ifp/diar_mask 已在 1.5 算好)
         rejected = max_sim < args.reject_threshold
+        spk_texts = None  # multi-voice POC: 每 speaker 转写文本(离线 llm_reject 挑); 非 multi-voice 保持 None
         if rejected and not args.always_generate:
             text, verdict = "", f"REJECT(target 不在场, max_sim={max_sim:.3f}<{args.reject_threshold})"
         else:
             if args.asr_backend == "vanilla":
-                # vanilla: 切 target timeline(含重叠区)拼接 → vanilla.generate 无条件化
-                target_audio = cut_target_timeline(audio, per_spk[target_idx], sr=sr)
-                if getattr(args, "save_target_audio", None):  # POC: 存切片供其他后端(Qwen3-ASR/FireRedASR)转写
-                    import soundfile as sf
-                    os.makedirs(args.save_target_audio, exist_ok=True)
-                    _uid = os.path.splitext(os.path.basename(rec))[0]
-                    sf.write(os.path.join(args.save_target_audio, _uid + ".wav"),
-                             target_audio.astype(np.float32), sr)
-                ifp_v = fe(target_audio, sampling_rate=16000, return_tensors="pt").input_features.to(device, dtype)
-                am_v = torch.ones(1, ifp_v.shape[-1], dtype=torch.bool, device=device)
-                with torch.no_grad():
-                    out = asr_model.generate(input_features=ifp_v, attention_mask=am_v,
-                                             language=args.language, task="transcribe", max_new_tokens=200)
-                seqs = out["sequences"] if isinstance(out, dict) else out
-                text = tok.batch_decode(seqs, skip_special_tokens=True)[0].strip()
-                # vanilla 不跑 langfix(英文幻觉 0.59%, langfix 是 dicow 治标)
+                if getattr(args, "multi_voice", False) and len(speakers) >= 2:
+                    # multi-voice POC: 每 speaker 各切 timeline 转写 → spk_texts(离线 llm_reject 挑家居指令段)
+                    spk_texts = {}
+                    for _i in range(len(speakers)):
+                        _seg = cut_target_timeline(audio, per_spk[_i], sr=sr)
+                        _ifp = fe(_seg, sampling_rate=16000, return_tensors="pt").input_features.to(device, dtype)
+                        _am = torch.ones(1, _ifp.shape[-1], dtype=torch.bool, device=device)
+                        with torch.no_grad():
+                            _out = asr_model.generate(input_features=_ifp, attention_mask=_am,
+                                                      language=args.language, task="transcribe", max_new_tokens=200)
+                        _seqs = _out["sequences"] if isinstance(_out, dict) else _out
+                        spk_texts[str(speakers[_i])] = tok.batch_decode(_seqs, skip_special_tokens=True)[0].strip()
+                    text = spk_texts.get(str(speakers[target_idx]), "")  # 兼容 transcript(离线 llm_reject 会覆盖)
+                else:
+                    # vanilla: 切 target timeline(含重叠区)拼接 → vanilla.generate 无条件化
+                    target_audio = cut_target_timeline(audio, per_spk[target_idx], sr=sr)
+                    if getattr(args, "save_target_audio", None):  # POC: 存切片供其他后端(Qwen3-ASR/FireRedASR)转写
+                        import soundfile as sf
+                        os.makedirs(args.save_target_audio, exist_ok=True)
+                        _uid = os.path.splitext(os.path.basename(rec))[0]
+                        sf.write(os.path.join(args.save_target_audio, _uid + ".wav"),
+                                 target_audio.astype(np.float32), sr)
+                    ifp_v = fe(target_audio, sampling_rate=16000, return_tensors="pt").input_features.to(device, dtype)
+                    am_v = torch.ones(1, ifp_v.shape[-1], dtype=torch.bool, device=device)
+                    with torch.no_grad():
+                        out = asr_model.generate(input_features=ifp_v, attention_mask=am_v,
+                                                 language=args.language, task="transcribe", max_new_tokens=200)
+                    seqs = out["sequences"] if isinstance(out, dict) else out
+                    text = tok.batch_decode(seqs, skip_special_tokens=True)[0].strip()
+                    # vanilla 不跑 langfix(英文幻觉 0.59%, langfix 是 dicow 治标)
             elif args.asr_backend in ("qwen", "firered"):
                 # qwen/firered: 切 target timeline 存盘 → text 空(末尾 *_asr_backend.py 批量转写填, 独立 venv 隔离)
                 target_audio = cut_target_timeline(audio, per_spk[target_idx], sr=sr)
@@ -365,6 +382,7 @@ def main():
             "infer_sec": round(dt, 3),  # 单条纯推理(不含模型加载), 对齐官方 batch=1 duration
             "batch_size": 1, "peak_mem_mib": peak,  # 可复现性: batch/显存(FAQ 核查硬要求 4/5)
             "transcript": text, "chars": len(text), "rtf": dt / dur,
+            "spk_texts": spk_texts,
         })
 
     if args.asr_backend in ("qwen", "firered"):

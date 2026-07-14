@@ -1,0 +1,494 @@
+{
+  "n": 30,
+  "cer_argmax_mean": 5.1142,
+  "cer_multivoice_mean": 0.9815,
+  "delta": -4.1327,
+  "modes": {
+    "all_reject": 29,
+    "unique_accept": 1
+  },
+  "better": 16,
+  "worse": 3,
+  "rows": [
+    {
+      "uid": "cmd_2788",
+      "ref": "关掉空调",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "手手骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨",
+        "1": "手手骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 25.25
+    },
+    {
+      "uid": "cmd_2100",
+      "ref": "风速调到百分之三十",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "風速風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風",
+        "1": "先隔 刚刚等飞机出现你的限量分离"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 22.0
+    },
+    {
+      "uid": "cmd_2752",
+      "ref": "关一下空调",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "一条",
+        "1": "下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 19.8
+    },
+    {
+      "uid": "cmd_2265",
+      "ref": "把风速调到最大",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷",
+        "1": "口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口�"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 19.142857142857142
+    },
+    {
+      "uid": "cmd_2528",
+      "ref": "风向调到左边",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅",
+        "1": "蹲下条到左边"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 16.666666666666668
+    },
+    {
+      "uid": "cmd_226",
+      "ref": "然后那个窗帘邦邦邦邦邦的给关了对然后那个灯光暗了就是",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "然後在上面幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫",
+        "1": "好"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 7.6923076923076925
+    },
+    {
+      "uid": "cmd_2631",
+      "ref": "开启ECO",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "開啟意思喔",
+        "1": "优优独播剧场——YoYo Television Series Exclusive"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 7.0
+    },
+    {
+      "uid": "cmd_2099",
+      "ref": "开启自动模式",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "优优独播剧场——YoYo Television Series Exclusive",
+        "1": "它是子灯模式"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 6.166666666666667
+    },
+    {
+      "uid": "cmd_2471",
+      "ref": "开防直吹",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "就我们的倾向交易事实",
+        "1": "我们的清一下教育"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 2.5
+    },
+    {
+      "uid": "cmd_2630",
+      "ref": "开左右风",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "是他们已经成功走出来",
+        "1": "已经成功了"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 2.5
+    },
+    {
+      "uid": "cmd_2040",
+      "ref": "打开屏幕",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "同一个的福二",
+        "1": "中文字幕志愿者 李宗盛"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 2.25
+    },
+    {
+      "uid": "cmd_2837",
+      "ref": "风速加大",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "中库就加大",
+        "1": "彩电数上进行冲击下"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 2.25
+    },
+    {
+      "uid": "cmd_2075",
+      "ref": "把空调关上",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "出示微信出付的条件吗",
+        "1": "出示微信出付的條件"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 2.0
+    },
+    {
+      "uid": "cmd_2140",
+      "ref": "低速风",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "自己主要图像",
+        "1": "你不要脱下"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 2.0
+    },
+    {
+      "uid": "cmd_2341",
+      "ref": "往上吹",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "好",
+        "1": "我送你吃一块"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 2.0
+    },
+    {
+      "uid": "cmd_2609",
+      "ref": "打开屏幕",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "1": "张国伟",
+        "2": "大概天"
+      },
+      "verdicts": {
+        "1": "reject",
+        "2": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 1.0
+    },
+    {
+      "uid": "cmd_2533",
+      "ref": "开启防直吹模式",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "他在收集補充",
+        "1": "太行"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 1.0
+    },
+    {
+      "uid": "cmd_2494",
+      "ref": "高速风",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "面粗雜",
+        "1": "高速高"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 1.0
+    },
+    {
+      "uid": "cmd_2520",
+      "ref": "开到二十八度",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "还有还有",
+        "1": "太长28多"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 1.0
+    },
+    {
+      "uid": "cmd_2009",
+      "ref": "低速风",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "第一步",
+        "1": "第一步"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 1.0
+    },
+    {
+      "uid": "cmd_2898",
+      "ref": "开启睡眠模式",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "谢谢你",
+        "1": "開啟市民國事"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 1.0
+    },
+    {
+      "uid": "cmd_2599",
+      "ref": "风向调到右边",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "很想瞧",
+        "1": "逢小潮光约你"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 1.0
+    },
+    {
+      "uid": "cmd_2236",
+      "ref": "减肥吃什么好",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "一只大便休息",
+        "1": "眼随什么"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 0.6666666666666666
+    },
+    {
+      "uid": "cmd_2936",
+      "ref": "空调调到二十九度",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "现在台的29度",
+        "1": "那台的29度"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 0.875
+    },
+    {
+      "uid": "cmd_2518",
+      "ref": "风向向下",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "谢谢你",
+        "1": "放生性下来"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 1.0
+    },
+    {
+      "uid": "cmd_2301",
+      "ref": "播放美国语文第四册",
+      "multivoice_picked": "播放美国你的第四个课",
+      "pick_mode": "unique_accept",
+      "spk_texts": {
+        "0": "播放美国你的第四个课",
+        "1": "而我以为你一特色"
+      },
+      "verdicts": {
+        "0": "accept",
+        "1": "reject"
+      },
+      "cer_multivoice": 0.4444,
+      "cer_argmax": 1.0
+    },
+    {
+      "uid": "cmd_2319",
+      "ref": "风速调到百分之九十",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "对",
+        "1": "从数条到百分之小数"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 1.0
+    },
+    {
+      "uid": "cmd_2592",
+      "ref": "取消省电模式",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "取消是更好事",
+        "1": "取消是更好事"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 0.6666666666666666
+    },
+    {
+      "uid": "cmd_2545",
+      "ref": "开到十九度",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "是2.1",
+        "1": "一"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 1.0
+    },
+    {
+      "uid": "cmd_2740",
+      "ref": "把温度调到二十二度",
+      "multivoice_picked": "",
+      "pick_mode": "all_reject",
+      "spk_texts": {
+        "0": "您看",
+        "1": "早回就得到二十二度"
+      },
+      "verdicts": {
+        "0": "reject",
+        "1": "reject"
+      },
+      "cer_multivoice": 1.0,
+      "cer_argmax": 1.0
+    }
+  ]
+}

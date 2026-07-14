@@ -1,0 +1,1359 @@
+{
+  "n": 150,
+  "secs_total": 405.62,
+  "batch": 1,
+  "max_new_tokens": 64,
+  "testset": "llm_testset_pocA_150.json",
+  "rows": [
+    {
+      "text": "风速调大",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "风扇",
+      "action": "调高",
+      "reason": "无明显不合理参数"
+    },
+    {
+      "text": "窗帘是昨天刚装的",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "none",
+      "action": "none",
+      "reason": "陈述事实而非控制指令"
+    },
+    {
+      "text": "所有灯的亮度降到五十",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "灯",
+      "action": "亮度50%",
+      "reason": "正常参数，亮度0-100%均接受"
+    },
+    {
+      "text": "播放绝句唐杜甫",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "音乐",
+      "action": "播放",
+      "reason": "正常参数，播放任意音频内容接受"
+    },
+    {
+      "text": "开启防直吹模式",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "空调",
+      "action": "开启防直吹模式",
+      "reason": "防直吹模式为常见空调功能之一，开启合理"
+    },
+    {
+      "text": "热水器漏水怎么办",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "热水器",
+      "action": "none",
+      "reason": "涉及设备问题而非控制指令"
+    },
+    {
+      "text": "空调已经在制热了",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "空调",
+      "action": "none",
+      "reason": "陈述事实非指令"
+    },
+    {
+      "text": "风速调到最小风",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "风扇",
+      "action": "风速最小",
+      "reason": "正常参数，风速有最小档位"
+    },
+    {
+      "text": "空调十六度",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "空调",
+      "action": "温度16度",
+      "reason": "正常参数，16度在可接受范围内"
+    },
+    {
+      "text": "可以得到一期的享受",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "a_news",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为纯闲聊，无明确家电实体和控制动作"
+    },
+    {
+      "text": "空调不制冷是什么原因",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "none",
+      "action": "none",
+      "reason": "陈述事实非指令"
+    },
+    {
+      "text": "新风系统一直在转",
+      "gold": "reject",
+      "pred": "accept",
+      "layer": "e_adv_含家电非指令",
+      "entity": "新风",
+      "action": "none",
+      "reason": "没有明确的动作指令"
+    },
+    {
+      "text": "灯泡坏了去哪买",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "none",
+      "action": "none",
+      "reason": "涉及购物咨询而非控制指令"
+    },
+    {
+      "text": "",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "d_empty",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为空，没有提及具体的家电或明确的动作"
+    },
+    {
+      "text": "七年",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "b_garble",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本无明确家电实体及控制动作"
+    },
+    {
+      "text": "播放睡前故事",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "none",
+      "action": "播放",
+      "reason": "播放任意音频内容接受"
+    },
+    {
+      "text": "依然居在日本",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "a_news",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为纯闲聊，无明确家电或动作指令"
+    },
+    {
+      "text": "净水器滤芯多久换一次",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "none",
+      "action": "none",
+      "reason": "询问设备维护频率，而非控制指令"
+    },
+    {
+      "text": "they have already done some",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "c_en",
+      "entity": "none",
+      "action": "none",
+      "reason": "纯闲聊/疑问/陈述"
+    },
+    {
+      "text": "我可以去找你",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "a_news",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为纯闲聊，无明确家电控制意图"
+    },
+    {
+      "text": "i can't eat it",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "c_en",
+      "entity": "none",
+      "action": "none",
+      "reason": "纯闲聊/疑问，没有提及可控家电或控制意图"
+    },
+    {
+      "text": "吃饭了",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "b_garble",
+      "entity": "none",
+      "action": "none",
+      "reason": "没有提及可控家电/功能，且指令不合理，不符合吃饭与智能家居设备控制的关系"
+    },
+    {
+      "text": "呃这个就是全屋智能像我们要开空调啊或者是我们要做饭啊这些都是嗯这里了听到我们说话",
+      "gold": "accept",
+      "pred": "reject",
+      "layer": "pos",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为闲聊内容，未提及具体的家电或明确的动作"
+    },
+    {
+      "text": "我放",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "b_garble",
+      "entity": "none",
+      "action": "播放",
+      "reason": "缺少具体音频内容名称"
+    },
+    {
+      "text": "飞机改进改型和市场推广",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "a_news",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本内容与智能家居设备控制无关，属于非指令"
+    },
+    {
+      "text": "出示微信出付的条件吗",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "a_news",
+      "entity": "none",
+      "action": "none",
+      "reason": "涉及个人隐私查询，不符合指令规范"
+    },
+    {
+      "text": "风速自动",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "风扇",
+      "action": "风速自动",
+      "reason": "正常参数，风速档位为自动档"
+    },
+    {
+      "text": "",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "d_empty",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为空，没有提及具体的家电或明确的动作"
+    },
+    {
+      "text": "卡里罗",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "b_garble",
+      "entity": "none",
+      "action": "none",
+      "reason": "未提及具体的家电及控制动作"
+    },
+    {
+      "text": "闹钟怎么调时间",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "闹钟",
+      "action": "none",
+      "reason": "涉及疑问求助而非控制指令"
+    },
+    {
+      "text": "热水器修好了",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "热水器",
+      "action": "none",
+      "reason": "没有明确的动作指令，只是陈述事实"
+    },
+    {
+      "text": "新买的音箱效果很好",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "none",
+      "action": "none",
+      "reason": "陈述事实而非控制指令"
+    },
+    {
+      "text": "i have to start in your program i have to do it in your program",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "c_en",
+      "entity": "none",
+      "action": "none",
+      "reason": "包含闲聊内容，无明确家电实体和动作指令"
+    },
+    {
+      "text": "扫地机器人不充电了",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "扫地机器人",
+      "action": "none",
+      "reason": "没有明确的动作指令"
+    },
+    {
+      "text": "科学声音龙门阵我想听",
+      "gold": "accept",
+      "pred": "reject",
+      "layer": "pos",
+      "entity": "none",
+      "action": "none",
+      "reason": "涉及闲聊内容，无明确家电控制指令或参数"
+    },
+    {
+      "text": "把亮度调到百分之一千",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "灯光",
+      "action": "调到100%",
+      "reason": "亮度100%超正常范围"
+    },
+    {
+      "text": "灯不亮了怎么办",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "none",
+      "action": "none",
+      "reason": "涉及求助而非控制指令"
+    },
+    {
+      "text": "音乐怎么下载到手机",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "none",
+      "action": "none",
+      "reason": "涉及与设备无关的询问，而非具体的控制指令"
+    },
+    {
+      "text": "那个风扇安静吗",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "none",
+      "action": "none",
+      "reason": "询问设备状态而非控制动作"
+    },
+    {
+      "text": "",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "d_empty",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为空，没有提及具体的家电或明确的动作"
+    },
+    {
+      "text": "扫地机器人没电了",
+      "gold": "reject",
+      "pred": "accept",
+      "layer": "e_adv_含家电非指令",
+      "entity": "扫地机器人",
+      "action": "none",
+      "reason": "没有明确的动作指令"
+    },
+    {
+      "text": "这是我最喜欢的音乐",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "none",
+      "action": "none",
+      "reason": "陈述事实而非控制指令"
+    },
+    {
+      "text": "不能要求退款",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "a_news",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为纯陈述，无明确家电实体和控制动作"
+    },
+    {
+      "text": "會變得進入2015年",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "a_news",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为纯闲聊，无明确家电或动作指令"
+    },
+    {
+      "text": "i can see some more pain in your mind",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "c_en",
+      "entity": "none",
+      "action": "none",
+      "reason": "包含英文且为纯闲聊内容"
+    },
+    {
+      "text": "空调调到二十六度",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "空调",
+      "action": "调到26度",
+      "reason": "正常参数，26度在可接受范围内"
+    },
+    {
+      "text": "打开屏幕",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "屏幕",
+      "action": "打开",
+      "reason": "正常参数，屏幕开启在合理范围内"
+    },
+    {
+      "text": "好",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "b_garble",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为空，没有提及具体的家电或控制动作"
+    },
+    {
+      "text": "开启左右摆风",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "风扇",
+      "action": "开启左右摆风",
+      "reason": "正常参数，风扇左右摆风功能"
+    },
+    {
+      "text": "打开清香烟机",
+      "gold": "accept",
+      "pred": "reject",
+      "layer": "pos",
+      "entity": "油烟机",
+      "action": "打开",
+      "reason": "烟机不是可控家电"
+    },
+    {
+      "text": "就已经进行过一轮教育",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "a_news",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为纯闲聊，无明确家电或动作指令"
+    },
+    {
+      "text": "五号自宅的奥运会",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "a_news",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本无明确家电实体及控制动作，且为闲聊内容"
+    },
+    {
+      "text": "",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "d_empty",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为空，没有提及具体的家电或明确的动作"
+    },
+    {
+      "text": "87.42一系列孔",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "a_news",
+      "entity": "none",
+      "action": "none",
+      "reason": "纯闲聊/没有提及家电及动作"
+    },
+    {
+      "text": "热水器烧到一百度",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "热水器",
+      "action": "升高温度",
+      "reason": "热水器最高温度极限为100摄氏度，但百分之一百表示超出了正常范围"
+    },
+    {
+      "text": "我看你十年之夜太多了",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "a_news",
+      "entity": "none",
+      "action": "none",
+      "reason": "纯闲聊，无明确家电和动作指令"
+    },
+    {
+      "text": "开到二十二度",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "空调",
+      "action": "开到22度",
+      "reason": "空调22度在正常范围内"
+    },
+    {
+      "text": "烤箱设定到五百度",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "烤箱",
+      "action": "调到",
+      "reason": "烤箱温度超正常范围，五百度不现实"
+    },
+    {
+      "text": "风速降低",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "风扇",
+      "action": "降低风速",
+      "reason": "正常参数，风速可以降低"
+    },
+    {
+      "text": "空调开到五十度制热",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "空调",
+      "action": "开到五十度制热",
+      "reason": "空调50度超正常范围"
+    },
+    {
+      "text": "风扇开到最高一百档",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "风扇",
+      "action": "开到最高一百档",
+      "reason": "风速一百档超正常范围"
+    },
+    {
+      "text": "中国将希望反映",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "a_news",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本无明确的家电实体和控制动作，且内容为陈述而非指令"
+    },
+    {
+      "text": "这音乐真好听啊",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "none",
+      "action": "none",
+      "reason": "纯闲聊内容，无明确控制意图"
+    },
+    {
+      "text": "",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "d_empty",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为空，没有提及具体的家电或明确的动作"
+    },
+    {
+      "text": "闹钟还没响呢",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "闹钟",
+      "action": "关",
+      "reason": "陈述事实非指令"
+    },
+    {
+      "text": "打开所有智能灯",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "灯",
+      "action": "打开",
+      "reason": "指令完整且合理，涉及可控家电和明确的动作"
+    },
+    {
+      "text": "稍微",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "b_garble",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本缺少明确的家电实体和控制动作"
+    },
+    {
+      "text": "放出锅",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "b_garble",
+      "entity": "none",
+      "action": "播放",
+      "reason": "没有指定具体的播放内容，且超出常识和物理可能"
+    },
+    {
+      "text": "我们有重复的使命搜狐娱乐性",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "a_news",
+      "entity": "none",
+      "action": "none",
+      "reason": "包含与设备无关的闲聊内容"
+    },
+    {
+      "text": "对",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "b_garble",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为纯闲聊，无明确家电实体和控制动作"
+    },
+    {
+      "text": "公募基金管理人可以参与投资",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "a_news",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为陈述事实而非指令"
+    },
+    {
+      "text": "from four thousand eight five thousand four by nine",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "c_en",
+      "entity": "none",
+      "action": "none",
+      "reason": "纯乱码"
+    },
+    {
+      "text": "EA 716",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "b_garble",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为品牌型号，没有提及具体的家电或控制动作"
+    },
+    {
+      "text": "关闭显示屏",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "屏幕",
+      "action": "关闭",
+      "reason": "正常参数，显示屏关闭指令合法"
+    },
+    {
+      "text": "风速十",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "风扇",
+      "action": "风速",
+      "reason": "正常参数，风速10档在合理范围内"
+    },
+    {
+      "text": "",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "d_empty",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为空，没有提及具体的家电或明确的动作"
+    },
+    {
+      "text": "订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "a_news",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为纯闲聊，无明确家电实体和控制动作"
+    },
+    {
+      "text": "关掉节能模式",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "空调",
+      "action": "关",
+      "reason": "仅提及家电但无明确动作"
+    },
+    {
+      "text": "扫地机器人贵不贵啊",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "none",
+      "action": "none",
+      "reason": "询问价格，不属于合法指令"
+    },
+    {
+      "text": "",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "d_empty",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为空，没有提及具体的家电或明确的动作"
+    },
+    {
+      "text": "播放女神的贴身高手",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "none",
+      "action": "播放",
+      "reason": "播放任意音频内容接受"
+    },
+    {
+      "text": "烤箱预热好了",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "烤箱",
+      "action": "预热",
+      "reason": "超出播放类指令范围，且无明确动作指示"
+    },
+    {
+      "text": "空调打开到二十五摄氏度",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "空调",
+      "action": "打开",
+      "reason": "无明显不合理参数"
+    },
+    {
+      "text": "所以我们",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "a_news",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为空，没有提及具体的家电或控制动作"
+    },
+    {
+      "text": "关下空调",
+      "gold": "accept",
+      "pred": "reject",
+      "layer": "pos",
+      "entity": "空调",
+      "action": "关",
+      "reason": "空调为可控家电，关为控制意图，但缺少具体房间信息"
+    },
+    {
+      "text": "灯是自己关的",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "none",
+      "action": "none",
+      "reason": "用户在描述一个现象而非发出指令"
+    },
+    {
+      "text": "風速風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "a_news",
+      "entity": "none",
+      "action": "none",
+      "reason": "纯英文且无明确家电和动作信息"
+    },
+    {
+      "text": "开启智控温",
+      "gold": "accept",
+      "pred": "reject",
+      "layer": "pos",
+      "entity": "none",
+      "action": "开启",
+      "reason": "无明确家电实体，仅提及智控温"
+    },
+    {
+      "text": "星降的灯调到五千K亮度百分百",
+      "gold": "accept",
+      "pred": "reject",
+      "layer": "pos",
+      "entity": "灯",
+      "action": "调到亮度100%",
+      "reason": "亮度五千K超出正常范围且不合理"
+    },
+    {
+      "text": "风扇摇头怎么关掉",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "风扇",
+      "action": "关掉",
+      "reason": "只拒【明显超出常识/物理不可能】：风扇无法直接通过摇头操作来关闭，但此为常见表达方式且不违反常识"
+    },
+    {
+      "text": "creative movementb two b t",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "c_en",
+      "entity": "none",
+      "action": "none",
+      "reason": "纯乱码"
+    },
+    {
+      "text": "空调费电吗",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "none",
+      "action": "none",
+      "reason": "询问设备能耗，而非控制动作"
+    },
+    {
+      "text": "播放恐龙大陆",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "音乐",
+      "action": "播放",
+      "reason": "播放任意音频内容接受"
+    },
+    {
+      "text": "净水器哪个牌子好",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "none",
+      "action": "none",
+      "reason": "询问品牌而非控制家电"
+    },
+    {
+      "text": "空调遥控器找不到了",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "none",
+      "action": "none",
+      "reason": "用户在询问设备位置而非控制指令"
+    },
+    {
+      "text": "电视没信号了",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "电视",
+      "action": "none",
+      "reason": "没有明确的动作指令"
+    },
+    {
+      "text": "开机空调",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "空调",
+      "action": "开启",
+      "reason": "开机为空调开启，但未明确具体房间和目标温度，但根据宽松原则接受此指令"
+    },
+    {
+      "text": "把温度调到负十度",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "空调",
+      "action": "调到",
+      "reason": "温度低于最低合理范围"
+    },
+    {
+      "text": "你们家热水器多大容量",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "热水器",
+      "action": "none",
+      "reason": "涉及设备信息查询而非控制操作"
+    },
+    {
+      "text": "给我讲古风音乐频道",
+      "gold": "accept",
+      "pred": "reject",
+      "layer": "pos",
+      "entity": "音箱",
+      "action": "播放",
+      "reason": "播放频道但未指定具体音频内容，超出播放类参数要求"
+    },
+    {
+      "text": "把风速调到百分之两百",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "none",
+      "action": "调高",
+      "reason": "超100%不可能"
+    },
+    {
+      "text": "播放青少新概念",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "音乐",
+      "action": "播放",
+      "reason": "播放任意音频内容接受"
+    },
+    {
+      "text": "帮我打开冰箱门还有抽油烟机还有洗衣机筒还有新风",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "冰箱,抽油烟机,洗衣机,新风",
+      "action": "打开",
+      "reason": "洗衣机筒没有明确提及"
+    },
+    {
+      "text": "取消勃朗烤箱",
+      "gold": "accept",
+      "pred": "reject",
+      "layer": "pos",
+      "entity": "none",
+      "action": "none",
+      "reason": "未提及可控家电/功能，且命令不明"
+    },
+    {
+      "text": "帮我定一个三十小时的闹钟",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "闹钟",
+      "action": "定",
+      "reason": "超过24小时的闹钟设置不合理"
+    },
+    {
+      "text": "",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "d_empty",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为空，没有提及具体的家电或明确的动作"
+    },
+    {
+      "text": "那鸡鸟",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "b_garble",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为纯闲聊，无明确家电或动作指令"
+    },
+    {
+      "text": "最推崇的运动之一",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "a_news",
+      "entity": "none",
+      "action": "none",
+      "reason": "纯闲聊内容，无明确家电或动作指令"
+    },
+    {
+      "text": "打開",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "b_garble",
+      "entity": "none",
+      "action": "none",
+      "reason": "缺少明确的家电实体和控制动作"
+    },
+    {
+      "text": "",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "d_empty",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为空，没有提及具体的家电或明确的动作"
+    },
+    {
+      "text": "音乐停了",
+      "gold": "reject",
+      "pred": "accept",
+      "layer": "e_adv_含家电非指令",
+      "entity": "<none>",
+      "action": "暂停",
+      "reason": "停用指令通常会触发设备暂停当前播放的音乐，无需具体指定音乐来源或类型"
+    },
+    {
+      "text": "这个电视画质真不错",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "none",
+      "action": "none",
+      "reason": "陈述事实而非控制指令"
+    },
+    {
+      "text": "灯光调到百分之两百亮",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "灯光",
+      "action": "调到百分之两百亮",
+      "reason": "超100%亮度不可能"
+    },
+    {
+      "text": "关闭星香空调",
+      "gold": "accept",
+      "pred": "reject",
+      "layer": "pos",
+      "entity": "空调",
+      "action": "关闭",
+      "reason": "未提及具体房间，但符合关闭空调的动作"
+    },
+    {
+      "text": "bng",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "c_en",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为乱码，无明确家电和动作信息"
+    },
+    {
+      "text": "把温度调到二十三度",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "空调",
+      "action": "调到23度",
+      "reason": "正常参数，温度在合理范围内"
+    },
+    {
+      "text": "我要开始烹饪",
+      "gold": "accept",
+      "pred": "reject",
+      "layer": "pos",
+      "entity": "none",
+      "action": "none",
+      "reason": "无明确的家电实体和控制动作"
+    },
+    {
+      "text": "窗帘卡住了怎么修",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "none",
+      "action": "none",
+      "reason": "涉及设备维修问题而非控制指令"
+    },
+    {
+      "text": "空调怎么拆开",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "none",
+      "action": "none",
+      "reason": "疑问求助非控制指令"
+    },
+    {
+      "text": "洗碗机值得买吗",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "none",
+      "action": "none",
+      "reason": "涉及询问产品价值，而非控制家电动作"
+    },
+    {
+      "text": "这窗帘颜色挺好看的",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "窗帘",
+      "action": "none",
+      "reason": "纯闲聊，没有明确的动作指令"
+    },
+    {
+      "text": "空调调到四十度",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "空调",
+      "action": "调到40度",
+      "reason": "空调40度超正常范围"
+    },
+    {
+      "text": "空调调到九十九度",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "空调",
+      "action": "调到99度",
+      "reason": "空调温度超正常范围（最高不应超过32度）"
+    },
+    {
+      "text": "风速调高",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "风扇",
+      "action": "调高",
+      "reason": "正常参数范围内，风速可以调高"
+    },
+    {
+      "text": "播放胖哥电影说",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "none",
+      "action": "播放",
+      "reason": "播放任意音频内容接受"
+    },
+    {
+      "text": "室内有点暗灯光调到最亮然后把窗帘打开",
+      "gold": "accept",
+      "pred": "reject",
+      "layer": "pos",
+      "entity": "灯光,窗帘",
+      "action": "调到,打开",
+      "reason": "灯光亮度超100%超出常识"
+    },
+    {
+      "text": "风速调低",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "风扇",
+      "action": "调低",
+      "reason": "正常参数，风速可以调低"
+    },
+    {
+      "text": "洗衣机还在转",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "洗衣机",
+      "action": "none",
+      "reason": "陈述事实非指令"
+    },
+    {
+      "text": "灯的色温调亮",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "灯光",
+      "action": "调高",
+      "reason": "色温调亮在参数范围内但表述不完整"
+    },
+    {
+      "text": "",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "d_empty",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为空，没有提及具体的家电或明确的动作"
+    },
+    {
+      "text": "开到二十八度",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "空调",
+      "action": "开到28度",
+      "reason": "空调+温度28度正常"
+    },
+    {
+      "text": "把温度调到二十一度",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "空调",
+      "action": "调到21度",
+      "reason": "正常参数，但未明确指定空调"
+    },
+    {
+      "text": "开启抽湿模式",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "空气净化器",
+      "action": "开启",
+      "reason": "抽湿模式属于空气净化器的功能之一，且参数在合理范围内。"
+    },
+    {
+      "text": "ECO模式",
+      "gold": "accept",
+      "pred": "reject",
+      "layer": "pos",
+      "entity": "none",
+      "action": "模式",
+      "reason": "没有提到具体的可控家电"
+    },
+    {
+      "text": "音乐声音调小一点",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "音箱",
+      "action": "调低",
+      "reason": "音箱音量参数在正常范围内，符合指令要求"
+    },
+    {
+      "text": "这个音箱怎么连蓝牙",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "none",
+      "action": "none",
+      "reason": "涉及如何操作而非具体的控制动作或参数"
+    },
+    {
+      "text": "空调开到零下十度",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "空调",
+      "action": "开",
+      "reason": "温度低于最低合理范围（-10度）"
+    },
+    {
+      "text": "风速调到百分之六十",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "风扇",
+      "action": "风速",
+      "reason": "百分之六十在正常范围内"
+    },
+    {
+      "text": "規定承担赔偿责任",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "a_news",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为纯陈述句，无明确家电实体和控制动作"
+    },
+    {
+      "text": "播放童音版唐诗",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "音乐",
+      "action": "播放",
+      "reason": "播放任意音频内容接受"
+    },
+    {
+      "text": "ohi need to eat some more",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "c_en",
+      "entity": "none",
+      "action": "none",
+      "reason": "包含纯闲聊内容，无明确家电操作指令或参数"
+    },
+    {
+      "text": "开防直吹",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "<none>",
+      "action": "打开防直吹模式",
+      "reason": "防直吹模式为某些空调特有的功能，未明确提及具体家电，但可以理解为打开该功能"
+    },
+    {
+      "text": "关掉睡眠",
+      "gold": "accept",
+      "pred": "reject",
+      "layer": "pos",
+      "entity": "<none>",
+      "action": "关",
+      "reason": "没有明确指定哪个房间的睡眠功能，但根据上下文推测可能是某个房间的睡眠模式，但睡眠模式通常不会直接关闭，而是进入一种节能状态。因此无法确定是否为合法指令。"
+    },
+    {
+      "text": "康直",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "b_garble",
+      "entity": "none",
+      "action": "none",
+      "reason": "文本为纯闲聊，无明确家电实体和控制动作"
+    },
+    {
+      "text": "定一个零分钟的闹钟",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "闹钟",
+      "action": "定",
+      "reason": "闹钟0分钟荒谬，无法执行"
+    },
+    {
+      "text": "关闭节能模式",
+      "gold": "accept",
+      "pred": "reject",
+      "layer": "pos",
+      "entity": "none",
+      "action": "关闭",
+      "reason": "没有提到具体的可控家电"
+    },
+    {
+      "text": "加大风量",
+      "gold": "accept",
+      "pred": "accept",
+      "layer": "pos",
+      "entity": "风扇",
+      "action": "风量升高",
+      "reason": "正常参数范围内，接受加大风量的指令"
+    },
+    {
+      "text": "把温宿的挑战出现在保单前列",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "a_news",
+      "entity": "none",
+      "action": "none",
+      "reason": "涉及地点和事件描述，无明确家电或动作指令"
+    },
+    {
+      "text": "你家空调什么牌子",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "none",
+      "action": "none",
+      "reason": "询问设备品牌，而非控制指令"
+    },
+    {
+      "text": "这款净化器好用吗",
+      "gold": "reject",
+      "pred": "reject",
+      "layer": "e_adv_含家电非指令",
+      "entity": "空气净化器",
+      "action": "none",
+      "reason": "为询问评价而非控制操作"
+    }
+  ]
+}

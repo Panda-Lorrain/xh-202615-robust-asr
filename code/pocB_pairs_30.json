@@ -1,0 +1,212 @@
+[
+  {
+    "id": 2788,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2788.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2788.wav",
+    "ref": "关掉空调",
+    "kws_txt": "你好天天"
+  },
+  {
+    "id": 2100,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2100.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2100.wav",
+    "ref": "风速调到百分之三十",
+    "kws_txt": "小编小编"
+  },
+  {
+    "id": 2752,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2752.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2752.wav",
+    "ref": "关一下空调",
+    "kws_txt": "小钱小钱"
+  },
+  {
+    "id": 2265,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2265.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2265.wav",
+    "ref": "把风速调到最大",
+    "kws_txt": "小T小T"
+  },
+  {
+    "id": 2528,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2528.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2528.wav",
+    "ref": "风向调到左边",
+    "kws_txt": "小点小点"
+  },
+  {
+    "id": 226,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_226.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_226.wav",
+    "ref": "然后那个窗帘邦邦邦邦邦的给关了对然后那个灯光暗了就是",
+    "kws_txt": "hi colmo"
+  },
+  {
+    "id": 2631,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2631.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2631.wav",
+    "ref": "开启ECO",
+    "kws_txt": "你好天天"
+  },
+  {
+    "id": 2099,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2099.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2099.wav",
+    "ref": "开启自动模式",
+    "kws_txt": "你好小双"
+  },
+  {
+    "id": 2471,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2471.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2471.wav",
+    "ref": "开防直吹",
+    "kws_txt": "小点小点"
+  },
+  {
+    "id": 2630,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2630.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2630.wav",
+    "ref": "开左右风",
+    "kws_txt": "小钱小钱"
+  },
+  {
+    "id": 2040,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2040.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2040.wav",
+    "ref": "打开屏幕",
+    "kws_txt": "天天同学"
+  },
+  {
+    "id": 2837,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2837.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2837.wav",
+    "ref": "风速加大",
+    "kws_txt": "嗨扫地机"
+  },
+  {
+    "id": 2075,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2075.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2075.wav",
+    "ref": "把空调关上",
+    "kws_txt": "小点小点"
+  },
+  {
+    "id": 2140,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2140.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2140.wav",
+    "ref": "低速风",
+    "kws_txt": "你好小天"
+  },
+  {
+    "id": 2341,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2341.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2341.wav",
+    "ref": "往上吹",
+    "kws_txt": "小天小天"
+  },
+  {
+    "id": 2609,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2609.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2609.wav",
+    "ref": "打开屏幕",
+    "kws_txt": "小双同学"
+  },
+  {
+    "id": 2533,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2533.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2533.wav",
+    "ref": "开启防直吹模式",
+    "kws_txt": "小双同学"
+  },
+  {
+    "id": 2494,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2494.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2494.wav",
+    "ref": "高速风",
+    "kws_txt": "天天同学"
+  },
+  {
+    "id": 2520,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2520.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2520.wav",
+    "ref": "开到二十八度",
+    "kws_txt": "嗨机器人"
+  },
+  {
+    "id": 2009,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2009.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2009.wav",
+    "ref": "低速风",
+    "kws_txt": "小天才"
+  },
+  {
+    "id": 2898,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2898.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2898.wav",
+    "ref": "开启睡眠模式",
+    "kws_txt": "小双同学"
+  },
+  {
+    "id": 2599,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2599.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2599.wav",
+    "ref": "风向调到右边",
+    "kws_txt": "嗨机器人"
+  },
+  {
+    "id": 2236,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2236.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2236.wav",
+    "ref": "减肥吃什么好",
+    "kws_txt": "hi colmo"
+  },
+  {
+    "id": 2936,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2936.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2936.wav",
+    "ref": "空调调到二十九度",
+    "kws_txt": "小天同学"
+  },
+  {
+    "id": 2518,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2518.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2518.wav",
+    "ref": "风向向下",
+    "kws_txt": "你好小天"
+  },
+  {
+    "id": 2301,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2301.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2301.wav",
+    "ref": "播放美国语文第四册",
+    "kws_txt": "小美小美"
+  },
+  {
+    "id": 2319,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2319.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2319.wav",
+    "ref": "风速调到百分之九十",
+    "kws_txt": "小甜甜"
+  },
+  {
+    "id": 2592,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2592.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2592.wav",
+    "ref": "取消省电模式",
+    "kws_txt": "小天小天"
+  },
+  {
+    "id": 2545,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2545.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2545.wav",
+    "ref": "开到十九度",
+    "kws_txt": "小双同学"
+  },
+  {
+    "id": 2740,
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2740.wav",
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2740.wav",
+    "ref": "把温度调到二十二度",
+    "kws_txt": "天天同学"
+  }
+]

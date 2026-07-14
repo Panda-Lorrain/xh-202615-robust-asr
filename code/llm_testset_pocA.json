@@ -1,0 +1,2402 @@
+[
+  {
+    "text": "",
+    "gold": "reject",
+    "layer": "d_empty",
+    "uid_or_src": "cmd_2655"
+  },
+  {
+    "text": "播放伟人",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2183"
+  },
+  {
+    "text": "生产全系列半导体新式产品的企业",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2823"
+  },
+  {
+    "text": "播放苦命人",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2766"
+  },
+  {
+    "text": "空调不制冷是什么原因",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "开启左右摆风",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2439"
+  },
+  {
+    "text": "开启抽湿模式",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2620"
+  },
+  {
+    "text": "we should bottle up",
+    "gold": "reject",
+    "layer": "c_en",
+    "uid_or_src": "cmd_185"
+  },
+  {
+    "text": "美女串",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2887"
+  },
+  {
+    "text": "干衣机开门",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_109"
+  },
+  {
+    "text": "ECO模式",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2174"
+  },
+  {
+    "text": "风扇摇头怎么关掉",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "心碘肚子有什麼",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2017"
+  },
+  {
+    "text": "有3.85个代线",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2699"
+  },
+  {
+    "text": "",
+    "gold": "reject",
+    "layer": "d_empty",
+    "uid_or_src": "cmd_75"
+  },
+  {
+    "text": "客厅灯光亮度调到百分之十",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_126"
+  },
+  {
+    "text": "这款净化器好用吗",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "开到二十五度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2749"
+  },
+  {
+    "text": "the",
+    "gold": "reject",
+    "layer": "c_en",
+    "uid_or_src": "cmd_2593"
+  },
+  {
+    "text": "风速调到百分之十",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2670"
+  },
+  {
+    "text": "灯的亮度调整到五千K",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_208"
+  },
+  {
+    "text": "看一看",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_109"
+  },
+  {
+    "text": "开机空调",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2675"
+  },
+  {
+    "text": "ECO模式",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2673"
+  },
+  {
+    "text": "打开清香烟机",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_237"
+  },
+  {
+    "text": "风速降低",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2969"
+  },
+  {
+    "text": "空调调到九十九度",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "开灯客厅灯的色温调到一千八百K",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_225"
+  },
+  {
+    "text": "热水器漏水怎么办",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "they have already done some",
+    "gold": "reject",
+    "layer": "c_en",
+    "uid_or_src": "cmd_2894"
+  },
+  {
+    "text": "科学声音龙门阵我想听",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2164"
+  },
+  {
+    "text": "风速加大",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2712"
+  },
+  {
+    "text": "播放神笔马良",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2238"
+  },
+  {
+    "text": "烤箱预热好了",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "方法",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2515"
+  },
+  {
+    "text": "",
+    "gold": "reject",
+    "layer": "d_empty",
+    "uid_or_src": "cmd_130"
+  },
+  {
+    "text": "有我",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2371"
+  },
+  {
+    "text": "关闭显示屏",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2624"
+  },
+  {
+    "text": "室内有点暗调亮一点然后把窗帘开到最大",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_84"
+  },
+  {
+    "text": "风量最小",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2751"
+  },
+  {
+    "text": "空调开到二十摄氏度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_283"
+  },
+  {
+    "text": "开防直吹",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2887"
+  },
+  {
+    "text": "要",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_302"
+  },
+  {
+    "text": "打开智能灯",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_220"
+  },
+  {
+    "text": "播放郭德纲的相声",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2928"
+  },
+  {
+    "text": "到了歷史最高",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2370"
+  },
+  {
+    "text": "灯不亮了怎么办",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "现在关闭油烟机",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_246"
+  },
+  {
+    "text": "播放偶像电话亭",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2648"
+  },
+  {
+    "text": "把空调温度调到二十八度风量调到百分之五十",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_234"
+  },
+  {
+    "text": "我愛你",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2158"
+  },
+  {
+    "text": "EUASR",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_125"
+  },
+  {
+    "text": "打开睡眠模式",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2708"
+  },
+  {
+    "text": "播放架子鼓示范四十首",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2809"
+  },
+  {
+    "text": "播放睡前故事",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2885"
+  },
+  {
+    "text": "打开灯",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_150"
+  },
+  {
+    "text": "庆祝祭举军",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2303"
+  },
+  {
+    "text": "把温度调到二十一度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2113"
+  },
+  {
+    "text": "洗碗机值得买吗",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "我可以去找你",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2492"
+  },
+  {
+    "text": "关闭ECO模式",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2272"
+  },
+  {
+    "text": "i can't eat it",
+    "gold": "reject",
+    "layer": "c_en",
+    "uid_or_src": "cmd_2252"
+  },
+  {
+    "text": "播放姚晴曦阅读",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2699"
+  },
+  {
+    "text": "播放姚晴曦阅读",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2894"
+  },
+  {
+    "text": "不能要求退款",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2256"
+  },
+  {
+    "text": "播放童音版唐诗",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2090"
+  },
+  {
+    "text": "i don't know if you can do it",
+    "gold": "reject",
+    "layer": "c_en",
+    "uid_or_src": "cmd_2947"
+  },
+  {
+    "text": "我倒是一秒",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2287"
+  },
+  {
+    "text": "取消勃朗烤箱",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_64"
+  },
+  {
+    "text": "打开灶打开烟机",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_353"
+  },
+  {
+    "text": "把温度调到负十度",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "你家空调什么牌子",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "风速调大",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2280"
+  },
+  {
+    "text": "yeah i do not know",
+    "gold": "reject",
+    "layer": "c_en",
+    "uid_or_src": "cmd_2197"
+  },
+  {
+    "text": "新买的音箱效果很好",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "",
+    "gold": "reject",
+    "layer": "d_empty",
+    "uid_or_src": "cmd_2218"
+  },
+  {
+    "text": "风扇开到最高一百档",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "关掉",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2156"
+  },
+  {
+    "text": "把风速调到百分之两百",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "风速调到百分之十",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2271"
+  },
+  {
+    "text": "ok i will pick it up",
+    "gold": "reject",
+    "layer": "c_en",
+    "uid_or_src": "cmd_2977"
+  },
+  {
+    "text": "打开洗衣服",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_13"
+  },
+  {
+    "text": "播放青少新概念",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2270"
+  },
+  {
+    "text": "启动自动模式",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2092"
+  },
+  {
+    "text": "开到二十八度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2481"
+  },
+  {
+    "text": "风速调低",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2516"
+  },
+  {
+    "text": "第一步",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2009"
+  },
+  {
+    "text": "对",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2319"
+  },
+  {
+    "text": "打开闹钟",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_27"
+  },
+  {
+    "text": "好",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2346"
+  },
+  {
+    "text": "把温度调到二十三度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2472"
+  },
+  {
+    "text": "你找本 有什么事",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2640"
+  },
+  {
+    "text": "放出锅",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2833"
+  },
+  {
+    "text": "",
+    "gold": "reject",
+    "layer": "d_empty",
+    "uid_or_src": "cmd_2819"
+  },
+  {
+    "text": "会",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2682"
+  },
+  {
+    "text": "所以我们",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2619"
+  },
+  {
+    "text": "",
+    "gold": "reject",
+    "layer": "d_empty",
+    "uid_or_src": "cmd_2914"
+  },
+  {
+    "text": "关闭抽油烟机",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_148"
+  },
+  {
+    "text": "creative movementb two b t",
+    "gold": "reject",
+    "layer": "c_en",
+    "uid_or_src": "cmd_2195"
+  },
+  {
+    "text": "扫地机器人贵不贵啊",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "r sorry r v r",
+    "gold": "reject",
+    "layer": "c_en",
+    "uid_or_src": "cmd_2830"
+  },
+  {
+    "text": "降低一度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2149"
+  },
+  {
+    "text": "这真是一期的更新的",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2064"
+  },
+  {
+    "text": "就已经进行过一轮教育",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2637"
+  },
+  {
+    "text": "好棒",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2814"
+  },
+  {
+    "text": "播放听经典英文童话",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2929"
+  },
+  {
+    "text": "开启洗碗机",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_211"
+  },
+  {
+    "text": "我要开始烹饪",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_285"
+  },
+  {
+    "text": "你的外國說 13比6",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2427"
+  },
+  {
+    "text": "包水啊",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2717"
+  },
+  {
+    "text": "热水器烧到一百度",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "打开屏幕",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2609"
+  },
+  {
+    "text": "播放荣耀的凯旋",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2523"
+  },
+  {
+    "text": "能用睡",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2171"
+  },
+  {
+    "text": "i see still your life own",
+    "gold": "reject",
+    "layer": "c_en",
+    "uid_or_src": "cmd_2439"
+  },
+  {
+    "text": "开到二十七度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2884"
+  },
+  {
+    "text": "把温度调到二十四度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2367"
+  },
+  {
+    "text": "风速调低一点",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2966"
+  },
+  {
+    "text": "嗯打开油烟机",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_37"
+  },
+  {
+    "text": "",
+    "gold": "reject",
+    "layer": "d_empty",
+    "uid_or_src": "cmd_2080"
+  },
+  {
+    "text": "电视没信号了",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "啊把空调关了",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_26"
+  },
+  {
+    "text": "风速调到百分之六十",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2765"
+  },
+  {
+    "text": "打开屏幕",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2564"
+  },
+  {
+    "text": "开启抽湿模式",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2451"
+  },
+  {
+    "text": "播放聊音乐",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2995"
+  },
+  {
+    "text": "灯是自己关的",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "关闭显示屏",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2468"
+  },
+  {
+    "text": "窗帘卡住了怎么修",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "空调费电吗",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "就是小孩艺人员",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2128"
+  },
+  {
+    "text": "空调送风模式",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2083"
+  },
+  {
+    "text": "谢谢你们效果会",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2122"
+  },
+  {
+    "text": "",
+    "gold": "reject",
+    "layer": "d_empty",
+    "uid_or_src": "cmd_2163"
+  },
+  {
+    "text": "这个电视画质真不错",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "热水器修好了",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "from four thousand eight five thousand four by nine",
+    "gold": "reject",
+    "layer": "c_en",
+    "uid_or_src": "cmd_2705"
+  },
+  {
+    "text": "开防直吹",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2419"
+  },
+  {
+    "text": "我吃了",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2718"
+  },
+  {
+    "text": "风速加大",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2837"
+  },
+  {
+    "text": "打开客厅空调温度调整到二十三最低风速打开窗帘",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_61"
+  },
+  {
+    "text": "",
+    "gold": "reject",
+    "layer": "d_empty",
+    "uid_or_src": "cmd_2276"
+  },
+  {
+    "text": "",
+    "gold": "reject",
+    "layer": "d_empty",
+    "uid_or_src": "cmd_2349"
+  },
+  {
+    "text": "音乐停了",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "风速十",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2275"
+  },
+  {
+    "text": "烤箱设定到五百度",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "成为大家心中的女生",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2723"
+  },
+  {
+    "text": "帮我关闭音乐",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_281"
+  },
+  {
+    "text": "风速调到百分之四十",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2496"
+  },
+  {
+    "text": "有什麼周會",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2191"
+  },
+  {
+    "text": "灯光最亮冷色调",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_209"
+  },
+  {
+    "text": "星降的灯调到五千K亮度百分百",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_183"
+  },
+  {
+    "text": "",
+    "gold": "reject",
+    "layer": "d_empty",
+    "uid_or_src": "cmd_2417"
+  },
+  {
+    "text": "开启前厅所有灯光",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_249"
+  },
+  {
+    "text": "三年",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2847"
+  },
+  {
+    "text": "风速七十",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2831"
+  },
+  {
+    "text": "加大风量",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2225"
+  },
+  {
+    "text": "播放大队长讲科学",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2973"
+  },
+  {
+    "text": "把温度调到十六度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2806"
+  },
+  {
+    "text": "风速调小一点",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2746"
+  },
+  {
+    "text": "那鸡鸟",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2983"
+  },
+  {
+    "text": "开到十六度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2089"
+  },
+  {
+    "text": "我们有重复的使命搜狐娱乐性",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2380"
+  },
+  {
+    "text": "把温度调到十九度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2454"
+  },
+  {
+    "text": "ECO模式",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2070"
+  },
+  {
+    "text": "稍微",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2957"
+  },
+  {
+    "text": "把亮度调到百分之一千",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "播放鹅妈妈童谣黄本",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2055"
+  },
+  {
+    "text": "吃饭了",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_261"
+  },
+  {
+    "text": "这窗帘颜色挺好看的",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "那个风扇安静吗",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "关掉空调",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2627"
+  },
+  {
+    "text": "comissionemosa",
+    "gold": "reject",
+    "layer": "c_en",
+    "uid_or_src": "cmd_2810"
+  },
+  {
+    "text": "出示微信出付的条件吗",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2075"
+  },
+  {
+    "text": "数字专家射灯亮度调到二",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_201"
+  },
+  {
+    "text": "优优独播剧场——YoYo Television Series Exclusive",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2631"
+  },
+  {
+    "text": "打开上下风",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2761"
+  },
+  {
+    "text": "风速开到最大",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2095"
+  },
+  {
+    "text": "洗衣机还在转",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "可以得到一期的享受",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2444"
+  },
+  {
+    "text": "",
+    "gold": "reject",
+    "layer": "d_empty",
+    "uid_or_src": "cmd_296"
+  },
+  {
+    "text": "把风速调大一点",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2235"
+  },
+  {
+    "text": "播放落花成泥",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2570"
+  },
+  {
+    "text": "打开烟机打开洗衣模式打开新风模式",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_55"
+  },
+  {
+    "text": "把空调关闭",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2506"
+  },
+  {
+    "text": "风量调到最小",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2722"
+  },
+  {
+    "text": "优优独播剧场——YoYo Television Series Exclusive",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2099"
+  },
+  {
+    "text": "87.42一系列孔",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2076"
+  },
+  {
+    "text": "把温度调到二十一度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2635"
+  },
+  {
+    "text": "开到二十五度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2982"
+  },
+  {
+    "text": "我放",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2702"
+  },
+  {
+    "text": "关闭显示屏",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2200"
+  },
+  {
+    "text": "灯光色调最冷",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_258"
+  },
+  {
+    "text": "ohi need to eat some more",
+    "gold": "reject",
+    "layer": "c_en",
+    "uid_or_src": "cmd_2306"
+  },
+  {
+    "text": "",
+    "gold": "reject",
+    "layer": "d_empty",
+    "uid_or_src": "cmd_2173"
+  },
+  {
+    "text": "多半分",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2943"
+  },
+  {
+    "text": "灯光调到百分之八十",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_147"
+  },
+  {
+    "text": "",
+    "gold": "reject",
+    "layer": "d_empty",
+    "uid_or_src": "cmd_2784"
+  },
+  {
+    "text": "风速降低",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2362"
+  },
+  {
+    "text": "扫地机器人不充电了",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "comtel son formorse",
+    "gold": "reject",
+    "layer": "c_en",
+    "uid_or_src": "cmd_2083"
+  },
+  {
+    "text": "开一下空调",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2838"
+  },
+  {
+    "text": "开防直吹",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2942"
+  },
+  {
+    "text": "这些机构可能面临法律风险",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2639"
+  },
+  {
+    "text": "音乐声音调小一点",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_229"
+  },
+  {
+    "text": "把空调关闭",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2880"
+  },
+  {
+    "text": "我看你十年之夜太多了",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2955"
+  },
+  {
+    "text": "闹钟怎么调时间",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "漢州市的中學",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2587"
+  },
+  {
+    "text": "关闭节能模式",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2310"
+  },
+  {
+    "text": "飞机改进改型和市场推广",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2152"
+  },
+  {
+    "text": "是他们已经成功走出来",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2630"
+  },
+  {
+    "text": "播放文静翻唱歌曲集",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2978"
+  },
+  {
+    "text": "风速调高一点",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2211"
+  },
+  {
+    "text": "",
+    "gold": "reject",
+    "layer": "d_empty",
+    "uid_or_src": "cmd_2109"
+  },
+  {
+    "text": "",
+    "gold": "reject",
+    "layer": "d_empty",
+    "uid_or_src": "cmd_2451"
+  },
+  {
+    "text": "风速调到最小风",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2085"
+  },
+  {
+    "text": "关掉节能模式",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2384"
+  },
+  {
+    "text": "我放",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2478"
+  },
+  {
+    "text": "輸給美國之後實際上",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2333"
+  },
+  {
+    "text": "播放安养曲",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2048"
+  },
+  {
+    "text": "开启防直吹",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2166"
+  },
+  {
+    "text": "會變得進入2015年",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2115"
+  },
+  {
+    "text": "what kind of a",
+    "gold": "reject",
+    "layer": "c_en",
+    "uid_or_src": "cmd_2958"
+  },
+  {
+    "text": "开到二十二度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2756"
+  },
+  {
+    "text": "开启智控温",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2445"
+  },
+  {
+    "text": "打开所有的灯光",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_257"
+  },
+  {
+    "text": "不会毕日行业增长",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2632"
+  },
+  {
+    "text": "开启防直吹模式",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2449"
+  },
+  {
+    "text": "音乐怎么下载到手机",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "依然居在日本",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2047"
+  },
+  {
+    "text": "关下空调",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2212"
+  },
+  {
+    "text": "風速風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2100"
+  },
+  {
+    "text": "就我们的倾向交易事实",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2471"
+  },
+  {
+    "text": "空调二十一度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2333"
+  },
+  {
+    "text": "把所有灯打开",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_339"
+  },
+  {
+    "text": "儿童",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2724"
+  },
+  {
+    "text": "开启除湿模式",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2147"
+  },
+  {
+    "text": "窗帘下架",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_142"
+  },
+  {
+    "text": "拉起窗帘",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_8"
+  },
+  {
+    "text": "这音乐真好听啊",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "",
+    "gold": "reject",
+    "layer": "d_empty",
+    "uid_or_src": "cmd_2520"
+  },
+  {
+    "text": "把温度调到三十度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2687"
+  },
+  {
+    "text": "chun shu machine penv n",
+    "gold": "reject",
+    "layer": "c_en",
+    "uid_or_src": "cmd_2760"
+  },
+  {
+    "text": "室内有点暗灯光调到最亮然后把窗帘打开",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_320"
+  },
+  {
+    "text": "关闭星香空调",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_111"
+  },
+  {
+    "text": "对",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2116"
+  },
+  {
+    "text": "放了一年的羊绒大衣应该用什么清洗模式",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_288"
+  },
+  {
+    "text": "关闭音箱",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_308"
+  },
+  {
+    "text": "风速调高",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2081"
+  },
+  {
+    "text": "男一说我的要求不算",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2087"
+  },
+  {
+    "text": "让你的散户胀压更高",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2721"
+  },
+  {
+    "text": "关闭节能模式",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2019"
+  },
+  {
+    "text": "打开冰箱",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_140"
+  },
+  {
+    "text": "空调调到二十六度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_253"
+  },
+  {
+    "text": "空调左右摆风",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2142"
+  },
+  {
+    "text": "",
+    "gold": "reject",
+    "layer": "d_empty",
+    "uid_or_src": "cmd_2036"
+  },
+  {
+    "text": "还求联系给个萨丝的手脚",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2400"
+  },
+  {
+    "text": "呃这个就是全屋智能像我们要开空调啊或者是我们要做饭啊这些都是嗯这里了听到我们说话",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_214"
+  },
+  {
+    "text": "风之圣寒人物有什么",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2913"
+  },
+  {
+    "text": "窗帘是昨天刚装的",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "空调开到五十度制热",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "开到二十度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2277"
+  },
+  {
+    "text": "空调调到四十度",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "灯光亮度调到百分之三十",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_1"
+  },
+  {
+    "text": "关掉节能模式",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2175"
+  },
+  {
+    "text": "下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2752"
+  },
+  {
+    "text": "油烟机打开",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_66"
+  },
+  {
+    "text": "风小一点",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2521"
+  },
+  {
+    "text": "净水器哪个牌子好",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "风速自动",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2021"
+  },
+  {
+    "text": "十四二十五后十八",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2539"
+  },
+  {
+    "text": "空调二十六度风速最大",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_14"
+  },
+  {
+    "text": "风速调自动",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2415"
+  },
+  {
+    "text": "打开回家模式吧",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_5"
+  },
+  {
+    "text": "但是",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2995"
+  },
+  {
+    "text": "bng",
+    "gold": "reject",
+    "layer": "c_en",
+    "uid_or_src": "cmd_2409"
+  },
+  {
+    "text": "播放小脚丫妈妈读绘本",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2866"
+  },
+  {
+    "text": "开屏幕",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2002"
+  },
+  {
+    "text": "五星妆 土鞋 大面",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2951"
+  },
+  {
+    "text": "基金的重视无法规大陆",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2355"
+  },
+  {
+    "text": "EA 716",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_286"
+  },
+  {
+    "text": "把空调关上",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2370"
+  },
+  {
+    "text": "你自己无吗是",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2071"
+  },
+  {
+    "text": "风量最小",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2031"
+  },
+  {
+    "text": "ok",
+    "gold": "reject",
+    "layer": "c_en",
+    "uid_or_src": "cmd_2222"
+  },
+  {
+    "text": "吃什么",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2935"
+  },
+  {
+    "text": "定一个零分钟的闹钟",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "看清挑",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2661"
+  },
+  {
+    "text": "闹钟还没响呢",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "空调遥控器找不到了",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "然後在上面幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_226"
+  },
+  {
+    "text": "储备自己适合",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2590"
+  },
+  {
+    "text": "空调已经在制热了",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "所有灯的亮度降到五十",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_264"
+  },
+  {
+    "text": "打開",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_25"
+  },
+  {
+    "text": "打开扫风",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2292"
+  },
+  {
+    "text": "风量最大",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2483"
+  },
+  {
+    "text": "恢復",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_69"
+  },
+  {
+    "text": "康直",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2649"
+  },
+  {
+    "text": "把窗帘打开",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_181"
+  },
+  {
+    "text": "",
+    "gold": "reject",
+    "layer": "d_empty",
+    "uid_or_src": "cmd_2043"
+  },
+  {
+    "text": "空调开启",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2392"
+  },
+  {
+    "text": "灯光调到百分之两百亮",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "关闭所有灯",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_223"
+  },
+  {
+    "text": "播放卡尔经典绘本音频",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2051"
+  },
+  {
+    "text": "风速调到百分之八十",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2993"
+  },
+  {
+    "text": "这个音箱怎么连蓝牙",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "看起以我玩意的辨迹",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2648"
+  },
+  {
+    "text": "i know",
+    "gold": "reject",
+    "layer": "c_en",
+    "uid_or_src": "cmd_2652"
+  },
+  {
+    "text": "76524369",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2607"
+  },
+  {
+    "text": "方法力的実態",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2334"
+  },
+  {
+    "text": "可以吃布粉干",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2552"
+  },
+  {
+    "text": "扫地机器人没电了",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "空调二十度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2065"
+  },
+  {
+    "text": "中文字幕志愿者 李宗盛",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2040"
+  },
+  {
+    "text": "播放恐龙大陆",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2355"
+  },
+  {
+    "text": "聊音乐",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2911"
+  },
+  {
+    "text": "打开节能模式",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2317"
+  },
+  {
+    "text": "i have to start in your program i have to do it in your program",
+    "gold": "reject",
+    "layer": "c_en",
+    "uid_or_src": "cmd_2729"
+  },
+  {
+    "text": "开到十八度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2855"
+  },
+  {
+    "text": "劇必會激壓產業經濟發展空間",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2000"
+  },
+  {
+    "text": "五号自宅的奥运会",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2691"
+  },
+  {
+    "text": "把前厅灯光调到亮度百分之百",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_97"
+  },
+  {
+    "text": "i can see some more pain in your mind",
+    "gold": "reject",
+    "layer": "c_en",
+    "uid_or_src": "cmd_2709"
+  },
+  {
+    "text": "七年",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2208"
+  },
+  {
+    "text": "空调怎么拆开",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "中国将希望反映",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2766"
+  },
+  {
+    "text": "具備這個指標",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2697"
+  },
+  {
+    "text": "烹饪模式",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_243"
+  },
+  {
+    "text": "打开所有智能灯",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_177"
+  },
+  {
+    "text": "到60%",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2765"
+  },
+  {
+    "text": "把温宿的挑战出现在保单前列",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2577"
+  },
+  {
+    "text": "灯泡坏了去哪买",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "帮我打开冰箱门还有抽油烟机还有洗衣机筒还有新风",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_117"
+  },
+  {
+    "text": "空调打开到二十五摄氏度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_238"
+  },
+  {
+    "text": "",
+    "gold": "reject",
+    "layer": "d_empty",
+    "uid_or_src": "cmd_2794"
+  },
+  {
+    "text": "启动制冷模式",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2563"
+  },
+  {
+    "text": "关下空调",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2595"
+  },
+  {
+    "text": "i think it is a good sell",
+    "gold": "reject",
+    "layer": "c_en",
+    "uid_or_src": "cmd_2665"
+  },
+  {
+    "text": "播放睡前故事",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2368"
+  },
+  {
+    "text": "新风系统一直在转",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "开到二十四度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2331"
+  },
+  {
+    "text": "风量调到最大",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2867"
+  },
+  {
+    "text": "开一下空调",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2318"
+  },
+  {
+    "text": "",
+    "gold": "reject",
+    "layer": "d_empty",
+    "uid_or_src": "cmd_2770"
+  },
+  {
+    "text": "风速调大",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2891"
+  },
+  {
+    "text": "关闭洗衣机",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_106"
+  },
+  {
+    "text": "播放盖世音雄原创音乐",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2000"
+  },
+  {
+    "text": "卡里罗",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2235"
+  },
+  {
+    "text": "关掉睡眠",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2902"
+  },
+  {
+    "text": "空调十六度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2932"
+  },
+  {
+    "text": "这是我最喜欢的音乐",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "播放胖哥电影说",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2103"
+  },
+  {
+    "text": "你们家热水器多大容量",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "播放家庭教育口传书",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2757"
+  },
+  {
+    "text": "客厅灯的色温调到最暖关闭窗关闭客厅窗帘关闭客厅空调",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_20"
+  },
+  {
+    "text": "打开上下风",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2487"
+  },
+  {
+    "text": "风速调到最小风",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2803"
+  },
+  {
+    "text": "futu is a little bit of a bite",
+    "gold": "reject",
+    "layer": "c_en",
+    "uid_or_src": "cmd_2433"
+  },
+  {
+    "text": "关一下空调",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2819"
+  },
+  {
+    "text": "谢谢",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2097"
+  },
+  {
+    "text": "播放妈咪知道孕育说",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2917"
+  },
+  {
+    "text": "打开卷帘门呃不卷帘",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_17"
+  },
+  {
+    "text": "的地位",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2021"
+  },
+  {
+    "text": "风速调低",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2485"
+  },
+  {
+    "text": "风速调到百分之六十",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2583"
+  },
+  {
+    "text": "打开睡眠模式",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2223"
+  },
+  {
+    "text": "空调调到自动模式",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2325"
+  },
+  {
+    "text": "播放少儿版红楼梦",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2903"
+  },
+  {
+    "text": "you will be on trade",
+    "gold": "reject",
+    "layer": "c_en",
+    "uid_or_src": "cmd_2458"
+  },
+  {
+    "text": "",
+    "gold": "reject",
+    "layer": "d_empty",
+    "uid_or_src": "cmd_2443"
+  },
+  {
+    "text": "",
+    "gold": "reject",
+    "layer": "d_empty",
+    "uid_or_src": "cmd_2848"
+  },
+  {
+    "text": "开启智控温",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2244"
+  },
+  {
+    "text": "",
+    "gold": "reject",
+    "layer": "d_empty",
+    "uid_or_src": "cmd_2564"
+  },
+  {
+    "text": "关掉节能模式",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2382"
+  },
+  {
+    "text": "防企会积极调整推翻节奏",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2651"
+  },
+  {
+    "text": "播放绝句唐杜甫",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2799"
+  },
+  {
+    "text": "开到二十九度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2611"
+  },
+  {
+    "text": "恢复正常模式",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_350"
+  },
+  {
+    "text": "規定承担赔偿责任",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2888"
+  },
+  {
+    "text": "减小风量",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2201"
+  },
+  {
+    "text": "开屏幕",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2619"
+  },
+  {
+    "text": "",
+    "gold": "reject",
+    "layer": "d_empty",
+    "uid_or_src": "cmd_2351"
+  },
+  {
+    "text": "面粗雜",
+    "gold": "reject",
+    "layer": "b_garble",
+    "uid_or_src": "cmd_2494"
+  },
+  {
+    "text": "把温度调到二十度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2700"
+  },
+  {
+    "text": "空调开到零下十度",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "给我讲古风音乐频道",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2322"
+  },
+  {
+    "text": "播放女神的贴身高手",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2135"
+  },
+  {
+    "text": "灯的色温调亮",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_315"
+  },
+  {
+    "text": "净水器滤芯多久换一次",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "公募基金管理人可以参与投资",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2730"
+  },
+  {
+    "text": "停止左右风",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2818"
+  },
+  {
+    "text": "风向调到左边",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2591"
+  },
+  {
+    "text": "帮我定一个三十小时的闹钟",
+    "gold": "reject",
+    "layer": "e_adv_含家电非指令",
+    "uid_or_src": "synthetic"
+  },
+  {
+    "text": "开启一键净呼吸",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_95"
+  },
+  {
+    "text": "把温度调到十六度",
+    "gold": "accept",
+    "layer": "pos",
+    "uid_or_src": "cmd_2879"
+  },
+  {
+    "text": "订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2528"
+  },
+  {
+    "text": "you know",
+    "gold": "reject",
+    "layer": "c_en",
+    "uid_or_src": "cmd_2002"
+  },
+  {
+    "text": "最推崇的运动之一",
+    "gold": "reject",
+    "layer": "a_news",
+    "uid_or_src": "cmd_2503"
+  }
+]

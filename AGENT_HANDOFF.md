@@ -1,12 +1,50 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
-> **交接时间**：2026-07-11（**Qwen3-ASR 突破全收尾 + 双 SOTA 横评 + 声纹强化证伪**：本 session 续 5 commit——`00416f9` P0 数字收尾(双口径含拒 thr0.27=0.5934→CER 腿真实 **+4.29** 提交口径, 修 +10.1 transcribe 水分) / `f007d83` A3 qwen run-twice(text 一致 100% delta=0) / `081ac91` A2 死区听音坐实 **H1 真实突破**(spk-oracle-poc 物理地板→vanilla OOD 伪地板) / `d129dea` 声纹强化 CAM++ POC **证伪关闭**(B/A margin 0 原理性) / `859f87e` B1 FireRedASR 横评(firered 0.3501≈qwen 0.3436 **双 SOTA**, RTF 快 17%)。Qwen3-ASR 集成 submit_infer --asr-backend qwen 为主线）。标注分发等队员回收。
-> **下个 agent 读序**：本文件【2026-07-11 最新】段（↓）→ CLAUDE.md → 关键 memory（**cer-breakthrough-candidates** / multi-annotator-dispatch / content-gate-decision / official-scoring-spec / dataset-split-spec / reproducibility-hardening / mimo-asr-backend-potential / unified-thr-decision / h3-dicow-conditioning-backfire-vanilla / spk-oracle-poc / baodi-config-no-llm / submit-script-verification / lessons-pitfalls）→ REPRO_SETUP.md
-> **当前 git**：`master` @ `859f87e`（**已 push origin**）。2026-07-11 本 session 续 5 commit：`00416f9` P0 数字收尾 / `f007d83` A3 run-twice / `081ac91` A2 死区对抗 / `d129dea` 声纹强化证伪 / `859f87e` B1 FireRedASR 横评（更早 `07f3ed2` 标注分发 / `763c826` 19 路探索 / `d7da0a2` Qwen3 集成）。⚠️ annot_pack/(2168音频+116M zip) + code/FireRedASR/(clone) + code/_*.json(qwen/firered 转写结果) 被 .gitignore(`*.zip`+`code/*/`+`code/_*.json`)忽略不入库。下个 agent 先 `git status` 核对。
+> **交接时间**：2026-07-14（**enrollment 污染诊断 + 架构转向"多声纹→LLM 路由" + 标注交接文档**：纯诊断+文档 session，**未改代码、未 commit**。三件事：①诊断 demo/主线为何输出非家居指令（demo 只有声纹 sim 单闸，没接 LLM/content_gate）；②用户听 cmd_2081 坐实 enrollment(kws) 被污染→argmax 选错 target，全量统计主战场是多 speaker 条(811/失败 67%/占失败 80%)；③用户拍板新架构 = enrollment 多声纹→recognition 多路转写→LLM 挑家居指令段（绕 argmax 选错，复用 llm_reject），**唤醒词定位已否**（kws_txt 提交拿不到）。产出 `docs/标注交接_enrollment污染与target选错_2026-07-14.md` + memory `multi-voice-llm-routing-architecture`）。
+> **下个 agent 读序**：本文件【2026-07-14 最新】段（↓）→ `docs/标注交接_enrollment污染与target选错_2026-07-14.md`（标注 Agent 直接用）→ CLAUDE.md → 关键 memory（**multi-voice-llm-routing-architecture** / cer-breakthrough-candidates / multi-annotator-dispatch / spk-oracle-poc / content-gate-decision / official-scoring-spec / dataset-split-spec / reproducibility-hardening / mimo-asr-backend-potential / unified-thr-decision / h3-dicow-conditioning-backfire-vanilla / baodi-config-no-llm / submit-script-verification / lessons-pitfalls）→ REPRO_SETUP.md
+> **当前 git**：`master` @ `859f87e`（**未变，本 session 仅文档**）。2026-07-14 改动：`docs/标注交接_enrollment污染与target选错_2026-07-14.md`（新建+更新到新架构）+ memory 新增 `multi-voice-llm-routing-architecture.md`。⚠️ 上一 session(2026-07-11) 5 commit 已 push origin。下个 agent 先 `git status` 核对。
 
 ---
 
-## 【2026-07-11 最新】前沿探索(19路) + Qwen3-ASR 候选2 证实 + 集成落地 + P0 数字收尾
+## 【2026-07-14 最新】enrollment 污染诊断 + 架构转向多声纹 LLM 路由 + 标注交接文档
+
+### 本次 session 做了什么（纯诊断 + 文档，**未改代码、未 commit**）
+
+1. **诊断"输出非家居指令"**：
+   - **demo**（`code/demo_web/inference_engine.py`）只有声纹 sim 单闸（`max_sim<0.27`），**没接 LLM/content_gate**（design 文档第 27 行 YAGNI 砍的）。sim 过线就无脑转写输出 → "而且这有缠了"/"好"这类非指令也出来。
+   - **主线** `submit_infer.py:56 decide_reject` 有完整三档（sim_only/llm_or_sim/content_gate），但保底 `run_baodi.sh --no-llm` 关 LLM。
+   - 概念澄清：**LLM(llm_reject) 是内容拒识（判文本是不是家居指令），不是说话人分离**；分离靠 wespeaker+diar。
+
+2. **诊断 enrollment 污染 → argmax 选错 target**（用户听 cmd_2081 坐实）：
+   - **cmd_2081 铁证**：ref"风速调高"，系统输出"或销售手机的计划"（vanilla+qwen 两个不同 ASR 都转非目标人 = **切错 timeline，不是转写器问题**）；`max_sim 0.365`、`vanilla_cer 2.0`、`speakers=[0]`（diar 欠分割）。
+   - **机制**：`enroll_infer.py:187 get_enroll_emb` 整条 kws 提一个混合声纹（架构假设单人）→ `:249 argmax(sims)` 选错成非目标人 → 切错 timeline。
+   - **全量统计**（pos 1364，`out_pos_slices_full.json`+`exp_vanilla_full.json`，未独立重跑脚本）：单 speaker 551(40%)/失败 25% | **多 speaker 811(59%)/失败 67%** | 失败 680 里**多 speaker 占 80%**。⚠️ **主战场是多 speaker 条 argmax 选错；cmd_2081 那种 diar 欠分割是 20% 少数派**，别误判主流。
+   - 多 speaker 失败样例：cmd_18(关闭灯光→"我")/cmd_57(空调调为十二度→"所以")/cmd_237(打开清香烟机→"把握上演字")。
+
+3. **架构转向（用户拍板，2026-07-14）**：
+   - ❌ **唤醒词定位 target 已否**：kws_txt 是**开发集标注**，提交/评测只给音频不给文本，此路走不通（曾误提，用户纠正）。
+   - ✅ **新架构**：enrollment 多声纹 → recognition 多路转写 → LLM 挑家居指令段。**核心：把"判 target"从声纹 argmax 换成 LLM 凭内容识别**，绕过 argmax 选错，复用 `code/llm_reject.py`。
+   - **考题规则（用户阐明）**：当前考题保证 recognition 里**只有 target 说家居指令**、非目标说非指令（新闻/闲聊）→ "LLM 识别家居指令 = 识别 target"可靠；未来可能多人各说不同家具指令（拉窗帘+打开洗衣机）都要识别路由，架构从"挑唯一指令段"泛化到"识别所有指令段"预留。
+   - **收益上限（诚实）**：≈ oracle **0.607**（`exp_spk_oracle.py` 全 speaker 转写挑对）vs argmax 0.788，Δ-0.18（死区 60 条样本 vanilla 数据，**仍不及格**）。救"选错 target 漏转"部分，**救不了**"选对但 babble 毁 mel 转崩"（归转写器换型 Qwen3-ASR/FireRedASR）。
+   - **为什么是新角度**：七连受挫全是声纹层，本方向是内容/语义层，不在已证伪范围。
+
+### 交付物
+- **标注交接文档**：`docs/标注交接_enrollment污染与target选错_2026-07-14.md`（自包含，已更新到新架构）。标注维度：区分 enrollment 两人角色 / recognition 每 speaker 内容+是否家居指令 / 优先盯多 speaker 失败条。**标注 Agent 直接拿这个开工**。
+- **memory**：`multi-voice-llm-routing-architecture.md`（架构方向持久化，含考题规则+收益上限+待 POC）。
+
+### 关键数据/文件（下个 agent 复核用）
+- cmd_2081：`pos_pairs_datasetA.json` id=2081（kws_txt"小钱小钱"/ref"风速调高"）；`out_pos_slices_full.json` ~10914 行（`speakers=[0]`）；`exp_vanilla_full.json` ~4452 行（vanilla_text"或销售手机的计划"/cer 2.0）。
+- 全量分桶统计脚本未落盘，数字来自 `out_pos_slices_full.json`+`exp_vanilla_full.json` 现场聚合（单 speaker 551/多 speaker 811/失败 680 多占 80%），下个 agent 需要可重跑核实。
+- 机制行号：`enroll_infer.py:187 get_enroll_emb`（整条提声纹，无分离）、`:249 argmax(sims)`（误选发生处）。
+
+### 下一步（POC A 已完成 2026-07-14 续 session；POC B 条件 GO 待实现）
+- ✅ **POC A 完成**（本续 session）：LLM 凭内容识别家居指令**判别逻辑根基成立**（防循环论证 e 层 reject 0.94 + 非家居 0.97 + 家居 precision 0.92）。prompt v1 过严（参数审查误拒"空调十六度""风速自动"）recall 0.25 → v2 放宽参数/短指令/播放 recall **0.75**（剩 12 误拒是 Qwen2.5-3B 对口语化/品牌/模式名识别能力边界，非 prompt 能根治）。**用户决策条件 GO POC B**（recall 0.75 略优于 argmax 选对 66.7%，净 CER 靠端到端验）。产物 `code/pocA_fast_eval.py`+`llm_testset_pocA.json`(400全)/`llm_testset_pocA_150.json`(跑用)+`analyze_pocA.py`+`pocA_analysis.json`+`docs/POC_A_llm判别力验证_设计与方法_2026-07-14.md`。副产品 memory `pos-ref-not-pure-commands`（pos.ref 31%非纯指令）+ 分桶坐实（多 spk 失败 67%/占 80%，原交接自承未核实现坐实）。⚠️ 执行教训：原逐条 max_new=160 长 SYSTEM_PROMPT 400 条 4060 要 30-50min 太慢，改 batch=1（主办方 batch=1 位，batch=4 实测无并行收益）+max_new=64+规模 150 ~7min。
+- ⛔ **POC B 证伪（2026-07-14 续，multi-voice LLM 路由不 work）**：端到端 30 条最严重多 speaker 失败条（argmax CER 5.114，主因 vanilla 循环幻觉）。multi-voice+LLM挑(v2) CER 0.982（Δ-4.13）但 **29/30 all_reject**——价值=拒幻觉压 CER（死区 9.28→1.0），**不是挑对 target**。中等 15 条 14 all_reject（CER 0.96 略恶化 argmax 0.95）。**瓶颈=切片转写质量**（vanilla 重 babble 切片循环幻觉），LLM 正确拒乱码但无可挑——坐实死区是 babble 毁 mel 物理极限（[[spk-oracle-poc]]）。全量风险：POC A recall 0.75=25%误拒会让非失败条~1084 恶化。**新架构方向证伪（切片质量瓶颈+LLM recall 双证伪），搁置回主线**（Qwen3-ASR 0.3436 / vanilla 0.595 + 关LLM thr0.27）。产物 `code/enroll_infer.py --multi-voice flag` + `pocB_pick.py` + `pocB_multivoice_30.json` + `pocB_result.json`。教训：内容/语义层方法受切片质量上限制约（multi-voice 价值域=argmax选错条=切片质量差条=死结）。
+- 标注 Agent 拿 `docs/标注交接_enrollment污染与target选错_2026-07-14.md` 开工，回收后验证考题假设 + LLM 路由真实泛化（POC B 裁判）。
+
+---
+
+## 【2026-07-11】前沿探索(19路) + Qwen3-ASR 候选2 证实 + 集成落地 + P0 数字收尾
 
 ### ⚠️ 2026-07-11 P0 收尾（本 session 续：7-agent 路线核实 workflow + 双口径坐实 + wesep defer）
 

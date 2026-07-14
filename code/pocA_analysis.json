@@ -1,0 +1,161 @@
+{
+  "overall": {
+    "n": 150,
+    "accuracy": 0.9,
+    "home_recall": 0.75,
+    "home_precision": 0.9231,
+    "home_f1": 0.8276,
+    "nonhome_recall": 0.9706,
+    "nonhome_precision": 0.8919,
+    "confusion": {
+      "TP": 36,
+      "FN": 12,
+      "FP": 3,
+      "TN": 99
+    },
+    "e_layer_reject_rate": 0.94,
+    "go_pocB": false
+  },
+  "by_layer": {
+    "pos": {
+      "n": 50,
+      "acc": 0.76,
+      "pred": {
+        "accept": 36,
+        "reject": 14
+      }
+    },
+    "a_news": {
+      "n": 20,
+      "acc": 1.0,
+      "pred": {
+        "reject": 20
+      }
+    },
+    "b_garble": {
+      "n": 12,
+      "acc": 1.0,
+      "pred": {
+        "reject": 12
+      }
+    },
+    "c_en": {
+      "n": 8,
+      "acc": 1.0,
+      "pred": {
+        "reject": 8
+      }
+    },
+    "d_empty": {
+      "n": 10,
+      "acc": 1.0,
+      "pred": {
+        "reject": 10
+      }
+    },
+    "e_adv_含家电非指令": {
+      "n": 50,
+      "acc": 0.94,
+      "pred": {
+        "reject": 47,
+        "accept": 3
+      }
+    }
+  },
+  "errors_by_layer": {
+    "pos": [
+      {
+        "text": "科学声音龙门阵我想听",
+        "gold": "accept",
+        "pred": "reject",
+        "reason": "涉及闲聊内容，无明确家电控制指令或参数"
+      },
+      {
+        "text": "打开清香烟机",
+        "gold": "accept",
+        "pred": "reject",
+        "reason": "烟机不是可控家电"
+      },
+      {
+        "text": "关下空调",
+        "gold": "accept",
+        "pred": "reject",
+        "reason": "空调为可控家电，关为控制意图，但缺少具体房间信息"
+      },
+      {
+        "text": "开启智控温",
+        "gold": "accept",
+        "pred": "reject",
+        "reason": "无明确家电实体，仅提及智控温"
+      },
+      {
+        "text": "星降的灯调到五千K亮度百分百",
+        "gold": "accept",
+        "pred": "reject",
+        "reason": "亮度五千K超出正常范围且不合理"
+      },
+      {
+        "text": "给我讲古风音乐频道",
+        "gold": "accept",
+        "pred": "reject",
+        "reason": "播放频道但未指定具体音频内容，超出播放类参数要求"
+      },
+      {
+        "text": "取消勃朗烤箱",
+        "gold": "accept",
+        "pred": "reject",
+        "reason": "未提及可控家电/功能，且命令不明"
+      },
+      {
+        "text": "关闭星香空调",
+        "gold": "accept",
+        "pred": "reject",
+        "reason": "未提及具体房间，但符合关闭空调的动作"
+      },
+      {
+        "text": "室内有点暗灯光调到最亮然后把窗帘打开",
+        "gold": "accept",
+        "pred": "reject",
+        "reason": "灯光亮度超100%超出常识"
+      },
+      {
+        "text": "ECO模式",
+        "gold": "accept",
+        "pred": "reject",
+        "reason": "没有提到具体的可控家电"
+      },
+      {
+        "text": "关掉睡眠",
+        "gold": "accept",
+        "pred": "reject",
+        "reason": "没有明确指定哪个房间的睡眠功能，但根据上下文推测可能是某个房间的睡眠模式，但睡眠模式通常不会直接关闭，而是进入一种节能状态。因此无法确定是否为合法指令。"
+      },
+      {
+        "text": "关闭节能模式",
+        "gold": "accept",
+        "pred": "reject",
+        "reason": "没有提到具体的可控家电"
+      }
+    ],
+    "e_adv_含家电非指令": [
+      {
+        "text": "新风系统一直在转",
+        "gold": "reject",
+        "pred": "accept",
+        "reason": "没有明确的动作指令"
+      },
+      {
+        "text": "扫地机器人没电了",
+        "gold": "reject",
+        "pred": "accept",
+        "reason": "没有明确的动作指令"
+      },
+      {
+        "text": "音乐停了",
+        "gold": "reject",
+        "pred": "accept",
+        "reason": "停用指令通常会触发设备暂停当前播放的音乐，无需具体指定音乐来源或类型"
+      }
+    ]
+  }
+}
