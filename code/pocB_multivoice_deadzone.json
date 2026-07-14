@@ -1,0 +1,3682 @@
+[
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_64.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_64.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.13012903928756714
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.13012903928756714,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.05999999865889549,
+    "target_active_ratio": 0.05999999865889549,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 1.232,
+    "batch_size": 1,
+    "peak_mem_mib": 2203.2,
+    "transcript": "去一下国蓝跑一下",
+    "chars": 8,
+    "rtf": 0.5979130569013577,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_205.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_205.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.3805590569972992
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.3805590569972992,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.041333332657814026,
+    "target_active_ratio": 0.041333332657814026,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.378,
+    "batch_size": 1,
+    "peak_mem_mib": 2204.7,
+    "transcript": "外面穿着脸",
+    "chars": 5,
+    "rtf": 0.21697803475390906,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_226.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_226.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.35159581899642944,
+      "1": 0.2337501347064972
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.35159581899642944,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.1366666704416275,
+    "target_active_ratio": 0.19333332777023315,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 1.861,
+    "batch_size": 1,
+    "peak_mem_mib": 2204.4,
+    "transcript": "然后在上面帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮帮",
+    "chars": 202,
+    "rtf": 0.32116381195679133,
+    "spk_texts": {
+      "0": "然後在上面幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫",
+      "1": "好"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_316.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_316.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.24109642207622528
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.24109642207622528,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.05000000074505806,
+    "target_active_ratio": 0.05000000074505806,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.338,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "大概是要付款票",
+    "chars": 7,
+    "rtf": 0.15264265373725752,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_329.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_329.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.35796457529067993
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.35796457529067993,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.03999999910593033,
+    "target_active_ratio": 0.03999999910593033,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.341,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "打开Foreader",
+    "chars": 10,
+    "rtf": 0.19474769836147082,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2000.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2000.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.0964360386133194,
+      "1": -0.031645599752664566
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.0964360386133194,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.03266666829586029,
+    "target_active_ratio": 0.10866666585206985,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.7,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.4,
+    "transcript": "剧必会激压产业经济发展空间",
+    "chars": 13,
+    "rtf": 0.1715790407330382,
+    "spk_texts": {
+      "0": "劇必會激壓產業經濟發展空間",
+      "1": "播放盖世金型原创景"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2017.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2017.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.13113825023174286,
+      "1": 0.20182612538337708
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.20182612538337708,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.01666666753590107,
+    "target_active_ratio": 0.041333332657814026,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.593,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "心碘肚子有什么",
+    "chars": 7,
+    "rtf": 0.33488260150629245,
+    "spk_texts": {
+      "0": "空调二十度",
+      "1": "心碘肚子有什麼"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2018.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2018.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.4806228280067444,
+      "1": 0.014578983187675476
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.4806228280067444,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.05000000074505806,
+    "target_active_ratio": 0.05000000074505806,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.57,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "完全不负责任的",
+    "chars": 7,
+    "rtf": 0.24058315824355755,
+    "spk_texts": {
+      "0": "完全不负责任的",
+      "1": "我一定"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2032.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2032.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.11450547724962234,
+      "1": 0.14099624752998352
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.14099624752998352,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.07000000029802322,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.673,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.4,
+    "transcript": "引来了大批围观的市民",
+    "chars": 10,
+    "rtf": 0.2215412886519181,
+    "spk_texts": {
+      "0": "引来了大批围观的市民",
+      "1": "引来了大批围观的市民"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2037.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2037.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.026040663942694664,
+      "1": 0.280702143907547
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.280702143907547,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.03533333167433739,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.574,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "是不是很像",
+    "chars": 5,
+    "rtf": 0.3038728047931005,
+    "spk_texts": {
+      "0": "不住暗示",
+      "1": "是不是很像"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2040.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2040.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.06771364063024521,
+      "1": 0.14999836683273315
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.14999836683273315,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.025333333760499954,
+    "target_active_ratio": 0.059333331882953644,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.633,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "中文字幕志愿者 李宗盛",
+    "chars": 11,
+    "rtf": 0.3636387572891411,
+    "spk_texts": {
+      "0": "同一个的福二",
+      "1": "中文字幕志愿者 李宗盛"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2047.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2047.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.3206705152988434,
+      "1": 0.041505929082632065
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.3206705152988434,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.03333333507180214,
+    "target_active_ratio": 0.06199999898672104,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.571,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.4,
+    "transcript": "依然居在日本",
+    "chars": 6,
+    "rtf": 0.2707485904060834,
+    "spk_texts": {
+      "0": "依然居在日本",
+      "1": "我可以看到SY"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2057.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2057.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.28853708505630493,
+      "1": 0.2893507480621338
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.2893507480621338,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.026000000536441803,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.58,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "全面放开",
+    "chars": 4,
+    "rtf": 0.28015807055044867,
+    "spk_texts": {
+      "0": "全面放开二海",
+      "1": "全面放开"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2064.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2064.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.10626055300235748,
+      "1": 0.23223309218883514
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.23223309218883514,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.03266666829586029,
+    "target_active_ratio": 0.12733332812786102,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.61,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "这真是一期的更新的",
+    "chars": 9,
+    "rtf": 0.12984559891071726,
+    "spk_texts": {
+      "0": "这真是日期乐的更新节",
+      "1": "这真是一期的更新的"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2069.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2069.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.19581595063209534,
+      "1": 0.11588116735219955
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.19581595063209534,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.02800000086426735,
+    "target_active_ratio": 0.08866667002439499,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.614,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "爱多女孩的发开半夜",
+    "chars": 9,
+    "rtf": 0.2199519065118605,
+    "spk_texts": {
+      "0": "爱多女孩的发开半夜",
+      "1": "播放无安幼儿园的"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2071.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2071.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.26251551508903503,
+      "1": 0.09635152667760849
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.26251551508903503,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.006666666828095913,
+    "target_active_ratio": 0.05066666752099991,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.583,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.4,
+    "transcript": "你自己无吗是",
+    "chars": 6,
+    "rtf": 0.3511230629610728,
+    "spk_texts": {
+      "0": "你自己无吗是",
+      "1": "你自己有吗"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2075.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2075.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.4941798746585846,
+      "1": 0.37238624691963196
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.4941798746585846,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0273333340883255,
+    "target_active_ratio": 0.07400000095367432,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.617,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "出示微信出付的条件吗",
+    "chars": 10,
+    "rtf": 0.2692601566231407,
+    "spk_texts": {
+      "0": "出示微信出付的条件吗",
+      "1": "出示微信出付的條件"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2076.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2076.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.14109984040260315,
+      "1": 0.13773536682128906
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.14109984040260315,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.03400000184774399,
+    "target_active_ratio": 0.09533333033323288,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.55,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "八十七.四十二一系列孔",
+    "chars": 11,
+    "rtf": 0.15160814132900607,
+    "spk_texts": {
+      "0": "87.42一系列孔",
+      "1": "这是什么"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2081.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2081.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.3648833632469177
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.3648833632469177,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.057999998331069946,
+    "target_active_ratio": 0.057999998331069946,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.362,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "或销售手机的计划",
+    "chars": 8,
+    "rtf": 0.21060247753941735,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2087.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2087.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.16414490342140198,
+      "1": 0.3770008385181427
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.3770008385181427,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.04066666588187218,
+    "target_active_ratio": 0.07666666805744171,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.589,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.4,
+    "transcript": "男一说我的要求不算",
+    "chars": 9,
+    "rtf": 0.182506100681175,
+    "spk_texts": {
+      "0": "反應說我的",
+      "1": "男一说我的要求不算"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2090.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2090.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.09438486397266388,
+      "1": 0.10062733292579651
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.10062733292579651,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.015333333052694798,
+    "target_active_ratio": 0.07733333110809326,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.586,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.4,
+    "transcript": "前一段时间因为",
+    "chars": 7,
+    "rtf": 0.19731497523760552,
+    "spk_texts": {
+      "0": "前一段時間因為正在製造",
+      "1": "前一段时间因为"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2099.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2099.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.141678586602211,
+      "1": 0.1035028025507927
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.141678586602211,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.01066666655242443,
+    "target_active_ratio": 0.024666666984558105,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.654,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "优优独播剧场——YoYo Television Series Exclusive",
+    "chars": 40,
+    "rtf": 0.3801147605097571,
+    "spk_texts": {
+      "0": "优优独播剧场——YoYo Television Series Exclusive",
+      "1": "它是子灯模式"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2100.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2100.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.13501764833927155,
+      "1": 0.0354989729821682
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.13501764833927155,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.03933333232998848,
+    "target_active_ratio": 0.15533334016799927,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 1.913,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.4,
+    "transcript": "风速风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风风",
+    "chars": 200,
+    "rtf": 0.35231846691714686,
+    "spk_texts": {
+      "0": "風速風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風",
+      "1": "先隔 刚刚等飞机出现你的限量分离"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2115.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2115.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.42491385340690613,
+      "1": 0.13596101105213165
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.42491385340690613,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.03200000151991844,
+    "target_active_ratio": 0.07666666805744171,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.597,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "会变得进入2015年",
+    "chars": 10,
+    "rtf": 0.23310119286179543,
+    "spk_texts": {
+      "0": "會變得進入2015年",
+      "1": "一天会变得进入二"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2120.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2120.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.2226300984621048
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.2226300984621048,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.09066666662693024,
+    "target_active_ratio": 0.09066666662693024,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.366,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "柯林给我们带来了家里的香",
+    "chars": 12,
+    "rtf": 0.13511831909967964,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2122.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2122.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.11145887523889542,
+      "1": 0.2564676105976105
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.2564676105976105,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.02800000086426735,
+    "target_active_ratio": 0.0820000022649765,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.572,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.4,
+    "transcript": "谢谢你们效果会",
+    "chars": 7,
+    "rtf": 0.1681653191061581,
+    "spk_texts": {
+      "0": "谢谢你们向我们汇报此",
+      "1": "谢谢你们效果会"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2128.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2128.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.19589674472808838,
+      "1": 0.4306447207927704
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.4306447207927704,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.04600000008940697,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.622,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "就是小孩艺人员",
+    "chars": 7,
+    "rtf": 0.2932677853782222,
+    "spk_texts": {
+      "0": "就是小孩一人也要新年",
+      "1": "就是小孩艺人员"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2140.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2140.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.061348021030426025,
+      "1": 0.019470158964395523
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.061348021030426025,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.03133333474397659,
+    "target_active_ratio": 0.05533333495259285,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.554,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "自己主要图像",
+    "chars": 6,
+    "rtf": 0.3526730142581235,
+    "spk_texts": {
+      "0": "自己主要图像",
+      "1": "你不要脱下"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2151.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2151.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.3840879201889038,
+      "1": 0.1782560646533966
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.3840879201889038,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.05066666752099991,
+    "target_active_ratio": 0.06666667014360428,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.601,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "也弱化了三星的优势",
+    "chars": 9,
+    "rtf": 0.31475097097027366,
+    "spk_texts": {
+      "0": "也弱化了三星的优势",
+      "1": "那是小子"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2152.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2152.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.2640987038612366,
+      "1": 0.15144769847393036
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.2640987038612366,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0560000017285347,
+    "target_active_ratio": 0.08733333647251129,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.615,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "飞机改进改型和市场推广",
+    "chars": 11,
+    "rtf": 0.20846205242609572,
+    "spk_texts": {
+      "0": "飞机改进改型和市场推广",
+      "1": "融合市场"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2160.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2160.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.09269747138023376,
+      "1": 0.0750930979847908
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.09269747138023376,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.03466666489839554,
+    "target_active_ratio": 0.05000000074505806,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.575,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.4,
+    "transcript": "我先回归 北线空调",
+    "chars": 9,
+    "rtf": 0.28450252986190344,
+    "spk_texts": {
+      "0": "我先回歸 北线空调",
+      "1": "可以"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2162.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2162.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.319524347782135
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.319524347782135,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.08133333176374435,
+    "target_active_ratio": 0.08133333176374435,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.474,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "我以为你不信心吗?我以为你不信心吗?我以为你不信心吗?",
+    "chars": 27,
+    "rtf": 0.15904447376328026,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2183.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2183.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.17918482422828674,
+      "1": 0.1306026130914688
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.17918482422828674,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.01066666655242443,
+    "target_active_ratio": 0.05066666752099991,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.56,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "因为我们在",
+    "chars": 5,
+    "rtf": 0.25937093628777397,
+    "spk_texts": {
+      "0": "因为我们在",
+      "1": "因为我们在"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2186.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2186.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.17189377546310425
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.17189377546310425,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.06466666609048843,
+    "target_active_ratio": 0.06466666609048843,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.322,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.4,
+    "transcript": "与小朋友玩的不一样",
+    "chars": 9,
+    "rtf": 0.1506923515105916,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2191.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2191.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.3336249887943268,
+      "1": 0.15229010581970215
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.3336249887943268,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.03533333167433739,
+    "target_active_ratio": 0.03733333200216293,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.547,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "有什么周会",
+    "chars": 5,
+    "rtf": 0.30403362380133736,
+    "spk_texts": {
+      "0": "有什麼周會",
+      "1": "大家同分"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2200.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2200.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.38481593132019043
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.38481593132019043,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.05533333495259285,
+    "target_active_ratio": 0.05533333495259285,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.384,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "企业的成本约束",
+    "chars": 7,
+    "rtf": 0.2029282706124442,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2256.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2256.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.14050762355327606,
+      "1": 0.39459022879600525
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.39459022879600525,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.04066666588187218,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.591,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.4,
+    "transcript": "不能要求退款",
+    "chars": 6,
+    "rtf": 0.27244288800498856,
+    "spk_texts": {
+      "0": "不能要求退股",
+      "1": "不能要求退款"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2265.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2265.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.0588647685945034,
+      "1": 0.3384138345718384
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.3384138345718384,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.07000000029802322,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 3.175,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口�",
+    "chars": 134,
+    "rtf": 1.0584704081217449,
+    "spk_texts": {
+      "0": "荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷荷",
+      "1": "口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口�"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2275.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2275.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.22748515009880066,
+      "1": 0.23680545389652252
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.23680545389652252,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.01133333332836628,
+    "target_active_ratio": 0.04866666719317436,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.598,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "越明显回升",
+    "chars": 5,
+    "rtf": 0.31630904586226855,
+    "spk_texts": {
+      "0": "封锁医生",
+      "1": "越明顯回升"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2287.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2287.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.3562723994255066,
+      "1": 0.3615347146987915
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.3615347146987915,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0026666666381061077,
+    "target_active_ratio": 0.036666665226221085,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.563,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "我倒是一秒",
+    "chars": 5,
+    "rtf": 0.318102917428744,
+    "spk_texts": {
+      "0": "我倒是",
+      "1": "我倒是一秒"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2302.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2302.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.4304114282131195,
+      "1": 0.5122238397598267
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.5122238397598267,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.052000001072883606,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.62,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.4,
+    "transcript": "也一直有自己的",
+    "chars": 7,
+    "rtf": 0.254075644446201,
+    "spk_texts": {
+      "0": "手錶也一直有自己的認知",
+      "1": "也一直有自己的"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2303.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2303.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.2338923066854477,
+      "1": 0.24104927480220795
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.24104927480220795,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.02266666665673256,
+    "target_active_ratio": 0.023333333432674408,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.615,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "放专注",
+    "chars": 3,
+    "rtf": 0.29717562855153845,
+    "spk_texts": {
+      "0": "庆祝祭举军",
+      "1": "放专注"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2305.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2305.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.11292801797389984,
+      "1": 0.07186200469732285
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.11292801797389984,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.006000000052154064,
+    "target_active_ratio": 0.07000000029802322,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.614,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "机器人的还是不太多",
+    "chars": 9,
+    "rtf": 0.2570529363145389,
+    "spk_texts": {
+      "0": "机器人的还是不太多",
+      "1": "人的還是不太多"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2310.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2310.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.22235122323036194
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.22235122323036194,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.07733333110809326,
+    "target_active_ratio": 0.07733333110809326,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.382,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "微软来自 Windows 的营收和",
+    "chars": 17,
+    "rtf": 0.15841064611411193,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2327.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2327.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.09864813834428787,
+      "1": 0.15743619203567505
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.15743619203567505,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.030666666105389595,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.608,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.4,
+    "transcript": "我叫你女儿",
+    "chars": 5,
+    "rtf": 0.3971610973083895,
+    "spk_texts": {
+      "0": "谢谢您的朋友",
+      "1": "我叫你女兒"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2328.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2328.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.07382509857416153,
+      "1": 0.22444896399974823
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.22444896399974823,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.03533333167433739,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.603,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.4,
+    "transcript": "这样出现反谈",
+    "chars": 6,
+    "rtf": 0.32787167507669196,
+    "spk_texts": {
+      "0": "价格出现反弹",
+      "1": "这样出现反谈"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2333.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2333.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.22242681682109833,
+      "1": 0.082779161632061
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.22242681682109833,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.041333332657814026,
+    "target_active_ratio": 0.06933332979679108,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.607,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "输给美国之后实际上",
+    "chars": 9,
+    "rtf": 0.30198891957600915,
+    "spk_texts": {
+      "0": "輸給美國之後實際上",
+      "1": "美国之后"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2334.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2334.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.2299586832523346,
+      "1": 0.042817890644073486
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.2299586832523346,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.013333333656191826,
+    "target_active_ratio": 0.03400000184774399,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.609,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.4,
+    "transcript": "方法力的実态",
+    "chars": 6,
+    "rtf": 0.3013668674053532,
+    "spk_texts": {
+      "0": "方法力的実態",
+      "1": "心理之餐帶土"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2338.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2338.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.2712008059024811
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.2712008059024811,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.04066666588187218,
+    "target_active_ratio": 0.04066666588187218,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.357,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "欢迎你评论",
+    "chars": 5,
+    "rtf": 0.19212961196899414,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2341.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2341.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.01732589304447174,
+      "1": 0.044475335627794266
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.044475335627794266,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.02666666731238365,
+    "target_active_ratio": 0.02666666731238365,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.608,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "我送你吃一块",
+    "chars": 6,
+    "rtf": 0.37086504261668135,
+    "spk_texts": {
+      "0": "好",
+      "1": "我送你吃一块"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2355.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2355.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.043854642659425735,
+      "1": 0.08878304064273834
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.08878304064273834,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.02199999988079071,
+    "target_active_ratio": 0.06666667014360428,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.717,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.4,
+    "transcript": "基金的重视无法规大陆",
+    "chars": 10,
+    "rtf": 0.2298213732548249,
+    "spk_texts": {
+      "0": "补权基金的重视法律法规",
+      "1": "基金的重视无法规大陆"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2370.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2370.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.39679819345474243,
+      "1": 0.3499258756637573
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.39679819345474243,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0020000000949949026,
+    "target_active_ratio": 0.06066666543483734,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.616,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "到了历史最高",
+    "chars": 6,
+    "rtf": 0.23073096400343077,
+    "spk_texts": {
+      "0": "到了歷史最高",
+      "1": "已經到了歷史最高"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2380.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2380.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.15805462002754211,
+      "1": 0.15367648005485535
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.15805462002754211,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.06599999964237213,
+    "target_active_ratio": 0.11266666650772095,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.675,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "我们有重复的使命搜狐娱乐性",
+    "chars": 13,
+    "rtf": 0.17867409993731787,
+    "spk_texts": {
+      "0": "我们有重复的使命搜狐娱乐性",
+      "1": "你知道我们有重复的使命"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2400.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2400.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.34578102827072144,
+      "1": 0.12666180729866028
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.34578102827072144,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.029333332553505898,
+    "target_active_ratio": 0.08666666597127914,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.674,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "还求联系给个萨丝的手脚",
+    "chars": 11,
+    "rtf": 0.1943369076643622,
+    "spk_texts": {
+      "0": "还求联系给个萨丝的手脚",
+      "1": "我放这种样子音乐"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2424.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2424.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.03993722051382065,
+      "1": 0.27832934260368347
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.27832934260368347,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.046666666865348816,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.654,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "我们就要把你看的",
+    "chars": 8,
+    "rtf": 0.2947877119253347,
+    "spk_texts": {
+      "0": "對此宋教寶遺憾的時候",
+      "1": "我们就要把你看的"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2427.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2427.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.322939932346344,
+      "1": 0.1648244857788086
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.322939932346344,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.03200000151991844,
+    "target_active_ratio": 0.05533333495259285,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.63,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.4,
+    "transcript": "你的外国说 十三比六",
+    "chars": 10,
+    "rtf": 0.2727101891587823,
+    "spk_texts": {
+      "0": "你的外國說 13比6",
+      "1": "為什麼自己不嫌"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2444.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2444.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.11963891983032227,
+      "1": 0.129419207572937
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.129419207572937,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.03333333507180214,
+    "target_active_ratio": 0.07199999690055847,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.65,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "科技有意思我想",
+    "chars": 7,
+    "rtf": 0.21736645778286018,
+    "spk_texts": {
+      "0": "可以得到一期的享受",
+      "1": "科技有意思我想"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2459.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2459.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.24690650403499603,
+      "1": -0.04937661439180374
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.24690650403499603,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.03999999910593033,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.636,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "防腐能力牵挂",
+    "chars": 6,
+    "rtf": 0.39003831477252987,
+    "spk_texts": {
+      "0": "防腐能力牵挂",
+      "1": "防腐能力天罐"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2471.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2471.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.19558992981910706,
+      "1": -0.016761697828769684
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.19558992981910706,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.024666666984558105,
+    "target_active_ratio": 0.0820000022649765,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.684,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.4,
+    "transcript": "就我们的倾向交易事实",
+    "chars": 10,
+    "rtf": 0.28999013415837693,
+    "spk_texts": {
+      "0": "就我们的倾向交易事实",
+      "1": "我们的清一下教育"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2476.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2476.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.021848304197192192,
+      "1": 0.1539294719696045
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.1539294719696045,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.004666666500270367,
+    "target_active_ratio": 0.05999999865889549,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.682,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "但有一天晚上他们在睡觉",
+    "chars": 11,
+    "rtf": 0.2794774829364214,
+    "spk_texts": {
+      "0": "但有一点往前他们在睡觉",
+      "1": "但有一天晚上他們在睡覺"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2482.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2482.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.4380975663661957,
+      "1": 0.30682632327079773
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.4380975663661957,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.006000000052154064,
+    "target_active_ratio": 0.07599999755620956,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.667,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "面积同比上涨百分之四十五",
+    "chars": 12,
+    "rtf": 0.24155896642933722,
+    "spk_texts": {
+      "0": "面积同比上涨45%",
+      "1": "交面积同比上涨40%"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2483.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2483.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": -0.11708275973796844,
+      "1": 0.17598381638526917
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.17598381638526917,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.02866666577756405,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.576,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.5,
+    "transcript": "我这样吃一大",
+    "chars": 6,
+    "rtf": 0.35981521010398865,
+    "spk_texts": {
+      "0": "豆腐最大",
+      "1": "我這樣吃一大"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2491.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2491.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.19446036219596863
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.19446036219596863,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.057999998331069946,
+    "target_active_ratio": 0.057999998331069946,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.36,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "把副作公立给了",
+    "chars": 7,
+    "rtf": 0.21961767499039814,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2492.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2492.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.10001818835735321,
+      "1": 0.10503660142421722
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.10503660142421722,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.04266666620969772,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.661,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "我可以去找你",
+    "chars": 6,
+    "rtf": 0.36140673798941525,
+    "spk_texts": {
+      "0": "我能装飾去找第三副鼠",
+      "1": "我可以去找你"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2493.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2493.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.23131199181079865,
+      "1": 0.18888679146766663
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.23131199181079865,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.01066666655242443,
+    "target_active_ratio": 0.0806666687130928,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.655,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "和项目也不多内和公开",
+    "chars": 10,
+    "rtf": 0.2196348753551509,
+    "spk_texts": {
+      "0": "和项目也不多内和公开",
+      "1": "科技美学我想听"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2495.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2495.wav",
+    "speakers": [
+      1,
+      2
+    ],
+    "sims": {
+      "1": 0.3056747317314148,
+      "2": -0.09516427665948868
+    },
+    "target_idx": 0,
+    "target_speaker": 1,
+    "max_sim": 0.3056747317314148,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.025333333760499954,
+    "target_active_ratio": 0.09333333373069763,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.712,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.5,
+    "transcript": "对于数量风浪的流手而同情",
+    "chars": 12,
+    "rtf": 0.22309102982189213,
+    "spk_texts": {
+      "1": "对于数量风浪的流手而同情",
+      "2": "对于数量和弘乱的流出儿童群体"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2496.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2496.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.3104962706565857
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.3104962706565857,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.07333333045244217,
+    "target_active_ratio": 0.07333333045244217,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.4,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "弘扬中国传统武术文化",
+    "chars": 10,
+    "rtf": 0.14987456218133705,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2503.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2503.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.08523424714803696,
+      "1": 0.5606652498245239
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.5606652498245239,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.057999998331069946,
+    "target_active_ratio": 0.06599999964237213,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.597,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "最推崇的运动之一",
+    "chars": 8,
+    "rtf": 0.2738908890190474,
+    "spk_texts": {
+      "0": "对",
+      "1": "最推崇的运动之一"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2527.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2527.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.13386264443397522,
+      "1": 0.2415028065443039
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.2415028065443039,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.030666666105389595,
+    "target_active_ratio": 0.05999999865889549,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.557,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "可以打算了",
+    "chars": 5,
+    "rtf": 0.23894248602216336,
+    "spk_texts": {
+      "0": "谢谢",
+      "1": "可以打算了"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2528.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2528.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.2436041533946991,
+      "1": 0.044428396970033646
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.2436041533946991,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.019333332777023315,
+    "target_active_ratio": 0.0533333346247673,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 1.937,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.5,
+    "transcript": "订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅",
+    "chars": 100,
+    "rtf": 0.954064594701006,
+    "spk_texts": {
+      "0": "订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅",
+      "1": "蹲下条到左边"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2531.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2531.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.2941712737083435,
+      "1": 0.22267897427082062
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.2941712737083435,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.029333332553505898,
+    "target_active_ratio": 0.08666666597127914,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.666,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.5,
+    "transcript": "智慧建策家居展会办得更好",
+    "chars": 12,
+    "rtf": 0.26336809392031946,
+    "spk_texts": {
+      "0": "智慧建策家居展会办得更好",
+      "1": "加进展毁办"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2539.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2539.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.2637059688568115,
+      "1": 0.10091337561607361
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.2637059688568115,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0026666666381061077,
+    "target_active_ratio": 0.06933332979679108,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.627,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "十四二十五后十八",
+    "chars": 8,
+    "rtf": 0.2206760393062108,
+    "spk_texts": {
+      "0": "十四二十五后十八",
+      "1": "14比25和18比25"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2552.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2552.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": -0.0031043272465467453,
+      "1": 0.18137326836585999
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.18137326836585999,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.029333332553505898,
+    "target_active_ratio": 0.08666666597127914,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.589,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.5,
+    "transcript": "可以吃布粉干",
+    "chars": 6,
+    "rtf": 0.1743267273761817,
+    "spk_texts": {
+      "0": "腿肌部分",
+      "1": "可以吃布粉干"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2556.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2556.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.3254152536392212
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.3254152536392212,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.09799999743700027,
+    "target_active_ratio": 0.09799999743700027,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.4,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "递交了上市后首分成鸡蛋",
+    "chars": 11,
+    "rtf": 0.13341315587361655,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2559.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2559.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": -0.018431922420859337,
+      "1": 0.2779514491558075
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.2779514491558075,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0013333333190530539,
+    "target_active_ratio": 0.046666666865348816,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.63,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "你往西江在全国排",
+    "chars": 8,
+    "rtf": 0.2825598011102377,
+    "spk_texts": {
+      "0": "你往西方在全國排名",
+      "1": "你往西江在全國排"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2577.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2577.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.1914169192314148,
+      "1": 0.1965482532978058
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.1965482532978058,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.03466666489839554,
+    "target_active_ratio": 0.08933333307504654,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.665,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.5,
+    "transcript": "把温宿的挑战出现在保单前列",
+    "chars": 13,
+    "rtf": 0.22173825899759927,
+    "spk_texts": {
+      "0": "现在绑蛋器",
+      "1": "把温宿的挑战出现在保单前列"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2587.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2587.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.26436808705329895,
+      "1": 0.29050523042678833
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.29050523042678833,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.012000000104308128,
+    "target_active_ratio": 0.06466666609048843,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.654,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "汉州市的中学",
+    "chars": 6,
+    "rtf": 0.30545330493249623,
+    "spk_texts": {
+      "0": "漢州市的中學",
+      "1": "漢州市的中學"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2589.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2589.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.2768256664276123,
+      "1": 0.2873905897140503
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.2873905897140503,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.11800000071525574,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.796,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "不许在家学习他是一个八岁男孩",
+    "chars": 14,
+    "rtf": 0.19757522838583064,
+    "spk_texts": {
+      "0": "不许在家学习她是一个八岁男孩",
+      "1": "不许在家学习他是一个八岁男孩"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2590.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2590.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.1356278657913208,
+      "1": -0.033127784729003906
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.1356278657913208,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.041333332657814026,
+    "target_active_ratio": 0.06133333221077919,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.583,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "储备自己适合",
+    "chars": 6,
+    "rtf": 0.21748035701353158,
+    "spk_texts": {
+      "0": "储备自己适合",
+      "1": "风速减血"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2602.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2602.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.09828172624111176,
+      "1": 0.4167395830154419
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.4167395830154419,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.03533333167433739,
+    "target_active_ratio": 0.05066666752099991,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.592,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "开发投资三亿元",
+    "chars": 7,
+    "rtf": 0.25608075129521357,
+    "spk_texts": {
+      "0": "我看你",
+      "1": "开发投资3亿元"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2603.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2603.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.26819735765457153
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.26819735765457153,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.06333333253860474,
+    "target_active_ratio": 0.06333333253860474,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.332,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.5,
+    "transcript": "看到二十二投资出现",
+    "chars": 9,
+    "rtf": 0.18020401830258576,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2604.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2604.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.14077383279800415,
+      "1": 0.24041779339313507
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.24041779339313507,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.03200000151991844,
+    "target_active_ratio": 0.03933333232998848,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.556,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.2,
+    "transcript": "我可以跟你",
+    "chars": 5,
+    "rtf": 0.3179076058523996,
+    "spk_texts": {
+      "0": "是",
+      "1": "我可以跟妳"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2607.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2607.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.5392958521842957,
+      "1": 0.5377422571182251
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.5392958521842957,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0026666666381061077,
+    "target_active_ratio": 0.07466666400432587,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.581,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "76524369",
+    "chars": 8,
+    "rtf": 0.22884748113436962,
+    "spk_texts": {
+      "0": "76524369",
+      "1": "76524369"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2619.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2619.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.15503209829330444,
+      "1": 0.3010233938694
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.3010233938694,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.018666666001081467,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.548,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.5,
+    "transcript": "所以我们",
+    "chars": 4,
+    "rtf": 0.3751080330104044,
+    "spk_texts": {
+      "0": "这屏幕",
+      "1": "所以我们"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2630.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2630.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.5614298582077026,
+      "1": 0.18280029296875
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.5614298582077026,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.04533333331346512,
+    "target_active_ratio": 0.07333333045244217,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.585,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "是他们已经成功走出来",
+    "chars": 10,
+    "rtf": 0.272082949793616,
+    "spk_texts": {
+      "0": "是他们已经成功走出来",
+      "1": "已经成功了"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2631.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2631.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.10376967489719391,
+      "1": 0.12125609815120697
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.12125609815120697,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.00800000037997961,
+    "target_active_ratio": 0.03200000151991844,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.646,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "优优独播剧场——YoYo Television Series Exclusive",
+    "chars": 40,
+    "rtf": 0.33311315418518694,
+    "spk_texts": {
+      "0": "開啟意思喔",
+      "1": "优优独播剧场——YoYo Television Series Exclusive"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2632.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2632.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.19777661561965942,
+      "1": 0.09555022418498993
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.19777661561965942,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.0560000017285347,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.669,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.5,
+    "transcript": "不会毕日行业增长",
+    "chars": 8,
+    "rtf": 0.266688658421733,
+    "spk_texts": {
+      "0": "不会毕日行业增长",
+      "1": "运速不会低于行业增长速度"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2637.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2637.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.5852938890457153,
+      "1": 0.10079055279493332
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.5852938890457153,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.02866666577756405,
+    "target_active_ratio": 0.07266666740179062,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.631,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "就已经进行过一轮教育",
+    "chars": 10,
+    "rtf": 0.2542459195660007,
+    "spk_texts": {
+      "0": "就已经进行过一轮教育",
+      "1": "进行过一会儿"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2639.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2639.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.21331852674484253,
+      "1": 0.3054986894130707
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.3054986894130707,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.09399999678134918,
+    "target_active_ratio": 0.09399999678134918,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.636,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "这些机构可能面临法律风险",
+    "chars": 12,
+    "rtf": 0.1551435633403499,
+    "spk_texts": {
+      "0": "一老",
+      "1": "这些机构可能面临法律风险"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2640.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2640.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.03456355631351471,
+      "1": 0.11491832137107849
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.11491832137107849,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.014666666276752949,
+    "target_active_ratio": 0.054666668176651,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.583,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "你找本 有什么事",
+    "chars": 8,
+    "rtf": 0.2545077727871691,
+    "spk_texts": {
+      "0": "老板 有什么事",
+      "1": "你找本 有什么事"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2641.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2641.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.1681061089038849,
+      "1": 0.16529902815818787
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.1681061089038849,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.019999999552965164,
+    "target_active_ratio": 0.09066666662693024,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.638,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.5,
+    "transcript": "当初就已经开始成为很多",
+    "chars": 11,
+    "rtf": 0.24432569628017617,
+    "spk_texts": {
+      "0": "当初就已经开始成为很多",
+      "1": "大叔局已经开始成为"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2648.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2648.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.09267623722553253,
+      "1": 0.13466320931911469
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.13466320931911469,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.06266666948795319,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.653,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "看起一个玩意的变形",
+    "chars": 9,
+    "rtf": 0.20542182262588596,
+    "spk_texts": {
+      "0": "看起以我玩意的辨迹",
+      "1": "看起一个玩意的变形"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2651.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2651.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.32254543900489807,
+      "1": 0.20108649134635925
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.32254543900489807,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.01666666753590107,
+    "target_active_ratio": 0.10599999874830246,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.726,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "防企会积极调整推翻节奏",
+    "chars": 11,
+    "rtf": 0.18862928662981304,
+    "spk_texts": {
+      "0": "防企会积极调整推翻节奏",
+      "1": "播放鹅鹅鹅要旁粉"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2659.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2659.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.12229622155427933,
+      "1": 0.583625316619873
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.583625316619873,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.04066666588187218,
+    "target_active_ratio": 0.05666666850447655,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.596,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "内定间纯手参赛",
+    "chars": 7,
+    "rtf": 0.34438199390565727,
+    "spk_texts": {
+      "0": "我们说什么",
+      "1": "内定间纯手参赛"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2691.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2691.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.13970759510993958,
+      "1": 0.12518645823001862
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.13970759510993958,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.02666666731238365,
+    "target_active_ratio": 0.06466666609048843,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.619,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.5,
+    "transcript": "五号自宅的奥运会",
+    "chars": 8,
+    "rtf": 0.25159110867880224,
+    "spk_texts": {
+      "0": "五号自宅的奥运会",
+      "1": "五号"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2697.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2697.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.056019093841314316,
+      "1": 0.3095182180404663
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.3095182180404663,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.014000000432133675,
+    "target_active_ratio": 0.06199999898672104,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.569,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.5,
+    "transcript": "具备这个指标",
+    "chars": 6,
+    "rtf": 0.1929402755478681,
+    "spk_texts": {
+      "0": "就夠指標",
+      "1": "具備這個指標"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2699.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2699.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.25924715399742126,
+      "1": 0.08722040057182312
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.25924715399742126,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.030666666105389595,
+    "target_active_ratio": 0.07400000095367432,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.587,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "有三.八十五个代线",
+    "chars": 9,
+    "rtf": 0.227474242217781,
+    "spk_texts": {
+      "0": "有3.85个代线",
+      "1": "三十五"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2705.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2705.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.00757315568625927,
+      "1": 0.30754554271698
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.30754554271698,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.03200000151991844,
+    "target_active_ratio": 0.0793333351612091,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.58,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.5,
+    "transcript": "所以大约五百九十",
+    "chars": 8,
+    "rtf": 0.21638247504163144,
+    "spk_texts": {
+      "0": "这条大一点",
+      "1": "所以大约590"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2721.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2721.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.3202875852584839,
+      "1": 0.007581621408462524
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.3202875852584839,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.04533333331346512,
+    "target_active_ratio": 0.07266666740179062,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.65,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "让你的散户胀压更高",
+    "chars": 9,
+    "rtf": 0.21596438068884158,
+    "spk_texts": {
+      "0": "让你的散户胀压更高",
+      "1": "我去家跟第一月的日子"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2723.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2723.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.14823687076568604,
+      "1": -0.15619295835494995
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.14823687076568604,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.03400000184774399,
+    "target_active_ratio": 0.0560000017285347,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.596,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "成为大家心中的女生",
+    "chars": 9,
+    "rtf": 0.3364436370504778,
+    "spk_texts": {
+      "0": "成为大家心中的女生",
+      "1": "也不是一種人"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2730.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2730.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.36344191431999207,
+      "1": 0.04703111946582794
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.36344191431999207,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.024000000208616257,
+    "target_active_ratio": 0.12933333218097687,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.703,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.5,
+    "transcript": "公募基金管理人可以参与投资",
+    "chars": 13,
+    "rtf": 0.15308721912192882,
+    "spk_texts": {
+      "0": "公募基金管理人可以参与投资",
+      "1": "公務基金管理人可以參與投資"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2732.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2732.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.2559206187725067,
+      "1": 0.10548004508018494
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.2559206187725067,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.035999998450279236,
+    "target_active_ratio": 0.11133333295583725,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.684,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "我们经常会杀到阿非生物",
+    "chars": 11,
+    "rtf": 0.18585071615550827,
+    "spk_texts": {
+      "0": "我们经常会杀到阿非生物",
+      "1": "我们经常会杀到阿富汗"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2733.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2733.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.06129226088523865,
+      "1": 0.08846870064735413
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.08846870064735413,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0,
+    "target_active_ratio": 0.007333333138376474,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.596,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "公共服务中心",
+    "chars": 6,
+    "rtf": 0.34425231073633095,
+    "spk_texts": {
+      "0": "公共服务中心",
+      "1": "公共服務中心"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2734.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2734.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.09254035353660583,
+      "1": 0.1305970549583435
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.1305970549583435,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.014666666276752949,
+    "target_active_ratio": 0.05066666752099991,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.553,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "四,六百九十二",
+    "chars": 7,
+    "rtf": 0.31972358681563007,
+    "spk_texts": {
+      "0": "4690",
+      "1": "4,692"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2752.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2752.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.014913149178028107,
+      "1": 0.26286694407463074
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.26286694407463074,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.08399999886751175,
+    "target_active_ratio": 0.08399999886751175,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 1.911,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下",
+    "chars": 199,
+    "rtf": 0.39738101919574703,
+    "spk_texts": {
+      "0": "一条",
+      "1": "下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2766.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2766.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.4868902564048767,
+      "1": 0.12132158875465393
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.4868902564048767,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.05666666850447655,
+    "target_active_ratio": 0.06533333659172058,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.578,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.5,
+    "transcript": "中国将希望反映",
+    "chars": 7,
+    "rtf": 0.24085978666941327,
+    "spk_texts": {
+      "0": "中国将希望反映",
+      "1": "不放苦"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2788.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2788.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.03813639655709267,
+      "1": 0.09716875106096268
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.09716875106096268,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.02666666731238365,
+    "target_active_ratio": 0.10533333569765091,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 3.188,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "手手骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨",
+    "chars": 101,
+    "rtf": 0.7449576230806725,
+    "spk_texts": {
+      "0": "手手骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨",
+      "1": "手手骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2790.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2790.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.09046267718076706,
+      "1": 0.07164223492145538
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.09046267718076706,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.004666666500270367,
+    "target_active_ratio": 0.036666665226221085,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.556,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "反正是有趣",
+    "chars": 5,
+    "rtf": 0.37571803943530935,
+    "spk_texts": {
+      "0": "反正是有趣",
+      "1": "可不可以"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2791.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2791.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.06823556870222092,
+      "1": -0.02291926182806492
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.06823556870222092,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.05666666850447655,
+    "target_active_ratio": 0.10466666519641876,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.606,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.5,
+    "transcript": "再度被关注画到",
+    "chars": 7,
+    "rtf": 0.18309113482334102,
+    "spk_texts": {
+      "0": "再度被关注画到",
+      "1": "也再度被关注"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2823.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2823.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.3635578751564026,
+      "1": 0.25216248631477356
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.3635578751564026,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.03400000184774399,
+    "target_active_ratio": 0.10999999940395355,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.728,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "生产全系列半导体新式产品的企业",
+    "chars": 15,
+    "rtf": 0.22482217094044624,
+    "spk_texts": {
+      "0": "生产全系列半导体新式产品的企业",
+      "1": "全系列半导体组织产品"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2824.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2824.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.03152944892644882,
+      "1": 0.222814679145813
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.222814679145813,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0013333333190530539,
+    "target_active_ratio": 0.03466666489839554,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.554,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "我好朋友",
+    "chars": 4,
+    "rtf": 0.3526523614385325,
+    "spk_texts": {
+      "0": "好 拍照",
+      "1": "我好朋友"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2830.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2830.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.5030558109283447,
+      "1": 0.07587482035160065
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.5030558109283447,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.06533333659172058,
+    "target_active_ratio": 0.06533333659172058,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.524,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.5,
+    "transcript": "232323",
+    "chars": 6,
+    "rtf": 0.21318042181371674,
+    "spk_texts": {
+      "0": "232323",
+      "1": "那就"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2837.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2837.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.27445337176322937,
+      "1": 0.4328942596912384
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.4328942596912384,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.03533333167433739,
+    "target_active_ratio": 0.07199999690055847,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.618,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "彩电数上进行冲击下",
+    "chars": 9,
+    "rtf": 0.2955182317341344,
+    "spk_texts": {
+      "0": "中库就加大",
+      "1": "彩电数上进行冲击下"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2858.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2858.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.3343442678451538,
+      "1": 0.25778716802597046
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.3343442678451538,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.029333332553505898,
+    "target_active_ratio": 0.06400000303983688,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.565,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "自助及改善需求的",
+    "chars": 8,
+    "rtf": 0.3070578626964403,
+    "spk_texts": {
+      "0": "自助及改善需求的",
+      "1": "应该是是"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2865.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2865.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.37396007776260376
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.37396007776260376,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.046666666865348816,
+    "target_active_ratio": 0.046666666865348816,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.326,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "我不是在那边",
+    "chars": 6,
+    "rtf": 0.20376667380332947,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2888.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2888.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.31955409049987793,
+      "1": 0.21739161014556885
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.31955409049987793,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.03466666489839554,
+    "target_active_ratio": 0.07266666740179062,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.666,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.5,
+    "transcript": "规定承担赔偿责任",
+    "chars": 8,
+    "rtf": 0.31846710369347386,
+    "spk_texts": {
+      "0": "規定承担赔偿责任",
+      "1": "承担赔偿"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2913.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2913.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.1470746546983719,
+      "1": 0.08617624640464783
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.1470746546983719,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.017999999225139618,
+    "target_active_ratio": 0.06133333221077919,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.618,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "风之圣寒人物有什么",
+    "chars": 9,
+    "rtf": 0.26420935606345153,
+    "spk_texts": {
+      "0": "风之圣寒人物有什么",
+      "1": "打開一切有碼聲"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2921.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2921.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.4119874835014343
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.4119874835014343,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.07466666400432587,
+    "target_active_ratio": 0.07466666400432587,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.359,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "签订的释发合同",
+    "chars": 7,
+    "rtf": 0.15613939451134726,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2925.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2925.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.18522070348262787,
+      "1": 0.18837928771972656
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.18837928771972656,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.02266666665673256,
+    "target_active_ratio": 0.10333333164453506,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.669,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "借一步点燃地老线",
+    "chars": 8,
+    "rtf": 0.16525233233416523,
+    "spk_texts": {
+      "0": "表示进一步点燃地老线下的",
+      "1": "借一步点燃地老线"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2930.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2930.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.371629536151886
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.371629536151886,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.04800000041723251,
+    "target_active_ratio": 0.04800000041723251,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.346,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.5,
+    "transcript": "我吃的是几桌",
+    "chars": 6,
+    "rtf": 0.207298958372927,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2942.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2942.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.6049524545669556
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.6049524545669556,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.05666666850447655,
+    "target_active_ratio": 0.05666666850447655,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.329,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.5,
+    "transcript": "五十一分完赛",
+    "chars": 6,
+    "rtf": 0.15285125998563545,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2951.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2951.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.11549277603626251,
+      "1": 0.010260254144668579
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.11549277603626251,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.03533333167433739,
+    "target_active_ratio": 0.057999998331069946,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.606,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "五星妆 土鞋 大面",
+    "chars": 9,
+    "rtf": 0.3650679645768131,
+    "spk_texts": {
+      "0": "五星妆 土鞋 大面",
+      "1": "主線"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2955.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2955.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.2809358537197113,
+      "1": 0.04349977895617485
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.2809358537197113,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.012000000104308128,
+    "target_active_ratio": 0.047333333641290665,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.604,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.5,
+    "transcript": "我看你十年之夜太多了",
+    "chars": 10,
+    "rtf": 0.2770601062599672,
+    "spk_texts": {
+      "0": "我看你十年之夜太多了",
+      "1": "我不是在那裡"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2961.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2961.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.05122002214193344,
+      "1": 0.21186235547065735
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.21186235547065735,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.0273333340883255,
+    "target_active_ratio": 0.06800000369548798,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.607,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "不通会被草变红色",
+    "chars": 8,
+    "rtf": 0.3048806933302376,
+    "spk_texts": {
+      "0": "一杯子",
+      "1": "不通会被草变红色"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2968.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2968.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.13593196868896484,
+      "1": -0.0081072598695755
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.13593196868896484,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.01600000075995922,
+    "target_active_ratio": 0.09000000357627869,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.721,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.3,
+    "transcript": "分别受到免食和清食处理",
+    "chars": 11,
+    "rtf": 0.206059387751988,
+    "spk_texts": {
+      "0": "分別受到免食和清食處理",
+      "1": "分别受到免质和清质处理疲劳"
+    }
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_2999.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_2999.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.29223522543907166
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.29223522543907166,
+    "reject_threshold": 0.0,
+    "stno_target_ratio": 0.04933333396911621,
+    "target_active_ratio": 0.04933333396911621,
+    "rejected": false,
+    "asr_backend": "vanilla",
+    "infer_sec": 0.344,
+    "batch_size": 1,
+    "peak_mem_mib": 2205.5,
+    "transcript": "我以为你来找我",
+    "chars": 7,
+    "rtf": 0.2161792239303109,
+    "spk_texts": null
+  }
+]

@@ -80,9 +80,15 @@ def cer(pred, ref):
     return lev(pred, ref) / len(ref)
 
 
-mv = json.load(open(os.path.join(_HERE, "pocB_multivoice_30.json"), encoding="utf-8"))
-pairs = {p["id"]: p for p in json.load(open(os.path.join(_HERE, "pocB_pairs_30.json"), encoding="utf-8"))}
-argmax_cer = {int(k): v for k, v in json.load(open(os.path.join(_HERE, "pocB_argmax_cer.json"), encoding="utf-8")).items()}
+PREFIX = os.environ.get("DATA_PREFIX", "30")   # "30"(POC B 最严重30条) 或 "deadzone"(全量死区126条)
+_MV = "pocB_multivoice_30.json" if PREFIX == "30" else f"pocB_multivoice_{PREFIX}.json"
+_PAIRS = "pocB_pairs_30.json" if PREFIX == "30" else f"pocB_pairs_{PREFIX}.json"
+_ARG = "pocB_argmax_cer.json" if PREFIX == "30" else f"pocB_argmax_cer_{PREFIX}.json"
+_OUT = "pocB_result.json" if PREFIX == "30" else f"pocB_result_{PREFIX}.json"
+print(f"[data] PREFIX={PREFIX} | mv={_MV} pairs={_PAIRS} arg={_ARG}", flush=True)
+mv = json.load(open(os.path.join(_HERE, _MV), encoding="utf-8"))
+pairs = {p["id"]: p for p in json.load(open(os.path.join(_HERE, _PAIRS), encoding="utf-8"))}
+argmax_cer = {int(k): v for k, v in json.load(open(os.path.join(_HERE, _ARG), encoding="utf-8")).items()}
 
 print(f"[load] Qwen2.5-3B (prompt v2) for {len(mv)} 条 multi-voice", flush=True)
 rej = LLMRejecter(os.environ.get("MODEL_QWEN", "E:/hf_cache/Qwen2.5-3B-Instruct"), "cuda:0")
@@ -141,6 +147,6 @@ print(f"改善 {better} 条 / 恶化 {worse} 条 / 持平 {len(rows)-better-wors
 out = {"n": len(rows), "cer_argmax_mean": round(arg_mean, 4),
        "cer_multivoice_mean": round(mv_mean, 4), "delta": round(mv_mean - arg_mean, 4),
        "modes": dict(modes), "better": better, "worse": worse, "rows": rows}
-with open(os.path.join(_HERE, "pocB_result.json"), "w", encoding="utf-8") as f:
+with open(os.path.join(_HERE, _OUT), "w", encoding="utf-8") as f:
     json.dump(out, f, ensure_ascii=False, indent=2)
-print(f"\n-> pocB_result.json")
+print(f"\n-> {_OUT}")
