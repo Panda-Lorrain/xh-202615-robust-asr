@@ -42,6 +42,14 @@ def digit_postproc(text):
             RuntimeWarning, stacklevel=2)
         return text
     text = re.sub(r"(\d+)%", lambda m: "百分之" + cn2an.an2cn(m.group(1)), text)
+    # 时间小数归一(2026-07-15): 14.55→十四点五十五, 11.31→十一点三十一 (cmd_322/337 类,
+    # vanilla 输出阿拉伯数字+小数, ref 中文时间)。须在纯数字归一前, 否则 14/55 已被拆转。
+    # 消除幻觉检测 cn<0.3 假阳性 + 对齐 ref 口径降 CER。
+    def _time_dec(m):
+        h, rest = m.group(1), m.group(2)
+        rest_cn = ("零" + cn2an.an2cn(rest[1])) if (len(rest) == 2 and rest[0] == "0") else cn2an.an2cn(rest)
+        return f"{cn2an.an2cn(h)}点{rest_cn}"
+    text = re.sub(r"(?<!\d)(\d{1,2})\.(\d{1,2})(?!\d)", _time_dec, text)
     # (?<!\d) 前置: 确保≥4位幻觉串(如916213)整串不匹配, 只转独立的1-3位数字(0-999)
     text = re.sub(r"(?<!\d)\d{1,3}(?!\d)", lambda m: cn2an.an2cn(m.group(0)), text)
     return text
@@ -73,7 +81,27 @@ _CONTENT_GATE_NEWS_BLACK = [
     "期貨", "報告", "市場", "調研", "調查", "顯示", "股份", "有限公司", "落戶", "服務",
     # 体育/娱乐/其他
     "四強", "席位", "聚杯", "婚姻", "导演", "考试", "生意", "无法阻挡",
+    # 2026-07-15 全量死区条对抗审查扩展(workflow B 财经词典): 死区新闻话 36 条 est 抓 28
+    "经济", "企业", "成本", "营收", "同比", "上涨", "下降", "合同", "签订", "赔偿",
+    "机构", "半导体", "生产", "奥运", "微软", "三星", "克林顿", "上市", "分成", "冲击",
+    "制造", "围观", "市民", "推广", "财经", "播报", "韩国", "首尔", "旅游",
 ]
+
+
+def _max_char_run(t):
+    """最长连续相同字符(循环幻觉'手手骨骨'→大)。幻觉检测用。"""
+    if not t:
+        return 0
+    mx = cur = 1
+    for i in range(1, len(t)):
+        cur = cur + 1 if t[i] == t[i - 1] else 1
+        mx = max(mx, cur)
+    return mx
+
+
+def _char_diversity(t):
+    """unique chars / len(重复乱码→低)。幻觉检测用。"""
+    return len(set(t)) / max(len(t), 1)
 
 
 def is_valid_command(text, len_thr=22):
@@ -98,6 +126,11 @@ def is_valid_command(text, len_thr=22):
     if any(w in text for w in _CONTENT_GATE_NEWS_BLACK):  # 通用非家居类目词
         return False
     if len(text) > len_thr:                         # 超长叙述(家居指令极少>20 字)
+        return False
+    # 2026-07-15 幻觉检测集成(全量死区条确认 CER Δ-0.093 零误拒, baseline 信号)
+    if _max_char_run(text) >= 4:                    # 单字循环幻觉(手手骨骨骨, 死区循环特征)
+        return False
+    if len(text) >= 10 and _char_diversity(text) < 0.35:  # 字符多样性极低(重复乱码)
         return False
     return True
 

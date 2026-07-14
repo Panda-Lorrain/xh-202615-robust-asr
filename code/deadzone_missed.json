@@ -1,0 +1,932 @@
+[
+  {
+    "uid": "cmd_64",
+    "text": "去一下國藍跑一下",
+    "ref": "取消勃朗烤箱",
+    "cer": 1.333,
+    "max_run": 1,
+    "len": 8,
+    "cn_ratio": 1.0,
+    "diversity": 0.75
+  },
+  {
+    "uid": "cmd_205",
+    "text": "外面穿着脸",
+    "ref": "关窗帘",
+    "cer": 1.667,
+    "max_run": 1,
+    "len": 5,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_316",
+    "text": "大概是要付款票",
+    "ref": "打开全部空调",
+    "cer": 1.167,
+    "max_run": 1,
+    "len": 7,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2000",
+    "text": "劇必會激壓產業經濟發展空間",
+    "ref": "播放盖世音雄原创音乐",
+    "cer": 1.3,
+    "max_run": 1,
+    "len": 13,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2017",
+    "text": "心碘肚子有什麼",
+    "ref": "空调二十度",
+    "cer": 1.4,
+    "max_run": 1,
+    "len": 7,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2018",
+    "text": "完全不负责任的",
+    "ref": "关掉智控温",
+    "cer": 1.4,
+    "max_run": 1,
+    "len": 7,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2037",
+    "text": "是不是很像",
+    "ref": "风速二十",
+    "cer": 1.25,
+    "max_run": 1,
+    "len": 5,
+    "cn_ratio": 1.0,
+    "diversity": 0.8
+  },
+  {
+    "uid": "cmd_2040",
+    "text": "中文字幕志愿者 李宗盛",
+    "ref": "打开屏幕",
+    "cer": 2.25,
+    "max_run": 1,
+    "len": 11,
+    "cn_ratio": 0.91,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2047",
+    "text": "依然居在日本",
+    "ref": "开到二十度",
+    "cer": 1.2,
+    "max_run": 1,
+    "len": 6,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2057",
+    "text": "全面放开二海",
+    "ref": "减小风量",
+    "cer": 1.5,
+    "max_run": 1,
+    "len": 6,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2064",
+    "text": "这真是一期的更新的",
+    "ref": "把温度调到十九度",
+    "cer": 1.125,
+    "max_run": 1,
+    "len": 9,
+    "cn_ratio": 1.0,
+    "diversity": 0.89
+  },
+  {
+    "uid": "cmd_2069",
+    "text": "爱多女孩的发开半夜",
+    "ref": "播放我爱幼儿园全",
+    "cer": 1.125,
+    "max_run": 1,
+    "len": 9,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2071",
+    "text": "你自己无吗是",
+    "ref": "ECO模式",
+    "cer": 1.2,
+    "max_run": 1,
+    "len": 6,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2075",
+    "text": "出示微信出付的条件吗",
+    "ref": "把空调关上",
+    "cer": 2.0,
+    "max_run": 1,
+    "len": 10,
+    "cn_ratio": 1.0,
+    "diversity": 0.9
+  },
+  {
+    "uid": "cmd_2076",
+    "text": "87.42一系列孔",
+    "ref": "防辐射吃什么合适",
+    "cer": 1.125,
+    "max_run": 1,
+    "len": 9,
+    "cn_ratio": 0.44,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2081",
+    "text": "或销售手机的计划",
+    "ref": "风速调高",
+    "cer": 2.0,
+    "max_run": 1,
+    "len": 8,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2087",
+    "text": "男一说我的要求不算",
+    "ref": "空调调到送风模式",
+    "cer": 1.125,
+    "max_run": 1,
+    "len": 9,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2090",
+    "text": "前一段時間因為正在製造",
+    "ref": "播放童音版唐诗",
+    "cer": 1.571,
+    "max_run": 1,
+    "len": 11,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2115",
+    "text": "會變得進入2015年",
+    "ref": "播放鬼畜洗脑神曲",
+    "cer": 1.25,
+    "max_run": 1,
+    "len": 10,
+    "cn_ratio": 0.6,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2120",
+    "text": "柯林给我们带来了家里的香",
+    "ref": "儿童不能吃什么",
+    "cer": 1.714,
+    "max_run": 1,
+    "len": 12,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2122",
+    "text": "谢谢你们效果会",
+    "ref": "风向调到下边",
+    "cer": 1.167,
+    "max_run": 2,
+    "len": 7,
+    "cn_ratio": 1.0,
+    "diversity": 0.86
+  },
+  {
+    "uid": "cmd_2128",
+    "text": "就是小孩艺人员",
+    "ref": "风小一点",
+    "cer": 1.5,
+    "max_run": 1,
+    "len": 7,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2140",
+    "text": "自己主要图像",
+    "ref": "低速风",
+    "cer": 2.0,
+    "max_run": 1,
+    "len": 6,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2160",
+    "text": "我先回歸 北线空调",
+    "ref": "开下空调",
+    "cer": 1.5,
+    "max_run": 1,
+    "len": 9,
+    "cn_ratio": 0.89,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2183",
+    "text": "因为我们在",
+    "ref": "播放伟人",
+    "cer": 1.25,
+    "max_run": 1,
+    "len": 5,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2186",
+    "text": "与小朋友玩的不一样",
+    "ref": "开启智清洁",
+    "cer": 1.8,
+    "max_run": 1,
+    "len": 9,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2191",
+    "text": "有什麼周會",
+    "ref": "打开冷风",
+    "cer": 1.25,
+    "max_run": 1,
+    "len": 5,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2256",
+    "text": "不能要求退款",
+    "ref": "左右摆动",
+    "cer": 1.5,
+    "max_run": 1,
+    "len": 6,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2275",
+    "text": "越明顯回升",
+    "ref": "风速十",
+    "cer": 1.667,
+    "max_run": 1,
+    "len": 5,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2287",
+    "text": "我倒是一秒",
+    "ref": "关掉睡眠",
+    "cer": 1.25,
+    "max_run": 1,
+    "len": 5,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2302",
+    "text": "也一直有自己的",
+    "ref": "给我放桃花诺",
+    "cer": 1.167,
+    "max_run": 1,
+    "len": 7,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2303",
+    "text": "庆祝祭举军",
+    "ref": "播放专注",
+    "cer": 1.25,
+    "max_run": 1,
+    "len": 5,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2305",
+    "text": "机器人的还是不太多",
+    "ref": "启动制热模式",
+    "cer": 1.5,
+    "max_run": 1,
+    "len": 9,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2327",
+    "text": "我叫你女兒",
+    "ref": "降低温度",
+    "cer": 1.25,
+    "max_run": 1,
+    "len": 5,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2328",
+    "text": "这样出现反谈",
+    "ref": "风向左吹",
+    "cer": 1.5,
+    "max_run": 1,
+    "len": 6,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2333",
+    "text": "輸給美國之後實際上",
+    "ref": "空调二十一度",
+    "cer": 1.5,
+    "max_run": 1,
+    "len": 9,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2334",
+    "text": "方法力的実態",
+    "ref": "风往右吹",
+    "cer": 1.5,
+    "max_run": 1,
+    "len": 6,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2338",
+    "text": "欢迎你评论",
+    "ref": "关闭屏幕",
+    "cer": 1.25,
+    "max_run": 1,
+    "len": 5,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2341",
+    "text": "我送你吃一块",
+    "ref": "往上吹",
+    "cer": 2.0,
+    "max_run": 1,
+    "len": 6,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2370",
+    "text": "到了歷史最高",
+    "ref": "把空调关上",
+    "cer": 1.2,
+    "max_run": 1,
+    "len": 6,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2400",
+    "text": "还求联系给个萨丝的手脚",
+    "ref": "播放正能量纯音乐",
+    "cer": 1.375,
+    "max_run": 1,
+    "len": 11,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2424",
+    "text": "我们就要把你看的",
+    "ref": "打开ECO模式",
+    "cer": 1.143,
+    "max_run": 1,
+    "len": 8,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2427",
+    "text": "你的外國說 13比6",
+    "ref": "吃什么可以补铁",
+    "cer": 1.286,
+    "max_run": 1,
+    "len": 10,
+    "cn_ratio": 0.6,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2444",
+    "text": "可以得到一期的享受",
+    "ref": "科技有意思我想听",
+    "cer": 1.125,
+    "max_run": 1,
+    "len": 9,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2459",
+    "text": "防腐能力牵挂",
+    "ref": "风速调高",
+    "cer": 1.5,
+    "max_run": 1,
+    "len": 6,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2471",
+    "text": "就我们的倾向交易事实",
+    "ref": "开防直吹",
+    "cer": 2.5,
+    "max_run": 1,
+    "len": 10,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2476",
+    "text": "但有一天晚上他們在睡覺",
+    "ref": "播放费烟的民谣",
+    "cer": 1.571,
+    "max_run": 1,
+    "len": 11,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2483",
+    "text": "我這樣吃一大",
+    "ref": "风量最大",
+    "cer": 1.25,
+    "max_run": 1,
+    "len": 6,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2491",
+    "text": "把副作公立给了",
+    "ref": "把空调关闭",
+    "cer": 1.2,
+    "max_run": 1,
+    "len": 7,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2492",
+    "text": "我可以去找你",
+    "ref": "开屏幕",
+    "cer": 2.0,
+    "max_run": 1,
+    "len": 6,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2493",
+    "text": "和项目也不多内和公开",
+    "ref": "科技美学我想听",
+    "cer": 1.429,
+    "max_run": 1,
+    "len": 10,
+    "cn_ratio": 1.0,
+    "diversity": 0.9
+  },
+  {
+    "uid": "cmd_2495",
+    "text": "对于数量风浪的流手而同情",
+    "ref": "播放温妮女巫魔法绘本",
+    "cer": 1.2,
+    "max_run": 1,
+    "len": 12,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2496",
+    "text": "弘扬中国传统武术文化",
+    "ref": "风速调到百分之四十",
+    "cer": 1.111,
+    "max_run": 1,
+    "len": 10,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2503",
+    "text": "最推崇的运动之一",
+    "ref": "把风速调到最大",
+    "cer": 1.143,
+    "max_run": 1,
+    "len": 8,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2527",
+    "text": "可以打算了",
+    "ref": "最大风量",
+    "cer": 1.25,
+    "max_run": 1,
+    "len": 5,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2539",
+    "text": "十四二十五后十八",
+    "ref": "风往右吹",
+    "cer": 2.0,
+    "max_run": 1,
+    "len": 8,
+    "cn_ratio": 1.0,
+    "diversity": 0.75
+  },
+  {
+    "uid": "cmd_2552",
+    "text": "可以吃布粉干",
+    "ref": "开启无风感",
+    "cer": 1.2,
+    "max_run": 1,
+    "len": 6,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2559",
+    "text": "你往西江在全國排",
+    "ref": "护发吃什么好",
+    "cer": 1.333,
+    "max_run": 1,
+    "len": 8,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2577",
+    "text": "把温宿的挑战出现在保单前列",
+    "ref": "把温度调到十七度",
+    "cer": 1.375,
+    "max_run": 1,
+    "len": 13,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2587",
+    "text": "漢州市的中學",
+    "ref": "把空调关上",
+    "cer": 1.2,
+    "max_run": 1,
+    "len": 6,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2589",
+    "text": "不许在家学习他是一个八岁男孩",
+    "ref": "补血推荐吃哪些食物",
+    "cer": 1.556,
+    "max_run": 1,
+    "len": 14,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2590",
+    "text": "储备自己适合",
+    "ref": "风速减小",
+    "cer": 1.5,
+    "max_run": 1,
+    "len": 6,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2603",
+    "text": "看到22投資出現",
+    "ref": "开到二十二度",
+    "cer": 1.167,
+    "max_run": 2,
+    "len": 8,
+    "cn_ratio": 0.75,
+    "diversity": 0.88
+  },
+  {
+    "uid": "cmd_2604",
+    "text": "我可以跟妳",
+    "ref": "关闭屏幕",
+    "cer": 1.25,
+    "max_run": 1,
+    "len": 5,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2619",
+    "text": "所以我们",
+    "ref": "开屏幕",
+    "cer": 1.333,
+    "max_run": 1,
+    "len": 4,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2630",
+    "text": "是他们已经成功走出来",
+    "ref": "开左右风",
+    "cer": 2.5,
+    "max_run": 1,
+    "len": 10,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2637",
+    "text": "就已经进行过一轮教育",
+    "ref": "哺乳期要少吃什么",
+    "cer": 1.25,
+    "max_run": 1,
+    "len": 10,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2640",
+    "text": "你找本 有什么事",
+    "ref": "打开睡眠模式",
+    "cer": 1.167,
+    "max_run": 1,
+    "len": 8,
+    "cn_ratio": 0.88,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2641",
+    "text": "当初就已经开始成为很多",
+    "ref": "打开显示屏",
+    "cer": 2.0,
+    "max_run": 1,
+    "len": 11,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2648",
+    "text": "看起以我玩意的辨迹",
+    "ref": "播放偶像电话亭",
+    "cer": 1.286,
+    "max_run": 1,
+    "len": 9,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2651",
+    "text": "防企会积极调整推翻节奏",
+    "ref": "播放鹅妈妈童谣黄本",
+    "cer": 1.222,
+    "max_run": 1,
+    "len": 11,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2659",
+    "text": "内定间纯手参赛",
+    "ref": "空调十八度",
+    "cer": 1.4,
+    "max_run": 1,
+    "len": 7,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2697",
+    "text": "具備這個指標",
+    "ref": "风大一点",
+    "cer": 1.5,
+    "max_run": 1,
+    "len": 6,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2699",
+    "text": "有3.85个代线",
+    "ref": "播放姚晴曦阅读",
+    "cer": 1.143,
+    "max_run": 1,
+    "len": 8,
+    "cn_ratio": 0.5,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2705",
+    "text": "所以大约590",
+    "ref": "风速调大一点",
+    "cer": 1.167,
+    "max_run": 1,
+    "len": 7,
+    "cn_ratio": 0.57,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2723",
+    "text": "成为大家心中的女生",
+    "ref": "温度十八度",
+    "cer": 1.8,
+    "max_run": 1,
+    "len": 9,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2732",
+    "text": "我们经常会杀到阿非生物",
+    "ref": "播放美国语文第四册",
+    "cer": 1.222,
+    "max_run": 1,
+    "len": 11,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2733",
+    "text": "公共服務中心",
+    "ref": "风速一百",
+    "cer": 1.5,
+    "max_run": 1,
+    "len": 6,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2766",
+    "text": "中国将希望反映",
+    "ref": "播放苦命人",
+    "cer": 1.4,
+    "max_run": 1,
+    "len": 7,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2790",
+    "text": "反正是有趣",
+    "ref": "开下空调",
+    "cer": 1.25,
+    "max_run": 1,
+    "len": 5,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2791",
+    "text": "再度被关注画到",
+    "ref": "开到二十三度",
+    "cer": 1.167,
+    "max_run": 1,
+    "len": 7,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2824",
+    "text": "我好朋友",
+    "ref": "关屏显",
+    "cer": 1.333,
+    "max_run": 1,
+    "len": 4,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2858",
+    "text": "自助及改善需求的",
+    "ref": "风速四十",
+    "cer": 2.0,
+    "max_run": 1,
+    "len": 8,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2865",
+    "text": "我不是在那邊",
+    "ref": "风向右吹",
+    "cer": 1.5,
+    "max_run": 1,
+    "len": 6,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2913",
+    "text": "风之圣寒人物有什么",
+    "ref": "打开ECO模式",
+    "cer": 1.286,
+    "max_run": 1,
+    "len": 9,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2925",
+    "text": "借一步点燃地老线",
+    "ref": "播放青少新概念",
+    "cer": 1.143,
+    "max_run": 1,
+    "len": 8,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2930",
+    "text": "我吃的是几桌",
+    "ref": "开到十九度",
+    "cer": 1.2,
+    "max_run": 1,
+    "len": 6,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2942",
+    "text": "51分完赛",
+    "ref": "开防直吹",
+    "cer": 1.25,
+    "max_run": 1,
+    "len": 5,
+    "cn_ratio": 0.6,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2951",
+    "text": "五星妆 土鞋 大面",
+    "ref": "风速九十",
+    "cer": 1.75,
+    "max_run": 1,
+    "len": 9,
+    "cn_ratio": 0.78,
+    "diversity": 0.89
+  },
+  {
+    "uid": "cmd_2955",
+    "text": "我看你十年之夜太多了",
+    "ref": "把温度调到二十四度",
+    "cer": 1.111,
+    "max_run": 1,
+    "len": 10,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2961",
+    "text": "不通会被草变红色",
+    "ref": "关闭屏幕",
+    "cer": 2.0,
+    "max_run": 1,
+    "len": 8,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2968",
+    "text": "分別受到免食和清食處理",
+    "ref": "吃什么适合慢性疲劳",
+    "cer": 1.222,
+    "max_run": 1,
+    "len": 11,
+    "cn_ratio": 1.0,
+    "diversity": 0.91
+  },
+  {
+    "uid": "cmd_2999",
+    "text": "我以為你來找我",
+    "ref": "风量调小",
+    "cer": 1.75,
+    "max_run": 1,
+    "len": 7,
+    "cn_ratio": 1.0,
+    "diversity": 0.86
+  }
+]

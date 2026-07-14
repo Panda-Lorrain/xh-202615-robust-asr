@@ -1,0 +1,542 @@
+[
+  {
+    "uid": "cmd_125",
+    "text": "EUASR",
+    "ref": "预约下午十四",
+    "cer": 1.0,
+    "max_run": 1,
+    "len": 5,
+    "cn_ratio": 0.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_139",
+    "text": "帮我策划四天去韩国收入的旅游",
+    "ref": "帮我策划四天去韩国首尔的旅游",
+    "cer": 0.143,
+    "max_run": 1,
+    "len": 14,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_226",
+    "text": "然後在上面幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫幫",
+    "ref": "然后那个窗帘邦邦邦邦邦的给关了对然后那个灯光暗了就是",
+    "cer": 7.692,
+    "max_run": 197,
+    "len": 202,
+    "cn_ratio": 1.0,
+    "diversity": 0.03
+  },
+  {
+    "uid": "cmd_241",
+    "text": "真的45000K",
+    "ref": "灯的色温五千K",
+    "cer": 0.857,
+    "max_run": 3,
+    "len": 8,
+    "cn_ratio": 0.25,
+    "diversity": 0.75
+  },
+  {
+    "uid": "cmd_286",
+    "text": "EA 716",
+    "ref": "预约下午四点",
+    "cer": 1.0,
+    "max_run": 1,
+    "len": 6,
+    "cn_ratio": 0.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_322",
+    "text": "14.55",
+    "ref": "十四点五十五",
+    "cer": 1.0,
+    "max_run": 2,
+    "len": 5,
+    "cn_ratio": 0.0,
+    "diversity": 0.8
+  },
+  {
+    "uid": "cmd_329",
+    "text": "打开Foreader",
+    "ref": "打开氛围灯",
+    "cer": 1.6,
+    "max_run": 1,
+    "len": 10,
+    "cn_ratio": 0.2,
+    "diversity": 0.8
+  },
+  {
+    "uid": "cmd_337",
+    "text": "11.31分",
+    "ref": "十一点三十一分",
+    "cer": 0.857,
+    "max_run": 2,
+    "len": 6,
+    "cn_ratio": 0.17,
+    "diversity": 0.67
+  },
+  {
+    "uid": "cmd_2011",
+    "text": "打开左右搜狐",
+    "ref": "打开左右扫风",
+    "cer": 0.333,
+    "max_run": 1,
+    "len": 6,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2032",
+    "text": "引来了大批围观的市民",
+    "ref": "给我放乡村爱情王云",
+    "cer": 1.111,
+    "max_run": 1,
+    "len": 10,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2080",
+    "text": "2011元",
+    "ref": "儿童适合吃什么",
+    "cer": 1.0,
+    "max_run": 2,
+    "len": 5,
+    "cn_ratio": 0.2,
+    "diversity": 0.8
+  },
+  {
+    "uid": "cmd_2099",
+    "text": "优优独播剧场——YoYo Television Series Exclusive",
+    "ref": "开启自动模式",
+    "cer": 6.167,
+    "max_run": 2,
+    "len": 40,
+    "cn_ratio": 0.15,
+    "diversity": 0.55
+  },
+  {
+    "uid": "cmd_2100",
+    "text": "風速風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風風",
+    "ref": "风速调到百分之三十",
+    "cer": 22.0,
+    "max_run": 198,
+    "len": 200,
+    "cn_ratio": 1.0,
+    "diversity": 0.01
+  },
+  {
+    "uid": "cmd_2151",
+    "text": "也弱化了三星的优势",
+    "ref": "开到十八度",
+    "cer": 1.8,
+    "max_run": 1,
+    "len": 9,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2152",
+    "text": "飞机改进改型和市场推广",
+    "ref": "开启除湿模式",
+    "cer": 1.833,
+    "max_run": 1,
+    "len": 11,
+    "cn_ratio": 1.0,
+    "diversity": 0.91
+  },
+  {
+    "uid": "cmd_2162",
+    "text": "我以为你不信心吗?我以为你不信心吗?我以为你不信心吗?",
+    "ref": "便秘不推荐吃什么食物",
+    "cer": 2.6,
+    "max_run": 1,
+    "len": 27,
+    "cn_ratio": 0.89,
+    "diversity": 0.33
+  },
+  {
+    "uid": "cmd_2200",
+    "text": "企业的成本约束",
+    "ref": "关闭显示屏",
+    "cer": 1.4,
+    "max_run": 1,
+    "len": 7,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2265",
+    "text": "口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐口吐",
+    "ref": "把风速调到最大",
+    "cer": 19.143,
+    "max_run": 1,
+    "len": 134,
+    "cn_ratio": 0.99,
+    "diversity": 0.02
+  },
+  {
+    "uid": "cmd_2310",
+    "text": "微软来自 Windows 的营收和",
+    "ref": "关闭节能模式",
+    "cer": 2.5,
+    "max_run": 1,
+    "len": 17,
+    "cn_ratio": 0.47,
+    "diversity": 0.94
+  },
+  {
+    "uid": "cmd_2355",
+    "text": "基金的重视无法规大陆",
+    "ref": "播放恐龙大陆",
+    "cer": 1.333,
+    "max_run": 1,
+    "len": 10,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2364",
+    "text": "给我讲财经大事件",
+    "ref": "给我讲财经大事件",
+    "cer": 0.0,
+    "max_run": 1,
+    "len": 8,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2380",
+    "text": "我们有重复的使命搜狐娱乐性",
+    "ref": "播放原声大碟欢乐好声音",
+    "cer": 1.182,
+    "max_run": 1,
+    "len": 13,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2431",
+    "text": "A-A-T-R",
+    "ref": "打开ECO模式",
+    "cer": 1.0,
+    "max_run": 1,
+    "len": 7,
+    "cn_ratio": 0.0,
+    "diversity": 0.57
+  },
+  {
+    "uid": "cmd_2443",
+    "text": "180匹",
+    "ref": "开到十八度",
+    "cer": 1.0,
+    "max_run": 1,
+    "len": 4,
+    "cn_ratio": 0.25,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2482",
+    "text": "面积同比上涨45%",
+    "ref": "腹泻适宜吃什么",
+    "cer": 1.286,
+    "max_run": 1,
+    "len": 9,
+    "cn_ratio": 0.67,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2528",
+    "text": "订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅订阅",
+    "ref": "风向调到左边",
+    "cer": 16.667,
+    "max_run": 1,
+    "len": 100,
+    "cn_ratio": 1.0,
+    "diversity": 0.02
+  },
+  {
+    "uid": "cmd_2531",
+    "text": "智慧建策家居展会办得更好",
+    "ref": "播放磨剑少年",
+    "cer": 2.0,
+    "max_run": 1,
+    "len": 12,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2545",
+    "text": "是2.1",
+    "ref": "开到十九度",
+    "cer": 1.0,
+    "max_run": 1,
+    "len": 4,
+    "cn_ratio": 0.25,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2556",
+    "text": "递交了上市后首分成鸡蛋",
+    "ref": "讲个名人故事吧",
+    "cer": 1.571,
+    "max_run": 1,
+    "len": 11,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2560",
+    "text": "5 4 3 7",
+    "ref": "播放我爱幼儿园全",
+    "cer": 1.0,
+    "max_run": 1,
+    "len": 7,
+    "cn_ratio": 0.0,
+    "diversity": 0.71
+  },
+  {
+    "uid": "cmd_2580",
+    "text": "KFJF",
+    "ref": "调到除湿模式",
+    "cer": 1.0,
+    "max_run": 1,
+    "len": 4,
+    "cn_ratio": 0.0,
+    "diversity": 0.75
+  },
+  {
+    "uid": "cmd_2581",
+    "text": "916213",
+    "ref": "温度二十五度",
+    "cer": 1.0,
+    "max_run": 1,
+    "len": 6,
+    "cn_ratio": 0.0,
+    "diversity": 0.83
+  },
+  {
+    "uid": "cmd_2602",
+    "text": "开发投资3亿元",
+    "ref": "播放小飞鱼二",
+    "cer": 1.167,
+    "max_run": 1,
+    "len": 7,
+    "cn_ratio": 0.86,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2607",
+    "text": "76524369",
+    "ref": "调到送风模式",
+    "cer": 1.333,
+    "max_run": 1,
+    "len": 8,
+    "cn_ratio": 0.0,
+    "diversity": 0.88
+  },
+  {
+    "uid": "cmd_2629",
+    "text": "13107",
+    "ref": "便秘适宜吃什么",
+    "cer": 1.0,
+    "max_run": 1,
+    "len": 5,
+    "cn_ratio": 0.0,
+    "diversity": 0.8
+  },
+  {
+    "uid": "cmd_2631",
+    "text": "优优独播剧场——YoYo Television Series Exclusive",
+    "ref": "开启ECO",
+    "cer": 7.0,
+    "max_run": 2,
+    "len": 40,
+    "cn_ratio": 0.15,
+    "diversity": 0.55
+  },
+  {
+    "uid": "cmd_2632",
+    "text": "不会毕日行业增长",
+    "ref": "关闭省电模式",
+    "cer": 1.333,
+    "max_run": 1,
+    "len": 8,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2639",
+    "text": "这些机构可能面临法律风险",
+    "ref": "吃什么适合慢性疲劳",
+    "cer": 1.333,
+    "max_run": 1,
+    "len": 12,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2691",
+    "text": "五号自宅的奥运会",
+    "ref": "护发吃什么好",
+    "cer": 1.333,
+    "max_run": 1,
+    "len": 8,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2706",
+    "text": "8000",
+    "ref": "把温度调到二十九度",
+    "cer": 1.0,
+    "max_run": 3,
+    "len": 4,
+    "cn_ratio": 0.0,
+    "diversity": 0.5
+  },
+  {
+    "uid": "cmd_2721",
+    "text": "让你的散户胀压更高",
+    "ref": "播放姚晴曦阅读",
+    "cer": 1.286,
+    "max_run": 1,
+    "len": 9,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2730",
+    "text": "公募基金管理人可以参与投资",
+    "ref": "播放育儿早教纯干货分享",
+    "cer": 1.182,
+    "max_run": 1,
+    "len": 13,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2734",
+    "text": "4,692",
+    "ref": "开机空调",
+    "cer": 1.25,
+    "max_run": 1,
+    "len": 5,
+    "cn_ratio": 0.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2752",
+    "text": "下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 ",
+    "ref": "关一下空调",
+    "cer": 19.8,
+    "max_run": 1,
+    "len": 199,
+    "cn_ratio": 0.5,
+    "diversity": 0.01
+  },
+  {
+    "uid": "cmd_2765",
+    "text": "到60%",
+    "ref": "风速调到百分之六十",
+    "cer": 0.889,
+    "max_run": 1,
+    "len": 4,
+    "cn_ratio": 0.25,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2788",
+    "text": "手手骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨骨",
+    "ref": "关掉空调",
+    "cer": 25.25,
+    "max_run": 99,
+    "len": 101,
+    "cn_ratio": 1.0,
+    "diversity": 0.02
+  },
+  {
+    "uid": "cmd_2812",
+    "text": "同比增速放缓",
+    "ref": "高血糖吃什么有好处",
+    "cer": 1.0,
+    "max_run": 1,
+    "len": 6,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2817",
+    "text": "3112833",
+    "ref": "风速调到百分之四十",
+    "cer": 1.0,
+    "max_run": 2,
+    "len": 7,
+    "cn_ratio": 0.0,
+    "diversity": 0.57
+  },
+  {
+    "uid": "cmd_2821",
+    "text": "给我讲财经大事件",
+    "ref": "给我讲财经大事件",
+    "cer": 0.0,
+    "max_run": 1,
+    "len": 8,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2823",
+    "text": "生产全系列半导体新式产品的企业",
+    "ref": "黑发哪些食物需要忌口",
+    "cer": 1.5,
+    "max_run": 1,
+    "len": 15,
+    "cn_ratio": 1.0,
+    "diversity": 0.93
+  },
+  {
+    "uid": "cmd_2830",
+    "text": "232323",
+    "ref": "风速八十",
+    "cer": 1.5,
+    "max_run": 1,
+    "len": 6,
+    "cn_ratio": 0.0,
+    "diversity": 0.33
+  },
+  {
+    "uid": "cmd_2837",
+    "text": "彩电数上进行冲击下",
+    "ref": "风速加大",
+    "cer": 2.25,
+    "max_run": 1,
+    "len": 9,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2888",
+    "text": "規定承担赔偿责任",
+    "ref": "出风口设置最左",
+    "cer": 1.143,
+    "max_run": 1,
+    "len": 8,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  },
+  {
+    "uid": "cmd_2921",
+    "text": "签订的释发合同",
+    "ref": "播放白玉京",
+    "cer": 1.4,
+    "max_run": 1,
+    "len": 7,
+    "cn_ratio": 1.0,
+    "diversity": 1.0
+  }
+]
