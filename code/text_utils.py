@@ -118,6 +118,10 @@ def is_valid_command(text, len_thr=22):
     """
     if not text or not text.strip():
         return False
+    # 去标点(对齐官方 normalize, 避免 qwen 标点"。"",""致 len>len_thr 误判超长; vanilla 无标点 no-op)
+    text = re.sub(r"[^\w一-鿿]", "", text)
+    if not text:
+        return False
     nch = sum(1 for c in text if "一" <= c <= "鿿")
     if nch == 0:                                    # 纯非中文(ok/tooling, 家居指令无此情况)
         return False
