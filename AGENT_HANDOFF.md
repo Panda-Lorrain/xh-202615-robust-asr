@@ -1,12 +1,45 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
-> **交接时间**：2026-07-14（**enrollment 污染诊断 + 架构转向"多声纹→LLM 路由" + 标注交接文档**：纯诊断+文档 session，**未改代码、未 commit**。三件事：①诊断 demo/主线为何输出非家居指令（demo 只有声纹 sim 单闸，没接 LLM/content_gate）；②用户听 cmd_2081 坐实 enrollment(kws) 被污染→argmax 选错 target，全量统计主战场是多 speaker 条(811/失败 67%/占失败 80%)；③用户拍板新架构 = enrollment 多声纹→recognition 多路转写→LLM 挑家居指令段（绕 argmax 选错，复用 llm_reject），**唤醒词定位已否**（kws_txt 提交拿不到）。产出 `docs/标注交接_enrollment污染与target选错_2026-07-14.md` + memory `multi-voice-llm-routing-architecture`）。
+> **交接时间**：2026-07-15（**标注规范v2工具落地 + 官方CER脚本存档核对 + 当前算分**：改代码+commit+push。三件事：①标注v2工具实现（`build_annotator_pack_v2.py` 失败归因 A-X/B/C/D + enrollment污染诊断 + qwen后端 + 全量浏览 + CER=0隐藏，+ `compare_vs_gold.py`/`map_gold_to_v2.py`）；②用户贴主办方CER参考脚本原文 → 存档 `eval_metrics_official_ref.py` + 用官方原文重算 overall 0.3436 / 逐条 1350/1350 一致 + 修 `_norm_asr` 书名号显示 bug（官方口径书名号不扣分）；③当前分 qwen+thr0.27：CER腿 16.26 + RR腿 36.20 = 52.46/80 硬数字，效率待 L20 实测。详见【2026-07-15 最新】段）。
 > **下个 agent 读序**：本文件【2026-07-14 最新】段（↓）→ `docs/标注交接_enrollment污染与target选错_2026-07-14.md`（标注 Agent 直接用）→ CLAUDE.md → 关键 memory（**multi-voice-llm-routing-architecture** / cer-breakthrough-candidates / multi-annotator-dispatch / spk-oracle-poc / content-gate-decision / official-scoring-spec / dataset-split-spec / reproducibility-hardening / mimo-asr-backend-potential / unified-thr-decision / h3-dicow-conditioning-backfire-vanilla / baodi-config-no-llm / submit-script-verification / lessons-pitfalls）→ REPRO_SETUP.md
-> **当前 git**：`master` @ `859f87e`（**未变，本 session 仅文档**）。2026-07-14 改动：`docs/标注交接_enrollment污染与target选错_2026-07-14.md`（新建+更新到新架构）+ memory 新增 `multi-voice-llm-routing-architecture.md`。⚠️ 上一 session(2026-07-11) 5 commit 已 push origin。下个 agent 先 `git status` 核对。
+> **当前 git**：`master`，本 session commit「标注规范v2工具落地 + 官方CER脚本存档核对」已 push（见 `git log -1`）。改动：`code/build_annotator_pack_v2.py`(新) + `code/eval_metrics_official_ref.py`(新,官方脚本存档) + `code/compare_vs_gold.py`+`code/map_gold_to_v2.py`(新) + `code/recompute_official_cer.json`(重算微调) + `AGENT_HANDOFF.md`。⚠️ `code/annot_pack/` 被 gitignore（标注HTML/音频不入库，仅本地）。下个 agent 先 `git status` 核对。
 
 ---
 
-## 【2026-07-14 最新】enrollment 污染诊断 + 架构转向多声纹 LLM 路由 + 标注交接文档
+## 【2026-07-15 最新】标注规范v2工具落地 + 官方CER脚本存档核对 + 当前算分
+
+### 本次 session 做了什么（改代码 + commit + push）
+
+**A. 标注规范 v2 工具落地**（实现 2026-07-14 设计的 v2 三层标注；`annot_pack/` 被 gitignore 不入库）：
+- `build_annotator_pack_v2.py`（新）：生成标注 HTML，`--asr-backend {vanilla,qwen}` + `--range {dead_multi,all}`。失败归因（A-X选错target / B音频烂 / C解码崩程序判 / D无难点）+ enrollment污染诊断 + target_active_ratio<0.1警告 + qwen后端（比赛主线）+ 全量浏览（1084条+快捷跳转）+ CER=0已解决默认隐藏 + 档/cer/转写同backend一致。
+- `compare_vs_gold.py` + `map_gold_to_v2.py`（新）：金标准对比/映射工具。
+- 产物（本地）：`标注_v2_qwen.html`(101死区发包) / `标注_v2_qwen_all.html`(1084浏览) / `calibration_samples_v2_qwen.csv`(26金标准)。
+
+**B. 官方 CER 脚本存档 + 核对**（用户贴主办方原文）：
+- `eval_metrics_official_ref.py`（新）：主办方 2026-07-08 参考脚本**原文存档**（原封不动+来源注释+核对结果），作 `eval_metrics.py` 对照基准，勿改实现。
+- 用官方原文重算 1350 条：overall **0.3436**，逐条 vs poc json qwen_cer **1350/1350 一致 0 差异** → 本仓库所有 CER 数字均出官方口径，依据链闭环到原文实体。
+- **书名号不扣分铁证**：官方 `normalize_text` 去 Unicode P* 标点 → 书名号《》(Ps/Pe)被丢；官方自带测试场景1（`美 的 空调，真 省电！！！` vs `美的空调真省电` 断言 CER=0）自证标点不计入。
+- 修 `_norm_asr` 显示 bug：枚举正则 `[，。！？...]` 漏《》→ 改用官方 `normalize_text`（去所有 P*），标注界面书名号清零。
+
+**C. 当前算分**（`qwen_official_cer_workpoints.json` 已汇总，qwen+thr0.27 提交口径）：
+- CER腿40 = **16.26**（含拒0.5934）/ RR腿40 = **36.20**（thr0.27, 90.51%）/ 效率腿20 = **待L20实测**
+- **CER+RR = 52.46/80 硬数字**，加效率估 ~62-72 分。
+- ⚠️ 提交用**含拒 0.5934**（CER腿16.26），非 transcribe 0.3436（诊断上限，评委按含拒复算会穿帮）。vs vanilla：qwen CER腿 +4.29。
+
+### 下个 agent 待办（优先级）
+1. 🔴 **L20效率实测**（唯一可搏的20分）：租 AutoDL L40 对齐官方 L20 测 RTF+内存。本机 4060 qwen RTF 0.289，L20 会更快。
+2. 🟡 **标注回收**：annot_pack 发江/罗 v2 重标（v1 的 50 条作废），回收后 compare_annotations 对比（当前为 v1 列结构，需改 v2）。
+3. 🟡 **w1/w2 权重**：向主办方确认排名公式权重（RR-heavy→thr 上移）；效率分映射口径（RTF/内存→0-10分）。
+4. ⚠️ CER 死区 112 条是 A-X 切错 target 物理极限，qwen/vanilla 都救不了 → CER 腿 16.26 近天花板，别在 CER 再投入，转向效率/决赛答辩。
+
+### 关键认知（本次坐实）
+- 官方 CER 去所有标点+空白 → 任何格式美化（书名号/逗号/繁简）对提分=0，杠杆只在"转对字"。
+- 去标点归一必须用 `unicodedata.category(ch).startswith("P")`，禁枚举正则白名单（必漏字符）。
+- 详见 memory `annotation-spec-v2`（_norm_asr 书名号修复）+ `official-scoring-spec`（官方脚本存档核对，本次均更新）。
+
+---
+
+## 【2026-07-14】enrollment 污染诊断 + 架构转向多声纹 LLM 路由 + 标注交接文档
 
 ### 本次 session 做了什么（纯诊断 + 文档，**未改代码、未 commit**）
 
