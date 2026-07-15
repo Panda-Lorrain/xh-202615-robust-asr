@@ -19,9 +19,20 @@ from text_utils import is_valid_command  # content_gate(2026-07-08): 转写内�
 
 HERE = os.path.dirname(os.path.abspath(__file__))      # code/
 ROOT = os.path.dirname(HERE)                            # 项目根
-PY_MAIN = os.path.join(HERE, ".venv", "Scripts", "python.exe")
-PY_SE   = os.path.join(HERE, ".venv_se", "Scripts", "python.exe")
-PY_LLM  = os.path.join(ROOT, ".venv_llm", "Scripts", "python.exe")
+
+
+def _venv_python(venv_dir):
+    """跨平台 venv python: Windows <venv>/Scripts/python.exe / Linux <venv>/bin/python。
+
+    路径硬编码曾是 Linux(官方 L20 / AutoDL L40)阻塞——平台检测 + env override
+    (PY_MAIN/PY_SE/PY_LLM)修复, Windows 行为不变(os.name=='nt' 仍走原 Scripts/python.exe)。"""
+    return (os.path.join(venv_dir, "Scripts", "python.exe") if os.name == "nt"
+            else os.path.join(venv_dir, "bin", "python"))
+
+
+PY_MAIN = os.environ.get("PY_MAIN") or _venv_python(os.path.join(HERE, ".venv"))
+PY_SE   = os.environ.get("PY_SE")   or _venv_python(os.path.join(HERE, ".venv_se"))
+PY_LLM  = os.environ.get("PY_LLM")  or _venv_python(os.path.join(ROOT, ".venv_llm"))
 
 
 def utt_id_from_path(p):
@@ -220,6 +231,9 @@ def main():
         )
     if use_llm and not os.path.exists(PY_LLM):
         ap.error(f"开 LLM 但 {PY_LLM} 不存在（.venv_llm 未部署）；保底请加 --no-llm。")
+    if use_se and not os.path.exists(PY_SE):
+        ap.error(f"开 SE 但 {PY_SE} 不存在（.venv_se 未部署, SE 阶段会 FileNotFoundError 崩, 2026-07-15 审查 critical；"
+                 f"部署见 docs/L20效率实测_runbook §3 或 REPRO_SETUP.md, 或关 SE 加 --no-se）。")
     work_dir = args.work_dir or os.path.join(args.out_dir, "_work")
     os.makedirs(args.out_dir, exist_ok=True)
     os.makedirs(work_dir, exist_ok=True)

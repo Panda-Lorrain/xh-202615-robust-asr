@@ -8,11 +8,16 @@
 import os, json, glob, argparse, time
 import torch
 
+# 跨平台默认模型路径(原 E:/ 硬编码在 Linux 阻塞): env MODEL_QWEN3_ASR 可覆盖
+_DEFAULT_QWEN3 = (r"E:/hf_cache/Qwen3-ASR-1.7B" if os.name == "nt"
+                  else "/root/hf_cache/Qwen3-ASR-1.7B")
+
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--slice-dir", required=True, help="target 切片 wav 目录(uid 命名)")
-    ap.add_argument("--model", default="E:/hf_cache/Qwen3-ASR-1.7B")
+    ap.add_argument("--model", default=os.environ.get("MODEL_QWEN3_ASR", _DEFAULT_QWEN3),
+                    help="Qwen3-ASR 权重目录(env MODEL_QWEN3_ASR 覆盖)")
     ap.add_argument("--out", required=True, help="uid→text json 输出")
     ap.add_argument("--limit", type=int, default=0, help="只转前 N 条(0=全部)")
     ap.add_argument("--seed", type=int, default=42, help="随机种子(可复现性, 透传自 enroll_infer)")

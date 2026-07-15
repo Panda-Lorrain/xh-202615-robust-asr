@@ -20,8 +20,15 @@
 #   code/.venv/Scripts/python.exe code/eval_datasetA.py code/out_<set>_baodi/result.json code/<set>_pairs_datasetA.json
 set -euo pipefail
 cd "$(dirname "$0")/.." || { echo "cd 失败"; exit 1; }
-source code/setenv.sh
-export HF_HUB_OFFLINE=1
+# 跨平台 setenv + 主 venv python(原硬编码 Win .venv/Scripts/python.exe, Linux/L20 阻塞)
+if [[ "${OSTYPE:-}" == msys* || "${OSTYPE:-}" == cygwin* || "${OS:-}" == "Windows_NT" ]]; then
+  source code/setenv.sh
+  PY="${PY:-code/.venv/Scripts/python.exe}"
+else
+  source code/setenv_linux.sh
+  PY="${PY:-code/.venv/bin/python}"
+fi
+export HF_HUB_OFFLINE=${HF_HUB_OFFLINE:-1}  # 默认离线(本地已下权重); 联网下权重前 HF_HUB_OFFLINE=0
 
 SET="${1:?用法: run_baodi.sh pos|neg|B [thr]}"
 # B 集(混合)用统一 thr 默认 0.27(T27 推荐); pos/neg(A 集分 thr)默认 0.4
@@ -67,6 +74,6 @@ export BAODI_OK=1
 GATE_FLAG=""
 if [[ "${BAODI_GATE:-0}" == "1" ]]; then GATE_FLAG="--content-gate"; fi
 echo "[baodi] backend=$BACKEND 关LLM(--no-llm) + thr=$THR + strategy=sim_only + content_gate=${BAODI_GATE:-0}  → $OUT  (vanilla 主线 / BAODI_BACKEND=dicow 切回)"
-exec code/.venv/Scripts/python.exe code/submit_infer.py \
+exec "$PY" code/submit_infer.py \
   --pairs "$PAIRS" --out-dir "$OUT" --no-llm --sim-thr "$THR" --strategy sim_only \
   --asr-backend "$BACKEND" $GATE_FLAG

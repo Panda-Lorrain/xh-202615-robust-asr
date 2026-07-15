@@ -134,7 +134,11 @@ def main():
         ap.error("--pairs 与 --enrollment 至少填一个")
 
     if args.asr_backend in ("qwen", "firered") and not getattr(args, "save_target_audio", None):
-        args.save_target_audio = f"E:/target_slices_{args.asr_backend}"
+        # 跨平台默认切片目录 + env SLICE_DIR 覆盖。Win 保持原 E:/target_slices_<be>(本机已有切片, 行为不变),
+        # Linux 用 code/_target_slices_<be>(项目内相对, 无 E: 盘)。
+        _default_slices = (f"E:/target_slices_{args.asr_backend}" if os.name == "nt"
+                           else os.path.join(_HERE, f"_target_slices_{args.asr_backend}"))
+        args.save_target_audio = os.environ.get("SLICE_DIR", _default_slices)
         print(f"[{args.asr_backend}] 自动设 --save-target-audio {args.save_target_audio}")
     device = torch.device(args.device if torch.cuda.is_available() else "cpu")
     dtype = torch.float16
@@ -388,14 +392,17 @@ def main():
     if args.asr_backend in ("qwen", "firered"):
         # 批量切片转写(独立 venv 隔离), 填 transcript + 提交归一(与 vanilla SSOT 一致)
         import subprocess
-        _backend_cfg = {
-            "qwen": (r"E:/midea_target_asr/code/.venv_qwen/Scripts/python.exe", "qwen_asr_backend.py"),
-            "firered": (r"E:/midea_target_asr/code/.venv_firered/Scripts/python.exe", "firered_asr_backend.py"),
-        }
-        _be_py, _be_script = _backend_cfg[args.asr_backend]
+        # 跨平台 *_asr_backend venv python: 原 E:/.../Scripts/python.exe 硬编码在 Linux 阻塞。
+        # 平台检测(Win Scripts/python.exe / Linux bin/python) + env override(PY_QWEN/PY_FIRERED)。
+        _be_script = {"qwen": "qwen_asr_backend.py", "firered": "firered_asr_backend.py"}[args.asr_backend]
+        _env_key = {"qwen": "PY_QWEN", "firered": "PY_FIRERED"}[args.asr_backend]
+        _be_venv = os.path.join(_HERE, f".venv_{args.asr_backend}")
+        _be_py = os.environ.get(_env_key) or (
+            os.path.join(_be_venv, "Scripts", "python.exe") if os.name == "nt"
+            else os.path.join(_be_venv, "bin", "python"))
         uid2text_path = os.path.join(args.save_target_audio, "_uid2text.json")
-        _be_script_full = os.path.join(os.path.dirname(os.path.abspath(__file__)), _be_script)
-        print(f"\n[{args.asr_backend}] 批量转写切片 {args.save_target_audio} ...")
+        _be_script_full = os.path.join(_HERE, _be_script)
+        print(f"\n[{args.asr_backend}] 批量转写切片 {args.save_target_audio} (py={_be_py}) ...")
         subprocess.check_call([_be_py, _be_script_full, "--slice-dir", args.save_target_audio,
                                "--out", uid2text_path, "--seed", str(args.seed)])
         uid2text = json.load(open(uid2text_path, encoding="utf-8"))

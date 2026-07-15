@@ -10,11 +10,16 @@ B1 横评: 复用 enroll_infer 切的 E:/target_slices_full/(与 Qwen3-ASR 同�
 import os, sys, json, glob, argparse, time, torch
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "FireRedASR"))
 
+# 跨平台默认模型路径(原 E:/ 硬编码在 Linux 阻塞): env MODEL_FIRERED 可覆盖
+_DEFAULT_FIRERED = (r"E:/hf_cache/FireRedASR-AED-L" if os.name == "nt"
+                    else "/root/hf_cache/FireRedASR-AED-L")
+
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--slice-dir", required=True, help="target 切片 wav 目录(uid 命名)")
-    ap.add_argument("--model", default="E:/hf_cache/FireRedASR-AED-L")
+    ap.add_argument("--model", default=os.environ.get("MODEL_FIRERED", _DEFAULT_FIRERED),
+                    help="FireRedASR-AED-L 权重目录(env MODEL_FIRERED 覆盖)")
     ap.add_argument("--out", required=True, help="uid→text json 输出")
     ap.add_argument("--limit", type=int, default=0, help="只转前 N 条(0=全部)")
     ap.add_argument("--seed", type=int, default=42, help="随机种子(可复现性)")

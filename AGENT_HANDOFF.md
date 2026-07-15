@@ -4,6 +4,41 @@
 > **下个 agent 读序**：本文件【2026-07-14 最新】段（↓）→ `docs/标注交接_enrollment污染与target选错_2026-07-14.md`（标注 Agent 直接用）→ CLAUDE.md → 关键 memory（**multi-voice-llm-routing-architecture** / cer-breakthrough-candidates / multi-annotator-dispatch / spk-oracle-poc / content-gate-decision / official-scoring-spec / dataset-split-spec / reproducibility-hardening / mimo-asr-backend-potential / unified-thr-decision / h3-dicow-conditioning-backfire-vanilla / baodi-config-no-llm / submit-script-verification / lessons-pitfalls）→ REPRO_SETUP.md
 > **当前 git**：`master`，本 session commit「标注规范v2工具落地 + 官方CER脚本存档核对」已 push（见 `git log -1`）。改动：`code/build_annotator_pack_v2.py`(新) + `code/eval_metrics_official_ref.py`(新,官方脚本存档) + `code/compare_vs_gold.py`+`code/map_gold_to_v2.py`(新) + `code/recompute_official_cer.json`(重算微调) + `AGENT_HANDOFF.md`。⚠️ `code/annot_pack/` 被 gitignore（标注HTML/音频不入库，仅本地）。下个 agent 先 `git status` 核对。
 
+> **2026-07-16 续 session**：L20 效率腿准备(跨平台改造 8 处 + `efficiency_leg_calc.py` + `docs/L20效率实测_runbook_2026-07-15.md` + `setenv_linux.sh` + pyarrow/PY_SE 守卫) **本地未 commit/push**，`git status` 应见 6 改 + 3 新。详见下【2026-07-16 最新】段。
+
+---
+
+## 【2026-07-16 最新】L20 效率腿实测准备就绪(跨平台 Linux-ready + runbook + 换算脚本)
+
+> 效率腿(20分)是当前**唯一可搏的剩余分**(CER腿16.26/RR腿36.20近天花板)。官方 L20-46G batch=1 测 RTF+显存; 本机仅 4060, 须租 AutoDL L40(≈L20)实测。本次准备全部就绪, 8-agent 对抗审查过, **本地未 commit/push**(下个 agent 决定)。
+
+### 做了什么(跨平台改造 + runbook + 换算脚本, 8-agent 审查修 6 finding)
+
+**A. 跨平台路径改造(前置阻塞, 8 处)** — 提交链路原全是 Windows 硬编码(E:/ + Scripts/python.exe), Linux 跑不通。平台检测(os.name/OSTYPE) + env override, **Win 冒烟不破**:
+- `submit_infer.py` PY_MAIN/PY_SE/PY_LLM · `enroll_infer.py` SLICE_DIR(Win 仍 E:/target_slices_\<be\> 不变)+ qwen/firered venv(PY_QWEN/PY_FIRERED) · `qwen_asr_backend.py` MODEL_QWEN3_ASR · `firered_asr_backend.py` MODEL_FIRERED · `se_denoise.py` DF3 路径 · `run_baodi.sh` source+PY(OSTYPE 分支) · **`setenv_linux.sh`(新, Linux 部署 env)**
+- vanilla/dicow/diar 模型已走 `resolve_model`(env override), 本就跨平台
+
+**B. `efficiency_leg_calc.py`(新)** — timing.json+result.json → 效率腿(20)分数区间。5 时间映射×4 内存映射, 双 RTF 口径。已用真实 vanilla 全量 timing 测通。
+
+**C. `docs/L20效率实测_runbook_2026-07-15.md`** — L40 部署(3 venv: .venv/.venv_se/.venv_qwen + DiCoW submodule + 模型)+ 计时+换算+区间估算。结论: vanilla 4060 overall_rtf **0.224(实测含SE)** → L20 外推 ~0.06-0.10, **效率腿预计 18-20/20**。合计初评 **CER16.26+RR36.20+效率18-20 ≈ 70.5-72.5/100**。
+
+**D. 8-agent 对抗审查(539K tok)修 4 confirmed + 2 medium**:
+- 🔴 **SE 阶段 L40 崩**(critical): run_baodi 不传 --no-se + runbook 漏 .venv_se + PY_SE 无守卫 → 修: runbook §3.3 补 `.venv_se`(df 包) + submit_infer 加 PY_SE 守卫。**保 SE 开**(本机基线含SE, 关则不可比; --no-se 是单独 A/B 项)
+- 🔴 **pyarrow 未声明**(critical→high): enroll_infer:38 import, requirements 漏(本机 datasets 泄漏) → 修: `pyarrow==24.0.0`
+- 🟡 **qwen "0.289" 口径错**(medium): 实为"转写 0.289 秒/条(仅转写)"非 RTF, §6.1/6.2 自相矛盾 → 修: runbook 澄清, qwen 真实 overall_rtf "待 L40 实测", **答辩勿引 0.289**
+- 🟡 SLICE_DIR Win 跨平台(Win 不变) + calc 脚本错误信息
+
+### 关键认知(本次坐实)
+- **timing 双口径**: `overall_rtf`=总wall/总audio(端到端含SE+切timeline+ASR转写+加载摊薄, **主报告值**) vs `duration_infer_rtf`=sum(infer_sec)/audio(纯推理, **qwen 漏 ASR 转写低估**)。
+- **qwen 真实 overall_rtf 本机从未实测**(无 out_pos_qwen_full/timing.json), "0.289" 是 poc_qwen_asr.py 转写秒/条, 待 L40 实测。
+- **SE 占 vanilla RTF 28%**(phases se 222s/783s), --no-se 可砍(需验证 CER 不退化)。
+
+### 下个 agent 待办
+1. 🔴 **租 AutoDL L40 跑全量 qwen**(按 runbook §3-5): `BAODI_BACKEND=qwen bash code/run_baodi.sh pos/neg 0.27` → timing.json overall_rtf + result.json peak_mem → `efficiency_leg_calc.py` 换算效率腿真实分数。
+2. 🟡 **--no-se A/B**(效率优化): 验证关 SE 不损 CER/RR → 砍 28% RTF。
+3. 🟡 **push 本次 commit**(本地超前未 push)。
+4. (原待办) 标注回收 / w1w2 问主办方。
+
 ---
 
 ## 【2026-07-15 最新】标注规范v2工具落地 + 官方CER脚本存档核对 + 当前算分
