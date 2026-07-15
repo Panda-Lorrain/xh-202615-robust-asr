@@ -72,7 +72,9 @@ def _norm_asr(text):
 
 
 def _tier(cer):
-    """按 CER 分档(与 vanilla csv 原档定义一致)。qwen 版用 qwen_cer 重分,避免档(vanilla)与cer(qwen)打架。"""
+    """按 CER 分档。qwen 版用 qwen_cer 重分,避免档(vanilla)与cer(qwen)打架。
+    ⚠️ 2026-07-16: 拆出 5_满分CER=0 档——原 c<=0.1 一律归轻微,致 417 条 qwen 已转对的满分
+    样本全挤在轻微(435)里淹没真小错(仅18条)。现 CER==0 独立成档,轻微=(0,0.1]。"""
     try:
         c = float(cer)
     except (TypeError, ValueError):
@@ -83,7 +85,9 @@ def _tier(cer):
         return "2_严重0.5-1"
     if c > 0.1:
         return "3_中等0.1-0.5"
-    return "4_轻微0-0.1"
+    if c > 0:
+        return "4_轻微0-0.1"
+    return "5_满分CER=0"
 
 
 # ===== 筛选: dead_multi=死区×多speaker(发包) / all=全量未满分(浏览) =====
@@ -270,7 +274,7 @@ let filt="", idx=0, view=DATA.map((_,i)=>i);
 let store=JSON.parse(localStorage.getItem(KEY)||'{}');
 const $=id=>document.getElementById(id);
 $('annotid').value=localStorage.getItem('annot_id')||'';
-function applyFilt(){filt=$('filt').value;const sw=$('showSolved').checked;view=DATA.map((_,i)=>i).filter(i=>{if(!sw&&DATA[i].solved)return false;return !filt||DATA[i]['档']===filt;});idx=0;render();}
+function applyFilt(){filt=$('filt').value;const sw=$('showSolved').checked;view=DATA.map((_,i)=>i).filter(i=>{if(!sw&&DATA[i].solved&&filt!=='5_满分CER=0')return false;return !filt||DATA[i]['档']===filt;});idx=0;render();}
 function empty(){return{rec_main:'',rec_cause:[],force:'',speed:'',clear:'',accent:'',env:'',bg:'',interfer:'',rec_note:'',enw_rel:'',enw_target:'',enw_interfer:''};}
 function cur(){const i=view[idx];const d=DATA[i];return [d, store[d.uid]||(store[d.uid]=empty())];}
 function tagsRender(elid, opts, field, multi, extraOn){
