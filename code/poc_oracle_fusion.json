@@ -1,0 +1,46 @@
+{
+  "n": 1350,
+  "baseline": {
+    "transcribe": {
+      "qwen": 0.3436,
+      "firered": 0.3501,
+      "vanilla": 0.5954
+    },
+    "containing_reject_thr027": {
+      "qwen": 0.5934,
+      "firered": 0.5948,
+      "vanilla": 0.7005
+    }
+  },
+  "oracle_qf": {
+    "transcribe": 0.3006,
+    "gap_vs_qwen": 0.0429,
+    "containing_reject_thr027": 0.5747,
+    "gap_vs_qwen_cr": 0.0188
+  },
+  "oracle_qfv": {
+    "transcribe": 0.2862,
+    "gap_vs_qwen": 0.0574,
+    "containing_reject_thr027": 0.5684,
+    "gap_vs_qwen_cr": 0.025
+  },
+  "pairwise_complement": {
+    "three_backend_unique_win": {
+      "qwen": 147,
+      "firered": 137,
+      "vanilla": 69,
+      "tie_multi": 997
+    },
+    "qf_pair": {
+      "qwen_better": 206,
+      "firered_better": 167,
+      "tie": 977
+    }
+  },
+  "sanity": {
+    "qwen_transcribe_expect_0p3436": 0.3436,
+    "qwen_thr027_expect_0p5934": 0.5934,
+    "qwen_transcribe_pass": true,
+    "qwen_thr027_pass": true
+  }
+}
