@@ -1,0 +1,16 @@
+{
+  "q1": null,
+  "q2": {
+    "rA": 0.318,
+    "rN": 0.261,
+    "rAll": 0.266,
+    "mult": 1.22,
+    "p": 0.4737,
+    "n_leak": 45,
+    "go": false,
+    "strong": false,
+    "verdict": "中等,看Q3"
+  },
+  "q3": null,
+  "seed": 42
+}
