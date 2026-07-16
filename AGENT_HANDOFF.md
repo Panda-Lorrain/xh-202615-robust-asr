@@ -8,6 +8,33 @@
 
 ---
 
+## 【2026-07-16 续·RR+CER 双腿天花板坐实】(本 session, 用户问"RR 90%怎么提")
+
+> **结论: CER+RR 两腿都近天花板, 继续榨边际 net 负。剩余 ROI = 效率腿(L20 runbook 已就绪, 见下段) + 答辩。** 2 commit + 3 memory 入库。
+
+### RR 腿(40%) — 90.51% 接受 ⛔ 天花板
+- **方向A(enrollment 污染自适应 thr, 说话人信号类)POC 证伪 No-Go** `code/poc_enrollment_pollution.py`: Q1 D1(DiariZen diar on enrollment)F1=0.77(R1.00/P0.62); Q2 **45漏拒neg enrollment污染率31.8% vs 基线26.6%, Fisher p=0.4737完全不显著** → 核心假设(污染致漏拒)证伪; neg ΔRR最多+2.1pp, D1误报致pos代价net亏损, Q3未跑。详见 `docs/POC_A_enrollment_pollution_结果_2026-07-16.md`。
+- **方向B(FA置信度二次拒)天花板不投**: torchaudio MMS_FA+拼音技术可行, 但vanilla 45漏拒38条文本空仅7条非空, FA上限+1.48pp且4/7被content_gate覆盖; qwen主线漏拒是fluent伪指令(FA最弱场景)<0.5pp。
+- **物理地板**: 45漏拒里7-8条TRAP(非目标人说了"打开烟机"真指令)谁都救不了。
+- commit `75bf7ce`; memory `rr-ceiling-and-direction-A-debunked`。
+
+### CER 腿(40%) — qwen 已优 0.5934 ⛔ 天花板
+- **多后端融合 oracle gating net 负** `code/poc_oracle_fusion.py`(纯计算无GPU, sanity 0.3436/0.5934双通过): oracle_qf(qwen+firered)含拒gap**+0.0188**/oracle_qfv(+vanilla)+0.0250(排名公式吃含拒; transcribe gap大因不拒)。74%tie三后端同质。net负(现实CER腿+0.3~0.4 vs RTF翻倍效率腿-1~-2) → 枪毙作主线, 留答辩弹药。
+- **FireRedASR替换已死**: firered transcribe 0.3501 > qwen 0.3436, sim桶全输(仅RTF快17%效率红利)。
+- 杠杆=主战场[0.2,0.4)49.5%但qwen已吃下大部分(vanilla0.65→0.36); 死区30%地板(qwen0.459<oracle0.607已部分突破)。
+- commit `955c03c`; memory `cer-ceiling-oracle-fusion-net-negative`。
+
+### 全局(本次坐实)
+- **CER16.26+RR36.20=52.46/80 两腿天花板**, 加效率20, 模型部分~67-70/100。
+- **诚实归因=答辩弹药**: 验证了说话人信号(A p=0.47证伪)+FA(B天花板)+多后端融合(oracle含拒gap0.019 net负), 数据证CER+RR近物理极限, 单后端qwen+thr0.27是Pareto最优。契合出题方反cascaded审美。
+
+### 下个 agent 待办
+1. 🔴 **L20效率实测**(唯一可搏的20分, runbook已就绪见下段): 租AutoDL L40跑全量qwen → timing overall_rtf+peak_mem → `efficiency_leg_calc.py`换算。预计效率腿18-20/20。
+2. 🟡 **答辩准备**(决赛100分ROI高): README进度图+`03_答辩FAQ`+风险预案演练。本次诚实归因(方向A/B证伪+多后端net负+死区地板+TRAP物理地板)是现成弹药。
+3. ⛔ **CER/RR别再投入**(两腿天花板, net负或物理地板), 转效率+答辩。
+
+---
+
 ## 【2026-07-16 最新】L20 效率腿实测准备就绪(跨平台 Linux-ready + runbook + 换算脚本)
 
 > 效率腿(20分)是当前**唯一可搏的剩余分**(CER腿16.26/RR腿36.20近天花板)。官方 L20-46G batch=1 测 RTF+显存; 本机仅 4060, 须租 AutoDL L40(≈L20)实测。本次准备全部就绪, 8-agent 对抗审查过, **本地未 commit/push**(下个 agent 决定)。
