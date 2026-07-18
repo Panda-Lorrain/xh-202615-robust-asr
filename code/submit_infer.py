@@ -286,11 +286,24 @@ def main():
                     shutil.copy(s, os.path.join(se_out, f))
         phases["se"] = {"wall_sec": round(se_wall, 3), "n": sum(len(v) for v in buckets.values())}
         rec_for_enroll = se_out
+        # 2026-07-18 BUGFIX: 原代码 rec_for_enroll 赋值后从未被读取, enroll_pairs 一直用
+        # rec_in(原始音频) → SE 输出 se_out 是孤儿目录, SE 全程空转(27% RTF 白烧)。
+        # 修复: SE 生效时把 recognition 路径重映射到 se_out, 让 enroll_infer 真正读到降噪音频。
+        _n_remapped = 0
+        _remapped = []
+        for enr, rec, dst in rec_paths:
+            se_dst = os.path.join(se_out, os.path.basename(dst))
+            if os.path.exists(se_dst):
+                _remapped.append((enr, rec, se_dst))
+                _n_remapped += 1
+            else:
+                _remapped.append((enr, rec, dst))  # SE 未产出该条(罕见), fallback 原始
+        rec_paths = _remapped
         t1 = time.perf_counter()
-        print(f"[se] 阶段0+1 用时 {t1-t0:.1f}s ({len(rows)} 条, 桶={list(buckets.keys())})")
+        print(f"[se] 阶段0+1 用时 {t1-t0:.1f}s ({len(rows)} 条, 桶={list(buckets.keys())}, enroll重映射{_n_remapped}/{len(rec_paths)}条到se_out)")
 
     # --- 阶段2: enroll_infer 转写(单进程批量化: 所有对一次喂, 模型加载1次) ---
-    # 写 pairs manifest(enrollment=原enr 路径, recognition=work/rec_in/uttN.wav)。
+    # 写 pairs manifest(enrollment=原enr 路径, recognition=work/rec_in/uttN.wav 或 se_out/uttN.wav)。
     # enroll_infer --pairs 内部按 enr 路径缓存 enroll_emb, 同说话人/同文件复用。
     enroll_pairs = os.path.join(work_dir, "enroll_pairs.json")
     with open(enroll_pairs, "w", encoding="utf-8") as f:

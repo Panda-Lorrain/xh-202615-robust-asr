@@ -73,7 +73,12 @@ export BAODI_OK=1
 # content_gate(2026-07-08): 默认关(hold-out 证泛化但 B 集未知先保守); BAODI_GATE=1 开
 GATE_FLAG=""
 if [[ "${BAODI_GATE:-0}" == "1" ]]; then GATE_FLAG="--content-gate"; fi
-echo "[baodi] backend=$BACKEND 关LLM(--no-llm) + thr=$THR + strategy=sim_only + content_gate=${BAODI_GATE:-0}  → $OUT  (vanilla 主线 / BAODI_BACKEND=dicow 切回)"
+# --no-se(2026-07-18): qwen 后端跳过 DeepFilterNet3 语音增强(SE 占 27% RTF, 50 条 A/B 测试
+# CER 字节级一致 + sim 分数零差异; 原因: qwen 本身噪声鲁棒(死区 0.459 vs vanilla 0.607))。
+# BAODI_SE=1 可恢复 SE(vanilla/dicow 后端默认开 SE)。
+SE_FLAG="--no-se"
+if [[ "${BAODI_SE:-0}" == "1" ]]; then SE_FLAG=""; fi
+echo "[baodi] backend=$BACKEND 关LLM(--no-llm) + thr=$THR + strategy=sim_only + content_gate=${BAODI_GATE:-0} + se=${BAODI_SE:-off}  → $OUT"
 exec "$PY" code/submit_infer.py \
   --pairs "$PAIRS" --out-dir "$OUT" --no-llm --sim-thr "$THR" --strategy sim_only \
-  --asr-backend "$BACKEND" $GATE_FLAG
+  --asr-backend "$BACKEND" $GATE_FLAG $SE_FLAG
