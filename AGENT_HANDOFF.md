@@ -1,5 +1,7 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
+> 🔴 **2026-07-18 最新状态（当前恢复点）**：效率腿探索 3 commit(a9dca73/031e4b1/c8c739d) + 对抗审查修正(6ce0636) + L40 阶段0 脚本(2c095de) **均已 push**。**当前在等用户租 L40 算力**——用户说"租了会给 SSH"。拿到后路径 A ssh 操控: `nohup bash code/deploy_l40.sh &`(无卡部署, Monitor 盯) → `SMOKE=1 bash code/run_efficiency_l40.sh`(冒烟) → 用户切 GPU → `bash code/run_efficiency_l40.sh`(全量+换算) → scp 回本机入库。**命门: 问主办方 RTF 口径(per-utt 计时 vs 总墙钟)**。SE orphan bug 真相(三机制, 非仅 mismatch)已入 memory `se-bug-orphan-truth`。详见下【2026-07-18 最新】段。
+
 > **交接时间**：2026-07-15（**标注规范v2工具落地 + 官方CER脚本存档核对 + 当前算分**：改代码+commit+push。三件事：①标注v2工具实现（`build_annotator_pack_v2.py` 失败归因 A-X/B/C/D + enrollment污染诊断 + qwen后端 + 全量浏览 + CER=0隐藏，+ `compare_vs_gold.py`/`map_gold_to_v2.py`）；②用户贴主办方CER参考脚本原文 → 存档 `eval_metrics_official_ref.py` + 用官方原文重算 overall 0.3436 / 逐条 1350/1350 一致 + 修 `_norm_asr` 书名号显示 bug（官方口径书名号不扣分）；③当前分 qwen+thr0.27：CER腿 16.26 + RR腿 36.20 = 52.46/80 硬数字，效率待 L20 实测。详见【2026-07-15 最新】段）。
 > **下个 agent 读序**：本文件【2026-07-14 最新】段（↓）→ `docs/标注交接_enrollment污染与target选错_2026-07-14.md`（标注 Agent 直接用）→ CLAUDE.md → 关键 memory（**multi-voice-llm-routing-architecture** / cer-breakthrough-candidates / multi-annotator-dispatch / spk-oracle-poc / content-gate-decision / official-scoring-spec / dataset-split-spec / reproducibility-hardening / mimo-asr-backend-potential / unified-thr-decision / h3-dicow-conditioning-backfire-vanilla / baodi-config-no-llm / submit-script-verification / lessons-pitfalls）→ REPRO_SETUP.md
 > **当前 git**：`master`，本 session commit「标注规范v2工具落地 + 官方CER脚本存档核对」已 push（见 `git log -1`）。改动：`code/build_annotator_pack_v2.py`(新) + `code/eval_metrics_official_ref.py`(新,官方脚本存档) + `code/compare_vs_gold.py`+`code/map_gold_to_v2.py`(新) + `code/recompute_official_cer.json`(重算微调) + `AGENT_HANDOFF.md`。⚠️ `code/annot_pack/` 被 gitignore（标注HTML/音频不入库，仅本地）。下个 agent 先 `git status` 核对。
@@ -13,7 +15,7 @@
 > **结论**: 效率腿本机探索到头(官方 batch=1 口径下唯一确定杠杆=关 SE 省 30.6% RTF); **SE bugfix
 > 揭示重大归因错误**——原"SE 恶化 CER / 对转写无害"经 4-agent 对抗审查 + `audit_se_bugfix.py` 一手
 > 重算被推翻, 真相是三机制(sim mismatch 误拒 66% + DF3 过衰减致 diar 崩溃 22% + 转写恶化 12%)。
-> 决策(关 SE)不变, 归因全部重写。3 commit 已 push(a9dca73/031e4b1/c8c739d), 本 session 修正未 commit。
+> 决策(关 SE)不变, 归因全部重写。**全部已 push**: 效率腿 3 commit(a9dca73/031e4b1/c8c739d) + 对抗审查修正(6ce0636) + L40 阶段0 脚本(2c095de)。
 
 ### 本次 session 做了什么
 
@@ -42,7 +44,7 @@
   SE 不值得测(收益上界 <0.017 在噪声内 + 仍付 30% RTF)。
 - ⚠️ **审查自身也错 1 处**(我一手复核抓到): 审查称"翻转 644"系误算, 实测翻转 386(=337+49), doc 原数正确。
 
-**C. 已修正(本 session, 未 commit)**:
+**C. 已修正(本 session, 已 commit 6ce0636 + push)**:
 - `compare_se_bugfix.py`/`se_bugfix_record.py` 字段名 bug(`transcript`→`text`)
 - `submit_infer.py` 删 `rec_for_enroll` 死变量(2 处)
 - `run_baodi.sh:76-78` 注释归因(qwen 鲁棒 → orphan bug + 三机制 + 30.6%)
@@ -57,15 +59,19 @@
   [8,19]/20(batch=1 下 overall_rtf 可能 0.3-0.5), 待 L20 batch=1 实测。
 - **对抗审查也会出错**: 必须一手复核关键数字(audit 脚本), 不能全信 agent。
 
-### 下个 agent 待办(⚠️ 需用户决策, 别擅自做)
-1. 🟡 **commit 本 session 修正**(AB doc 重写 + 代码修正 + 探索脚本勘误 + audit 脚本)。建议作为一个
-   "fix(review): SE bugfix 对抗审查修正归因" commit。**push 与否问用户**(c8c739d 已 push, 修正是新增 commit)。
-2. 🟡 **run_baodi 默认 BACKEND**: 现默认 `vanilla`(:41), 但 SE bugfix A/B 只测了 qwen。CLAUDE.md
-   主线是 qwen。要么(a)默认改 qwen, 要么(b)补 vanilla+SE AB。**问用户**。
-3. 🟢 **L20 batch=1 实测**(唯一确定效率腿分数): 租 AutoDL L40 跑全量, 测真实 overall_rtf, 用
-   `efficiency_leg_calc.py` 换算。runbook 见下【2026-07-16 最新】段。
-4. ⚪ 可选探索(L20 时): GPTQ/AWQ int4 / ONNX / speculative decoding / Qwen3-ASR 蒸馏 0.5B(均 POC 未做)。
-5. ⛔ CER/RR 腿别投入(天花板, 见下【2026-07-16 续】段)。
+### 下个 agent 待办
+1. ✅ **对抗审查修正已 commit+push**(6ce0636): AB doc/代码/探索脚本/audit 全修, 无需再做。
+2. ✅ **L40 阶段0 脚本已 commit+push**(2c095de): `deploy_l40.sh` + `run_efficiency_l40.sh` + runbook 勘误。
+3. 🔴 **等用户租 L40 算力**(当前阻塞点): 用户说"先执行别的, 租了算力会给 SSH"。拿到后路径 A ssh 操控:
+   `nohup bash code/deploy_l40.sh &`(无卡部署, Monitor 盯日志) → `SMOKE=1 bash code/run_efficiency_l40.sh`(冒烟5条)
+   → 用户切 GPU 模式开机 → `bash code/run_efficiency_l40.sh`(全量 pos+neg + 换算) → scp timing/result.json 回本机入库。
+   省钱: 无卡模式部署(~0.1元/h) + GPU 只开全量推理(~20min)。详见 `docs/L20效率实测_runbook_2026-07-15.md` 顶部勘误。
+4. 🟡 **命门 — 问主办方**(用户去做): ① RTF 口径(per-utt 计时 vs 总墙钟, 决定 overall_rtf 怎么报 + 效率腿分数)
+   ② 排名公式 w1/w2/w_eff(RR-heavy 则 thr 上移)。见 memory `official-scoring-spec`。
+5. 🟡 **run_baodi 默认 BACKEND 不一致**(未决, 零提交影响): 默认 vanilla 但 SE A/B 只测 qwen, CLAUDE.md 主线 qwen。
+   注释已标风险。用户定: 改 qwen / 补 vanilla+SE AB / 保持不动。
+6. ⚪ 可选探索(L40 实测时): GPTQ/AWQ int4 / ONNX / speculative decoding / Qwen3-ASR 蒸馏 0.5B(均 POC 未做; L20 是 Ampere, int8 可能不反效果——vs 4060 Ada Lovelace)。
+7. ⛔ CER/RR 腿别投入(天花板, 见下【2026-07-16 续】段)。
 
 ---
 
