@@ -258,7 +258,6 @@ def main():
     # --- 阶段0+1: SE 条件化 ---
     # noise_map: basename -> (est_noise, atten_lim_db)。SE 跳过时保持空 → result 字段为 null。
     noise_map = {}
-    rec_for_enroll = rec_in
     if use_se:
         t0 = time.perf_counter()
         noise_est = os.path.join(work_dir, "noise_est.json")
@@ -285,8 +284,7 @@ def main():
                 if os.path.exists(s):
                     shutil.copy(s, os.path.join(se_out, f))
         phases["se"] = {"wall_sec": round(se_wall, 3), "n": sum(len(v) for v in buckets.values())}
-        rec_for_enroll = se_out
-        # 2026-07-18 BUGFIX: 原代码 rec_for_enroll 赋值后从未被读取, enroll_pairs 一直用
+        # 2026-07-18 BUGFIX: 原代码 rec_for_enroll 赋值后从未被读取(死变量, 已删), enroll_pairs 一直用
         # rec_in(原始音频) → SE 输出 se_out 是孤儿目录, SE 全程空转(27% RTF 白烧)。
         # 修复: SE 生效时把 recognition 路径重映射到 se_out, 让 enroll_infer 真正读到降噪音频。
         _n_remapped = 0

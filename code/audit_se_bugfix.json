@@ -1,0 +1,57 @@
+{
+  "n": 1364,
+  "overall": {
+    "SE": 0.8292,
+    "noSE": 0.7243,
+    "delta": 0.1049
+  },
+  "text_diff": {
+    "both_accepted": 383,
+    "differ": 109,
+    "pct": 28.5,
+    "SE_improve": 21,
+    "SE_worsen": 68,
+    "neutral": 20
+  },
+  "reject_crosstab": {
+    "both_rej": 595,
+    "se_rej_no_acc": 337,
+    "se_acc_no_rej": 49,
+    "both_acc": 383,
+    "flipped": 386,
+    "net_increase": 288
+  },
+  "diar_fail": {
+    "SE": 207,
+    "noSE": 2,
+    "SE_fail_noSE_acc": 91
+  },
+  "delta_decomp": {
+    "A_diar_crash": {
+      "n": 91,
+      "contrib": 34.4038
+    },
+    "B_sim_drop": {
+      "n": 246,
+      "contrib": 104.3966
+    },
+    "C_transcribe": {
+      "n": 383,
+      "contrib": 18.2202
+    },
+    "D_lucky_accept": {
+      "n": 49,
+      "contrib": -13.9505
+    },
+    "E_both_rej": {
+      "n": 595,
+      "contrib": 0.0
+    }
+  },
+  "intersection_cer": {
+    "n": 383,
+    "SE": 0.4281,
+    "noSE": 0.3805,
+    "delta": 0.0476
+  }
+}

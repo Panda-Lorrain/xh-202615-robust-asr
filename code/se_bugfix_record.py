@@ -64,7 +64,7 @@ try:
     cross = sum(1 for u in common if se[u].get("rejected") != no[u].get("rejected"))
     text_diff = sum(1 for u in common
                     if not se[u].get("rejected") and not no[u].get("rejected")
-                    and se[u].get("transcript", "") != no[u].get("transcript", ""))
+                    and se[u].get("text", "") != no[u].get("text", ""))  # 修字段名 bug(原 'transcript'→'text')
 except Exception as e:
     sim_diff, sim_changed, se_rej, no_rej, cross, text_diff = [], 0, 0, 0, 0, 0
     common = set()

@@ -38,8 +38,10 @@ text_diff = []
 for u in common:
     if se[u].get("rejected") or no[u].get("rejected"):
         continue
-    if se[u].get("transcript", "") != no[u].get("transcript", ""):
-        text_diff.append((u, no[u].get("transcript", ""), se[u].get("transcript", "")))
+    # 2026-07-18 修字段名 bug: result.json 实际字段是 'text'(submit_infer.py:365),
+    # 非 'transcript' → 原 get('transcript') 永远返回 '' → "0 条不一致" 假象。实测 109/383。
+    if se[u].get("text", "") != no[u].get("text", ""):
+        text_diff.append((u, no[u].get("text", ""), se[u].get("text", "")))
 print(f"\n=== 文本对比(两边都 accepted 的 {sum(1 for u in common if not se[u].get('rejected') and not no[u].get('rejected'))} 条) ===")
 print(f"  文本不一致: {len(text_diff)}")
 for u, no_t, se_t in text_diff[:10]:

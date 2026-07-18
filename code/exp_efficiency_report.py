@@ -20,6 +20,20 @@ print("""
   GPU: RTX 4060 Laptop (8GB VRAM, Ada Lovelace, compute 8.9)
 ================================================================
 
+⚠️⚠️ 2026-07-18 对抗审查勘误 (4-agent 复核, 下列原结论有多处方法学错误):
+  1. [Part A] qwen torch.compile baseline 错用 0.0950(撞 exp_int8_qwen 的 bf16 数), 真实
+     baseline 0.1161 → 实际改善 18-19%(非表里的 -0.2%)。但 compile_time 0.26s 物理不可能
+     (典型 30-60s), 疑似 dynamo guard 失败回退 eager 静默 no-op, 须 TORCH_COMPILE_DEBUG=1
+     + warmup 3 + 跑 30+ 条重测, 方知 qwen compile 真实收益。
+  2. [Part C] "int8 严重负优化" 仅限 bitsandbytes LLM.int8() batch=1, 未测 GPTQ/AWQ/TensorRT,
+     不能否定整个量化方向; 4060(Ada Lovelace) 结论不可外推 L20(Ampere); 样本仅 5 条方差大。
+  3. [Part D/总结] batch=16 "5x" 仅 ASR 子进程, 全管线 1.76x(overall_rtf 0.25→0.142)。
+  4. [总结] "唯一杠杆 batch" 与 Part A "ONNX 可行预期 2-3x" 自相矛盾(ONNX 未落地, 非证伪)。
+  5. 官方按 batch=1 测 RTF → batch 红利不进效率腿分, 仅加快开发 A/B 迭代。官方 batch=1 口径
+     下唯一确定杠杆是关 SE(省 30.6% RTF); ONNX/GPTQ-AWQ int4/speculative decoding/Qwen3-ASR
+     蒸馏 0.5B 均 POC 未做。详见 docs/SE_bugfix_AB结果_2026-07-18.md + code/audit_se_bugfix.json。
+  原始数字保留作过程记录, 结论以本勘误为准。
+
 Part A: torch.compile
 ---------------------
 | Backend      | Mode              | avg_RTF | vs baseline | Compile |

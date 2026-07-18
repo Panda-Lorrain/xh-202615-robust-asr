@@ -73,9 +73,13 @@ export BAODI_OK=1
 # content_gate(2026-07-08): 默认关(hold-out 证泛化但 B 集未知先保守); BAODI_GATE=1 开
 GATE_FLAG=""
 if [[ "${BAODI_GATE:-0}" == "1" ]]; then GATE_FLAG="--content-gate"; fi
-# --no-se(2026-07-18): qwen 后端跳过 DeepFilterNet3 语音增强(SE 占 27% RTF, 50 条 A/B 测试
-# CER 字节级一致 + sim 分数零差异; 原因: qwen 本身噪声鲁棒(死区 0.459 vs vanilla 0.607))。
-# BAODI_SE=1 可恢复 SE(vanilla/dicow 后端默认开 SE)。
+# --no-se(2026-07-18): qwen 后端跳过 DeepFilterNet3 语音增强。SE 占 ~30.6% RTF(timing.json
+# 219.8s/718.2s 实测)。bugfix(commit c8c739d)前 SE 输出 se_out 是孤儿目录从未被消费 →
+# "50 条 A/B 零差异"实因 SE 两分支都空转, 非 qwen 鲁棒(旧注释错归因已废弃)。bugfix 后 SE
+# 真生效, 全量 A/B(1364 pos, thr0.27) SE 反而 overall CER +0.1049(三机制: sim mismatch
+# 误拒 66% + DF3 过衰减致 diar 崩溃 22% + 转写恶化 12%) + RTF +45% → qwen 主线关 SE。
+# 详见 docs/SE_bugfix_AB结果_2026-07-18.md + code/audit_se_bugfix.{py,json}。
+# BAODI_SE=1 可恢复 SE(⚠️ 仅 qwen 后端做过 A/B; vanilla/dicow 后端 SE 效果未测)。
 SE_FLAG="--no-se"
 if [[ "${BAODI_SE:-0}" == "1" ]]; then SE_FLAG=""; fi
 echo "[baodi] backend=$BACKEND 关LLM(--no-llm) + thr=$THR + strategy=sim_only + content_gate=${BAODI_GATE:-0} + se=${BAODI_SE:-off}  → $OUT"

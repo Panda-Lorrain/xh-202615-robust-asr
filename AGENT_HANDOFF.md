@@ -8,6 +8,67 @@
 
 ---
 
+## 【2026-07-18 最新】效率腿三 commit + SE orphan bug 真相(对抗审查 4-agent 修正)
+
+> **结论**: 效率腿本机探索到头(官方 batch=1 口径下唯一确定杠杆=关 SE 省 30.6% RTF); **SE bugfix
+> 揭示重大归因错误**——原"SE 恶化 CER / 对转写无害"经 4-agent 对抗审查 + `audit_se_bugfix.py` 一手
+> 重算被推翻, 真相是三机制(sim mismatch 误拒 66% + DF3 过衰减致 diar 崩溃 22% + 转写恶化 12%)。
+> 决策(关 SE)不变, 归因全部重写。3 commit 已 push(a9dca73/031e4b1/c8c739d), 本 session 修正未 commit。
+
+### 本次 session 做了什么
+
+**A. 效率腿探索(3 commit, 已 push)**:
+- `a9dca73` qwen ASR batch 推理(默认 batch=16): 4060 实测 61 条逐条 20s→batch 4s(**ASR 子进程 5x,
+  全管线 1.76x**, overall_rtf 0.25→0.142)。OOM 自动 fallback, 文本 60/61 一致。
+- `031e4b1` 效率优化探索: torch.compile / int8 / FA2(SDPA 自动启用)/ 管线并行。**⚠️ 对抗审查发现多条方法学缺陷(见下)**。
+- `c8c739d` **SE orphaned-bug bugfix**: `submit_infer.py` 的 `rec_for_enroll` 是死变量(赋值后从未
+  读取, 8da1e98 初版起潜伏), `enroll_pairs` 一直写原始音频路径, SE 输出 `se_out` 是孤儿目录 →
+  **SE 全程空转 ~30.6% RTF 白烧**。此前所有 "--no-se 零差异" 结论均因此(SE 两分支输入相同)。
+  修复: SE 生效时把 recognition 路径重映射到 se_out。
+
+**B. 对抗审查(4-agent, 377K tok, 推翻核心归因)** — memory `adversarial-review-before-milestone-commit` 规则触发:
+- **AB 归因 refuted**: 原"+0.1049 完全来自 sim mismatch 误拒, SE 对转写无害"**全错**。`audit_se_bugfix.py`
+  一手重算: +0.1049 = **sim-drop 误拒 66%(+0.0765) + DF3 过衰减致 diar 崩溃 22%(+0.0252, 207 条
+  SE-diar-fail / noSE 仅 2) + 转写恶化 12%(+0.0134) − lucky-accept 0.0102**。
+- **"0 文本不一致"是假象**: `compare_se_bugfix.py:41` 字段名 bug(读 `transcript` 实为 `text`)
+  → trivially 相等。实测 **109/383 (28.5%) 文本不同**(SE 改善 21 / 恶化 68, **净恶化**)。
+- **"accepted-only SE 略好"是选择性偏差**: 两臂 accepted 集合不同(SE 432 vs noSE 720)。
+  apples-to-apples 交集(383 条): SE **0.4281 vs noSE 0.3805, +0.0476 SE 反而恶化**。
+- **效率结论缺陷**: batch=16 5x 仅 ASR 子进程(全管线 1.76x), **官方 batch=1 评测口径下不进分**;
+  exp_efficiency_report qwen compile baseline 错用 0.0950(真 0.1161, 实 18-19% 但 compile_time
+  0.26s 异常疑似 dynamo 回退); int8 只测 bnb 不能外推 L20(Ampere); "唯一杠杆 batch" 与 Part A
+  ONNX 可行自相矛盾。
+- **决策确认**: 关 SE 是 Pareto 最优(分桶证每个 max_sim 桶 SE 都恶化 overall CER, 无反例); 双端
+  SE 不值得测(收益上界 <0.017 在噪声内 + 仍付 30% RTF)。
+- ⚠️ **审查自身也错 1 处**(我一手复核抓到): 审查称"翻转 644"系误算, 实测翻转 386(=337+49), doc 原数正确。
+
+**C. 已修正(本 session, 未 commit)**:
+- `compare_se_bugfix.py`/`se_bugfix_record.py` 字段名 bug(`transcript`→`text`)
+- `submit_infer.py` 删 `rec_for_enroll` 死变量(2 处)
+- `run_baodi.sh:76-78` 注释归因(qwen 鲁棒 → orphan bug + 三机制 + 30.6%)
+- `docs/SE_bugfix_AB结果_2026-07-18.md` 全面重写(权威归因 + 答辩表述)
+- `exp_efficiency_report.py`/`efficiency_analysis.py` 加对抗审查勘误块
+- `code/audit_se_bugfix.py` + `audit_se_bugfix.json`(新, 一手复核脚本/数据)
+
+### 关键认知(本次坐实)
+- **SE 三机制**(答辩弹药): sim mismatch 误拒(单端: recognition 过 SE + enrollment 不过) + DF3 过衰减
+  致 diar 崩溃(207 条 ValueError, SE-RMS/orig mean 0.004) + 转写净恶化(交集 +0.0476)。**非仅 mismatch**。
+- **batch 不进官方分**: 官方 batch=1 测 RTF, batch=16 红利只加快开发迭代。效率腿区间宽到
+  [8,19]/20(batch=1 下 overall_rtf 可能 0.3-0.5), 待 L20 batch=1 实测。
+- **对抗审查也会出错**: 必须一手复核关键数字(audit 脚本), 不能全信 agent。
+
+### 下个 agent 待办(⚠️ 需用户决策, 别擅自做)
+1. 🟡 **commit 本 session 修正**(AB doc 重写 + 代码修正 + 探索脚本勘误 + audit 脚本)。建议作为一个
+   "fix(review): SE bugfix 对抗审查修正归因" commit。**push 与否问用户**(c8c739d 已 push, 修正是新增 commit)。
+2. 🟡 **run_baodi 默认 BACKEND**: 现默认 `vanilla`(:41), 但 SE bugfix A/B 只测了 qwen。CLAUDE.md
+   主线是 qwen。要么(a)默认改 qwen, 要么(b)补 vanilla+SE AB。**问用户**。
+3. 🟢 **L20 batch=1 实测**(唯一确定效率腿分数): 租 AutoDL L40 跑全量, 测真实 overall_rtf, 用
+   `efficiency_leg_calc.py` 换算。runbook 见下【2026-07-16 最新】段。
+4. ⚪ 可选探索(L20 时): GPTQ/AWQ int4 / ONNX / speculative decoding / Qwen3-ASR 蒸馏 0.5B(均 POC 未做)。
+5. ⛔ CER/RR 腿别投入(天花板, 见下【2026-07-16 续】段)。
+
+---
+
 ## 【2026-07-16 续·RR+CER 双腿天花板坐实】(本 session, 用户问"RR 90%怎么提")
 
 > **结论: CER+RR 两腿都近天花板, 继续榨边际 net 负。剩余 ROI = 效率腿(L20 runbook 已就绪, 见下段) + 答辩。** 2 commit + 3 memory 入库。
@@ -36,6 +97,12 @@
 ---
 
 ## 【2026-07-16 最新】L20 效率腿实测准备就绪(跨平台 Linux-ready + runbook + 换算脚本)
+
+> ⚠️ **2026-07-18 SE orphan bug 回溯**: 本段 :53 "保 SE 开(本机基线含 SE, 关则不可比)" / :61 "SE
+> 占 28%" / :65 "--no-se A/B 验证关 SE 不损 CER/RR" 均基于 "SE 在生效" 前提。2026-07-18 发现
+> `submit_infer.py` SE orphan bug(se_out 从未被消费, SE 全程空转) → 上述前提**不成立**: "基线含
+> SE"是假(从未真含), "--no-se 零差异"是 SE 两分支都空转的 trivial 结果。本段 SE 相关结论**废弃**,
+> 以【2026-07-18 最新】段 + `docs/SE_bugfix_AB结果_2026-07-18.md` 为准。(SE RTF 占比 30.6% 实测仍对, 但 "占" 实为 "白烧"。)
 
 > 效率腿(20分)是当前**唯一可搏的剩余分**(CER腿16.26/RR腿36.20近天花板)。官方 L20-46G batch=1 测 RTF+显存; 本机仅 4060, 须租 AutoDL L40(≈L20)实测。本次准备全部就绪, 8-agent 对抗审查过, **本地未 commit/push**(下个 agent 决定)。
 
