@@ -87,3 +87,4 @@ code/.*_apikey
 # ===== 2026-07-11 POC/切片中间产物(可重生成, 不入库; 成果 json 入库) =====
 code/out_*_slices*.json
 code/pos_pairs_midwar.json
+code/stability_matrix/
