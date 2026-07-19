@@ -128,6 +128,10 @@ def main():
     ap.add_argument("--vanilla-model", default=resolve_model("VANILLA"),
                     help="vanilla 后端 Whisper 模型(默认 large-v3-turbo)")
     ap.add_argument("--seed", type=int, default=42, help="全局种子(可复现性, repro.set_global_seed)")
+    ap.add_argument("--context", default="",
+                    help="ASR context 透传给 qwen/firered 后端 transcribe(家居场景引导, system message 注入; Qwen3-ASR transcribe 原生支持 context 参数); 默认空=不引导")
+    ap.add_argument("--diar-dtype", default="fp32", choices=["fp32", "fp16"],
+                    help="DiariZen diar 精度(fp32默认安全; fp16典型1.8-2x加速+显存减半, WavLM-Large fp16 可能数值溢出需 hold-out 验证不稳则回退)")
     args = ap.parse_args()
     set_global_seed(args.seed)  # 可复现性: 固定 torch/numpy/cudnn(FAQ 核查硬要求 2)
     if not args.pairs and not args.enrollment:
@@ -160,9 +164,12 @@ def main():
     tok = AutoTokenizer.from_pretrained(_model_path) if args.asr_backend != "qwen" else None
     fe = AutoFeatureExtractor.from_pretrained(_model_path)
 
-    print(f"[load] DiariZen {args.diarization_model}")
+    print(f"[load] DiariZen {args.diarization_model} ({args.diar_dtype})")
     from diarizen.pipelines.inference import DiariZenPipeline
     diar = DiariZenPipeline.from_pretrained(args.diarization_model).to(device)
+    if args.diar_dtype == "fp16":
+        raise NotImplementedError("DiariZenPipeline(pyannote Pipeline)非nn.Module不支持.half(); "
+                                  "深入内部model转fp16工程量大+数值风险,收益仅极严RTF映射下, NO-GO(2026-07-18 hold-out)")
 
     # wespeaker embedding 抽取(复用 diar._embedding, 零额外加载)
     def get_emb(wav_np):
@@ -171,7 +178,7 @@ def main():
             w = w[None, None]          # (1, 1, n)
         elif w.dim() == 2:
             w = w[None]                # (1, 1, n)
-        with torch.no_grad():
+        with torch.inference_mode():
             emb = diar._embedding(w)   # (batch, dim) np.ndarray
         emb = torch.as_tensor(emb, device=device, dtype=torch.float32)
         return torch.nn.functional.normalize(emb, dim=-1).squeeze(0)   # (dim,) 已归一化
@@ -279,7 +286,7 @@ def main():
                         _seg = cut_target_timeline(audio, per_spk[_i], sr=sr)
                         _ifp = fe(_seg, sampling_rate=16000, return_tensors="pt").input_features.to(device, dtype)
                         _am = torch.ones(1, _ifp.shape[-1], dtype=torch.bool, device=device)
-                        with torch.no_grad():
+                        with torch.inference_mode():
                             _out = asr_model.generate(input_features=_ifp, attention_mask=_am,
                                                       language=args.language, task="transcribe", max_new_tokens=200)
                         _seqs = _out["sequences"] if isinstance(_out, dict) else _out
@@ -296,7 +303,7 @@ def main():
                                  target_audio.astype(np.float32), sr)
                     ifp_v = fe(target_audio, sampling_rate=16000, return_tensors="pt").input_features.to(device, dtype)
                     am_v = torch.ones(1, ifp_v.shape[-1], dtype=torch.bool, device=device)
-                    with torch.no_grad():
+                    with torch.inference_mode():
                         out = asr_model.generate(input_features=ifp_v, attention_mask=am_v,
                                                  language=args.language, task="transcribe", max_new_tokens=200)
                     seqs = out["sequences"] if isinstance(out, dict) else out
@@ -339,7 +346,7 @@ def main():
                         print("[load] SE-DiCoW uses_enrollments=True → cross-attn 内部启用(self-enrolled)")
                     # SE-DiCoW 的 self-enrollment 在模型内部从 stno_mask target 行自动提取,
                     # config.uses_enrollments 控制 cross-attn 路径; generate 接口与 DiCoW 相同(实测不接受 enrollments kwarg)。
-                with torch.no_grad():
+                with torch.inference_mode():
                     out = asr_model.generate(**gen_kwargs)
                 seqs = out["sequences"] if isinstance(out, dict) else out
                 text = tok.batch_decode(seqs, skip_special_tokens=True)[0].strip()
@@ -352,7 +359,7 @@ def main():
                             tok("以下是普通话的句子。", add_special_tokens=False).input_ids, device=device)
                     retry_kwargs = dict(gen_kwargs)
                     retry_kwargs.update(num_beams=1, prompt_ids=asr_model._zh_prompt_ids)
-                    with torch.no_grad():
+                    with torch.inference_mode():
                         out2 = asr_model.generate(**retry_kwargs)
                     seqs2 = out2["sequences"] if isinstance(out2, dict) else out2
                     text2 = tok.batch_decode(seqs2, skip_special_tokens=True)[0].strip()
@@ -404,7 +411,8 @@ def main():
         _be_script_full = os.path.join(_HERE, _be_script)
         print(f"\n[{args.asr_backend}] 批量转写切片 {args.save_target_audio} (py={_be_py}) ...")
         subprocess.check_call([_be_py, _be_script_full, "--slice-dir", args.save_target_audio,
-                               "--out", uid2text_path, "--seed", str(args.seed)])
+                               "--out", uid2text_path, "--seed", str(args.seed),
+                               "--context", args.context])
         uid2text = json.load(open(uid2text_path, encoding="utf-8"))
         n_filled = 0
         for r in results:
