@@ -79,6 +79,17 @@ def phase_B4(limit):
     run_once("B4_auguon", PAIRS, 42, 16, True, limit)
 
 
+def phase_B3(limit):
+    # 输入微扰: 先 perturb_audio 生成 3 种扰动 pairs, 再各跑 1 遍
+    for p in ["gauss", "vol", "time"]:
+        perturbed_pairs = os.path.join(OUT_DIR, f"_pairs_B3_{p}.json")
+        if not os.path.exists(perturbed_pairs):
+            subprocess.run([_PY_MAIN, os.path.join(_HERE, "perturb_audio.py"),
+                            "--perturb", p] + (["--limit", str(limit)] if limit > 0 else []),
+                           check=True, cwd=_HERE)
+        run_once(f"B3_p{p}", perturbed_pairs, 42, 16, False, limit)
+
+
 def main():
     ap = argparse.ArgumentParser(description="稳定性/鲁棒性测试编排器")
     ap.add_argument("--phase", required=True, choices=["A", "B1", "B2", "B3", "B4", "all"])
@@ -97,8 +108,12 @@ def main():
         phase_B2(args.limit)
     elif args.phase == "B4":
         phase_B4(args.limit)
-    elif args.phase in ("B3", "all"):
-        print(f"[TODO] phase {args.phase} 在 Task 6 实现")
+    elif args.phase == "B3":
+        phase_B3(args.limit)
+    elif args.phase == "all":
+        phase_A(args.runs, args.seed, args.batch, args.limit)
+        phase_B1(args.limit); phase_B2(args.limit)
+        phase_B3(args.limit); phase_B4(args.limit)
     print("[done] stability_test phase", args.phase)
 
 
