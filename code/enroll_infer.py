@@ -130,6 +130,9 @@ def main():
     ap.add_argument("--seed", type=int, default=42, help="全局种子(可复现性, repro.set_global_seed)")
     ap.add_argument("--context", default="",
                     help="ASR context 透传给 qwen/firered 后端 transcribe(家居场景引导, system message 注入; Qwen3-ASR transcribe 原生支持 context 参数); 默认空=不引导")
+    ap.add_argument("--asr-batch-size", type=int, default=16,
+                    help="qwen/firered 后端 batch 推理大小(透传 qwen_asr_backend.py --batch-size; "
+                         "0=逐条; 稳定性测试 B1 维度扫描用; 默认 16 与 qwen_asr_backend 一致)")
     ap.add_argument("--diar-dtype", default="fp32", choices=["fp32", "fp16"],
                     help="DiariZen diar 精度(fp32默认安全; fp16典型1.8-2x加速+显存减半, WavLM-Large fp16 可能数值溢出需 hold-out 验证不稳则回退)")
     args = ap.parse_args()
@@ -412,7 +415,8 @@ def main():
         print(f"\n[{args.asr_backend}] 批量转写切片 {args.save_target_audio} (py={_be_py}) ...")
         subprocess.check_call([_be_py, _be_script_full, "--slice-dir", args.save_target_audio,
                                "--out", uid2text_path, "--seed", str(args.seed),
-                               "--context", args.context])
+                               "--context", args.context,
+                               "--batch-size", str(args.asr_batch_size)])
         uid2text = json.load(open(uid2text_path, encoding="utf-8"))
         n_filled = 0
         for r in results:
