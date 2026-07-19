@@ -59,6 +59,26 @@ def phase_A(runs, seed, batch, limit):
         run_once(f"A_s{seed}_r{r}", PAIRS, seed, batch, False, limit)
 
 
+def phase_B1(limit):
+    # batch=1/8/16/32 × 2 遍, seed=42, 原始音频
+    for b in [1, 8, 16, 32]:
+        for r in range(2):
+            run_once(f"B1_b{b}_r{r}", PAIRS, 42, b, False, limit)
+
+
+def phase_B2(limit):
+    # 变种子 42/100/200/314/555 × 2 遍, batch=16, 原始音频
+    for s in [42, 100, 200, 314, 555]:
+        for r in range(2):
+            run_once(f"B2_s{s}_r{r}", PAIRS, s, 16, False, limit)
+
+
+def phase_B4(limit):
+    # --enroll-augment on/off, seed=42, batch=16
+    run_once("B4_augoff", PAIRS, 42, 16, False, limit)
+    run_once("B4_auguon", PAIRS, 42, 16, True, limit)
+
+
 def main():
     ap = argparse.ArgumentParser(description="稳定性/鲁棒性测试编排器")
     ap.add_argument("--phase", required=True, choices=["A", "B1", "B2", "B3", "B4", "all"])
@@ -71,8 +91,14 @@ def main():
 
     if args.phase == "A":
         phase_A(args.runs, args.seed, args.batch, args.limit)
-    elif args.phase in ("B1", "B2", "B3", "B4", "all"):
-        print(f"[TODO] phase {args.phase} 在 Task 5/6 实现")
+    elif args.phase == "B1":
+        phase_B1(args.limit)
+    elif args.phase == "B2":
+        phase_B2(args.limit)
+    elif args.phase == "B4":
+        phase_B4(args.limit)
+    elif args.phase in ("B3", "all"):
+        print(f"[TODO] phase {args.phase} 在 Task 6 实现")
     print("[done] stability_test phase", args.phase)
 
 
