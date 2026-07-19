@@ -37,11 +37,18 @@ def run_once(run_id, pairs, seed, batch_size, enroll_augment=False, limit=0):
         print(f"[skip] {run_id} 已存在")
         return out_json
     pairs = _subset_pairs(run_id, pairs, limit)
+    # slice_dir 每遍清(避免旧切片累积拖慢 qwen 子进程转写, 不影响正确性 enroll_infer 只取当前 uid)
+    import shutil
+    slice_dir = os.path.join(OUT_DIR, "_slices")
+    if os.path.isdir(slice_dir):
+        shutil.rmtree(slice_dir)
+    os.makedirs(slice_dir, exist_ok=True)
     cmd = [_PY_MAIN, os.path.join(_HERE, "enroll_infer.py"),
            "--pairs", pairs, "--out-json", out_json,
            "--always-generate", "--reject-threshold", str(SIM_THR),
            "--asr-backend", "qwen", "--seed", str(seed),
-           "--asr-batch-size", str(batch_size)]
+           "--asr-batch-size", str(batch_size),
+           "--save-target-audio", slice_dir]
     if enroll_augment:
         cmd += ["--enroll-augment"]
     print(f"[run] {run_id} (seed={seed}, batch={batch_size}, aug={enroll_augment})")
@@ -60,10 +67,9 @@ def phase_A(runs, seed, batch, limit):
 
 
 def phase_B1(limit):
-    # batch=1/8/16/32 × 2 遍, seed=42, 原始音频
-    for b in [1, 8, 16, 32]:
-        for r in range(2):
-            run_once(f"B1_b{b}_r{r}", PAIRS, 42, b, False, limit)
+    # batch=1 vs batch=16 一致性验证(开发口径16→提交口径1的桥, 主办方默认batch=1/RTF按batch=1测)
+    # batch=16 复用 A_s42_r0(A阶段已跑 batch=16 seed=42), 此处只补 batch=1 提交口径
+    run_once("B1_b1_r0", PAIRS, 42, 1, False, limit)
 
 
 def phase_B2(limit):

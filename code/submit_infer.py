@@ -168,6 +168,8 @@ def run_enroll_infer_pairs(pairs_json, out_json, device, sim_thr,
            "--device", device, "--seed", str(seed)]
     if asr_backend != "dicow":
         cmd += ["--asr-backend", asr_backend]
+        if asr_backend in ("qwen", "firered"):
+            cmd += ["--asr-batch-size", "1"]  # 提交口径 batch=1(主办方默认, RTF按batch=1测; 开发加速用 enroll_infer 直接 --asr-batch-size 16)
     if enroll_augment:
         cmd += ["--enroll-augment", "--aug-snrs", aug_snrs]
         if aug_noise_dir:
