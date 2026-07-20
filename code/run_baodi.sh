@@ -70,9 +70,14 @@ fi
 # 故 B 集统一 thr 必须经 run_baodi 或显式 BAODI_OK=1, 已由 T27 对抗验证背书)
 export BAODI_OK=1
 
-# content_gate(2026-07-08): 默认关(hold-out 证泛化但 B 集未知先保守); BAODI_GATE=1 开
-GATE_FLAG=""
-if [[ "${BAODI_GATE:-0}" == "1" ]]; then GATE_FLAG="--content-gate"; fi
+# content_gate: 默认开(2026-07-18 反转原决策). qwen后端joint验证净正+0.826(w1=w2=0.4, 扩词后实测):
+#   neg RR 0.9051→0.9494(+1.77腿分, gate拒21条漏拒:女排亚俱杯/信访/租赁物业/卖家协商等非家居)
+#   pos CER 0.5934→0.6171(-0.95腿分, 误拒35条pos多为CER≥1反赚). verify_content_gate_joint.py实测.
+#   对 w1/w2 鲁棒: 净正只需 w2/w1>0.53, 官方 w1=w2=0.4 远满足(待主办方确认权重不翻车).
+#   原"qwen后端gate恶化Δ+0.024"是pos-only评估(poc_content_gate_v2_qwen_eval漏neg侧); vanilla hold-out val+1.6证泛化→B集同开.
+#   BAODI_GATE=0 显式关(回退对比).
+GATE_FLAG="--content-gate"
+if [[ "${BAODI_GATE:-1}" == "0" ]]; then GATE_FLAG=""; fi
 # --no-se(2026-07-18): qwen 后端跳过 DeepFilterNet3 语音增强。SE 占 ~30.6% RTF(timing.json
 # 219.8s/718.2s 实测)。bugfix(commit c8c739d)前 SE 输出 se_out 是孤儿目录从未被消费 →
 # "50 条 A/B 零差异"实因 SE 两分支都空转, 非 qwen 鲁棒(旧注释错归因已废弃)。bugfix 后 SE
@@ -82,7 +87,7 @@ if [[ "${BAODI_GATE:-0}" == "1" ]]; then GATE_FLAG="--content-gate"; fi
 # BAODI_SE=1 可恢复 SE(⚠️ 仅 qwen 后端做过 A/B; vanilla/dicow 后端 SE 效果未测)。
 SE_FLAG="--no-se"
 if [[ "${BAODI_SE:-0}" == "1" ]]; then SE_FLAG=""; fi
-echo "[baodi] backend=$BACKEND 关LLM(--no-llm) + thr=$THR + strategy=sim_only + content_gate=${BAODI_GATE:-0} + se=${BAODI_SE:-off}  → $OUT"
+echo "[baodi] backend=$BACKEND 关LLM(--no-llm) + thr=$THR + strategy=sim_only + content_gate=${BAODI_GATE:-1} + se=${BAODI_SE:-off}  → $OUT"
 exec "$PY" code/submit_infer.py \
   --pairs "$PAIRS" --out-dir "$OUT" --no-llm --sim-thr "$THR" --strategy sim_only \
   --asr-backend "$BACKEND" $GATE_FLAG $SE_FLAG
