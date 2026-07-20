@@ -1,0 +1,1864 @@
+{
+  "summary": {
+    "verdict": "GO=是",
+    "reason": "argmax 选错 14/60 条, 其中 36% 的正确 target 声纹 sim≥0.2(本可识别) 但 argmax 选了别的; 完美选 target CER 0.95→0.55(Δ+0.40)。→ 投声纹强化让 argmax 选对能救。",
+    "n_sample": 60,
+    "n_valid": 60,
+    "argmax_correct_rate": 0.7667,
+    "multi_spk_correct_rate": 0.641,
+    "argmax_cer_mean": 0.9514,
+    "oracle_cer_mean": 0.5533,
+    "cer_gain": 0.3981,
+    "oracle_sim_mean": 0.2749,
+    "oracle_sim_buckets": {
+      "oracle_sim<0.1": 0.05,
+      "0.1<=sim<0.2": 0.1167,
+      "0.2<=sim<0.3": 0.35,
+      "oracle_sim>=0.3": 0.4833
+    },
+    "n_miss": 14,
+    "miss_oracle_sim_mean": 0.1827,
+    "miss_argmax_cer_mean": 2.3071,
+    "miss_oracle_cer_mean": 0.6009,
+    "miss_oracle_recognizable_rate": 0.3571,
+    "total_min": 0.64
+  },
+  "results": [
+    {
+      "uid": "cmd_57",
+      "ref": "空调调为十二度",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.3235,
+        0.1561
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.3235,
+      "oracle_idx": 1,
+      "oracle_sim": 0.1561,
+      "argmax_cer": 1.0,
+      "oracle_cer": 0.0,
+      "argmax_correct": false,
+      "per_spk_cer": [
+        1.0,
+        0.0
+      ],
+      "per_spk_text": [
+        "所以",
+        "空调调为十二度"
+      ],
+      "vanilla_full_max_sim": 0.3235856294631958,
+      "vanilla_full_cer": 1.0,
+      "vanilla_full_text": "所以",
+      "rec_sec": 3.76
+    },
+    {
+      "uid": "cmd_80",
+      "ref": "打开唯一唤醒",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.3239
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.3239,
+      "oracle_idx": 0,
+      "oracle_sim": 0.3239,
+      "argmax_cer": 0.3333,
+      "oracle_cer": 0.3333,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        0.3333
+      ],
+      "per_spk_text": [
+        "打开唯一换行"
+      ],
+      "vanilla_full_max_sim": 0.32385849952697754,
+      "vanilla_full_cer": 0.3333333333333333,
+      "vanilla_full_text": "打开唯一换行",
+      "rec_sec": 0.38
+    },
+    {
+      "uid": "cmd_106",
+      "ref": "关闭洗衣机",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.3262
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.3262,
+      "oracle_idx": 0,
+      "oracle_sim": 0.3262,
+      "argmax_cer": 0.4,
+      "oracle_cer": 0.4,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        0.4
+      ],
+      "per_spk_text": [
+        "关闭席机"
+      ],
+      "vanilla_full_max_sim": 0.326232373714447,
+      "vanilla_full_cer": 0.4,
+      "vanilla_full_text": "关闭席机",
+      "rec_sec": 0.36
+    },
+    {
+      "uid": "cmd_140",
+      "ref": "打开冰箱",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.2229
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.2229,
+      "oracle_idx": 0,
+      "oracle_sim": 0.2229,
+      "argmax_cer": 0.0,
+      "oracle_cer": 0.0,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        0.0
+      ],
+      "per_spk_text": [
+        "打开冰箱"
+      ],
+      "vanilla_full_max_sim": 0.2228737771511078,
+      "vanilla_full_cer": 0.0,
+      "vanilla_full_text": "打开冰箱",
+      "rec_sec": 0.34
+    },
+    {
+      "uid": "cmd_188",
+      "ref": "灯的亮度百分百",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.3463
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.3463,
+      "oracle_idx": 0,
+      "oracle_sim": 0.3463,
+      "argmax_cer": 0.0,
+      "oracle_cer": 0.0,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        0.0
+      ],
+      "per_spk_text": [
+        "灯的亮度百分百"
+      ],
+      "vanilla_full_max_sim": 0.3463003635406494,
+      "vanilla_full_cer": 0.0,
+      "vanilla_full_text": "燈的亮度百分百",
+      "rec_sec": 0.39
+    },
+    {
+      "uid": "cmd_199",
+      "ref": "开冰箱门",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.2158
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.2158,
+      "oracle_idx": 0,
+      "oracle_sim": 0.2158,
+      "argmax_cer": 0.0,
+      "oracle_cer": 0.0,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        0.0
+      ],
+      "per_spk_text": [
+        "开冰箱门"
+      ],
+      "vanilla_full_max_sim": 0.21583759784698486,
+      "vanilla_full_cer": 0.0,
+      "vanilla_full_text": "开冰箱门",
+      "rec_sec": 0.38
+    },
+    {
+      "uid": "cmd_207",
+      "ref": "深圳有什么好吃的",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        -0.0672,
+        0.3002
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.3002,
+      "oracle_idx": 1,
+      "oracle_sim": 0.3002,
+      "argmax_cer": 0.0,
+      "oracle_cer": 0.0,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        0.875,
+        0.0
+      ],
+      "per_spk_text": [
+        "好",
+        "深圳有什么好吃的"
+      ],
+      "vanilla_full_max_sim": 0.3002259135246277,
+      "vanilla_full_cer": 0.0,
+      "vanilla_full_text": "深圳有什麼好吃的",
+      "rec_sec": 0.62
+    },
+    {
+      "uid": "cmd_217",
+      "ref": "所有灯亮度调到最高",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.2234,
+        0.2576
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.2576,
+      "oracle_idx": 0,
+      "oracle_sim": 0.2234,
+      "argmax_cer": 0.1111,
+      "oracle_cer": 0.1111,
+      "argmax_correct": false,
+      "per_spk_cer": [
+        0.1111,
+        0.1111
+      ],
+      "per_spk_text": [
+        "所有的亮度调到最高",
+        "所有的亮度调到最高"
+      ],
+      "vanilla_full_max_sim": 0.25762656331062317,
+      "vanilla_full_cer": 0.1111111111111111,
+      "vanilla_full_text": "所有的亮度調到最高",
+      "rec_sec": 0.68
+    },
+    {
+      "uid": "cmd_243",
+      "ref": "烹饪模式",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.381
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.381,
+      "oracle_idx": 0,
+      "oracle_sim": 0.381,
+      "argmax_cer": 0.0,
+      "oracle_cer": 0.0,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        0.0
+      ],
+      "per_spk_text": [
+        "烹饪模式"
+      ],
+      "vanilla_full_max_sim": 0.38103121519088745,
+      "vanilla_full_cer": 0.0,
+      "vanilla_full_text": "烹饪模式",
+      "rec_sec": 0.38
+    },
+    {
+      "uid": "cmd_261",
+      "ref": "吃饭了",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.309
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.309,
+      "oracle_idx": 0,
+      "oracle_sim": 0.309,
+      "argmax_cer": 0.0,
+      "oracle_cer": 0.0,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        0.0
+      ],
+      "per_spk_text": [
+        "吃饭了"
+      ],
+      "vanilla_full_max_sim": 0.3090052008628845,
+      "vanilla_full_cer": 0.0,
+      "vanilla_full_text": "吃饭了",
+      "rec_sec": 0.38
+    },
+    {
+      "uid": "cmd_279",
+      "ref": "调亮一点",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.3671
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.3671,
+      "oracle_idx": 0,
+      "oracle_sim": 0.3671,
+      "argmax_cer": 0.25,
+      "oracle_cer": 0.25,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        0.25
+      ],
+      "per_spk_text": [
+        "漂亮一点"
+      ],
+      "vanilla_full_max_sim": 0.3670918047428131,
+      "vanilla_full_cer": 0.25,
+      "vanilla_full_text": "漂亮一點",
+      "rec_sec": 0.36
+    },
+    {
+      "uid": "cmd_320",
+      "ref": "室内有点暗灯光调到最亮然后把窗帘打开",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.3543
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.3543,
+      "oracle_idx": 0,
+      "oracle_sim": 0.3543,
+      "argmax_cer": 0.0,
+      "oracle_cer": 0.0,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        0.0
+      ],
+      "per_spk_text": [
+        "室内有点暗灯光调到最亮然后把窗帘打开"
+      ],
+      "vanilla_full_max_sim": 0.354259192943573,
+      "vanilla_full_cer": 0.0,
+      "vanilla_full_text": "室内有点暗灯光调到最亮然后把窗帘打开",
+      "rec_sec": 0.51
+    },
+    {
+      "uid": "cmd_329",
+      "ref": "打开氛围灯",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.358
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.358,
+      "oracle_idx": 0,
+      "oracle_sim": 0.358,
+      "argmax_cer": 1.6,
+      "oracle_cer": 1.6,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        1.6
+      ],
+      "per_spk_text": [
+        "打开Foreader"
+      ],
+      "vanilla_full_max_sim": 0.35796457529067993,
+      "vanilla_full_cer": 1.6,
+      "vanilla_full_text": "打开Foreader",
+      "rec_sec": 0.4
+    },
+    {
+      "uid": "cmd_340",
+      "ref": "用餐模式",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.2763
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.2763,
+      "oracle_idx": 0,
+      "oracle_sim": 0.2763,
+      "argmax_cer": 0.0,
+      "oracle_cer": 0.0,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        0.0
+      ],
+      "per_spk_text": [
+        "用餐模式"
+      ],
+      "vanilla_full_max_sim": 0.2763402462005615,
+      "vanilla_full_cer": 0.0,
+      "vanilla_full_text": "用餐模式",
+      "rec_sec": 0.41
+    },
+    {
+      "uid": "cmd_356",
+      "ref": "窗帘停下",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.3077
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.3077,
+      "oracle_idx": 0,
+      "oracle_sim": 0.3077,
+      "argmax_cer": 1.0,
+      "oracle_cer": 1.0,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        1.0
+      ],
+      "per_spk_text": [
+        "上面提前"
+      ],
+      "vanilla_full_max_sim": 0.307735800743103,
+      "vanilla_full_cer": 1.0,
+      "vanilla_full_text": "上面提前",
+      "rec_sec": 0.39
+    },
+    {
+      "uid": "cmd_2001",
+      "ref": "给我讲乱世枭雄杜月笙",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.2076,
+        0.1778
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.2076,
+      "oracle_idx": 1,
+      "oracle_sim": 0.1778,
+      "argmax_cer": 1.0,
+      "oracle_cer": 0.7,
+      "argmax_correct": false,
+      "per_spk_cer": [
+        1.0,
+        0.7
+      ],
+      "per_spk_text": [
+        "车位早已过不要求",
+        "给我两块是消息后月生"
+      ],
+      "vanilla_full_max_sim": 0.20764721930027008,
+      "vanilla_full_cer": 1.0,
+      "vanilla_full_text": "车位早已过不要求",
+      "rec_sec": 0.71
+    },
+    {
+      "uid": "cmd_2049",
+      "ref": "便秘不推荐吃什么食物",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        -0.0616,
+        0.3198
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.3198,
+      "oracle_idx": 1,
+      "oracle_sim": 0.3198,
+      "argmax_cer": 0.4,
+      "oracle_cer": 0.4,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        1.0,
+        0.4
+      ],
+      "per_spk_text": [
+        "照片",
+        "先生 您说推荐吃什么食物"
+      ],
+      "vanilla_full_max_sim": 0.31978610157966614,
+      "vanilla_full_cer": 0.4,
+      "vanilla_full_text": "先生 您说推荐吃什么食物",
+      "rec_sec": 0.64
+    },
+    {
+      "uid": "cmd_2057",
+      "ref": "减小风量",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.2885,
+        0.2894
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.2894,
+      "oracle_idx": 1,
+      "oracle_sim": 0.2894,
+      "argmax_cer": 1.0,
+      "oracle_cer": 1.0,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        1.5,
+        1.0
+      ],
+      "per_spk_text": [
+        "全面放开二海",
+        "全面放开"
+      ],
+      "vanilla_full_max_sim": 0.3071567416191101,
+      "vanilla_full_cer": 1.5,
+      "vanilla_full_text": "全面放开二海",
+      "rec_sec": 0.63
+    },
+    {
+      "uid": "cmd_2064",
+      "ref": "把温度调到十九度",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.1063,
+        0.2322
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.2322,
+      "oracle_idx": 1,
+      "oracle_sim": 0.2322,
+      "argmax_cer": 1.125,
+      "oracle_cer": 1.125,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        1.25,
+        1.125
+      ],
+      "per_spk_text": [
+        "这真是日期乐的更新节",
+        "这真是一期的更新的"
+      ],
+      "vanilla_full_max_sim": 0.23223309218883514,
+      "vanilla_full_cer": 1.125,
+      "vanilla_full_text": "这真是一期的更新的",
+      "rec_sec": 0.71
+    },
+    {
+      "uid": "cmd_2113",
+      "ref": "把温度调到二十一度",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.3053,
+        0.3854
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.3854,
+      "oracle_idx": 1,
+      "oracle_sim": 0.3854,
+      "argmax_cer": 1.0,
+      "oracle_cer": 1.0,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        1.3333,
+        1.0
+      ],
+      "per_spk_text": [
+        "才能培养出这样天才的韵劳",
+        "培养出这样天才"
+      ],
+      "vanilla_full_max_sim": 0.38537847995758057,
+      "vanilla_full_cer": 1.0,
+      "vanilla_full_text": "培养出这样天才",
+      "rec_sec": 0.75
+    },
+    {
+      "uid": "cmd_2139",
+      "ref": "关闭左右风",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.3328,
+        0.1898
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.3328,
+      "oracle_idx": 0,
+      "oracle_sim": 0.3328,
+      "argmax_cer": 0.0,
+      "oracle_cer": 0.0,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        0.0,
+        1.0
+      ],
+      "per_spk_text": [
+        "关闭左右风",
+        "是"
+      ],
+      "vanilla_full_max_sim": 0.3327540159225464,
+      "vanilla_full_cer": 0.0,
+      "vanilla_full_text": "关闭左右风",
+      "rec_sec": 0.63
+    },
+    {
+      "uid": "cmd_2148",
+      "ref": "开启睡眠模式",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.3062,
+        -0.0756
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.3062,
+      "oracle_idx": 0,
+      "oracle_sim": 0.3062,
+      "argmax_cer": 0.3333,
+      "oracle_cer": 0.3333,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        0.3333,
+        1.0
+      ],
+      "per_spk_text": [
+        "看起睡眠模式",
+        "看起来"
+      ],
+      "vanilla_full_max_sim": 0.30615663528442383,
+      "vanilla_full_cer": 0.3333333333333333,
+      "vanilla_full_text": "看起睡眠模式",
+      "rec_sec": 0.61
+    },
+    {
+      "uid": "cmd_2152",
+      "ref": "开启除湿模式",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.2641,
+        0.1514
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.2641,
+      "oracle_idx": 1,
+      "oracle_sim": 0.1514,
+      "argmax_cer": 1.8333,
+      "oracle_cer": 1.0,
+      "argmax_correct": false,
+      "per_spk_cer": [
+        1.8333,
+        1.0
+      ],
+      "per_spk_text": [
+        "飞机改进改型和市场推广",
+        "融合市场"
+      ],
+      "vanilla_full_max_sim": 0.2640987038612366,
+      "vanilla_full_cer": 1.8333333333333333,
+      "vanilla_full_text": "飞机改进改型和市场推广",
+      "rec_sec": 0.71
+    },
+    {
+      "uid": "cmd_2165",
+      "ref": "产妇适合吃哪些食物",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.3603,
+        0.3646
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.3646,
+      "oracle_idx": 0,
+      "oracle_sim": 0.3603,
+      "argmax_cer": 1.0,
+      "oracle_cer": 1.0,
+      "argmax_correct": false,
+      "per_spk_cer": [
+        1.0,
+        1.0
+      ],
+      "per_spk_text": [
+        "七十五十一番",
+        "七十五十一番"
+      ],
+      "vanilla_full_max_sim": 0.36460405588150024,
+      "vanilla_full_cer": 1.0,
+      "vanilla_full_text": "七十五十一番",
+      "rec_sec": 0.65
+    },
+    {
+      "uid": "cmd_2174",
+      "ref": "ECO模式",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.332,
+        0.0908
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.332,
+      "oracle_idx": 0,
+      "oracle_sim": 0.332,
+      "argmax_cer": 1.0,
+      "oracle_cer": 1.0,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        1.0,
+        1.0
+      ],
+      "per_spk_text": [
+        "乱土潭 猪狗",
+        "是"
+      ],
+      "vanilla_full_max_sim": 0.33202439546585083,
+      "vanilla_full_cer": 1.0,
+      "vanilla_full_text": "乱土潭 猪狗",
+      "rec_sec": 0.65
+    },
+    {
+      "uid": "cmd_2185",
+      "ref": "打开新风模式",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.0767,
+        0.2141
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.2141,
+      "oracle_idx": 1,
+      "oracle_sim": 0.2141,
+      "argmax_cer": 0.8333,
+      "oracle_cer": 0.8333,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        1.0,
+        0.8333
+      ],
+      "per_spk_text": [
+        "大天四 磨磨石",
+        "大家开始风魔术"
+      ],
+      "vanilla_full_max_sim": 0.21414342522621155,
+      "vanilla_full_cer": 0.8333333333333334,
+      "vanilla_full_text": "大家开始风魔术",
+      "rec_sec": 0.7
+    },
+    {
+      "uid": "cmd_2200",
+      "ref": "关闭显示屏",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.3848
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.3848,
+      "oracle_idx": 0,
+      "oracle_sim": 0.3848,
+      "argmax_cer": 1.4,
+      "oracle_cer": 1.4,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        1.4
+      ],
+      "per_spk_text": [
+        "企业的成本约束"
+      ],
+      "vanilla_full_max_sim": 0.38481593132019043,
+      "vanilla_full_cer": 1.4,
+      "vanilla_full_text": "企业的成本约束",
+      "rec_sec": 0.43
+    },
+    {
+      "uid": "cmd_2209",
+      "ref": "打开显示屏",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.2983
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.2983,
+      "oracle_idx": 0,
+      "oracle_sim": 0.2983,
+      "argmax_cer": 0.0,
+      "oracle_cer": 0.0,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        0.0
+      ],
+      "per_spk_text": [
+        "打开显示屏"
+      ],
+      "vanilla_full_max_sim": 0.2983359098434448,
+      "vanilla_full_cer": 0.0,
+      "vanilla_full_text": "打开显示屏",
+      "rec_sec": 0.42
+    },
+    {
+      "uid": "cmd_2236",
+      "ref": "减肥吃什么好",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.0389,
+        0.3109
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.3109,
+      "oracle_idx": 1,
+      "oracle_sim": 0.3109,
+      "argmax_cer": 0.6667,
+      "oracle_cer": 0.6667,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        1.0,
+        0.6667
+      ],
+      "per_spk_text": [
+        "一只大便休息",
+        "眼随什么"
+      ],
+      "vanilla_full_max_sim": 0.3108791410923004,
+      "vanilla_full_cer": 0.6666666666666666,
+      "vanilla_full_text": "眼随什么",
+      "rec_sec": 0.61
+    },
+    {
+      "uid": "cmd_2274",
+      "ref": "哺乳期不能吃什么",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        -0.0101,
+        0.2046
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.2046,
+      "oracle_idx": 1,
+      "oracle_sim": 0.2046,
+      "argmax_cer": 0.625,
+      "oracle_cer": 0.625,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        1.0,
+        0.625
+      ],
+      "per_spk_text": [
+        "杨子派",
+        "木齐不能吃粉"
+      ],
+      "vanilla_full_max_sim": 0.20455992221832275,
+      "vanilla_full_cer": 0.625,
+      "vanilla_full_text": "木齐不能吃粉",
+      "rec_sec": 0.63
+    },
+    {
+      "uid": "cmd_2286",
+      "ref": "把温度调到二十五度",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.0535,
+        0.242
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.242,
+      "oracle_idx": 1,
+      "oracle_sim": 0.242,
+      "argmax_cer": 0.1111,
+      "oracle_cer": 0.1111,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        0.5556,
+        0.1111
+      ],
+      "per_spk_text": [
+        "把温度高到",
+        "把温度高到二十五度"
+      ],
+      "vanilla_full_max_sim": 0.24199478328227997,
+      "vanilla_full_cer": 0.4444444444444444,
+      "vanilla_full_text": "把温度高到25度",
+      "rec_sec": 0.66
+    },
+    {
+      "uid": "cmd_2360",
+      "ref": "下出风",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.2447
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.2447,
+      "oracle_idx": 0,
+      "oracle_sim": 0.2447,
+      "argmax_cer": 0.0,
+      "oracle_cer": 0.0,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        0.0
+      ],
+      "per_spk_text": [
+        "下出风"
+      ],
+      "vanilla_full_max_sim": 0.2447209656238556,
+      "vanilla_full_cer": 0.0,
+      "vanilla_full_text": "下出风",
+      "rec_sec": 0.41
+    },
+    {
+      "uid": "cmd_2402",
+      "ref": "开启智清洁",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.1771,
+        0.3385
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.3385,
+      "oracle_idx": 0,
+      "oracle_sim": 0.1771,
+      "argmax_cer": 0.6,
+      "oracle_cer": 0.6,
+      "argmax_correct": false,
+      "per_spk_cer": [
+        0.6,
+        0.6
+      ],
+      "per_spk_text": [
+        "开启知情节",
+        "开启知情节"
+      ],
+      "vanilla_full_max_sim": 0.33847981691360474,
+      "vanilla_full_cer": 0.6,
+      "vanilla_full_text": "開啟知情節",
+      "rec_sec": 0.66
+    },
+    {
+      "uid": "cmd_2428",
+      "ref": "播放我爸爸我妈妈",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.3638,
+        0.3457
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.3638,
+      "oracle_idx": 1,
+      "oracle_sim": 0.3457,
+      "argmax_cer": 1.0,
+      "oracle_cer": 0.25,
+      "argmax_correct": false,
+      "per_spk_cer": [
+        1.0,
+        0.25
+      ],
+      "per_spk_text": [
+        "小狼的演员有",
+        "我爸爸 我妈妈"
+      ],
+      "vanilla_full_max_sim": 0.3637582063674927,
+      "vanilla_full_cer": 1.0,
+      "vanilla_full_text": "小狼的演員有",
+      "rec_sec": 0.67
+    },
+    {
+      "uid": "cmd_2433",
+      "ref": "腹泻吃什么食物有好处",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.0731,
+        0.3681
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.3681,
+      "oracle_idx": 1,
+      "oracle_sim": 0.3681,
+      "argmax_cer": 0.1,
+      "oracle_cer": 0.1,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        1.0,
+        0.1
+      ],
+      "per_spk_text": [
+        "出",
+        "腹穴吃什么食物有好处"
+      ],
+      "vanilla_full_max_sim": 0.3681058883666992,
+      "vanilla_full_cer": 0.1,
+      "vanilla_full_text": "腹穴吃什么食物有好处",
+      "rec_sec": 0.64
+    },
+    {
+      "uid": "cmd_2519",
+      "ref": "风速调到最大风",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.2802,
+        0.2753
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.2802,
+      "oracle_idx": 0,
+      "oracle_sim": 0.2802,
+      "argmax_cer": 1.0,
+      "oracle_cer": 1.0,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        1.0,
+        1.0
+      ],
+      "per_spk_text": [
+        "八三二十零",
+        "八三二十零"
+      ],
+      "vanilla_full_max_sim": 0.2802082598209381,
+      "vanilla_full_cer": 1.0,
+      "vanilla_full_text": "八三二十零",
+      "rec_sec": 0.64
+    },
+    {
+      "uid": "cmd_2550",
+      "ref": "关一下空调",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.2177,
+        0.2514
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.2514,
+      "oracle_idx": 0,
+      "oracle_sim": 0.2177,
+      "argmax_cer": 0.4,
+      "oracle_cer": 0.4,
+      "argmax_correct": false,
+      "per_spk_cer": [
+        0.4,
+        0.4
+      ],
+      "per_spk_text": [
+        "关于下筹调",
+        "关一下冰条"
+      ],
+      "vanilla_full_max_sim": 0.25144001841545105,
+      "vanilla_full_cer": 0.4,
+      "vanilla_full_text": "关一下冰条",
+      "rec_sec": 0.63
+    },
+    {
+      "uid": "cmd_2589",
+      "ref": "补血推荐吃哪些食物",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.2768,
+        0.2874
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.2874,
+      "oracle_idx": 0,
+      "oracle_sim": 0.2768,
+      "argmax_cer": 1.5556,
+      "oracle_cer": 1.5556,
+      "argmax_correct": false,
+      "per_spk_cer": [
+        1.5556,
+        1.5556
+      ],
+      "per_spk_text": [
+        "不许在家学习她是一个八岁男孩",
+        "不许在家学习他是一个八岁男孩"
+      ],
+      "vanilla_full_max_sim": 0.2873905897140503,
+      "vanilla_full_cer": 1.5555555555555556,
+      "vanilla_full_text": "不许在家学习他是一个八岁男孩",
+      "rec_sec": 0.81
+    },
+    {
+      "uid": "cmd_2605",
+      "ref": "防直吹模式",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.3209
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.3209,
+      "oracle_idx": 0,
+      "oracle_sim": 0.3209,
+      "argmax_cer": 0.4,
+      "oracle_cer": 0.4,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        0.4
+      ],
+      "per_spk_text": [
+        "仿直吹音模式"
+      ],
+      "vanilla_full_max_sim": 0.32086193561553955,
+      "vanilla_full_cer": 0.4,
+      "vanilla_full_text": "仿直吹音模式",
+      "rec_sec": 0.4
+    },
+    {
+      "uid": "cmd_2663",
+      "ref": "产妇哪些食物需要忌口",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.0761,
+        0.3739
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.3739,
+      "oracle_idx": 0,
+      "oracle_sim": 0.0761,
+      "argmax_cer": 1.0,
+      "oracle_cer": 0.2,
+      "argmax_correct": false,
+      "per_spk_cer": [
+        0.2,
+        1.0
+      ],
+      "per_spk_text": [
+        "哪些食物需要忌口",
+        "这下手机"
+      ],
+      "vanilla_full_max_sim": 0.37389230728149414,
+      "vanilla_full_cer": 1.0,
+      "vanilla_full_text": "这下手机",
+      "rec_sec": 0.67
+    },
+    {
+      "uid": "cmd_2676",
+      "ref": "空调十七度",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.1867,
+        0.2331
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.2331,
+      "oracle_idx": 0,
+      "oracle_sim": 0.1867,
+      "argmax_cer": 1.0,
+      "oracle_cer": 1.0,
+      "argmax_correct": false,
+      "per_spk_cer": [
+        1.0,
+        1.0
+      ],
+      "per_spk_text": [
+        "市场的劳贡",
+        "那"
+      ],
+      "vanilla_full_max_sim": 0.2330927848815918,
+      "vanilla_full_cer": 1.0,
+      "vanilla_full_text": "那",
+      "rec_sec": 0.6
+    },
+    {
+      "uid": "cmd_2680",
+      "ref": "播放大红妈妈精心讲绘本",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.1869,
+        0.263
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.263,
+      "oracle_idx": 0,
+      "oracle_sim": 0.1869,
+      "argmax_cer": 1.0,
+      "oracle_cer": 0.5455,
+      "argmax_correct": false,
+      "per_spk_cer": [
+        0.5455,
+        1.0
+      ],
+      "per_spk_text": [
+        "郭放大红妈妈 姜贵的",
+        "续疑似监客被控制"
+      ],
+      "vanilla_full_max_sim": 0.26300525665283203,
+      "vanilla_full_cer": 1.0,
+      "vanilla_full_text": "续疑似监客被控制",
+      "rec_sec": 0.74
+    },
+    {
+      "uid": "cmd_2693",
+      "ref": "儿童吃什么好",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.2515,
+        0.2195
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.2515,
+      "oracle_idx": 0,
+      "oracle_sim": 0.2515,
+      "argmax_cer": 1.0,
+      "oracle_cer": 1.0,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        1.0,
+        1.1667
+      ],
+      "per_spk_text": [
+        "记者表示",
+        "日本报记者表示"
+      ],
+      "vanilla_full_max_sim": 0.25152647495269775,
+      "vanilla_full_cer": 1.0,
+      "vanilla_full_text": "记者表示",
+      "rec_sec": 0.63
+    },
+    {
+      "uid": "cmd_2714",
+      "ref": "开到二十七度",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.2295
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.2295,
+      "oracle_idx": 0,
+      "oracle_sim": 0.2295,
+      "argmax_cer": 0.1667,
+      "oracle_cer": 0.1667,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        0.1667
+      ],
+      "per_spk_text": [
+        "拍到二十七度"
+      ],
+      "vanilla_full_max_sim": 0.2294970005750656,
+      "vanilla_full_cer": 0.6666666666666666,
+      "vanilla_full_text": "拍到27度",
+      "rec_sec": 0.4
+    },
+    {
+      "uid": "cmd_2721",
+      "ref": "播放姚晴曦阅读",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.3203,
+        0.0076
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.3203,
+      "oracle_idx": 0,
+      "oracle_sim": 0.3203,
+      "argmax_cer": 1.2857,
+      "oracle_cer": 1.2857,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        1.2857,
+        1.4286
+      ],
+      "per_spk_text": [
+        "让你的散户胀压更高",
+        "我去家跟第一月的日子"
+      ],
+      "vanilla_full_max_sim": 0.31914740800857544,
+      "vanilla_full_cer": 1.2857142857142858,
+      "vanilla_full_text": "让你的散户胀压更高",
+      "rec_sec": 0.7
+    },
+    {
+      "uid": "cmd_2730",
+      "ref": "播放育儿早教纯干货分享",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.3634,
+        0.047
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.3634,
+      "oracle_idx": 0,
+      "oracle_sim": 0.3634,
+      "argmax_cer": 1.1818,
+      "oracle_cer": 1.1818,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        1.1818,
+        1.1818
+      ],
+      "per_spk_text": [
+        "公募基金管理人可以参与投资",
+        "公务基金管理人可以参与投资"
+      ],
+      "vanilla_full_max_sim": 0.378894180059433,
+      "vanilla_full_cer": 1.1818181818181819,
+      "vanilla_full_text": "公募基金管理人可以参与投资",
+      "rec_sec": 0.79
+    },
+    {
+      "uid": "cmd_2752",
+      "ref": "关一下空调",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.0149,
+        0.2629
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.2629,
+      "oracle_idx": 0,
+      "oracle_sim": 0.0149,
+      "argmax_cer": 19.8,
+      "oracle_cer": 0.8,
+      "argmax_correct": false,
+      "per_spk_cer": [
+        0.8,
+        19.8
+      ],
+      "per_spk_text": [
+        "一条",
+        "下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下"
+      ],
+      "vanilla_full_max_sim": 0.26286694407463074,
+      "vanilla_full_cer": 19.8,
+      "vanilla_full_text": "下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下 下",
+      "rec_sec": 1.88
+    },
+    {
+      "uid": "cmd_2809",
+      "ref": "播放架子鼓示范四十首",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.2713,
+        0.2404
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.2713,
+      "oracle_idx": 0,
+      "oracle_sim": 0.2713,
+      "argmax_cer": 1.0,
+      "oracle_cer": 1.0,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        1.0,
+        1.0
+      ],
+      "per_spk_text": [
+        "婴儿患罕见病",
+        "婴儿坏罕见"
+      ],
+      "vanilla_full_max_sim": 0.27126264572143555,
+      "vanilla_full_cer": 1.0,
+      "vanilla_full_text": "婴儿患罕见病",
+      "rec_sec": 0.66
+    },
+    {
+      "uid": "cmd_2849",
+      "ref": "播放盖世音雄原创音乐",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.3698
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.3698,
+      "oracle_idx": 0,
+      "oracle_sim": 0.3698,
+      "argmax_cer": 0.2,
+      "oracle_cer": 0.2,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        0.2
+      ],
+      "per_spk_text": [
+        "播放盖世英雄原唱音乐"
+      ],
+      "vanilla_full_max_sim": 0.36984941363334656,
+      "vanilla_full_cer": 0.2,
+      "vanilla_full_text": "播放盖世英雄原唱音樂",
+      "rec_sec": 0.4
+    },
+    {
+      "uid": "cmd_2850",
+      "ref": "把温度调到十八度",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.1772,
+        0.3201
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.3201,
+      "oracle_idx": 1,
+      "oracle_sim": 0.3201,
+      "argmax_cer": 0.5,
+      "oracle_cer": 0.5,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        1.0,
+        0.5
+      ],
+      "per_spk_text": [
+        "的原因",
+        "把温度调"
+      ],
+      "vanilla_full_max_sim": 0.3201422393321991,
+      "vanilla_full_cer": 0.5,
+      "vanilla_full_text": "把温度调",
+      "rec_sec": 0.59
+    },
+    {
+      "uid": "cmd_2861",
+      "ref": "哺乳期要少吃什么",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.0063,
+        0.2838
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.2838,
+      "oracle_idx": 0,
+      "oracle_sim": 0.0063,
+      "argmax_cer": 1.0,
+      "oracle_cer": 0.25,
+      "argmax_correct": false,
+      "per_spk_cer": [
+        0.25,
+        1.0
+      ],
+      "per_spk_text": [
+        "五乳鸡要少吃什么",
+        "外面受卖"
+      ],
+      "vanilla_full_max_sim": 0.2837836742401123,
+      "vanilla_full_cer": 1.0,
+      "vanilla_full_text": "外面受賣",
+      "rec_sec": 0.69
+    },
+    {
+      "uid": "cmd_2863",
+      "ref": "防直吹模式",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.1909,
+        0.1763
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.1909,
+      "oracle_idx": 0,
+      "oracle_sim": 0.1909,
+      "argmax_cer": 1.0,
+      "oracle_cer": 1.0,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        1.0,
+        1.0
+      ],
+      "per_spk_text": [
+        "可以",
+        "妆之可以抹"
+      ],
+      "vanilla_full_max_sim": 0.23565222322940826,
+      "vanilla_full_cer": 1.0,
+      "vanilla_full_text": "可以",
+      "rec_sec": 0.61
+    },
+    {
+      "uid": "cmd_2870",
+      "ref": "古哥古点烧脑集我想听",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.4166,
+        0.0496
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.4166,
+      "oracle_idx": 0,
+      "oracle_sim": 0.4166,
+      "argmax_cer": 1.0,
+      "oracle_cer": 1.0,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        1.0,
+        1.0
+      ],
+      "per_spk_text": [
+        "首先两人都得带上",
+        "首先两人都得"
+      ],
+      "vanilla_full_max_sim": 0.3458706736564636,
+      "vanilla_full_cer": 1.0,
+      "vanilla_full_text": "首先两人都得带上",
+      "rec_sec": 0.64
+    },
+    {
+      "uid": "cmd_2881",
+      "ref": "播放卡尔经典绘本音频",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.3761
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.3761,
+      "oracle_idx": 0,
+      "oracle_sim": 0.3761,
+      "argmax_cer": 0.0,
+      "oracle_cer": 0.0,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        0.0
+      ],
+      "per_spk_text": [
+        "播放卡尔经典绘本音频"
+      ],
+      "vanilla_full_max_sim": 0.37605082988739014,
+      "vanilla_full_cer": 0.0,
+      "vanilla_full_text": "播放卡尔经典绘本音频",
+      "rec_sec": 0.47
+    },
+    {
+      "uid": "cmd_2883",
+      "ref": "播放神笔马良",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        -0.0488,
+        0.37
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.37,
+      "oracle_idx": 1,
+      "oracle_sim": 0.37,
+      "argmax_cer": 0.8333,
+      "oracle_cer": 0.8333,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        1.0,
+        0.8333
+      ],
+      "per_spk_text": [
+        "发展学校",
+        "我放声音了"
+      ],
+      "vanilla_full_max_sim": 0.369998574256897,
+      "vanilla_full_cer": 0.8333333333333334,
+      "vanilla_full_text": "我放声音了",
+      "rec_sec": 0.67
+    },
+    {
+      "uid": "cmd_2887",
+      "ref": "开防直吹",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.2665,
+        0.3386
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.3386,
+      "oracle_idx": 1,
+      "oracle_sim": 0.3386,
+      "argmax_cer": 1.0,
+      "oracle_cer": 1.0,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        1.75,
+        1.0
+      ],
+      "per_spk_text": [
+        "床日累积算美丽",
+        "美女串"
+      ],
+      "vanilla_full_max_sim": 0.3386203646659851,
+      "vanilla_full_cer": 1.0,
+      "vanilla_full_text": "美女串",
+      "rec_sec": 0.68
+    },
+    {
+      "uid": "cmd_2899",
+      "ref": "开启制热模式",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.2524
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.2524,
+      "oracle_idx": 0,
+      "oracle_sim": 0.2524,
+      "argmax_cer": 0.6667,
+      "oracle_cer": 0.6667,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        0.6667
+      ],
+      "per_spk_text": [
+        "它是自然模式"
+      ],
+      "vanilla_full_max_sim": 0.25244924426078796,
+      "vanilla_full_cer": 0.6666666666666666,
+      "vanilla_full_text": "它是自然模式",
+      "rec_sec": 0.41
+    },
+    {
+      "uid": "cmd_2933",
+      "ref": "把温度调到十七度",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.2313
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.2313,
+      "oracle_idx": 0,
+      "oracle_sim": 0.2313,
+      "argmax_cer": 0.0,
+      "oracle_cer": 0.0,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        0.0
+      ],
+      "per_spk_text": [
+        "把温度调到十七度"
+      ],
+      "vanilla_full_max_sim": 0.2313467413187027,
+      "vanilla_full_cer": 0.25,
+      "vanilla_full_text": "把温度调到17度",
+      "rec_sec": 0.4
+    },
+    {
+      "uid": "cmd_2969",
+      "ref": "风速降低",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.2204,
+        0.1279
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.2204,
+      "oracle_idx": 0,
+      "oracle_sim": 0.2204,
+      "argmax_cer": 1.0,
+      "oracle_cer": 1.0,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        1.0,
+        1.0
+      ],
+      "per_spk_text": [
+        "很漂亮",
+        "都要是"
+      ],
+      "vanilla_full_max_sim": 0.2253180891275406,
+      "vanilla_full_cer": 1.0,
+      "vanilla_full_text": "很漂亮",
+      "rec_sec": 0.58
+    },
+    {
+      "uid": "cmd_2973",
+      "ref": "播放大队长讲科学",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.2595,
+        -0.0159
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.2595,
+      "oracle_idx": 0,
+      "oracle_sim": 0.2595,
+      "argmax_cer": 0.375,
+      "oracle_cer": 0.375,
+      "argmax_correct": true,
+      "per_spk_cer": [
+        0.375,
+        1.0
+      ],
+      "per_spk_text": [
+        "大队长叫科学",
+        "一克强虫皮烤"
+      ],
+      "vanilla_full_max_sim": 0.2595275342464447,
+      "vanilla_full_cer": 0.375,
+      "vanilla_full_text": "大隊長叫科學",
+      "rec_sec": 0.64
+    }
+  ]
+}

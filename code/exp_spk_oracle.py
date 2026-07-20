@@ -86,7 +86,8 @@ def main():
     ap.add_argument("--diarization-model", default=resolve_model("DIAR"))
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--n-sample", type=int, default=60, help="死区抽样条数(控制总时间)")
-    ap.add_argument("--sim-max", type=float, default=0.2, help="死区上界 max_sim<sim_max")
+    ap.add_argument("--sim-min", type=float, default=0.0, help="sim 下界(含); 死区默认0, 主战场POC传0.2")
+    ap.add_argument("--sim-max", type=float, default=0.2, help="sim 上界(不含); 死区0.2/主战场0.4")
     ap.add_argument("--vanilla-full", default=os.path.join(_HERE, "exp_vanilla_full.json"))
     ap.add_argument("--pairs", default=os.path.join(_HERE, "pos_pairs_datasetA.json"))
     ap.add_argument("--out-json", default=os.path.join(_HERE, "exp_spk_oracle.json"))
@@ -102,7 +103,7 @@ def main():
     uid2pair = {os.path.splitext(os.path.basename(p["recognition"]))[0]: p for p in pairs}
 
     deadzone = [d for d in full
-                if d.get("max_sim") is not None and d["max_sim"] < args.sim_max
+                if d.get("max_sim") is not None and args.sim_min <= d["max_sim"] < args.sim_max
                 and d.get("ref") and d["uid"] in uid2pair]
     print(f"[data] vanilla_full={len(full)} 死区(max_sim<{args.sim_max}, 有ref)={len(deadzone)}")
 
