@@ -23,6 +23,8 @@ def main():
     ap.add_argument("--seed", type=int, default=42, help="随机种子(可复现性, 透传自 enroll_infer)")
     ap.add_argument("--batch-size", type=int, default=16,
                     help="batch 推理大小(0=逐条, -1=全部一次; 默认 16, 4060 实测 5× 加速, 8GB 安全)")
+    ap.add_argument("--context", default="",
+                    help="transcribe context(家居场景引导, system message 注入; Qwen3-ASR 原生支持 qwen3_asr.py:303). 默认空=不引导(等价原行为); hold-out 验证后再定启用.")
     args = ap.parse_args()
 
     # 可复现性: 固定 seed(独立 venv 不依赖 repro.py, 内联 set_seed; Qwen3-ASR generate 默认
@@ -57,7 +59,7 @@ def main():
         for i, sf in enumerate(slices):
             uid = uids[i]
             try:
-                res = model.transcribe(audio=sf, language="Chinese")
+                res = model.transcribe(audio=sf, language="Chinese", context=args.context)
                 uid2text[uid] = res[0].text.strip()
             except Exception as e:
                 print(f"  {uid} FAIL {type(e).__name__}: {str(e)[:50]}")
@@ -73,7 +75,7 @@ def main():
             batch_uids = uids[bi : bi + bs]
             batch_idx = bi // bs + 1
             try:
-                results = model.transcribe(audio=batch_paths, language="Chinese")
+                results = model.transcribe(audio=batch_paths, language="Chinese", context=args.context)
                 for uid, res in zip(batch_uids, results):
                     uid2text[uid] = res.text.strip()
             except torch.cuda.OutOfMemoryError:
@@ -82,7 +84,7 @@ def main():
                 print(f"  batch {batch_idx}/{n_batches} OOM, fallback 逐条")
                 for uid, sp in zip(batch_uids, batch_paths):
                     try:
-                        res = model.transcribe(audio=sp, language="Chinese")
+                        res = model.transcribe(audio=sp, language="Chinese", context=args.context)
                         uid2text[uid] = res[0].text.strip()
                     except Exception as e:
                         print(f"    {uid} FAIL {type(e).__name__}: {str(e)[:50]}")

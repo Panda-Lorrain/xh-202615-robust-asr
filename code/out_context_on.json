@@ -1,0 +1,756 @@
+[
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_0.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_0.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.2539179027080536
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.2539179027080536,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.12200000137090683,
+    "target_active_ratio": 0.12200000137090683,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.466,
+    "batch_size": 1,
+    "peak_mem_mib": 657.9,
+    "transcript": "空调开到制热，调到二十五度，风量调到百分之三十。",
+    "chars": 24,
+    "rtf": 0.10678434590680883,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_1.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_1.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.2936280071735382
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.2936280071735382,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.09466666728258133,
+    "target_active_ratio": 0.09466666728258133,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.174,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "灯光亮度调到百分之三十。",
+    "chars": 12,
+    "rtf": 0.04788228856309395,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_10.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_10.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.34934335947036743
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.34934335947036743,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.057999998331069946,
+    "target_active_ratio": 0.057999998331069946,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.184,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "关闭悬浮空调。",
+    "chars": 7,
+    "rtf": 0.07878246470394298,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_100.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_100.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.31792768836021423
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.31792768836021423,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.07866666465997696,
+    "target_active_ratio": 0.07866666465997696,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.197,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.0768348435375178,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_102.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_102.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.3070564866065979
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.3070564866065979,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.06333333253860474,
+    "target_active_ratio": 0.06333333253860474,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.179,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.07371771100320314,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_103.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_103.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.35748744010925293
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.35748744010925293,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.0560000017285347,
+    "target_active_ratio": 0.0560000017285347,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.189,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.08467080563146293,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_104.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_104.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.380798876285553
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.380798876285553,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.07066666334867477,
+    "target_active_ratio": 0.07066666334867477,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.175,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.06534798441090034,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_105.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_105.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.2084682583808899
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.2084682583808899,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.10199999809265137,
+    "target_active_ratio": 0.10199999809265137,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.181,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.04529935139399785,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_106.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_106.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.326232373714447
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.326232373714447,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.054666668176651,
+    "target_active_ratio": 0.054666668176651,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.178,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.08020579599731666,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_107.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_107.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.36083316802978516
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.36083316802978516,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.03933333232998848,
+    "target_active_ratio": 0.03933333232998848,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.178,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.09070115273935975,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_108.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_108.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.11133179813623428,
+      "1": 0.3606228828430176
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.3606228828430176,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.00800000037997961,
+    "target_active_ratio": 0.06800000369548798,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.275,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.0637936680569056,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_11.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_11.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.27249574661254883
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.27249574661254883,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.08133333176374435,
+    "target_active_ratio": 0.08133333176374435,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.181,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.06293397810724047,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_12.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_12.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.376437783241272
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.376437783241272,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.07400000095367432,
+    "target_active_ratio": 0.07400000095367432,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.187,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.07271414958171962,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_120.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_120.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.35226720571517944
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.35226720571517944,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.04399999976158142,
+    "target_active_ratio": 0.04399999976158142,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.193,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.1027129098042242,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_121.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_121.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.23114821314811707
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.23114821314811707,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.0533333346247673,
+    "target_active_ratio": 0.0533333346247673,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.187,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.08011241889979742,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_124.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_124.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.3080348074436188
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.3080348074436188,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.07000000029802322,
+    "target_active_ratio": 0.07000000029802322,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.182,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.06949292813859334,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_125.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_125.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.2133278250694275
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.2133278250694275,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.052666667848825455,
+    "target_active_ratio": 0.052666667848825455,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.185,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.11880871577140611,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_126.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_126.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.2902531921863556
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.2902531921863556,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.10066666454076767,
+    "target_active_ratio": 0.10066666454076767,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.191,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.052539884321219074,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_128.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_128.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.38355302810668945
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.38355302810668945,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.17599999904632568,
+    "target_active_ratio": 0.17599999904632568,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.186,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.030600482410086404,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_134.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_134.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.38890182971954346
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.38890182971954346,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.06866666674613953,
+    "target_active_ratio": 0.06866666674613953,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.171,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.0639569455537124,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_14.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_14.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.21548089385032654
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.21548089385032654,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.07000000029802322,
+    "target_active_ratio": 0.07000000029802322,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.168,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.0649411921147947,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_140.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_140.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.2228737771511078
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.2228737771511078,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.041333332657814026,
+    "target_active_ratio": 0.041333332657814026,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.18,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.10602137621711283,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_142.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_142.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.3084983825683594
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.3084983825683594,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.046666666865348816,
+    "target_active_ratio": 0.046666666865348816,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.184,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.09874746363650086,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_143.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_143.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.3169880509376526
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.3169880509376526,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.13600000739097595,
+    "target_active_ratio": 0.13600000739097595,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.185,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.04002480279831659,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_144.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_144.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.3746524155139923
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.3746524155139923,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.02866666577756405,
+    "target_active_ratio": 0.02866666577756405,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.185,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.13203467641557967,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_15.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_15.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.38860049843788147
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.38860049843788147,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.03333333507180214,
+    "target_active_ratio": 0.03333333507180214,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.169,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.09497758504506704,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_150.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_150.wav",
+    "speakers": [
+      0,
+      1
+    ],
+    "sims": {
+      "0": 0.14961320161819458,
+      "1": 0.3944758474826813
+    },
+    "target_idx": 1,
+    "target_speaker": 1,
+    "max_sim": 0.3944758474826813,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.03466666489839554,
+    "target_active_ratio": 0.03466666489839554,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.266,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.17570692395407056,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_152.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_152.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.3288303017616272
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.3288303017616272,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.05999999865889549,
+    "target_active_ratio": 0.05999999865889549,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.185,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.10436854211453399,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_157.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_157.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.38270944356918335
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.38270944356918335,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.1326666623353958,
+    "target_active_ratio": 0.1326666623353958,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.185,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.04167491310250104,
+    "spk_texts": null
+  },
+  {
+    "recognition": "E:\\midea_target_asr\\datasetA\\pos\\cmd_158.wav",
+    "enrollment": "E:\\midea_target_asr\\datasetA\\pos\\kws_158.wav",
+    "speakers": [
+      0
+    ],
+    "sims": {
+      "0": 0.3815711736679077
+    },
+    "target_idx": 0,
+    "target_speaker": 0,
+    "max_sim": 0.3815711736679077,
+    "reject_threshold": 0.5,
+    "stno_target_ratio": 0.03799999877810478,
+    "target_active_ratio": 0.03799999877810478,
+    "rejected": true,
+    "asr_backend": "qwen",
+    "infer_sec": 0.186,
+    "batch_size": 1,
+    "peak_mem_mib": 658.7,
+    "transcript": "",
+    "chars": 0,
+    "rtf": 0.10495258672205032,
+    "spk_texts": null
+  }
+]
