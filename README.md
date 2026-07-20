@@ -23,20 +23,30 @@
 
 ---
 
-## 🚀 最新进展（2026-07-06 Phase 1 突破）
+## 🚀 最新进展（2026-07-19 稳定性闭环 + qwen 主线）
 
-**H3 强证伪**：DiCoW 的 FDDT/STNO 条件化在极重 babble 下【反作用】。改用 **vanilla Whisper-large-v3-turbo + 声纹切 target timeline** 路线（zero-training，全量 1362 条 pos 真测）CER 几乎减半：
+> **当前算分**（qwen + content_gate，w1=w2=0.4 假设，待主办方确认权重）：**CER 腿 15.32 + RR 腿 37.98 = 53.3 / 80**，效率腿 20 分待 L20 batch=1 RTF 实测。
 
-| 指标 | vanilla 路线（新主线） | DiCoW 条件化（已证伪） |
-|---|---|---|
-| 转写 CER | **0.664** | 1.248 |
-| correct_rate | **45.6%** | 31.4% |
-| 英文幻觉率 | **0.59%** | 18.80%（条件化造孽）|
-| thr=0.2 overall CER | **0.711** | 1.241 |
+### 主线：Qwen3-ASR + 声纹切 target timeline（2026-07-11，zero-training）
+复用 enroll_infer 的 DiariZen diar + wespeaker 选 target → 切 target timeline → **Qwen3-ASR-1.7B**（ExtremeNoise 4× 鲁棒迁移，Apache2.0）drop-in 转写。全量 1350 条官方口径：
+- **transcribe CER 0.3436**（诊断上限，vs vanilla 0.595）
+- **含拒 thr0.27 提交 overall 0.5934**（CER 腿 16.26；**答辩/提交一律报含拒口径**，transcribe 0.3436 是诊断上限勿虚报）
 
-→ **CER 40% 这条腿从 ~0 分变 ~11 分**。机制：diar+声纹选 target → 切 target timeline 段（含重叠）→ vanilla Whisper 转写（去掉 stno_mask/FDDT）。**答辩弹药**：cascaded 条件化在极重 babble 下反作用，改 target extraction + vanilla，CER 减半——契合出题方反 cascaded 审美。详见 [`02_上限候选深读.md`](02_上限候选深读.md) 候选 Z + `code/exp_vanilla_vs_dicow.py`。
+### content_gate 二次拒识（2026-07-18，默认开 BAODI_GATE=1）
+对 sim≥thr 的 accept 再判转写是否有效家居指令，非指令（新闻/英文/乱码）加拒。qwen 后端 joint 验证净正 **+0.826**：neg RR 0.9051→**0.9494**（腿 +1.77）/ pos CER 0.5934→0.6171（腿 −0.95）。详见 `code/verify_content_gate_joint.py`。
 
-**保底（拒识 + 效率）**：neg RR **98.5%**（thr=0.4 关 LLM）/ RTF **0.24**（4060，L20 待测）。提交用 `bash code/run_baodi.sh pos|neg [thr]`（已加 BAODI 守卫防裸调灾难）。
+### 稳定性 / 可复现性闭环（2026-07-19，26 遍全量 1364 条）
+- **R1=0**：同种子 10 遍 + 变种子 5×2，transcript 零波动 → greedy argmax 完全确定可复现
+- **R2 纯仅 2 条**：batch=1 vs 16 差异 74 条但 72 含 R3/R4 叠加 → 开发数字可外推提交（submit 已锁 batch1）
+- **R3 57% 归档**：输入微扰敏感（gauss 加性噪声主因），A 集外训练才能修
+- hold-out 纪律：只用工程修复 + 诊断，不碰训练
+
+详见 [`docs/稳定性测试报告_2026-07-19.md`](docs/稳定性测试报告_2026-07-19.md)。
+
+### 前序：2026-07-06 Phase 1（vanilla vs DiCoW 条件化）
+DiCoW FDDT/STNO 条件化在极重 babble 下反作用（英文幻觉 18.8%、CER 1.25），改 vanilla Whisper + 声纹切 target，CER 减半到 0.664——此为 qwen 主线前序（07-11 qwen 进一步到 0.3436）。契合出题方反 cascaded 审美。详见 `code/exp_vanilla_vs_dicow.py`。
+
+**提交入口**：`bash code/run_baodi.sh pos|neg [thr]`（锁 `--no-llm` / thr0.27 / sim_only / content_gate 默认开 / `--no-se`；BAODI 守卫防裸调灾难）。
 
 ---
 
@@ -44,7 +54,7 @@
 
 ### 整体方案（实际实现）
 
-> ⚠️ **2026-07-06 Phase 1 更新**：下方阶段 2「DiCoW 条件化转写」已被全量真测证伪反作用（英文幻觉 18.8%、CER 1.25）。**实际主线改为 vanilla Whisper + 声纹切 target timeline**（CER 0.664 减半，见上「最新进展」）。下方 DiCoW 流程作历史 / 已证伪路径保留。
+> ⚠️ **2026-07-06 Phase 1 更新**：下方阶段 2「DiCoW 条件化转写」已被全量真测证伪反作用（英文幻觉 18.8%、CER 1.25）。**实际主线改为 vanilla Whisper + 声纹切 target timeline**（CER 0.664 减半）。⚠️ **2026-07-11 进一步：换 Qwen3-ASR-1.7B（ExtremeNoise 4× 鲁棒迁移）drop-in 转写，CER 降到 transcribe 0.3436 / 含拒提交 overall 0.5934（CER 腿 16.26），见上「最新进展」**。下方 DiCoW 流程作历史 / 已证伪路径保留。
 
 > 已实现于 `code/submit_infer.py`（4 阶段 subprocess 编排）。理想态组件（CAM++/Personal VAD）T18 证伪/未用，详见 [`交付/设计报告.md`](交付/设计报告.md)。
 
@@ -209,6 +219,17 @@ python stno_experiment.py
 > ⚠️ 本图为仿真期数据。**2026-07-04 真测基线 + 2026-07-06 Phase 1 vanilla 突破（CER 0.664）见 [RESULTS.md](RESULTS.md) T23/T24**。可交互看板（light/dark 自适应）：[`docs/cer_progress_dashboard.html`](docs/cer_progress_dashboard.html)。
 >
 > ⚠️ 仿真集非比赛真实 A 集，绝对值不可外推到赛榜；两次独立跑可用率 14.0% / 15.1% 互证稳健。
+
+### 🎯 真测主线算分（2026-07-19，datasetA 全量 1364 pos / 474 neg，qwen + content_gate）
+
+| 腿 | 指标 | 值 | 腿分 |
+|---|---|---|---|
+| CER 40% | 含拒 thr0.27 overall | 0.5934 →（+gate）0.6171 | **15.32** |
+| RR 40% | neg 拒识率 | 0.9051 →（+gate）0.9494 | **37.98** |
+| 效率 20% | overall_rtf（关 SE，4060）| 0.142 | 待 L20 batch=1 |
+| **合计** | | | **53.3 / 80** |
+
+> w1=w2=0.4 假设（排名公式 `TotalScore = w1*(1−CER) + w2*RR`，权重待主办方确认）。CER 一律报含拒口径（transcribe 0.3436 是诊断上限勿虚报）。下方 DiCoW Baseline / 仿真进度图为历史 / 前序数据。
 
 ### DiCoW Baseline 性能
 
