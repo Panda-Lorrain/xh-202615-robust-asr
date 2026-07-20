@@ -1,12 +1,42 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
-> 🔴 **2026-07-18 最新状态（当前恢复点）**：效率腿探索 3 commit(a9dca73/031e4b1/c8c739d) + 对抗审查修正(6ce0636) + L40 阶段0 脚本(2c095de) **均已 push**。**当前在等用户租 L40 算力**——用户说"租了会给 SSH"。拿到后路径 A ssh 操控: `nohup bash code/deploy_l40.sh &`(无卡部署, Monitor 盯) → `SMOKE=1 bash code/run_efficiency_l40.sh`(冒烟) → 用户切 GPU → `bash code/run_efficiency_l40.sh`(全量+换算) → scp 回本机入库。**命门: 问主办方 RTF 口径(per-utt 计时 vs 总墙钟)**。SE orphan bug 真相(三机制, 非仅 mismatch)已入 memory `se-bug-orphan-truth`。详见下【2026-07-18 最新】段。
+> 🔴 **2026-07-19 最新状态（当前恢复点）**：稳定性/鲁棒性测试**闭环完成**(spec+plan+代码+26遍实跑+报告, 全 push)。核心: **R1=0**系统 greedy argmax 完全确定可复现(不修 use_deterministic) / **R2 纯仅2条**(batch1vs16 差异74条中72含 R3/R4 叠加 → 开发 batch16 数字基本可外推提交 batch1, submit 锁 batch1 3398c0d) / **R3 57%**输入微扰敏感(gauss 加性噪声54%主因破坏 mel)→模型泛化短板**归档**(A 集外训练才能修, A 集不能训练§14) / R5=0。**已 push 13+commit**(0097266→84d70d0+775e219)。详见下【2026-07-19 最新】段 + memory `stability-test-launched` + `docs/稳定性测试报告_2026-07-19.md`。**下一步按 ROI**: 答辩准备(最高) > 效率腿 L40(等租算力) > R4 hold-out。
+
+> 🔴 **2026-07-18 最新状态**：效率腿探索 3 commit(a9dca73/031e4b1/c8c739d) + 对抗审查修正(6ce0636) + L40 阶段0 脚本(2c095de) **均已 push**。**当前在等用户租 L40 算力**——用户说"租了会给 SSH"。拿到后路径 A ssh 操控: `nohup bash code/deploy_l40.sh &`(无卡部署, Monitor 盯) → `SMOKE=1 bash code/run_efficiency_l40.sh`(冒烟) → 用户切 GPU → `bash code/run_efficiency_l40.sh`(全量+换算) → scp 回本机入库。**命门: 问主办方 RTF 口径(per-utt 计时 vs 总墙钟)**。SE orphan bug 真相(三机制, 非仅 mismatch)已入 memory `se-bug-orphan-truth`。详见下【2026-07-18 最新】段。
 
 > **交接时间**：2026-07-15（**标注规范v2工具落地 + 官方CER脚本存档核对 + 当前算分**：改代码+commit+push。三件事：①标注v2工具实现（`build_annotator_pack_v2.py` 失败归因 A-X/B/C/D + enrollment污染诊断 + qwen后端 + 全量浏览 + CER=0隐藏，+ `compare_vs_gold.py`/`map_gold_to_v2.py`）；②用户贴主办方CER参考脚本原文 → 存档 `eval_metrics_official_ref.py` + 用官方原文重算 overall 0.3436 / 逐条 1350/1350 一致 + 修 `_norm_asr` 书名号显示 bug（官方口径书名号不扣分）；③当前分 qwen+thr0.27：CER腿 16.26 + RR腿 36.20 = 52.46/80 硬数字，效率待 L20 实测。详见【2026-07-15 最新】段）。
 > **下个 agent 读序**：本文件【2026-07-14 最新】段（↓）→ `docs/标注交接_enrollment污染与target选错_2026-07-14.md`（标注 Agent 直接用）→ CLAUDE.md → 关键 memory（**multi-voice-llm-routing-architecture** / cer-breakthrough-candidates / multi-annotator-dispatch / spk-oracle-poc / content-gate-decision / official-scoring-spec / dataset-split-spec / reproducibility-hardening / mimo-asr-backend-potential / unified-thr-decision / h3-dicow-conditioning-backfire-vanilla / baodi-config-no-llm / submit-script-verification / lessons-pitfalls）→ REPRO_SETUP.md
 > **当前 git**：`master`，本 session commit「标注规范v2工具落地 + 官方CER脚本存档核对」已 push（见 `git log -1`）。改动：`code/build_annotator_pack_v2.py`(新) + `code/eval_metrics_official_ref.py`(新,官方脚本存档) + `code/compare_vs_gold.py`+`code/map_gold_to_v2.py`(新) + `code/recompute_official_cer.json`(重算微调) + `AGENT_HANDOFF.md`。⚠️ `code/annot_pack/` 被 gitignore（标注HTML/音频不入库，仅本地）。下个 agent 先 `git status` 核对。
 
 > **2026-07-16 续 session**：L20 效率腿准备(跨平台改造 8 处 + `efficiency_leg_calc.py` + `docs/L20效率实测_runbook_2026-07-15.md` + `setenv_linux.sh` + pyarrow/PY_SE 守卫) **本地未 commit/push**，`git status` 应见 6 改 + 3 新。详见下【2026-07-16 最新】段。
+
+---
+
+## 【2026-07-19 最新】稳定性/鲁棒性测试闭环(R1=0 系统确定 / R2 纯2 可外推 / R3 归档)
+
+> **背景**: 现有 run-twice 只 20条×2遍抽样(`verify_reproducibility.py` 默认 `--limit 20`), A 集从未全量多遍跑过; 全项目无 `use_deterministic_algorithms`。**主办方口径(美的_张志飞)**: 默认 batch=1 / 高 batch 结果一致才行 / RTF 按 batch=1 测。
+
+### 本次 session 做了什么(13+ commit, 全 push)
+- spec `0097266` + plan `dca7e95`(brainstorming→writing-plans 全流程闭环)
+- 代码: enroll_infer 加 `--asr-batch-size`(`629e605`, 回归 qwen 20条×2 delta=0) + `stability_test.py` 编排器(`91aa44e`/`2562ea2`/`80b39d4`, A/B1/B2/B3/B4/all + 断点续跑) + `perturb_audio.py`(`b6b4116`, gauss/vol/time 微扰) + `analyze_stability.py`+`stability_dashboard.py`(`ac7e570`, 5根因决策树 + dataviz 合规)
+- B1 改 batch=1 + slice_dir 每遍清 + submit 锁 batch=1(`3398c0d`)
+- 报告 `docs/稳定性测试报告_2026-07-19.md`(`1b94d9b` 模板 + `84d70d0` 填数)
+- 顺带: 之前 session enroll_infer 增强(context/diar-dtype/inference_mode/fp16)分离 commit `84c5409`
+
+### 实跑 + 核心结论(26 遍全量 1364 条)
+- **R1=0**(A 同种子10遍 + 变种子10遍 0 波动): 系统 greedy argmax **完全确定可复现**, 不修 `use_deterministic`(GPU 残余非确定 + 种子变化不改 argmax) → **Task11 跳过**(修了反拖效率腿)
+- **R2 纯仅2条**(batch1vs16 差异74条5.43%, 但72条含 R3/R4 叠加): **开发口径 batch16 数字基本可外推提交 batch1**, submit 已锁 batch=1(`3398c0d`)
+- **R3=717条57%**(输入微扰敏感, gauss 54%主因破坏 mel 谐波 / vol 9%保结构 / time 26%影响 diar): 模型泛化短板**归档**(A 集外训练才能修, A 集不能训练 §14)
+- R4=99(enroll-aug 轻微7.26%), R5=0
+- 波动740条 sim 分桶: 死区+低sim 53%, 高sim 18%(部分验证低 sim 更易波动); top 波动都是短指令("往左吹"/"向左吹风")
+
+### hold-out 硬边界(防过拟合, 关键)
+A 集是测试集, 本次**不改任何基于 A 集内容的提交规则**(拒识 thr/enhance 不动), 只工程修复(R1 跳过/R2 锁 batch1) + 诊断归档(R3/R4/R5)。**B3 加噪数据是 A 集派生, 不能训练**(§14, 用户亲自纠正)。
+
+### 下一步(按 ROI)
+🥇 答辩准备(稳定性测试4点弹药: 可复现性 R1=0 / batch 口径 R2 / 诚实归因 R3 / hold-out 纪律) > 🥈 效率腿 L40(等租算力, 阶段0 脚本就绪) > 🥉 R4 hold-out(轻量) > ⚠️ R3 修复(A 集外训练, 大工程 + CER 腿近天花板, 低 ROI)。
+
+详见 `docs/稳定性测试报告_2026-07-19.md` + memory `stability-test-launched` + `code/stability_matrix/`(report.json/per_utt_volatility.json 740条/dashboard.html)。
 
 ---
 
