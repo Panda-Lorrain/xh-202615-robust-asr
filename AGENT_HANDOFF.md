@@ -1,6 +1,6 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
-> 🔴 **2026-07-20 最新状态（当前恢复点）**：接手收拾 07-18 游离改动(4 commit 全本地, 待 push): ①`226e239` content_gate 反转默认开(joint+0.826 坐实, run_baodi BAODI_GATE=1 + text_utils 扩词 + verify_content_gate_joint.py) ②`7bba69f` qwen context 探索归档(结论不启用, 主战场30条 CER 0.10→0.90 灾难) ③mainbattle[0.2,0.4) oracle 归档(**verdict GO=是 不可信**, 判据被 07-11 CAM++ POC 推翻 + argmax_CER 0.951 反常; 声纹强化维持关闭, 见 memory spk-oracle-poc 07-20 段) ④主办方问题清单文档入库. **未入库**: out_smoke_fp32.json(孤立临时冒烟无引用, 留本地). **下一步不变**: 答辩准备(最高) > 效率腿 L40(等租算力) > R4 hold-out.
+> 🔴 **2026-07-20 最新状态（当前恢复点）**：接手收拾 + 答辩准备刷新(**7 commit 全 push**): A.收拾 07-18 游离改动 4 commit(content_gate 反转默认开 joint+0.826 `226e239` / qwen context 归档不启用 `7bba69f` / mainbattle oracle 归档 verdict 不可信 `bafcbf4` / 主办方问题清单 `3469756`) + B.答辩刷新 3 commit(README+FAQ 刷到 qwen 主线算分 53.3/80 `44a94e0` / 进度图重做真测版 3 子图 `089e6e7` / 补 SE bug 真相+时间线+技术亮点 `842706e`). **答辩材料全就绪**(算分/FAQ/README/进度图/时间线/技术亮点一致到 07-19 qwen 主线). **未入库**: out_smoke_fp32.json(孤立临时冒烟, 留本地). **下一步**: 答辩演练稿(待写) > 效率腿 L40(等租算力) > R4 hold-out.
 
 > 🔴 **2026-07-19 最新状态（当前恢复点）**：稳定性/鲁棒性测试**闭环完成**(spec+plan+代码+26遍实跑+报告, 全 push)。核心: **R1=0**系统 greedy argmax 完全确定可复现(不修 use_deterministic) / **R2 纯仅2条**(batch1vs16 差异74条中72含 R3/R4 叠加 → 开发 batch16 数字基本可外推提交 batch1, submit 锁 batch1 3398c0d) / **R3 57%**输入微扰敏感(gauss 加性噪声54%主因破坏 mel)→模型泛化短板**归档**(A 集外训练才能修, A 集不能训练§14) / R5=0。**已 push 13+commit**(0097266→84d70d0+775e219)。详见下【2026-07-19 最新】段 + memory `stability-test-launched` + `docs/稳定性测试报告_2026-07-19.md`。**下一步按 ROI**: 答辩准备(最高) > 效率腿 L40(等租算力) > R4 hold-out。
 
