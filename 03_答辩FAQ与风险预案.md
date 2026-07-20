@@ -78,7 +78,7 @@ A：hold-out 硬纪律。A 集是开发/测试集：① 不用 A 集训练/数�
 
 ### 红线 3：效率偷换概念
 - **会被问**："你用'音频大模型慢'暗示级联不慢。但你主线是 Whisper-turbo + Qwen-3B 串行，RTF 到底多少？测过吗？"
-- **诚实应对**：**不得用"对手慢"辩护"我不慢"**。诚实事实：级联主线本身有 RTF 风险，L20 实测是 W6 交付项。效率分用 turbo(蒸馏版，比 large-v3 快约 8 倍) + INT8/4 量化 + 流式 chunking 兜底；TS-RNNT 形态作上限冲刺但不 all-in。联合端到端是否比级联快是开放问题，不断言。
+- **诚实应对**：**不得用"对手慢"辩护"我不慢"**。诚实事实：① **关 SE 是已验证的效率杠杆**（2026-07-18 SE orphan bug bugfix 坐实：`submit_infer.py` 的 `rec_for_enroll` 是死变量，SE 输出 `se_out` 从未被消费 → SE 全程空转 **30.6% RTF 白烧**；bugfix 后 SE 真生效反而 overall CER **+0.1049 恶化**（三机制：sim mismatch 误拒 66% + DF3 过衰减致 diar 崩溃 22% + 转写恶化 12%），故 qwen 主线 `--no-se`，**省 30% RTF 且 CER 更优 = Pareto 最优**）。② 4060 实测关 SE overall_rtf **0.142**（qwen batch=16）；**L20 batch=1 RTF 待测**（主办方口径，命门）。③ 兜底：turbo（比 large-v3 快 ~8×）+ INT8/4 量化 + 流式 chunking。联合端到端是否比级联快是开放问题，不断言。详见 `docs/SE_bugfix_AB结果_2026-07-18.md` + memory `se-bug-orphan-truth`。
 
 ### 红线 4：M3 接口胶水（O 类判别 + self-enrollment 替换）
 - **会被问**："PVAD 三分类怎么出 STNO 的 O 类？100% 重叠时两路概率都高，O 退化成阈值博弈；而且你们把 SE-DiCoW 的 self-enrollment 换成短唤醒音频，在最关键的重叠区同时削弱了两个支柱。"
@@ -161,7 +161,7 @@ A：hold-out 硬纪律。A 集是开发/测试集：① 不用 A 集训练/数�
 **C2. 40% 拒识率怎么定义？怎么测？** ⚠️ 这是当前定义最模糊处
 答：**拒识率的精确定义（精确率/召回率/F1/TPR-FPR 权衡）需向主办方确认**——这是待确认项（00 文档第九节）。⚠️ 真测后拒识主力是**声纹 max_sim 阈值**（`decide_reject` = AND：`llm!=accept AND max_sim<thr`），LLM 语义/PVAD 仅辅助校验、且**只能减拒不加拒**——"三路融合"作主力强项已被 3-agent 对抗审查证伪（GAP4），答辩**不得**列为强项。thr 取值取决于评测口径（CER 均值→0.4/0.45 / correct→0.2 / pos 不许拒→0）。
 
-**C3. 20% 效率怎么保证？** → 见红线 3。诚实：turbo + 量化 + 流式 + TS-RNNT 形态，W6 实测。
+**C3. 20% 效率怎么保证？** → 见红线 3。**关 SE 省 ~30% RTF**（07-18 SE orphan bug bugfix 坐实：SE 原 `se_out` 空转 30.6% RTF，bugfix 后 SE 真生效反致 overall CER +0.1049 恶化，故关 SE 是 Pareto 最优）。4060 实测关 SE overall_rtf **0.142**（qwen batch=16），**L20 batch=1 RTF 待测**（主办方口径）。兜底：turbo + INT8/4 + 流式 chunking。
 
 **C4. 三维度冲突（CER 好但效率差）怎么权衡？**
 答：按 40/40/20 加权选总分最优单方案，依据实测而非拍板。CER/拒识各 40% 权重最高，**不可为效率牺牲 CER/拒识的核心**。

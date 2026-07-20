@@ -269,13 +269,13 @@ python stno_experiment.py
 
 ---
 
-## 🎯 技术亮点
+## 🎯 技术亮点（真测主线，2026-07-19）
 
-1. **STNO 内建拒识**: 通过 FDDT 的抑制式初始化，非目标帧被压到零输出，拒识成为模型内建能力
-2. **双信号融合拒识(llm_or_sim)**: 声纹(wespeaker 256d) + LLM 语义(Qwen2.5-3B)，LLM 救回声纹误拒；target 缺席集真实拒识率 100%(72条 0 误放行)
-3. **SE 条件化可部署**: 谱平坦度运行时估噪声类型（babble/white→全力，pink→温和），无需 manifest，工程可落地
-4. **高效推理**: minimal 纯 DiCoW RTF=0.058，远快于实时，满足 20% 效率评分
-5. **可控转写**: STNO mask 精确控制哪些段落被转写，机制可解释
+1. **target timeline extraction + Qwen3-ASR**: diar(DiariZen) + wespeaker 选 target → 切 target timeline（含重叠区）→ Qwen3-ASR-1.7B（ExtremeNoise 4× 鲁棒）转写。zero-training，CER 从 DiCoW 条件化 1.19 降到 **0.3436**（诊断）/ 0.5934（含拒提交）
+2. **声纹 max_sim 锁定 + content_gate 二次拒识**: 声纹锚信号（`max_sim ≥ thr0.27`）锁定 target；对 accept 再判转写是否有效家居指令（`content_gate`），非指令加拒。neg RR **0.9494**（+gate 后），joint 净正 +0.826
+3. **关 SE 的工程诚实（Pareto 最优）**: 07-18 SE orphan bug bugfix 坐实 SE 原空转 30.6% RTF，bugfix 后 SE 真生效反致 CER +0.1049 恶化（三机制）→ **关 SE 省 30% RTF 且 CER 更优**
+4. **可复现性量化达标**: 26 遍全量 1364 条，R1（同种子×10）+ R5（变种子×5）transcript **零波动** → greedy argmax 完全确定；R2 纯仅 2 条 → 开发数字可外推提交 batch=1
+5. **hold-out 纪律 + 诚实归因**: A 集是测试集，zero-training 不碰训练；R3 57% 输入微扰敏感（gauss 主因）诚实归档，给根因 + 未来方向（A 集外加噪训练）
 
 ---
 
@@ -297,14 +297,25 @@ python stno_experiment.py
 | 06-29 | **T19** 集成 + langfix 修复 | `fuse_eval.py` 真实组合指标；修 DiCoW language 死代码 bug（英文 90%→72%）|
 | 06-30 | **T20** SE 条件化 post-fix 重评 | =6 优于 =0（最优精细 2.022）；babble 归因深化（diar 误检+STNO 崩）|
 
-### 🔄 当前重心（2026-06-30 起：研究 → 交付）
+### ✅ 07 月真测进展（datasetA 到手 → qwen 主线 → 稳定性闭环）
 
-对照官方要求，**重心从"仿真性能深挖"转向"交付物标准化 + 真实评测"**：
+| 日期 | 阶段 | 关键产出 |
+|---|---|---|
+| 07-04 | **T23** 真测基线 | datasetA 到手（单通道 16k）；pos CER ~1.0 / neg RR 77%；**单通道确认，空间路线全弃** |
+| 07-06 | **T24** Phase 1 突破 | H3 证伪 DiCoW 条件化（反作用）；vanilla+target CER **0.664** 减半 |
+| 07-08 | **T27** 口径坐实 | 主办方 CER 脚本（NFKC + 去 P* 累计池）；统一 **thr=0.27** 定稿；修提交归一漏洞 |
+| 07-11 | **T28** qwen 突破 | Qwen3-ASR transcribe CER **0.3436** / 含拒 0.5934（CER 腿 16.26）；FireRedASR 横评双 SOTA |
+| 07-14 | 多声纹 LLM 路由 POC | 证伪（端到端挑不到 target）；content_gate v2 集成探索 |
+| 07-18 | 效率腿 + content_gate | **SE orphan bug 真相**（关 SE 省 30% RTF，Pareto 最优）；content_gate 反转默认开（joint +0.826） |
+| 07-19 | **稳定性闭环** | 26 遍全量：R1=0 完全确定 / R2 纯仅 2 条 / R3 57% 归档；submit 锁 batch=1 |
 
-- ⏳ **等测试集 A**（报名后发邮箱）——到手即用真 A 评测，取代仿真 450 条
-- 🔧 **推理脚本标准化**（不依赖 A）：`submit_infer.py` 吃 enrollment+recognition → `result.json` + `timing.json`
-- 📄 **设计报告 / 使用说明**（不依赖 A）：00-03 文档 + T14-T20 实验 → 比赛格式
-- ⚡ **L20 耗时方案**：脚本显存自适应（48GB 大 batch）+ 租 AutoDL L40 验证
+### 🔄 当前重心（2026-07-19 后：答辩 + 效率腿 L20 实测）
+
+真测 + 稳定性闭环完成，当前算分 **53.3/80**（qwen + content_gate，w1=w2=0.4）：
+
+- 📄 **答辩准备**（最高 ROI）：算分 / FAQ / README / 进度图 已刷到 07-19；待演练稿
+- ⚡ **效率腿 L20 实测**（等租算力）：4060 关 SE overall_rtf 0.142，L20 batch=1 待测；`deploy_l40.sh` 就绪
+- ❓ **命门 — 问主办方**：排名公式 w1/w2 值 + RTF 计时口径（含加载?）+ 效率打分范式
 
 ### ⏭ 未来里程碑
 
