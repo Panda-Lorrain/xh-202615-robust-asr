@@ -133,7 +133,7 @@ xh-202615-robust-asr/
 │   ├── PROGRESS.md                    # 开发进度记录
 │   ├── RESULTS.md                     # 实测结果与分析
 │   └── docs/
-│       ├── progress_overview.png        # 📊 README 进度概览图（工程迭代 + 实测画像）
+│       ├── progress_overview.png        # 📊 README 进度概览图（真测版: 路线突破+sim分桶+稳定性）
 │       ├── cer_progress_dashboard.html  # 可交互看板（light/dark 自适应）
 │       └── superpowers/                 # 设计稿（plans/specs）
 │
@@ -210,15 +210,16 @@ python stno_experiment.py
 
 ## 📈 实测结果
 
-### 📊 进度概览
+### 📊 进度概览（2026-07-20 真测版，datasetA 全量）
 
-![实测进度概览](docs/progress_overview.png)
+![真测进度概览](docs/progress_overview.png)
 
-> 450 条 mimo-tts 仿真集画像（仿真期）。**可用率 = CER<0.5 占比**——比 CER 均值更诚实的可用指标（babble 重复循环幻觉使 hyp 超长、拉高均值，反而掩盖退化）。**babble 全灭** 已确诊（T22）：FDDT/STNO 条件化在低 target 覆盖下劣化，非 Whisper 基座问题。
+> datasetA 全量真测（1364 pos / 474 neg），口径统一**官方累计池**（NFKC + lower + 去 P*）。三子图：
+> - **① CER 路线突破**：DiCoW 条件化(1.19) → vanilla+target(0.59) → Qwen3-ASR(0.34)，zero-training 三阶段减半，契合反 cascaded 审美。
+> - **② sim 分桶对比**：qwen 各桶均优于 vanilla，死区(<0.2) OOD 伪地板突破（0.83→0.46）。
+> - **③ 稳定性五维波动率**：R1/R5=0 可复现达标，R3=57% 输入微扰敏感（gauss 主因，诚实归档）。
 >
-> ⚠️ 本图为仿真期数据。**2026-07-04 真测基线 + 2026-07-06 Phase 1 vanilla 突破（CER 0.664）见 [RESULTS.md](RESULTS.md) T23/T24**。可交互看板（light/dark 自适应）：[`docs/cer_progress_dashboard.html`](docs/cer_progress_dashboard.html)。
->
-> ⚠️ 仿真集非比赛真实 A 集，绝对值不可外推到赛榜；两次独立跑可用率 14.0% / 15.1% 互证稳健。
+> 生成 `code/make_readme_progress.py`（数据源 `recompute_official_cer.json` + `qwen_official_cer_workpoints.json` + `poc_qwen_asr_full_result.json` + `stability_matrix/stability_report.json`）。原仿真期看板保留：[`docs/cer_progress_dashboard.html`](docs/cer_progress_dashboard.html)（450 条 mimo-tts 仿真集，非真实 A 集，绝对值不可外推赛榜）。
 
 ### 🎯 真测主线算分（2026-07-19，datasetA 全量 1364 pos / 474 neg，qwen + content_gate）
 
