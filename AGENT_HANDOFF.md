@@ -1,5 +1,7 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
+> 🔴 **2026-07-20 晚 最新（当前恢复点）**：CER 边际探索闭环 — 全量 oracle + ASE-PVAD 实跑**双证伪**，cascaded CER 近极限坐实。用户战略从"答辩 100 分"转向"**初赛进前 10-20 名**"（入围依据 = B 集成绩 + 脚本核查 + 客观指标，**A 集排行榜仅供参考不决定入围**，见 `待确认_主办方口径与外部输入.md`）。核心发现：① 主战场全量 668 oracle **GO=否**（60 条抽样 GO=是 是假象，cer_gain 虚高 3x）② 主战场 78% 损失是音频摧毁（切对 target 也救不回），22% 选错 target ③ ASE-PVAD（出题方 ICASSP2026 论文 #02）实跑**证伪**（救回 26/改错 33，CER +0.004，根因 zero-training：wespeaker 没学过用增强 embedding）④ **不是菜是架构极限**（出题方 NOTSOFAR CHiME-8 冠军死区也翻车），但端到端联合训练路线（没走）可能更强。**下一步用户定：效率腿 L40（最大杠杆，要租算力）/ 接受 CER 天花板保基本盘**。产物**未 commit**（本地）。详见下【2026-07-20 CER 边际探索】段 + memory `mainfield-oracle-full-debunked`。
+
 > 🔴 **2026-07-20 最新状态（当前恢复点）**：接手收拾 + 答辩准备刷新(**7 commit 全 push**): A.收拾 07-18 游离改动 4 commit(content_gate 反转默认开 joint+0.826 `226e239` / qwen context 归档不启用 `7bba69f` / mainbattle oracle 归档 verdict 不可信 `bafcbf4` / 主办方问题清单 `3469756`) + B.答辩刷新 3 commit(README+FAQ 刷到 qwen 主线算分 53.3/80 `44a94e0` / 进度图重做真测版 3 子图 `089e6e7` / 补 SE bug 真相+时间线+技术亮点 `842706e`). **答辩材料全就绪**(算分/FAQ/README/进度图/时间线/技术亮点一致到 07-19 qwen 主线). **未入库**: out_smoke_fp32.json(孤立临时冒烟, 留本地). **下一步**: 答辩演练稿(待写) > 效率腿 L40(等租算力) > R4 hold-out.
 
 > 🔴 **2026-07-19 最新状态（当前恢复点）**：稳定性/鲁棒性测试**闭环完成**(spec+plan+代码+26遍实跑+报告, 全 push)。核心: **R1=0**系统 greedy argmax 完全确定可复现(不修 use_deterministic) / **R2 纯仅2条**(batch1vs16 差异74条中72含 R3/R4 叠加 → 开发 batch16 数字基本可外推提交 batch1, submit 锁 batch1 3398c0d) / **R3 57%**输入微扰敏感(gauss 加性噪声54%主因破坏 mel)→模型泛化短板**归档**(A 集外训练才能修, A 集不能训练§14) / R5=0。**已 push 13+commit**(0097266→84d70d0+775e219)。详见下【2026-07-19 最新】段 + memory `stability-test-launched` + `docs/稳定性测试报告_2026-07-19.md`。**下一步按 ROI**: 答辩准备(最高) > 效率腿 L40(等租算力) > R4 hold-out。
@@ -11,6 +13,64 @@
 > **当前 git**：`master`，本 session commit「标注规范v2工具落地 + 官方CER脚本存档核对」已 push（见 `git log -1`）。改动：`code/build_annotator_pack_v2.py`(新) + `code/eval_metrics_official_ref.py`(新,官方脚本存档) + `code/compare_vs_gold.py`+`code/map_gold_to_v2.py`(新) + `code/recompute_official_cer.json`(重算微调) + `AGENT_HANDOFF.md`。⚠️ `code/annot_pack/` 被 gitignore（标注HTML/音频不入库，仅本地）。下个 agent 先 `git status` 核对。
 
 > **2026-07-16 续 session**：L20 效率腿准备(跨平台改造 8 处 + `efficiency_leg_calc.py` + `docs/L20效率实测_runbook_2026-07-15.md` + `setenv_linux.sh` + pyarrow/PY_SE 守卫) **本地未 commit/push**，`git status` 应见 6 改 + 3 新。详见下【2026-07-16 最新】段。
+
+---
+
+## 【2026-07-20 CER 边际探索】主战场全量 oracle + ASE-PVAD 实跑双证伪（cascaded CER 近极限坐实）
+
+> **背景**：用户战略从"答辩 100 分"转向"**初赛进前 10-20 名**"。入围规则澄清：前 10-20 名排名制（非分数线）；入围依据 = **B 集成绩 + 脚本核查 + 客观指标**（A 集排行榜仅供参考，不决定入围）；效率腿 = 时间 10% + 内存 10% 绝对测量（每条语音平均推理时间 + 模型内存占用，越快越省越好）。核心诉求"在死区/难题上多拿分"。本次 CER 边际探索两弹（全量 oracle 复测 + ASE-PVAD 实跑）**双证伪**，坐实 cascaded+zero-training 下 CER 近极限。
+
+### 本次做了什么（**未 commit/push**，本地超前）
+1. **understand workflow（3 agent, 193K tok）**：摸清 `exp_spk_oracle.py` 框架 + 数据可复用性 + sim 分桶。发现 60 条主战场抽样 GO=是（`exp_spk_oracle_mainbattle.json` 已存在，seed=42 单次抽样）。
+2. **全量 668 oracle 复测**（`exp_spk_oracle_mainbattle_full.json`，6.27min）：**推翻 60 条 GO=是**，verdict **GO=否**。
+3. **ASE-PVAD 论文精读 + POC 设计**（agent）：论文 arXiv 2601.12769（出题方 ICASSP2026 论文 #02），配方 1s 窗/0.2shift/单 keyframe cos 最大/λ=0.1 加性 Eq.6/5 迭代/帧来源 recognition 混合音频/推理期可做 zero-training 友好。
+4. **ASE-PVAD 实跑**（`exp_ase_pvad_poc.py` 新 + `exp_ase_pvad_poc.json`，5.95min）：fork exp_spk_oracle + `ase_augment_keyframe` 函数（复用 enroll_infer collect_clean_audio/get_diarization_mask）+ 三档对比 + miss 救回细分 + min_best_sim 护栏。**证伪**。
+
+### 核心发现（全量数据坐实）
+
+**① 全量推翻抽样（adversarial-review 价值）**：
+| 指标 | 60 条抽样 | 全量 668 |
+|---|---|---|
+| verdict | GO=是 | **GO=否** |
+| cer_gain | 0.40 | **0.14**（虚高 3x） |
+| miss_oracle_recognizable | 36% | **21%**（判据③ <30% 翻车） |
+| argmax_CER | 0.95 | 0.65 |
+
+**② 主战场损失分解（全量坐实）**：argmax_CER 0.65 = 选错 target 0.14（22%）+ 音频摧毁/mel 退化 0.51（78%）。主战场 78% 也是音频摧毁，与死区（[[spk-oracle-poc]]）同质 → cascaded CER 近极限。
+
+**③ ASE-PVAD 实跑证伪**（出题方方法复现）：
+| 档 | 选对率 | 累计池 CER |
+|---|---|---|
+| baseline argmax | 74.25% | 0.6491 |
+| ASE-PVAD aug | **73.2%** ↓ | **0.6451** |
+| oracle（上限） | 100% | 0.4926 |
+- 救回 26 / 改错 33（net −7，改错 > 救回），CER +0.004（估算 +0.2，实跑 ≈0）
+- flip 59 条（26 对/33 错）→ frame-level keyframe 选择不可靠
+- 护栏 fallback 33 条（sim 反向被 min_best_sim=0.15 拦）
+- **根因**：论文用训练过的 PVAD2.0 backbone 消费增强 embedding（模型学过），我们 zero-training 直接喂 argmax，wespeaker 没学过用增强 embedding → 引入噪声。印证 [[lessons-pitfalls]] §14（A 集不能训练）。
+
+### 诚实归因（答辩弹药）
+- **不是菜是 cascaded+zero-training 架构极限**：① 出题方 NOTSOFAR（CHiME-8 冠军，杜俊+iFlytek）死区 Water-tap 也翻车 ② 出题方自己方法 ASE-PVAD 实跑证伪 ③ oracle 0.51（完美选 target）仍高 → 音频摧毁 ④ ASE 论文有效靠训练 backbone，我们 zero-training。
+- **caveat（必须诚实）**：端到端联合训练 / TSE+ASR 联合（要训练 + A 集外数据）可能更强——出题方反 cascaded 审美 + 团队背景（中科大杜俊做语音分离）暗示预期此解法，**学术队若走此路，死区/主战场可能比我们强**。这是路线选择 + zero-training 约束的代价（初赛时间窗 + A 集禁训练），非能力问题。
+- **adversarial-review 价值**：全量复测阻止基于 60 条抽样误投 ASE-PVAD（估算 +0.2，实跑证伪）。**任何 oracle 结论必须全量坐实**（exp_spk_oracle.py 抽样 cer_gain 虚高 3x）。
+
+### 产物（本地，**未 commit**）
+- `code/exp_spk_oracle_mainbattle_full.json` + `.log`（全量 oracle，GO=否）
+- `code/exp_ase_pvad_poc.py`（新，ASE-PVAD POC 脚本）+ `exp_ase_pvad_poc.json`（实跑证伪）+ `_smoke.json`/`.log`（冒烟，可删）
+- `code/out_smoke_fp32.json`（孤立临时，之前 session 遗留）
+- memory `mainfield-oracle-full-debunked.md`（新）+ MEMORY.md 索引
+
+### 下个 agent 待办（按 ROI，用户定方向）
+1. 🔴 **效率腿 L40 实测**（最大确定杠杆，+2-3 分）：用户租算力给 SSH → 阶段 0 脚本就绪（【2026-07-18】段 `deploy_l40.sh`/`run_efficiency_l40.sh`）。本机 4060 overall_rtf 0.142（关 SE），L40 外推 0.06-0.10。
+2. 🟡 **接受 CER 天花板，保基本盘**：守可复现（07-19 闭环）+ qwen 0.5934 + RR 94.9%（content_gate）+ 关 SE 省 RTF。审 thr/content_gate 是否过拟合 A 集（B 集泛化）。
+3. ⛔ **CER 边际别再投**： ASE 实跑证伪 + 全量坐实 78% 音频摧毁，剩余方向（qwen 后端 oracle / 严重桶）预期低。除非走端到端联合训练（大工程，A 集外数据，初赛时间风险高）。
+4. 🟡 **commit 本次产物**（Panda_Lorrain 身份，[[git-identity-mismatch]]）：ASE-PVAD 脚本 + 全量 oracle + memory；或丢弃（证伪实验，memory 已记录价值）。
+
+### 关键认知（本次坐实）
+- **入围看 B 集不看 A 集**：A 集 53.3/80 是自测分，真正决定入围的是 B 集盲测 + 脚本核查。防过拟合 > A 集峰值分。
+- **cascaded CER 近极限**：死区（物理地板）+ 主战场（78% 音频摧毁）都坐实，ASE/声纹强化全证伪。出题方夺冠系统都翻车。
+- **zero-training 是死结**：出题方训练类方法（ASE-PVAD）在 zero-training 下失效，根因 A 集禁训练（§14）。唯一能动训练的是 A 集外数据（大工程）。
+- **初赛最大杠杆 = 效率腿**（20 分悬空，确定能拿），非 CER 死磕。
 
 ---
 
