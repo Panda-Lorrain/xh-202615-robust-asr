@@ -26,7 +26,7 @@ print("""
      (典型 30-60s), 疑似 dynamo guard 失败回退 eager 静默 no-op, 须 TORCH_COMPILE_DEBUG=1
      + warmup 3 + 跑 30+ 条重测, 方知 qwen compile 真实收益。
   2. [Part C] "int8 严重负优化" 仅限 bitsandbytes LLM.int8() batch=1, 未测 GPTQ/AWQ/TensorRT,
-     不能否定整个量化方向; 4060(Ada Lovelace) 结论不可外推 L20(Ampere); 样本仅 5 条方差大。
+     不能否定整个量化方向; L20 与 4060 同为 Ada AD102、架构相同本可外推; 但 int8 仅测 bnb batch=1, 样本仅 5 条方差大。
   3. [Part D/总结] batch=16 "5x" 仅 ASR 子进程, 全管线 1.76x(overall_rtf 0.25→0.142)。
   4. [总结] "唯一杠杆 batch" 与 Part A "ONNX 可行预期 2-3x" 自相矛盾(ONNX 未落地, 非证伪)。
   5. 官方按 batch=1 测 RTF → batch 红利不进效率腿分, 仅加快开发 A/B 迭代。官方 batch=1 口径

@@ -1,0 +1,780 @@
+{
+  "summary": {
+    "verdict": "GO=否",
+    "reason": "SepFormer 即便 oracle(两流取优)0.413 也不显著低于 qwen argmax 0.410 → 分离没拎出更干净 target mel, 死区物理极限, Qwen3 也救不动(vanilla 证伪在 Qwen3 复现)。接受 qwen 0.3436 天花板。",
+    "n_sample": 40,
+    "n_valid": 40,
+    "sep_cer_mean": 0.6869,
+    "sep_correct_rate": 0.35,
+    "qwen_argmax_cer_mean": 0.4098,
+    "qwen_argmax_correct_rate": 0.625,
+    "delta_mean": 0.2771,
+    "n_better": 6,
+    "n_worse": 26,
+    "sepformer_oracle_cer_mean": 0.4133,
+    "model": "speechbrain/sepformer-whamr16k + Qwen3-ASR-1.7B",
+    "total_min": 0.37
+  },
+  "results": [
+    {
+      "uid": "cmd_2039",
+      "ref": "关闭屏幕",
+      "n_src": 2,
+      "stream_sims": [
+        0.0569,
+        0.074
+      ],
+      "target_idx": 1,
+      "target_sim": 0.074,
+      "other_idx": 0,
+      "target_uid": "cmd_2039__target",
+      "other_uid": "cmd_2039__other",
+      "qwen_argmax_cer": 0.0,
+      "qwen_sim": 0.020036544650793076,
+      "sep_text": "关屏了。",
+      "sep_cer": 0.5,
+      "other_cer": 0.0
+    },
+    {
+      "uid": "cmd_2090",
+      "ref": "播放童音版唐诗",
+      "n_src": 2,
+      "stream_sims": [
+        0.2244,
+        0.2159
+      ],
+      "target_idx": 0,
+      "target_sim": 0.2244,
+      "other_idx": 1,
+      "target_uid": "cmd_2090__target",
+      "other_uid": "cmd_2090__other",
+      "qwen_argmax_cer": 0.14285714285714285,
+      "qwen_sim": 0.11100341379642487,
+      "sep_text": "播放国语版《唐诗》。",
+      "sep_cer": 0.2857,
+      "other_cer": 1.4286
+    },
+    {
+      "uid": "cmd_2091",
+      "ref": "儿童要少吃什么",
+      "n_src": 2,
+      "stream_sims": [
+        -0.1064,
+        0.1807
+      ],
+      "target_idx": 1,
+      "target_sim": 0.1807,
+      "other_idx": 0,
+      "target_uid": "cmd_2091__target",
+      "other_uid": "cmd_2091__other",
+      "qwen_argmax_cer": 0.0,
+      "qwen_sim": 0.09172827005386353,
+      "sep_text": "儿童要少什么？",
+      "sep_cer": 0.1429,
+      "other_cer": 1.8571
+    },
+    {
+      "uid": "cmd_2099",
+      "ref": "开启自动模式",
+      "n_src": 2,
+      "stream_sims": [
+        0.161,
+        0.1611
+      ],
+      "target_idx": 1,
+      "target_sim": 0.1611,
+      "other_idx": 0,
+      "target_uid": "cmd_2099__target",
+      "other_uid": "cmd_2099__other",
+      "qwen_argmax_cer": 1.0,
+      "qwen_sim": 0.141678586602211,
+      "sep_text": "嗯。",
+      "sep_cer": 1.0,
+      "other_cer": 0.0
+    },
+    {
+      "uid": "cmd_2102",
+      "ref": "关掉智控温",
+      "n_src": 2,
+      "stream_sims": [
+        0.0109,
+        0.2158
+      ],
+      "target_idx": 1,
+      "target_sim": 0.2158,
+      "other_idx": 0,
+      "target_uid": "cmd_2102__target",
+      "other_uid": "cmd_2102__other",
+      "qwen_argmax_cer": 0.6,
+      "qwen_sim": 0.03864724934101105,
+      "sep_text": "欢迎诸位朋友。",
+      "sep_cer": 1.2,
+      "other_cer": 1.0
+    },
+    {
+      "uid": "cmd_2117",
+      "ref": "风量调小",
+      "n_src": 2,
+      "stream_sims": [
+        0.1769,
+        0.1446
+      ],
+      "target_idx": 0,
+      "target_sim": 0.1769,
+      "other_idx": 1,
+      "target_uid": "cmd_2117__target",
+      "other_uid": "cmd_2117__other",
+      "qwen_argmax_cer": 0.0,
+      "qwen_sim": 0.16572727262973785,
+      "sep_text": "我要调小。",
+      "sep_cer": 0.5,
+      "other_cer": 2.0
+    },
+    {
+      "uid": "cmd_2170",
+      "ref": "风摆向右边",
+      "n_src": 2,
+      "stream_sims": [
+        0.0339,
+        0.2523
+      ],
+      "target_idx": 1,
+      "target_sim": 0.2523,
+      "other_idx": 0,
+      "target_uid": "cmd_2170__target",
+      "other_uid": "cmd_2170__other",
+      "qwen_argmax_cer": 0.0,
+      "qwen_sim": 0.08043643832206726,
+      "sep_text": "那我们每天要。",
+      "sep_cer": 1.2,
+      "other_cer": 0.4
+    },
+    {
+      "uid": "cmd_2173",
+      "ref": "播放少儿版红楼梦",
+      "n_src": 2,
+      "stream_sims": [
+        0.0621,
+        0.1471
+      ],
+      "target_idx": 1,
+      "target_sim": 0.1471,
+      "other_idx": 0,
+      "target_uid": "cmd_2173__target",
+      "other_uid": "cmd_2173__other",
+      "qwen_argmax_cer": 0.25,
+      "qwen_sim": 0.13657814264297485,
+      "sep_text": "放少儿版《红楼梦》。",
+      "sep_cer": 0.125,
+      "other_cer": 1.125
+    },
+    {
+      "uid": "cmd_2177",
+      "ref": "播放大红妈妈精心讲绘本",
+      "n_src": 2,
+      "stream_sims": [
+        0.2534,
+        0.2239
+      ],
+      "target_idx": 0,
+      "target_sim": 0.2534,
+      "other_idx": 1,
+      "target_uid": "cmd_2177__target",
+      "other_uid": "cmd_2177__other",
+      "qwen_argmax_cer": 0.0,
+      "qwen_sim": 0.12004922330379486,
+      "sep_text": "播放《大红妈妈》讲绘本。",
+      "sep_cer": 0.1818,
+      "other_cer": 0.6364
+    },
+    {
+      "uid": "cmd_2206",
+      "ref": "放首歌吧",
+      "n_src": 2,
+      "stream_sims": [
+        -0.0559,
+        -0.0301
+      ],
+      "target_idx": 1,
+      "target_sim": -0.0301,
+      "other_idx": 0,
+      "target_uid": "cmd_2206__target",
+      "other_uid": "cmd_2206__other",
+      "qwen_argmax_cer": 0.25,
+      "qwen_sim": 0.1569918990135193,
+      "sep_text": "是哥，今年零。",
+      "sep_cer": 1.25,
+      "other_cer": 0.25
+    },
+    {
+      "uid": "cmd_2212",
+      "ref": "关下空调",
+      "n_src": 2,
+      "stream_sims": [
+        0.0172,
+        0.0125
+      ],
+      "target_idx": 0,
+      "target_sim": 0.0172,
+      "other_idx": 1,
+      "target_uid": "cmd_2212__target",
+      "other_uid": "cmd_2212__other",
+      "qwen_argmax_cer": 1.0,
+      "qwen_sim": 0.11911255866289139,
+      "sep_text": "在商店中。",
+      "sep_cer": 1.0,
+      "other_cer": 1.5
+    },
+    {
+      "uid": "cmd_2213",
+      "ref": "吃什么适合哺乳期",
+      "n_src": 2,
+      "stream_sims": [
+        0.2225,
+        0.164
+      ],
+      "target_idx": 0,
+      "target_sim": 0.2225,
+      "other_idx": 1,
+      "target_uid": "cmd_2213__target",
+      "other_uid": "cmd_2213__other",
+      "qwen_argmax_cer": 0.75,
+      "qwen_sim": 0.091661736369133,
+      "sep_text": "是什么释放这些？",
+      "sep_cer": 0.75,
+      "other_cer": 1.0
+    },
+    {
+      "uid": "cmd_2224",
+      "ref": "混乱博物馆我想听",
+      "n_src": 2,
+      "stream_sims": [
+        0.0704,
+        0.0586
+      ],
+      "target_idx": 0,
+      "target_sim": 0.0704,
+      "other_idx": 1,
+      "target_uid": "cmd_2224__target",
+      "other_uid": "cmd_2224__other",
+      "qwen_argmax_cer": 0.25,
+      "qwen_sim": 0.1891150325536728,
+      "sep_text": "镇远博物馆的展品。",
+      "sep_cer": 0.625,
+      "other_cer": 1.0
+    },
+    {
+      "uid": "cmd_2247",
+      "ref": "风向下吹",
+      "n_src": 2,
+      "stream_sims": [
+        0.0808,
+        0.1269
+      ],
+      "target_idx": 1,
+      "target_sim": 0.1269,
+      "other_idx": 0,
+      "target_uid": "cmd_2247__target",
+      "other_uid": "cmd_2247__other",
+      "qwen_argmax_cer": 0.25,
+      "qwen_sim": 0.09933654218912125,
+      "sep_text": "在今年两会。",
+      "sep_cer": 1.25,
+      "other_cer": 0.25
+    },
+    {
+      "uid": "cmd_2258",
+      "ref": "关闭无风模式",
+      "n_src": 2,
+      "stream_sims": [
+        0.1368,
+        0.0137
+      ],
+      "target_idx": 0,
+      "target_sim": 0.1368,
+      "other_idx": 1,
+      "target_uid": "cmd_2258__target",
+      "other_uid": "cmd_2258__other",
+      "qwen_argmax_cer": 1.0,
+      "qwen_sim": 0.1525385081768036,
+      "sep_text": "关闭无功模式。",
+      "sep_cer": 0.1667,
+      "other_cer": 1.0
+    },
+    {
+      "uid": "cmd_2269",
+      "ref": "温度调到十七度",
+      "n_src": 2,
+      "stream_sims": [
+        0.0881,
+        0.0896
+      ],
+      "target_idx": 1,
+      "target_sim": 0.0896,
+      "other_idx": 0,
+      "target_uid": "cmd_2269__target",
+      "other_uid": "cmd_2269__other",
+      "qwen_argmax_cer": 0.0,
+      "qwen_sim": 0.15127909183502197,
+      "sep_text": "温度提高十七度。",
+      "sep_cer": 0.2857,
+      "other_cer": 0.0
+    },
+    {
+      "uid": "cmd_2288",
+      "ref": "开启防直吹模式",
+      "n_src": 2,
+      "stream_sims": [
+        0.0231,
+        0.0998
+      ],
+      "target_idx": 1,
+      "target_sim": 0.0998,
+      "other_idx": 0,
+      "target_uid": "cmd_2288__target",
+      "other_uid": "cmd_2288__other",
+      "qwen_argmax_cer": 0.0,
+      "qwen_sim": 0.09019794315099716,
+      "sep_text": "开启温室追梦。",
+      "sep_cer": 0.7143,
+      "other_cer": 0.0
+    },
+    {
+      "uid": "cmd_2437",
+      "ref": "更年期不适合吃什么",
+      "n_src": 2,
+      "stream_sims": [
+        0.045,
+        0.0341
+      ],
+      "target_idx": 0,
+      "target_sim": 0.045,
+      "other_idx": 1,
+      "target_uid": "cmd_2437__target",
+      "other_uid": "cmd_2437__other",
+      "qwen_argmax_cer": 0.0,
+      "qwen_sim": 0.15419194102287292,
+      "sep_text": "嗯，是的，是的，是的，是的，是的。",
+      "sep_cer": 1.2222,
+      "other_cer": 0.4444
+    },
+    {
+      "uid": "cmd_244",
+      "ref": "没事退下吧",
+      "n_src": 2,
+      "stream_sims": [
+        0.0446,
+        0.0367
+      ],
+      "target_idx": 0,
+      "target_sim": 0.0446,
+      "other_idx": 1,
+      "target_uid": "cmd_244__target",
+      "other_uid": "cmd_244__other",
+      "qwen_argmax_cer": 0.0,
+      "qwen_sim": 0.11545849591493607,
+      "sep_text": "没事，别下班。",
+      "sep_cer": 0.4,
+      "other_cer": 1.0
+    },
+    {
+      "uid": "cmd_2464",
+      "ref": "黑发哪些食物需要忌口",
+      "n_src": 2,
+      "stream_sims": [
+        0.1578,
+        0.0836
+      ],
+      "target_idx": 0,
+      "target_sim": 0.1578,
+      "other_idx": 1,
+      "target_uid": "cmd_2464__target",
+      "other_uid": "cmd_2464__other",
+      "qwen_argmax_cer": 1.0,
+      "qwen_sim": 0.17465391755104065,
+      "sep_text": "街上哪些食物需要忌口？",
+      "sep_cer": 0.2,
+      "other_cer": 1.0
+    },
+    {
+      "uid": "cmd_2508",
+      "ref": "把温度调到二十三度",
+      "n_src": 2,
+      "stream_sims": [
+        0.2055,
+        -0.081
+      ],
+      "target_idx": 0,
+      "target_sim": 0.2055,
+      "other_idx": 1,
+      "target_uid": "cmd_2508__target",
+      "other_uid": "cmd_2508__other",
+      "qwen_argmax_cer": 0.0,
+      "qwen_sim": 0.12073999643325806,
+      "sep_text": "把温度调到二十三度。",
+      "sep_cer": 0.0,
+      "other_cer": 1.0
+    },
+    {
+      "uid": "cmd_2518",
+      "ref": "风向向下",
+      "n_src": 2,
+      "stream_sims": [
+        0.1695,
+        0.0053
+      ],
+      "target_idx": 0,
+      "target_sim": 0.1695,
+      "other_idx": 1,
+      "target_uid": "cmd_2518__target",
+      "other_uid": "cmd_2518__other",
+      "qwen_argmax_cer": 0.5,
+      "qwen_sim": 0.12794643640518188,
+      "sep_text": "风扇声响。",
+      "sep_cer": 0.75,
+      "other_cer": 1.0
+    },
+    {
+      "uid": "cmd_2529",
+      "ref": "空调调到十七度",
+      "n_src": 2,
+      "stream_sims": [
+        -0.0609,
+        0.1143
+      ],
+      "target_idx": 1,
+      "target_sim": 0.1143,
+      "other_idx": 0,
+      "target_uid": "cmd_2529__target",
+      "other_uid": "cmd_2529__other",
+      "qwen_argmax_cer": 0.0,
+      "qwen_sim": 0.13925325870513916,
+      "sep_text": "我战略获得了成。",
+      "sep_cer": 1.0,
+      "other_cer": 0.0
+    },
+    {
+      "uid": "cmd_2551",
+      "ref": "关掉空调",
+      "n_src": 2,
+      "stream_sims": [
+        0.3385,
+        0.1481
+      ],
+      "target_idx": 0,
+      "target_sim": 0.3385,
+      "other_idx": 1,
+      "target_uid": "cmd_2551__target",
+      "other_uid": "cmd_2551__other",
+      "qwen_argmax_cer": 1.0,
+      "qwen_sim": 0.12758365273475647,
+      "sep_text": "在那公园。",
+      "sep_cer": 1.0,
+      "other_cer": 1.75
+    },
+    {
+      "uid": "cmd_2563",
+      "ref": "启动制冷模式",
+      "n_src": 2,
+      "stream_sims": [
+        0.3421,
+        0.2602
+      ],
+      "target_idx": 0,
+      "target_sim": 0.3421,
+      "other_idx": 1,
+      "target_uid": "cmd_2563__target",
+      "other_uid": "cmd_2563__other",
+      "qwen_argmax_cer": 0.3333333333333333,
+      "qwen_sim": 0.19515226781368256,
+      "sep_text": "那，就是六站。",
+      "sep_cer": 1.0,
+      "other_cer": 1.0
+    },
+    {
+      "uid": "cmd_2573",
+      "ref": "打开新风模式",
+      "n_src": 2,
+      "stream_sims": [
+        0.2303,
+        0.0302
+      ],
+      "target_idx": 0,
+      "target_sim": 0.2303,
+      "other_idx": 1,
+      "target_uid": "cmd_2573__target",
+      "other_uid": "cmd_2573__other",
+      "qwen_argmax_cer": 0.3333333333333333,
+      "qwen_sim": 0.09855757653713226,
+      "sep_text": "打开信号模式。",
+      "sep_cer": 0.3333,
+      "other_cer": 1.0
+    },
+    {
+      "uid": "cmd_2596",
+      "ref": "风向调到中间",
+      "n_src": 2,
+      "stream_sims": [
+        0.1568,
+        0.2144
+      ],
+      "target_idx": 1,
+      "target_sim": 0.2144,
+      "other_idx": 0,
+      "target_uid": "cmd_2596__target",
+      "other_uid": "cmd_2596__other",
+      "qwen_argmax_cer": 0.16666666666666666,
+      "qwen_sim": 0.13163499534130096,
+      "sep_text": "放下警报，中间。",
+      "sep_cer": 0.6667,
+      "other_cer": 1.0
+    },
+    {
+      "uid": "cmd_2691",
+      "ref": "护发吃什么好",
+      "n_src": 2,
+      "stream_sims": [
+        0.1858,
+        0.2
+      ],
+      "target_idx": 1,
+      "target_sim": 0.2,
+      "other_idx": 0,
+      "target_uid": "cmd_2691__target",
+      "other_uid": "cmd_2691__other",
+      "qwen_argmax_cer": 1.5,
+      "qwen_sim": 0.13970759510993958,
+      "sep_text": "选上明年的里约奥运会。",
+      "sep_cer": 1.6667,
+      "other_cer": 1.0
+    },
+    {
+      "uid": "cmd_2708",
+      "ref": "打开睡眠模式",
+      "n_src": 2,
+      "stream_sims": [
+        0.0555,
+        0.2386
+      ],
+      "target_idx": 1,
+      "target_sim": 0.2386,
+      "other_idx": 0,
+      "target_uid": "cmd_2708__target",
+      "other_uid": "cmd_2708__other",
+      "qwen_argmax_cer": 0.0,
+      "qwen_sim": 0.11016304790973663,
+      "sep_text": "打开睡眠模式。",
+      "sep_cer": 0.0,
+      "other_cer": 1.0
+    },
+    {
+      "uid": "cmd_2726",
+      "ref": "关下空调",
+      "n_src": 2,
+      "stream_sims": [
+        0.0791,
+        0.1486
+      ],
+      "target_idx": 1,
+      "target_sim": 0.1486,
+      "other_idx": 0,
+      "target_uid": "cmd_2726__target",
+      "other_uid": "cmd_2726__other",
+      "qwen_argmax_cer": 0.5,
+      "qwen_sim": 0.1969229131937027,
+      "sep_text": "七八。",
+      "sep_cer": 1.0,
+      "other_cer": 0.5
+    },
+    {
+      "uid": "cmd_2751",
+      "ref": "风量最小",
+      "n_src": 2,
+      "stream_sims": [
+        0.388,
+        0.0012
+      ],
+      "target_idx": 0,
+      "target_sim": 0.388,
+      "other_idx": 1,
+      "target_uid": "cmd_2751__target",
+      "other_uid": "cmd_2751__other",
+      "qwen_argmax_cer": 0.0,
+      "qwen_sim": 0.005108214914798737,
+      "sep_text": "风量最小。",
+      "sep_cer": 0.0,
+      "other_cer": 1.25
+    },
+    {
+      "uid": "cmd_2788",
+      "ref": "关掉空调",
+      "n_src": 2,
+      "stream_sims": [
+        -0.023,
+        0.0928
+      ],
+      "target_idx": 1,
+      "target_sim": 0.0928,
+      "other_idx": 0,
+      "target_uid": "cmd_2788__target",
+      "other_uid": "cmd_2788__other",
+      "qwen_argmax_cer": 2.5,
+      "qwen_sim": 0.09716875106096268,
+      "sep_text": "谢谢我的丈夫，幺。",
+      "sep_cer": 1.75,
+      "other_cer": 1.25
+    },
+    {
+      "uid": "cmd_2792",
+      "ref": "播放减压放松音乐合集",
+      "n_src": 2,
+      "stream_sims": [
+        0.08,
+        0.0026
+      ],
+      "target_idx": 0,
+      "target_sim": 0.08,
+      "other_idx": 1,
+      "target_uid": "cmd_2792__target",
+      "other_uid": "cmd_2792__other",
+      "qwen_argmax_cer": 0.6,
+      "qwen_sim": 0.12055902183055878,
+      "sep_text": "同时还考虑薪资。",
+      "sep_cer": 1.0,
+      "other_cer": 0.0
+    },
+    {
+      "uid": "cmd_2825",
+      "ref": "白内障不适合吃什么",
+      "n_src": 2,
+      "stream_sims": [
+        0.1265,
+        -0.0309
+      ],
+      "target_idx": 0,
+      "target_sim": 0.1265,
+      "other_idx": 1,
+      "target_uid": "cmd_2825__target",
+      "other_uid": "cmd_2825__other",
+      "qwen_argmax_cer": 0.0,
+      "qwen_sim": 0.09993915259838104,
+      "sep_text": "鸟类丈夫是谁？吃什么？",
+      "sep_cer": 0.6667,
+      "other_cer": 1.0
+    },
+    {
+      "uid": "cmd_2882",
+      "ref": "空调除湿",
+      "n_src": 2,
+      "stream_sims": [
+        0.0951,
+        -0.0634
+      ],
+      "target_idx": 0,
+      "target_sim": 0.0951,
+      "other_idx": 1,
+      "target_uid": "cmd_2882__target",
+      "other_uid": "cmd_2882__other",
+      "qwen_argmax_cer": 0.5,
+      "qwen_sim": 0.17302843928337097,
+      "sep_text": "增加输出。",
+      "sep_cer": 1.0,
+      "other_cer": 1.0
+    },
+    {
+      "uid": "cmd_2903",
+      "ref": "播放少儿版红楼梦",
+      "n_src": 2,
+      "stream_sims": [
+        0.4038,
+        0.1528
+      ],
+      "target_idx": 0,
+      "target_sim": 0.4038,
+      "other_idx": 1,
+      "target_uid": "cmd_2903__target",
+      "other_uid": "cmd_2903__other",
+      "qwen_argmax_cer": 1.0,
+      "qwen_sim": 0.11090529710054398,
+      "sep_text": "少儿版《红楼梦》，你对？",
+      "sep_cer": 0.5,
+      "other_cer": 0.625
+    },
+    {
+      "uid": "cmd_2905",
+      "ref": "空调调到二十二度",
+      "n_src": 2,
+      "stream_sims": [
+        0.2487,
+        0.0955
+      ],
+      "target_idx": 0,
+      "target_sim": 0.2487,
+      "other_idx": 1,
+      "target_uid": "cmd_2905__target",
+      "other_uid": "cmd_2905__other",
+      "qwen_argmax_cer": 0.25,
+      "qwen_sim": 0.17905297875404358,
+      "sep_text": "空调调到二十二度。",
+      "sep_cer": 0.0,
+      "other_cer": 1.0
+    },
+    {
+      "uid": "cmd_2987",
+      "ref": "关闭ECO模式",
+      "n_src": 2,
+      "stream_sims": [
+        0.1216,
+        0.0731
+      ],
+      "target_idx": 0,
+      "target_sim": 0.1216,
+      "other_idx": 1,
+      "target_uid": "cmd_2987__target",
+      "other_uid": "cmd_2987__other",
+      "qwen_argmax_cer": 0.7142857142857143,
+      "qwen_sim": 0.15079952776432037,
+      "sep_text": "那里吃的饭呢，都。",
+      "sep_cer": 1.0,
+      "other_cer": 1.0
+    },
+    {
+      "uid": "cmd_46",
+      "ref": "放周杰伦的歌",
+      "n_src": 2,
+      "stream_sims": [
+        0.1207,
+        0.1455
+      ],
+      "target_idx": 1,
+      "target_sim": 0.1455,
+      "other_idx": 0,
+      "target_uid": "cmd_46__target",
+      "other_uid": "cmd_46__other",
+      "qwen_argmax_cer": 0.0,
+      "qwen_sim": 0.16997560858726501,
+      "sep_text": "风。",
+      "sep_cer": 1.0,
+      "other_cer": 0.0
+    },
+    {
+      "uid": "cmd_76",
+      "ref": "打开客厅所有灯",
+      "n_src": 2,
+      "stream_sims": [
+        0.2243,
+        0.145
+      ],
+      "target_idx": 0,
+      "target_sim": 0.2243,
+      "other_idx": 1,
+      "target_uid": "cmd_76__target",
+      "other_uid": "cmd_76__other",
+      "qwen_argmax_cer": 0.0,
+      "qwen_sim": 0.18545077741146088,
+      "sep_text": "开客厅所有灯。",
+      "sep_cer": 0.1429,
+      "other_cer": 1.0
+    }
+  ]
+}

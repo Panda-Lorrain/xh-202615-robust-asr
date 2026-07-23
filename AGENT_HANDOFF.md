@@ -1,12 +1,14 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
-> 🔴 **2026-07-20 晚 最新（当前恢复点）**：CER 边际探索闭环 — 全量 oracle + ASE-PVAD 实跑**双证伪**，cascaded CER 近极限坐实。用户战略从"答辩 100 分"转向"**初赛进前 10-20 名**"（入围依据 = B 集成绩 + 脚本核查 + 客观指标，**A 集排行榜仅供参考不决定入围**，见 `待确认_主办方口径与外部输入.md`）。核心发现：① 主战场全量 668 oracle **GO=否**（60 条抽样 GO=是 是假象，cer_gain 虚高 3x）② 主战场 78% 损失是音频摧毁（切对 target 也救不回），22% 选错 target ③ ASE-PVAD（出题方 ICASSP2026 论文 #02）实跑**证伪**（救回 26/改错 33，CER +0.004，根因 zero-training：wespeaker 没学过用增强 embedding）④ **不是菜是架构极限**（出题方 NOTSOFAR CHiME-8 冠军死区也翻车），但端到端联合训练路线（没走）可能更强。**下一步用户定：效率腿 L40（最大杠杆，要租算力）/ 接受 CER 天花板保基本盘**。产物**未 commit**（本地）。详见下【2026-07-20 CER 边际探索】段 + memory `mainfield-oracle-full-debunked`。
+> 🔴 **2026-07-23 最新（当前恢复点）**：Qwen3 重跑 CAM++/SepFormer **双证伪**——用户核心假设"是 DiCoW 差不是方法错"**不成立**。① CAM++ 声纹强化 GO=否：Qwen3 oracle（exp_spk_oracle_qwen.py，死区60+主战场60）显示 cer_gain 死区+0.146/主战场+0.106（选 target 是问题，部分推翻 vanilla "oracle 0.607 封闭"），但 miss 中正确 target sim≥0.2 仅 0%/21% → 声纹层提不出正确 target（babble 摧毁 who 信号），CAM++ 救不了。② SepFormer GO=否（更狠）：exp_sepformer_qwen.py（死区40）SepFormer+Qwen3 0.687 vs argmax 0.410（Δ+0.277），oracle 0.413≈argmax → 分离没拎出更干净 target。**新发现**：Qwen3 下选 target 是真问题（cer_gain +0.1~0.15），解药在**非声纹 target 选择**（diar 改进/enrollment-conditioned TSE 联合），留新方向线索。CER 腿 qwen 0.3436 天花板坐实，死区物理极限换更强转写器也救不了。答辩硬弹药。产物 code/exp_spk_oracle_qwen.py + exp_sepformer_qwen.py + exp_spk_oracle_qwen_dead/main.json + exp_sepformer_qwen.json。详见下【2026-07-23 Qwen3 重跑】段 + memory `spk-oracle-poc`。
 
-> 🔴 **2026-07-20 最新状态（当前恢复点）**：接手收拾 + 答辩准备刷新(**7 commit 全 push**): A.收拾 07-18 游离改动 4 commit(content_gate 反转默认开 joint+0.826 `226e239` / qwen context 归档不启用 `7bba69f` / mainbattle oracle 归档 verdict 不可信 `bafcbf4` / 主办方问题清单 `3469756`) + B.答辩刷新 3 commit(README+FAQ 刷到 qwen 主线算分 53.3/80 `44a94e0` / 进度图重做真测版 3 子图 `089e6e7` / 补 SE bug 真相+时间线+技术亮点 `842706e`). **答辩材料全就绪**(算分/FAQ/README/进度图/时间线/技术亮点一致到 07-19 qwen 主线). **未入库**: out_smoke_fp32.json(孤立临时冒烟, 留本地). **下一步**: 答辩演练稿(待写) > 效率腿 L40(等租算力) > R4 hold-out.
+> 🔴 **2026-07-20 晚 最新（当前恢复点）**：CER 边际探索闭环 — 全量 oracle + ASE-PVAD 实跑**双证伪**，cascaded CER 近极限坐实。用户战略从"答辩 100 分"转向"**初赛进前 10-20 名**"（入围依据 = B 集成绩 + 脚本核查 + 客观指标，**A 集排行榜仅供参考不决定入围**，见 `待确认_主办方口径与外部输入.md`）。核心发现：① 主战场全量 668 oracle **GO=否**（60 条抽样 GO=是 是假象，cer_gain 虚高 3x）② 主战场 78% 损失是音频摧毁（切对 target 也救不回），22% 选错 target ③ ASE-PVAD（出题方 ICASSP2026 论文 #02）实跑**证伪**（救回 26/改错 33，CER +0.004，根因 zero-training：wespeaker 没学过用增强 embedding）④ **不是菜是架构极限**（出题方 NOTSOFAR CHiME-8 冠军死区也翻车），但端到端联合训练路线（没走）可能更强。**下一步用户定：效率腿 L20（最大杠杆，要租算力）/ 接受 CER 天花板保基本盘**。产物**未 commit**（本地）。详见下【2026-07-20 CER 边际探索】段 + memory `mainfield-oracle-full-debunked`。
 
-> 🔴 **2026-07-19 最新状态（当前恢复点）**：稳定性/鲁棒性测试**闭环完成**(spec+plan+代码+26遍实跑+报告, 全 push)。核心: **R1=0**系统 greedy argmax 完全确定可复现(不修 use_deterministic) / **R2 纯仅2条**(batch1vs16 差异74条中72含 R3/R4 叠加 → 开发 batch16 数字基本可外推提交 batch1, submit 锁 batch1 3398c0d) / **R3 57%**输入微扰敏感(gauss 加性噪声54%主因破坏 mel)→模型泛化短板**归档**(A 集外训练才能修, A 集不能训练§14) / R5=0。**已 push 13+commit**(0097266→84d70d0+775e219)。详见下【2026-07-19 最新】段 + memory `stability-test-launched` + `docs/稳定性测试报告_2026-07-19.md`。**下一步按 ROI**: 答辩准备(最高) > 效率腿 L40(等租算力) > R4 hold-out。
+> 🔴 **2026-07-20 最新状态（当前恢复点）**：接手收拾 + 答辩准备刷新(**7 commit 全 push**): A.收拾 07-18 游离改动 4 commit(content_gate 反转默认开 joint+0.826 `226e239` / qwen context 归档不启用 `7bba69f` / mainbattle oracle 归档 verdict 不可信 `bafcbf4` / 主办方问题清单 `3469756`) + B.答辩刷新 3 commit(README+FAQ 刷到 qwen 主线算分 53.3/80 `44a94e0` / 进度图重做真测版 3 子图 `089e6e7` / 补 SE bug 真相+时间线+技术亮点 `842706e`). **答辩材料全就绪**(算分/FAQ/README/进度图/时间线/技术亮点一致到 07-19 qwen 主线). **未入库**: out_smoke_fp32.json(孤立临时冒烟, 留本地). **下一步**: 答辩演练稿(待写) > 效率腿 L20(等租算力) > R4 hold-out.
 
-> 🔴 **2026-07-18 最新状态**：效率腿探索 3 commit(a9dca73/031e4b1/c8c739d) + 对抗审查修正(6ce0636) + L40 阶段0 脚本(2c095de) **均已 push**。**当前在等用户租 L40 算力**——用户说"租了会给 SSH"。拿到后路径 A ssh 操控: `nohup bash code/deploy_l40.sh &`(无卡部署, Monitor 盯) → `SMOKE=1 bash code/run_efficiency_l40.sh`(冒烟) → 用户切 GPU → `bash code/run_efficiency_l40.sh`(全量+换算) → scp 回本机入库。**命门: 问主办方 RTF 口径(per-utt 计时 vs 总墙钟)**。SE orphan bug 真相(三机制, 非仅 mismatch)已入 memory `se-bug-orphan-truth`。详见下【2026-07-18 最新】段。
+> 🔴 **2026-07-19 最新状态（当前恢复点）**：稳定性/鲁棒性测试**闭环完成**(spec+plan+代码+26遍实跑+报告, 全 push)。核心: **R1=0**系统 greedy argmax 完全确定可复现(不修 use_deterministic) / **R2 纯仅2条**(batch1vs16 差异74条中72含 R3/R4 叠加 → 开发 batch16 数字基本可外推提交 batch1, submit 锁 batch1 3398c0d) / **R3 57%**输入微扰敏感(gauss 加性噪声54%主因破坏 mel)→模型泛化短板**归档**(A 集外训练才能修, A 集不能训练§14) / R5=0。**已 push 13+commit**(0097266→84d70d0+775e219)。详见下【2026-07-19 最新】段 + memory `stability-test-launched` + `docs/稳定性测试报告_2026-07-19.md`。**下一步按 ROI**: 答辩准备(最高) > 效率腿 L20(等租算力) > R4 hold-out。
+
+> 🔴 **2026-07-18 最新状态**：效率腿探索 3 commit(a9dca73/031e4b1/c8c739d) + 对抗审查修正(6ce0636) + L20 阶段0 脚本(2c095de) **均已 push**。**当前在等用户租 L20 算力**——用户说"租了会给 SSH"。拿到后路径 A ssh 操控: `nohup bash code/deploy_l20.sh &`(无卡部署, Monitor 盯) → `SMOKE=1 bash code/run_efficiency_l20.sh`(冒烟) → 用户切 GPU → `bash code/run_efficiency_l20.sh`(全量+换算) → scp 回本机入库。**命门: 问主办方 RTF 口径(per-utt 计时 vs 总墙钟)**。SE orphan bug 真相(三机制, 非仅 mismatch)已入 memory `se-bug-orphan-truth`。详见下【2026-07-18 最新】段。
 
 > **交接时间**：2026-07-15（**标注规范v2工具落地 + 官方CER脚本存档核对 + 当前算分**：改代码+commit+push。三件事：①标注v2工具实现（`build_annotator_pack_v2.py` 失败归因 A-X/B/C/D + enrollment污染诊断 + qwen后端 + 全量浏览 + CER=0隐藏，+ `compare_vs_gold.py`/`map_gold_to_v2.py`）；②用户贴主办方CER参考脚本原文 → 存档 `eval_metrics_official_ref.py` + 用官方原文重算 overall 0.3436 / 逐条 1350/1350 一致 + 修 `_norm_asr` 书名号显示 bug（官方口径书名号不扣分）；③当前分 qwen+thr0.27：CER腿 16.26 + RR腿 36.20 = 52.46/80 硬数字，效率待 L20 实测。详见【2026-07-15 最新】段）。
 > **下个 agent 读序**：本文件【2026-07-14 最新】段（↓）→ `docs/标注交接_enrollment污染与target选错_2026-07-14.md`（标注 Agent 直接用）→ CLAUDE.md → 关键 memory（**multi-voice-llm-routing-architecture** / cer-breakthrough-candidates / multi-annotator-dispatch / spk-oracle-poc / content-gate-decision / official-scoring-spec / dataset-split-spec / reproducibility-hardening / mimo-asr-backend-potential / unified-thr-decision / h3-dicow-conditioning-backfire-vanilla / baodi-config-no-llm / submit-script-verification / lessons-pitfalls）→ REPRO_SETUP.md
@@ -61,7 +63,7 @@
 - memory `mainfield-oracle-full-debunked.md`（新）+ MEMORY.md 索引
 
 ### 下个 agent 待办（按 ROI，用户定方向）
-1. 🔴 **效率腿 L40 实测**（最大确定杠杆，+2-3 分）：用户租算力给 SSH → 阶段 0 脚本就绪（【2026-07-18】段 `deploy_l40.sh`/`run_efficiency_l40.sh`）。本机 4060 overall_rtf 0.142（关 SE），L40 外推 0.06-0.10。
+1. 🔴 **效率腿 L20 实测**（最大确定杠杆，+2-3 分）：用户租算力给 SSH → 阶段 0 脚本就绪（【2026-07-18】段 `deploy_l20.sh`/`run_efficiency_l20.sh`）。本机 4060 overall_rtf 0.142（关 SE），L20 外推 0.06-0.10（注: L40 口径; 真实 L20 ×1.5 ≈ 0.09-0.12, 见 runbook §6.2 勘误）。
 2. 🟡 **接受 CER 天花板，保基本盘**：守可复现（07-19 闭环）+ qwen 0.5934 + RR 94.9%（content_gate）+ 关 SE 省 RTF。审 thr/content_gate 是否过拟合 A 集（B 集泛化）。
 3. ⛔ **CER 边际别再投**： ASE 实跑证伪 + 全量坐实 78% 音频摧毁，剩余方向（qwen 后端 oracle / 严重桶）预期低。除非走端到端联合训练（大工程，A 集外数据，初赛时间风险高）。
 4. 🟡 **commit 本次产物**（Panda_Lorrain 身份，[[git-identity-mismatch]]）：ASE-PVAD 脚本 + 全量 oracle + memory；或丢弃（证伪实验，memory 已记录价值）。
@@ -96,7 +98,7 @@
 A 集是测试集, 本次**不改任何基于 A 集内容的提交规则**(拒识 thr/enhance 不动), 只工程修复(R1 跳过/R2 锁 batch1) + 诊断归档(R3/R4/R5)。**B3 加噪数据是 A 集派生, 不能训练**(§14, 用户亲自纠正)。
 
 ### 下一步(按 ROI)
-🥇 答辩准备(稳定性测试4点弹药: 可复现性 R1=0 / batch 口径 R2 / 诚实归因 R3 / hold-out 纪律) > 🥈 效率腿 L40(等租算力, 阶段0 脚本就绪) > 🥉 R4 hold-out(轻量) > ⚠️ R3 修复(A 集外训练, 大工程 + CER 腿近天花板, 低 ROI)。
+🥇 答辩准备(稳定性测试4点弹药: 可复现性 R1=0 / batch 口径 R2 / 诚实归因 R3 / hold-out 纪律) > 🥈 效率腿 L20(等租算力, 阶段0 脚本就绪) > 🥉 R4 hold-out(轻量) > ⚠️ R3 修复(A 集外训练, 大工程 + CER 腿近天花板, 低 ROI)。
 
 详见 `docs/稳定性测试报告_2026-07-19.md` + memory `stability-test-launched` + `code/stability_matrix/`(report.json/per_utt_volatility.json 740条/dashboard.html)。
 
@@ -107,7 +109,7 @@ A 集是测试集, 本次**不改任何基于 A 集内容的提交规则**(拒�
 > **结论**: 效率腿本机探索到头(官方 batch=1 口径下唯一确定杠杆=关 SE 省 30.6% RTF); **SE bugfix
 > 揭示重大归因错误**——原"SE 恶化 CER / 对转写无害"经 4-agent 对抗审查 + `audit_se_bugfix.py` 一手
 > 重算被推翻, 真相是三机制(sim mismatch 误拒 66% + DF3 过衰减致 diar 崩溃 22% + 转写恶化 12%)。
-> 决策(关 SE)不变, 归因全部重写。**全部已 push**: 效率腿 3 commit(a9dca73/031e4b1/c8c739d) + 对抗审查修正(6ce0636) + L40 阶段0 脚本(2c095de)。
+> 决策(关 SE)不变, 归因全部重写。**全部已 push**: 效率腿 3 commit(a9dca73/031e4b1/c8c739d) + 对抗审查修正(6ce0636) + L20 阶段0 脚本(2c095de)。
 
 ### 本次 session 做了什么
 
@@ -130,7 +132,7 @@ A 集是测试集, 本次**不改任何基于 A 集内容的提交规则**(拒�
   apples-to-apples 交集(383 条): SE **0.4281 vs noSE 0.3805, +0.0476 SE 反而恶化**。
 - **效率结论缺陷**: batch=16 5x 仅 ASR 子进程(全管线 1.76x), **官方 batch=1 评测口径下不进分**;
   exp_efficiency_report qwen compile baseline 错用 0.0950(真 0.1161, 实 18-19% 但 compile_time
-  0.26s 异常疑似 dynamo 回退); int8 只测 bnb 不能外推 L20(Ampere); "唯一杠杆 batch" 与 Part A
+  0.26s 异常疑似 dynamo 回退); int8 只测 bnb 不可据此否定量化方向(L20 与 4060 同为 Ada AD102, 非架构差异问题); "唯一杠杆 batch" 与 Part A
   ONNX 可行自相矛盾。
 - **决策确认**: 关 SE 是 Pareto 最优(分桶证每个 max_sim 桶 SE 都恶化 overall CER, 无反例); 双端
   SE 不值得测(收益上界 <0.017 在噪声内 + 仍付 30% RTF)。
@@ -153,16 +155,16 @@ A 集是测试集, 本次**不改任何基于 A 集内容的提交规则**(拒�
 
 ### 下个 agent 待办
 1. ✅ **对抗审查修正已 commit+push**(6ce0636): AB doc/代码/探索脚本/audit 全修, 无需再做。
-2. ✅ **L40 阶段0 脚本已 commit+push**(2c095de): `deploy_l40.sh` + `run_efficiency_l40.sh` + runbook 勘误。
-3. 🔴 **等用户租 L40 算力**(当前阻塞点): 用户说"先执行别的, 租了算力会给 SSH"。拿到后路径 A ssh 操控:
-   `nohup bash code/deploy_l40.sh &`(无卡部署, Monitor 盯日志) → `SMOKE=1 bash code/run_efficiency_l40.sh`(冒烟5条)
-   → 用户切 GPU 模式开机 → `bash code/run_efficiency_l40.sh`(全量 pos+neg + 换算) → scp timing/result.json 回本机入库。
+2. ✅ **L20 阶段0 脚本已 commit+push**(2c095de): `deploy_l20.sh` + `run_efficiency_l20.sh` + runbook 勘误。
+3. 🔴 **等用户租 L20 算力**(当前阻塞点): 用户说"先执行别的, 租了算力会给 SSH"。拿到后路径 A ssh 操控:
+   `nohup bash code/deploy_l20.sh &`(无卡部署, Monitor 盯日志) → `SMOKE=1 bash code/run_efficiency_l20.sh`(冒烟5条)
+   → 用户切 GPU 模式开机 → `bash code/run_efficiency_l20.sh`(全量 pos+neg + 换算) → scp timing/result.json 回本机入库。
    省钱: 无卡模式部署(~0.1元/h) + GPU 只开全量推理(~20min)。详见 `docs/L20效率实测_runbook_2026-07-15.md` 顶部勘误。
 4. 🟡 **命门 — 问主办方**(用户去做): ① RTF 口径(per-utt 计时 vs 总墙钟, 决定 overall_rtf 怎么报 + 效率腿分数)
    ② 排名公式 w1/w2/w_eff(RR-heavy 则 thr 上移)。见 memory `official-scoring-spec`。
 5. 🟡 **run_baodi 默认 BACKEND 不一致**(未决, 零提交影响): 默认 vanilla 但 SE A/B 只测 qwen, CLAUDE.md 主线 qwen。
    注释已标风险。用户定: 改 qwen / 补 vanilla+SE AB / 保持不动。
-6. ⚪ 可选探索(L40 实测时): GPTQ/AWQ int4 / ONNX / speculative decoding / Qwen3-ASR 蒸馏 0.5B(均 POC 未做; L20 是 Ampere, int8 可能不反效果——vs 4060 Ada Lovelace)。
+6. ⚪ 可选探索(L20 实测时): GPTQ/AWQ int4 / ONNX / speculative decoding / Qwen3-ASR 蒸馏 0.5B(均 POC 未做; L20 与 4060 同为 Ada AD102, int8 表现应相近; 量化方向须实测 GPTQ/AWQ/TensorRT 才能否定)。
 7. ⛔ CER/RR 腿别投入(天花板, 见下【2026-07-16 续】段)。
 
 ---
@@ -188,7 +190,7 @@ A 集是测试集, 本次**不改任何基于 A 集内容的提交规则**(拒�
 - **诚实归因=答辩弹药**: 验证了说话人信号(A p=0.47证伪)+FA(B天花板)+多后端融合(oracle含拒gap0.019 net负), 数据证CER+RR近物理极限, 单后端qwen+thr0.27是Pareto最优。契合出题方反cascaded审美。
 
 ### 下个 agent 待办
-1. 🔴 **L20效率实测**(唯一可搏的20分, runbook已就绪见下段): 租AutoDL L40跑全量qwen → timing overall_rtf+peak_mem → `efficiency_leg_calc.py`换算。预计效率腿18-20/20。
+1. 🔴 **L20效率实测**(唯一可搏的20分, runbook已就绪见下段): 租AutoDL L20跑全量qwen → timing overall_rtf+peak_mem → `efficiency_leg_calc.py`换算。预计效率腿18-20/20。
 2. 🟡 **答辩准备**(决赛100分ROI高): README进度图+`03_答辩FAQ`+风险预案演练。本次诚实归因(方向A/B证伪+多后端net负+死区地板+TRAP物理地板)是现成弹药。
 3. ⛔ **CER/RR别再投入**(两腿天花板, net负或物理地板), 转效率+答辩。
 
@@ -202,7 +204,7 @@ A 集是测试集, 本次**不改任何基于 A 集内容的提交规则**(拒�
 > SE"是假(从未真含), "--no-se 零差异"是 SE 两分支都空转的 trivial 结果。本段 SE 相关结论**废弃**,
 > 以【2026-07-18 最新】段 + `docs/SE_bugfix_AB结果_2026-07-18.md` 为准。(SE RTF 占比 30.6% 实测仍对, 但 "占" 实为 "白烧"。)
 
-> 效率腿(20分)是当前**唯一可搏的剩余分**(CER腿16.26/RR腿36.20近天花板)。官方 L20-46G batch=1 测 RTF+显存; 本机仅 4060, 须租 AutoDL L40(≈L20)实测。本次准备全部就绪, 8-agent 对抗审查过, **本地未 commit/push**(下个 agent 决定)。
+> 效率腿(20分)是当前**唯一可搏的剩余分**(CER腿16.26/RR腿36.20近天花板)。官方 L20-46G batch=1 测 RTF+显存; 本机仅 4060, 须租 AutoDL L20实测(或 L40 近似 ×1.5)。本次准备全部就绪, 8-agent 对抗审查过, **本地未 commit/push**(下个 agent 决定)。
 
 ### 做了什么(跨平台改造 + runbook + 换算脚本, 8-agent 审查修 6 finding)
 
@@ -212,21 +214,21 @@ A 集是测试集, 本次**不改任何基于 A 集内容的提交规则**(拒�
 
 **B. `efficiency_leg_calc.py`(新)** — timing.json+result.json → 效率腿(20)分数区间。5 时间映射×4 内存映射, 双 RTF 口径。已用真实 vanilla 全量 timing 测通。
 
-**C. `docs/L20效率实测_runbook_2026-07-15.md`** — L40 部署(3 venv: .venv/.venv_se/.venv_qwen + DiCoW submodule + 模型)+ 计时+换算+区间估算。结论: vanilla 4060 overall_rtf **0.224(实测含SE)** → L20 外推 ~0.06-0.10, **效率腿预计 18-20/20**。合计初评 **CER16.26+RR36.20+效率18-20 ≈ 70.5-72.5/100**。
+**C. `docs/L20效率实测_runbook_2026-07-15.md`** — L20 部署(3 venv: .venv/.venv_se/.venv_qwen + DiCoW submodule + 模型)+ 计时+换算+区间估算。结论: vanilla 4060 overall_rtf **0.224(实测含SE)** → L20 外推 ~0.06-0.10, **效率腿预计 18-20/20**。合计初评 **CER16.26+RR36.20+效率18-20 ≈ 70.5-72.5/100**。
 
 **D. 8-agent 对抗审查(539K tok)修 4 confirmed + 2 medium**:
-- 🔴 **SE 阶段 L40 崩**(critical): run_baodi 不传 --no-se + runbook 漏 .venv_se + PY_SE 无守卫 → 修: runbook §3.3 补 `.venv_se`(df 包) + submit_infer 加 PY_SE 守卫。**保 SE 开**(本机基线含SE, 关则不可比; --no-se 是单独 A/B 项)
+- 🔴 **SE 阶段实测机崩**(critical): run_baodi 不传 --no-se + runbook 漏 .venv_se + PY_SE 无守卫 → 修: runbook §3.3 补 `.venv_se`(df 包) + submit_infer 加 PY_SE 守卫。**保 SE 开**(本机基线含SE, 关则不可比; --no-se 是单独 A/B 项)
 - 🔴 **pyarrow 未声明**(critical→high): enroll_infer:38 import, requirements 漏(本机 datasets 泄漏) → 修: `pyarrow==24.0.0`
-- 🟡 **qwen "0.289" 口径错**(medium): 实为"转写 0.289 秒/条(仅转写)"非 RTF, §6.1/6.2 自相矛盾 → 修: runbook 澄清, qwen 真实 overall_rtf "待 L40 实测", **答辩勿引 0.289**
+- 🟡 **qwen "0.289" 口径错**(medium): 实为"转写 0.289 秒/条(仅转写)"非 RTF, §6.1/6.2 自相矛盾 → 修: runbook 澄清, qwen 真实 overall_rtf "待 L20 实测", **答辩勿引 0.289**
 - 🟡 SLICE_DIR Win 跨平台(Win 不变) + calc 脚本错误信息
 
 ### 关键认知(本次坐实)
 - **timing 双口径**: `overall_rtf`=总wall/总audio(端到端含SE+切timeline+ASR转写+加载摊薄, **主报告值**) vs `duration_infer_rtf`=sum(infer_sec)/audio(纯推理, **qwen 漏 ASR 转写低估**)。
-- **qwen 真实 overall_rtf 本机从未实测**(无 out_pos_qwen_full/timing.json), "0.289" 是 poc_qwen_asr.py 转写秒/条, 待 L40 实测。
+- **qwen 真实 overall_rtf 本机从未实测**(无 out_pos_qwen_full/timing.json), "0.289" 是 poc_qwen_asr.py 转写秒/条, 待 L20 实测。
 - **SE 占 vanilla RTF 28%**(phases se 222s/783s), --no-se 可砍(需验证 CER 不退化)。
 
 ### 下个 agent 待办
-1. 🔴 **租 AutoDL L40 跑全量 qwen**(按 runbook §3-5): `BAODI_BACKEND=qwen bash code/run_baodi.sh pos/neg 0.27` → timing.json overall_rtf + result.json peak_mem → `efficiency_leg_calc.py` 换算效率腿真实分数。
+1. 🔴 **租 AutoDL L20 跑全量 qwen**(按 runbook §3-5): `BAODI_BACKEND=qwen bash code/run_baodi.sh pos/neg 0.27` → timing.json overall_rtf + result.json peak_mem → `efficiency_leg_calc.py` 换算效率腿真实分数。
 2. 🟡 **--no-se A/B**(效率优化): 验证关 SE 不损 CER/RR → 砍 28% RTF。
 3. 🟡 **push 本次 commit**(本地超前未 push)。
 4. (原待办) 标注回收 / w1w2 问主办方。
@@ -254,7 +256,7 @@ A 集是测试集, 本次**不改任何基于 A 集内容的提交规则**(拒�
 - ⚠️ 提交用**含拒 0.5934**（CER腿16.26），非 transcribe 0.3436（诊断上限，评委按含拒复算会穿帮）。vs vanilla：qwen CER腿 +4.29。
 
 ### 下个 agent 待办（优先级）
-1. 🔴 **L20效率实测**（唯一可搏的20分）：租 AutoDL L40 对齐官方 L20 测 RTF+内存。本机 4060 qwen RTF 0.289，L20 会更快。
+1. 🔴 **L20效率实测**（唯一可搏的20分）：租 AutoDL L20 对齐官方 L20 测 RTF+内存。本机 4060 qwen RTF 0.289，L20 会更快。
 2. 🟡 **标注回收**：annot_pack 发江/罗 v2 重标（v1 的 50 条作废），回收后 compare_annotations 对比（当前为 v1 列结构，需改 v2）。
 3. 🟡 **w1/w2 权重**：向主办方确认排名公式权重（RR-heavy→thr 上移）；效率分映射口径（RTF/内存→0-10分）。
 4. ⚠️ CER 死区 112 条是 A-X 切错 target 物理极限，qwen/vanilla 都救不了 → CER 腿 16.26 近天花板，别在 CER 再投入，转向效率/决赛答辩。
@@ -320,7 +322,7 @@ A 集是测试集, 本次**不改任何基于 A 集内容的提交规则**(拒�
 - **死区 0.459 坐实(官方累计池)**：n=396 qwen 0.459 vs vanilla 0.784；0.459 < oracle 0.607。✅ **A2 对抗验证已完成**(见 follow-up#5 + RESULTS A2 段): 用户听音 cmd_2091/2137 坐实 **H1 真实突破**(音频可辨 qwen 听对, 非LM幻觉), 死区是混合桶(B类声纹失败但音频可辨qwen突破 + A类真摧毁H2少数), spk-oracle-poc 物理地板修正为 vanilla OOD 伪地板。
 - **含拒 thr 扫描**(官方池)：0.20 qwen0.4912/vanilla0.6544 | **0.27 qwen0.5934/vanilla0.7007** | 0.30 qwen0.6435 | 0.35 qwen0.7221 | 0.40 qwen0.7993。全档 qwen 优于 vanilla。
 - **提交数字(thr0.27, w1=w2=0.4)**：qwen CER腿16.26+RR腿36.20=52.46 | vanilla 11.97+36.20=48.17 | Δ+4.29(效率腿20待L20)。neg RR 0.9051 与转写器无关。
-- **下个 agent 焦点(A3/A2/B1/答辩固化/firered 集成 本 session 已全完成)**：🟡 03_答辩FAQ 下文红线/FAQ 按新数字全文细化(2026-07-11 横幅已加, 可选) / ⏸ L20 RTF 真测(租 AutoDL L40, qwen 0.289/firered 0.24 @4060) / ⏸ 等标注回收(定模型路线)。**C1 wesep / C2 beam / 声纹强化 均 defer/证伪关闭**。
+- **下个 agent 焦点(A3/A2/B1/答辩固化/firered 集成 本 session 已全完成)**：🟡 03_答辩FAQ 下文红线/FAQ 按新数字全文细化(2026-07-11 横幅已加, 可选) / ⏸ L20 RTF 真测(租 AutoDL L20, qwen 0.289/firered 0.24 @4060) / ⏸ 等标注回收(定模型路线)。**C1 wesep / C2 beam / 声纹强化 均 defer/证伪关闭**。
 
 ### 一句话现状
 用户做数据标注(1084条未满分, 分发2队员)期间, agent 完成"前沿探索者"任务闭环: 19路并行探索(报告 docs/前沿探索报告_2026-07-10.md) → 3 POC(faster-whisper/BoH no-go, **Qwen3-ASR +10分**) → code/.venv speechbrain 修复 → Qwen3-ASR 集成 enroll_infer/submit_infer → **2026-07-11 P0 数字收尾(7-agent 路线核实 + 双口径坐实 + wesep defer, 见上 P0 收尾段)**。**Qwen3-ASR 全量1350条 transcribe CER 0.3436(vs vanilla 0.5954); 含拒 thr0.27 提交口径 0.5934(CER 腿真实 +4.29, transcribe 不拒 +10.07 为诊断上限)**, drop-in 集成(submit_infer --asr-backend qwen)。首个经数据验证的 CER 突破。⚠️ 答辩/提交须报含拒 +4.29 口径, 勿用 transcribe +10.07 虚高。
@@ -357,7 +359,7 @@ speechbrain 1.1 lazy proxy 注册 sys.modules, inspect.getmodule 遍历时触发
 
 ### ⚠️ follow-up(P0 收尾后状态: #4 已完成, #6 wesep 已 defer, 剩 A3/A2/B1 + 阻塞项)
 1. ✅ **submit_infer qwen 全流程 run-twice 验证**(2026-07-11 完成: verify_reproducibility --backend qwen limit=10, **text 一致率 100%, CER delta=0**, 与 vanilla 对齐; 改 verify:47 choices 加 qwen + qwen_asr_backend 加 --seed 内联 set_seed(独立 venv 不依赖 repro.py) + enroll_infer:377 subprocess 透传 --seed)
-2. 🟡 **L20 RTF 真测**(Qwen3-ASR RTF 0.289@4060 慢于vanilla 0.16-0.24, L20待测, 效率腿时间分可能小失分-1~2; 租AutoDL L40)
+2. 🟡 **L20 RTF 真测**(Qwen3-ASR RTF 0.289@4060 慢于vanilla 0.16-0.24, L20待测, 效率腿时间分可能小失分-1~2; 租AutoDL L20)
 3. ✅ **FireRedASR 横评**(2026-07-11 完成, 见 RESULTS T29: firered 0.3501 ≈ qwen 0.3436 不可分, RTF 0.24 vs 0.289 firered 快 17%; B1 预判 45% no-go 未发生, WenetSpeech-meeting 训练对 babble 适应好; qwen 保持主线 firered drop-in 备选)
 4. ✅ **Qwen3-ASR 提交归一后 overall**(2026-07-11 P0 完成: 归一零效应 0 阿拉伯数字 0 繁体 raw==归一==0.3436; 含拒 thr0.27=0.5934, CER腿真实 +4.29; 见 P0 收尾段)
 5. ✅ **死区 Qwen3-ASR 0.459 对抗验证**(2026-07-11 完成: 纯分析+用户听音 cmd_2091/2137 坐实 **H1 真实听音**(非LM幻觉); 死区混合桶 B类声纹失败但音频可辨qwen突破 + A类真摧毁H2少数; **spk-oracle-poc 物理地板修正为 vanilla OOD 伪地板**; 连带声纹强化 CAM++ POC **证伪关闭**(B/A margin 0, 声纹 emb 编码who不编码audio clarity→任何声纹器都救不了B类, exp_spk_campp_deadzone.py); 产物 analyze_dead_zone_qwen.py + exp_spk_campp_deadzone.py)
@@ -571,7 +573,7 @@ B 集按 FAQ C9 必须单一 thr → 用 A 集模拟 B 集混合场景选 thr �
 3. 🟡 **灰区选择性 LLM A/B**（可选高价值）：见上 follow-up #3。对 max_sim∈[0.2,0.4] 跑 LLM 二次校验救 RR 腿
 4. 🔧 **攻 CER 声纹强化**（本机可跑，研究性）：CAM++ per-speaker / US-PVAD 在 vanilla 路线下复评（先前 CAM++ 证伪 0.191<wespeaker 0.218 是 dicow 路线评的，vanilla 下声纹错→直接转错段权重更高，值得复评），攻低 sim 桶(0.2-0.4 CER 0.6-0.75)timeline 切割
 5. 📄 **答辩 FAQ + 演练**：`03_答辩FAQ与风险预案.md` 待写；核心论点 = Phase1 vanilla 反 cascaded 突破 + 可复现性工程化 + T27 统一 thr（含 caliber-A 风险诚实披露）+ babble 归因 + 诚实组合主线极限
-6. ⚡ **L20 端到端耗时真测**：submit_infer 显存自适应（L20 48G 大 batch）+ 租 AutoDL L40 验证（官方 L20 评效率，本机仅 4060，memory `l20-eval-hardware`）
+6. ⚡ **L20 端到端耗时真测**：submit_infer 显存自适应（L20 48G 大 batch）+ 租 AutoDL L20 验证（官方 L20 评效率，本机仅 4060，memory `l20-eval-hardware`）
 7. ⚠️ **CER 进一步破局**（大工程，时间充裕再做）：端到端联合训练 X（反 cascaded，出题方偏好）/ SepFormer 提 target mel 再喂 vanilla
 
 > 注：原【2026-07-06 晚】段 follow-up #1"统一 thr 选点"已由 T27 完成（本段）；#2-#5 对应上方 4-7。保底（关 LLM+thr=0.4，A 集分 thr RR 98.5%）仍作 fallback，但 B 集必须统一 thr=0.27。
@@ -609,7 +611,7 @@ vanilla 路线集成（T25，pos CER 0.667 / neg RR 98.52%）+ 可复现性改�
 ### 下个 agent 待办（follow-up，按优先级）
 1. 🔧 **统一 thr 选点**（B 集混合集必需）：扫统一 thr 优化 CER40+RR40 加权。A 集初评 pos/neg 分开 thr 合规（独立测试集），B 集必须统一。⚠️ **建议向主办方确认"A 集初评可否分 thr"**（合规风险）
 2. 🔧 **攻 CER**（声纹强化）：CAM++ per-speaker / US-PVAD 改善低 sim 桶（0.2-0.4）timeline 切割。vanilla 路线下声纹错→直接转错段；先前 CAM++ 证伪是 DiCoW 路线评的，vanilla 下值得复评
-3. ⚡ **L20 端到端耗时真测**：submit_infer（vanilla）显存自适应（L20 48G 大 batch）+ 租 AutoDL L40 验证（官方 L20 评效率，本机 4060，memory `l20-eval-hardware`）
+3. ⚡ **L20 端到端耗时真测**：submit_infer（vanilla）显存自适应（L20 48G 大 batch）+ 租 AutoDL L20 验证（官方 L20 评效率，本机 4060，memory `l20-eval-hardware`）
 4. 📄 **答辩 FAQ + 演练**：`03_答辩FAQ与风险预案.md` 待写；答辩核心 = Phase 1 vanilla 反 cascaded 突破 + 可复现性工程化 + 诚实归因
 5. ⚠️ **CER 进一步破局**（大工程）：端到端联合 X / babble 专用源分离（SepFormer 提 target mel）
 
@@ -709,7 +711,7 @@ code/.venv/Scripts/python.exe code/analyze_pos_full.py code/out_pos_full/result.
 3. 🔧 **P2-③ 数字 initial_prompt**（低优，锦上添花）：家居指令数字/温度场景（"调到二十六度"），vanilla 路线下可试 prompt（DiCoW 路线 T19 已证 prompt 反伤，vanilla 未测）
 4. ⚠️ **P2-④ sim_thr 待主办方评测口径**：CER 均值→thr=0.4 / correct_rate→thr=0.2 / pos 不许拒→thr=0。**Phase 1 改变格局**：thr=0.20 vanilla overall CER 0.711 已 <1，不像 dicow 路线 pos CER 全档 ~1.0 无 thr 能救——vanilla 路线下 thr 选择更宽松
 5. 🔧 **保底执行**（fallback，仍备用）：上面命令跑 pos+neg 全量 thr=0.4 关LLM，确认最终 CER/RR 提交数字（保底仍有效，Phase 1 失败时退路）
-6. ⚡ **L20 耗时验证**：submit_infer（含 vanilla 后端）显存自适应（L20 48GB 大 batch）+ 租 AutoDL L40 验证端到端（官方 L20 评效率，本机仅 4060，memory `l20-eval-hardware`）
+6. ⚡ **L20 耗时验证**：submit_infer（含 vanilla 后端）显存自适应（L20 48GB 大 batch）+ 租 AutoDL L20 验证端到端（官方 L20 评效率，本机仅 4060，memory `l20-eval-hardware`）
 7. 📄 **答辩 FAQ + 演练**：`03_答辩FAQ与风险预案.md` 待写；答辩重点讲故事 = **Phase 1 vanilla 突破反 cascaded（新核心论点）** / babble 归因清晰 / 单通道确认 / 工程优化（Gap3·繁简·langfix）/ 诚实组合主线极限 + 端到端 X 是未来方向
 8. ⚠️ **CER 进一步破局**（如要冲，大工程）：①端到端联合训练 X（反 cascaded，出题方偏好，`docs/02_上限候选深读.md`）②babble 专用源分离（SepFormer 提 target mel 再喂 vanilla/DiCoW，同时救 sim+转写）—— Phase 1 已用 zero-training 拿大部分收益，这两条留待时间充裕
 
@@ -773,4 +775,84 @@ code/.venv/Scripts/python.exe -c "from huggingface_hub import snapshot_download;
 
 ---
 
+## 【2026-07-23 最新】用户战略复盘 + CER 提升新方向（待验证）
+
+> **背景**：用户亲自听音频、分析数据集，重新审视之前证伪的实验。提出关键假设：**之前证伪的实验是在 DiCoW（较差模型）上做的，如果在 Qwen3-ASR（更好模型）上重跑，可能结果不同**（"同一种方法对学渣没用，对学霸可能有用"）。
+
+### 本次做了什么
+1. **用户亲自听音频**：听NEG集的11条"非目标说了家居指令"样本，确认任务本质是判断"是谁说的"而非"说了什么"
+2. **LLM拒识分析**：详细列出LLM救回28条pos、放过11条neg的具体样本
+3. **数据集A噪声分析**：POS集89% babble噪声，NEG集100%干净音频
+4. **thr trade-off量化**：thr=0.27 vs thr=0.4对比，净亏4.65分（RR+3.21 vs CER-7.85）
+5. **CER提升方向梳理**：更好的ASR模型、babble噪声优化方法
+
+### 关键发现
+
+**① LLM拒识根本局限**：
+- LLM只能判断"说了什么"，不能判断"是谁说的"
+- 任务要求判断"是谁说的"（目标说话人 vs 非目标）
+- 所以LLM在这个任务里帮不上忙，关掉是正确的
+
+**② NEG集比POS集简单**：
+- POS集：89% babble噪声，声纹匹配困难，CER高
+- NEG集：100%干净音频，声纹匹配容易，RR高
+- 如果正式测试NEG集也有babble噪声，thr可能需要调整
+
+**③ thr=0.27是最优点**：
+- thr=0.27：CER腿13.38 + RR腿36.20 = 49.58分
+- thr=0.4：CER腿5.52 + RR腿39.41 = 44.93分
+- 净亏4.65分，调高thr得不偿失
+
+**④ CER提升空间**：
+- 当前669条pos被拒识（49%），是CER主要损失
+- 被拒识样本平均sim=0.1754，低于thr=0.27
+- sim在[0.27,0.4)的被拒识样本只有11条，提升空间有限
+
+### CER提升方向（待验证）
+
+**方向1：更好的ASR模型**
+| 模型 | 优势 | 证据 |
+|---|---|---|
+| Qwen3-ASR-1.7B | 最对症babble | ExtremeNoise WER 4×优于Whisper |
+| FireRedASR2-AED | 更快+中文强 | WenetSpeech-meeting 4.2×，RTF 0.087 |
+| SenseVoice-Small | NAR极速+ITN | 数字归一化，解决cn2an漏洞 |
+
+**方向2：针对babble噪声优化**
+| 方法 | 原理 | 状态 |
+|---|---|---|
+| ASE-PVAD自增强 | 从混合语音收割target真实帧 | 未在Qwen3上测试 |
+| CTC head反幻觉 | 强制单调对齐压insertion幻觉 | 未测试 |
+| 家居热词注入 | 15264句家居指令构热词表 | 未测试 |
+
+**方向3：在Qwen3-ASR上重跑之前证伪的实验**（用户核心想法）
+| 实验 | 在DiCoW上的结果 | 在Qwen3-ASR上可能的结果 |
+|---|---|---|
+| 声纹强化（CAM++） | 证伪（sim提升有限） | 可能有效（Qwen3基础好，sim提升能转化为CER提升） |
+| SE语音增强 | 证伪（CER+0.1049恶化） | 可能有效（Qwen3更鲁棒，能承受SE失真） |
+| 源分离（SepFormer） | 证伪（EoW 2026证伪级联） | 可能有效（Qwen3+源分离可能协同） |
+| LLM拒识 | 证伪（RR下降+RTF 4×） | 可能有效（Qwen3转写更准，LLM判断更准） |
+
+### 下个 agent 待办
+1. 🔴 **在Qwen3-ASR上重跑声纹强化POC**（验证用户核心想法，工程量最小）
+2. 🔴 **在Qwen3-ASR上重跑SE语音增强POC**（验证用户核心想法）
+3. 🟡 **FireRedASR2-AED横评**（方向1，可能比Qwen3更快）
+4. 🟡 **ASE-PVAD自增强在Qwen3上测试**（方向2，出题方方法）
+5. 🟡 **CTC head反幻觉在Qwen3上测试**（方向2，压insertion幻觉）
+
+### 关键认知（本次坐实）
+- **任务本质是判断"是谁说的"**：不是判断"说了什么"，所以LLM帮不上忙
+- **之前证伪的结论可能只适用于DiCoW**：在更好的模型上重跑可能有效
+- **NEG集比POS集简单**：当前RR高是因为NEG集干净，正式测试可能变化
+- **CER主要瓶颈是49%的pos被拒识**：大部分是因为babble噪声导致sim变低
+
+### 产物（本次聊天）
+- `code/compare_llm_impact.py`（LLM拒识对比分析脚本）
+- `code/export_datasetA_official.py`（数据集A导出CSV脚本）
+- `code/datasetA_官方数据.csv`（数据集A官方原始数据）
+- `C:\Users\26875\Desktop\音频分析\neg_非目标说家居指令\`（11条音频样本）
+
+---
+
 **给下一个 agent 的话**：⚠️ **2026-07-06 Phase 1 已破局**——组合主线 CER 1.4 是 **DiCoW 条件化路径**的极限（非任务极限），改用 vanilla Whisper + 声纹切 target timeline（zero-training）CER 已减半到 0.664、overall thr=0.2 拉到 0.711（CER 40% 腿 0→11 分）。**最高优 P2：vanilla 集成 submit_infer（`--asr-backend {dicow,vanilla}`）把 0.664 变提交数字**，无需大工程。保底（关 LLM+thr=0.4，RR 98.5%）仍作 fallback。langfix/STNO/enroll 增强/SE-DiCoW 在 cascaded 框架内试过无效，别重试。所有踩坑见第 8 节。
+
+⚠️ **2026-07-23 新方向**：用户提出核心假设——之前证伪的实验是在DiCoW（较差模型）上做的，如果在Qwen3-ASR（更好模型）上重跑，可能结果不同。**优先验证这个假设**（声纹强化+SE在Qwen3上重跑），再决定是否投入其他方向。

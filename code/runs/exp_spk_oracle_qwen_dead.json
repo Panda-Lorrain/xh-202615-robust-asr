@@ -1,0 +1,1968 @@
+{
+  "summary": {
+    "verdict": "GO=否(偏)",
+    "reason": "argmax 选对率 65%, oracle_CER 0.292 仍高, cer_gain +0.146 不足 → 选 target 非主瓶颈, CAM++ 收益有限。",
+    "bucket": "sim[0.0,0.2)",
+    "n_sample": 60,
+    "n_valid": 60,
+    "argmax_correct_rate": 0.65,
+    "multi_spk_correct_rate": 0.4878,
+    "argmax_cer_mean": 0.4385,
+    "oracle_cer_mean": 0.2925,
+    "cer_gain": 0.146,
+    "oracle_sim_mean": 0.1011,
+    "n_miss": 21,
+    "miss_oracle_sim_mean": 0.0569,
+    "miss_argmax_cer_mean": 0.842,
+    "miss_oracle_cer_mean": 0.4249,
+    "miss_oracle_recognizable_rate": 0.0,
+    "total_min": 0.49
+  },
+  "results": [
+    {
+      "uid": "cmd_109",
+      "ref": "干衣机开门",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.1795
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.1795,
+      "qwen_argmax_cer": 0.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_109__spk0"
+      ],
+      "per_spk_text": [
+        "干衣机开门。"
+      ],
+      "per_spk_cer": [
+        0.0
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.0,
+      "argmax_cer": 0.0,
+      "oracle_sim": 0.1795,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_118",
+      "ref": "烟机自动开启灯光精准的聚焦在非餐区",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.0773
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.0773,
+      "qwen_argmax_cer": 0.11764705882352941,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_118__spk0"
+      ],
+      "per_spk_text": [
+        "烟机自动开启，灯光精准聚焦在备餐区。"
+      ],
+      "per_spk_cer": [
+        0.1176
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.1176,
+      "argmax_cer": 0.1176,
+      "oracle_sim": 0.0773,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2039",
+      "ref": "关闭屏幕",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.02
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.02,
+      "qwen_argmax_cer": 0.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2039__spk0"
+      ],
+      "per_spk_text": [
+        "关闭屏幕。"
+      ],
+      "per_spk_cer": [
+        0.0
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.0,
+      "argmax_cer": 0.0,
+      "oracle_sim": 0.02,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2090",
+      "ref": "播放童音版唐诗",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.0944,
+        0.1006
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.1006,
+      "qwen_argmax_cer": 0.14285714285714285,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2090__spk0",
+        "cmd_2090__spk1"
+      ],
+      "per_spk_text": [
+        "前一段时间，因为正在制。",
+        "播放录音版唐诗。"
+      ],
+      "per_spk_cer": [
+        1.4286,
+        0.1429
+      ],
+      "oracle_idx": 1,
+      "oracle_cer": 0.1429,
+      "argmax_cer": 0.1429,
+      "oracle_sim": 0.1006,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2091",
+      "ref": "儿童要少吃什么",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        -0.0904,
+        0.0917
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.0917,
+      "qwen_argmax_cer": 0.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2091__spk0",
+        "cmd_2091__spk1"
+      ],
+      "per_spk_text": [
+        "儿童要少吃。",
+        "儿童要少吃什么？"
+      ],
+      "per_spk_cer": [
+        0.2857,
+        0.0
+      ],
+      "oracle_idx": 1,
+      "oracle_cer": 0.0,
+      "argmax_cer": 0.0,
+      "oracle_sim": 0.0917,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2098",
+      "ref": "调到二十八度",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.0128,
+        -0.0102
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.0128,
+      "qwen_argmax_cer": 1.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2098__spk0",
+        "cmd_2098__spk1"
+      ],
+      "per_spk_text": [
+        "请你把温。",
+        "调到二十八度。"
+      ],
+      "per_spk_cer": [
+        1.0,
+        0.0
+      ],
+      "oracle_idx": 1,
+      "oracle_cer": 0.0,
+      "argmax_cer": 1.0,
+      "oracle_sim": -0.0102,
+      "argmax_correct": false
+    },
+    {
+      "uid": "cmd_2099",
+      "ref": "开启自动模式",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.1417,
+        0.1035
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.1417,
+      "qwen_argmax_cer": 1.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2099__spk0",
+        "cmd_2099__spk1"
+      ],
+      "per_spk_text": [
+        "确实嘛。",
+        "开启自动模式。"
+      ],
+      "per_spk_cer": [
+        1.0,
+        0.0
+      ],
+      "oracle_idx": 1,
+      "oracle_cer": 0.0,
+      "argmax_cer": 1.0,
+      "oracle_sim": 0.1035,
+      "argmax_correct": false
+    },
+    {
+      "uid": "cmd_2102",
+      "ref": "关掉智控温",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.0386
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.0386,
+      "qwen_argmax_cer": 0.6,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2102__spk0"
+      ],
+      "per_spk_text": [
+        "关掉真空嘞。"
+      ],
+      "per_spk_cer": [
+        0.6
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.6,
+      "argmax_cer": 0.6,
+      "oracle_sim": 0.0386,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2106",
+      "ref": "开启ECO",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.1277
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.1277,
+      "qwen_argmax_cer": 0.6,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2106__spk0"
+      ],
+      "per_spk_text": [
+        "开启一艘。"
+      ],
+      "per_spk_cer": [
+        0.6
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.6,
+      "argmax_cer": 0.6,
+      "oracle_sim": 0.1277,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2117",
+      "ref": "风量调小",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.1324,
+        0.1294
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.1324,
+      "qwen_argmax_cer": 0.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2117__spk0",
+        "cmd_2117__spk1"
+      ],
+      "per_spk_text": [
+        "风量调小。",
+        "风量调小。"
+      ],
+      "per_spk_cer": [
+        0.0,
+        0.0
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.0,
+      "argmax_cer": 0.0,
+      "oracle_sim": 0.1324,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2137",
+      "ref": "打开睡眠模式",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.0043,
+        -0.0248
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.0043,
+      "qwen_argmax_cer": 0.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2137__spk0",
+        "cmd_2137__spk1"
+      ],
+      "per_spk_text": [
+        "打开睡眠模式。",
+        "打开睡眠模式。"
+      ],
+      "per_spk_cer": [
+        0.0,
+        0.0
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.0,
+      "argmax_cer": 0.0,
+      "oracle_sim": 0.0043,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2170",
+      "ref": "风摆向右边",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.0804
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.0804,
+      "qwen_argmax_cer": 0.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2170__spk0"
+      ],
+      "per_spk_text": [
+        "风摆向右边。"
+      ],
+      "per_spk_cer": [
+        0.0
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.0,
+      "argmax_cer": 0.0,
+      "oracle_sim": 0.0804,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2173",
+      "ref": "播放少儿版红楼梦",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.1366,
+        -0.0415
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.1366,
+      "qwen_argmax_cer": 0.25,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2173__spk0",
+        "cmd_2173__spk1"
+      ],
+      "per_spk_text": [
+        "播放少儿版《红》。",
+        "放少儿版《红楼梦》。"
+      ],
+      "per_spk_cer": [
+        0.25,
+        0.125
+      ],
+      "oracle_idx": 1,
+      "oracle_cer": 0.125,
+      "argmax_cer": 0.25,
+      "oracle_sim": -0.0415,
+      "argmax_correct": false
+    },
+    {
+      "uid": "cmd_2177",
+      "ref": "播放大红妈妈精心讲绘本",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.12
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.12,
+      "qwen_argmax_cer": 0.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2177__spk0"
+      ],
+      "per_spk_text": [
+        "播放《大红妈妈精心讲绘本》。"
+      ],
+      "per_spk_cer": [
+        0.0
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.0,
+      "argmax_cer": 0.0,
+      "oracle_sim": 0.12,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2206",
+      "ref": "放首歌吧",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.0075,
+        0.157
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.157,
+      "qwen_argmax_cer": 0.25,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2206__spk0",
+        "cmd_2206__spk1"
+      ],
+      "per_spk_text": [
+        "可能是今年零。",
+        "放走歌吧。"
+      ],
+      "per_spk_cer": [
+        1.5,
+        0.25
+      ],
+      "oracle_idx": 1,
+      "oracle_cer": 0.25,
+      "argmax_cer": 0.25,
+      "oracle_sim": 0.157,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2212",
+      "ref": "关下空调",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.1191,
+        0.1029
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.1191,
+      "qwen_argmax_cer": 1.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2212__spk0",
+        "cmd_2212__spk1"
+      ],
+      "per_spk_text": [
+        "是商店中。",
+        "两点钟。"
+      ],
+      "per_spk_cer": [
+        1.0,
+        1.0
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 1.0,
+      "argmax_cer": 1.0,
+      "oracle_sim": 0.1191,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2213",
+      "ref": "吃什么适合哺乳期",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.0917,
+        0.0056
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.0917,
+      "qwen_argmax_cer": 0.75,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2213__spk0",
+        "cmd_2213__spk1"
+      ],
+      "per_spk_text": [
+        "是什么事不做？",
+        "是什么时候租的期？"
+      ],
+      "per_spk_cer": [
+        0.75,
+        0.625
+      ],
+      "oracle_idx": 1,
+      "oracle_cer": 0.625,
+      "argmax_cer": 0.75,
+      "oracle_sim": 0.0056,
+      "argmax_correct": false
+    },
+    {
+      "uid": "cmd_2224",
+      "ref": "混乱博物馆我想听",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.0574,
+        0.1891
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.1891,
+      "qwen_argmax_cer": 0.25,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2224__spk0",
+        "cmd_2224__spk1"
+      ],
+      "per_spk_text": [
+        "女方开口要十五。",
+        "混乱博物馆，不想。"
+      ],
+      "per_spk_cer": [
+        1.0,
+        0.25
+      ],
+      "oracle_idx": 1,
+      "oracle_cer": 0.25,
+      "argmax_cer": 0.25,
+      "oracle_sim": 0.1891,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2247",
+      "ref": "风向下吹",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.0993,
+        -0.0397
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.0993,
+      "qwen_argmax_cer": 0.25,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2247__spk0",
+        "cmd_2247__spk1"
+      ],
+      "per_spk_text": [
+        "方向下吹。",
+        "在今年两会。"
+      ],
+      "per_spk_cer": [
+        0.25,
+        1.25
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.25,
+      "argmax_cer": 0.25,
+      "oracle_sim": 0.0993,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2258",
+      "ref": "关闭无风模式",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.1525,
+        0.1332
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.1525,
+      "qwen_argmax_cer": 1.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2258__spk0",
+        "cmd_2258__spk1"
+      ],
+      "per_spk_text": [
+        "不是。",
+        "关闭卧室。"
+      ],
+      "per_spk_cer": [
+        1.0,
+        0.6667
+      ],
+      "oracle_idx": 1,
+      "oracle_cer": 0.6667,
+      "argmax_cer": 1.0,
+      "oracle_sim": 0.1332,
+      "argmax_correct": false
+    },
+    {
+      "uid": "cmd_2269",
+      "ref": "温度调到十七度",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.0745,
+        0.1513
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.1513,
+      "qwen_argmax_cer": 0.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2269__spk0",
+        "cmd_2269__spk1"
+      ],
+      "per_spk_text": [
+        "温度调到十七度。",
+        "温度调到十七度。"
+      ],
+      "per_spk_cer": [
+        0.0,
+        0.0
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.0,
+      "argmax_cer": 0.0,
+      "oracle_sim": 0.0745,
+      "argmax_correct": false
+    },
+    {
+      "uid": "cmd_2288",
+      "ref": "开启防直吹模式",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.0902
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.0902,
+      "qwen_argmax_cer": 0.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2288__spk0"
+      ],
+      "per_spk_text": [
+        "开启防直吹模式。"
+      ],
+      "per_spk_cer": [
+        0.0
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.0,
+      "argmax_cer": 0.0,
+      "oracle_sim": 0.0902,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2289",
+      "ref": "关掉无风模式",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.0737,
+        -0.0934
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.0737,
+      "qwen_argmax_cer": 1.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2289__spk0",
+        "cmd_2289__spk1"
+      ],
+      "per_spk_text": [
+        "领导名单。",
+        "关掉无风模式。"
+      ],
+      "per_spk_cer": [
+        1.0,
+        0.0
+      ],
+      "oracle_idx": 1,
+      "oracle_cer": 0.0,
+      "argmax_cer": 1.0,
+      "oracle_sim": -0.0934,
+      "argmax_correct": false
+    },
+    {
+      "uid": "cmd_2311",
+      "ref": "备孕不推荐吃什么",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.0097,
+        0.1166
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.1166,
+      "qwen_argmax_cer": 1.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2311__spk0",
+        "cmd_2311__spk1"
+      ],
+      "per_spk_text": [
+        "中发源清真餐厅。",
+        "中发院清真餐。"
+      ],
+      "per_spk_cer": [
+        1.0,
+        1.0
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 1.0,
+      "argmax_cer": 1.0,
+      "oracle_sim": 0.0097,
+      "argmax_correct": false
+    },
+    {
+      "uid": "cmd_2356",
+      "ref": "关掉节能模式",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.1643,
+        0.1786
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.1786,
+      "qwen_argmax_cer": 0.6666666666666666,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2356__spk0",
+        "cmd_2356__spk1"
+      ],
+      "per_spk_text": [
+        "关掉节能模式。",
+        "关掉。"
+      ],
+      "per_spk_cer": [
+        0.0,
+        0.6667
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.0,
+      "argmax_cer": 0.6667,
+      "oracle_sim": 0.1643,
+      "argmax_correct": false
+    },
+    {
+      "uid": "cmd_2378",
+      "ref": "开启抽湿模式",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.0714,
+        0.1815
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.1815,
+      "qwen_argmax_cer": 0.16666666666666666,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2378__spk0",
+        "cmd_2378__spk1"
+      ],
+      "per_spk_text": [
+        "被解救的江哥。",
+        "开启除湿模式。"
+      ],
+      "per_spk_cer": [
+        1.0,
+        0.1667
+      ],
+      "oracle_idx": 1,
+      "oracle_cer": 0.1667,
+      "argmax_cer": 0.1667,
+      "oracle_sim": 0.1815,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2406",
+      "ref": "给我讲万万妹想到",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.1756,
+        0.1227
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.1756,
+      "qwen_argmax_cer": 0.5,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2406__spk0",
+        "cmd_2406__spk1"
+      ],
+      "per_spk_text": [
+        "万万没想到。",
+        "给我讲，万万没想到。"
+      ],
+      "per_spk_cer": [
+        0.5,
+        0.125
+      ],
+      "oracle_idx": 1,
+      "oracle_cer": 0.125,
+      "argmax_cer": 0.5,
+      "oracle_sim": 0.1227,
+      "argmax_correct": false
+    },
+    {
+      "uid": "cmd_2432",
+      "ref": "播放寻找快活林完",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.1383,
+        -0.0326
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.1383,
+      "qwen_argmax_cer": 1.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2432__spk0",
+        "cmd_2432__spk1"
+      ],
+      "per_spk_text": [
+        "想要下线拉的。",
+        "播放寻找快活的音乐。"
+      ],
+      "per_spk_cer": [
+        1.0,
+        0.375
+      ],
+      "oracle_idx": 1,
+      "oracle_cer": 0.375,
+      "argmax_cer": 1.0,
+      "oracle_sim": -0.0326,
+      "argmax_correct": false
+    },
+    {
+      "uid": "cmd_2437",
+      "ref": "更年期不适合吃什么",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.1542
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.1542,
+      "qwen_argmax_cer": 0.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2437__spk0"
+      ],
+      "per_spk_text": [
+        "更年期不适合吃什么？"
+      ],
+      "per_spk_cer": [
+        0.0
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.0,
+      "argmax_cer": 0.0,
+      "oracle_sim": 0.1542,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2438",
+      "ref": "吃什么可以明目",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.013,
+        0.1494
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.1494,
+      "qwen_argmax_cer": 0.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2438__spk0",
+        "cmd_2438__spk1"
+      ],
+      "per_spk_text": [
+        "什么可以瞑目？",
+        "吃什么可以明目？"
+      ],
+      "per_spk_cer": [
+        0.2857,
+        0.0
+      ],
+      "oracle_idx": 1,
+      "oracle_cer": 0.0,
+      "argmax_cer": 0.0,
+      "oracle_sim": 0.1494,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_244",
+      "ref": "没事退下吧",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.1155
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.1155,
+      "qwen_argmax_cer": 0.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_244__spk0"
+      ],
+      "per_spk_text": [
+        "没事，退下吧。"
+      ],
+      "per_spk_cer": [
+        0.0
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.0,
+      "argmax_cer": 0.0,
+      "oracle_sim": 0.1155,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2464",
+      "ref": "黑发哪些食物需要忌口",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.0139,
+        0.1747
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.1747,
+      "qwen_argmax_cer": 1.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2464__spk0",
+        "cmd_2464__spk1"
+      ],
+      "per_spk_text": [
+        "吃海参食物，切要忌口。",
+        "海猫，去。"
+      ],
+      "per_spk_cer": [
+        0.5,
+        1.0
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.5,
+      "argmax_cer": 1.0,
+      "oracle_sim": 0.0139,
+      "argmax_correct": false
+    },
+    {
+      "uid": "cmd_2508",
+      "ref": "把温度调到二十三度",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.0469,
+        0.1207
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.1207,
+      "qwen_argmax_cer": 0.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2508__spk0",
+        "cmd_2508__spk1"
+      ],
+      "per_spk_text": [
+        "把温度调到二十三。",
+        "把温度调到二十三度。"
+      ],
+      "per_spk_cer": [
+        0.1111,
+        0.0
+      ],
+      "oracle_idx": 1,
+      "oracle_cer": 0.0,
+      "argmax_cer": 0.0,
+      "oracle_sim": 0.1207,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2518",
+      "ref": "风向向下",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.011,
+        0.1279
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.1279,
+      "qwen_argmax_cer": 0.5,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2518__spk0",
+        "cmd_2518__spk1"
+      ],
+      "per_spk_text": [
+        "嫌疑人。",
+        "风扇上下。"
+      ],
+      "per_spk_cer": [
+        1.0,
+        0.5
+      ],
+      "oracle_idx": 1,
+      "oracle_cer": 0.5,
+      "argmax_cer": 0.5,
+      "oracle_sim": 0.1279,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2529",
+      "ref": "空调调到十七度",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.1037,
+        0.1393
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.1393,
+      "qwen_argmax_cer": 0.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2529__spk0",
+        "cmd_2529__spk1"
+      ],
+      "per_spk_text": [
+        "空调调到十七度。",
+        "空调调到十七度。"
+      ],
+      "per_spk_cer": [
+        0.0,
+        0.0
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.0,
+      "argmax_cer": 0.0,
+      "oracle_sim": 0.1037,
+      "argmax_correct": false
+    },
+    {
+      "uid": "cmd_2537",
+      "ref": "开到三十度",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.0533
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.0533,
+      "qwen_argmax_cer": 0.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2537__spk0"
+      ],
+      "per_spk_text": [
+        "开到三十度。"
+      ],
+      "per_spk_cer": [
+        0.0
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.0,
+      "argmax_cer": 0.0,
+      "oracle_sim": 0.0533,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2551",
+      "ref": "关掉空调",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.1276,
+        -0.0448
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.1276,
+      "qwen_argmax_cer": 1.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2551__spk0",
+        "cmd_2551__spk1"
+      ],
+      "per_spk_text": [
+        "你不把。",
+        "你不把他们当。"
+      ],
+      "per_spk_cer": [
+        1.0,
+        1.5
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 1.0,
+      "argmax_cer": 1.0,
+      "oracle_sim": 0.1276,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2563",
+      "ref": "启动制冷模式",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.2014,
+        0.1052
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.2014,
+      "qwen_argmax_cer": 0.3333333333333333,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2563__spk0",
+        "cmd_2563__spk1"
+      ],
+      "per_spk_text": [
+        "启动巡逻模式。",
+        "其中，最老谋深。"
+      ],
+      "per_spk_cer": [
+        0.3333,
+        1.0
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.3333,
+      "argmax_cer": 0.3333,
+      "oracle_sim": 0.2014,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2569",
+      "ref": "把温度调到二十度",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.0934
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.0934,
+      "qwen_argmax_cer": 0.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2569__spk0"
+      ],
+      "per_spk_text": [
+        "把温度调到二十度。"
+      ],
+      "per_spk_cer": [
+        0.0
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.0,
+      "argmax_cer": 0.0,
+      "oracle_sim": 0.0934,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2573",
+      "ref": "打开新风模式",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.0246,
+        0.0986
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.0986,
+      "qwen_argmax_cer": 0.3333333333333333,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2573__spk0",
+        "cmd_2573__spk1"
+      ],
+      "per_spk_text": [
+        "转率，所以。",
+        "打开信封模式。"
+      ],
+      "per_spk_cer": [
+        1.0,
+        0.3333
+      ],
+      "oracle_idx": 1,
+      "oracle_cer": 0.3333,
+      "argmax_cer": 0.3333,
+      "oracle_sim": 0.0986,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2577",
+      "ref": "把温度调到十七度",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.1914,
+        0.1965
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.1965,
+      "qwen_argmax_cer": 1.5,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2577__spk0",
+        "cmd_2577__spk1"
+      ],
+      "per_spk_text": [
+        "自己的名字出现在榜单前。",
+        "把自己的名字出现在榜单前列。"
+      ],
+      "per_spk_cer": [
+        1.375,
+        1.5
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 1.375,
+      "argmax_cer": 1.5,
+      "oracle_sim": 0.1914,
+      "argmax_correct": false
+    },
+    {
+      "uid": "cmd_2585",
+      "ref": "放首歌吧",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.1692,
+        0.0877
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.1692,
+      "qwen_argmax_cer": 1.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2585__spk0",
+        "cmd_2585__spk1"
+      ],
+      "per_spk_text": [
+        "爱走就走。",
+        "唱首歌吧。"
+      ],
+      "per_spk_cer": [
+        1.0,
+        0.25
+      ],
+      "oracle_idx": 1,
+      "oracle_cer": 0.25,
+      "argmax_cer": 1.0,
+      "oracle_sim": 0.0877,
+      "argmax_correct": false
+    },
+    {
+      "uid": "cmd_2596",
+      "ref": "风向调到中间",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.1316
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.1316,
+      "qwen_argmax_cer": 0.16666666666666666,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2596__spk0"
+      ],
+      "per_spk_text": [
+        "方向调到中间。"
+      ],
+      "per_spk_cer": [
+        0.1667
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.1667,
+      "argmax_cer": 0.1667,
+      "oracle_sim": 0.1316,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2681",
+      "ref": "富含热量的食物有哪些",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.0858,
+        0.0634
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.0858,
+      "qwen_argmax_cer": 0.3,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2681__spk0",
+        "cmd_2681__spk1"
+      ],
+      "per_spk_text": [
+        "富含热量的是哪些？",
+        "富含热量的食物有哪些？"
+      ],
+      "per_spk_cer": [
+        0.3,
+        0.0
+      ],
+      "oracle_idx": 1,
+      "oracle_cer": 0.0,
+      "argmax_cer": 0.3,
+      "oracle_sim": 0.0634,
+      "argmax_correct": false
+    },
+    {
+      "uid": "cmd_2691",
+      "ref": "护发吃什么好",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.1397,
+        0.1252
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.1397,
+      "qwen_argmax_cer": 1.5,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2691__spk0",
+        "cmd_2691__spk1"
+      ],
+      "per_spk_text": [
+        "上一届的里约奥运会。",
+        "取选上对面的礼。"
+      ],
+      "per_spk_cer": [
+        1.5,
+        1.1667
+      ],
+      "oracle_idx": 1,
+      "oracle_cer": 1.1667,
+      "argmax_cer": 1.5,
+      "oracle_sim": 0.1252,
+      "argmax_correct": false
+    },
+    {
+      "uid": "cmd_2708",
+      "ref": "打开睡眠模式",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.1102
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.1102,
+      "qwen_argmax_cer": 0.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2708__spk0"
+      ],
+      "per_spk_text": [
+        "打开睡眠模式。"
+      ],
+      "per_spk_cer": [
+        0.0
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.0,
+      "argmax_cer": 0.0,
+      "oracle_sim": 0.1102,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2726",
+      "ref": "关下空调",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.1969,
+        0.141
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.1969,
+      "qwen_argmax_cer": 0.5,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2726__spk0",
+        "cmd_2726__spk1"
+      ],
+      "per_spk_text": [
+        "康夏空调。",
+        "房。"
+      ],
+      "per_spk_cer": [
+        0.5,
+        1.0
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.5,
+      "argmax_cer": 0.5,
+      "oracle_sim": 0.1969,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2742",
+      "ref": "腹泻吃什么食物有好处",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.1685,
+        0.1687
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.1687,
+      "qwen_argmax_cer": 0.3,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2742__spk0",
+        "cmd_2742__spk1"
+      ],
+      "per_spk_text": [
+        "陆县植物园景区。",
+        "腹泻吃什么食物？"
+      ],
+      "per_spk_cer": [
+        0.9,
+        0.3
+      ],
+      "oracle_idx": 1,
+      "oracle_cer": 0.3,
+      "argmax_cer": 0.3,
+      "oracle_sim": 0.1687,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2751",
+      "ref": "风量最小",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        -0.0693,
+        0.0051
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.0051,
+      "qwen_argmax_cer": 0.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2751__spk0",
+        "cmd_2751__spk1"
+      ],
+      "per_spk_text": [
+        "风量最小。",
+        "风量最小。"
+      ],
+      "per_spk_cer": [
+        0.0,
+        0.0
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.0,
+      "argmax_cer": 0.0,
+      "oracle_sim": -0.0693,
+      "argmax_correct": false
+    },
+    {
+      "uid": "cmd_2788",
+      "ref": "关掉空调",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.0381,
+        0.0972
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.0972,
+      "qwen_argmax_cer": 2.5,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2788__spk0",
+        "cmd_2788__spk1"
+      ],
+      "per_spk_text": [
+        "上市规模更上一层。",
+        "授信规模更上是主要能。"
+      ],
+      "per_spk_cer": [
+        2.0,
+        2.5
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 2.0,
+      "argmax_cer": 2.5,
+      "oracle_sim": 0.0381,
+      "argmax_correct": false
+    },
+    {
+      "uid": "cmd_2792",
+      "ref": "播放减压放松音乐合集",
+      "n_spk": 2,
+      "speakers": [
+        1,
+        2
+      ],
+      "sims": [
+        -0.0386,
+        0.1206
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.1206,
+      "qwen_argmax_cer": 0.6,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2792__spk0",
+        "cmd_2792__spk1"
+      ],
+      "per_spk_text": [
+        "同时，还考虑薪资。",
+        "吃饭、减压、放松、温暖和距离。"
+      ],
+      "per_spk_cer": [
+        1.0,
+        0.7
+      ],
+      "oracle_idx": 1,
+      "oracle_cer": 0.7,
+      "argmax_cer": 0.7,
+      "oracle_sim": 0.1206,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2825",
+      "ref": "白内障不适合吃什么",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.0999
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.0999,
+      "qwen_argmax_cer": 0.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2825__spk0"
+      ],
+      "per_spk_text": [
+        "白内障不适合吃什么？"
+      ],
+      "per_spk_cer": [
+        0.0
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.0,
+      "argmax_cer": 0.0,
+      "oracle_sim": 0.0999,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2831",
+      "ref": "风速七十",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.1563
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.1563,
+      "qwen_argmax_cer": 0.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2831__spk0"
+      ],
+      "per_spk_text": [
+        "风速七十。"
+      ],
+      "per_spk_cer": [
+        0.0
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.0,
+      "argmax_cer": 0.0,
+      "oracle_sim": 0.1563,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2882",
+      "ref": "空调除湿",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.173
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.173,
+      "qwen_argmax_cer": 0.5,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2882__spk0"
+      ],
+      "per_spk_text": [
+        "更加舒适。"
+      ],
+      "per_spk_cer": [
+        1.0
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 1.0,
+      "argmax_cer": 1.0,
+      "oracle_sim": 0.173,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2903",
+      "ref": "播放少儿版红楼梦",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.1199,
+        0.0778
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.1199,
+      "qwen_argmax_cer": 1.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2903__spk0",
+        "cmd_2903__spk1"
+      ],
+      "per_spk_text": [
+        "主教说：“汤米对。”",
+        "播放少儿版《红楼梦》。"
+      ],
+      "per_spk_cer": [
+        1.0,
+        0.0
+      ],
+      "oracle_idx": 1,
+      "oracle_cer": 0.0,
+      "argmax_cer": 1.0,
+      "oracle_sim": 0.0778,
+      "argmax_correct": false
+    },
+    {
+      "uid": "cmd_2905",
+      "ref": "空调调到二十二度",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.1791,
+        0.0304
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.1791,
+      "qwen_argmax_cer": 0.25,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2905__spk0",
+        "cmd_2905__spk1"
+      ],
+      "per_spk_text": [
+        "空调二十二度。",
+        "戴姆勒抛售斯。"
+      ],
+      "per_spk_cer": [
+        0.25,
+        1.0
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.25,
+      "argmax_cer": 0.25,
+      "oracle_sim": 0.1791,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_2987",
+      "ref": "关闭ECO模式",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.1278,
+        0.1508
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.1508,
+      "qwen_argmax_cer": 0.7142857142857143,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_2987__spk0",
+        "cmd_2987__spk1"
+      ],
+      "per_spk_text": [
+        "小猪E C U。",
+        "小米EC。"
+      ],
+      "per_spk_cer": [
+        0.7143,
+        0.7143
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.7143,
+      "argmax_cer": 0.7143,
+      "oracle_sim": 0.1278,
+      "argmax_correct": false
+    },
+    {
+      "uid": "cmd_46",
+      "ref": "放周杰伦的歌",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.17
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.17,
+      "qwen_argmax_cer": 0.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_46__spk0"
+      ],
+      "per_spk_text": [
+        "放周杰伦的歌。"
+      ],
+      "per_spk_cer": [
+        0.0
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.0,
+      "argmax_cer": 0.0,
+      "oracle_sim": 0.17,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_64",
+      "ref": "取消勃朗烤箱",
+      "n_spk": 1,
+      "speakers": [
+        0
+      ],
+      "sims": [
+        0.1301
+      ],
+      "argmax_idx": 0,
+      "max_sim": 0.1301,
+      "qwen_argmax_cer": 0.16666666666666666,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_64__spk0"
+      ],
+      "per_spk_text": [
+        "取消波朗烤箱。"
+      ],
+      "per_spk_cer": [
+        0.1667
+      ],
+      "oracle_idx": 0,
+      "oracle_cer": 0.1667,
+      "argmax_cer": 0.1667,
+      "oracle_sim": 0.1301,
+      "argmax_correct": true
+    },
+    {
+      "uid": "cmd_76",
+      "ref": "打开客厅所有灯",
+      "n_spk": 2,
+      "speakers": [
+        0,
+        1
+      ],
+      "sims": [
+        0.1138,
+        0.1855
+      ],
+      "argmax_idx": 1,
+      "max_sim": 0.1855,
+      "qwen_argmax_cer": 0.0,
+      "qwen_argmax_text": null,
+      "slice_uids": [
+        "cmd_76__spk0",
+        "cmd_76__spk1"
+      ],
+      "per_spk_text": [
+        "我们这八天啥？",
+        "打开客厅所有灯。"
+      ],
+      "per_spk_cer": [
+        1.0,
+        0.0
+      ],
+      "oracle_idx": 1,
+      "oracle_cer": 0.0,
+      "argmax_cer": 0.0,
+      "oracle_sim": 0.1855,
+      "argmax_correct": true
+    }
+  ]
+}

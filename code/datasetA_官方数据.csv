@@ -1,0 +1,1839 @@
+﻿集,id,唤醒音频,唤醒文本,识别音频,识别文本
+POS,0,pos/kws_0.wav,你好科慕,pos/cmd_0.wav,空调开到制热调到二十五度风量调到百分之三十
+POS,1,pos/kws_1.wav,hi colmo,pos/cmd_1.wav,灯光亮度调到百分之三十
+POS,2,pos/kws_2.wav,hi colmo,pos/cmd_2.wav,洗碗机暂停工作
+POS,3,pos/kws_3.wav,hi colmo,pos/cmd_3.wav,所有灯光调到百分之五十
+POS,4,pos/kws_4.wav,hi colmo,pos/cmd_4.wav,音乐的声音小一点
+POS,5,pos/kws_5.wav,hi colmo,pos/cmd_5.wav,打开回家模式吧
+POS,6,pos/kws_6.wav,你好科慕,pos/cmd_6.wav,播放权志龙的歌
+POS,7,pos/kws_7.wav,hi colmo,pos/cmd_7.wav,我要出门了
+POS,8,pos/kws_8.wav,hi colmo,pos/cmd_8.wav,拉起窗帘
+POS,9,pos/kws_9.wav,你好科慕,pos/cmd_9.wav,元宵节灯会什么时候
+POS,10,pos/kws_10.wav,hi colmo,pos/cmd_10.wav,关闭悬浮空调
+POS,11,pos/kws_11.wav,hi colmo,pos/cmd_11.wav,从医院回来的衣服
+POS,12,pos/kws_12.wav,你好科慕,pos/cmd_12.wav,关闭客厅空调
+POS,13,pos/kws_13.wav,hi colmo,pos/cmd_13.wav,打开洗衣服
+POS,14,pos/kws_14.wav,hi colmo,pos/cmd_14.wav,空调二十六度风速最大
+POS,15,pos/kws_15.wav,hi colmo,pos/cmd_15.wav,关掉顶灯
+POS,16,pos/kws_16.wav,hi colmo,pos/cmd_16.wav,帮我做一个闹钟
+POS,17,pos/kws_17.wav,hi colmo,pos/cmd_17.wav,打开卷帘门呃不卷帘
+POS,18,pos/kws_18.wav,hi colmo,pos/cmd_18.wav,关闭灯光
+POS,19,pos/kws_19.wav,hi colmo,pos/cmd_19.wav,我要吃我要我要我要准备做饭
+POS,20,pos/kws_20.wav,hi colmo,pos/cmd_20.wav,客厅灯的色温调到最暖关闭窗关闭客厅窗帘关闭客厅空调
+POS,21,pos/kws_21.wav,你好科慕,pos/cmd_21.wav,把温度调到三十度风量调到百分之六十
+POS,22,pos/kws_22.wav,hi colmo,pos/cmd_22.wav,打开烘干
+POS,23,pos/kws_23.wav,hi colmo,pos/cmd_23.wav,我准备做饭了
+POS,24,pos/kws_24.wav,你好科慕,pos/cmd_24.wav,关灯关空调打开窗帘
+POS,25,pos/kws_25.wav,hi colmo,pos/cmd_25.wav,打开四G
+POS,26,pos/kws_26.wav,你好科慕,pos/cmd_26.wav,啊把空调关了
+POS,27,pos/kws_27.wav,hi colmo,pos/cmd_27.wav,打开闹钟
+POS,28,pos/kws_28.wav,你好科慕,pos/cmd_28.wav,客厅灯的色温调为冷色
+POS,29,pos/kws_29.wav,hi colmo,pos/cmd_29.wav,心脏灯的色温调到最冷亮度调到最亮
+POS,30,pos/kws_30.wav,hi colmo,pos/cmd_30.wav,打开窗帘烟机
+POS,31,pos/kws_31.wav,你好科慕,pos/cmd_31.wav,把前厅的灯光调到百分之百亮度
+POS,32,pos/kws_32.wav,你好科慕,pos/cmd_32.wav,LADY GAGA最新的专辑叫什么
+POS,33,pos/kws_33.wav,hi colmo,pos/cmd_33.wav,这一年我从直播小白到第一次扛相机去工地拍
+POS,34,pos/kws_34.wav,hi colmo,pos/cmd_34.wav,日光模式
+POS,35,pos/kws_35.wav,你好科慕,pos/cmd_35.wav,关掉音乐
+POS,36,pos/kws_36.wav,hi colmo,pos/cmd_36.wav,开启客厅灯光
+POS,37,pos/kws_37.wav,hi colmo,pos/cmd_37.wav,嗯打开油烟机
+POS,38,pos/kws_38.wav,hi colmo,pos/cmd_38.wav,我要做饭了然后它就自动降下
+POS,39,pos/kws_39.wav,hi colmo,pos/cmd_39.wav,打开客厅空调
+POS,40,pos/kws_40.wav,hi colmo,pos/cmd_40.wav,关闭氛围灯
+POS,41,pos/kws_41.wav,hi colmo,pos/cmd_41.wav,室内有点暗调亮一点
+POS,42,pos/kws_42.wav,hi colmo,pos/cmd_42.wav,帮我预约十四点
+POS,43,pos/kws_43.wav,hi colmo,pos/cmd_43.wav,灯光有点暗
+POS,44,pos/kws_44.wav,hi colmo,pos/cmd_44.wav,我想看电影
+POS,45,pos/kws_45.wav,hi colmo,pos/cmd_45.wav,关闭纱帘
+POS,46,pos/kws_46.wav,你好科慕,pos/cmd_46.wav,放周杰伦的歌
+POS,47,pos/kws_47.wav,hi colmo,pos/cmd_47.wav,把空调温度调到二十八度
+POS,48,pos/kws_48.wav,hi colmo,pos/cmd_48.wav,灯光亮度调到最高
+POS,49,pos/kws_49.wav,hi colmo,pos/cmd_49.wav,烟机下降
+POS,50,pos/kws_50.wav,你好科慕,pos/cmd_50.wav,灯的色温调到五千
+POS,51,pos/kws_51.wav,hi colmo,pos/cmd_51.wav,你好科慕你好科慕
+POS,52,pos/kws_52.wav,你好科慕,pos/cmd_52.wav,空调换气
+POS,53,pos/kws_53.wav,你好科慕,pos/cmd_53.wav,权志龙最新的歌专辑叫什么名字
+POS,54,pos/kws_54.wav,hi colmo,pos/cmd_54.wav,我要吃饭
+POS,55,pos/kws_55.wav,hi colmo,pos/cmd_55.wav,打开烟机打开洗衣模式打开新风模式
+POS,56,pos/kws_56.wav,hi colmo,pos/cmd_56.wav,羊绒大衣要怎么洗
+POS,57,pos/kws_57.wav,hi colmo,pos/cmd_57.wav,空调调为十二度
+POS,58,pos/kws_58.wav,hi colmo,pos/cmd_58.wav,我要休息我要睡觉了
+POS,59,pos/kws_59.wav,hi colmo,pos/cmd_59.wav,关闭顶灯
+POS,60,pos/kws_60.wav,hi colmo,pos/cmd_60.wav,打开chatgpt
+POS,61,pos/kws_61.wav,你好科慕,pos/cmd_61.wav,打开客厅空调温度调整到二十三最低风速打开窗帘
+POS,62,pos/kws_62.wav,hi colmo,pos/cmd_62.wav,风速最低
+POS,63,pos/kws_63.wav,hi colmo,pos/cmd_63.wav,所有灯光打开
+POS,64,pos/kws_64.wav,你好科慕,pos/cmd_64.wav,取消勃朗烤箱
+POS,65,pos/kws_65.wav,hi colmo,pos/cmd_65.wav,我回家啦
+POS,66,pos/kws_66.wav,hi colmo,pos/cmd_66.wav,油烟机打开
+POS,67,pos/kws_67.wav,hi colmo,pos/cmd_67.wav,备餐模式
+POS,68,pos/kws_68.wav,hi colmo,pos/cmd_68.wav,嵌入式饮水机
+POS,69,pos/kws_69.wav,hi colmo,pos/cmd_69.wav,恢复
+POS,70,pos/kws_70.wav,hi colmo,pos/cmd_70.wav,我要用餐了
+POS,71,pos/kws_71.wav,你好科慕,pos/cmd_71.wav,把所有灯光调到亮度调到百分之一百
+POS,72,pos/kws_72.wav,hi colmo,pos/cmd_72.wav,关闭冰箱
+POS,73,pos/kws_73.wav,hi colmo,pos/cmd_73.wav,关掉油烟机
+POS,74,pos/kws_74.wav,你好科慕,pos/cmd_74.wav,灯的色温调暖一点空调温度调低一点关闭窗帘
+POS,75,pos/kws_75.wav,hi colmo,pos/cmd_75.wav,哎这个怎么没通电哈
+POS,76,pos/kws_76.wav,你好科慕,pos/cmd_76.wav,打开客厅所有灯
+POS,77,pos/kws_77.wav,hi colmo,pos/cmd_77.wav,打开厨房
+POS,78,pos/kws_78.wav,hi colmo,pos/cmd_78.wav,我要吃饭了啊不对
+POS,79,pos/kws_79.wav,hi colmo,pos/cmd_79.wav,关掉客厅灯光
+POS,80,pos/kws_80.wav,你好科慕,pos/cmd_80.wav,打开唯一唤醒
+POS,81,pos/kws_81.wav,你好科慕,pos/cmd_81.wav,声音大一点
+POS,82,pos/kws_82.wav,hi colmo,pos/cmd_82.wav,恢复日常模式
+POS,83,pos/kws_83.wav,hi colmo,pos/cmd_83.wav,关掉客厅的灯
+POS,84,pos/kws_84.wav,hi colmo,pos/cmd_84.wav,室内有点暗调亮一点然后把窗帘开到最大
+POS,85,pos/kws_85.wav,hi colmo,pos/cmd_85.wav,取消闹钟
+POS,86,pos/kws_86.wav,你好科慕,pos/cmd_86.wav,怎么打开无风感
+POS,87,pos/kws_87.wav,hi colmo,pos/cmd_87.wav,座椅感化那个屏
+POS,88,pos/kws_88.wav,你好科慕,pos/cmd_88.wav,会议模式
+POS,89,pos/kws_89.wav,你好科慕,pos/cmd_89.wav,窗帘的叶片帮我调整到一百八十度
+POS,90,pos/kws_90.wav,hi colmo,pos/cmd_90.wav,我有点热
+POS,91,pos/kws_91.wav,hi colmo,pos/cmd_91.wav,开启窗帘
+POS,92,pos/kws_92.wav,hi colmo,pos/cmd_92.wav,我有点冷
+POS,93,pos/kws_93.wav,hi colmo,pos/cmd_93.wav,约下午四点洗衣服
+POS,94,pos/kws_94.wav,hi colmo,pos/cmd_94.wav,进入我要吃饭了场景设置
+POS,95,pos/kws_95.wav,hi colmo,pos/cmd_95.wav,开启一键净呼吸
+POS,96,pos/kws_96.wav,hi colmo,pos/cmd_96.wav,打开洗衣机
+POS,97,pos/kws_97.wav,你好科慕,pos/cmd_97.wav,把前厅灯光调到亮度百分之百
+POS,98,pos/kws_98.wav,你好科慕,pos/cmd_98.wav,全智能
+POS,99,pos/kws_99.wav,hi colmo,pos/cmd_99.wav,打开干衣机门
+POS,100,pos/kws_100.wav,hi colmo,pos/cmd_100.wav,拉杆洗烘套装
+POS,101,pos/kws_101.wav,hi colmo,pos/cmd_101.wav,闭所有灯光
+POS,102,pos/kws_102.wav,你好科慕,pos/cmd_102.wav,关闭图灵厨房的灯
+POS,103,pos/kws_103.wav,hi colmo,pos/cmd_103.wav,灯光常亮冷色调
+POS,104,pos/kws_104.wav,hi colmo,pos/cmd_104.wav,那窗帘要关吗这些
+POS,105,pos/kws_105.wav,你好科慕,pos/cmd_105.wav,墅智专家墅智专家的灯
+POS,106,pos/kws_106.wav,hi colmo,pos/cmd_106.wav,关闭洗衣机
+POS,107,pos/kws_107.wav,hi colmo,pos/cmd_107.wav,室内有点暗
+POS,108,pos/kws_108.wav,hi colmo,pos/cmd_108.wav,因为我叫colmo就是唤醒它
+POS,109,pos/kws_109.wav,hi colmo,pos/cmd_109.wav,干衣机开门
+POS,110,pos/kws_110.wav,hi colmo,pos/cmd_110.wav,正常才有我一个人说话嘛它这个就很灵敏了就一直回答到你但是那个它就是会延迟
+POS,111,pos/kws_111.wav,hi colmo,pos/cmd_111.wav,关闭星香空调
+POS,112,pos/kws_112.wav,你好科慕,pos/cmd_112.wav,我要看电影咯
+POS,113,pos/kws_113.wav,hi colmo,pos/cmd_113.wav,我要吃做饭了
+POS,114,pos/kws_114.wav,hi colmo,pos/cmd_114.wav,调成冷色调常亮
+POS,115,pos/kws_115.wav,hi colmo,pos/cmd_115.wav,打开烟机打开洗游衣
+POS,116,pos/kws_116.wav,你好科慕,pos/cmd_116.wav,帮我播放周笔畅的贪
+POS,117,pos/kws_117.wav,hi colmo,pos/cmd_117.wav,帮我打开冰箱门还有抽油烟机还有洗衣机筒还有新风
+POS,118,pos/kws_118.wav,hi colmo,pos/cmd_118.wav,烟机自动开启灯光精准的聚焦在非餐区
+POS,119,pos/kws_119.wav,你好科慕,pos/cmd_119.wav,打开客厅智能灯
+POS,120,pos/kws_120.wav,你好科慕,pos/cmd_120.wav,干衣机怎么使用
+POS,121,pos/kws_121.wav,hi colmo,pos/cmd_121.wav,空调调为二十六度
+POS,122,pos/kws_122.wav,hi colmo,pos/cmd_122.wav,什么打开我们的座椅安装等等就可以实现
+POS,123,pos/kws_123.wav,hi colmo,pos/cmd_123.wav,打开顶灯
+POS,124,pos/kws_124.wav,hi colmo,pos/cmd_124.wav,空调调为最低风速
+POS,125,pos/kws_125.wav,hi colmo,pos/cmd_125.wav,预约下午十四
+POS,126,pos/kws_126.wav,hi colmo,pos/cmd_126.wav,客厅灯光亮度调到百分之十
+POS,127,pos/kws_127.wav,hi colmo,pos/cmd_127.wav,我准备进厨房了
+POS,128,pos/kws_128.wav,你好科慕,pos/cmd_128.wav,关闭窗帘客厅的灯调为暖色空调二十四度最低风速
+POS,129,pos/kws_129.wav,你好科慕,pos/cmd_129.wav,空调是什么模式现在
+POS,130,pos/kws_130.wav,hi colmo,pos/cmd_130.wav,洗衣模式
+POS,131,pos/kws_131.wav,hi colmo,pos/cmd_131.wav,打开洗护一体机的门
+POS,132,pos/kws_132.wav,hi colmo,pos/cmd_132.wav,灯光调亮冷色调
+POS,133,pos/kws_133.wav,你好科慕,pos/cmd_133.wav,窗帘调整角度到七十度
+POS,134,pos/kws_134.wav,hi colmo,pos/cmd_134.wav,我要做饭了小布吗
+POS,135,pos/kws_135.wav,你好科慕,pos/cmd_135.wav,灯的色温调到最暖
+POS,136,pos/kws_136.wav,hi colmo,pos/cmd_136.wav,开启烹饪模式
+POS,137,pos/kws_137.wav,你好科慕,pos/cmd_137.wav,打开空调打开窗帘关闭灯
+POS,138,pos/kws_138.wav,你好科慕,pos/cmd_138.wav,关闭电视
+POS,139,pos/kws_139.wav,你好科慕,pos/cmd_139.wav,帮我策划四天去韩国首尔的旅游
+POS,140,pos/kws_140.wav,hi colmo,pos/cmd_140.wav,打开冰箱
+POS,141,pos/kws_141.wav,hi colmo,pos/cmd_141.wav,关闭新建空调
+POS,142,pos/kws_142.wav,hi colmo,pos/cmd_142.wav,窗帘下架
+POS,143,pos/kws_143.wav,hi colmo,pos/cmd_143.wav,关闭洗衣模式关闭新风模式
+POS,144,pos/kws_144.wav,hi colmo,pos/cmd_144.wav,退下吧
+POS,145,pos/kws_145.wav,hi colmo,pos/cmd_145.wav,灯光亮度调百分之八十
+POS,146,pos/kws_146.wav,hi colmo,pos/cmd_146.wav,打开观影模式
+POS,147,pos/kws_147.wav,hi colmo,pos/cmd_147.wav,灯光调到百分之八十
+POS,148,pos/kws_148.wav,hi colmo,pos/cmd_148.wav,关闭抽油烟机
+POS,149,pos/kws_149.wav,hi colmo,pos/cmd_149.wav,灯的亮度调到五千
+POS,150,pos/kws_150.wav,hi colmo,pos/cmd_150.wav,打开灯
+POS,151,pos/kws_151.wav,hi colmo,pos/cmd_151.wav,我要轻干洗
+POS,152,pos/kws_152.wav,你好科慕,pos/cmd_152.wav,客厅的灯调到五千K
+POS,153,pos/kws_153.wav,hi colmo,pos/cmd_153.wav,帮我放一首
+POS,154,pos/kws_154.wav,hi colmo,pos/cmd_154.wav,智慧屏怎么先关机
+POS,155,pos/kws_155.wav,你好科慕,pos/cmd_155.wav,我要出去了
+POS,156,pos/kws_156.wav,hi colmo,pos/cmd_156.wav,我吃完了
+POS,157,pos/kws_157.wav,hi colmo,pos/cmd_157.wav,打开油烟机打开洗衣机桶打开新风
+POS,158,pos/kws_158.wav,hi colmo,pos/cmd_158.wav,打开所有灯
+POS,159,pos/kws_159.wav,hi colmo,pos/cmd_159.wav,帮我预约明天九点前衬衫的AI净干洗
+POS,160,pos/kws_160.wav,你好科慕,pos/cmd_160.wav,我要看电影了
+POS,161,pos/kws_161.wav,你好科慕,pos/cmd_161.wav,窗帘叶片角度调整到六十度
+POS,162,pos/kws_162.wav,hi colmo,pos/cmd_162.wav,打开所有空调
+POS,163,pos/kws_163.wav,你好科慕,pos/cmd_163.wav,呃把所有灯光打开
+POS,164,pos/kws_164.wav,你好科慕,pos/cmd_164.wav,帮我策划三天深圳旅游的行程
+POS,165,pos/kws_165.wav,hi colmo,pos/cmd_165.wav,我准备做饭啦
+POS,166,pos/kws_166.wav,hi colmo,pos/cmd_166.wav,打开洗烘套装
+POS,167,pos/kws_167.wav,hi colmo,pos/cmd_167.wav,打开客厅窗帘
+POS,168,pos/kws_168.wav,hi colmo,pos/cmd_168.wav,灯的色温调到五千K
+POS,169,pos/kws_169.wav,hi colmo,pos/cmd_169.wav,打开显示屏
+POS,170,pos/kws_170.wav,hi colmo,pos/cmd_170.wav,一键净呼吸
+POS,171,pos/kws_171.wav,你好科慕,pos/cmd_171.wav,Lady Gaga最新的专辑叫什么
+POS,172,pos/kws_172.wav,hi colmo,pos/cmd_172.wav,开启连续对话
+POS,173,pos/kws_173.wav,hi colmo,pos/cmd_173.wav,打开图灵洗碗机的门
+POS,174,pos/kws_174.wav,hi colmo,pos/cmd_174.wav,灯光调到最亮
+POS,175,pos/kws_175.wav,hi colmo,pos/cmd_175.wav,浪漫就餐
+POS,176,pos/kws_176.wav,你好科慕,pos/cmd_176.wav,所有灯的色温调到五千K
+POS,177,pos/kws_177.wav,hi colmo,pos/cmd_177.wav,打开所有智能灯
+POS,178,pos/kws_178.wav,你好科慕,pos/cmd_178.wav,帮我预约明天九点之前
+POS,179,pos/kws_179.wav,hi colmo,pos/cmd_179.wav,你说一句烹饪模式已打开
+POS,180,pos/kws_180.wav,你好科慕,pos/cmd_180.wav,关闭空调打开窗帘
+POS,181,pos/kws_181.wav,你好科慕,pos/cmd_181.wav,把窗帘打开
+POS,182,pos/kws_182.wav,hi colmo,pos/cmd_182.wav,预约下午四点洗衣服
+POS,183,pos/kws_183.wav,hi colmo,pos/cmd_183.wav,星降的灯调到五千K亮度百分百
+POS,184,pos/kws_184.wav,你好科慕,pos/cmd_184.wav,关空调关灯
+POS,185,pos/kws_185.wav,hi colmo,pos/cmd_185.wav,我吃饱了
+POS,186,pos/kws_186.wav,hi colmo,pos/cmd_186.wav,恢复正常场景
+POS,187,pos/kws_187.wav,hi colmo,pos/cmd_187.wav,这个是什么颜色的
+POS,188,pos/kws_188.wav,你好科慕,pos/cmd_188.wav,灯的亮度百分百
+POS,189,pos/kws_189.wav,你好科慕,pos/cmd_189.wav,厨房灯光烟机
+POS,190,pos/kws_190.wav,hi colmo,pos/cmd_190.wav,我要吃饭咯
+POS,191,pos/kws_191.wav,hi colmo,pos/cmd_191.wav,室内太暗了
+POS,192,pos/kws_192.wav,hi colmo,pos/cmd_192.wav,打开上班模式
+POS,193,pos/kws_193.wav,你好科慕,pos/cmd_193.wav,帮我放一首周笔畅的歌
+POS,194,pos/kws_194.wav,hi colmo,pos/cmd_194.wav,开启一键净化
+POS,195,pos/kws_195.wav,hi colmo,pos/cmd_195.wav,我要洗碗
+POS,196,pos/kws_196.wav,hi colmo,pos/cmd_196.wav,打开厨房空调
+POS,197,pos/kws_197.wav,hi colmo,pos/cmd_197.wav,明亮模式
+POS,198,pos/kws_198.wav,hi colmo,pos/cmd_198.wav,你这个智慧屏怎么关机
+POS,199,pos/kws_199.wav,hi colmo,pos/cmd_199.wav,开冰箱门
+POS,200,pos/kws_200.wav,hi colmo,pos/cmd_200.wav,空调全部开启扫风
+POS,201,pos/kws_201.wav,你好科慕,pos/cmd_201.wav,数字专家射灯亮度调到二
+POS,202,pos/kws_202.wav,hi colmo,pos/cmd_202.wav,我马上到家了
+POS,203,pos/kws_203.wav,你好科慕,pos/cmd_203.wav,关闭音乐客厅的灯
+POS,204,pos/kws_204.wav,你好科慕,pos/cmd_204.wav,声音小一点
+POS,205,pos/kws_205.wav,hi colmo,pos/cmd_205.wav,关窗帘
+POS,206,pos/kws_206.wav,hi colmo,pos/cmd_206.wav,预约下午洗四点洗衣服
+POS,207,pos/kws_207.wav,你好科慕,pos/cmd_207.wav,深圳有什么好吃的
+POS,208,pos/kws_208.wav,hi colmo,pos/cmd_208.wav,灯的亮度调整到五千K
+POS,209,pos/kws_209.wav,hi colmo,pos/cmd_209.wav,灯光最亮冷色调
+POS,210,pos/kws_210.wav,hi colmo,pos/cmd_210.wav,正好是什么我从这里跳向进来我就先不要这个我先灯光亮起
+POS,211,pos/kws_211.wav,hi colmo,pos/cmd_211.wav,开启洗碗机
+POS,212,pos/kws_212.wav,hi colmo,pos/cmd_212.wav,关闭微蒸烤箱
+POS,213,pos/kws_213.wav,hi colmo,pos/cmd_213.wav,灯光调为蓝色
+POS,214,pos/kws_214.wav,你好科慕,pos/cmd_214.wav,呃这个就是全屋智能像我们要开空调啊或者是我们要做饭啊这些都是嗯这里了听到我们说话
+POS,215,pos/kws_215.wav,hi colmo,pos/cmd_215.wav,关闭厨房灯光
+POS,216,pos/kws_216.wav,hi colmo,pos/cmd_216.wav,打开饮水机
+POS,217,pos/kws_217.wav,hi colmo,pos/cmd_217.wav,所有灯亮度调到最高
+POS,218,pos/kws_218.wav,你好科慕,pos/cmd_218.wav,放一首歌
+POS,219,pos/kws_219.wav,hi colmo,pos/cmd_219.wav,烟机升起
+POS,220,pos/kws_220.wav,hi colmo,pos/cmd_220.wav,打开智能灯
+POS,221,pos/kws_221.wav,hi colmo,pos/cmd_221.wav,洗衣机双桶打开通风
+POS,222,pos/kws_222.wav,你好科慕,pos/cmd_222.wav,打开客厅空调客厅的灯调到
+POS,223,pos/kws_223.wav,hi colmo,pos/cmd_223.wav,关闭所有灯
+POS,224,pos/kws_224.wav,hi colmo,pos/cmd_224.wav,我的羊绒大衣要用什么清洗模式
+POS,225,pos/kws_225.wav,你好科慕,pos/cmd_225.wav,开灯客厅灯的色温调到一千八百K
+POS,226,pos/kws_226.wav,hi colmo,pos/cmd_226.wav,然后那个窗帘邦邦邦邦邦的给关了对然后那个灯光暗了就是
+POS,227,pos/kws_227.wav,你好科慕,pos/cmd_227.wav,窗帘半开
+POS,228,pos/kws_228.wav,hi colmo,pos/cmd_228.wav,做我烹饪先吃啊打开烹饪模式
+POS,229,pos/kws_229.wav,你好科慕,pos/cmd_229.wav,音乐声音调小一点
+POS,230,pos/kws_230.wav,hi colmo,pos/cmd_230.wav,给我定个闹钟内容是设计一个艺术空间
+POS,231,pos/kws_231.wav,你好科慕,pos/cmd_231.wav,帮我打开客厅的智能灯
+POS,232,pos/kws_232.wav,hi colmo,pos/cmd_232.wav,我吃完饭了
+POS,233,pos/kws_233.wav,hi colmo,pos/cmd_233.wav,我要开始做饭了
+POS,234,pos/kws_234.wav,hi colmo,pos/cmd_234.wav,把空调温度调到二十八度风量调到百分之五十
+POS,235,pos/kws_235.wav,你好科慕,pos/cmd_235.wav,客厅灯的色温调到五千K灯的色温调到五千K
+POS,236,pos/kws_236.wav,hi colmo,pos/cmd_236.wav,烟机降下
+POS,237,pos/kws_237.wav,hi colmo,pos/cmd_237.wav,打开清香烟机
+POS,238,pos/kws_238.wav,hi colmo,pos/cmd_238.wav,空调打开到二十五摄氏度
+POS,239,pos/kws_239.wav,hi colmo,pos/cmd_239.wav,净呼吸模式
+POS,240,pos/kws_240.wav,hi colmo,pos/cmd_240.wav,没事退下
+POS,241,pos/kws_241.wav,hi colmo,pos/cmd_241.wav,灯的色温五千K
+POS,242,pos/kws_242.wav,hi colmo,pos/cmd_242.wav,遮上窗帘
+POS,243,pos/kws_243.wav,hi colmo,pos/cmd_243.wav,烹饪模式
+POS,244,pos/kws_244.wav,hi colmo,pos/cmd_244.wav,没事退下吧
+POS,245,pos/kws_245.wav,hi colmo,pos/cmd_245.wav,帮我打开洗碗机
+POS,246,pos/kws_246.wav,hi colmo,pos/cmd_246.wav,现在关闭油烟机
+POS,247,pos/kws_247.wav,你好科慕,pos/cmd_247.wav,灯的色温
+POS,248,pos/kws_248.wav,hi colmo,pos/cmd_248.wav,打开洗碗机门
+POS,249,pos/kws_249.wav,你好科慕,pos/cmd_249.wav,开启前厅所有灯光
+POS,250,pos/kws_250.wav,hi colmo,pos/cmd_250.wav,帮我打开冰箱门打开
+POS,251,pos/kws_251.wav,hi colmo,pos/cmd_251.wav,拉开所有卷帘
+POS,252,pos/kws_252.wav,hi colmo,pos/cmd_252.wav,打开洗衣模式
+POS,253,pos/kws_253.wav,hi colmo,pos/cmd_253.wav,空调调到二十六度
+POS,254,pos/kws_254.wav,你好科慕,pos/cmd_254.wav,什么是AI轻干洗
+POS,255,pos/kws_255.wav,你好科慕,pos/cmd_255.wav,对都没问题的
+POS,256,pos/kws_256.wav,你好科慕,pos/cmd_256.wav,打开客厅的灯
+POS,257,pos/kws_257.wav,你好科慕,pos/cmd_257.wav,打开所有的灯光
+POS,258,pos/kws_258.wav,hi colmo,pos/cmd_258.wav,灯光色调最冷
+POS,259,pos/kws_259.wav,你好科慕,pos/cmd_259.wav,微蒸烤箱取消预热
+POS,260,pos/kws_260.wav,你好科慕,pos/cmd_260.wav,把展台的灯光亮度调到百分之十
+POS,261,pos/kws_261.wav,hi colmo,pos/cmd_261.wav,吃饭了
+POS,262,pos/kws_262.wav,你好科慕,pos/cmd_262.wav,关闭客厅柜式空调
+POS,263,pos/kws_263.wav,hi colmo,pos/cmd_263.wav,还有一开机会打
+POS,264,pos/kws_264.wav,hi colmo,pos/cmd_264.wav,所有灯的亮度降到五十
+POS,265,pos/kws_265.wav,hi colmo,pos/cmd_265.wav,关闭所有窗帘
+POS,266,pos/kws_266.wav,hi colmo,pos/cmd_266.wav,关闭备餐模式
+POS,267,pos/kws_267.wav,你好科慕,pos/cmd_267.wav,关闭空调客厅灯的色温调到最冷打开厨房的灯
+POS,268,pos/kws_268.wav,hi colmo,pos/cmd_268.wav,油烟机升起
+POS,269,pos/kws_269.wav,hi colmo,pos/cmd_269.wav,打打开油烟机
+POS,270,pos/kws_270.wav,你好科慕,pos/cmd_270.wav,帮我放郭顶的水星记
+POS,271,pos/kws_271.wav,你好科慕,pos/cmd_271.wav,HI COLMO
+POS,272,pos/kws_272.wav,你好科慕,pos/cmd_272.wav,开灯开空调
+POS,273,pos/kws_273.wav,hi colmo,pos/cmd_273.wav,帮我预约明天九点之前衬衫的AI轻干洗
+POS,274,pos/kws_274.wav,你好科慕,pos/cmd_274.wav,灯的色温调冷一点
+POS,275,pos/kws_275.wav,你好科慕,pos/cmd_275.wav,关闭空调关闭灯
+POS,276,pos/kws_276.wav,hi colmo,pos/cmd_276.wav,关闭回家模式
+POS,277,pos/kws_277.wav,hi colmo,pos/cmd_277.wav,羊毛衫怎么洗
+POS,278,pos/kws_278.wav,hi colmo,pos/cmd_278.wav,把空调开机调到制热模式
+POS,279,pos/kws_279.wav,hi colmo,pos/cmd_279.wav,调亮一点
+POS,280,pos/kws_280.wav,hi colmo,pos/cmd_280.wav,拉开窗帘
+POS,281,pos/kws_281.wav,你好科慕,pos/cmd_281.wav,帮我关闭音乐
+POS,282,pos/kws_282.wav,hi colmo,pos/cmd_282.wav,灯光调到百分之三十
+POS,283,pos/kws_283.wav,hi colmo,pos/cmd_283.wav,空调开到二十摄氏度
+POS,284,pos/kws_284.wav,hi colmo,pos/cmd_284.wav,关闭冰箱门
+POS,285,pos/kws_285.wav,hi colmo,pos/cmd_285.wav,我要开始烹饪
+POS,286,pos/kws_286.wav,hi colmo,pos/cmd_286.wav,预约下午四点
+POS,287,pos/kws_287.wav,hi colmo,pos/cmd_287.wav,关闭全屋空调
+POS,288,pos/kws_288.wav,hi colmo,pos/cmd_288.wav,放了一年的羊绒大衣应该用什么清洗模式
+POS,289,pos/kws_289.wav,hi colmo,pos/cmd_289.wav,打开新风模式
+POS,290,pos/kws_290.wav,你好科慕,pos/cmd_290.wav,关闭前厅所有灯光
+POS,291,pos/kws_291.wav,你好科慕,pos/cmd_291.wav,关闭所有中央空调
+POS,292,pos/kws_292.wav,hi colmo,pos/cmd_292.wav,帮我做一个倒计时
+POS,293,pos/kws_293.wav,hi colmo,pos/cmd_293.wav,关掉空调
+POS,294,pos/kws_294.wav,hi colmo,pos/cmd_294.wav,好的歌
+POS,295,pos/kws_295.wav,hi colmo,pos/cmd_295.wav,灯光明亮冷色调
+POS,296,pos/kws_296.wav,hi colmo,pos/cmd_296.wav,洗衣机通风
+POS,297,pos/kws_297.wav,hi colmo,pos/cmd_297.wav,开启两个空调
+POS,298,pos/kws_298.wav,hi colmo,pos/cmd_298.wav,我要洗衣服咯
+POS,299,pos/kws_299.wav,hi colmo,pos/cmd_299.wav,爆炒模式
+POS,300,pos/kws_300.wav,hi colmo,pos/cmd_300.wav,打开洗碗机的门
+POS,301,pos/kws_301.wav,hi colmo,pos/cmd_301.wav,帮我预约明天九点之前对我的衬衫进行轻干洗
+POS,302,pos/kws_302.wav,hi colmo,pos/cmd_302.wav,你好COLMO
+POS,303,pos/kws_303.wav,hi colmo,pos/cmd_303.wav,我要休息咯
+POS,304,pos/kws_304.wav,hi colmo,pos/cmd_304.wav,客厅灯的色温调到最冷
+POS,305,pos/kws_305.wav,hi colmo,pos/cmd_305.wav,呃我要洗衣服
+POS,306,pos/kws_306.wav,hi colmo,pos/cmd_306.wav,所有灯电量降到五十
+POS,307,pos/kws_307.wav,hi colmo,pos/cmd_307.wav,帮我打开衬衫的AI轻干洗
+POS,308,pos/kws_308.wav,hi colmo,pos/cmd_308.wav,关闭音箱
+POS,309,pos/kws_309.wav,hi colmo,pos/cmd_309.wav,打开回家模式
+POS,310,pos/kws_310.wav,你好科慕,pos/cmd_310.wav,打开连续对话
+POS,311,pos/kws_311.wav,hi colmo,pos/cmd_311.wav,取消吃饭模式
+POS,312,pos/kws_312.wav,hi colmo,pos/cmd_312.wav,灯光亮度调百分之一百
+POS,313,pos/kws_313.wav,你好科慕,pos/cmd_313.wav,换一首歌
+POS,314,pos/kws_314.wav,hi colmo,pos/cmd_314.wav,帮我预约十五点洗衣服
+POS,315,pos/kws_315.wav,你好科慕,pos/cmd_315.wav,灯的色温调亮
+POS,316,pos/kws_316.wav,hi colmo,pos/cmd_316.wav,打开全部空调
+POS,317,pos/kws_317.wav,你好科慕,pos/cmd_317.wav,打开空调打开灯
+POS,318,pos/kws_318.wav,hi colmo,pos/cmd_318.wav,空调二十六度风速风速最小
+POS,319,pos/kws_319.wav,hi colmo,pos/cmd_319.wav,你都有什么场景啊
+POS,320,pos/kws_320.wav,hi colmo,pos/cmd_320.wav,室内有点暗灯光调到最亮然后把窗帘打开
+POS,321,pos/kws_321.wav,hi colmo,pos/cmd_321.wav,指令刚才错了
+POS,322,pos/kws_322.wav,hi colmo,pos/cmd_322.wav,十四点五十五
+POS,323,pos/kws_323.wav,hi colmo,pos/cmd_323.wav,我要吃饭了我要做饭了
+POS,324,pos/kws_324.wav,hi colmo,pos/cmd_324.wav,就这样子把风速减小
+POS,325,pos/kws_325.wav,hi colmo,pos/cmd_325.wav,所有灯光亮度调到百分之一百
+POS,326,pos/kws_326.wav,hi colmo,pos/cmd_326.wav,干衣机取消操作
+POS,327,pos/kws_327.wav,hi colmo,pos/cmd_327.wav,我要拿碗
+POS,328,pos/kws_328.wav,hi colmo,pos/cmd_328.wav,从医院穿回来的衣服怎么洗才够干净
+POS,329,pos/kws_329.wav,hi colmo,pos/cmd_329.wav,打开氛围灯
+POS,330,pos/kws_330.wav,hi colmo,pos/cmd_330.wav,打开冰箱门
+POS,331,pos/kws_331.wav,hi colmo,pos/cmd_331.wav,变成日常模式灯光常亮冷色调
+POS,332,pos/kws_332.wav,hi colmo,pos/cmd_332.wav,灯光全开
+POS,333,pos/kws_333.wav,hi colmo,pos/cmd_333.wav,空调二十六度风度风速最小
+POS,334,pos/kws_334.wav,hi colmo,pos/cmd_334.wav,打开茶室空调
+POS,335,pos/kws_335.wav,hi colmo,pos/cmd_335.wav,暂停卷帘
+POS,336,pos/kws_336.wav,hi colmo,pos/cmd_336.wav,呃这个这个我们等会可以帮你连做关闭
+POS,337,pos/kws_337.wav,hi colmo,pos/cmd_337.wav,十一点三十一分
+POS,338,pos/kws_338.wav,你好科慕,pos/cmd_338.wav,打开空调空调的温度调到二十四最低风速打开窗帘灯的色温调暖一点打开图灵烟机打开图灵烤箱
+POS,339,pos/kws_339.wav,你好科慕,pos/cmd_339.wav,把所有灯打开
+POS,340,pos/kws_340.wav,hi colmo,pos/cmd_340.wav,用餐模式
+POS,341,pos/kws_341.wav,hi colmo,pos/cmd_341.wav,色调帮我调成冷色调
+POS,342,pos/kws_342.wav,hi colmo,pos/cmd_342.wav,打开抽油烟机
+POS,343,pos/kws_343.wav,hi colmo,pos/cmd_343.wav,呃我要做饭了
+POS,344,pos/kws_344.wav,hi colmo,pos/cmd_344.wav,音乐关闭
+POS,345,pos/kws_345.wav,hi colmo,pos/cmd_345.wav,空调二十六摄氏度
+POS,346,pos/kws_346.wav,你好科慕,pos/cmd_346.wav,微蒸烤箱关机
+POS,347,pos/kws_347.wav,你好科慕,pos/cmd_347.wav,关闭全部灯光
+POS,348,pos/kws_348.wav,hi colmo,pos/cmd_348.wav,打开会客模式
+POS,349,pos/kws_349.wav,你好科慕,pos/cmd_349.wav,呃吃饭了
+POS,350,pos/kws_350.wav,hi colmo,pos/cmd_350.wav,恢复正常模式
+POS,351,pos/kws_351.wav,你好科慕,pos/cmd_351.wav,关窗帘关空调关灯
+POS,352,pos/kws_352.wav,hi colmo,pos/cmd_352.wav,声音调大一点
+POS,353,pos/kws_353.wav,hi colmo,pos/cmd_353.wav,打开灶打开烟机
+POS,354,pos/kws_354.wav,你好科慕,pos/cmd_354.wav,把舒适专家的灯光亮度调到百分之十
+POS,355,pos/kws_355.wav,hi colmo,pos/cmd_355.wav,呃太亮了
+POS,356,pos/kws_356.wav,hi colmo,pos/cmd_356.wav,窗帘停下
+POS,357,pos/kws_357.wav,hi colmo,pos/cmd_357.wav,温度调到三十度
+POS,358,pos/kws_358.wav,hi colmo,pos/cmd_358.wav,呃关闭油烟机
+POS,359,pos/kws_359.wav,你好科慕,pos/cmd_359.wav,完全关闭窗帘
+POS,360,pos/kws_360.wav,hi colmo,pos/cmd_360.wav,我出门了
+POS,361,pos/kws_361.wav,hi colmo,pos/cmd_361.wav,拉上窗帘
+POS,362,pos/kws_362.wav,hi colmo,pos/cmd_362.wav,帮我预约十四点洗衣服
+POS,363,pos/kws_363.wav,hi colmo,pos/cmd_363.wav,灯光有点亮
+POS,2000,pos/kws_2000.wav,小惟小惟,pos/cmd_2000.wav,播放盖世音雄原创音乐
+POS,2001,pos/kws_2001.wav,hi colmo,pos/cmd_2001.wav,给我讲乱世枭雄杜月笙
+POS,2002,pos/kws_2002.wav,你好天天,pos/cmd_2002.wav,开屏幕
+POS,2003,pos/kws_2003.wav,小甜甜,pos/cmd_2003.wav,打开热风
+POS,2004,pos/kws_2004.wav,小点小点,pos/cmd_2004.wav,关掉智控温
+POS,2005,pos/kws_2005.wav,你好小天,pos/cmd_2005.wav,空调二十度
+POS,2006,pos/kws_2006.wav,大喜大喜,pos/cmd_2006.wav,开屏幕
+POS,2007,pos/kws_2007.wav,小T小T,pos/cmd_2007.wav,风速调最小
+POS,2008,pos/kws_2008.wav,大喜大喜,pos/cmd_2008.wav,打开节能模式
+POS,2009,pos/kws_2009.wav,小天才,pos/cmd_2009.wav,低速风
+POS,2010,pos/kws_2010.wav,你好天天,pos/cmd_2010.wav,把空调关闭
+POS,2011,pos/kws_2011.wav,你好天天,pos/cmd_2011.wav,打开左右扫风
+POS,2012,pos/kws_2012.wav,小惟小惟,pos/cmd_2012.wav,锋言疯语我想听
+POS,2013,pos/kws_2013.wav,小惟小惟,pos/cmd_2013.wav,播放十大样板戏精选集
+POS,2014,pos/kws_2014.wav,小美小美,pos/cmd_2014.wav,便秘适宜吃什么
+POS,2015,pos/kws_2015.wav,hi colmo,pos/cmd_2015.wav,科技有意思我想听
+POS,2016,pos/kws_2016.wav,小天才,pos/cmd_2016.wav,打开睡眠模式
+POS,2017,pos/kws_2017.wav,嗨机器人,pos/cmd_2017.wav,空调二十度
+POS,2018,pos/kws_2018.wav,天天同学,pos/cmd_2018.wav,关掉智控温
+POS,2019,pos/kws_2019.wav,天天同学,pos/cmd_2019.wav,关闭节能模式
+POS,2020,pos/kws_2020.wav,小编小编,pos/cmd_2020.wav,关机空调
+POS,2021,pos/kws_2021.wav,你好小天,pos/cmd_2021.wav,风速自动
+POS,2022,pos/kws_2022.wav,hi colmo,pos/cmd_2022.wav,便秘适宜吃什么
+POS,2023,pos/kws_2023.wav,你好天天,pos/cmd_2023.wav,风速自动
+POS,2024,pos/kws_2024.wav,小惟小惟,pos/cmd_2024.wav,吃什么有利于儿童
+POS,2025,pos/kws_2025.wav,小惟小惟,pos/cmd_2025.wav,便秘不推荐吃什么食物
+POS,2026,pos/kws_2026.wav,嗨扫地机,pos/cmd_2026.wav,风量小一点
+POS,2027,pos/kws_2027.wav,小美小美,pos/cmd_2027.wav,吃什么有利于补铁
+POS,2028,pos/kws_2028.wav,小双同学,pos/cmd_2028.wav,风向向左
+POS,2029,pos/kws_2029.wav,小T小T,pos/cmd_2029.wav,风往中间吹
+POS,2030,pos/kws_2030.wav,小惟小惟,pos/cmd_2030.wav,腹泻要吃什么好
+POS,2031,pos/kws_2031.wav,你好小天,pos/cmd_2031.wav,风量最小
+POS,2032,pos/kws_2032.wav,小美小美,pos/cmd_2032.wav,给我放乡村爱情王云
+POS,2033,pos/kws_2033.wav,hi colmo,pos/cmd_2033.wav,哺乳期适宜吃什么
+POS,2034,pos/kws_2034.wav,小天同学,pos/cmd_2034.wav,太热了
+POS,2035,pos/kws_2035.wav,小天小天,pos/cmd_2035.wav,请把风摆向右边
+POS,2036,pos/kws_2036.wav,小美小美,pos/cmd_2036.wav,脚气病适宜吃什么
+POS,2037,pos/kws_2037.wav,你好小天,pos/cmd_2037.wav,风速二十
+POS,2038,pos/kws_2038.wav,小惟小惟,pos/cmd_2038.wav,儿童适合吃什么
+POS,2039,pos/kws_2039.wav,你好天天,pos/cmd_2039.wav,关闭屏幕
+POS,2040,pos/kws_2040.wav,天天同学,pos/cmd_2040.wav,打开屏幕
+POS,2041,pos/kws_2041.wav,小天小天,pos/cmd_2041.wav,开启防直吹模式
+POS,2042,pos/kws_2042.wav,小甜甜,pos/cmd_2042.wav,关闭ECO模式
+POS,2043,pos/kws_2043.wav,小甜甜,pos/cmd_2043.wav,关闭显示屏
+POS,2044,pos/kws_2044.wav,小钱小钱,pos/cmd_2044.wav,打开显示屏
+POS,2045,pos/kws_2045.wav,小美小美,pos/cmd_2045.wav,播放吐槽大会
+POS,2046,pos/kws_2046.wav,hi colmo,pos/cmd_2046.wav,更年期要少吃什么
+POS,2047,pos/kws_2047.wav,你好天天,pos/cmd_2047.wav,开到二十度
+POS,2048,pos/kws_2048.wav,hi colmo,pos/cmd_2048.wav,播放安养曲
+POS,2049,pos/kws_2049.wav,hi colmo,pos/cmd_2049.wav,便秘不推荐吃什么食物
+POS,2050,pos/kws_2050.wav,小点小点,pos/cmd_2050.wav,开开空调
+POS,2051,pos/kws_2051.wav,hi colmo,pos/cmd_2051.wav,播放卡尔经典绘本音频
+POS,2052,pos/kws_2052.wav,大喜大喜,pos/cmd_2052.wav,温度调到二十七
+POS,2053,pos/kws_2053.wav,小点小点,pos/cmd_2053.wav,关闭节能模式
+POS,2054,pos/kws_2054.wav,嗨机器人,pos/cmd_2054.wav,风速调到百分之八十
+POS,2055,pos/kws_2055.wav,hi colmo,pos/cmd_2055.wav,播放鹅妈妈童谣黄本
+POS,2056,pos/kws_2056.wav,小编小编,pos/cmd_2056.wav,防直吹模式
+POS,2057,pos/kws_2057.wav,嗨扫地机,pos/cmd_2057.wav,减小风量
+POS,2058,pos/kws_2058.wav,天天同学,pos/cmd_2058.wav,关掉睡眠
+POS,2059,pos/kws_2059.wav,你好小天,pos/cmd_2059.wav,风速最小
+POS,2060,pos/kws_2060.wav,天天同学,pos/cmd_2060.wav,开启无风模式
+POS,2061,pos/kws_2061.wav,小双同学,pos/cmd_2061.wav,关一下空调
+POS,2062,pos/kws_2062.wav,小美小美,pos/cmd_2062.wav,拆滤网的步骤
+POS,2063,pos/kws_2063.wav,你好小天,pos/cmd_2063.wav,开启智控温
+POS,2064,pos/kws_2064.wav,你好天天,pos/cmd_2064.wav,把温度调到十九度
+POS,2065,pos/kws_2065.wav,小钱小钱,pos/cmd_2065.wav,空调二十度
+POS,2066,pos/kws_2066.wav,小惟小惟,pos/cmd_2066.wav,减肥吃什么有好处
+POS,2067,pos/kws_2067.wav,小编小编,pos/cmd_2067.wav,开启智清洁
+POS,2068,pos/kws_2068.wav,你好小天,pos/cmd_2068.wav,空调十九度
+POS,2069,pos/kws_2069.wav,hi colmo,pos/cmd_2069.wav,播放我爱幼儿园全
+POS,2070,pos/kws_2070.wav,小天小天,pos/cmd_2070.wav,ECO模式
+POS,2071,pos/kws_2071.wav,你好天天,pos/cmd_2071.wav,ECO模式
+POS,2072,pos/kws_2072.wav,小天同学,pos/cmd_2072.wav,开启睡眠模式
+POS,2073,pos/kws_2073.wav,大喜大喜,pos/cmd_2073.wav,关掉智控温
+POS,2074,pos/kws_2074.wav,hi colmo,pos/cmd_2074.wav,高血压适宜吃什么
+POS,2075,pos/kws_2075.wav,小点小点,pos/cmd_2075.wav,把空调关上
+POS,2076,pos/kws_2076.wav,小惟小惟,pos/cmd_2076.wav,防辐射吃什么合适
+POS,2077,pos/kws_2077.wav,你好小天,pos/cmd_2077.wav,出风口设置最上
+POS,2078,pos/kws_2078.wav,小天同学,pos/cmd_2078.wav,往中间扫风
+POS,2079,pos/kws_2079.wav,小天才,pos/cmd_2079.wav,防直吹
+POS,2080,pos/kws_2080.wav,小惟小惟,pos/cmd_2080.wav,儿童适合吃什么
+POS,2081,pos/kws_2081.wav,小钱小钱,pos/cmd_2081.wav,风速调高
+POS,2082,pos/kws_2082.wav,小天才,pos/cmd_2082.wav,关掉睡眠
+POS,2083,pos/kws_2083.wav,小天同学,pos/cmd_2083.wav,空调送风模式
+POS,2084,pos/kws_2084.wav,小美小美,pos/cmd_2084.wav,胆固醇高不能吃什么
+POS,2085,pos/kws_2085.wav,你好小双,pos/cmd_2085.wav,风速调到最小风
+POS,2086,pos/kws_2086.wav,大喜大喜,pos/cmd_2086.wav,关机空调
+POS,2087,pos/kws_2087.wav,大喜大喜,pos/cmd_2087.wav,空调调到送风模式
+POS,2088,pos/kws_2088.wav,hi colmo,pos/cmd_2088.wav,播放小球听民乐数字歌
+POS,2089,pos/kws_2089.wav,小天才,pos/cmd_2089.wav,开到十六度
+POS,2090,pos/kws_2090.wav,小美小美,pos/cmd_2090.wav,播放童音版唐诗
+POS,2091,pos/kws_2091.wav,小惟小惟,pos/cmd_2091.wav,儿童要少吃什么
+POS,2092,pos/kws_2092.wav,大喜大喜,pos/cmd_2092.wav,启动自动模式
+POS,2093,pos/kws_2093.wav,小双同学,pos/cmd_2093.wav,空调十六度
+POS,2094,pos/kws_2094.wav,小T小T,pos/cmd_2094.wav,打开屏幕
+POS,2095,pos/kws_2095.wav,小天小天,pos/cmd_2095.wav,风速开到最大
+POS,2096,pos/kws_2096.wav,你好小双,pos/cmd_2096.wav,风速开到最大
+POS,2097,pos/kws_2097.wav,hi colmo,pos/cmd_2097.wav,吃什么可以补铁
+POS,2098,pos/kws_2098.wav,小天小天,pos/cmd_2098.wav,调到二十八度
+POS,2099,pos/kws_2099.wav,你好小双,pos/cmd_2099.wav,开启自动模式
+POS,2100,pos/kws_2100.wav,小编小编,pos/cmd_2100.wav,风速调到百分之三十
+POS,2101,pos/kws_2101.wav,小惟小惟,pos/cmd_2101.wav,感冒不能吃什么食物
+POS,2102,pos/kws_2102.wav,大喜大喜,pos/cmd_2102.wav,关掉智控温
+POS,2103,pos/kws_2103.wav,小美小美,pos/cmd_2103.wav,播放胖哥电影说
+POS,2104,pos/kws_2104.wav,小美小美,pos/cmd_2104.wav,补铁吃什么好
+POS,2105,pos/kws_2105.wav,小惟小惟,pos/cmd_2105.wav,播放乐乐讲故事第三季
+POS,2106,pos/kws_2106.wav,你好小双,pos/cmd_2106.wav,开启ECO
+POS,2107,pos/kws_2107.wav,小甜甜,pos/cmd_2107.wav,把温度调到二十六度
+POS,2108,pos/kws_2108.wav,小惟小惟,pos/cmd_2108.wav,科技有意思我想听
+POS,2109,pos/kws_2109.wav,小惟小惟,pos/cmd_2109.wav,儿童不能吃什么
+POS,2110,pos/kws_2110.wav,大喜大喜,pos/cmd_2110.wav,风速五十
+POS,2111,pos/kws_2111.wav,小点小点,pos/cmd_2111.wav,开启制冷模式
+POS,2112,pos/kws_2112.wav,小天小天,pos/cmd_2112.wav,调到抽湿模式
+POS,2113,pos/kws_2113.wav,嗨机器人,pos/cmd_2113.wav,把温度调到二十一度
+POS,2114,pos/kws_2114.wav,你好天天,pos/cmd_2114.wav,风速九十
+POS,2115,pos/kws_2115.wav,小美小美,pos/cmd_2115.wav,播放鬼畜洗脑神曲
+POS,2116,pos/kws_2116.wav,hi colmo,pos/cmd_2116.wav,儿童适合吃什么
+POS,2117,pos/kws_2117.wav,嗨扫地机,pos/cmd_2117.wav,风量调小
+POS,2118,pos/kws_2118.wav,小惟小惟,pos/cmd_2118.wav,拆滤网的步骤
+POS,2119,pos/kws_2119.wav,你好小天,pos/cmd_2119.wav,开到二十一度
+POS,2120,pos/kws_2120.wav,小惟小惟,pos/cmd_2120.wav,儿童不能吃什么
+POS,2121,pos/kws_2121.wav,小编小编,pos/cmd_2121.wav,风速调到最大
+POS,2122,pos/kws_2122.wav,小双同学,pos/cmd_2122.wav,风向调到下边
+POS,2123,pos/kws_2123.wav,小美小美,pos/cmd_2123.wav,吃什么适合哺乳期
+POS,2124,pos/kws_2124.wav,天天同学,pos/cmd_2124.wav,风速一百
+POS,2125,pos/kws_2125.wav,小惟小惟,pos/cmd_2125.wav,高血脂不适合吃什么
+POS,2126,pos/kws_2126.wav,hi colmo,pos/cmd_2126.wav,吃什么可以补铁
+POS,2127,pos/kws_2127.wav,小甜甜,pos/cmd_2127.wav,关闭新风模式
+POS,2128,pos/kws_2128.wav,嗨机器人,pos/cmd_2128.wav,风小一点
+POS,2129,pos/kws_2129.wav,小天同学,pos/cmd_2129.wav,开启自动模式
+POS,2130,pos/kws_2130.wav,你好天天,pos/cmd_2130.wav,开启智控温
+POS,2131,pos/kws_2131.wav,小双同学,pos/cmd_2131.wav,开到二十三度
+POS,2132,pos/kws_2132.wav,天天同学,pos/cmd_2132.wav,开启睡眠模式
+POS,2133,pos/kws_2133.wav,嗨扫地机,pos/cmd_2133.wav,把温度调到二十八度
+POS,2134,pos/kws_2134.wav,hi colmo,pos/cmd_2134.wav,出现异常声响
+POS,2135,pos/kws_2135.wav,小惟小惟,pos/cmd_2135.wav,播放女神的贴身高手
+POS,2136,pos/kws_2136.wav,你好天天,pos/cmd_2136.wav,开屏幕
+POS,2137,pos/kws_2137.wav,你好小天,pos/cmd_2137.wav,打开睡眠模式
+POS,2138,pos/kws_2138.wav,小编小编,pos/cmd_2138.wav,空调十六度
+POS,2139,pos/kws_2139.wav,小钱小钱,pos/cmd_2139.wav,关闭左右风
+POS,2140,pos/kws_2140.wav,你好小天,pos/cmd_2140.wav,低速风
+POS,2141,pos/kws_2141.wav,小点小点,pos/cmd_2141.wav,把温度调到二十度
+POS,2142,pos/kws_2142.wav,小天同学,pos/cmd_2142.wav,空调左右摆风
+POS,2143,pos/kws_2143.wav,小惟小惟,pos/cmd_2143.wav,备孕有什么饮食禁忌
+POS,2144,pos/kws_2144.wav,小点小点,pos/cmd_2144.wav,风速调到最小
+POS,2145,pos/kws_2145.wav,小惟小惟,pos/cmd_2145.wav,腹泻适宜吃什么
+POS,2146,pos/kws_2146.wav,hi colmo,pos/cmd_2146.wav,播放巴赫初级钢琴曲
+POS,2147,pos/kws_2147.wav,小天同学,pos/cmd_2147.wav,开启除湿模式
+POS,2148,pos/kws_2148.wav,小点小点,pos/cmd_2148.wav,开启睡眠模式
+POS,2149,pos/kws_2149.wav,小天同学,pos/cmd_2149.wav,降低一度
+POS,2150,pos/kws_2150.wav,小天才,pos/cmd_2150.wav,风向中间吹
+POS,2151,pos/kws_2151.wav,大喜大喜,pos/cmd_2151.wav,开到十八度
+POS,2152,pos/kws_2152.wav,你好天天,pos/cmd_2152.wav,开启除湿模式
+POS,2153,pos/kws_2153.wav,小双同学,pos/cmd_2153.wav,风向调到上边
+POS,2154,pos/kws_2154.wav,小编小编,pos/cmd_2154.wav,风速最低
+POS,2155,pos/kws_2155.wav,小美小美,pos/cmd_2155.wav,防辐射吃什么合适
+POS,2156,pos/kws_2156.wav,小天同学,pos/cmd_2156.wav,关掉节能模式
+POS,2157,pos/kws_2157.wav,小钱小钱,pos/cmd_2157.wav,开启无风感
+POS,2158,pos/kws_2158.wav,hi colmo,pos/cmd_2158.wav,拆滤网的步骤
+POS,2159,pos/kws_2159.wav,小天小天,pos/cmd_2159.wav,开启制热模式
+POS,2160,pos/kws_2160.wav,小钱小钱,pos/cmd_2160.wav,开下空调
+POS,2161,pos/kws_2161.wav,你好小天,pos/cmd_2161.wav,开启防直吹
+POS,2162,pos/kws_2162.wav,小美小美,pos/cmd_2162.wav,便秘不推荐吃什么食物
+POS,2163,pos/kws_2163.wav,小T小T,pos/cmd_2163.wav,风摆向下边
+POS,2164,pos/kws_2164.wav,小惟小惟,pos/cmd_2164.wav,科学声音龙门阵我想听
+POS,2165,pos/kws_2165.wav,hi colmo,pos/cmd_2165.wav,产妇适合吃哪些食物
+POS,2166,pos/kws_2166.wav,嗨扫地机,pos/cmd_2166.wav,开启防直吹
+POS,2167,pos/kws_2167.wav,小惟小惟,pos/cmd_2167.wav,科技情报局我想听
+POS,2168,pos/kws_2168.wav,小美小美,pos/cmd_2168.wav,便秘适合吃哪些食物
+POS,2169,pos/kws_2169.wav,小惟小惟,pos/cmd_2169.wav,备孕要少吃什么
+POS,2170,pos/kws_2170.wav,你好小双,pos/cmd_2170.wav,风摆向右边
+POS,2171,pos/kws_2171.wav,小天同学,pos/cmd_2171.wav,往右吹
+POS,2172,pos/kws_2172.wav,hi colmo,pos/cmd_2172.wav,更年期适合吃什么
+POS,2173,pos/kws_2173.wav,小美小美,pos/cmd_2173.wav,播放少儿版红楼梦
+POS,2174,pos/kws_2174.wav,天天同学,pos/cmd_2174.wav,ECO模式
+POS,2175,pos/kws_2175.wav,嗨机器人,pos/cmd_2175.wav,关掉节能模式
+POS,2176,pos/kws_2176.wav,小甜甜,pos/cmd_2176.wav,开到十六度
+POS,2177,pos/kws_2177.wav,小美小美,pos/cmd_2177.wav,播放大红妈妈精心讲绘本
+POS,2178,pos/kws_2178.wav,你好小双,pos/cmd_2178.wav,把温度调到二十七度
+POS,2179,pos/kws_2179.wav,小T小T,pos/cmd_2179.wav,把温度调到二十七度
+POS,2180,pos/kws_2180.wav,小双同学,pos/cmd_2180.wav,开启智清洁
+POS,2181,pos/kws_2181.wav,小美小美,pos/cmd_2181.wav,吃哪些食物有利于腹泻
+POS,2182,pos/kws_2182.wav,你好天天,pos/cmd_2182.wav,开启智控温
+POS,2183,pos/kws_2183.wav,小惟小惟,pos/cmd_2183.wav,播放伟人
+POS,2184,pos/kws_2184.wav,小甜甜,pos/cmd_2184.wav,打开省电模式
+POS,2185,pos/kws_2185.wav,嗨机器人,pos/cmd_2185.wav,打开新风模式
+POS,2186,pos/kws_2186.wav,小点小点,pos/cmd_2186.wav,开启智清洁
+POS,2187,pos/kws_2187.wav,小天才,pos/cmd_2187.wav,开到十七度
+POS,2188,pos/kws_2188.wav,小美小美,pos/cmd_2188.wav,吃什么有利于脂肪肝
+POS,2189,pos/kws_2189.wav,小惟小惟,pos/cmd_2189.wav,吃什么有利于防辐射
+POS,2190,pos/kws_2190.wav,小天才,pos/cmd_2190.wav,关掉智清洁
+POS,2191,pos/kws_2191.wav,小天才,pos/cmd_2191.wav,打开冷风
+POS,2192,pos/kws_2192.wav,小甜甜,pos/cmd_2192.wav,把温度调到二十九度
+POS,2193,pos/kws_2193.wav,你好天天,pos/cmd_2193.wav,风向调到右边
+POS,2194,pos/kws_2194.wav,小惟小惟,pos/cmd_2194.wav,产妇哪些食物需要忌口
+POS,2195,pos/kws_2195.wav,小美小美,pos/cmd_2195.wav,备孕有什么饮食禁忌
+POS,2196,pos/kws_2196.wav,小钱小钱,pos/cmd_2196.wav,把温度调到二十五度
+POS,2197,pos/kws_2197.wav,hi colmo,pos/cmd_2197.wav,锋言疯语我想听
+POS,2198,pos/kws_2198.wav,hi colmo,pos/cmd_2198.wav,放首粤语歌吧
+POS,2199,pos/kws_2199.wav,小美小美,pos/cmd_2199.wav,播放聊音乐
+POS,2200,pos/kws_2200.wav,小点小点,pos/cmd_2200.wav,关闭显示屏
+POS,2201,pos/kws_2201.wav,嗨扫地机,pos/cmd_2201.wav,减小风量
+POS,2202,pos/kws_2202.wav,hi colmo,pos/cmd_2202.wav,防脱发推荐吃哪些食物
+POS,2203,pos/kws_2203.wav,小美小美,pos/cmd_2203.wav,讲个名人故事吧
+POS,2204,pos/kws_2204.wav,hi colmo,pos/cmd_2204.wav,播放激情手风琴曲选集
+POS,2205,pos/kws_2205.wav,小美小美,pos/cmd_2205.wav,备孕适合吃什么
+POS,2206,pos/kws_2206.wav,小惟小惟,pos/cmd_2206.wav,放首歌吧
+POS,2207,pos/kws_2207.wav,小双同学,pos/cmd_2207.wav,风速开到最小
+POS,2208,pos/kws_2208.wav,hi colmo,pos/cmd_2208.wav,护发吃什么好
+POS,2209,pos/kws_2209.wav,小钱小钱,pos/cmd_2209.wav,打开显示屏
+POS,2210,pos/kws_2210.wav,小惟小惟,pos/cmd_2210.wav,黑发哪些食物需要忌口
+POS,2211,pos/kws_2211.wav,你好小天,pos/cmd_2211.wav,风速调高一点
+POS,2212,pos/kws_2212.wav,大喜大喜,pos/cmd_2212.wav,关下空调
+POS,2213,pos/kws_2213.wav,小惟小惟,pos/cmd_2213.wav,吃什么适合哺乳期
+POS,2214,pos/kws_2214.wav,小编小编,pos/cmd_2214.wav,把温度调到二十五度
+POS,2215,pos/kws_2215.wav,hi colmo,pos/cmd_2215.wav,播放我爸爸我妈妈
+POS,2216,pos/kws_2216.wav,小天才,pos/cmd_2216.wav,风速调大一点
+POS,2217,pos/kws_2217.wav,小甜甜,pos/cmd_2217.wav,开一下空调
+POS,2218,pos/kws_2218.wav,天天同学,pos/cmd_2218.wav,把空调关闭
+POS,2219,pos/kws_2219.wav,天天同学,pos/cmd_2219.wav,打开节能模式
+POS,2220,pos/kws_2220.wav,你好小天,pos/cmd_2220.wav,风向向下
+POS,2221,pos/kws_2221.wav,小点小点,pos/cmd_2221.wav,打开ECO模式
+POS,2222,pos/kws_2222.wav,小钱小钱,pos/cmd_2222.wav,开到二十六度
+POS,2223,pos/kws_2223.wav,小T小T,pos/cmd_2223.wav,打开睡眠模式
+POS,2224,pos/kws_2224.wav,hi colmo,pos/cmd_2224.wav,混乱博物馆我想听
+POS,2225,pos/kws_2225.wav,小T小T,pos/cmd_2225.wav,加大风量
+POS,2226,pos/kws_2226.wav,你好小天,pos/cmd_2226.wav,风速调自动
+POS,2227,pos/kws_2227.wav,大喜大喜,pos/cmd_2227.wav,调到十七度
+POS,2228,pos/kws_2228.wav,小惟小惟,pos/cmd_2228.wav,混乱博物馆我想听
+POS,2229,pos/kws_2229.wav,hi colmo,pos/cmd_2229.wav,拆滤网的步骤
+POS,2230,pos/kws_2230.wav,小甜甜,pos/cmd_2230.wav,风向上吹
+POS,2231,pos/kws_2231.wav,hi colmo,pos/cmd_2231.wav,便秘不适合吃什么
+POS,2232,pos/kws_2232.wav,小点小点,pos/cmd_2232.wav,风摆向左边
+POS,2233,pos/kws_2233.wav,小美小美,pos/cmd_2233.wav,给我放劲爆歌曲
+POS,2234,pos/kws_2234.wav,大喜大喜,pos/cmd_2234.wav,开启防直吹
+POS,2235,pos/kws_2235.wav,小甜甜,pos/cmd_2235.wav,把风速调大一点
+POS,2236,pos/kws_2236.wav,hi colmo,pos/cmd_2236.wav,减肥吃什么好
+POS,2237,pos/kws_2237.wav,小点小点,pos/cmd_2237.wav,风速七十
+POS,2238,pos/kws_2238.wav,小惟小惟,pos/cmd_2238.wav,播放神笔马良
+POS,2239,pos/kws_2239.wav,小点小点,pos/cmd_2239.wav,开启ECO
+POS,2240,pos/kws_2240.wav,hi colmo,pos/cmd_2240.wav,播放墨子苏
+POS,2241,pos/kws_2241.wav,小美小美,pos/cmd_2241.wav,电竞编年史我想听
+POS,2242,pos/kws_2242.wav,你好小双,pos/cmd_2242.wav,开启防直吹
+POS,2243,pos/kws_2243.wav,小美小美,pos/cmd_2243.wav,播放我爸爸我妈妈
+POS,2244,pos/kws_2244.wav,小编小编,pos/cmd_2244.wav,开启智控温
+POS,2245,pos/kws_2245.wav,hi colmo,pos/cmd_2245.wav,防脱发推荐吃哪些食物
+POS,2246,pos/kws_2246.wav,小美小美,pos/cmd_2246.wav,腹泻要吃什么好
+POS,2247,pos/kws_2247.wav,你好小双,pos/cmd_2247.wav,风向下吹
+POS,2248,pos/kws_2248.wav,hi colmo,pos/cmd_2248.wav,便秘适宜吃什么
+POS,2249,pos/kws_2249.wav,你好小双,pos/cmd_2249.wav,把温度调到十六度
+POS,2250,pos/kws_2250.wav,大喜大喜,pos/cmd_2250.wav,开一下空调
+POS,2251,pos/kws_2251.wav,小双同学,pos/cmd_2251.wav,把温度调到三十度
+POS,2252,pos/kws_2252.wav,小惟小惟,pos/cmd_2252.wav,备孕适合吃什么
+POS,2253,pos/kws_2253.wav,大喜大喜,pos/cmd_2253.wav,温度调到二十五度
+POS,2254,pos/kws_2254.wav,小双同学,pos/cmd_2254.wav,开启智控温
+POS,2255,pos/kws_2255.wav,小点小点,pos/cmd_2255.wav,关掉节能模式
+POS,2256,pos/kws_2256.wav,大喜大喜,pos/cmd_2256.wav,左右摆动
+POS,2257,pos/kws_2257.wav,小美小美,pos/cmd_2257.wav,播放正能量纯音乐
+POS,2258,pos/kws_2258.wav,小点小点,pos/cmd_2258.wav,关闭无风模式
+POS,2259,pos/kws_2259.wav,小美小美,pos/cmd_2259.wav,加热故障
+POS,2260,pos/kws_2260.wav,小双同学,pos/cmd_2260.wav,风速调到自动
+POS,2261,pos/kws_2261.wav,大喜大喜,pos/cmd_2261.wav,关机空调
+POS,2262,pos/kws_2262.wav,小甜甜,pos/cmd_2262.wav,风向向右
+POS,2263,pos/kws_2263.wav,hi colmo,pos/cmd_2263.wav,播放白玉京
+POS,2264,pos/kws_2264.wav,小美小美,pos/cmd_2264.wav,科技美学我想听
+POS,2265,pos/kws_2265.wav,小T小T,pos/cmd_2265.wav,把风速调到最大
+POS,2266,pos/kws_2266.wav,小美小美,pos/cmd_2266.wav,更年期建议吃什么
+POS,2267,pos/kws_2267.wav,嗨机器人,pos/cmd_2267.wav,风向中间吹
+POS,2268,pos/kws_2268.wav,小惟小惟,pos/cmd_2268.wav,抗衰老推荐吃哪些食物
+POS,2269,pos/kws_2269.wav,小天同学,pos/cmd_2269.wav,温度调到十七度
+POS,2270,pos/kws_2270.wav,hi colmo,pos/cmd_2270.wav,播放青少新概念
+POS,2271,pos/kws_2271.wav,嗨机器人,pos/cmd_2271.wav,风速调到百分之十
+POS,2272,pos/kws_2272.wav,小点小点,pos/cmd_2272.wav,关闭ECO模式
+POS,2273,pos/kws_2273.wav,小惟小惟,pos/cmd_2273.wav,播放青少新概念
+POS,2274,pos/kws_2274.wav,小惟小惟,pos/cmd_2274.wav,哺乳期不能吃什么
+POS,2275,pos/kws_2275.wav,嗨扫地机,pos/cmd_2275.wav,风速十
+POS,2276,pos/kws_2276.wav,小惟小惟,pos/cmd_2276.wav,混乱博物馆我想听
+POS,2277,pos/kws_2277.wav,你好天天,pos/cmd_2277.wav,开到二十度
+POS,2278,pos/kws_2278.wav,hi colmo,pos/cmd_2278.wav,骨质疏松不适宜吃什么
+POS,2279,pos/kws_2279.wav,你好小天,pos/cmd_2279.wav,打开左右风
+POS,2280,pos/kws_2280.wav,嗨扫地机,pos/cmd_2280.wav,风速调大
+POS,2281,pos/kws_2281.wav,嗨扫地机,pos/cmd_2281.wav,出风口设置最下
+POS,2282,pos/kws_2282.wav,小惟小惟,pos/cmd_2282.wav,黑发吃什么好
+POS,2283,pos/kws_2283.wav,hi colmo,pos/cmd_2283.wav,播放我爱幼儿园全
+POS,2284,pos/kws_2284.wav,hi colmo,pos/cmd_2284.wav,播放正能量纯音乐
+POS,2285,pos/kws_2285.wav,小美小美,pos/cmd_2285.wav,给我放九零八零乐团
+POS,2286,pos/kws_2286.wav,嗨扫地机,pos/cmd_2286.wav,把温度调到二十五度
+POS,2287,pos/kws_2287.wav,小甜甜,pos/cmd_2287.wav,关掉睡眠
+POS,2288,pos/kws_2288.wav,嗨机器人,pos/cmd_2288.wav,开启防直吹模式
+POS,2289,pos/kws_2289.wav,天天同学,pos/cmd_2289.wav,关掉无风模式
+POS,2290,pos/kws_2290.wav,大喜大喜,pos/cmd_2290.wav,关闭节能模式
+POS,2291,pos/kws_2291.wav,小惟小惟,pos/cmd_2291.wav,给我讲三百六十五读书
+POS,2292,pos/kws_2292.wav,小编小编,pos/cmd_2292.wav,打开扫风
+POS,2293,pos/kws_2293.wav,小钱小钱,pos/cmd_2293.wav,把风速调大一点
+POS,2294,pos/kws_2294.wav,小美小美,pos/cmd_2294.wav,感冒不可以吃什么
+POS,2295,pos/kws_2295.wav,小惟小惟,pos/cmd_2295.wav,儿童不能吃什么
+POS,2296,pos/kws_2296.wav,小甜甜,pos/cmd_2296.wav,开到二十五度
+POS,2297,pos/kws_2297.wav,嗨扫地机,pos/cmd_2297.wav,开启除湿模式
+POS,2298,pos/kws_2298.wav,你好小天,pos/cmd_2298.wav,把温度调到十七度
+POS,2299,pos/kws_2299.wav,小美小美,pos/cmd_2299.wav,儿童吃哪些食物有好处
+POS,2300,pos/kws_2300.wav,小编小编,pos/cmd_2300.wav,关闭省电模式
+POS,2301,pos/kws_2301.wav,小美小美,pos/cmd_2301.wav,播放美国语文第四册
+POS,2302,pos/kws_2302.wav,hi colmo,pos/cmd_2302.wav,给我放桃花诺
+POS,2303,pos/kws_2303.wav,小美小美,pos/cmd_2303.wav,播放专注
+POS,2304,pos/kws_2304.wav,嗨机器人,pos/cmd_2304.wav,打开无风模式
+POS,2305,pos/kws_2305.wav,小天小天,pos/cmd_2305.wav,启动制热模式
+POS,2306,pos/kws_2306.wav,小美小美,pos/cmd_2306.wav,吃什么有利于脂肪肝
+POS,2307,pos/kws_2307.wav,小美小美,pos/cmd_2307.wav,科技不怕问我想听
+POS,2308,pos/kws_2308.wav,小天才,pos/cmd_2308.wav,打开冷风
+POS,2309,pos/kws_2309.wav,小美小美,pos/cmd_2309.wav,播放恐龙来了
+POS,2310,pos/kws_2310.wav,小钱小钱,pos/cmd_2310.wav,关闭节能模式
+POS,2311,pos/kws_2311.wav,小美小美,pos/cmd_2311.wav,备孕不推荐吃什么
+POS,2312,pos/kws_2312.wav,小天才,pos/cmd_2312.wav,风速调到百分之五十
+POS,2313,pos/kws_2313.wav,嗨扫地机,pos/cmd_2313.wav,风速调到最小
+POS,2314,pos/kws_2314.wav,小惟小惟,pos/cmd_2314.wav,儿童要少吃什么
+POS,2315,pos/kws_2315.wav,小惟小惟,pos/cmd_2315.wav,安胎不适合吃什么
+POS,2316,pos/kws_2316.wav,小钱小钱,pos/cmd_2316.wav,风速调到百分之百
+POS,2317,pos/kws_2317.wav,你好小双,pos/cmd_2317.wav,打开节能模式
+POS,2318,pos/kws_2318.wav,嗨机器人,pos/cmd_2318.wav,开一下空调
+POS,2319,pos/kws_2319.wav,小甜甜,pos/cmd_2319.wav,风速调到百分之九十
+POS,2320,pos/kws_2320.wav,小惟小惟,pos/cmd_2320.wav,补血推荐吃哪些食物
+POS,2321,pos/kws_2321.wav,嗨机器人,pos/cmd_2321.wav,风往上吹
+POS,2322,pos/kws_2322.wav,小美小美,pos/cmd_2322.wav,给我讲古风音乐频道
+POS,2323,pos/kws_2323.wav,小钱小钱,pos/cmd_2323.wav,防直吹
+POS,2324,pos/kws_2324.wav,小美小美,pos/cmd_2324.wav,给我讲古风音乐频道
+POS,2325,pos/kws_2325.wav,小天小天,pos/cmd_2325.wav,空调调到自动模式
+POS,2326,pos/kws_2326.wav,你好小双,pos/cmd_2326.wav,风速调到自动
+POS,2327,pos/kws_2327.wav,小编小编,pos/cmd_2327.wav,降低温度
+POS,2328,pos/kws_2328.wav,小天小天,pos/cmd_2328.wav,风向左吹
+POS,2329,pos/kws_2329.wav,小天同学,pos/cmd_2329.wav,开启制热模式
+POS,2330,pos/kws_2330.wav,小美小美,pos/cmd_2330.wav,白内障吃什么合适
+POS,2331,pos/kws_2331.wav,小天才,pos/cmd_2331.wav,开到二十四度
+POS,2332,pos/kws_2332.wav,小惟小惟,pos/cmd_2332.wav,播放女神的贴身高手
+POS,2333,pos/kws_2333.wav,小天小天,pos/cmd_2333.wav,空调二十一度
+POS,2334,pos/kws_2334.wav,你好小双,pos/cmd_2334.wav,风往右吹
+POS,2335,pos/kws_2335.wav,小美小美,pos/cmd_2335.wav,吃什么可以防辐射
+POS,2336,pos/kws_2336.wav,小美小美,pos/cmd_2336.wav,播放大红妈妈精心讲绘本
+POS,2337,pos/kws_2337.wav,小天小天,pos/cmd_2337.wav,开启除湿模式
+POS,2338,pos/kws_2338.wav,嗨扫地机,pos/cmd_2338.wav,关闭屏幕
+POS,2339,pos/kws_2339.wav,小T小T,pos/cmd_2339.wav,关机空调
+POS,2340,pos/kws_2340.wav,小惟小惟,pos/cmd_2340.wav,更年期要少吃什么
+POS,2341,pos/kws_2341.wav,小天小天,pos/cmd_2341.wav,往上吹
+POS,2342,pos/kws_2342.wav,大喜大喜,pos/cmd_2342.wav,正面对人吹
+POS,2343,pos/kws_2343.wav,天天同学,pos/cmd_2343.wav,打开省电模式
+POS,2344,pos/kws_2344.wav,hi colmo,pos/cmd_2344.wav,骨质疏松不适宜吃什么
+POS,2345,pos/kws_2345.wav,小天小天,pos/cmd_2345.wav,风往左吹
+POS,2346,pos/kws_2346.wav,天天同学,pos/cmd_2346.wav,大点风
+POS,2347,pos/kws_2347.wav,小双同学,pos/cmd_2347.wav,开启睡眠模式
+POS,2348,pos/kws_2348.wav,hi colmo,pos/cmd_2348.wav,腹泻不建议吃哪些食物
+POS,2349,pos/kws_2349.wav,小天小天,pos/cmd_2349.wav,温度二十三
+POS,2350,pos/kws_2350.wav,小天小天,pos/cmd_2350.wav,关下空调
+POS,2351,pos/kws_2351.wav,小惟小惟,pos/cmd_2351.wav,告诉我怎么拆滤网
+POS,2352,pos/kws_2352.wav,hi colmo,pos/cmd_2352.wav,吃什么有利于脂肪肝
+POS,2353,pos/kws_2353.wav,你好小双,pos/cmd_2353.wav,打开热风
+POS,2354,pos/kws_2354.wav,小钱小钱,pos/cmd_2354.wav,开到十七度
+POS,2355,pos/kws_2355.wav,小惟小惟,pos/cmd_2355.wav,播放恐龙大陆
+POS,2356,pos/kws_2356.wav,小T小T,pos/cmd_2356.wav,关掉节能模式
+POS,2357,pos/kws_2357.wav,小惟小惟,pos/cmd_2357.wav,播放女神的贴身高手
+POS,2358,pos/kws_2358.wav,嗨机器人,pos/cmd_2358.wav,风速调低一点
+POS,2359,pos/kws_2359.wav,小天才,pos/cmd_2359.wav,开开空调
+POS,2360,pos/kws_2360.wav,小天小天,pos/cmd_2360.wav,下出风
+POS,2361,pos/kws_2361.wav,嗨扫地机,pos/cmd_2361.wav,关掉智清洁
+POS,2362,pos/kws_2362.wav,你好天天,pos/cmd_2362.wav,风速降低
+POS,2363,pos/kws_2363.wav,小钱小钱,pos/cmd_2363.wav,ECO模式
+POS,2364,pos/kws_2364.wav,小美小美,pos/cmd_2364.wav,给我讲财经大事件
+POS,2365,pos/kws_2365.wav,小美小美,pos/cmd_2365.wav,给我讲三百六十五读书
+POS,2366,pos/kws_2366.wav,你好天天,pos/cmd_2366.wav,风速调到百分之二十
+POS,2367,pos/kws_2367.wav,嗨机器人,pos/cmd_2367.wav,把温度调到二十四度
+POS,2368,pos/kws_2368.wav,hi colmo,pos/cmd_2368.wav,播放睡前故事
+POS,2369,pos/kws_2369.wav,hi colmo,pos/cmd_2369.wav,播放盖世音雄原创音乐
+POS,2370,pos/kws_2370.wav,你好小双,pos/cmd_2370.wav,把空调关上
+POS,2371,pos/kws_2371.wav,hi colmo,pos/cmd_2371.wav,给我放劲爆歌曲
+POS,2372,pos/kws_2372.wav,小美小美,pos/cmd_2372.wav,播放荣耀的凯旋
+POS,2373,pos/kws_2373.wav,小双同学,pos/cmd_2373.wav,把温度调到二十六度
+POS,2374,pos/kws_2374.wav,hi colmo,pos/cmd_2374.wav,脚气适合吃什么
+POS,2375,pos/kws_2375.wav,小惟小惟,pos/cmd_2375.wav,吃什么有利于防辐射
+POS,2376,pos/kws_2376.wav,hi colmo,pos/cmd_2376.wav,播放我爸爸我妈妈
+POS,2377,pos/kws_2377.wav,小甜甜,pos/cmd_2377.wav,打开省电模式
+POS,2378,pos/kws_2378.wav,你好小双,pos/cmd_2378.wav,开启抽湿模式
+POS,2379,pos/kws_2379.wav,小美小美,pos/cmd_2379.wav,产妇哪些食物需要忌口
+POS,2380,pos/kws_2380.wav,小美小美,pos/cmd_2380.wav,播放原声大碟欢乐好声音
+POS,2381,pos/kws_2381.wav,小天才,pos/cmd_2381.wav,风速调到最高
+POS,2382,pos/kws_2382.wav,嗨机器人,pos/cmd_2382.wav,关掉节能模式
+POS,2383,pos/kws_2383.wav,小甜甜,pos/cmd_2383.wav,防直吹
+POS,2384,pos/kws_2384.wav,小钱小钱,pos/cmd_2384.wav,关掉节能模式
+POS,2385,pos/kws_2385.wav,天天同学,pos/cmd_2385.wav,关一下空调
+POS,2386,pos/kws_2386.wav,小美小美,pos/cmd_2386.wav,吃什么有利于防辐射
+POS,2387,pos/kws_2387.wav,小美小美,pos/cmd_2387.wav,吃什么有利于安胎
+POS,2388,pos/kws_2388.wav,小天才,pos/cmd_2388.wav,开到三十度
+POS,2389,pos/kws_2389.wav,小惟小惟,pos/cmd_2389.wav,播放卡尔经典绘本音频
+POS,2390,pos/kws_2390.wav,嗨机器人,pos/cmd_2390.wav,关闭节能模式
+POS,2391,pos/kws_2391.wav,小惟小惟,pos/cmd_2391.wav,吃什么适合哺乳期
+POS,2392,pos/kws_2392.wav,小天小天,pos/cmd_2392.wav,空调开启
+POS,2393,pos/kws_2393.wav,hi colmo,pos/cmd_2393.wav,吃什么适合解酒
+POS,2394,pos/kws_2394.wav,你好小双,pos/cmd_2394.wav,开开空调
+POS,2395,pos/kws_2395.wav,小惟小惟,pos/cmd_2395.wav,播放十大样板戏精选集
+POS,2396,pos/kws_2396.wav,小美小美,pos/cmd_2396.wav,高血糖要吃什么好
+POS,2397,pos/kws_2397.wav,小双同学,pos/cmd_2397.wav,开到二十七度
+POS,2398,pos/kws_2398.wav,小美小美,pos/cmd_2398.wav,骨质疏松不适宜吃什么
+POS,2399,pos/kws_2399.wav,天天同学,pos/cmd_2399.wav,风往中间吹
+POS,2400,pos/kws_2400.wav,小惟小惟,pos/cmd_2400.wav,播放正能量纯音乐
+POS,2401,pos/kws_2401.wav,小甜甜,pos/cmd_2401.wav,打开显示屏
+POS,2402,pos/kws_2402.wav,小编小编,pos/cmd_2402.wav,开启智清洁
+POS,2403,pos/kws_2403.wav,小甜甜,pos/cmd_2403.wav,防直吹模式
+POS,2404,pos/kws_2404.wav,小天才,pos/cmd_2404.wav,开到二十三度
+POS,2405,pos/kws_2405.wav,小惟小惟,pos/cmd_2405.wav,给我放下一个路口
+POS,2406,pos/kws_2406.wav,小美小美,pos/cmd_2406.wav,给我讲万万妹想到
+POS,2407,pos/kws_2407.wav,你好小双,pos/cmd_2407.wav,防直吹
+POS,2408,pos/kws_2408.wav,小美小美,pos/cmd_2408.wav,防脱发推荐吃哪些食物
+POS,2409,pos/kws_2409.wav,大喜大喜,pos/cmd_2409.wav,打开ECO模式
+POS,2410,pos/kws_2410.wav,你好天天,pos/cmd_2410.wav,风速调到最大
+POS,2411,pos/kws_2411.wav,小惟小惟,pos/cmd_2411.wav,播放神笔马良
+POS,2412,pos/kws_2412.wav,嗨扫地机,pos/cmd_2412.wav,风速二十
+POS,2413,pos/kws_2413.wav,小T小T,pos/cmd_2413.wav,开到十六度
+POS,2414,pos/kws_2414.wav,小惟小惟,pos/cmd_2414.wav,播放磨剑少年
+POS,2415,pos/kws_2415.wav,你好小双,pos/cmd_2415.wav,风速调自动
+POS,2416,pos/kws_2416.wav,天天同学,pos/cmd_2416.wav,开启自动模式
+POS,2417,pos/kws_2417.wav,小钱小钱,pos/cmd_2417.wav,风速调小一点
+POS,2418,pos/kws_2418.wav,小惟小惟,pos/cmd_2418.wav,播放赵本山的卖车
+POS,2419,pos/kws_2419.wav,小钱小钱,pos/cmd_2419.wav,开防直吹
+POS,2420,pos/kws_2420.wav,小天才,pos/cmd_2420.wav,把温度调到二十四度
+POS,2421,pos/kws_2421.wav,hi colmo,pos/cmd_2421.wav,播放我爸爸我妈妈
+POS,2422,pos/kws_2422.wav,小惟小惟,pos/cmd_2422.wav,高血脂不适合吃什么
+POS,2423,pos/kws_2423.wav,小钱小钱,pos/cmd_2423.wav,开到二十度
+POS,2424,pos/kws_2424.wav,小钱小钱,pos/cmd_2424.wav,打开ECO模式
+POS,2425,pos/kws_2425.wav,天天同学,pos/cmd_2425.wav,打开左右风
+POS,2426,pos/kws_2426.wav,小惟小惟,pos/cmd_2426.wav,拆滤网的步骤
+POS,2427,pos/kws_2427.wav,hi colmo,pos/cmd_2427.wav,吃什么可以补铁
+POS,2428,pos/kws_2428.wav,hi colmo,pos/cmd_2428.wav,播放我爸爸我妈妈
+POS,2429,pos/kws_2429.wav,你好小双,pos/cmd_2429.wav,把温度调到二十三度
+POS,2430,pos/kws_2430.wav,你好天天,pos/cmd_2430.wav,风摆向右
+POS,2431,pos/kws_2431.wav,小天才,pos/cmd_2431.wav,打开ECO模式
+POS,2432,pos/kws_2432.wav,小美小美,pos/cmd_2432.wav,播放寻找快活林完
+POS,2433,pos/kws_2433.wav,小惟小惟,pos/cmd_2433.wav,腹泻吃什么食物有好处
+POS,2434,pos/kws_2434.wav,hi colmo,pos/cmd_2434.wav,防脱发推荐吃哪些食物
+POS,2435,pos/kws_2435.wav,小点小点,pos/cmd_2435.wav,打开无风模式
+POS,2436,pos/kws_2436.wav,hi colmo,pos/cmd_2436.wav,科技不怕问我想听
+POS,2437,pos/kws_2437.wav,hi colmo,pos/cmd_2437.wav,更年期不适合吃什么
+POS,2438,pos/kws_2438.wav,hi colmo,pos/cmd_2438.wav,吃什么可以明目
+POS,2439,pos/kws_2439.wav,嗨机器人,pos/cmd_2439.wav,开启左右摆风
+POS,2440,pos/kws_2440.wav,小美小美,pos/cmd_2440.wav,播放巴赫初级钢琴曲
+POS,2441,pos/kws_2441.wav,小钱小钱,pos/cmd_2441.wav,关闭ECO模式
+POS,2442,pos/kws_2442.wav,小惟小惟,pos/cmd_2442.wav,科学声音龙门阵我想听
+POS,2443,pos/kws_2443.wav,天天同学,pos/cmd_2443.wav,开到十八度
+POS,2444,pos/kws_2444.wav,小美小美,pos/cmd_2444.wav,科技有意思我想听
+POS,2445,pos/kws_2445.wav,小天同学,pos/cmd_2445.wav,开启智控温
+POS,2446,pos/kws_2446.wav,小编小编,pos/cmd_2446.wav,开启自动模式
+POS,2447,pos/kws_2447.wav,小钱小钱,pos/cmd_2447.wav,关下空调
+POS,2448,pos/kws_2448.wav,小编小编,pos/cmd_2448.wav,打开扫风
+POS,2449,pos/kws_2449.wav,小点小点,pos/cmd_2449.wav,开启防直吹模式
+POS,2450,pos/kws_2450.wav,小美小美,pos/cmd_2450.wav,科技不怕问我想听
+POS,2451,pos/kws_2451.wav,嗨机器人,pos/cmd_2451.wav,开启抽湿模式
+POS,2452,pos/kws_2452.wav,小惟小惟,pos/cmd_2452.wav,给我放下一个路口
+POS,2453,pos/kws_2453.wav,天天同学,pos/cmd_2453.wav,把温度调到三十度
+POS,2454,pos/kws_2454.wav,小天才,pos/cmd_2454.wav,把温度调到十九度
+POS,2455,pos/kws_2455.wav,小惟小惟,pos/cmd_2455.wav,高血糖要吃什么好
+POS,2456,pos/kws_2456.wav,小惟小惟,pos/cmd_2456.wav,黑发哪些食物需要忌口
+POS,2457,pos/kws_2457.wav,hi colmo,pos/cmd_2457.wav,播放苦命人
+POS,2458,pos/kws_2458.wav,小天小天,pos/cmd_2458.wav,右边吹
+POS,2459,pos/kws_2459.wav,小天小天,pos/cmd_2459.wav,风速调高
+POS,2460,pos/kws_2460.wav,你好天天,pos/cmd_2460.wav,开启左右风
+POS,2461,pos/kws_2461.wav,hi colmo,pos/cmd_2461.wav,吃什么可以防辐射
+POS,2462,pos/kws_2462.wav,hi colmo,pos/cmd_2462.wav,吃什么有利于儿童
+POS,2463,pos/kws_2463.wav,小美小美,pos/cmd_2463.wav,吃什么适合舒缓压力
+POS,2464,pos/kws_2464.wav,小美小美,pos/cmd_2464.wav,黑发哪些食物需要忌口
+POS,2465,pos/kws_2465.wav,小美小美,pos/cmd_2465.wav,播放一千零一夜故事
+POS,2466,pos/kws_2466.wav,hi colmo,pos/cmd_2466.wav,更年期不适宜吃什么
+POS,2467,pos/kws_2467.wav,小点小点,pos/cmd_2467.wav,开到二十一度
+POS,2468,pos/kws_2468.wav,小天同学,pos/cmd_2468.wav,关闭显示屏
+POS,2469,pos/kws_2469.wav,小美小美,pos/cmd_2469.wav,补铁吃什么好
+POS,2470,pos/kws_2470.wav,你好天天,pos/cmd_2470.wav,把风速调小一点
+POS,2471,pos/kws_2471.wav,小点小点,pos/cmd_2471.wav,开防直吹
+POS,2472,pos/kws_2472.wav,小编小编,pos/cmd_2472.wav,把温度调到二十三度
+POS,2473,pos/kws_2473.wav,小编小编,pos/cmd_2473.wav,风向调到上边
+POS,2474,pos/kws_2474.wav,大喜大喜,pos/cmd_2474.wav,往中间吹
+POS,2475,pos/kws_2475.wav,嗨扫地机,pos/cmd_2475.wav,关掉无风感
+POS,2476,pos/kws_2476.wav,hi colmo,pos/cmd_2476.wav,播放费烟的民谣
+POS,2477,pos/kws_2477.wav,小美小美,pos/cmd_2477.wav,儿童不能吃什么
+POS,2478,pos/kws_2478.wav,小天小天,pos/cmd_2478.wav,无风感
+POS,2479,pos/kws_2479.wav,小天同学,pos/cmd_2479.wav,关机空调
+POS,2480,pos/kws_2480.wav,你好天天,pos/cmd_2480.wav,开到二十八度
+POS,2481,pos/kws_2481.wav,小天同学,pos/cmd_2481.wav,开到二十八度
+POS,2482,pos/kws_2482.wav,hi colmo,pos/cmd_2482.wav,腹泻适宜吃什么
+POS,2483,pos/kws_2483.wav,小天才,pos/cmd_2483.wav,风量最大
+POS,2484,pos/kws_2484.wav,小美小美,pos/cmd_2484.wav,便秘不可以吃什么
+POS,2485,pos/kws_2485.wav,你好小双,pos/cmd_2485.wav,风速调低
+POS,2486,pos/kws_2486.wav,小惟小惟,pos/cmd_2486.wav,吃什么有利于皮肤粗糙
+POS,2487,pos/kws_2487.wav,你好天天,pos/cmd_2487.wav,打开上下风
+POS,2488,pos/kws_2488.wav,嗨机器人,pos/cmd_2488.wav,把空调关上
+POS,2489,pos/kws_2489.wav,小惟小惟,pos/cmd_2489.wav,给我放劲爆歌曲
+POS,2490,pos/kws_2490.wav,小T小T,pos/cmd_2490.wav,关掉无风感
+POS,2491,pos/kws_2491.wav,大喜大喜,pos/cmd_2491.wav,把空调关闭
+POS,2492,pos/kws_2492.wav,你好小双,pos/cmd_2492.wav,开屏幕
+POS,2493,pos/kws_2493.wav,小惟小惟,pos/cmd_2493.wav,科技美学我想听
+POS,2494,pos/kws_2494.wav,天天同学,pos/cmd_2494.wav,高速风
+POS,2495,pos/kws_2495.wav,小美小美,pos/cmd_2495.wav,播放温妮女巫魔法绘本
+POS,2496,pos/kws_2496.wav,天天同学,pos/cmd_2496.wav,风速调到百分之四十
+POS,2497,pos/kws_2497.wav,小惟小惟,pos/cmd_2497.wav,吃什么有利于儿童
+POS,2498,pos/kws_2498.wav,小编小编,pos/cmd_2498.wav,关闭省电模式
+POS,2499,pos/kws_2499.wav,嗨机器人,pos/cmd_2499.wav,把温度调到二十二度
+POS,2500,pos/kws_2500.wav,嗨扫地机,pos/cmd_2500.wav,开启左右摆风
+POS,2501,pos/kws_2501.wav,小美小美,pos/cmd_2501.wav,黑发吃什么好
+POS,2502,pos/kws_2502.wav,小天才,pos/cmd_2502.wav,风向下吹
+POS,2503,pos/kws_2503.wav,小天才,pos/cmd_2503.wav,把风速调到最大
+POS,2504,pos/kws_2504.wav,你好小天,pos/cmd_2504.wav,关闭省电模式
+POS,2505,pos/kws_2505.wav,小双同学,pos/cmd_2505.wav,把温度调到二十二度
+POS,2506,pos/kws_2506.wav,你好小天,pos/cmd_2506.wav,把空调关闭
+POS,2507,pos/kws_2507.wav,小美小美,pos/cmd_2507.wav,胆固醇高不能吃什么
+POS,2508,pos/kws_2508.wav,小T小T,pos/cmd_2508.wav,把温度调到二十三度
+POS,2509,pos/kws_2509.wav,小点小点,pos/cmd_2509.wav,开到二十八度
+POS,2510,pos/kws_2510.wav,小美小美,pos/cmd_2510.wav,健身吃什么好
+POS,2511,pos/kws_2511.wav,小双同学,pos/cmd_2511.wav,风速调高一点
+POS,2512,pos/kws_2512.wav,小惟小惟,pos/cmd_2512.wav,黑发适合吃什么食物
+POS,2513,pos/kws_2513.wav,小惟小惟,pos/cmd_2513.wav,高血压不推荐吃什么
+POS,2514,pos/kws_2514.wav,小双同学,pos/cmd_2514.wav,把温度调到二十六度
+POS,2515,pos/kws_2515.wav,嗨机器人,pos/cmd_2515.wav,风往左吹
+POS,2516,pos/kws_2516.wav,嗨机器人,pos/cmd_2516.wav,风速调低
+POS,2517,pos/kws_2517.wav,小甜甜,pos/cmd_2517.wav,风向右吹
+POS,2518,pos/kws_2518.wav,你好小天,pos/cmd_2518.wav,风向向下
+POS,2519,pos/kws_2519.wav,小编小编,pos/cmd_2519.wav,风速调到最大风
+POS,2520,pos/kws_2520.wav,嗨机器人,pos/cmd_2520.wav,开到二十八度
+POS,2521,pos/kws_2521.wav,嗨机器人,pos/cmd_2521.wav,风小一点
+POS,2522,pos/kws_2522.wav,嗨机器人,pos/cmd_2522.wav,开启制热模式
+POS,2523,pos/kws_2523.wav,hi colmo,pos/cmd_2523.wav,播放荣耀的凯旋
+POS,2524,pos/kws_2524.wav,小美小美,pos/cmd_2524.wav,便秘不可以吃什么
+POS,2525,pos/kws_2525.wav,hi colmo,pos/cmd_2525.wav,高血糖适合吃哪些食物
+POS,2526,pos/kws_2526.wav,小天小天,pos/cmd_2526.wav,风速调到百分之九十
+POS,2527,pos/kws_2527.wav,小天同学,pos/cmd_2527.wav,最大风量
+POS,2528,pos/kws_2528.wav,小点小点,pos/cmd_2528.wav,风向调到左边
+POS,2529,pos/kws_2529.wav,大喜大喜,pos/cmd_2529.wav,空调调到十七度
+POS,2530,pos/kws_2530.wav,小惟小惟,pos/cmd_2530.wav,哺乳期不能吃什么
+POS,2531,pos/kws_2531.wav,hi colmo,pos/cmd_2531.wav,播放磨剑少年
+POS,2532,pos/kws_2532.wav,小美小美,pos/cmd_2532.wav,儿童吃什么好
+POS,2533,pos/kws_2533.wav,小双同学,pos/cmd_2533.wav,开启防直吹模式
+POS,2534,pos/kws_2534.wav,hi colmo,pos/cmd_2534.wav,儿童适合吃什么
+POS,2535,pos/kws_2535.wav,小惟小惟,pos/cmd_2535.wav,播放聊音乐
+POS,2536,pos/kws_2536.wav,小美小美,pos/cmd_2536.wav,播放鹅妈妈童谣黄本
+POS,2537,pos/kws_2537.wav,你好小天,pos/cmd_2537.wav,开到三十度
+POS,2538,pos/kws_2538.wav,你好天天,pos/cmd_2538.wav,风量调到最大
+POS,2539,pos/kws_2539.wav,小钱小钱,pos/cmd_2539.wav,风往右吹
+POS,2540,pos/kws_2540.wav,小美小美,pos/cmd_2540.wav,感冒不可以吃什么
+POS,2541,pos/kws_2541.wav,你好小双,pos/cmd_2541.wav,关屏显
+POS,2542,pos/kws_2542.wav,hi colmo,pos/cmd_2542.wav,播放胖哥电影说
+POS,2543,pos/kws_2543.wav,小编小编,pos/cmd_2543.wav,出风口设置最右
+POS,2544,pos/kws_2544.wav,小美小美,pos/cmd_2544.wav,吃什么可以防辐射
+POS,2545,pos/kws_2545.wav,小双同学,pos/cmd_2545.wav,开到十九度
+POS,2546,pos/kws_2546.wav,小天才,pos/cmd_2546.wav,降低风量
+POS,2547,pos/kws_2547.wav,小点小点,pos/cmd_2547.wav,开启抽湿模式
+POS,2548,pos/kws_2548.wav,小双同学,pos/cmd_2548.wav,风速四十
+POS,2549,pos/kws_2549.wav,嗨扫地机,pos/cmd_2549.wav,降低一度
+POS,2550,pos/kws_2550.wav,你好小双,pos/cmd_2550.wav,关一下空调
+POS,2551,pos/kws_2551.wav,小T小T,pos/cmd_2551.wav,关掉空调
+POS,2552,pos/kws_2552.wav,天天同学,pos/cmd_2552.wav,开启无风感
+POS,2553,pos/kws_2553.wav,小惟小惟,pos/cmd_2553.wav,腹泻适宜吃什么
+POS,2554,pos/kws_2554.wav,hi colmo,pos/cmd_2554.wav,儿童有什么饮食禁忌
+POS,2555,pos/kws_2555.wav,小惟小惟,pos/cmd_2555.wav,备孕有什么饮食禁忌
+POS,2556,pos/kws_2556.wav,小美小美,pos/cmd_2556.wav,讲个名人故事吧
+POS,2557,pos/kws_2557.wav,小美小美,pos/cmd_2557.wav,吃哪些食物有利于产妇
+POS,2558,pos/kws_2558.wav,嗨机器人,pos/cmd_2558.wav,风速调小
+POS,2559,pos/kws_2559.wav,小惟小惟,pos/cmd_2559.wav,护发吃什么好
+POS,2560,pos/kws_2560.wav,小惟小惟,pos/cmd_2560.wav,播放我爱幼儿园全
+POS,2561,pos/kws_2561.wav,小T小T,pos/cmd_2561.wav,开到二十九度
+POS,2562,pos/kws_2562.wav,你好小双,pos/cmd_2562.wav,出风口设置最左
+POS,2563,pos/kws_2563.wav,小天同学,pos/cmd_2563.wav,启动制冷模式
+POS,2564,pos/kws_2564.wav,小编小编,pos/cmd_2564.wav,打开屏幕
+POS,2565,pos/kws_2565.wav,hi colmo,pos/cmd_2565.wav,更年期不适宜吃什么
+POS,2566,pos/kws_2566.wav,小点小点,pos/cmd_2566.wav,把风速调小一点
+POS,2567,pos/kws_2567.wav,小天同学,pos/cmd_2567.wav,升高一度
+POS,2568,pos/kws_2568.wav,嗨扫地机,pos/cmd_2568.wav,风速最大
+POS,2569,pos/kws_2569.wav,小T小T,pos/cmd_2569.wav,把温度调到二十度
+POS,2570,pos/kws_2570.wav,hi colmo,pos/cmd_2570.wav,播放落花成泥
+POS,2571,pos/kws_2571.wav,你好小双,pos/cmd_2571.wav,打开显示屏
+POS,2572,pos/kws_2572.wav,小天同学,pos/cmd_2572.wav,上边吹
+POS,2573,pos/kws_2573.wav,嗨扫地机,pos/cmd_2573.wav,打开新风模式
+POS,2574,pos/kws_2574.wav,小美小美,pos/cmd_2574.wav,出现异常声响
+POS,2575,pos/kws_2575.wav,小美小美,pos/cmd_2575.wav,播放我爸爸我妈妈
+POS,2576,pos/kws_2576.wav,嗨机器人,pos/cmd_2576.wav,关闭省电模式
+POS,2577,pos/kws_2577.wav,小甜甜,pos/cmd_2577.wav,把温度调到十七度
+POS,2578,pos/kws_2578.wav,hi colmo,pos/cmd_2578.wav,吃哪些食物有利于产妇
+POS,2579,pos/kws_2579.wav,小天小天,pos/cmd_2579.wav,把温度调到二十七度
+POS,2580,pos/kws_2580.wav,大喜大喜,pos/cmd_2580.wav,调到除湿模式
+POS,2581,pos/kws_2581.wav,小天小天,pos/cmd_2581.wav,温度二十五度
+POS,2582,pos/kws_2582.wav,小天同学,pos/cmd_2582.wav,空调调到除湿模式
+POS,2583,pos/kws_2583.wav,天天同学,pos/cmd_2583.wav,风速调到百分之六十
+POS,2584,pos/kws_2584.wav,大喜大喜,pos/cmd_2584.wav,取消ECO模式
+POS,2585,pos/kws_2585.wav,小惟小惟,pos/cmd_2585.wav,放首歌吧
+POS,2586,pos/kws_2586.wav,小美小美,pos/cmd_2586.wav,富含硒的食物有哪些
+POS,2587,pos/kws_2587.wav,天天同学,pos/cmd_2587.wav,把空调关上
+POS,2588,pos/kws_2588.wav,小美小美,pos/cmd_2588.wav,产妇推荐吃哪些食物
+POS,2589,pos/kws_2589.wav,小美小美,pos/cmd_2589.wav,补血推荐吃哪些食物
+POS,2590,pos/kws_2590.wav,嗨机器人,pos/cmd_2590.wav,风速减小
+POS,2591,pos/kws_2591.wav,你好天天,pos/cmd_2591.wav,风向调到左边
+POS,2592,pos/kws_2592.wav,小天小天,pos/cmd_2592.wav,取消省电模式
+POS,2593,pos/kws_2593.wav,小T小T,pos/cmd_2593.wav,关屏显
+POS,2594,pos/kws_2594.wav,小美小美,pos/cmd_2594.wav,播放小飞鱼二
+POS,2595,pos/kws_2595.wav,大喜大喜,pos/cmd_2595.wav,关下空调
+POS,2596,pos/kws_2596.wav,小甜甜,pos/cmd_2596.wav,风向调到中间
+POS,2597,pos/kws_2597.wav,小惟小惟,pos/cmd_2597.wav,播放育儿早教纯干货分享
+POS,2598,pos/kws_2598.wav,嗨扫地机,pos/cmd_2598.wav,把温度调到二十度
+POS,2599,pos/kws_2599.wav,嗨机器人,pos/cmd_2599.wav,风向调到右边
+POS,2600,pos/kws_2600.wav,小惟小惟,pos/cmd_2600.wav,富含热量的食物有哪些
+POS,2601,pos/kws_2601.wav,hi colmo,pos/cmd_2601.wav,播放盖世音雄原创音乐
+POS,2602,pos/kws_2602.wav,小美小美,pos/cmd_2602.wav,播放小飞鱼二
+POS,2603,pos/kws_2603.wav,你好天天,pos/cmd_2603.wav,开到二十二度
+POS,2604,pos/kws_2604.wav,小双同学,pos/cmd_2604.wav,关闭屏幕
+POS,2605,pos/kws_2605.wav,你好天天,pos/cmd_2605.wav,防直吹模式
+POS,2606,pos/kws_2606.wav,小编小编,pos/cmd_2606.wav,开防直吹
+POS,2607,pos/kws_2607.wav,小天小天,pos/cmd_2607.wav,调到送风模式
+POS,2608,pos/kws_2608.wav,小天小天,pos/cmd_2608.wav,温度二十六度
+POS,2609,pos/kws_2609.wav,小双同学,pos/cmd_2609.wav,打开屏幕
+POS,2610,pos/kws_2610.wav,嗨扫地机,pos/cmd_2610.wav,风速调到最高
+POS,2611,pos/kws_2611.wav,小甜甜,pos/cmd_2611.wav,开到二十九度
+POS,2612,pos/kws_2612.wav,小惟小惟,pos/cmd_2612.wav,儿童适合吃什么
+POS,2613,pos/kws_2613.wav,小惟小惟,pos/cmd_2613.wav,吃什么适合解酒
+POS,2614,pos/kws_2614.wav,小天才,pos/cmd_2614.wav,开到二十九度
+POS,2615,pos/kws_2615.wav,嗨机器人,pos/cmd_2615.wav,空调十八度
+POS,2616,pos/kws_2616.wav,你好天天,pos/cmd_2616.wav,关掉无风模式
+POS,2617,pos/kws_2617.wav,天天同学,pos/cmd_2617.wav,关屏显
+POS,2618,pos/kws_2618.wav,你好小天,pos/cmd_2618.wav,开到二十七度
+POS,2619,pos/kws_2619.wav,天天同学,pos/cmd_2619.wav,开屏幕
+POS,2620,pos/kws_2620.wav,嗨扫地机,pos/cmd_2620.wav,开启抽湿模式
+POS,2621,pos/kws_2621.wav,小美小美,pos/cmd_2621.wav,吃哪些食物有利于腹泻
+POS,2622,pos/kws_2622.wav,hi colmo,pos/cmd_2622.wav,播放专注
+POS,2623,pos/kws_2623.wav,小钱小钱,pos/cmd_2623.wav,风速三十
+POS,2624,pos/kws_2624.wav,嗨扫地机,pos/cmd_2624.wav,关闭显示屏
+POS,2625,pos/kws_2625.wav,小美小美,pos/cmd_2625.wav,播放一千零一夜故事
+POS,2626,pos/kws_2626.wav,小点小点,pos/cmd_2626.wav,关闭新风模式
+POS,2627,pos/kws_2627.wav,小T小T,pos/cmd_2627.wav,关掉空调
+POS,2628,pos/kws_2628.wav,小天才,pos/cmd_2628.wav,出风口设置最右
+POS,2629,pos/kws_2629.wav,小惟小惟,pos/cmd_2629.wav,便秘适宜吃什么
+POS,2630,pos/kws_2630.wav,小钱小钱,pos/cmd_2630.wav,开左右风
+POS,2631,pos/kws_2631.wav,你好天天,pos/cmd_2631.wav,开启ECO
+POS,2632,pos/kws_2632.wav,小编小编,pos/cmd_2632.wav,关闭省电模式
+POS,2633,pos/kws_2633.wav,小天小天,pos/cmd_2633.wav,往上扫风
+POS,2634,pos/kws_2634.wav,小惟小惟,pos/cmd_2634.wav,骨质疏松不适宜吃什么
+POS,2635,pos/kws_2635.wav,你好小天,pos/cmd_2635.wav,把温度调到二十一度
+POS,2636,pos/kws_2636.wav,小惟小惟,pos/cmd_2636.wav,播放小球听民乐数字歌
+POS,2637,pos/kws_2637.wav,小美小美,pos/cmd_2637.wav,哺乳期要少吃什么
+POS,2638,pos/kws_2638.wav,小点小点,pos/cmd_2638.wav,风速开到最小
+POS,2639,pos/kws_2639.wav,hi colmo,pos/cmd_2639.wav,吃什么适合慢性疲劳
+POS,2640,pos/kws_2640.wav,小天小天,pos/cmd_2640.wav,打开睡眠模式
+POS,2641,pos/kws_2641.wav,小点小点,pos/cmd_2641.wav,打开显示屏
+POS,2642,pos/kws_2642.wav,小惟小惟,pos/cmd_2642.wav,吃什么有利于祛斑
+POS,2643,pos/kws_2643.wav,小惟小惟,pos/cmd_2643.wav,给我讲财经大事件
+POS,2644,pos/kws_2644.wav,hi colmo,pos/cmd_2644.wav,吃什么有利于防辐射
+POS,2645,pos/kws_2645.wav,hi colmo,pos/cmd_2645.wav,高血压不适宜吃什么
+POS,2646,pos/kws_2646.wav,嗨机器人,pos/cmd_2646.wav,打开省电模式
+POS,2647,pos/kws_2647.wav,小T小T,pos/cmd_2647.wav,打开屏幕
+POS,2648,pos/kws_2648.wav,小美小美,pos/cmd_2648.wav,播放偶像电话亭
+POS,2649,pos/kws_2649.wav,小甜甜,pos/cmd_2649.wav,防直吹
+POS,2650,pos/kws_2650.wav,小天才,pos/cmd_2650.wav,开启防直吹模式
+POS,2651,pos/kws_2651.wav,hi colmo,pos/cmd_2651.wav,播放鹅妈妈童谣黄本
+POS,2652,pos/kws_2652.wav,小美小美,pos/cmd_2652.wav,富含硒的食物有哪些
+POS,2653,pos/kws_2653.wav,大喜大喜,pos/cmd_2653.wav,防直吹模式
+POS,2654,pos/kws_2654.wav,你好小双,pos/cmd_2654.wav,开启抽湿模式
+POS,2655,pos/kws_2655.wav,小美小美,pos/cmd_2655.wav,播放绝句唐杜甫
+POS,2656,pos/kws_2656.wav,小美小美,pos/cmd_2656.wav,备孕不推荐吃什么
+POS,2657,pos/kws_2657.wav,小惟小惟,pos/cmd_2657.wav,吃什么适合慢性疲劳
+POS,2658,pos/kws_2658.wav,小惟小惟,pos/cmd_2658.wav,播放小球听民乐数字歌
+POS,2659,pos/kws_2659.wav,小天小天,pos/cmd_2659.wav,空调十八度
+POS,2660,pos/kws_2660.wav,hi colmo,pos/cmd_2660.wav,富含硒的食物有哪些
+POS,2661,pos/kws_2661.wav,小双同学,pos/cmd_2661.wav,开机空调
+POS,2662,pos/kws_2662.wav,天天同学,pos/cmd_2662.wav,关掉智清洁
+POS,2663,pos/kws_2663.wav,小美小美,pos/cmd_2663.wav,产妇哪些食物需要忌口
+POS,2664,pos/kws_2664.wav,小天才,pos/cmd_2664.wav,风向左吹
+POS,2665,pos/kws_2665.wav,小钱小钱,pos/cmd_2665.wav,风速调最小
+POS,2666,pos/kws_2666.wav,你好小双,pos/cmd_2666.wav,风摆向右边
+POS,2667,pos/kws_2667.wav,小天同学,pos/cmd_2667.wav,把温度调到二十一度
+POS,2668,pos/kws_2668.wav,小惟小惟,pos/cmd_2668.wav,防脱发推荐吃哪些食物
+POS,2669,pos/kws_2669.wav,hi colmo,pos/cmd_2669.wav,播放少儿版红楼梦
+POS,2670,pos/kws_2670.wav,小编小编,pos/cmd_2670.wav,风速调到百分之十
+POS,2671,pos/kws_2671.wav,小美小美,pos/cmd_2671.wav,播放苦命人
+POS,2672,pos/kws_2672.wav,小天才,pos/cmd_2672.wav,关屏显
+POS,2673,pos/kws_2673.wav,嗨扫地机,pos/cmd_2673.wav,ECO模式
+POS,2674,pos/kws_2674.wav,小惟小惟,pos/cmd_2674.wav,儿童吃哪些食物有好处
+POS,2675,pos/kws_2675.wav,小天同学,pos/cmd_2675.wav,开机空调
+POS,2676,pos/kws_2676.wav,小T小T,pos/cmd_2676.wav,空调十七度
+POS,2677,pos/kws_2677.wav,hi colmo,pos/cmd_2677.wav,备孕要少吃什么
+POS,2678,pos/kws_2678.wav,小双同学,pos/cmd_2678.wav,把空调关上
+POS,2679,pos/kws_2679.wav,小编小编,pos/cmd_2679.wav,风往下吹
+POS,2680,pos/kws_2680.wav,hi colmo,pos/cmd_2680.wav,播放大红妈妈精心讲绘本
+POS,2681,pos/kws_2681.wav,小惟小惟,pos/cmd_2681.wav,富含热量的食物有哪些
+POS,2682,pos/kws_2682.wav,小点小点,pos/cmd_2682.wav,关掉智清洁
+POS,2683,pos/kws_2683.wav,嗨扫地机,pos/cmd_2683.wav,降低温度
+POS,2684,pos/kws_2684.wav,小编小编,pos/cmd_2684.wav,风大一点
+POS,2685,pos/kws_2685.wav,小美小美,pos/cmd_2685.wav,科技情报局我想听
+POS,2686,pos/kws_2686.wav,hi colmo,pos/cmd_2686.wav,儿童吃哪些食物有好处
+POS,2687,pos/kws_2687.wav,你好小天,pos/cmd_2687.wav,把温度调到三十度
+POS,2688,pos/kws_2688.wav,小天小天,pos/cmd_2688.wav,温度高一点
+POS,2689,pos/kws_2689.wav,小惟小惟,pos/cmd_2689.wav,吃什么适合舒缓压力
+POS,2690,pos/kws_2690.wav,hi colmo,pos/cmd_2690.wav,儿童有什么饮食禁忌
+POS,2691,pos/kws_2691.wav,小美小美,pos/cmd_2691.wav,护发吃什么好
+POS,2692,pos/kws_2692.wav,小惟小惟,pos/cmd_2692.wav,播放费烟的民谣
+POS,2693,pos/kws_2693.wav,小美小美,pos/cmd_2693.wav,儿童吃什么好
+POS,2694,pos/kws_2694.wav,hi colmo,pos/cmd_2694.wav,加热故障
+POS,2695,pos/kws_2695.wav,小惟小惟,pos/cmd_2695.wav,安胎不适合吃什么
+POS,2696,pos/kws_2696.wav,小天才,pos/cmd_2696.wav,开启制冷模式
+POS,2697,pos/kws_2697.wav,小双同学,pos/cmd_2697.wav,风大一点
+POS,2698,pos/kws_2698.wav,小编小编,pos/cmd_2698.wav,把温度调到二十三度
+POS,2699,pos/kws_2699.wav,hi colmo,pos/cmd_2699.wav,播放姚晴曦阅读
+POS,2700,pos/kws_2700.wav,小钱小钱,pos/cmd_2700.wav,把温度调到二十度
+POS,2701,pos/kws_2701.wav,小惟小惟,pos/cmd_2701.wav,播放巴赫初级钢琴曲
+POS,2702,pos/kws_2702.wav,小惟小惟,pos/cmd_2702.wav,播放温妮女巫魔法绘本
+POS,2703,pos/kws_2703.wav,嗨机器人,pos/cmd_2703.wav,开启智清洁
+POS,2704,pos/kws_2704.wav,嗨机器人,pos/cmd_2704.wav,打开节能模式
+POS,2705,pos/kws_2705.wav,小双同学,pos/cmd_2705.wav,风速调大一点
+POS,2706,pos/kws_2706.wav,天天同学,pos/cmd_2706.wav,把温度调到二十九度
+POS,2707,pos/kws_2707.wav,hi colmo,pos/cmd_2707.wav,古哥古点烧脑集我想听
+POS,2708,pos/kws_2708.wav,小甜甜,pos/cmd_2708.wav,打开睡眠模式
+POS,2709,pos/kws_2709.wav,hi colmo,pos/cmd_2709.wav,吃什么可以明目
+POS,2710,pos/kws_2710.wav,小惟小惟,pos/cmd_2710.wav,播放磨剑少年
+POS,2711,pos/kws_2711.wav,小惟小惟,pos/cmd_2711.wav,更年期建议吃什么
+POS,2712,pos/kws_2712.wav,小双同学,pos/cmd_2712.wav,风速加大
+POS,2713,pos/kws_2713.wav,小T小T,pos/cmd_2713.wav,开启ECO
+POS,2714,pos/kws_2714.wav,小天才,pos/cmd_2714.wav,开到二十七度
+POS,2715,pos/kws_2715.wav,你好小天,pos/cmd_2715.wav,降低一度
+POS,2716,pos/kws_2716.wav,你好天天,pos/cmd_2716.wav,关闭ECO模式
+POS,2717,pos/kws_2717.wav,小美小美,pos/cmd_2717.wav,高血压不推荐吃什么
+POS,2718,pos/kws_2718.wav,小美小美,pos/cmd_2718.wav,播放激情手风琴曲选集
+POS,2719,pos/kws_2719.wav,你好天天,pos/cmd_2719.wav,空调十九度
+POS,2720,pos/kws_2720.wav,小天才,pos/cmd_2720.wav,开到二十六度
+POS,2721,pos/kws_2721.wav,小惟小惟,pos/cmd_2721.wav,播放姚晴曦阅读
+POS,2722,pos/kws_2722.wav,嗨扫地机,pos/cmd_2722.wav,风量调到最小
+POS,2723,pos/kws_2723.wav,小天小天,pos/cmd_2723.wav,温度十八度
+POS,2724,pos/kws_2724.wav,hi colmo,pos/cmd_2724.wav,儿童有什么饮食禁忌
+POS,2725,pos/kws_2725.wav,小美小美,pos/cmd_2725.wav,唱一首刘德华的歌
+POS,2726,pos/kws_2726.wav,天天同学,pos/cmd_2726.wav,关下空调
+POS,2727,pos/kws_2727.wav,小美小美,pos/cmd_2727.wav,更年期适合吃什么
+POS,2728,pos/kws_2728.wav,小甜甜,pos/cmd_2728.wav,关掉空调
+POS,2729,pos/kws_2729.wav,小美小美,pos/cmd_2729.wav,给我放古典抒情百分百
+POS,2730,pos/kws_2730.wav,小美小美,pos/cmd_2730.wav,播放育儿早教纯干货分享
+POS,2731,pos/kws_2731.wav,小天才,pos/cmd_2731.wav,开到二十六度
+POS,2732,pos/kws_2732.wav,hi colmo,pos/cmd_2732.wav,播放美国语文第四册
+POS,2733,pos/kws_2733.wav,嗨机器人,pos/cmd_2733.wav,风速一百
+POS,2734,pos/kws_2734.wav,天天同学,pos/cmd_2734.wav,开机空调
+POS,2735,pos/kws_2735.wav,嗨扫地机,pos/cmd_2735.wav,降低温度
+POS,2736,pos/kws_2736.wav,hi colmo,pos/cmd_2736.wav,电竞编年史我想听
+POS,2737,pos/kws_2737.wav,小编小编,pos/cmd_2737.wav,开到十七度
+POS,2738,pos/kws_2738.wav,天天同学,pos/cmd_2738.wav,把温度调到二十九度
+POS,2739,pos/kws_2739.wav,小美小美,pos/cmd_2739.wav,哺乳期有什么饮食禁忌
+POS,2740,pos/kws_2740.wav,天天同学,pos/cmd_2740.wav,把温度调到二十二度
+POS,2741,pos/kws_2741.wav,小编小编,pos/cmd_2741.wav,风速六十
+POS,2742,pos/kws_2742.wav,hi colmo,pos/cmd_2742.wav,腹泻吃什么食物有好处
+POS,2743,pos/kws_2743.wav,你好小双,pos/cmd_2743.wav,打开省电模式
+POS,2744,pos/kws_2744.wav,小美小美,pos/cmd_2744.wav,高血压不推荐吃什么
+POS,2745,pos/kws_2745.wav,嗨机器人,pos/cmd_2745.wav,开机空调
+POS,2746,pos/kws_2746.wav,你好小天,pos/cmd_2746.wav,风速调小一点
+POS,2747,pos/kws_2747.wav,小天同学,pos/cmd_2747.wav,向左吹风
+POS,2748,pos/kws_2748.wav,hi colmo,pos/cmd_2748.wav,白内障不适合吃什么
+POS,2749,pos/kws_2749.wav,嗨机器人,pos/cmd_2749.wav,开到二十五度
+POS,2750,pos/kws_2750.wav,小甜甜,pos/cmd_2750.wav,降低风量
+POS,2751,pos/kws_2751.wav,小点小点,pos/cmd_2751.wav,风量最小
+POS,2752,pos/kws_2752.wav,小钱小钱,pos/cmd_2752.wav,关一下空调
+POS,2753,pos/kws_2753.wav,小编小编,pos/cmd_2753.wav,关掉空调
+POS,2754,pos/kws_2754.wav,小天同学,pos/cmd_2754.wav,关掉智清洁
+POS,2755,pos/kws_2755.wav,hi colmo,pos/cmd_2755.wav,备孕要少吃什么
+POS,2756,pos/kws_2756.wav,小T小T,pos/cmd_2756.wav,开到二十二度
+POS,2757,pos/kws_2757.wav,小美小美,pos/cmd_2757.wav,播放家庭教育口传书
+POS,2758,pos/kws_2758.wav,小天同学,pos/cmd_2758.wav,空调除湿模式
+POS,2759,pos/kws_2759.wav,你好小双,pos/cmd_2759.wav,风速调到百分之二十
+POS,2760,pos/kws_2760.wav,小惟小惟,pos/cmd_2760.wav,播放文静翻唱歌曲集
+POS,2761,pos/kws_2761.wav,小T小T,pos/cmd_2761.wav,打开上下风
+POS,2762,pos/kws_2762.wav,小甜甜,pos/cmd_2762.wav,开防直吹
+POS,2763,pos/kws_2763.wav,小T小T,pos/cmd_2763.wav,风往下吹
+POS,2764,pos/kws_2764.wav,小T小T,pos/cmd_2764.wav,空调十八度
+POS,2765,pos/kws_2765.wav,你好小双,pos/cmd_2765.wav,风速调到百分之六十
+POS,2766,pos/kws_2766.wav,hi colmo,pos/cmd_2766.wav,播放苦命人
+POS,2767,pos/kws_2767.wav,小天同学,pos/cmd_2767.wav,风速调到百分之七十
+POS,2768,pos/kws_2768.wav,小点小点,pos/cmd_2768.wav,风速十
+POS,2769,pos/kws_2769.wav,大喜大喜,pos/cmd_2769.wav,风速调最大
+POS,2770,pos/kws_2770.wav,小惟小惟,pos/cmd_2770.wav,黑发不能吃什么
+POS,2771,pos/kws_2771.wav,你好小天,pos/cmd_2771.wav,开启智清洁
+POS,2772,pos/kws_2772.wav,hi colmo,pos/cmd_2772.wav,脚气适合吃什么
+POS,2773,pos/kws_2773.wav,小惟小惟,pos/cmd_2773.wav,感冒吃什么合适
+POS,2774,pos/kws_2774.wav,hi colmo,pos/cmd_2774.wav,吃什么可以明目
+POS,2775,pos/kws_2775.wav,你好小双,pos/cmd_2775.wav,关闭显示屏
+POS,2776,pos/kws_2776.wav,你好小双,pos/cmd_2776.wav,空调二十一度
+POS,2777,pos/kws_2777.wav,小美小美,pos/cmd_2777.wav,感冒不能吃什么食物
+POS,2778,pos/kws_2778.wav,嗨扫地机,pos/cmd_2778.wav,风摆向上边
+POS,2779,pos/kws_2779.wav,hi colmo,pos/cmd_2779.wav,给我讲古风音乐频道
+POS,2780,pos/kws_2780.wav,小天小天,pos/cmd_2780.wav,智控温
+POS,2781,pos/kws_2781.wav,小天才,pos/cmd_2781.wav,风速减小
+POS,2782,pos/kws_2782.wav,小点小点,pos/cmd_2782.wav,开到二十三度
+POS,2783,pos/kws_2783.wav,小甜甜,pos/cmd_2783.wav,空调二十一度
+POS,2784,pos/kws_2784.wav,小美小美,pos/cmd_2784.wav,播放小飞鱼二
+POS,2785,pos/kws_2785.wav,小美小美,pos/cmd_2785.wav,播放白玉京
+POS,2786,pos/kws_2786.wav,你好小天,pos/cmd_2786.wav,开启防直吹
+POS,2787,pos/kws_2787.wav,小惟小惟,pos/cmd_2787.wav,感冒不可以吃什么
+POS,2788,pos/kws_2788.wav,你好天天,pos/cmd_2788.wav,关掉空调
+POS,2789,pos/kws_2789.wav,小美小美,pos/cmd_2789.wav,腹泻适合吃什么
+POS,2790,pos/kws_2790.wav,天天同学,pos/cmd_2790.wav,开下空调
+POS,2791,pos/kws_2791.wav,嗨扫地机,pos/cmd_2791.wav,开到二十三度
+POS,2792,pos/kws_2792.wav,hi colmo,pos/cmd_2792.wav,播放减压放松音乐合集
+POS,2793,pos/kws_2793.wav,小美小美,pos/cmd_2793.wav,吃什么有利于皮肤粗糙
+POS,2794,pos/kws_2794.wav,小惟小惟,pos/cmd_2794.wav,播放我录声音背景音乐
+POS,2795,pos/kws_2795.wav,小点小点,pos/cmd_2795.wav,打开节能模式
+POS,2796,pos/kws_2796.wav,你好小双,pos/cmd_2796.wav,空调十九度
+POS,2797,pos/kws_2797.wav,小钱小钱,pos/cmd_2797.wav,开下空调
+POS,2798,pos/kws_2798.wav,小美小美,pos/cmd_2798.wav,吃什么可以防辐射
+POS,2799,pos/kws_2799.wav,hi colmo,pos/cmd_2799.wav,播放绝句唐杜甫
+POS,2800,pos/kws_2800.wav,小美小美,pos/cmd_2800.wav,古哥古点烧脑集我想听
+POS,2801,pos/kws_2801.wav,hi colmo,pos/cmd_2801.wav,播放盖世音雄原创音乐
+POS,2802,pos/kws_2802.wav,你好小天,pos/cmd_2802.wav,开下空调
+POS,2803,pos/kws_2803.wav,嗨机器人,pos/cmd_2803.wav,风速调到最小风
+POS,2804,pos/kws_2804.wav,小惟小惟,pos/cmd_2804.wav,播放播播龙的故事口袋
+POS,2805,pos/kws_2805.wav,小惟小惟,pos/cmd_2805.wav,补血推荐吃哪些食物
+POS,2806,pos/kws_2806.wav,小钱小钱,pos/cmd_2806.wav,把温度调到十六度
+POS,2807,pos/kws_2807.wav,小钱小钱,pos/cmd_2807.wav,开下空调
+POS,2808,pos/kws_2808.wav,嗨机器人,pos/cmd_2808.wav,风速五十
+POS,2809,pos/kws_2809.wav,小惟小惟,pos/cmd_2809.wav,播放架子鼓示范四十首
+POS,2810,pos/kws_2810.wav,你好小双,pos/cmd_2810.wav,关闭省电模式
+POS,2811,pos/kws_2811.wav,小美小美,pos/cmd_2811.wav,吃什么适合解酒
+POS,2812,pos/kws_2812.wav,hi colmo,pos/cmd_2812.wav,高血糖吃什么有好处
+POS,2813,pos/kws_2813.wav,hi colmo,pos/cmd_2813.wav,更年期建议吃什么
+POS,2814,pos/kws_2814.wav,小点小点,pos/cmd_2814.wav,关闭屏幕
+POS,2815,pos/kws_2815.wav,hi colmo,pos/cmd_2815.wav,黑发哪些食物需要忌口
+POS,2816,pos/kws_2816.wav,hi colmo,pos/cmd_2816.wav,抗衰老推荐吃哪些食物
+POS,2817,pos/kws_2817.wav,小天才,pos/cmd_2817.wav,风速调到百分之四十
+POS,2818,pos/kws_2818.wav,大喜大喜,pos/cmd_2818.wav,停止左右风
+POS,2819,pos/kws_2819.wav,嗨扫地机,pos/cmd_2819.wav,关一下空调
+POS,2820,pos/kws_2820.wav,小天同学,pos/cmd_2820.wav,启动送风模式
+POS,2821,pos/kws_2821.wav,小惟小惟,pos/cmd_2821.wav,给我讲财经大事件
+POS,2822,pos/kws_2822.wav,小编小编,pos/cmd_2822.wav,空调十九度
+POS,2823,pos/kws_2823.wav,hi colmo,pos/cmd_2823.wav,黑发哪些食物需要忌口
+POS,2824,pos/kws_2824.wav,小天同学,pos/cmd_2824.wav,关屏显
+POS,2825,pos/kws_2825.wav,hi colmo,pos/cmd_2825.wav,白内障不适合吃什么
+POS,2826,pos/kws_2826.wav,小天同学,pos/cmd_2826.wav,往左扫风
+POS,2827,pos/kws_2827.wav,小美小美,pos/cmd_2827.wav,脚气适合吃什么
+POS,2828,pos/kws_2828.wav,小甜甜,pos/cmd_2828.wav,开到二十二度
+POS,2829,pos/kws_2829.wav,小甜甜,pos/cmd_2829.wav,把温度调到二十四度
+POS,2830,pos/kws_2830.wav,小天同学,pos/cmd_2830.wav,风速八十
+POS,2831,pos/kws_2831.wav,小甜甜,pos/cmd_2831.wav,风速七十
+POS,2832,pos/kws_2832.wav,嗨扫地机,pos/cmd_2832.wav,把温度调到十八度
+POS,2833,pos/kws_2833.wav,小天同学,pos/cmd_2833.wav,上出风
+POS,2834,pos/kws_2834.wav,hi colmo,pos/cmd_2834.wav,播放少儿版红楼梦
+POS,2835,pos/kws_2835.wav,小惟小惟,pos/cmd_2835.wav,高血压适宜吃什么
+POS,2836,pos/kws_2836.wav,hi colmo,pos/cmd_2836.wav,科技情报局我想听
+POS,2837,pos/kws_2837.wav,嗨扫地机,pos/cmd_2837.wav,风速加大
+POS,2838,pos/kws_2838.wav,小钱小钱,pos/cmd_2838.wav,开一下空调
+POS,2839,pos/kws_2839.wav,小惟小惟,pos/cmd_2839.wav,骨质疏松要吃什么好
+POS,2840,pos/kws_2840.wav,hi colmo,pos/cmd_2840.wav,更年期吃什么好
+POS,2841,pos/kws_2841.wav,hi colmo,pos/cmd_2841.wav,更年期不适合吃什么
+POS,2842,pos/kws_2842.wav,小美小美,pos/cmd_2842.wav,脚气病适宜吃什么
+POS,2843,pos/kws_2843.wav,小编小编,pos/cmd_2843.wav,防直吹模式
+POS,2844,pos/kws_2844.wav,大喜大喜,pos/cmd_2844.wav,空调抽湿模式
+POS,2845,pos/kws_2845.wav,大喜大喜,pos/cmd_2845.wav,往右扫风
+POS,2846,pos/kws_2846.wav,hi colmo,pos/cmd_2846.wav,播放十大样板戏精选集
+POS,2847,pos/kws_2847.wav,小惟小惟,pos/cmd_2847.wav,更年期不适合吃什么
+POS,2848,pos/kws_2848.wav,小编小编,pos/cmd_2848.wav,开启睡眠模式
+POS,2849,pos/kws_2849.wav,hi colmo,pos/cmd_2849.wav,播放盖世音雄原创音乐
+POS,2850,pos/kws_2850.wav,小钱小钱,pos/cmd_2850.wav,把温度调到十八度
+POS,2851,pos/kws_2851.wav,小惟小惟,pos/cmd_2851.wav,播放一千零一夜故事
+POS,2852,pos/kws_2852.wav,hi colmo,pos/cmd_2852.wav,播放郭德纲的相声
+POS,2853,pos/kws_2853.wav,大喜大喜,pos/cmd_2853.wav,往下吹
+POS,2854,pos/kws_2854.wav,小甜甜,pos/cmd_2854.wav,关闭左右风
+POS,2855,pos/kws_2855.wav,小点小点,pos/cmd_2855.wav,开到十八度
+POS,2856,pos/kws_2856.wav,小T小T,pos/cmd_2856.wav,开启自动模式
+POS,2857,pos/kws_2857.wav,小惟小惟,pos/cmd_2857.wav,播放播播龙的故事口袋
+POS,2858,pos/kws_2858.wav,小天小天,pos/cmd_2858.wav,风速四十
+POS,2859,pos/kws_2859.wav,小甜甜,pos/cmd_2859.wav,开机空调
+POS,2860,pos/kws_2860.wav,小美小美,pos/cmd_2860.wav,吃什么适合舒缓压力
+POS,2861,pos/kws_2861.wav,小惟小惟,pos/cmd_2861.wav,哺乳期要少吃什么
+POS,2862,pos/kws_2862.wav,小美小美,pos/cmd_2862.wav,备孕适合吃什么
+POS,2863,pos/kws_2863.wav,小T小T,pos/cmd_2863.wav,防直吹模式
+POS,2864,pos/kws_2864.wav,小天小天,pos/cmd_2864.wav,开启ECO
+POS,2865,pos/kws_2865.wav,天天同学,pos/cmd_2865.wav,风向右吹
+POS,2866,pos/kws_2866.wav,小美小美,pos/cmd_2866.wav,播放小脚丫妈妈读绘本
+POS,2867,pos/kws_2867.wav,你好小天,pos/cmd_2867.wav,风量调到最大
+POS,2868,pos/kws_2868.wav,小点小点,pos/cmd_2868.wav,开到二十四度
+POS,2869,pos/kws_2869.wav,小T小T,pos/cmd_2869.wav,把温度调到二十八度
+POS,2870,pos/kws_2870.wav,小美小美,pos/cmd_2870.wav,古哥古点烧脑集我想听
+POS,2871,pos/kws_2871.wav,小编小编,pos/cmd_2871.wav,把空调关上
+POS,2872,pos/kws_2872.wav,小美小美,pos/cmd_2872.wav,播放吐槽大会
+POS,2873,pos/kws_2873.wav,小编小编,pos/cmd_2873.wav,开到二十度
+POS,2874,pos/kws_2874.wav,小钱小钱,pos/cmd_2874.wav,开启送风模式
+POS,2875,pos/kws_2875.wav,小美小美,pos/cmd_2875.wav,腹泻适合吃什么
+POS,2876,pos/kws_2876.wav,小天小天,pos/cmd_2876.wav,调成自动模式
+POS,2877,pos/kws_2877.wav,小惟小惟,pos/cmd_2877.wav,播放育儿早教纯干货分享
+POS,2878,pos/kws_2878.wav,小钱小钱,pos/cmd_2878.wav,加大风量
+POS,2879,pos/kws_2879.wav,你好小天,pos/cmd_2879.wav,把温度调到十六度
+POS,2880,pos/kws_2880.wav,小双同学,pos/cmd_2880.wav,把空调关闭
+POS,2881,pos/kws_2881.wav,hi colmo,pos/cmd_2881.wav,播放卡尔经典绘本音频
+POS,2882,pos/kws_2882.wav,大喜大喜,pos/cmd_2882.wav,空调除湿
+POS,2883,pos/kws_2883.wav,hi colmo,pos/cmd_2883.wav,播放神笔马良
+POS,2884,pos/kws_2884.wav,嗨扫地机,pos/cmd_2884.wav,开到二十七度
+POS,2885,pos/kws_2885.wav,小美小美,pos/cmd_2885.wav,播放睡前故事
+POS,2886,pos/kws_2886.wav,你好小天,pos/cmd_2886.wav,开到二十四度
+POS,2887,pos/kws_2887.wav,大喜大喜,pos/cmd_2887.wav,开防直吹
+POS,2888,pos/kws_2888.wav,小T小T,pos/cmd_2888.wav,出风口设置最左
+POS,2889,pos/kws_2889.wav,小天才,pos/cmd_2889.wav,开到十九度
+POS,2890,pos/kws_2890.wav,小美小美,pos/cmd_2890.wav,吃什么有利于脂肪肝
+POS,2891,pos/kws_2891.wav,小T小T,pos/cmd_2891.wav,风速调大
+POS,2892,pos/kws_2892.wav,你好小天,pos/cmd_2892.wav,把风速调到最小
+POS,2893,pos/kws_2893.wav,嗨扫地机,pos/cmd_2893.wav,开一下空调
+POS,2894,pos/kws_2894.wav,小惟小惟,pos/cmd_2894.wav,播放姚晴曦阅读
+POS,2895,pos/kws_2895.wav,hi colmo,pos/cmd_2895.wav,更年期适合吃什么
+POS,2896,pos/kws_2896.wav,天天同学,pos/cmd_2896.wav,开启ECO
+POS,2897,pos/kws_2897.wav,小惟小惟,pos/cmd_2897.wav,锋言疯语我想听
+POS,2898,pos/kws_2898.wav,小双同学,pos/cmd_2898.wav,开启睡眠模式
+POS,2899,pos/kws_2899.wav,你好小双,pos/cmd_2899.wav,开启制热模式
+POS,2900,pos/kws_2900.wav,小甜甜,pos/cmd_2900.wav,开到二十二度
+POS,2901,pos/kws_2901.wav,小钱小钱,pos/cmd_2901.wav,把空调关闭
+POS,2902,pos/kws_2902.wav,小T小T,pos/cmd_2902.wav,关掉睡眠
+POS,2903,pos/kws_2903.wav,小惟小惟,pos/cmd_2903.wav,播放少儿版红楼梦
+POS,2904,pos/kws_2904.wav,小美小美,pos/cmd_2904.wav,儿童吃哪些食物有好处
+POS,2905,pos/kws_2905.wav,小天同学,pos/cmd_2905.wav,空调调到二十二度
+POS,2906,pos/kws_2906.wav,小T小T,pos/cmd_2906.wav,风速调到百分之五十
+POS,2907,pos/kws_2907.wav,小双同学,pos/cmd_2907.wav,ECO模式
+POS,2908,pos/kws_2908.wav,小惟小惟,pos/cmd_2908.wav,儿童不能吃什么
+POS,2909,pos/kws_2909.wav,小天才,pos/cmd_2909.wav,开机空调
+POS,2910,pos/kws_2910.wav,小美小美,pos/cmd_2910.wav,播放青少新概念
+POS,2911,pos/kws_2911.wav,小惟小惟,pos/cmd_2911.wav,播放聊音乐
+POS,2912,pos/kws_2912.wav,大喜大喜,pos/cmd_2912.wav,关掉智控温
+POS,2913,pos/kws_2913.wav,小双同学,pos/cmd_2913.wav,打开ECO模式
+POS,2914,pos/kws_2914.wav,hi colmo,pos/cmd_2914.wav,播放小飞鱼二
+POS,2915,pos/kws_2915.wav,你好天天,pos/cmd_2915.wav,开启抽湿模式
+POS,2916,pos/kws_2916.wav,小点小点,pos/cmd_2916.wav,风速调最大
+POS,2917,pos/kws_2917.wav,小惟小惟,pos/cmd_2917.wav,播放妈咪知道孕育说
+POS,2918,pos/kws_2918.wav,大喜大喜,pos/cmd_2918.wav,风量调到最小
+POS,2919,pos/kws_2919.wav,小惟小惟,pos/cmd_2919.wav,播放十大样板戏精选集
+POS,2920,pos/kws_2920.wav,hi colmo,pos/cmd_2920.wav,古哥古点烧脑集我想听
+POS,2921,pos/kws_2921.wav,hi colmo,pos/cmd_2921.wav,播放白玉京
+POS,2922,pos/kws_2922.wav,嗨扫地机,pos/cmd_2922.wav,开启除湿模式
+POS,2923,pos/kws_2923.wav,小钱小钱,pos/cmd_2923.wav,开启送风模式
+POS,2924,pos/kws_2924.wav,小甜甜,pos/cmd_2924.wav,关掉睡眠
+POS,2925,pos/kws_2925.wav,hi colmo,pos/cmd_2925.wav,播放青少新概念
+POS,2926,pos/kws_2926.wav,你好小天,pos/cmd_2926.wav,风速调到最大风
+POS,2927,pos/kws_2927.wav,你好小天,pos/cmd_2927.wav,关掉睡眠
+POS,2928,pos/kws_2928.wav,小惟小惟,pos/cmd_2928.wav,播放郭德纲的相声
+POS,2929,pos/kws_2929.wav,小惟小惟,pos/cmd_2929.wav,播放听经典英文童话
+POS,2930,pos/kws_2930.wav,小双同学,pos/cmd_2930.wav,开到十九度
+POS,2931,pos/kws_2931.wav,hi colmo,pos/cmd_2931.wav,产妇推荐吃哪些食物
+POS,2932,pos/kws_2932.wav,小双同学,pos/cmd_2932.wav,空调十六度
+POS,2933,pos/kws_2933.wav,小编小编,pos/cmd_2933.wav,把温度调到十七度
+POS,2934,pos/kws_2934.wav,小T小T,pos/cmd_2934.wav,把温度调到二十六度
+POS,2935,pos/kws_2935.wav,hi colmo,pos/cmd_2935.wav,吃什么有利于安胎
+POS,2936,pos/kws_2936.wav,小天同学,pos/cmd_2936.wav,空调调到二十九度
+POS,2937,pos/kws_2937.wav,小美小美,pos/cmd_2937.wav,高血压适宜吃什么
+POS,2938,pos/kws_2938.wav,小惟小惟,pos/cmd_2938.wav,播放小脚丫妈妈读绘本
+POS,2939,pos/kws_2939.wav,小惟小惟,pos/cmd_2939.wav,告诉我怎么拆滤网
+POS,2940,pos/kws_2940.wav,嗨扫地机,pos/cmd_2940.wav,风速调到百分之百
+POS,2941,pos/kws_2941.wav,小天才,pos/cmd_2941.wav,风摆向左边
+POS,2942,pos/kws_2942.wav,小点小点,pos/cmd_2942.wav,开防直吹
+POS,2943,pos/kws_2943.wav,小惟小惟,pos/cmd_2943.wav,播放神笔马良
+POS,2944,pos/kws_2944.wav,hi colmo,pos/cmd_2944.wav,便秘适合吃哪些食物
+POS,2945,pos/kws_2945.wav,hi colmo,pos/cmd_2945.wav,高血脂吃什么有好处
+POS,2946,pos/kws_2946.wav,你好天天,pos/cmd_2946.wav,开启制冷模式
+POS,2947,pos/kws_2947.wav,小美小美,pos/cmd_2947.wav,播放减压放松音乐合集
+POS,2948,pos/kws_2948.wav,小惟小惟,pos/cmd_2948.wav,备孕适合吃什么
+POS,2949,pos/kws_2949.wav,hi colmo,pos/cmd_2949.wav,播放减压放松音乐合集
+POS,2950,pos/kws_2950.wav,嗨扫地机,pos/cmd_2950.wav,空调十七度
+POS,2951,pos/kws_2951.wav,小双同学,pos/cmd_2951.wav,风速九十
+POS,2952,pos/kws_2952.wav,小惟小惟,pos/cmd_2952.wav,播放绝句唐杜甫
+POS,2953,pos/kws_2953.wav,小天同学,pos/cmd_2953.wav,调到二十度
+POS,2954,pos/kws_2954.wav,hi colmo,pos/cmd_2954.wav,播放听经典英文童话
+POS,2955,pos/kws_2955.wav,你好天天,pos/cmd_2955.wav,把温度调到二十四度
+POS,2956,pos/kws_2956.wav,你好天天,pos/cmd_2956.wav,打开左右扫风
+POS,2957,pos/kws_2957.wav,小天小天,pos/cmd_2957.wav,把温度调到十九度
+POS,2958,pos/kws_2958.wav,小天小天,pos/cmd_2958.wav,往左吹
+POS,2959,pos/kws_2959.wav,天天同学,pos/cmd_2959.wav,开开空调
+POS,2960,pos/kws_2960.wav,小惟小惟,pos/cmd_2960.wav,播放伟人
+POS,2961,pos/kws_2961.wav,小编小编,pos/cmd_2961.wav,关闭屏幕
+POS,2962,pos/kws_2962.wav,hi colmo,pos/cmd_2962.wav,锋言疯语我想听
+POS,2963,pos/kws_2963.wav,hi colmo,pos/cmd_2963.wav,富含硒的食物有哪些
+POS,2964,pos/kws_2964.wav,小惟小惟,pos/cmd_2964.wav,古哥古点烧脑集我想听
+POS,2965,pos/kws_2965.wav,你好小天,pos/cmd_2965.wav,关掉新风模式
+POS,2966,pos/kws_2966.wav,小双同学,pos/cmd_2966.wav,风速调低一点
+POS,2967,pos/kws_2967.wav,小惟小惟,pos/cmd_2967.wav,补钙推荐吃什么食物
+POS,2968,pos/kws_2968.wav,hi colmo,pos/cmd_2968.wav,吃什么适合慢性疲劳
+POS,2969,pos/kws_2969.wav,小天同学,pos/cmd_2969.wav,风速降低
+POS,2970,pos/kws_2970.wav,小T小T,pos/cmd_2970.wav,空调十八度
+POS,2971,pos/kws_2971.wav,hi colmo,pos/cmd_2971.wav,播放十大样板戏精选集
+POS,2972,pos/kws_2972.wav,小惟小惟,pos/cmd_2972.wav,高血压不适宜吃什么
+POS,2973,pos/kws_2973.wav,小美小美,pos/cmd_2973.wav,播放大队长讲科学
+POS,2974,pos/kws_2974.wav,天天同学,pos/cmd_2974.wav,把风速调到最小
+POS,2975,pos/kws_2975.wav,小惟小惟,pos/cmd_2975.wav,放首粤语歌吧
+POS,2976,pos/kws_2976.wav,小甜甜,pos/cmd_2976.wav,空调十七度
+POS,2977,pos/kws_2977.wav,小美小美,pos/cmd_2977.wav,高血压不推荐吃什么
+POS,2978,pos/kws_2978.wav,小美小美,pos/cmd_2978.wav,播放文静翻唱歌曲集
+POS,2979,pos/kws_2979.wav,你好小天,pos/cmd_2979.wav,打开睡眠模式
+POS,2980,pos/kws_2980.wav,小惟小惟,pos/cmd_2980.wav,高血脂吃什么有好处
+POS,2981,pos/kws_2981.wav,小T小T,pos/cmd_2981.wav,开到二十一度
+POS,2982,pos/kws_2982.wav,小T小T,pos/cmd_2982.wav,开到二十五度
+POS,2983,pos/kws_2983.wav,小甜甜,pos/cmd_2983.wav,关机空调
+POS,2984,pos/kws_2984.wav,你好小双,pos/cmd_2984.wav,打开节能模式
+POS,2985,pos/kws_2985.wav,小T小T,pos/cmd_2985.wav,把温度调到十八度
+POS,2986,pos/kws_2986.wav,大喜大喜,pos/cmd_2986.wav,风向调到中间
+POS,2987,pos/kws_2987.wav,你好小双,pos/cmd_2987.wav,关闭ECO模式
+POS,2988,pos/kws_2988.wav,小美小美,pos/cmd_2988.wav,吃什么适合慢性疲劳
+POS,2989,pos/kws_2989.wav,小天同学,pos/cmd_2989.wav,调成抽湿模式
+POS,2990,pos/kws_2990.wav,小双同学,pos/cmd_2990.wav,开到三十度
+POS,2991,pos/kws_2991.wav,你好天天,pos/cmd_2991.wav,把温度调到二十八度
+POS,2992,pos/kws_2992.wav,小惟小惟,pos/cmd_2992.wav,健身不建议吃什么食物
+POS,2993,pos/kws_2993.wav,小T小T,pos/cmd_2993.wav,风速调到百分之八十
+POS,2994,pos/kws_2994.wav,小惟小惟,pos/cmd_2994.wav,腹泻吃什么食物有好处
+POS,2995,pos/kws_2995.wav,小美小美,pos/cmd_2995.wav,播放聊音乐
+POS,2996,pos/kws_2996.wav,你好天天,pos/cmd_2996.wav,防直吹
+POS,2997,pos/kws_2997.wav,hi colmo,pos/cmd_2997.wav,腹泻适宜吃什么
+POS,2998,pos/kws_2998.wav,hi colmo,pos/cmd_2998.wav,产妇适合吃哪些食物
+POS,2999,pos/kws_2999.wav,小双同学,pos/cmd_2999.wav,风量调小
+NEG,1000,neg/kws_1000.wav,hi colmo,neg/cmd_1000.wav,
+NEG,1001,neg/kws_1001.wav,你好科慕,neg/cmd_1001.wav,
+NEG,1002,neg/kws_1002.wav,你好科慕,neg/cmd_1002.wav,
+NEG,1003,neg/kws_1003.wav,hi colmo,neg/cmd_1003.wav,
+NEG,1004,neg/kws_1004.wav,hi colmo,neg/cmd_1004.wav,
+NEG,1005,neg/kws_1005.wav,hi colmo,neg/cmd_1005.wav,
+NEG,1006,neg/kws_1006.wav,你好科慕,neg/cmd_1006.wav,
+NEG,1007,neg/kws_1007.wav,hi colmo,neg/cmd_1007.wav,
+NEG,1008,neg/kws_1008.wav,你好科慕,neg/cmd_1008.wav,
+NEG,1009,neg/kws_1009.wav,hi colmo,neg/cmd_1009.wav,
+NEG,1010,neg/kws_1010.wav,hi colmo,neg/cmd_1010.wav,
+NEG,1011,neg/kws_1011.wav,hi colmo,neg/cmd_1011.wav,
+NEG,1012,neg/kws_1012.wav,你好科慕,neg/cmd_1012.wav,
+NEG,1013,neg/kws_1013.wav,hi colmo,neg/cmd_1013.wav,
+NEG,1014,neg/kws_1014.wav,hi colmo,neg/cmd_1014.wav,
+NEG,1015,neg/kws_1015.wav,hi colmo,neg/cmd_1015.wav,
+NEG,1016,neg/kws_1016.wav,hi colmo,neg/cmd_1016.wav,
+NEG,1017,neg/kws_1017.wav,hi colmo,neg/cmd_1017.wav,
+NEG,1018,neg/kws_1018.wav,hi colmo,neg/cmd_1018.wav,
+NEG,1019,neg/kws_1019.wav,hi colmo,neg/cmd_1019.wav,
+NEG,1020,neg/kws_1020.wav,hi colmo,neg/cmd_1020.wav,
+NEG,1021,neg/kws_1021.wav,你好科慕,neg/cmd_1021.wav,
+NEG,1022,neg/kws_1022.wav,hi colmo,neg/cmd_1022.wav,
+NEG,1023,neg/kws_1023.wav,你好科慕,neg/cmd_1023.wav,
+NEG,1024,neg/kws_1024.wav,hi colmo,neg/cmd_1024.wav,
+NEG,1025,neg/kws_1025.wav,你好科慕,neg/cmd_1025.wav,
+NEG,1026,neg/kws_1026.wav,你好科慕,neg/cmd_1026.wav,
+NEG,1027,neg/kws_1027.wav,hi colmo,neg/cmd_1027.wav,
+NEG,1028,neg/kws_1028.wav,hi colmo,neg/cmd_1028.wav,
+NEG,1029,neg/kws_1029.wav,hi colmo,neg/cmd_1029.wav,
+NEG,1030,neg/kws_1030.wav,你好科慕,neg/cmd_1030.wav,
+NEG,1031,neg/kws_1031.wav,hi colmo,neg/cmd_1031.wav,
+NEG,1032,neg/kws_1032.wav,hi colmo,neg/cmd_1032.wav,
+NEG,1033,neg/kws_1033.wav,hi colmo,neg/cmd_1033.wav,
+NEG,1034,neg/kws_1034.wav,hi colmo,neg/cmd_1034.wav,
+NEG,1035,neg/kws_1035.wav,hi colmo,neg/cmd_1035.wav,
+NEG,1036,neg/kws_1036.wav,hi colmo,neg/cmd_1036.wav,
+NEG,1037,neg/kws_1037.wav,hi colmo,neg/cmd_1037.wav,
+NEG,1038,neg/kws_1038.wav,hi colmo,neg/cmd_1038.wav,
+NEG,1039,neg/kws_1039.wav,hi colmo,neg/cmd_1039.wav,
+NEG,1040,neg/kws_1040.wav,hi colmo,neg/cmd_1040.wav,
+NEG,1041,neg/kws_1041.wav,hi colmo,neg/cmd_1041.wav,
+NEG,1042,neg/kws_1042.wav,hi colmo,neg/cmd_1042.wav,
+NEG,1043,neg/kws_1043.wav,hi colmo,neg/cmd_1043.wav,
+NEG,1044,neg/kws_1044.wav,hi colmo,neg/cmd_1044.wav,
+NEG,1045,neg/kws_1045.wav,hi colmo,neg/cmd_1045.wav,
+NEG,1046,neg/kws_1046.wav,hi colmo,neg/cmd_1046.wav,
+NEG,1047,neg/kws_1047.wav,hi colmo,neg/cmd_1047.wav,
+NEG,1048,neg/kws_1048.wav,hi colmo,neg/cmd_1048.wav,
+NEG,1049,neg/kws_1049.wav,hi colmo,neg/cmd_1049.wav,
+NEG,1050,neg/kws_1050.wav,hi colmo,neg/cmd_1050.wav,
+NEG,1051,neg/kws_1051.wav,hi colmo,neg/cmd_1051.wav,
+NEG,1052,neg/kws_1052.wav,hi colmo,neg/cmd_1052.wav,
+NEG,1053,neg/kws_1053.wav,hi colmo,neg/cmd_1053.wav,
+NEG,1054,neg/kws_1054.wav,你好科慕,neg/cmd_1054.wav,
+NEG,1055,neg/kws_1055.wav,你好科慕,neg/cmd_1055.wav,
+NEG,1056,neg/kws_1056.wav,hi colmo,neg/cmd_1056.wav,
+NEG,1057,neg/kws_1057.wav,hi colmo,neg/cmd_1057.wav,
+NEG,1058,neg/kws_1058.wav,hi colmo,neg/cmd_1058.wav,
+NEG,1059,neg/kws_1059.wav,hi colmo,neg/cmd_1059.wav,
+NEG,1060,neg/kws_1060.wav,hi colmo,neg/cmd_1060.wav,
+NEG,1061,neg/kws_1061.wav,hi colmo,neg/cmd_1061.wav,
+NEG,1062,neg/kws_1062.wav,hi colmo,neg/cmd_1062.wav,
+NEG,1063,neg/kws_1063.wav,hi colmo,neg/cmd_1063.wav,
+NEG,1064,neg/kws_1064.wav,hi colmo,neg/cmd_1064.wav,
+NEG,1065,neg/kws_1065.wav,hi colmo,neg/cmd_1065.wav,
+NEG,1066,neg/kws_1066.wav,你好科慕,neg/cmd_1066.wav,
+NEG,1067,neg/kws_1067.wav,hi colmo,neg/cmd_1067.wav,
+NEG,1068,neg/kws_1068.wav,hi colmo,neg/cmd_1068.wav,
+NEG,1069,neg/kws_1069.wav,你好科慕,neg/cmd_1069.wav,
+NEG,1070,neg/kws_1070.wav,hi colmo,neg/cmd_1070.wav,
+NEG,1071,neg/kws_1071.wav,hi colmo,neg/cmd_1071.wav,
+NEG,1072,neg/kws_1072.wav,hi colmo,neg/cmd_1072.wav,
+NEG,1073,neg/kws_1073.wav,你好科慕,neg/cmd_1073.wav,
+NEG,1074,neg/kws_1074.wav,hi colmo,neg/cmd_1074.wav,
+NEG,1075,neg/kws_1075.wav,hi colmo,neg/cmd_1075.wav,
+NEG,1076,neg/kws_1076.wav,你好科慕,neg/cmd_1076.wav,
+NEG,1077,neg/kws_1077.wav,hi colmo,neg/cmd_1077.wav,
+NEG,1078,neg/kws_1078.wav,hi colmo,neg/cmd_1078.wav,
+NEG,1079,neg/kws_1079.wav,hi colmo,neg/cmd_1079.wav,
+NEG,1080,neg/kws_1080.wav,你好科慕,neg/cmd_1080.wav,
+NEG,1081,neg/kws_1081.wav,你好科慕,neg/cmd_1081.wav,
+NEG,1082,neg/kws_1082.wav,hi colmo,neg/cmd_1082.wav,
+NEG,1083,neg/kws_1083.wav,hi colmo,neg/cmd_1083.wav,
+NEG,1084,neg/kws_1084.wav,hi colmo,neg/cmd_1084.wav,
+NEG,1085,neg/kws_1085.wav,hi colmo,neg/cmd_1085.wav,
+NEG,1086,neg/kws_1086.wav,你好科慕,neg/cmd_1086.wav,
+NEG,5000,neg/kws_5000.wav,小天小天,neg/cmd_5000.wav,
+NEG,5001,neg/kws_5001.wav,小惟小惟,neg/cmd_5001.wav,
+NEG,5003,neg/kws_5003.wav,小天小天,neg/cmd_5003.wav,
+NEG,5005,neg/kws_5005.wav,大喜大喜,neg/cmd_5005.wav,
+NEG,5006,neg/kws_5006.wav,小甜甜,neg/cmd_5006.wav,
+NEG,5007,neg/kws_5007.wav,小惟小惟,neg/cmd_5007.wav,
+NEG,5008,neg/kws_5008.wav,你好小双,neg/cmd_5008.wav,
+NEG,5009,neg/kws_5009.wav,你好小双,neg/cmd_5009.wav,
+NEG,5011,neg/kws_5011.wav,hicolmo,neg/cmd_5011.wav,
+NEG,5012,neg/kws_5012.wav,天天同学,neg/cmd_5012.wav,
+NEG,5013,neg/kws_5013.wav,你好小天,neg/cmd_5013.wav,
+NEG,5014,neg/kws_5014.wav,小惟小惟,neg/cmd_5014.wav,
+NEG,5015,neg/kws_5015.wav,天天同学,neg/cmd_5015.wav,
+NEG,5016,neg/kws_5016.wav,小双同学,neg/cmd_5016.wav,
+NEG,5018,neg/kws_5018.wav,天天同学,neg/cmd_5018.wav,
+NEG,5019,neg/kws_5019.wav,小双同学,neg/cmd_5019.wav,
+NEG,5022,neg/kws_5022.wav,小美小美,neg/cmd_5022.wav,
+NEG,5023,neg/kws_5023.wav,小惟小惟,neg/cmd_5023.wav,
+NEG,5024,neg/kws_5024.wav,小钱小钱,neg/cmd_5024.wav,
+NEG,5025,neg/kws_5025.wav,嗨机器人,neg/cmd_5025.wav,
+NEG,5026,neg/kws_5026.wav,大喜大喜,neg/cmd_5026.wav,
+NEG,5028,neg/kws_5028.wav,小点小点,neg/cmd_5028.wav,
+NEG,5029,neg/kws_5029.wav,小惟小惟,neg/cmd_5029.wav,
+NEG,5030,neg/kws_5030.wav,小惟小惟,neg/cmd_5030.wav,
+NEG,5031,neg/kws_5031.wav,嗨扫地机,neg/cmd_5031.wav,
+NEG,5032,neg/kws_5032.wav,嗨扫地机,neg/cmd_5032.wav,
+NEG,5033,neg/kws_5033.wav,小美小美,neg/cmd_5033.wav,
+NEG,5034,neg/kws_5034.wav,小天同学,neg/cmd_5034.wav,
+NEG,5035,neg/kws_5035.wav,小天才,neg/cmd_5035.wav,
+NEG,5036,neg/kws_5036.wav,小钱小钱,neg/cmd_5036.wav,
+NEG,5037,neg/kws_5037.wav,小美小美,neg/cmd_5037.wav,
+NEG,5038,neg/kws_5038.wav,小天同学,neg/cmd_5038.wav,
+NEG,5041,neg/kws_5041.wav,小天才,neg/cmd_5041.wav,
+NEG,5042,neg/kws_5042.wav,小天同学,neg/cmd_5042.wav,
+NEG,5043,neg/kws_5043.wav,小点小点,neg/cmd_5043.wav,
+NEG,5044,neg/kws_5044.wav,小惟小惟,neg/cmd_5044.wav,
+NEG,5045,neg/kws_5045.wav,小美小美,neg/cmd_5045.wav,
+NEG,5046,neg/kws_5046.wav,小天同学,neg/cmd_5046.wav,
+NEG,5047,neg/kws_5047.wav,hicolmo,neg/cmd_5047.wav,
+NEG,5048,neg/kws_5048.wav,小编小编,neg/cmd_5048.wav,
+NEG,5049,neg/kws_5049.wav,小钱小钱,neg/cmd_5049.wav,
+NEG,5050,neg/kws_5050.wav,小美小美,neg/cmd_5050.wav,
+NEG,5051,neg/kws_5051.wav,你好天天,neg/cmd_5051.wav,
+NEG,5052,neg/kws_5052.wav,hicolmo,neg/cmd_5052.wav,
+NEG,5054,neg/kws_5054.wav,天天同学,neg/cmd_5054.wav,
+NEG,5055,neg/kws_5055.wav,小美小美,neg/cmd_5055.wav,
+NEG,5056,neg/kws_5056.wav,你好小天,neg/cmd_5056.wav,
+NEG,5057,neg/kws_5057.wav,hicolmo,neg/cmd_5057.wav,
+NEG,5058,neg/kws_5058.wav,小T小T,neg/cmd_5058.wav,
+NEG,5059,neg/kws_5059.wav,小钱小钱,neg/cmd_5059.wav,
+NEG,5060,neg/kws_5060.wav,嗨扫地机,neg/cmd_5060.wav,
+NEG,5061,neg/kws_5061.wav,大喜大喜,neg/cmd_5061.wav,
+NEG,5062,neg/kws_5062.wav,hicolmo,neg/cmd_5062.wav,
+NEG,5064,neg/kws_5064.wav,hicolmo,neg/cmd_5064.wav,
+NEG,5065,neg/kws_5065.wav,小编小编,neg/cmd_5065.wav,
+NEG,5066,neg/kws_5066.wav,小天才,neg/cmd_5066.wav,
+NEG,5067,neg/kws_5067.wav,小天小天,neg/cmd_5067.wav,
+NEG,5069,neg/kws_5069.wav,hicolmo,neg/cmd_5069.wav,
+NEG,5070,neg/kws_5070.wav,hicolmo,neg/cmd_5070.wav,
+NEG,5071,neg/kws_5071.wav,小美小美,neg/cmd_5071.wav,
+NEG,5072,neg/kws_5072.wav,小惟小惟,neg/cmd_5072.wav,
+NEG,5074,neg/kws_5074.wav,小惟小惟,neg/cmd_5074.wav,
+NEG,5075,neg/kws_5075.wav,小惟小惟,neg/cmd_5075.wav,
+NEG,5076,neg/kws_5076.wav,你好小天,neg/cmd_5076.wav,
+NEG,5078,neg/kws_5078.wav,你好天天,neg/cmd_5078.wav,
+NEG,5079,neg/kws_5079.wav,小天才,neg/cmd_5079.wav,
+NEG,5080,neg/kws_5080.wav,小双同学,neg/cmd_5080.wav,
+NEG,5081,neg/kws_5081.wav,小惟小惟,neg/cmd_5081.wav,
+NEG,5082,neg/kws_5082.wav,小编小编,neg/cmd_5082.wav,
+NEG,5083,neg/kws_5083.wav,小钱小钱,neg/cmd_5083.wav,
+NEG,5084,neg/kws_5084.wav,小惟小惟,neg/cmd_5084.wav,
+NEG,5085,neg/kws_5085.wav,小惟小惟,neg/cmd_5085.wav,
+NEG,5086,neg/kws_5086.wav,小美小美,neg/cmd_5086.wav,
+NEG,5087,neg/kws_5087.wav,你好天天,neg/cmd_5087.wav,
+NEG,5088,neg/kws_5088.wav,你好天天,neg/cmd_5088.wav,
+NEG,5089,neg/kws_5089.wav,小天同学,neg/cmd_5089.wav,
+NEG,5090,neg/kws_5090.wav,小天小天,neg/cmd_5090.wav,
+NEG,5091,neg/kws_5091.wav,hicolmo,neg/cmd_5091.wav,
+NEG,5092,neg/kws_5092.wav,hicolmo,neg/cmd_5092.wav,
+NEG,5093,neg/kws_5093.wav,你好小天,neg/cmd_5093.wav,
+NEG,5094,neg/kws_5094.wav,小天小天,neg/cmd_5094.wav,
+NEG,5095,neg/kws_5095.wav,hicolmo,neg/cmd_5095.wav,
+NEG,5096,neg/kws_5096.wav,小双同学,neg/cmd_5096.wav,
+NEG,5097,neg/kws_5097.wav,嗨机器人,neg/cmd_5097.wav,
+NEG,5098,neg/kws_5098.wav,小T小T,neg/cmd_5098.wav,
+NEG,5099,neg/kws_5099.wav,hicolmo,neg/cmd_5099.wav,
+NEG,5101,neg/kws_5101.wav,小惟小惟,neg/cmd_5101.wav,
+NEG,5102,neg/kws_5102.wav,小天同学,neg/cmd_5102.wav,
+NEG,5104,neg/kws_5104.wav,天天同学,neg/cmd_5104.wav,
+NEG,5105,neg/kws_5105.wav,小钱小钱,neg/cmd_5105.wav,
+NEG,5106,neg/kws_5106.wav,小惟小惟,neg/cmd_5106.wav,
+NEG,5107,neg/kws_5107.wav,hicolmo,neg/cmd_5107.wav,
+NEG,5108,neg/kws_5108.wav,你好小双,neg/cmd_5108.wav,
+NEG,5109,neg/kws_5109.wav,hicolmo,neg/cmd_5109.wav,
+NEG,5110,neg/kws_5110.wav,嗨机器人,neg/cmd_5110.wav,
+NEG,5111,neg/kws_5111.wav,小点小点,neg/cmd_5111.wav,
+NEG,5112,neg/kws_5112.wav,hicolmo,neg/cmd_5112.wav,
+NEG,5113,neg/kws_5113.wav,小天同学,neg/cmd_5113.wav,
+NEG,5114,neg/kws_5114.wav,小美小美,neg/cmd_5114.wav,
+NEG,5115,neg/kws_5115.wav,小T小T,neg/cmd_5115.wav,
+NEG,5116,neg/kws_5116.wav,小美小美,neg/cmd_5116.wav,
+NEG,5117,neg/kws_5117.wav,小美小美,neg/cmd_5117.wav,
+NEG,5118,neg/kws_5118.wav,嗨机器人,neg/cmd_5118.wav,
+NEG,5120,neg/kws_5120.wav,小双同学,neg/cmd_5120.wav,
+NEG,5121,neg/kws_5121.wav,小编小编,neg/cmd_5121.wav,
+NEG,5123,neg/kws_5123.wav,小美小美,neg/cmd_5123.wav,
+NEG,5124,neg/kws_5124.wav,小惟小惟,neg/cmd_5124.wav,
+NEG,5125,neg/kws_5125.wav,小点小点,neg/cmd_5125.wav,
+NEG,5126,neg/kws_5126.wav,小天同学,neg/cmd_5126.wav,
+NEG,5127,neg/kws_5127.wav,小T小T,neg/cmd_5127.wav,
+NEG,5128,neg/kws_5128.wav,你好小天,neg/cmd_5128.wav,
+NEG,5129,neg/kws_5129.wav,小双同学,neg/cmd_5129.wav,
+NEG,5130,neg/kws_5130.wav,天天同学,neg/cmd_5130.wav,
+NEG,5131,neg/kws_5131.wav,小惟小惟,neg/cmd_5131.wav,
+NEG,5132,neg/kws_5132.wav,嗨扫地机,neg/cmd_5132.wav,
+NEG,5133,neg/kws_5133.wav,小双同学,neg/cmd_5133.wav,
+NEG,5134,neg/kws_5134.wav,hicolmo,neg/cmd_5134.wav,
+NEG,5135,neg/kws_5135.wav,小天同学,neg/cmd_5135.wav,
+NEG,5136,neg/kws_5136.wav,小点小点,neg/cmd_5136.wav,
+NEG,5137,neg/kws_5137.wav,小美小美,neg/cmd_5137.wav,
+NEG,5138,neg/kws_5138.wav,小点小点,neg/cmd_5138.wav,
+NEG,5139,neg/kws_5139.wav,嗨扫地机,neg/cmd_5139.wav,
+NEG,5140,neg/kws_5140.wav,小惟小惟,neg/cmd_5140.wav,
+NEG,5141,neg/kws_5141.wav,小天才,neg/cmd_5141.wav,
+NEG,5142,neg/kws_5142.wav,小惟小惟,neg/cmd_5142.wav,
+NEG,5143,neg/kws_5143.wav,小点小点,neg/cmd_5143.wav,
+NEG,5144,neg/kws_5144.wav,hicolmo,neg/cmd_5144.wav,
+NEG,5145,neg/kws_5145.wav,小天小天,neg/cmd_5145.wav,
+NEG,5146,neg/kws_5146.wav,小美小美,neg/cmd_5146.wav,
+NEG,5147,neg/kws_5147.wav,小甜甜,neg/cmd_5147.wav,
+NEG,5148,neg/kws_5148.wav,小甜甜,neg/cmd_5148.wav,
+NEG,5149,neg/kws_5149.wav,小美小美,neg/cmd_5149.wav,
+NEG,5150,neg/kws_5150.wav,小惟小惟,neg/cmd_5150.wav,
+NEG,5151,neg/kws_5151.wav,小双同学,neg/cmd_5151.wav,
+NEG,5152,neg/kws_5152.wav,小双同学,neg/cmd_5152.wav,
+NEG,5153,neg/kws_5153.wav,小T小T,neg/cmd_5153.wav,
+NEG,5154,neg/kws_5154.wav,hicolmo,neg/cmd_5154.wav,
+NEG,5155,neg/kws_5155.wav,hicolmo,neg/cmd_5155.wav,
+NEG,5156,neg/kws_5156.wav,hicolmo,neg/cmd_5156.wav,
+NEG,5157,neg/kws_5157.wav,小美小美,neg/cmd_5157.wav,
+NEG,5158,neg/kws_5158.wav,小天同学,neg/cmd_5158.wav,
+NEG,5159,neg/kws_5159.wav,嗨扫地机,neg/cmd_5159.wav,
+NEG,5160,neg/kws_5160.wav,hicolmo,neg/cmd_5160.wav,
+NEG,5161,neg/kws_5161.wav,你好小天,neg/cmd_5161.wav,
+NEG,5162,neg/kws_5162.wav,小惟小惟,neg/cmd_5162.wav,
+NEG,5163,neg/kws_5163.wav,嗨机器人,neg/cmd_5163.wav,
+NEG,5164,neg/kws_5164.wav,你好天天,neg/cmd_5164.wav,
+NEG,5165,neg/kws_5165.wav,嗨机器人,neg/cmd_5165.wav,
+NEG,5166,neg/kws_5166.wav,小天同学,neg/cmd_5166.wav,
+NEG,5167,neg/kws_5167.wav,小甜甜,neg/cmd_5167.wav,
+NEG,5168,neg/kws_5168.wav,hicolmo,neg/cmd_5168.wav,
+NEG,5169,neg/kws_5169.wav,小点小点,neg/cmd_5169.wav,
+NEG,5170,neg/kws_5170.wav,嗨机器人,neg/cmd_5170.wav,
+NEG,5171,neg/kws_5171.wav,小美小美,neg/cmd_5171.wav,
+NEG,5172,neg/kws_5172.wav,小惟小惟,neg/cmd_5172.wav,
+NEG,5173,neg/kws_5173.wav,小美小美,neg/cmd_5173.wav,
+NEG,5174,neg/kws_5174.wav,小编小编,neg/cmd_5174.wav,
+NEG,5176,neg/kws_5176.wav,hicolmo,neg/cmd_5176.wav,
+NEG,5177,neg/kws_5177.wav,小美小美,neg/cmd_5177.wav,
+NEG,5178,neg/kws_5178.wav,你好天天,neg/cmd_5178.wav,
+NEG,5179,neg/kws_5179.wav,小甜甜,neg/cmd_5179.wav,
+NEG,5180,neg/kws_5180.wav,空调开机,neg/cmd_5180.wav,
+NEG,5181,neg/kws_5181.wav,小美小美,neg/cmd_5181.wav,
+NEG,5182,neg/kws_5182.wav,你好小双,neg/cmd_5182.wav,
+NEG,5183,neg/kws_5183.wav,嗨机器人,neg/cmd_5183.wav,
+NEG,5184,neg/kws_5184.wav,小美小美,neg/cmd_5184.wav,
+NEG,5185,neg/kws_5185.wav,小惟小惟,neg/cmd_5185.wav,
+NEG,5186,neg/kws_5186.wav,小天小天,neg/cmd_5186.wav,
+NEG,5187,neg/kws_5187.wav,小T小T,neg/cmd_5187.wav,
+NEG,5188,neg/kws_5188.wav,你好小双,neg/cmd_5188.wav,
+NEG,5189,neg/kws_5189.wav,小甜甜,neg/cmd_5189.wav,
+NEG,5190,neg/kws_5190.wav,你好天天,neg/cmd_5190.wav,
+NEG,5191,neg/kws_5191.wav,小钱小钱,neg/cmd_5191.wav,
+NEG,5192,neg/kws_5192.wav,小天小天,neg/cmd_5192.wav,
+NEG,5193,neg/kws_5193.wav,小天同学,neg/cmd_5193.wav,
+NEG,5194,neg/kws_5194.wav,天天同学,neg/cmd_5194.wav,
+NEG,5195,neg/kws_5195.wav,小美小美,neg/cmd_5195.wav,
+NEG,5196,neg/kws_5196.wav,大喜大喜,neg/cmd_5196.wav,
+NEG,5197,neg/kws_5197.wav,小美小美,neg/cmd_5197.wav,
+NEG,5198,neg/kws_5198.wav,嗨扫地机,neg/cmd_5198.wav,
+NEG,5199,neg/kws_5199.wav,小美小美,neg/cmd_5199.wav,
+NEG,5200,neg/kws_5200.wav,小惟小惟,neg/cmd_5200.wav,
+NEG,5201,neg/kws_5201.wav,小天才,neg/cmd_5201.wav,
+NEG,5202,neg/kws_5202.wav,小甜甜,neg/cmd_5202.wav,
+NEG,5203,neg/kws_5203.wav,嗨扫地机,neg/cmd_5203.wav,
+NEG,5204,neg/kws_5204.wav,小点小点,neg/cmd_5204.wav,
+NEG,5205,neg/kws_5205.wav,hicolmo,neg/cmd_5205.wav,
+NEG,5206,neg/kws_5206.wav,小双同学,neg/cmd_5206.wav,
+NEG,5207,neg/kws_5207.wav,小美小美,neg/cmd_5207.wav,
+NEG,5208,neg/kws_5208.wav,嗨机器人,neg/cmd_5208.wav,
+NEG,5209,neg/kws_5209.wav,小T小T,neg/cmd_5209.wav,
+NEG,5210,neg/kws_5210.wav,嗨机器人,neg/cmd_5210.wav,
+NEG,5211,neg/kws_5211.wav,hicolmo,neg/cmd_5211.wav,
+NEG,5212,neg/kws_5212.wav,嗨扫地机,neg/cmd_5212.wav,
+NEG,5213,neg/kws_5213.wav,hicolmo,neg/cmd_5213.wav,
+NEG,5214,neg/kws_5214.wav,大喜大喜,neg/cmd_5214.wav,
+NEG,5215,neg/kws_5215.wav,天天同学,neg/cmd_5215.wav,
+NEG,5216,neg/kws_5216.wav,小甜甜,neg/cmd_5216.wav,
+NEG,5217,neg/kws_5217.wav,小天才,neg/cmd_5217.wav,
+NEG,5218,neg/kws_5218.wav,小惟小惟,neg/cmd_5218.wav,
+NEG,5219,neg/kws_5219.wav,小美小美,neg/cmd_5219.wav,
+NEG,5220,neg/kws_5220.wav,你好小天,neg/cmd_5220.wav,
+NEG,5221,neg/kws_5221.wav,小编小编,neg/cmd_5221.wav,
+NEG,5222,neg/kws_5222.wav,空调开机,neg/cmd_5222.wav,
+NEG,5223,neg/kws_5223.wav,小双同学,neg/cmd_5223.wav,
+NEG,5224,neg/kws_5224.wav,小钱小钱,neg/cmd_5224.wav,
+NEG,5225,neg/kws_5225.wav,小编小编,neg/cmd_5225.wav,
+NEG,5226,neg/kws_5226.wav,小编小编,neg/cmd_5226.wav,
+NEG,5227,neg/kws_5227.wav,你好天天,neg/cmd_5227.wav,
+NEG,5228,neg/kws_5228.wav,小美小美,neg/cmd_5228.wav,
+NEG,5229,neg/kws_5229.wav,空调开机,neg/cmd_5229.wav,
+NEG,5230,neg/kws_5230.wav,小天小天,neg/cmd_5230.wav,
+NEG,5232,neg/kws_5232.wav,小双同学,neg/cmd_5232.wav,
+NEG,5233,neg/kws_5233.wav,hicolmo,neg/cmd_5233.wav,
+NEG,5234,neg/kws_5234.wav,小美小美,neg/cmd_5234.wav,
+NEG,5235,neg/kws_5235.wav,hicolmo,neg/cmd_5235.wav,
+NEG,5236,neg/kws_5236.wav,小天小天,neg/cmd_5236.wav,
+NEG,5237,neg/kws_5237.wav,小惟小惟,neg/cmd_5237.wav,
+NEG,5239,neg/kws_5239.wav,小天小天,neg/cmd_5239.wav,
+NEG,5240,neg/kws_5240.wav,空调开机,neg/cmd_5240.wav,
+NEG,5241,neg/kws_5241.wav,你好小天,neg/cmd_5241.wav,
+NEG,5242,neg/kws_5242.wav,你好天天,neg/cmd_5242.wav,
+NEG,5243,neg/kws_5243.wav,天天同学,neg/cmd_5243.wav,
+NEG,5244,neg/kws_5244.wav,小天才,neg/cmd_5244.wav,
+NEG,5245,neg/kws_5245.wav,小天才,neg/cmd_5245.wav,
+NEG,5246,neg/kws_5246.wav,天天同学,neg/cmd_5246.wav,
+NEG,5247,neg/kws_5247.wav,大喜大喜,neg/cmd_5247.wav,
+NEG,5248,neg/kws_5248.wav,hicolmo,neg/cmd_5248.wav,
+NEG,5251,neg/kws_5251.wav,小惟小惟,neg/cmd_5251.wav,
+NEG,5252,neg/kws_5252.wav,小美小美,neg/cmd_5252.wav,
+NEG,5253,neg/kws_5253.wav,hicolmo,neg/cmd_5253.wav,
+NEG,5254,neg/kws_5254.wav,小美小美,neg/cmd_5254.wav,
+NEG,5255,neg/kws_5255.wav,小双同学,neg/cmd_5255.wav,
+NEG,5256,neg/kws_5256.wav,你好小天,neg/cmd_5256.wav,
+NEG,5257,neg/kws_5257.wav,你好小天,neg/cmd_5257.wav,
+NEG,5258,neg/kws_5258.wav,小编小编,neg/cmd_5258.wav,
+NEG,5259,neg/kws_5259.wav,你好小双,neg/cmd_5259.wav,
+NEG,5260,neg/kws_5260.wav,小天小天,neg/cmd_5260.wav,
+NEG,5261,neg/kws_5261.wav,小编小编,neg/cmd_5261.wav,
+NEG,5262,neg/kws_5262.wav,hicolmo,neg/cmd_5262.wav,
+NEG,5263,neg/kws_5263.wav,嗨扫地机,neg/cmd_5263.wav,
+NEG,5264,neg/kws_5264.wav,嗨机器人,neg/cmd_5264.wav,
+NEG,5266,neg/kws_5266.wav,小编小编,neg/cmd_5266.wav,
+NEG,5267,neg/kws_5267.wav,嗨机器人,neg/cmd_5267.wav,
+NEG,5268,neg/kws_5268.wav,小美小美,neg/cmd_5268.wav,
+NEG,5269,neg/kws_5269.wav,hicolmo,neg/cmd_5269.wav,
+NEG,5272,neg/kws_5272.wav,小点小点,neg/cmd_5272.wav,
+NEG,5273,neg/kws_5273.wav,hicolmo,neg/cmd_5273.wav,
+NEG,5274,neg/kws_5274.wav,小T小T,neg/cmd_5274.wav,
+NEG,5276,neg/kws_5276.wav,小天小天,neg/cmd_5276.wav,
+NEG,5277,neg/kws_5277.wav,小天才,neg/cmd_5277.wav,
+NEG,5278,neg/kws_5278.wav,小美小美,neg/cmd_5278.wav,
+NEG,5279,neg/kws_5279.wav,小惟小惟,neg/cmd_5279.wav,
+NEG,5280,neg/kws_5280.wav,小T小T,neg/cmd_5280.wav,
+NEG,5281,neg/kws_5281.wav,天天同学,neg/cmd_5281.wav,
+NEG,5282,neg/kws_5282.wav,小双同学,neg/cmd_5282.wav,
+NEG,5283,neg/kws_5283.wav,小天才,neg/cmd_5283.wav,
+NEG,5285,neg/kws_5285.wav,小甜甜,neg/cmd_5285.wav,
+NEG,5286,neg/kws_5286.wav,小编小编,neg/cmd_5286.wav,
+NEG,5287,neg/kws_5287.wav,小美小美,neg/cmd_5287.wav,
+NEG,5288,neg/kws_5288.wav,小点小点,neg/cmd_5288.wav,
+NEG,5289,neg/kws_5289.wav,hicolmo,neg/cmd_5289.wav,
+NEG,5290,neg/kws_5290.wav,你好小天,neg/cmd_5290.wav,
+NEG,5291,neg/kws_5291.wav,小天小天,neg/cmd_5291.wav,
+NEG,5292,neg/kws_5292.wav,天天同学,neg/cmd_5292.wav,
+NEG,5293,neg/kws_5293.wav,hicolmo,neg/cmd_5293.wav,
+NEG,5294,neg/kws_5294.wav,天天同学,neg/cmd_5294.wav,
+NEG,5295,neg/kws_5295.wav,小天才,neg/cmd_5295.wav,
+NEG,5296,neg/kws_5296.wav,小双同学,neg/cmd_5296.wav,
+NEG,5297,neg/kws_5297.wav,小天才,neg/cmd_5297.wav,
+NEG,5298,neg/kws_5298.wav,嗨机器人,neg/cmd_5298.wav,
+NEG,5299,neg/kws_5299.wav,小惟小惟,neg/cmd_5299.wav,
+NEG,5300,neg/kws_5300.wav,小编小编,neg/cmd_5300.wav,
+NEG,5301,neg/kws_5301.wav,天天同学,neg/cmd_5301.wav,
+NEG,5302,neg/kws_5302.wav,空调开机,neg/cmd_5302.wav,
+NEG,5303,neg/kws_5303.wav,嗨机器人,neg/cmd_5303.wav,
+NEG,5304,neg/kws_5304.wav,嗨扫地机,neg/cmd_5304.wav,
+NEG,5305,neg/kws_5305.wav,小惟小惟,neg/cmd_5305.wav,
+NEG,5306,neg/kws_5306.wav,小惟小惟,neg/cmd_5306.wav,
+NEG,5307,neg/kws_5307.wav,小甜甜,neg/cmd_5307.wav,
+NEG,5308,neg/kws_5308.wav,小美小美,neg/cmd_5308.wav,
+NEG,5309,neg/kws_5309.wav,小点小点,neg/cmd_5309.wav,
+NEG,5310,neg/kws_5310.wav,你好小天,neg/cmd_5310.wav,
+NEG,5311,neg/kws_5311.wav,大喜大喜,neg/cmd_5311.wav,
+NEG,5312,neg/kws_5312.wav,大喜大喜,neg/cmd_5312.wav,
+NEG,5313,neg/kws_5313.wav,小惟小惟,neg/cmd_5313.wav,
+NEG,5314,neg/kws_5314.wav,小天小天,neg/cmd_5314.wav,
+NEG,5315,neg/kws_5315.wav,小钱小钱,neg/cmd_5315.wav,
+NEG,5316,neg/kws_5316.wav,hicolmo,neg/cmd_5316.wav,
+NEG,5317,neg/kws_5317.wav,小天小天,neg/cmd_5317.wav,
+NEG,5318,neg/kws_5318.wav,小T小T,neg/cmd_5318.wav,
+NEG,5319,neg/kws_5319.wav,你好小双,neg/cmd_5319.wav,
+NEG,5320,neg/kws_5320.wav,天天同学,neg/cmd_5320.wav,
+NEG,5321,neg/kws_5321.wav,hicolmo,neg/cmd_5321.wav,
+NEG,5322,neg/kws_5322.wav,小美小美,neg/cmd_5322.wav,
+NEG,5323,neg/kws_5323.wav,嗨扫地机,neg/cmd_5323.wav,
+NEG,5324,neg/kws_5324.wav,hicolmo,neg/cmd_5324.wav,
+NEG,5325,neg/kws_5325.wav,小天小天,neg/cmd_5325.wav,
+NEG,5326,neg/kws_5326.wav,小甜甜,neg/cmd_5326.wav,
+NEG,5327,neg/kws_5327.wav,大喜大喜,neg/cmd_5327.wav,
+NEG,5328,neg/kws_5328.wav,你好小天,neg/cmd_5328.wav,
+NEG,5329,neg/kws_5329.wav,hicolmo,neg/cmd_5329.wav,
+NEG,5330,neg/kws_5330.wav,hicolmo,neg/cmd_5330.wav,
+NEG,5331,neg/kws_5331.wav,小惟小惟,neg/cmd_5331.wav,
+NEG,5332,neg/kws_5332.wav,小钱小钱,neg/cmd_5332.wav,
+NEG,5333,neg/kws_5333.wav,大喜大喜,neg/cmd_5333.wav,
+NEG,5335,neg/kws_5335.wav,小天同学,neg/cmd_5335.wav,
+NEG,5336,neg/kws_5336.wav,小美小美,neg/cmd_5336.wav,
+NEG,5337,neg/kws_5337.wav,小惟小惟,neg/cmd_5337.wav,
+NEG,5339,neg/kws_5339.wav,你好天天,neg/cmd_5339.wav,
+NEG,5340,neg/kws_5340.wav,hicolmo,neg/cmd_5340.wav,
+NEG,5341,neg/kws_5341.wav,小美小美,neg/cmd_5341.wav,
+NEG,5342,neg/kws_5342.wav,小天才,neg/cmd_5342.wav,
+NEG,5343,neg/kws_5343.wav,hicolmo,neg/cmd_5343.wav,
+NEG,5344,neg/kws_5344.wav,小T小T,neg/cmd_5344.wav,
+NEG,5345,neg/kws_5345.wav,小惟小惟,neg/cmd_5345.wav,
+NEG,5346,neg/kws_5346.wav,小惟小惟,neg/cmd_5346.wav,
+NEG,5347,neg/kws_5347.wav,小惟小惟,neg/cmd_5347.wav,
+NEG,5348,neg/kws_5348.wav,小双同学,neg/cmd_5348.wav,
+NEG,5349,neg/kws_5349.wav,小美小美,neg/cmd_5349.wav,
+NEG,5350,neg/kws_5350.wav,小惟小惟,neg/cmd_5350.wav,
+NEG,5351,neg/kws_5351.wav,hicolmo,neg/cmd_5351.wav,
+NEG,5352,neg/kws_5352.wav,小惟小惟,neg/cmd_5352.wav,
+NEG,5353,neg/kws_5353.wav,hicolmo,neg/cmd_5353.wav,
+NEG,5354,neg/kws_5354.wav,小钱小钱,neg/cmd_5354.wav,
+NEG,5355,neg/kws_5355.wav,小T小T,neg/cmd_5355.wav,
+NEG,5356,neg/kws_5356.wav,hicolmo,neg/cmd_5356.wav,
+NEG,5357,neg/kws_5357.wav,小T小T,neg/cmd_5357.wav,
+NEG,5358,neg/kws_5358.wav,小甜甜,neg/cmd_5358.wav,
+NEG,5359,neg/kws_5359.wav,小双同学,neg/cmd_5359.wav,
+NEG,5360,neg/kws_5360.wav,小惟小惟,neg/cmd_5360.wav,
+NEG,5361,neg/kws_5361.wav,小惟小惟,neg/cmd_5361.wav,
+NEG,5362,neg/kws_5362.wav,小点小点,neg/cmd_5362.wav,
+NEG,5363,neg/kws_5363.wav,小美小美,neg/cmd_5363.wav,
+NEG,5364,neg/kws_5364.wav,小天同学,neg/cmd_5364.wav,
+NEG,5365,neg/kws_5365.wav,hicolmo,neg/cmd_5365.wav,
+NEG,5366,neg/kws_5366.wav,hicolmo,neg/cmd_5366.wav,
+NEG,5367,neg/kws_5367.wav,你好小天,neg/cmd_5367.wav,
+NEG,5368,neg/kws_5368.wav,小美小美,neg/cmd_5368.wav,
+NEG,5369,neg/kws_5369.wav,嗨机器人,neg/cmd_5369.wav,
+NEG,5370,neg/kws_5370.wav,小T小T,neg/cmd_5370.wav,
+NEG,5371,neg/kws_5371.wav,小天才,neg/cmd_5371.wav,
+NEG,5372,neg/kws_5372.wav,小点小点,neg/cmd_5372.wav,
+NEG,5373,neg/kws_5373.wav,大喜大喜,neg/cmd_5373.wav,
+NEG,5374,neg/kws_5374.wav,小天才,neg/cmd_5374.wav,
+NEG,5375,neg/kws_5375.wav,小惟小惟,neg/cmd_5375.wav,
+NEG,5376,neg/kws_5376.wav,小美小美,neg/cmd_5376.wav,
+NEG,5377,neg/kws_5377.wav,hicolmo,neg/cmd_5377.wav,
+NEG,5378,neg/kws_5378.wav,嗨机器人,neg/cmd_5378.wav,
+NEG,5379,neg/kws_5379.wav,小惟小惟,neg/cmd_5379.wav,
+NEG,5380,neg/kws_5380.wav,hicolmo,neg/cmd_5380.wav,
+NEG,5381,neg/kws_5381.wav,小惟小惟,neg/cmd_5381.wav,
+NEG,5382,neg/kws_5382.wav,小天同学,neg/cmd_5382.wav,
+NEG,5383,neg/kws_5383.wav,小点小点,neg/cmd_5383.wav,
+NEG,5384,neg/kws_5384.wav,大喜大喜,neg/cmd_5384.wav,
+NEG,5385,neg/kws_5385.wav,小T小T,neg/cmd_5385.wav,
+NEG,5386,neg/kws_5386.wav,小钱小钱,neg/cmd_5386.wav,
+NEG,5387,neg/kws_5387.wav,小编小编,neg/cmd_5387.wav,
+NEG,5388,neg/kws_5388.wav,嗨扫地机,neg/cmd_5388.wav,
+NEG,5389,neg/kws_5389.wav,小甜甜,neg/cmd_5389.wav,
+NEG,5390,neg/kws_5390.wav,天天同学,neg/cmd_5390.wav,
+NEG,5391,neg/kws_5391.wav,你好天天,neg/cmd_5391.wav,
+NEG,5392,neg/kws_5392.wav,hicolmo,neg/cmd_5392.wav,
+NEG,5393,neg/kws_5393.wav,小美小美,neg/cmd_5393.wav,
+NEG,5394,neg/kws_5394.wav,小美小美,neg/cmd_5394.wav,
+NEG,5395,neg/kws_5395.wav,嗨扫地机,neg/cmd_5395.wav,
+NEG,5396,neg/kws_5396.wav,你好小双,neg/cmd_5396.wav,
+NEG,5397,neg/kws_5397.wav,天天同学,neg/cmd_5397.wav,
+NEG,5398,neg/kws_5398.wav,你好小双,neg/cmd_5398.wav,
+NEG,5399,neg/kws_5399.wav,小T小T,neg/cmd_5399.wav,
+NEG,5010,neg/kws_5010.wav,空调开机,neg/cmd_5010.wav,
+NEG,5021,neg/kws_5021.wav,空调开机,neg/cmd_5021.wav,
+NEG,5027,neg/kws_5027.wav,空调开机,neg/cmd_5027.wav,
+NEG,5039,neg/kws_5039.wav,你好天天,neg/cmd_5039.wav,
+NEG,5053,neg/kws_5053.wav,空调开机,neg/cmd_5053.wav,
+NEG,5073,neg/kws_5073.wav,小T小T,neg/cmd_5073.wav,
+NEG,5077,neg/kws_5077.wav,空调开机,neg/cmd_5077.wav,
+NEG,5100,neg/kws_5100.wav,空调开机,neg/cmd_5100.wav,
+NEG,5103,neg/kws_5103.wav,小天才,neg/cmd_5103.wav,
+NEG,5122,neg/kws_5122.wav,你好天天,neg/cmd_5122.wav,
+NEG,5238,neg/kws_5238.wav,空调开机,neg/cmd_5238.wav,
+NEG,5249,neg/kws_5249.wav,空调开机,neg/cmd_5249.wav,
+NEG,5250,neg/kws_5250.wav,空调开机,neg/cmd_5250.wav,
+NEG,5265,neg/kws_5265.wav,空调开机,neg/cmd_5265.wav,
+NEG,5270,neg/kws_5270.wav,空调开机,neg/cmd_5270.wav,
+NEG,5271,neg/kws_5271.wav,嗨扫地机,neg/cmd_5271.wav,
+NEG,5338,neg/kws_5338.wav,空调开机,neg/cmd_5338.wav,

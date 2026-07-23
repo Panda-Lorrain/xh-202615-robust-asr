@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# L40/L20 一键部署(幂等, 默认关 SE 跳过 .venv_se)。2026-07-18 阶段0 准备。
-# 用法: 在项目根  bash code/deploy_l40.sh
-#   BAODI_SE_DEPLOY=1 bash code/deploy_l40.sh   # 同时建 .venv_se(复现 SE A/B 才需要)
-#   HF_ENDPOINT=https://hf-mirror.com bash code/deploy_l40.sh  # 走镜像(默认已设)
-# 日志: 代码直接输出, 远端跑建议  bash code/deploy_l40.sh 2>&1 | tee /root/deploy.log
+# L20 一键部署(幂等, 默认关 SE 跳过 .venv_se; L40 可作近似, 见 runbook §6.2 折算)。2026-07-18 阶段0 准备, 2026-07-23 l40→l20 正名。
+# 用法: 在项目根  bash code/deploy_l20.sh
+#   BAODI_SE_DEPLOY=1 bash code/deploy_l20.sh   # 同时建 .venv_se(复现 SE A/B 才需要)
+#   HF_ENDPOINT=https://hf-mirror.com bash code/deploy_l20.sh  # 走镜像(默认已设)
+# 日志: 代码直接输出, 远端跑建议  bash code/deploy_l20.sh 2>&1 | tee /root/deploy.log
 # 前置: AutoDL L40 实例 + datasetA/ 已上传(或本机 scp 上来)。
 # 详见 docs/L20效率实测_runbook_2026-07-15.md(顶部 2026-07-18 勘误 + §3)。
 set -euo pipefail
@@ -78,5 +78,5 @@ if ! done_ code/pos_pairs_datasetA.json; then
   code/.venv/bin/python code/make_pairs_from_datasetA.py
 else log "pairs 已存在, 跳过"; fi
 
-log "✅ 部署完成。下一步: SMOKE=1 bash code/run_efficiency_l40.sh  (冒烟 5 条)"
-log "          然后:        bash code/run_efficiency_l40.sh          (全量 + 换算)"
+log "✅ 部署完成。下一步: SMOKE=1 bash code/run_efficiency_l20.sh  (冒烟 5 条)"
+log "          然后:        bash code/run_efficiency_l20.sh          (全量 + 换算)"

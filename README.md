@@ -314,7 +314,7 @@ python stno_experiment.py
 真测 + 稳定性闭环完成，当前算分 **53.3/80**（qwen + content_gate，w1=w2=0.4）：
 
 - 📄 **答辩准备**（最高 ROI）：算分 / FAQ / README / 进度图 已刷到 07-19；待演练稿
-- ⚡ **效率腿 L20 实测**（等租算力）：4060 关 SE overall_rtf 0.142，L20 batch=1 待测；`deploy_l40.sh` 就绪
+- ⚡ **效率腿 L20 实测**（等租算力）：4060 关 SE overall_rtf 0.142，L20 batch=1 待测；`deploy_l20.sh` 就绪
 - ❓ **命门 — 问主办方**：排名公式 w1/w2 值 + RTF 计时口径（含加载?）+ 效率打分范式
 
 ### ⏭ 未来里程碑

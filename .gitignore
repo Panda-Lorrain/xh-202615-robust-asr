@@ -37,7 +37,10 @@ code/DiCoW-inference/
 code/annot_pack/
 code/experiments/
 code/out_*/
+code/runs/out_*/
+code/runs/_*.json
 code/submit_out*/
+core_source/
 code/verify_repro_out/
 code/patches/
 code/pipeline_*out/
