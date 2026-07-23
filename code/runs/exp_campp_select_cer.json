@@ -1,0 +1,24 @@
+{
+  "dead": {
+    "ws_cer": 0.4385,
+    "cp_cer": 0.4816,
+    "oracle_cer": 0.2925,
+    "delta": 0.0431,
+    "oracle_delta": -0.146,
+    "n_better": 7,
+    "n_worse": 10,
+    "n_tie": 43,
+    "n": 60
+  },
+  "main": {
+    "ws_cer": 0.5005,
+    "cp_cer": 0.4682,
+    "oracle_cer": 0.3949,
+    "delta": -0.0323,
+    "oracle_delta": -0.1056,
+    "n_better": 8,
+    "n_worse": 6,
+    "n_tie": 46,
+    "n": 60
+  }
+}
