@@ -1,6 +1,6 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
-> 🔴 **2026-07-23 最新（当前恢复点）**：Qwen3 重跑 CAM++/SepFormer **双证伪**——用户核心假设"是 DiCoW 差不是方法错"**不成立**。① CAM++ 声纹强化 GO=否：Qwen3 oracle（exp_spk_oracle_qwen.py，死区60+主战场60）显示 cer_gain 死区+0.146/主战场+0.106（选 target 是问题，部分推翻 vanilla "oracle 0.607 封闭"），但 miss 中正确 target sim≥0.2 仅 0%/21% → 声纹层提不出正确 target（babble 摧毁 who 信号），CAM++ 救不了。② SepFormer GO=否（更狠）：exp_sepformer_qwen.py（死区40）SepFormer+Qwen3 0.687 vs argmax 0.410（Δ+0.277），oracle 0.413≈argmax → 分离没拎出更干净 target。**新发现**：Qwen3 下选 target 是真问题（cer_gain +0.1~0.15），解药在**非声纹 target 选择**（diar 改进/enrollment-conditioned TSE 联合），留新方向线索。CER 腿 qwen 0.3436 天花板坐实，死区物理极限换更强转写器也救不了。答辩硬弹药。产物 code/exp_spk_oracle_qwen.py + exp_sepformer_qwen.py + exp_spk_oracle_qwen_dead/main.json + exp_sepformer_qwen.json。详见下【2026-07-23 Qwen3 重跑】段 + memory `spk-oracle-poc`。
+> 🔴 **2026-07-23 最新（当前恢复点）**：Qwen3 重跑 CAM++/SepFormer **双证伪**——用户核心假设"是 DiCoW 差不是方法错"**不成立**。① CAM++ 声纹强化 GO=否：Qwen3 oracle（exp_spk_oracle_qwen.py，死区60+主战场60）显示 cer_gain 死区+0.146/主战场+0.106（选 target 是问题，部分推翻 vanilla "oracle 0.607 封闭"），但 miss 中正确 target sim≥0.2 仅 0%/21% → 声纹层提不出正确 target（babble 摧毁 who 信号），CAM++ 救不了。② SepFormer GO=否（更狠）：exp_sepformer_qwen.py（死区40）SepFormer+Qwen3 0.687 vs argmax 0.410（Δ+0.277），oracle 0.413≈argmax → 分离没拎出更干净 target。**新发现**：Qwen3 下选 target 是真问题（cer_gain +0.1~0.15），解药在**非声纹 target 选择**（diar 改进/enrollment-conditioned TSE 联合），留新方向线索。CER 腿 qwen 0.3436 天花板坐实，死区物理极限换更强转写器也救不了。答辩硬弹药。**另本轮还做了**: 目录整理(删~5.5G中间产物 + out_*/json/csv归 code/runs/ rename保留历史 + docs/实验结果汇总.md) / 效率迁移性分析(4-agent workflow: 4060→L20三不统一+家居RTF推算实时阈值0.2-0.3 L20外推0.09-0.12优秀) / 非声纹深探全证伪(ASE关键帧net更差 + CAM++替换wespeaker CER噪声内 + Whisper-Sidecar NO-GO无权重绑Whisper净亏) → **CER腿彻底到底, ROI转效率腿+答辩**。commit `6eb1fa6`+`dcff974` 全 push。详见下【2026-07-23】段 + memory `spk-oracle-poc`/`non-voiceprint-target-selection`/`efficiency-portability-audit`。
 
 > 🔴 **2026-07-20 晚 最新（当前恢复点）**：CER 边际探索闭环 — 全量 oracle + ASE-PVAD 实跑**双证伪**，cascaded CER 近极限坐实。用户战略从"答辩 100 分"转向"**初赛进前 10-20 名**"（入围依据 = B 集成绩 + 脚本核查 + 客观指标，**A 集排行榜仅供参考不决定入围**，见 `待确认_主办方口径与外部输入.md`）。核心发现：① 主战场全量 668 oracle **GO=否**（60 条抽样 GO=是 是假象，cer_gain 虚高 3x）② 主战场 78% 损失是音频摧毁（切对 target 也救不回），22% 选错 target ③ ASE-PVAD（出题方 ICASSP2026 论文 #02）实跑**证伪**（救回 26/改错 33，CER +0.004，根因 zero-training：wespeaker 没学过用增强 embedding）④ **不是菜是架构极限**（出题方 NOTSOFAR CHiME-8 冠军死区也翻车），但端到端联合训练路线（没走）可能更强。**下一步用户定：效率腿 L20（最大杠杆，要租算力）/ 接受 CER 天花板保基本盘**。产物**未 commit**（本地）。详见下【2026-07-20 CER 边际探索】段 + memory `mainfield-oracle-full-debunked`。
 
@@ -15,6 +15,51 @@
 > **当前 git**：`master`，本 session commit「标注规范v2工具落地 + 官方CER脚本存档核对」已 push（见 `git log -1`）。改动：`code/build_annotator_pack_v2.py`(新) + `code/eval_metrics_official_ref.py`(新,官方脚本存档) + `code/compare_vs_gold.py`+`code/map_gold_to_v2.py`(新) + `code/recompute_official_cer.json`(重算微调) + `AGENT_HANDOFF.md`。⚠️ `code/annot_pack/` 被 gitignore（标注HTML/音频不入库，仅本地）。下个 agent 先 `git status` 核对。
 
 > **2026-07-16 续 session**：L20 效率腿准备(跨平台改造 8 处 + `efficiency_leg_calc.py` + `docs/L20效率实测_runbook_2026-07-15.md` + `setenv_linux.sh` + pyarrow/PY_SE 守卫) **本地未 commit/push**，`git status` 应见 6 改 + 3 新。详见下【2026-07-16 最新】段。
+
+---
+
+## 【2026-07-23 目录整理 + 效率迁移性 + Qwen3 重跑 + 非声纹深探】CER 腿彻底到底
+
+> **背景**：用户战略"初赛进前 10-20 名"。本 session 主攻 CER 破局（用户核心假设"是 DiCoW 差不是方法错"）+ 顺带目录整理/效率迁移性分析。**结论：CER 腿所有方向探底，qwen 0.3436 真天花板**。commit `6eb1fa6` + `dcff974`，全 push。
+
+### 1. 目录整理（commit 6eb1fa6）
+- 删 ~5.5G 中间产物（`out_*/_work/` 中间音频 + smoke/pycache/log/annot_pack 156M）
+- `out_*/exp/poc/json/csv/html` 归 `code/runs/`（tracked **rename 保留历史**，git add -A 检测）
+- `.gitignore` 加 `code/runs/out_*/` + `core_source/`（产物/重复副本不入库）
+- `docs/实验结果汇总.md` 入库（精华表，删原始大文件留总结）
+- `code/` 从 6.8G → ~1.3G
+
+### 2. 效率迁移性分析（4-agent workflow + memory `efficiency-portability-audit`）
+- **硬件核实**：4060=**AD107 8GB**（非AD104）/ L20=**AD102 中国特供**（算力≈L40的65%），同代 sm_89，量化 kernel 硅片级一致可迁移，但**绝对 RTF 不可外推只相对排序可**，4060→L20≈2.5×（非早期 L40 口径 3.9×）
+- **三不统一**：① batch=16 **不进官方 batch=1 分**（最致命，4060 上 batch 红利到 L20 评分=0）② 绝对 RTF 不能外推 L20≠L40×1.5 ③ int8(bnb) **已证伪**（Whisper +89%/Qwen +299% 慢+损 CER）别再投
+- **必迁移（已做）**：关 SE 省 30.6% RTF / --pairs 加载复用（1838次重载→1次）/ greedy+KV / SDPA（已等价FA2）/ fp16
+- **命门（用户明天问主办方）**：RTF 口径（per-utt 纯推理符合家居真实）+ 映射公式 + 内存口径；用户澄清效率 20% **初赛算**（相对赋分制，比别人快就赢），官网 A 集排行榜暂不显示但初赛评分算
+
+### 3. 家居 RTF 推算（答辩 + 问主办方依据）
+- 家居**两阶段**：注册（enrollment 一次性）+ 识别（每条用预存声纹），效率应只算识别阶段 **per-utt 纯推理**（排除加载/enroll）
+- 实时阈值 RTF **0.2-0.3**（说完<1s 响应），L20 外推 **0.09-0.12 瞬时优秀**
+
+### 4. Qwen3 重跑双证伪（用户"是 DiCoW 差"假设证伪）
+- **CAM++ 声纹强化 GO=否**：Qwen3 oracle（`exp_spk_oracle_qwen.py`，死区60+主战场60）cer_gain 死区+0.146/主战场+0.106（选 target 是真问题，部分推翻 vanilla "oracle 0.607 封闭"），但 miss 正确 target sim≥0.2 仅 0%/21% → 声纹提不出（babble 摧毁 who 信号）
+- **SepFormer GO=否（更狠）**：`exp_sepformer_qwen.py`（死区40）+Qwen3 CER 0.687 vs argmax 0.410（Δ+0.277），oracle 0.413≈argmax → 分离没拎出更干净 target
+- **新发现**：Qwen3 下选 target 是真问题（cer_gain+0.1~0.15），但解药**非声纹**（声纹层提不出）
+
+### 5. 非声纹 target 选择深探（全证伪，CER 腿到底）
+- **ASE 关键帧**（`exp_ase_keyframe_diag.py`）：用混合音远场关键帧选 target **net 更差**（死区53.3%/主战场56.7% < wespeaker 65%/68.3%，关键帧被 babble 污染），域失配假设不成立
+- **CAM++ 替换 wespeaker**（`exp_campp_select_cer.py`）：选对率+10%（主战场78.3% vs 68.3%，**推翻 spk-oracle 笼统结论**——它证伪的是"用sim区分音频可辨度"非"选target speaker"）但 **CER 噪声内**（主战场-0.032/死区+0.043，全量持平），选 target 不是 CER 瓶颈解药（选错条 mel 摧毁主导）
+- **Whisper-Sidecar NO-GO**（3 路 workflow 调研）：①**无公开预训练权重**（README 无，sidecar/TTI/soft-prompt 从零随机初始化，无法 zero-shot 必须自己训 400000 steps/4×GPU）②**绑死 Whisper 不能嫁接 Qwen3**（架构全不兼容），回退 Whisper 0.3436→0.595 **净亏 ~0.11**（target 选择天花板仅 0.14）③**1.8s enrollment 硬失配**（TTI 硬编码 3s）+ clean 数据（LibriMix clean subset）迁移空白，中文 target-talker 论文没验证
+
+### 核心结论
+**CER 0.3436 真天花板**——CAM++/SepFormer/ASE/非声纹/Sidecar 5+ 方向全探底，物理极限坐实。**诚实归因胜利**（别队盲投 SE/声纹/分离，我用硬证据证重 babble 下都救不了）。答辩级硬弹药。
+
+### 产物（commit `6eb1fa6` + `dcff974`，全 push）
+- 脚本：`code/exp_spk_oracle_qwen.py` + `exp_sepformer_qwen.py` + `exp_ase_keyframe_diag.py` + `exp_campp_select_cer.py`
+- 结果：`code/runs/exp_spk_oracle_qwen_{dead,main}.json` + `exp_sepformer_qwen.json` + `exp_ase_keyframe_diag.json` + `exp_campp_select_cer.json`
+- 文档：`docs/实验结果汇总.md`
+- memory：`spk-oracle-poc`（补 Qwen3 段）/ `non-voiceprint-target-selection`（新+POC 结果）/ `efficiency-portability-audit`（新）
+
+### 下一步（按 ROI）
+🥇 **效率腿**（push 跨平台部署 = L20 前提 / 问主办方 RTF 口径+映射公式+内存口径 / 起草问主办方清单）> 🥈 **答辩**（03_答辩FAQ 演练稿，今天 5+ POC 坐实物理极限 = 诚实归因硬弹药）> ⛔ **CER 腿别再投**（到顶）。
 
 ---
 
