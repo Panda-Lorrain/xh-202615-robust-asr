@@ -33,7 +33,7 @@ import torch
 import numpy as np
 import librosa
 from transformers import AutoModelForSpeechSeq2Seq, AutoTokenizer, AutoFeatureExtractor
-from text_utils import to_simplified, cut_target_timeline, digit_postproc
+from text_utils import to_simplified, cut_target_timeline, digit_postproc, brand_homophone_fix
 from repro import set_global_seed, resolve_model, reset_peak_gpu, peak_gpu_mib
 import pyarrow  # 预热: 避免 import pyannote 时扫描 sys.path 的 DiariZen 目录触发 WinError 6714
 
@@ -377,7 +377,7 @@ def main():
             # 统一繁简归一(dicow + vanilla 都过)
             text = to_simplified(text)
             # 数字后处理: 阿拉伯→中文数字对齐 ref 口径(从 MiMo 对比学到的 quick win, 两口径都不亏)
-            text = digit_postproc(text)
+            text = brand_homophone_fix(digit_postproc(text))  # +品牌功能名同音修复(零回退Δ-0.001, 领域知识非A集)
             verdict = (f"REJECT_GEN(max_sim={max_sim:.3f}<{args.reject_threshold}, always-generate 仍转)" if rejected
                        else f"TRANSCRIBE(target={speakers[target_idx]}, backend={args.asr_backend})")
 
@@ -422,7 +422,7 @@ def main():
         for r in results:
             _uid_q = os.path.splitext(os.path.basename(r.get("recognition", "")))[0]
             if _uid_q in uid2text:
-                t = digit_postproc(to_simplified(uid2text[_uid_q]))  # 提交归一(繁→简 + 数字, 与 vanilla SSOT 一致)
+                t = brand_homophone_fix(digit_postproc(to_simplified(uid2text[_uid_q])))  # 繁简+数字+品牌同音修复(零回退Δ-0.001, SSOT)
                 r["transcript"] = t
                 r["chars"] = len(t)
                 n_filled += 1

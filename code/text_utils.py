@@ -188,3 +188,59 @@ def bag_of_hallucinations_reject(text, boh_dict=None, min_repeat=3,
     if any(w in text for w in dic):
         return True
     return False
+
+
+# 美的/COLMO 产品功能名锚点(公开领域知识, 非 A 集拟合)。
+# 排除"洗衣机筒"(桶/筒 ref 冲突: cmd_117 ref=筒 vs cmd_157 ref=桶, 强替必恶其一)。
+_BRAND_ANCHORS = [
+    "AI净干洗", "AI轻干洗", "一键净呼吸",
+    "轻干洗", "净干洗", "净呼吸",
+    "智控温", "智清洁", "防直吹", "无风感", "柔风", "星香",
+]
+
+
+def brand_homophone_fix(text):
+    """美的/COLMO 功能名同音字修复(领域知识锚点, 零回退, 零RTF)。
+
+    文本中功能名的"恰好1字同音不同"错误形式 → 修复为正确功能名。
+    零回退: 仅当窗口长度==锚点 且 恰好1字不同 且 该字严格同音(TONE3 含声调) 才改,
+    只替换单字不增删不重排 → 最坏=原文(不会恶化)。
+
+    锚点=美的公开产品功能名(领域知识, 非 A 集统计, 合规可提交 B 集);
+    同音=pypinyin TONE3。来源 runs/_rule_full.py 的 E 方案, 去 A 集依赖版。
+
+    实测: 全量 1350 ΔCER -0.001 改 10 恶 0(噪声内但确定净正 + 零回退 + 零 RTF)。
+    作防御性后处理: 保证智控温/轻干洗/净呼吸/防直吹等功能名不被同音字写错。
+    依赖 pypinyin(主 venv 已装), 未装 graceful 跳过返回原文(不破坏流程)。
+    """
+    if not text:
+        return text
+    try:
+        from pypinyin import pinyin, Style
+    except ImportError:
+        import warnings
+        warnings.warn("pypinyin 未装: brand_homophone_fix 跳过(功能名同音字不修复)",
+                      RuntimeWarning, stacklevel=2)
+        return text
+
+    def _homo(a, b):
+        if len(a) != 1 or len(b) != 1:
+            return False
+        pa = pinyin(a, style=Style.TONE3, errors='ignore')
+        pb = pinyin(b, style=Style.TONE3, errors='ignore')
+        return bool(pa and pb and pa[0] and pb[0] and pa[0][0] == pb[0][0])
+
+    chars = list(text)
+    for anchor in sorted(_BRAND_ANCHORS, key=len, reverse=True):  # 长优先: AI净干洗 先于 净干洗
+        L = len(anchor)
+        a_chars = list(anchor)
+        i = 0
+        while i + L <= len(chars):
+            if chars[i:i + L] == a_chars:
+                i += 1
+                continue
+            diffs = [(j, chars[i + j], anchor[j]) for j in range(L) if chars[i + j] != anchor[j]]
+            if len(diffs) == 1 and _homo(diffs[0][1], diffs[0][2]):
+                chars[i + diffs[0][0]] = diffs[0][2]   # 仅替换单字(零回退)
+            i += 1
+    return ''.join(chars)

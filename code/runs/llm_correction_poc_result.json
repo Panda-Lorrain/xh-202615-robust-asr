@@ -1,0 +1,1591 @@
+{
+  "n": 158,
+  "improved": 8,
+  "worse": 63,
+  "same": 87,
+  "perfect": 7,
+  "avg_cer_before": 0.1953291884167357,
+  "avg_cer_after": 0.26991347630915924,
+  "results": [
+    {
+      "uid": "cmd_103",
+      "ref": "灯光常亮冷色调",
+      "hyp": "灯光呈亮的色调。",
+      "corrected": "灯光常亮的色调。",
+      "cer_before": 0.2857142857142857,
+      "cer_after": 0.14285714285714285,
+      "improved": true,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_104",
+      "ref": "那窗帘要关吗这些",
+      "hyp": "那窗帘要关吗？谢谢。",
+      "corrected": "那窗帘关吗？谢谢。",
+      "cer_before": 0.25,
+      "cer_after": 0.375,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_11",
+      "ref": "从医院回来的衣服",
+      "hyp": "从医院回来的衣服啊。",
+      "corrected": "从医院回来的衣服。",
+      "cer_before": 0.125,
+      "cer_after": 0.0,
+      "improved": true,
+      "perfect": true
+    },
+    {
+      "uid": "cmd_110",
+      "ref": "正常才有我一个人说话嘛它这个就很灵敏了就一直回答到你但是那个它就是会延迟",
+      "hyp": "正常只有我一个人说话嘛，它这个就很灵敏啊，就一直回答到你。但是那个它就是会延迟。",
+      "corrected": "正常只有我一个人说话嘛，它这个就很灵巧啊，就一直回答到你。但是那个它就是会延迟。",
+      "cer_before": 0.05555555555555555,
+      "cer_after": 0.08333333333333333,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_112",
+      "ref": "我要看电影咯",
+      "hyp": "我要看电影了。",
+      "corrected": "我要看电影了。",
+      "cer_before": 0.16666666666666666,
+      "cer_after": 0.16666666666666666,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_115",
+      "ref": "打开烟机打开洗游衣",
+      "hyp": "打开烟机，打开洗衣机。",
+      "corrected": "打开烟机，打开洗衣机。",
+      "cer_before": 0.2222222222222222,
+      "cer_after": 0.2222222222222222,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_117",
+      "ref": "帮我打开冰箱门还有抽油烟机还有洗衣机筒还有新风",
+      "hyp": "帮我打开冰箱门，还有抽油烟机，还有洗衣机桶，还有新风。",
+      "corrected": "帮我打开冰箱门，还有烟机，还有洗衣机筒，还有新风。",
+      "cer_before": 0.043478260869565216,
+      "cer_after": 0.08695652173913043,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_118",
+      "ref": "烟机自动开启灯光精准的聚焦在非餐区",
+      "hyp": "烟机自动开启，灯光精准聚焦在备餐区。",
+      "corrected": "烟机启动聚焦备餐区。",
+      "cer_before": 0.11764705882352941,
+      "cer_after": 0.5882352941176471,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_122",
+      "ref": "什么打开我们的座椅安装等等就可以实现",
+      "hyp": "我们打开我们的座椅按摩等等，就可以实现。",
+      "corrected": "我们打开座椅的按摩等等，就可以实现。",
+      "cer_before": 0.2222222222222222,
+      "cer_after": 0.4444444444444444,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_125",
+      "ref": "预约下午十四",
+      "hyp": "预约下午四四。",
+      "corrected": "预约下午四点。",
+      "cer_before": 0.16666666666666666,
+      "cer_after": 0.3333333333333333,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_141",
+      "ref": "关闭新建空调",
+      "hyp": "关闭新乡空调。",
+      "corrected": "关闭星香空调。",
+      "cer_before": 0.16666666666666666,
+      "cer_after": 0.3333333333333333,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_151",
+      "ref": "我要轻干洗",
+      "hyp": "我要清干洗。",
+      "corrected": "我要清洁干洗。",
+      "cer_before": 0.2,
+      "cer_after": 0.4,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_159",
+      "ref": "帮我预约明天九点前衬衫的AI净干洗",
+      "hyp": "帮我预约明天九点前衬衫的AI清干洗。",
+      "corrected": "帮我预约明天九点前衬衫的AI清干洗。",
+      "cer_before": 0.058823529411764705,
+      "cer_after": 0.058823529411764705,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_165",
+      "ref": "我准备做饭啦",
+      "hyp": "我准备做饭了。",
+      "corrected": "我准备做饭了。",
+      "cer_before": 0.16666666666666666,
+      "cer_after": 0.16666666666666666,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_170",
+      "ref": "一键净呼吸",
+      "hyp": "一键静呼吸。",
+      "corrected": "一键静呼吸。",
+      "cer_before": 0.2,
+      "cer_after": 0.2,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_171",
+      "ref": "Lady Gaga最新的专辑叫什么",
+      "hyp": "Lady Gaga最新的专辑叫什？",
+      "corrected": "Lady Gaga最新的专辑叫什？",
+      "cer_before": 0.0625,
+      "cer_after": 0.0625,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_183",
+      "ref": "星降的灯调到五千K亮度百分百",
+      "hyp": "星象的灯调到五千K，亮度百分百。",
+      "corrected": "星象的灯调到五千K，亮度百分百。",
+      "cer_before": 0.07142857142857142,
+      "cer_after": 0.07142857142857142,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_190",
+      "ref": "我要吃饭咯",
+      "hyp": "我要吃饭喽。",
+      "corrected": "我要吃饭了。",
+      "cer_before": 0.2,
+      "cer_after": 0.2,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2013",
+      "ref": "播放十大样板戏精选集",
+      "hyp": "播放《时代样板戏》精选集。",
+      "corrected": "播放《时代样板戏》精选集。",
+      "cer_before": 0.2,
+      "cer_after": 0.2,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2019",
+      "ref": "关闭节能模式",
+      "hyp": "关闭节能模。",
+      "corrected": "关闭节能模式。",
+      "cer_before": 0.16666666666666666,
+      "cer_after": 0.0,
+      "improved": true,
+      "perfect": true
+    },
+    {
+      "uid": "cmd_2028",
+      "ref": "风向向左",
+      "hyp": "方向向左。",
+      "corrected": "方向向左。",
+      "cer_before": 0.25,
+      "cer_after": 0.25,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2054",
+      "ref": "风速调到百分之八十",
+      "hyp": "高速调到百分之八十。",
+      "corrected": "高速调到百分之八十。",
+      "cer_before": 0.1111111111111111,
+      "cer_after": 0.1111111111111111,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2055",
+      "ref": "播放鹅妈妈童谣黄本",
+      "hyp": "播放《鹅妈妈红小黄本》。",
+      "corrected": "播放《鹅妈妈红小黄本》。",
+      "cer_before": 0.2222222222222222,
+      "cer_after": 0.2222222222222222,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_206",
+      "ref": "预约下午洗四点洗衣服",
+      "hyp": "预约下午四点洗衣服。",
+      "corrected": "预约下午四点洗衣服。",
+      "cer_before": 0.1,
+      "cer_after": 0.1,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2064",
+      "ref": "把温度调到十九度",
+      "hyp": "啊，温度小到十九度。",
+      "corrected": "啊，温度低到十九度。",
+      "cer_before": 0.25,
+      "cer_after": 0.25,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2071",
+      "ref": "ECO模式",
+      "hyp": "D C O模式。",
+      "corrected": "D C O模式。",
+      "cer_before": 0.2,
+      "cer_after": 0.2,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2077",
+      "ref": "出风口设置最上",
+      "hyp": "出风口设之最上。",
+      "corrected": "出风口设至上。",
+      "cer_before": 0.14285714285714285,
+      "cer_after": 0.2857142857142857,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2085",
+      "ref": "风速调到最小风",
+      "hyp": "风速成了最小风。",
+      "corrected": "风速成了最小速。",
+      "cer_before": 0.2857142857142857,
+      "cer_after": 0.42857142857142855,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2086",
+      "ref": "关机空调",
+      "hyp": "关键空调。",
+      "corrected": "关键空调。",
+      "cer_before": 0.25,
+      "cer_after": 0.25,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2090",
+      "ref": "播放童音版唐诗",
+      "hyp": "播放录音版唐诗。",
+      "corrected": "播放录音版唐诗。",
+      "cer_before": 0.14285714285714285,
+      "cer_after": 0.14285714285714285,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_210",
+      "ref": "正好是什么我从这里跳向进来我就先不要这个我先灯光亮起",
+      "hyp": "好是什么呢？我从这里跳线进来，我就先不要这个，我先灯光亮起。",
+      "corrected": "好是什么呢？我从这里跳线进来，我就先不要这个，我先灯亮起。",
+      "cer_before": 0.11538461538461539,
+      "cer_after": 0.15384615384615385,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2100",
+      "ref": "风速调到百分之三十",
+      "hyp": "风速达到百分之三十。",
+      "corrected": "风速达到百分之三十。",
+      "cer_before": 0.1111111111111111,
+      "cer_after": 0.1111111111111111,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2130",
+      "ref": "开启智控温",
+      "hyp": "开启制控温。",
+      "corrected": "开启智控温。",
+      "cer_before": 0.2,
+      "cer_after": 0.0,
+      "improved": true,
+      "perfect": true
+    },
+    {
+      "uid": "cmd_214",
+      "ref": "呃这个就是全屋智能像我们要开空调啊或者是我们要做饭啊这些都是嗯这里了听到我们说话",
+      "hyp": "这个就是全屋智能，像我们要开空调啊，或者是我们要做饭呐，这些都是，嗯，这里没听到我们说话。",
+      "corrected": "这个就是全屋智能，像我们要开空调啊，或者是我们要做饭呐，这些都是，嗯，这里没听到我们说话。",
+      "cer_before": 0.075,
+      "cer_after": 0.075,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2160",
+      "ref": "开下空调",
+      "hyp": "关下空调。",
+      "corrected": "关掉空调。",
+      "cer_before": 0.25,
+      "cer_after": 0.5,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2164",
+      "ref": "科学声音龙门阵我想听",
+      "hyp": "科学声音，龙门阵。",
+      "corrected": "科学声音，公园阵。",
+      "cer_before": 0.3,
+      "cer_after": 0.5,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2169",
+      "ref": "备孕要少吃什么",
+      "hyp": "避孕药少吃什么？",
+      "corrected": "避孕药少吃药？",
+      "cer_before": 0.2857142857142857,
+      "cer_after": 0.5714285714285714,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2172",
+      "ref": "更年期适合吃什么",
+      "hyp": "更年期适合吃什？",
+      "corrected": "更年期适合吃什么？",
+      "cer_before": 0.125,
+      "cer_after": 0.0,
+      "improved": true,
+      "perfect": true
+    },
+    {
+      "uid": "cmd_2173",
+      "ref": "播放少儿版红楼梦",
+      "hyp": "播放少儿版《红》。",
+      "corrected": "播放少儿版《红》。",
+      "cer_before": 0.25,
+      "cer_after": 0.25,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2181",
+      "ref": "吃哪些食物有利于腹泻",
+      "hyp": "是哪些食物有利于腹泻？",
+      "corrected": "是哪些食材有利于腹泻？",
+      "cer_before": 0.1,
+      "cer_after": 0.2,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2185",
+      "ref": "打开新风模式",
+      "hyp": "打开吸风模式。",
+      "corrected": "打开吸风模式。",
+      "cer_before": 0.16666666666666666,
+      "cer_after": 0.16666666666666666,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2192",
+      "ref": "把温度调到二十九度",
+      "hyp": "把温度调到十九度。",
+      "corrected": "把温度调到十八度。",
+      "cer_before": 0.1111111111111111,
+      "cer_after": 0.2222222222222222,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2193",
+      "ref": "风向调到右边",
+      "hyp": "方向调到右边。",
+      "corrected": "方向调到右方。",
+      "cer_before": 0.16666666666666666,
+      "cer_after": 0.3333333333333333,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2197",
+      "ref": "锋言疯语我想听",
+      "hyp": "风言风语，我想听。",
+      "corrected": "风言风语，我想听。",
+      "cer_before": 0.2857142857142857,
+      "cer_after": 0.2857142857142857,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2199",
+      "ref": "播放聊音乐",
+      "hyp": "放《聊音乐》。",
+      "corrected": "放《音乐》。",
+      "cer_before": 0.2,
+      "cer_after": 0.4,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2204",
+      "ref": "播放激情手风琴曲选集",
+      "hyp": "播放《激情手工曲水集》。",
+      "corrected": "播放《激情手工曲集》。",
+      "cer_before": 0.3,
+      "cer_after": 0.3,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2206",
+      "ref": "放首歌吧",
+      "hyp": "放走歌吧。",
+      "corrected": "放走跑吧。",
+      "cer_before": 0.25,
+      "cer_after": 0.5,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2224",
+      "ref": "混乱博物馆我想听",
+      "hyp": "混乱博物馆，不想。",
+      "corrected": "混乱博物馆，无想。",
+      "cer_before": 0.25,
+      "cer_after": 0.25,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2234",
+      "ref": "开启防直吹",
+      "hyp": "开启风直吹。",
+      "corrected": "开启风吹直。",
+      "cer_before": 0.2,
+      "cer_after": 0.6,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2236",
+      "ref": "减肥吃什么好",
+      "hyp": "减肥吃什么？",
+      "corrected": "减肥吃什么？",
+      "cer_before": 0.16666666666666666,
+      "cer_after": 0.16666666666666666,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2240",
+      "ref": "播放墨子苏",
+      "hyp": "播放《墨子》书。",
+      "corrected": "播放《墨子》书。",
+      "cer_before": 0.2,
+      "cer_after": 0.2,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2241",
+      "ref": "电竞编年史我想听",
+      "hyp": "《剑柄编年史》，我想听。",
+      "corrected": "《剑编年史》，我想听。",
+      "cer_before": 0.25,
+      "cer_after": 0.25,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2242",
+      "ref": "开启防直吹",
+      "hyp": "开启港直吹。",
+      "corrected": "开启风直吹。",
+      "cer_before": 0.2,
+      "cer_after": 0.2,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2244",
+      "ref": "开启智控温",
+      "hyp": "开启自控温。",
+      "corrected": "开启自控温。",
+      "cer_before": 0.2,
+      "cer_after": 0.2,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2247",
+      "ref": "风向下吹",
+      "hyp": "方向下吹。",
+      "corrected": "方向吹下。",
+      "cer_before": 0.25,
+      "cer_after": 0.75,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2254",
+      "ref": "开启智控温",
+      "hyp": "开启控温。",
+      "corrected": "开启空调。",
+      "cer_before": 0.2,
+      "cer_after": 0.6,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_226",
+      "ref": "然后那个窗帘邦邦邦邦邦的给关了对然后那个灯光暗了就是",
+      "hyp": "然后那个窗帘梆梆梆梆慢慢给关了，对，然后那个灯光暗了，就是。",
+      "corrected": "然后那个窗帘梆梆梆梆慢慢给关了，对，然后那个灯光暗了，就是。",
+      "cer_before": 0.23076923076923078,
+      "cer_after": 0.23076923076923078,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2264",
+      "ref": "科技美学我想听",
+      "hyp": "科技美学，我想。",
+      "corrected": "科技美学，我想。",
+      "cer_before": 0.14285714285714285,
+      "cer_after": 0.14285714285714285,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2273",
+      "ref": "播放青少新概念",
+      "hyp": "播放《青少年概念》。",
+      "corrected": "播放《青春概念》。",
+      "cer_before": 0.14285714285714285,
+      "cer_after": 0.2857142857142857,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2274",
+      "ref": "哺乳期不能吃什么",
+      "hyp": "孕期不能吃什么？",
+      "corrected": "孕期不能吃什么？",
+      "cer_before": 0.25,
+      "cer_after": 0.25,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_230",
+      "ref": "给我定个闹钟内容是设计一个艺术空间",
+      "hyp": "给我定一个闹钟，内容是设计一个艺术空间。",
+      "corrected": "给我定一个闹钟，内容是设计一个艺术空间。",
+      "cer_before": 0.058823529411764705,
+      "cer_after": 0.058823529411764705,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2316",
+      "ref": "风速调到百分之百",
+      "hyp": "温度调到百分之百。",
+      "corrected": "温度调到百分之一百。",
+      "cer_before": 0.25,
+      "cer_after": 0.375,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2320",
+      "ref": "补血推荐吃哪些食物",
+      "hyp": "补血，推荐吃哪些？",
+      "corrected": "补血，推荐吃哪些？",
+      "cer_before": 0.2222222222222222,
+      "cer_after": 0.2222222222222222,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2325",
+      "ref": "空调调到自动模式",
+      "hyp": "空调开到自动模式。",
+      "corrected": "空调开到自动档。",
+      "cer_before": 0.125,
+      "cer_after": 0.375,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2332",
+      "ref": "播放女神的贴身高手",
+      "hyp": "播放《隐形的贴身高手》。",
+      "corrected": "播放《隐形的贴身高手》。",
+      "cer_before": 0.2222222222222222,
+      "cer_after": 0.2222222222222222,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2357",
+      "ref": "播放女神的贴身高手",
+      "hyp": "放女神的贴身高手。",
+      "corrected": "放她的贴身高手。",
+      "cer_before": 0.1111111111111111,
+      "cer_after": 0.3333333333333333,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2361",
+      "ref": "关掉智清洁",
+      "hyp": "关掉至清洁。",
+      "corrected": "关掉到清洁。",
+      "cer_before": 0.2,
+      "cer_after": 0.2,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2362",
+      "ref": "风速降低",
+      "hyp": "速度降低。",
+      "corrected": "速度降低。",
+      "cer_before": 0.5,
+      "cer_after": 0.5,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2369",
+      "ref": "播放盖世音雄原创音乐",
+      "hyp": "播放《盖世英雄》原创音乐。",
+      "corrected": "播放《盖世英雄》原创音乐。",
+      "cer_before": 0.1,
+      "cer_after": 0.1,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_237",
+      "ref": "打开清香烟机",
+      "hyp": "打开新香烟机。",
+      "corrected": "打开香烟机。",
+      "cer_before": 0.16666666666666666,
+      "cer_after": 0.16666666666666666,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2378",
+      "ref": "开启抽湿模式",
+      "hyp": "开启除湿模式。",
+      "corrected": "开启除湿模式。",
+      "cer_before": 0.16666666666666666,
+      "cer_after": 0.16666666666666666,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2386",
+      "ref": "吃什么有利于防辐射",
+      "hyp": "吃什么有利于防？",
+      "corrected": "吃什么有利于防病？",
+      "cer_before": 0.2222222222222222,
+      "cer_after": 0.2222222222222222,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2389",
+      "ref": "播放卡尔经典绘本音频",
+      "hyp": "播放卡尔经典会的音频。",
+      "corrected": "播放卡尔经典音乐的音频。",
+      "cer_before": 0.2,
+      "cer_after": 0.3,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_240",
+      "ref": "没事退下",
+      "hyp": "没事，推下。",
+      "corrected": "没事，推动下。",
+      "cer_before": 0.25,
+      "cer_after": 0.5,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_241",
+      "ref": "灯的色温五千K",
+      "hyp": "灯的四万五千K。",
+      "corrected": "灯的四千五百K。",
+      "cer_before": 0.2857142857142857,
+      "cer_after": 0.42857142857142855,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2410",
+      "ref": "风速调到最大",
+      "hyp": "风速调到最高。",
+      "corrected": "风速调到max。",
+      "cer_before": 0.16666666666666666,
+      "cer_after": 0.5,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2413",
+      "ref": "开到十六度",
+      "hyp": "到十六度。",
+      "corrected": "到十八度。",
+      "cer_before": 0.2,
+      "cer_after": 0.4,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2414",
+      "ref": "播放磨剑少年",
+      "hyp": "播放《魔剑少年》。",
+      "corrected": "播放《魔剑少年》。",
+      "cer_before": 0.16666666666666666,
+      "cer_after": 0.16666666666666666,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2419",
+      "ref": "开防直吹",
+      "hyp": "开放直吹。",
+      "corrected": "开放吹直。",
+      "cer_before": 0.25,
+      "cer_after": 0.75,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2420",
+      "ref": "把温度调到二十四度",
+      "hyp": "度调到二十四度。",
+      "corrected": "度调到二十四度。",
+      "cer_before": 0.2222222222222222,
+      "cer_after": 0.2222222222222222,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2445",
+      "ref": "开启智控温",
+      "hyp": "开启制控温。",
+      "corrected": "开启智控温。",
+      "cer_before": 0.2,
+      "cer_after": 0.0,
+      "improved": true,
+      "perfect": true
+    },
+    {
+      "uid": "cmd_2465",
+      "ref": "播放一千零一夜故事",
+      "hyp": "播放《一千零一夜》。",
+      "corrected": "播放《一千零一夜》。",
+      "cer_before": 0.2222222222222222,
+      "cer_after": 0.2222222222222222,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2470",
+      "ref": "把风速调小一点",
+      "hyp": "把温度调小一点。",
+      "corrected": "把温度调低一点。",
+      "cer_before": 0.2857142857142857,
+      "cer_after": 0.42857142857142855,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2497",
+      "ref": "吃什么有利于儿童",
+      "hyp": "吃什么有利于儿？",
+      "corrected": "吃什么有利于孩？",
+      "cer_before": 0.125,
+      "cer_after": 0.25,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2527",
+      "ref": "最大风量",
+      "hyp": "最大音量。",
+      "corrected": "最大音量。",
+      "cer_before": 0.25,
+      "cer_after": 0.25,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_254",
+      "ref": "什么是AI轻干洗",
+      "hyp": "什么是AI清干洗？",
+      "corrected": "什么是AI清洁洗？",
+      "cer_before": 0.125,
+      "cer_after": 0.25,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2554",
+      "ref": "儿童有什么饮食禁忌",
+      "hyp": "儿童有误饮食禁忌。",
+      "corrected": "儿童有误营养禁忌。",
+      "cer_before": 0.2222222222222222,
+      "cer_after": 0.4444444444444444,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2557",
+      "ref": "吃哪些食物有利于产妇",
+      "hyp": "吃哪些食物有利于产？",
+      "corrected": "吃什么食物有利于产？",
+      "cer_before": 0.1,
+      "cer_after": 0.3,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2561",
+      "ref": "开到二十九度",
+      "hyp": "看到二十九度。",
+      "corrected": "看到二十八度。",
+      "cer_before": 0.16666666666666666,
+      "cer_after": 0.3333333333333333,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2562",
+      "ref": "出风口设置最左",
+      "hyp": "出风口设计太左。",
+      "corrected": "出风口设计太偏。",
+      "cer_before": 0.2857142857142857,
+      "cer_after": 0.42857142857142855,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2567",
+      "ref": "升高一度",
+      "hyp": "身高一度。",
+      "corrected": "身高一度。",
+      "cer_before": 0.25,
+      "cer_after": 0.25,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2596",
+      "ref": "风向调到中间",
+      "hyp": "方向调到中间。",
+      "corrected": "方向调到中。",
+      "cer_before": 0.16666666666666666,
+      "cer_after": 0.3333333333333333,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2601",
+      "ref": "播放盖世音雄原创音乐",
+      "hyp": "播放盖世音频原创音乐。",
+      "corrected": "播放盖世音频原创音乐。",
+      "cer_before": 0.1,
+      "cer_after": 0.1,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2606",
+      "ref": "开防直吹",
+      "hyp": "开风直吹。",
+      "corrected": "开启风速。",
+      "cer_before": 0.25,
+      "cer_after": 0.75,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_262",
+      "ref": "关闭客厅柜式空调",
+      "hyp": "关闭客厅、卧室空调。",
+      "corrected": "关闭客厅、卧室空调整。",
+      "cer_before": 0.25,
+      "cer_after": 0.375,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_263",
+      "ref": "还有一开机会打",
+      "hyp": "还有一次机会呢。",
+      "corrected": "还有一次机会吗。",
+      "cer_before": 0.2857142857142857,
+      "cer_after": 0.2857142857142857,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2655",
+      "ref": "播放绝句唐杜甫",
+      "hyp": "播放绝句，唐杜。",
+      "corrected": "播放绝句，唐杜甫。",
+      "cer_before": 0.14285714285714285,
+      "cer_after": 0.0,
+      "improved": true,
+      "perfect": true
+    },
+    {
+      "uid": "cmd_2656",
+      "ref": "备孕不推荐吃什么",
+      "hyp": "怀孕不推荐吃什么？",
+      "corrected": "怀孕不推荐吃辛辣？",
+      "cer_before": 0.125,
+      "cer_after": 0.375,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2658",
+      "ref": "播放小球听民乐数字歌",
+      "hyp": "播放小球听明月数字歌。",
+      "corrected": "播放小月听明月数字歌。",
+      "cer_before": 0.2,
+      "cer_after": 0.3,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_266",
+      "ref": "关闭备餐模式",
+      "hyp": "关闭备仓模式。",
+      "corrected": "关闭备份模式。",
+      "cer_before": 0.16666666666666666,
+      "cer_after": 0.16666666666666666,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2680",
+      "ref": "播放大红妈妈精心讲绘本",
+      "hyp": "播放《大红妈妈英语讲绘本》。",
+      "corrected": "播放《大红妈妈英语讲故事》。",
+      "cer_before": 0.18181818181818182,
+      "cer_after": 0.36363636363636365,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2681",
+      "ref": "富含热量的食物有哪些",
+      "hyp": "富含热量的是哪些？",
+      "corrected": "富含热量的是哪些？",
+      "cer_before": 0.3,
+      "cer_after": 0.3,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2692",
+      "ref": "播放费烟的民谣",
+      "hyp": "播放费玉清的民谣。",
+      "corrected": "播放费玉清的民谣。",
+      "cer_before": 0.2857142857142857,
+      "cer_after": 0.2857142857142857,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_270",
+      "ref": "帮我放郭顶的水星记",
+      "hyp": "帮我放锅顶的水星记。",
+      "corrected": "帮我放锅顶的水时间。",
+      "cer_before": 0.1111111111111111,
+      "cer_after": 0.3333333333333333,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2700",
+      "ref": "把温度调到二十度",
+      "hyp": "把温度调到二十。",
+      "corrected": "把温度调到二十一。",
+      "cer_before": 0.125,
+      "cer_after": 0.125,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2707",
+      "ref": "古哥古点烧脑集我想听",
+      "hyp": "虎哥读点烧脑题，我想听。",
+      "corrected": "虎哥读点脑题，我想听。",
+      "cer_before": 0.3,
+      "cer_after": 0.4,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2710",
+      "ref": "播放磨剑少年",
+      "hyp": "播放《魔剑少年》。",
+      "corrected": "播放《魔剑少年》。",
+      "cer_before": 0.16666666666666666,
+      "cer_after": 0.16666666666666666,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_272",
+      "ref": "开灯开空调",
+      "hyp": "开灯，开空调，关。",
+      "corrected": "开灯，开空调，关。",
+      "cer_before": 0.2,
+      "cer_after": 0.2,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_273",
+      "ref": "帮我预约明天九点之前衬衫的AI轻干洗",
+      "hyp": "帮我预约明天九点之前衬衫的AI清干洗。",
+      "corrected": "帮我预约明天九点之前衬衫的AI清干洗。",
+      "cer_before": 0.05555555555555555,
+      "cer_after": 0.05555555555555555,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2742",
+      "ref": "腹泻吃什么食物有好处",
+      "hyp": "腹泻吃什么食物？",
+      "corrected": "腹泻吃什么药？",
+      "cer_before": 0.3,
+      "cer_after": 0.5,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2748",
+      "ref": "白内障不适合吃什么",
+      "hyp": "白内障适合吃什么？",
+      "corrected": "白内障适合吃什么？",
+      "cer_before": 0.1111111111111111,
+      "cer_after": 0.1111111111111111,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2757",
+      "ref": "播放家庭教育口传书",
+      "hyp": "播放家庭教育口传。",
+      "corrected": "播放家庭教育教程。",
+      "cer_before": 0.1111111111111111,
+      "cer_after": 0.3333333333333333,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2767",
+      "ref": "风速调到百分之七十",
+      "hyp": "分数调到百分之七十。",
+      "corrected": "分数调到百分之七十。",
+      "cer_before": 0.2222222222222222,
+      "cer_after": 0.2222222222222222,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2769",
+      "ref": "风速调最大",
+      "hyp": "速调最大。",
+      "corrected": "速调最佳。",
+      "cer_before": 0.2,
+      "cer_after": 0.4,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2782",
+      "ref": "开到二十三度",
+      "hyp": "三到二十三度。",
+      "corrected": "三到二十三度。",
+      "cer_before": 0.16666666666666666,
+      "cer_after": 0.16666666666666666,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2795",
+      "ref": "打开节能模式",
+      "hyp": "开节能模式。",
+      "corrected": "开节能模式。",
+      "cer_before": 0.16666666666666666,
+      "cer_after": 0.16666666666666666,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2801",
+      "ref": "播放盖世音雄原创音乐",
+      "hyp": "播放《盖世英雄》原创音乐。",
+      "corrected": "播放《盖世英雄》原创音乐。",
+      "cer_before": 0.1,
+      "cer_after": 0.1,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2804",
+      "ref": "播放播播龙的故事口袋",
+      "hyp": "播放《波波龙的故事口袋》。",
+      "corrected": "播放《波波龙的故事口袋》。",
+      "cer_before": 0.2,
+      "cer_after": 0.2,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2811",
+      "ref": "吃什么适合解酒",
+      "hyp": "吃什么适合节食？",
+      "corrected": "吃什么适合减肥？",
+      "cer_before": 0.2857142857142857,
+      "cer_after": 0.2857142857142857,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2828",
+      "ref": "开到二十二度",
+      "hyp": "开到二十二。",
+      "corrected": "开启到二十二。",
+      "cer_before": 0.16666666666666666,
+      "cer_after": 0.3333333333333333,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2843",
+      "ref": "防直吹模式",
+      "hyp": "防止吹模式。",
+      "corrected": "防止吹风模式。",
+      "cer_before": 0.2,
+      "cer_after": 0.4,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2846",
+      "ref": "播放十大样板戏精选集",
+      "hyp": "播放四大样板戏精选集。",
+      "corrected": "播放四大样板戏精选集。",
+      "cer_before": 0.1,
+      "cer_after": 0.1,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2849",
+      "ref": "播放盖世音雄原创音乐",
+      "hyp": "播放《盖世英雄》原唱音乐。",
+      "corrected": "播放《盖世英雄》原唱音乐。",
+      "cer_before": 0.2,
+      "cer_after": 0.2,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2875",
+      "ref": "腹泻适合吃什么",
+      "hyp": "兔血适合吃什么？",
+      "corrected": "兔血适合吃什么？",
+      "cer_before": 0.2857142857142857,
+      "cer_after": 0.2857142857142857,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2892",
+      "ref": "把风速调到最小",
+      "hyp": "把分数调到最小。",
+      "corrected": "把分数调到最低。",
+      "cer_before": 0.2857142857142857,
+      "cer_after": 0.42857142857142855,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2905",
+      "ref": "空调调到二十二度",
+      "hyp": "空调二十二度。",
+      "corrected": "空调22度。",
+      "cer_before": 0.25,
+      "cer_after": 0.625,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2925",
+      "ref": "播放青少新概念",
+      "hyp": "播放《青少年概念》。",
+      "corrected": "播放《青春概念》。",
+      "cer_before": 0.14285714285714285,
+      "cer_after": 0.2857142857142857,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2947",
+      "ref": "播放减压放松音乐合集",
+      "hyp": "播放减压放松音。",
+      "corrected": "播放减压放松音。",
+      "cer_before": 0.3,
+      "cer_after": 0.3,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2948",
+      "ref": "备孕适合吃什么",
+      "hyp": "怀孕适合吃什么？",
+      "corrected": "怀孕适合吃什么？",
+      "cer_before": 0.14285714285714285,
+      "cer_after": 0.14285714285714285,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2959",
+      "ref": "开开空调",
+      "hyp": "开空调。",
+      "corrected": "开空调。",
+      "cer_before": 0.25,
+      "cer_after": 0.25,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2962",
+      "ref": "锋言疯语我想听",
+      "hyp": "风言风语，我想听。",
+      "corrected": "风言风语，我想听。",
+      "cer_before": 0.2857142857142857,
+      "cer_after": 0.2857142857142857,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2964",
+      "ref": "古哥古点烧脑集我想听",
+      "hyp": "谷歌古典烧脑集，我想听。",
+      "corrected": "我想听。",
+      "cer_before": 0.3,
+      "cer_after": 0.7,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2973",
+      "ref": "播放大队长讲科学",
+      "hyp": "播放大队长讲故事。",
+      "corrected": "播放大队长讲故事。",
+      "cer_before": 0.25,
+      "cer_after": 0.25,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2978",
+      "ref": "播放文静翻唱歌曲集",
+      "hyp": "播放文静翻唱歌曲。",
+      "corrected": "播放文静翻唱歌曲。",
+      "cer_before": 0.1111111111111111,
+      "cer_after": 0.1111111111111111,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_298",
+      "ref": "我要洗衣服咯",
+      "hyp": "我要洗衣服了。",
+      "corrected": "我要洗衣服了。",
+      "cer_before": 0.16666666666666666,
+      "cer_after": 0.16666666666666666,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2982",
+      "ref": "开到二十五度",
+      "hyp": "快到二十五度。",
+      "corrected": "快到二十度。",
+      "cer_before": 0.16666666666666666,
+      "cer_after": 0.3333333333333333,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_2983",
+      "ref": "关机空调",
+      "hyp": "外机空调。",
+      "corrected": "空调外机。",
+      "cer_before": 0.25,
+      "cer_after": 1.0,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_30",
+      "ref": "打开窗帘烟机",
+      "hyp": "打开窗帘电机。",
+      "corrected": "打开窗帘电机。",
+      "cer_before": 0.16666666666666666,
+      "cer_after": 0.16666666666666666,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_301",
+      "ref": "帮我预约明天九点之前对我的衬衫进行轻干洗",
+      "hyp": "帮我预约明天九点之前对我的肾三进行清肝洗。",
+      "corrected": "帮我预约明天九点之前对我的肾三进行清肝洗。",
+      "cer_before": 0.2,
+      "cer_after": 0.2,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_303",
+      "ref": "我要休息咯",
+      "hyp": "我要休息喽。",
+      "corrected": "我要休息了。",
+      "cer_before": 0.2,
+      "cer_after": 0.2,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_304",
+      "ref": "客厅灯的色温调到最冷",
+      "hyp": "客厅灯的室温调到最冷。",
+      "corrected": "客厅灯的室温调到最低。",
+      "cer_before": 0.1,
+      "cer_after": 0.2,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_308",
+      "ref": "关闭音箱",
+      "hyp": "关闭冰箱。",
+      "corrected": "关闭冰箱。",
+      "cer_before": 0.25,
+      "cer_after": 0.25,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_312",
+      "ref": "灯光亮度调百分之一百",
+      "hyp": "灯光亮度调板至一百。",
+      "corrected": "灯光亮度调至一百。",
+      "cer_before": 0.3,
+      "cer_after": 0.3,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_326",
+      "ref": "干衣机取消操作",
+      "hyp": "关机，取消操作。",
+      "corrected": "关机，取消操作。",
+      "cer_before": 0.2857142857142857,
+      "cer_after": 0.2857142857142857,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_33",
+      "ref": "这一年我从直播小白到第一次扛相机去工地拍",
+      "hyp": "这一年，我从直播小白到第一次扛相机去蒙地拍。",
+      "corrected": "这一年，我从直播小菜鸟到第一次扛相机去蒙地拍。",
+      "cer_before": 0.05,
+      "cer_after": 0.15,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_336",
+      "ref": "呃这个这个我们等会可以帮你连做关闭",
+      "hyp": "呃，这个这个我们等会可以帮你做关闭。",
+      "corrected": "哦，这个这个我们等会可以帮你做关闭。",
+      "cer_before": 0.058823529411764705,
+      "cer_after": 0.11764705882352941,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_341",
+      "ref": "色调帮我调成冷色调",
+      "hyp": "色调，把我调成冷色调。",
+      "corrected": "色调，把我调成冷调。",
+      "cer_before": 0.1111111111111111,
+      "cer_after": 0.2222222222222222,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_349",
+      "ref": "呃吃饭了",
+      "hyp": "要吃饭了。",
+      "corrected": "要吃饭了。",
+      "cer_before": 0.25,
+      "cer_after": 0.25,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_356",
+      "ref": "窗帘停下",
+      "hyp": "窗帘底下。",
+      "corrected": "窗帘底下。",
+      "cer_before": 0.25,
+      "cer_after": 0.25,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_360",
+      "ref": "我出门了",
+      "hyp": "我出门呢。",
+      "corrected": "我出门了。",
+      "cer_before": 0.25,
+      "cer_after": 0.0,
+      "improved": true,
+      "perfect": true
+    },
+    {
+      "uid": "cmd_38",
+      "ref": "我要做饭了然后它就自动降下",
+      "hyp": "我要做饭了，让它自动降下。",
+      "corrected": "我要做饭了，让它自动下降。",
+      "cer_before": 0.23076923076923078,
+      "cer_after": 0.38461538461538464,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_45",
+      "ref": "关闭纱帘",
+      "hyp": "关闭窗帘。",
+      "corrected": "关闭窗帘。",
+      "cer_before": 0.25,
+      "cer_after": 0.25,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_64",
+      "ref": "取消勃朗烤箱",
+      "hyp": "取消波朗烤箱。",
+      "corrected": "取消博朗烤箱。",
+      "cer_before": 0.16666666666666666,
+      "cer_after": 0.16666666666666666,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_65",
+      "ref": "我回家啦",
+      "hyp": "我回家了。",
+      "corrected": "我回家了。",
+      "cer_before": 0.25,
+      "cer_after": 0.25,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_66",
+      "ref": "油烟机打开",
+      "hyp": "抽油烟机打开，冰。",
+      "corrected": "抽油烟机打开，冷。",
+      "cer_before": 0.4,
+      "cer_after": 0.4,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_75",
+      "ref": "哎这个怎么没通电哈",
+      "hyp": "哎，这个怎么没通电啊？它。",
+      "corrected": "哎，这个怎么没通电啊？它。",
+      "cer_before": 0.2222222222222222,
+      "cer_after": 0.2222222222222222,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_95",
+      "ref": "开启一键净呼吸",
+      "hyp": "开启一键静呼吸。",
+      "corrected": "开启一键静呼吸。",
+      "cer_before": 0.14285714285714285,
+      "cer_after": 0.14285714285714285,
+      "improved": false,
+      "perfect": false
+    },
+    {
+      "uid": "cmd_96",
+      "ref": "打开洗衣机",
+      "hyp": "打开洗衣机门。",
+      "corrected": "打开洗衣机门。",
+      "cer_before": 0.2,
+      "cer_after": 0.2,
+      "improved": false,
+      "perfect": false
+    }
+  ]
+}
