@@ -1,5 +1,7 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
+> 🔴 **2026-07-24 最新（当前恢复点）**：CER 后处理/解码侧探索闭环 — **6 路全证伪 + 规则E品牌同音修复集成（唯一确定净正 Δ-0.001）**。用户诉求"CER 占 40% 大头重点强化"。5-agent workflow（错误模式量化+规则实测+context设计+beam可行性+综合决策）+ 5 GPU 实验。**CER 0.3432（baseline batch 口径，对齐 poc 0.3436）→ 0.3422（规则E集成后）**，天花板坐实（55%=370 条无解幻觉 babble 摧毁 mel，45% 可救但全落 ±0.04 噪声地板）。① context C1 场景+词汇 Δ-0.0067（改善166>恶化69但主战场[0.2,0.4)回退+0.0044→门槛③失败噪声内）/ C2 纯词表 Δ+0.2042 灾难（死区热词回吐 CER 飙124，Issue#106 死区全面爆发坐实）② 零RTF rep_penalty1.1 Δ+0.0006 / no_repeat4 Δ+0.0001（qwen 幻觉是**无关型非循环型**，DiCoW"直击循环幻觉"假设不迁移）③ LLM 精准保守（Qwen2.5-3B+程序裁剪只留严格同音 TONE3 单字替换）Δ+0.0012 改7恶17——**改对7=品牌功能名（智控温/轻干洗/净呼吸/洗衣机筒）=规则E 已覆盖零增量，改错17=3B 过度纠正常用词（制热→智热/顶灯→鼎灯/最高→髙）+繁体+桶筒语境误判**，LLM 后纠正**严格劣于规则E**（3B 无判断"原文是否正确"能力，程序裁剪压不住）。✅**规则E集成** `text_utils.brand_homophone_fix`（美的功能名锚点+ pypinyin TONE3 严格同音，零回退 Δ-0.001 改9恶0，**领域知识非 A集统计合规可提交 B集**）→ enroll_infer L380(vanilla/dicow)+L425(qwen/firered) digit_postproc 后 + requirements 声明 pypinyin==0.55.0。**⚠️教训**：实验前必须验证切片目录=baseline 源（首轮 C1/C2 误用 target_slices_qwen CER0.4384 vs poc 源 target_slices_full 0.3436，白跑20min，诚实 baseline 交叉验证救了结论）。commit `93657ab` + 交接文档 commit。**CER 腿解码侧/后处理彻底 exhausted**，突破只剩更强 LLM(7B+效率代价)/模型替换(已证伪)/A集外训练(违规)。ROI 转效率腿(L20)+答辩腿（6路实证证伪+Issue#106 死区回吐发现=诚实归因硬弹药）。详见下【2026-07-24】段 + memory `cer-improvement-directions`。
+
 > 🔴 **2026-07-23 最新（当前恢复点）**：Qwen3 重跑 CAM++/SepFormer **双证伪**——用户核心假设"是 DiCoW 差不是方法错"**不成立**。① CAM++ 声纹强化 GO=否：Qwen3 oracle（exp_spk_oracle_qwen.py，死区60+主战场60）显示 cer_gain 死区+0.146/主战场+0.106（选 target 是问题，部分推翻 vanilla "oracle 0.607 封闭"），但 miss 中正确 target sim≥0.2 仅 0%/21% → 声纹层提不出正确 target（babble 摧毁 who 信号），CAM++ 救不了。② SepFormer GO=否（更狠）：exp_sepformer_qwen.py（死区40）SepFormer+Qwen3 0.687 vs argmax 0.410（Δ+0.277），oracle 0.413≈argmax → 分离没拎出更干净 target。**新发现**：Qwen3 下选 target 是真问题（cer_gain +0.1~0.15），解药在**非声纹 target 选择**（diar 改进/enrollment-conditioned TSE 联合），留新方向线索。CER 腿 qwen 0.3436 天花板坐实，死区物理极限换更强转写器也救不了。答辩硬弹药。**另本轮还做了**: 目录整理(删~5.5G中间产物 + out_*/json/csv归 code/runs/ rename保留历史 + docs/实验结果汇总.md) / 效率迁移性分析(4-agent workflow: 4060→L20三不统一+家居RTF推算实时阈值0.2-0.3 L20外推0.09-0.12优秀) / 非声纹深探全证伪(ASE关键帧net更差 + CAM++替换wespeaker CER噪声内 + Whisper-Sidecar NO-GO无权重绑Whisper净亏) → **CER腿彻底到底, ROI转效率腿+答辩**。commit `6eb1fa6`+`dcff974` 全 push。详见下【2026-07-23】段 + memory `spk-oracle-poc`/`non-voiceprint-target-selection`/`efficiency-portability-audit`。
 
 > 🔴 **2026-07-20 晚 最新（当前恢复点）**：CER 边际探索闭环 — 全量 oracle + ASE-PVAD 实跑**双证伪**，cascaded CER 近极限坐实。用户战略从"答辩 100 分"转向"**初赛进前 10-20 名**"（入围依据 = B 集成绩 + 脚本核查 + 客观指标，**A 集排行榜仅供参考不决定入围**，见 `待确认_主办方口径与外部输入.md`）。核心发现：① 主战场全量 668 oracle **GO=否**（60 条抽样 GO=是 是假象，cer_gain 虚高 3x）② 主战场 78% 损失是音频摧毁（切对 target 也救不回），22% 选错 target ③ ASE-PVAD（出题方 ICASSP2026 论文 #02）实跑**证伪**（救回 26/改错 33，CER +0.004，根因 zero-training：wespeaker 没学过用增强 embedding）④ **不是菜是架构极限**（出题方 NOTSOFAR CHiME-8 冠军死区也翻车），但端到端联合训练路线（没走）可能更强。**下一步用户定：效率腿 L20（最大杠杆，要租算力）/ 接受 CER 天花板保基本盘**。产物**未 commit**（本地）。详见下【2026-07-20 CER 边际探索】段 + memory `mainfield-oracle-full-debunked`。
@@ -15,6 +17,47 @@
 > **当前 git**：`master`，本 session commit「标注规范v2工具落地 + 官方CER脚本存档核对」已 push（见 `git log -1`）。改动：`code/build_annotator_pack_v2.py`(新) + `code/eval_metrics_official_ref.py`(新,官方脚本存档) + `code/compare_vs_gold.py`+`code/map_gold_to_v2.py`(新) + `code/recompute_official_cer.json`(重算微调) + `AGENT_HANDOFF.md`。⚠️ `code/annot_pack/` 被 gitignore（标注HTML/音频不入库，仅本地）。下个 agent 先 `git status` 核对。
 
 > **2026-07-16 续 session**：L20 效率腿准备(跨平台改造 8 处 + `efficiency_leg_calc.py` + `docs/L20效率实测_runbook_2026-07-15.md` + `setenv_linux.sh` + pyarrow/PY_SE 守卫) **本地未 commit/push**，`git status` 应见 6 改 + 3 新。详见下【2026-07-16 最新】段。
+
+---
+
+## 【2026-07-24 CER 后处理/解码侧 6 路证伪 + 规则E集成】CER 解码侧 exhausted
+
+> **背景**：用户"CER 占 40% 大头重点强化"。5-agent workflow 深度分析 + 5 GPU 实验穷尽解码侧/后处理路线。**结论：CER 0.3422 天花板，规则E 是唯一确定净正（已集成）**。commit `93657ab` + 交接文档 commit。
+
+### 1. 5-agent workflow 深度分析（subagent_tokens 263K）
+- **error_pattern**（`runs/_err_analysis.py`）：1350 条程序化分类，55%(370)完全幻觉无解，可救近音154/删字73/同音53/英文品牌8/数字8；理论上限 rule-0.011/prompt-0.003/beam-0.059，现实 0.01-0.03。**header overall_qwen 0.3848 是 per-row 均值（幻觉行拉高），官方累计池=0.3436 不可引用 0.3848**
+- **规则实测**（`runs/_rule_full.py`）：现有 poc_rule 158 抽样是乐观假象（Δ-0.0037），全量朴素 +0.0175 灾难（改31恶181）；最强 E（品牌锚点零回退）Δ-0.001 改10恶0 边际；D 数字归一纯 no-op（qwen 已输出中文数字）
+- **context 设计**：官方范式=hotword 列表（Qwen3-ASR-Toolkit）；Issue#106 死区+裸词表→热词回吐（重 babble 正中靶心）；阿里云 Fun-ASR 姐妹产品实证"词匹配为主"
+- **beam 可行性**：生产 NO-GO（RTF×2.8-3.5 净负，masked_scatter#29968 易碎官方未测），零 RTF 替代（rep/no_repeat/suppress 英文 token）ROI 更高
+
+### 2. 5 GPU 实验（target_slices_full, baseline 0.3432）
+| 路线 | ΔCER | 改/恶 | 证伪根因 |
+|---|---|---|---|
+| context C1 场景+词汇 | -0.0067 | 166/69 | 主战场[0.2,0.4)回退+0.0044，门槛③失败 |
+| context C2 纯词表 | +0.2042 | 141/76 | 死区热词回吐 CER 飙124（Issue#106） |
+| 零RTF rep_penalty1.1 | +0.0006 | 1/4 | qwen 幻觉无关型非循环型 |
+| 零RTF no_repeat4 | +0.0001 | 0/1 | 同上 |
+| LLM 精准保守(3B+裁剪) | +0.0012 | 7/17 | 改对=规则E覆盖零增量，改错=3B过度纠正 |
+
+### 3. ✅ 规则E集成（唯一确定净正）
+- `text_utils.brand_homophone_fix`：美的功能名锚点（AI净干洗/轻干洗/净呼吸/一键净呼吸/智控温/智清洁/防直吹/无风感/柔风/星香）+ pypinyin TONE3 严格同音；窗口恰好1字不同+同音→修复单字（零回退，最坏=原文）
+- 实测 Δ-0.001 改9恶0；enroll_infer L380(vanilla/dicow 在线)+L425(qwen/firered 批量) digit_postproc 后；requirements 声明 pypinyin==0.55.0
+- **领域知识非 A集统计**（合规可提交 B集）；排除洗衣机筒（桶/筒 ref 冲突 cmd_117 筒 vs cmd_157 桶）
+
+### 4. qwen_asr_backend 加零RTF参数（Exp5 产物，保留备用）
+- 加 `--rep-penalty`/`--no-repeat-ngram-size`（monkey-patch model.model.generate 注入，默认=原 greedy 向后兼容）
+- 虽证伪（qwen 幻觉非循环型），但 flag 保留供未来 beam/n-best 实验复用
+
+### 5. ⚠️ 教训（已入 memory）
+- **实验前必须验证切片目录=baseline 源**：首轮 C1/C2 误用 enroll_infer 默认 target_slices_qwen（CER0.4384，另一 run 切片）vs poc 源 target_slices_full（0.3436），白跑20min。诚实 baseline 交叉验证（0.4384 vs 0.3436 对不上）暴露问题。
+
+### 产物（commit `93657ab`）
+- 脚本：`code/poc_llm_conservative.py` + `runs/{_err_analysis,_rule_full,compare_ctx_cer}.py` + 旧 `poc_llm_homophone_correction.py`/`poc_rule_homophone_correction.py`
+- 集成：`text_utils.brand_homophone_fix` + enroll_infer L380/L425 + requirements pypinyin + qwen_asr_backend 零RTF flag
+- memory：`cer-improvement-directions`（6 路结果 + 规则E集成 + 教训，全量更新）
+
+### 下一步（按 ROI）
+🥇 **效率腿**（L20 RTF 相对赋分；今天实测 qwen 10-14/s，零RTF参数确认不增耗时）> 🥈 **答辩腿**（6 路实证证伪 + Issue#106 死区回吐发现 = 诚实归因硬弹药）> ⛔ **CER 解码侧别再投**（exhausted）。CER 突破只剩更强 LLM(7B+ 预期噪声内)/模型替换(已证伪)/A集外训练(违规)。
 
 ---
 
