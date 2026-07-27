@@ -1,0 +1,682 @@
+Interspeech 2025
+17-21 August 2025, Rotterdam, The Netherlands
+
+Joint Target-Speaker ASR and Activity Detection
+Chikara Maeda1 , Muhammad Shakeel1 , Yui Sudo†1
+1
+
+Honda Research Institute Japan, Japan
+
+chikara.maeda@jp.honda-ri.com, shakeel.muhammad@jp.honda-ri.com
+
+Abstract
+
+identify and process the speech of a specific target speaker,
+making them inherently adaptable to an unknown number of
+speakers. Prior research has explored target speaker-based
+voice activity detection (TS-VAD) [15, 16] for determining target speaker activity, TS-SS [17,18] for extracting target speaker
+speech, and TS-ASR [19, 20] for transcribing target speech.
+These methods generalize better to varying speaker counts than
+SD-based models by focusing on individual speakers. However,
+they often suffer from unstable training dynamics due to the dependence on target speaker embeddings, which can vary significantly across datasets and conditions. Additionally, applying conventional TS-ASR models with recurrent neural network
+transducer (RNN-T)-based decoder [20] or a connectionist temporal classification (CTC)-based decoder can lead to misalignment issues due to the high number of blank tokens in speech
+mixtures. These factors collectively contribute to training instability, affecting both convergence and generalization.
+
+Target-speaker automatic speech recognition (TS-ASR) has
+shown promise in transcribing speech in multi-speaker scenarios by focusing on a specific speaker. However, existing approaches employ a cascaded design, where voice activity detection (VAD) and TS-ASR are optimized separately. This separation leads to unstable training and error accumulation, limiting overall performance. We address these issues by proposing TS-ASR-AD, a joint end-to-end model that integrates VAD
+with TS-ASR, enabling stable training and reducing error accumulation. Moreover, improved training stability leads to better
+connectionist temporal classification (CTC) alignment in token
+probabilities, further enhancing transcription accuracy. Our approach outperforms previous studies and achieves a word error
+rate (WER) of 6.61% and 14.81%, and a diarization error rate
+(DER) of 1.23% and 2.66% on the Libri2Mix and Libri3Mix
+datasets, respectively.
+Index Terms: multi-talker ASR, target-speaker ASR
+
+Existing TS-based methods typically rely on external
+speaker cues for network conditioning. Most prior works have
+used speaker embeddings [19, 21], while others have explored
+embedding-free [22] or multimodal approaches [23, 24]. Additionally, many methods depend on computationally intensive
+training strategies such as permutation invariant training (PIT)
+[25] or attention-based decoders [26], leading to increased computational complexity. We overcome these challenges by introducing a joint target-speaker ASR and activity detection (TSASR-AD) model. This model integrates ASR and VAD in an
+end-to-end manner and relies on a computationally inexpensive
+lightweight CTC decoder. A key challenge of applying CTC to
+speech mixtures is the presence of numerous blank tokens due
+to non-segmented speech or interference from other speakers.
+We hypothesize that our framework stabilizes training by providing additional speech activity supervision, thereby enhancing the regularization of CTC token probabilities. Unlike [19],
+which applies joint speech modeling for fusion before a single
+CTC decoding step, our method explicitly leverages VAD during training, bringing increased stability and better alignment in
+CTC token probabilities. Our key contributions are:
+
+1. Introduction
+In multi-speaker environments such as group conversations
+and meetings, humans effortlessly distinguish between speakers, track speech activity, and rapidly comprehend spoken content. This capability remains challenging for automatic systems.
+Previous studies have primarily concentrated on methods e.g.,
+speaker diarization (SD) [1, 2], speech separation (SS) [3], and
+automatic speech recognition (ASR) to automate these tasks.
+SD determines the speech activities of all speakers in an input
+audio mixture, answering the question of “who spoke when.”
+SS extracts the speech signals of individual speakers from a
+mixture, while ASR transcribes segmented speech signals. In
+multi-speaker scenarios, combining SS and ASR enables the extraction of “who spoke what.” Numerous studies have proposed
+cascaded pipelines [4, 5] that integrate these tasks, achieving
+reasonable performance.
+Nevertheless, error propagation through independently
+trained models limits the performance of these cascaded approaches. Prior works have explored joint modeling to address
+this limitation. Specifically, they model SD and SS [6–8], SD
+and ASR [9, 10], SS and ASR [11, 12], or even all three tasks
+jointly [13, 14]. These joint modeling strategies mitigate error propagation and enhance performance by leveraging shared
+knowledge between tasks. However, these approaches often
+employ a fixed number of speakers or show suboptimal performance to reliably associate speakers with their speech.
+Unlike SD-based approaches, which can process multiple
+speakers simultaneously, target speaker (TS)-based approaches
+
+• We propose TS-ASR-AD, a novel joint model that integrates
+VAD and TS-ASR, addressing the instability and error accumulation issues caused by separately optimized systems.
+• We highlight that integrating VAD with ASR stabilizes training and regularizes CTC token probabilities. Thereby mitigating the blank token accumulation observed in CTC alignment for speech mixtures.
+• We demonstrate through extensive experiments on the LibriMix [27] and LibriSpeechMix [28] datasets that our method
+outperforms previous studies in detecting target speech activity and transcribing target speaker speech.
+
+† This work was conducted while Dr. Yui Sudo was affiliated with
+Honda Research Institute Japan Co., Ltd.
+
+1683
+
+10.21437/Interspeech.2025-1299
+
+2. Related work
+Previous cascaded approaches often relied on SD or TS-VAD
+as the initial step for group conversation or meeting-like multispeaker transcription [4, 5]. The introduction of end-to-end systems for SD improved performance, particularly in detecting
+speaker changes in highly overlapped scenarios [29,30]. In contrast, TS-VAD [15] used speaker embeddings to predict each
+speaker’s activity, achieving solid results in the CHiME-6 challenge [31], but it was not integrated with subsequent ASR systems, limiting performance in downstream tasks.
+Multi-speaker ASR typically serves as the second and final
+step in such cascaded systems. Early multi-speaker ASR work
+involved modular setups using speech separation followed by
+traditional single-speaker ASR systems, which benefited from
+powerful single-speaker ASR models [32]. However, these cascading systems had limited performance due to the distortions
+caused by the separation models [33]. To address this, methods emerged that transcribe the speech of all speakers without
+relying on speech separation, using techniques like permutation invariant training (PIT) [25] and serialized output training (SOT) [28], although these approaches remained limited in
+terms of speaker identification. Meanwhile, Speaker-Attributed
+ASR (SA-ASR) [34] utilized speaker embeddings to enhance
+transcriptions, especially in highly overlapped scenarios. TSASR [19], a variant of SA-ASR, focused specifically on transcribing the target speaker’s speech. However, despite these advances, such models are often computationally expensive and
+lack awareness of speaker activities within the speech mixture.
+
+Figure 1: Illustration of our joint target speaker activity detection model (TS-ASR-AD).
+[36]. Given the audio mixture X and the embedding Es , features F are first extracted from X using the encoder’s feature
+extraction method (e.g., log-Mel spectrograms, CNN representations, etc.). These extracted features H are then adapted to the
+embedding Es through the FiLM module. The adapted speaker
+features Hs are defined as:
+
+3. Proposed method
+We introduce TS-ASR-AD, a novel joint end-to-end model that
+directly integrates VAD with TS-ASR, tackling the instability
+and error accumulation issues caused by separately optimized
+systems. An overview of the proposed framework is shown in
+Figure 1, which consists of four key components: 1) an upstream embedder module that generates the target speaker embedding from its profile, 2) an adaptation module that utilizes
+the target speaker embedding to adjust the input mixture features, 3) an upstream encoder module that enhances the adapted
+features for all tasks, and 4) downstream decoder modules that
+produce the task-specific predictions.
+
+Hs = Encoder(X, Es )
+= Encoder(F iLM (H, Es ))
+= Encoder(F iLM (Extractor(X), Es ))
+
+(2)
+
+F iLM (X, Es ) = γ(Es ) · X + β(Es )
+
+(3)
+
+where X ∈ R1×T , H ∈ R1×F ×Denc , and Hs ∈ R1×F ×Denc
+with F the feature size and Denc the encoder hidden size.
+3.3. Decoders
+The decoders are responsible for generating predictions. Since
+the proposed method outputs results for two tasks, we use two
+decoders: the ASR decoder and the VAD decoder. Given the
+adapted speaker features Hs , the ASR predictions Ŷasr and VAD
+predictions Ŷvad are defined as:
+
+3.1. Embedder
+
+Ŷasr = ASR(Hs )
+
+(4)
+
+The embedder’s role is to encode the input target speaker cue
+into a representative vector, known as an embedding. Following prior work [19], we use speaker profiles (i.e., a few seconds
+of clean, segmented speech from the speaker) as the input cues.
+Given a target speaker cue Cs the embedder generates an embedding Es as follows:
+
+Ŷvad = V AD(Hs )
+
+(5)
+
+Es = Embedder(Cs )
+
+where Ŷasr ∈ R1×F ×V and Ŷvad ∈ R1×F ×C with V the vocabulary size for ASR and C the class size for VAD.
+3.4. Training objective
+The proposed model is jointly optimized for two tasks. The
+system loss L is a combination of the ASR loss Lasr and the
+VAD loss Lvad . Following previous work [19], we use the CTC
+loss [37] for the ASR loss. For the VAD loss, we apply the
+multiclass classification Cross Entropy loss. Given the reference speaker tokens Yasr and reference speaker activity Yvad , the
+system loss L is defined as:
+
+(1)
+
+where Cs ∈ R1×T and Es ∈ R1×Demb with T the audio time
+sample size and Demb the embedder’s hidden size.
+3.2. Adaptation Module and Encoder
+The adaptation module’s role is to align the audio mixture with
+the embedding. Inspired by previous work [19, 21], we use
+Feature-wise Linear Modulation (FiLM) [35] for the adaptation process. Additionally, we leverage Self-Supervised Learning (SSL) techniques for the encoder, as they have shown
+strong performance in downstream speech processing tasks
+
+L = λasr · Lasr + λvad · Lvad
+= λasr · CT C(Yasr , Ŷasr ) + λvad · CE(Yvad , Ŷvad )
+
+(6)
+
+where Yasr ∈ N1×L and Yvad ∈ N1×F with L the tokens length
+size.
+
+1684
+
+Table 1: ASR results presented in word error rate (WER). The proposed method uses WavLM Base+. “-” indicates that the result is not
+available. Best results are shown in bold.
+
+Method
+
+Params
+
+Hours
+
+LibriMix
+
+LibriSpeechMix
+
+2-Mix
+
+3-Mix
+
+1-Mix
+
+2-Mix
+
+3-Mix
+
+Baselines
+Whisper-small-SS-TTI [26]
+TS-ASR (reproduced)
+WavLM + TSE [19]
+Whisper-small-SS-TTI [26]
+Whisper-small-SS-TTI [26]
+Transformer SA-ASR [34]
+
+242M
+96M
+96M
+242M
+242M
+unk.
+
+100h
+100h
+100h
+460h
+960h
+960h
+
+15.75
+15.59
+13.84
+11.81
+-
+
+30.10
+30.52
+-
+
+4.54
+3.90
+
+18.70
+8.89
+6.40
+
+29.85
+15.85
+8.50
+
+Proposed
+TS-ASR-AD
+TS-ASR-AD
+TS-ASR-AD
+
+97M
+97M
+319M
+
+100h
+460h
+960h
+
+12.36
+6.61
+-
+
+29.85
+14.81
+-
+
+3.35
+3.01
+2.75
+
+10.64
+7.92
+6.61
+
+20.58
+15.97
+13.17
+
+4. Experiments
+
+ture and is trained from scratch. Finally, the ASR decoder consists a dense followed by a projection linear layer with sizes
+Denc × Denc and Denc × V respectively where V = 31 . Similarly, the VAD decoder a dense followed by a projection linear
+layer with sizes Denc × Denc and Denc × C where C = 2.
+Models are trained for a total of 50k, 100k, or 500k stepsdepending on the training set size and with a batch size of 32.
+The embedder is kept frozen for the entire duration of the training while the encoder is only kept frozen for the first 10k steps.
+The model is optimized with Adam [43] with a learning rate of
+1 · 10−4 . Warmup occurs for the first 5k steps and linear decay
+is introduced after reaching half of the total steps.
+
+4.1. Datasets and Metrics
+We evaluated the proposed method on the LibriMix [27] and
+LibriSpeechMix [28] datasets. LibriMix consists of speech
+mixtures with complete overlap, derived from LibriSpeech [38]
+and WHAM!’s noises [39]. It is commonly used for speaker diarization, speech separation, and speech recognition tasks. The
+dataset includes subsets with 2 or 3 speakers. Since the original
+dataset does not provide speaker profile information, we followed [19] to collect speaker enrollments, using only 5 seconds
+of audio instead of the original 15 seconds. We evaluated our
+method on the 2-Mix and 3-Mix using clean mixtures in max
+mode.
+LibriSpeechMix [28], on the other hand, consists of speech
+mixtures with partial overlap, also derived from LibriSpeech
+[38]. While primarily intended for speech recognition, LibriSpeechMix can be extended to other tasks. Since the original
+dataset does not provide a training set, we followed [28] to generate the training set dynamically. For evaluation, we only used
+the first speaker profile segment from the available segments.
+We tested our method on the 1-Mix, 2-Mix, and 3-Mix subsets.
+ASR results are assessed using the Word Error Rate (WER),
+a standard metric for evaluating ASR systems. For methods
+where speaker estimation is involved, we may use concatenated
+minimum-permutation WER (cp-WER) [31] to account for potential speaker mismatches. On the other hand, VAD results are
+evaluated using the diarization error rate (DER), a widely used
+metric for multi-speaker activity detection. DER is computed
+using the meeteval1 toolkit. Following prior work [40], DER is
+calculated with a median filter of 11 and 0s of collar.
+
+5. Results and Discussions
+5.1. ASR and VAD results
+We evaluated the proposed TS-ASR-AD model on two datasets,
+LibriMix and LibriSpeechMix, which feature different overlap
+settings. The results for ASR are presented in Table 1, while the
+VAD results are shown in Table 2.
+For ASR, TS-ASR-AD consistently outperforms TS-ASR
+under identical training conditions. Specifically, it improves
+from 15.59% to 12.36% on the Libri2Mix evaluation set and
+from 30.10% to 29.85% on the Libri3Mix set. These improvements highlight the benefits of joint ASR and VAD training
+in multi-speaker scenarios. With additional data, TS-ASR-AD
+achieves a WER of 6.61% and 14.81% on the Libri2Mix and
+Libri3Mix sets, outperforming previous studies. On the LibriSpeechMix dataset, TS-ASR-AD outperforms Whisper-smallSS-TTI [26] and surpasses Transformer SA-ASR [34] on the
+1-Mix set, while delivering comparable performance on the 2Mix set, despite Transformer SA-ASR being trained with significantly more resources.
+For VAD, TS-ASR-AD outperforms TS-VAD on
+Libri2Mix, improving from 3.33% to 2.87%. On Libri3Mix,
+while TS-ASR-AD’s performance is still below that of TSVAD, it outperforms previous work [40]. With additional
+data, TS-ASR-AD achieves a DER of 1.23% and 2.66% on
+the Libri2Mix and Libri3Mix sets, outperforming previous
+studies. Moreover, as the first to report VAD results on the
+LibriSpeechMix dataset, we establish new baseline DER values
+of 0.14%, 2.79%, and 5.38% for the 1-Mix, 2-Mix, and 3-Mix
+sets, respectively.
+
+4.2. Model Settings
+Inspired by previous work [19, 21], the upstream embedder follows the ECAPA-TDDN [41] deep network architecture and
+is instantiated with a checkpoint available here2 trained on
+VoxCeleb [42]. The upstream encoder follows the WavLM
+[36] architecture and is instantiated with checkpoints available
+here3 . The adaptation module follows the FiLM [35] architec1 https://github.com/fgnt/meeteval
+2 https://huggingface.co/speechbrain/spkrec-ecapa-voxceleb
+3 https://huggingface.co/microsoft/wavlm-base-plus
+
+1685
+
+Figure 2: Left (a): CTC loss for the 1st and 2nd speaker. The baseline is only trained on ASR while the proposed method is jointly
+trained on ASR and VAD. Right (b+c): CTC token probability when transcribing the 2nd speaker. Token probabilities are smoother for
+the proposed method. The reference transcript was: “what do you mean inquired louis”.
+
+Table 2: VAD results presented in diarization error rate
+(DER). If not specified, the training dataset is LibriMix-100h
+or LibriSpeechMix-100h and the proposed method uses WavLM
+Base+. “-” indicates that the result is not available.
+
+Table 3: ASR and VAD results for different multi-task weight.
+The dataset used is Libri2Mix-100h and the proposed method
+uses WavLM Base+. Metric is WER for ASR and DER for VAD.
+Method
+
+LibriMix
+
+Weight
+
+ASR
+
+VAD
+
+λasr = 0.3
+λ = 0.5
+TS-ASR-AD asr
+λasr = 0.7
+λasr = 0.9
+
+13.99
+12.89
+12.36
+15.52
+
+3.41
+3.02
+2.87
+4.26
+
+LibriSpeechMix
+
+Method
+
+2-Mix
+
+3-Mix
+
+2&3-Mix
+
+1-Mix
+
+2-Mix
+
+3-Mix
+
+Baselines
+WavLM + SD [36]
+TS-VAD [40]
+USED [40]
+TS-VAD (reproduced)
+
+3.50
+3.33
+
+6.58
+
+7.28
+5.20
+4.96
+
+-
+
+-
+
+-
+
+Proposed
+TS-ASR-AD
+TS-ASR-AD (460h)
+TS-ASR-AD (960h, large)
+
+2.87
+1.23
+-
+
+7.14
+2.66
+-
+
+5.01
+1.95
+-
+
+0.22
+0.19
+0.14
+
+3.80
+3.21
+2.79
+
+8.30
+6.49
+5.38
+
+5.4. Effect of enrollment duration
+Table 4: ASR and VAD results with different enrollment duration. The dataset is Libri2Mix-100h and the proposed method
+uses WavLM Base+. Metric is WER for ASR and DER for VAD.
+
+5.2. CTC alignment for speech mixtures
+As shown in Section 5.1, the proposed method consistently improves performance in multi-speaker scenarios. We further hypothesize that CTC alignment is degraded in speech mixtures,
+particularly due to ‘delayed audio’, which results in an increase
+of blank tokens in the CTC hypothesis. To demonstrate this, we
+conducted a simple experiment where we transcribe the speech
+of the first or last speaker in a two-speaker mixture. The results
+are shown in Figure 2.
+When the model is optimized solely for ASR (baseline), we
+observe that CTC struggles to converge when transcribing the
+last speaker, but not the first. This confirms that CTC alignment
+becomes more challenging for delayed or unsegmented audio.
+However, when the model is jointly optimized for ASR and
+VAD (proposed), this issue is alleviated, and CTC converges
+in both cases. Additionally, we note that the token probabilities
+for CTC are less stable when VAD is not optimized alongside
+ASR. In conclusion, jointly optimizing ASR and VAD significantly improves CTC alignment, which likely contributes to the
+superior performance of the proposed method.
+
+Method
+
+Duration
+
+ASR
+
+VAD
+
+TS-ASR-AD
+
+3s
+5s
+10s
+15s
+
+15.57
+12.36
+11.11
+10.36
+
+3.79
+2.87
+2.43
+2.17
+
+Table 4 presents the ASR and VAD results for different enrollment durations. We observe that performance improves with
+longer enrollments, which is expected since the embedder was
+kept frozen. When the enrollment duration is tripled from 5 to
+15 seconds, ASR improves by 2% and DER by 0.6%. The performance gap is particularly noticeable with enrollments shorter
+than 5 seconds. We hypothesize that 5 seconds is the minimum
+duration at which the proposed method delivers strong performance, which is why we use this value for the proposed method.
+
+6. Conclusion
+In this paper, we introduced a novel methodology that seamlessly integrates ASR and VAD for TS scenarios. By adding a
+VAD decoder to the TS-ASR architecture, we proposed a joint
+model that addresses the instability and error accumulation issues caused by separately optimized systems. Extensive experiments demonstrate that our approach improves CTC alignment
+in token probabilities for speech mixtures and outperforms previous studies on the LibriMix and LibriSpeechMix datasets, for
+both ASR and VAD tasks. Furthermore, we established a new
+baseline for the VAD task on the LibriSpeechMix dataset, being
+the first to report these results.
+
+5.3. Effect of multi-task weight
+Table 3 presents the ASR and VAD results for various multitask weight values, λasr . We find that setting λasr too high (≥
+0.9) does not yield the best performance in multi-task learning.
+We hypothesize that this is related to the CTC alignment issues
+discussed in Section 5.2. From the empirical results, we observe
+that the optimal value for λasr is 0.7, which results in a WER
+of 12.36% and a DER of 2.87%. This value was used in the
+proposed method.
+
+1686
+
+7. References
+
+[22] B. Zeng and M. Li, “Universal speaker embedding free target
+speaker extraction and personal voice activity detection,” arXiv
+preprint arXiv:2501.03612, 2025.
+
+[1] M. H. Moattar and M. M. Homayounpour, “A review on speaker
+diarization systems and approaches,” Proc. SPECOM, vol. 54,
+no. 10, pp. 1065–1103, 2012.
+
+[23] L. Cheng, H. Wang, S. Zheng, Y. Chen, R. Huang, Q. Zhang,
+Q. Chen, and X. Li, “Integrating audio, visual, and semantic information for enhanced multimodal speaker diarization,” arXiv
+preprint arXiv:2408.12102, 2024.
+
+[2] X. Anguera et al., “Speaker Diarization: A review of recent research,” IEEE Trans. Audio, Speech, Lang. Process., vol. 20,
+no. 2, pp. 356–370, 2012.
+
+[24] L. Qu, C. Weber, and S. Wermter, “Multimodal target speech
+separation with voice and face references,” arXiv preprint
+arXiv:2005.08335, 2020.
+
+[3] D. Wang and J. Chen, “Supervised speech separation based on
+deep learning: An overview,” IEEE/ACM Trans. Audio, Speech,
+Lang. Process., vol. 26, no. 10, pp. 1702–1726, 2018.
+
+[25] D. Yu, M. Kolbæk, Z.-H. Tan, and J. Jensen, “Permutation invariant training of deep models for speaker-independent multi-talker
+speech separation,” in Proc. ICASSP, 2017, pp. 241–245.
+
+[4] D. Raj et al., “Integration of speech separation, diarization, and
+recognition for multi-speaker meetings: System description, comparison, and analysis,” in Proc. SLT, 2021, pp. 897–904.
+
+[26] L. Meng et al., “Empowering whisper as a joint multi-talker and
+target-talker speech recognition system,” in Proc. Interspeech,
+2024, pp. 4653–4657.
+
+[5] N. Kanda et al., “Transcribe-to-diarize: Neural speaker diarization for unlimited number of speakers using end-to-end speakerattributed asr,” in Proc. ICASSP. IEEE, 2022, pp. 8082–8086.
+
+[27] J. Cosentino, M. Pariente, S. Cornell, A. Deleforge, and E. Vincent, “LibriMix: An open-source dataset for generalizable speech
+separation,” arXiv preprint arXiv:2005.11262, 2020.
+
+[6] S. Maiti, Y. Ueda, S. Watanabe et al., “EEND-SS: Joint end-toend neural speaker diarization and speech separation for flexible
+number of speakers,” in Proc. SLT. IEEE, 2023, pp. 480–487.
+
+[28] N. Kanda et al., “Serialized output training for end-to-end overlapped speech recognition,” in Proc. Interspeech, 2020, pp. 2797–
+2801.
+
+[7] J. Kalda et al., “PixIT: Joint training of speaker diarization and
+speech separation from real-world multi-speaker recordings,” in
+Proc. Odyssey, 2024, pp. 115–122.
+
+[29] H. Bredin, “pyannote.audio 2.1 speaker diarization pipeline: principle, benchmark, and recipe,” in Proc. Interspeech, 2023, pp.
+1983–1987.
+
+[8] Y. Bando, T. Nakamura, and S. Watanabe, “Neural blind source
+separation and diarization for distant speech recognition,” in Proc.
+Interspeech, 2024, pp. 722–726.
+
+[30] A. Plaquet and H. Bredin, “Powerset multi-class cross entropy
+loss for neural speaker diarization,” in Proc. Interspeech, 2023,
+pp. 3222–3226.
+
+[9] L. E. Shafey, H. Soltau, and I. Shafran, “Joint speech recognition and speaker diarization via sequence transduction,” in Proc.
+Interspeech, 2019, pp. 396–400.
+
+[31] S. Watanabe et al., “CHiME-6 Challenge: Tackling multispeaker speech recognition for unsegmented recordings,” in Proc.
+CHiME, 2020, pp. 1–7.
+
+[10] H. H. Mao, S. Li, J. McAuley, and G. W. Cottrell, “Speech recognition and multi-speaker diarization of long conversations,” in
+Proc. Interspeech, 2020, pp. 691–695.
+
+[32] A. Radford, J. W. Kim, and T. o. Xu, “Robust speech recognition
+via large-scale weak supervision,” in Proc. ICML, ser. ICML’23.
+JMLR.org, 2023.
+
+[11] Z.-Q. Wang and D. Wang, “Joint training of speech separation,
+filterbank and acoustic model for robust automatic speech recognition,” in Proc. Interspeech, 2015, pp. 2839–2843.
+
+[33] K. Iwamoto, T. Ochiai, M. Delcroix, R. Ikeshita, H. Sato,
+S. Araki, and S. Katagiri, “How bad are artifacts?: Analyzing
+the impact of speech enhancement errors on asr,” in Proc. Interspeech, 2022, pp. 5418–5422.
+
+[12] ——, “A joint training framework for robust automatic speech
+recognition,” IEEE/ACM Trans. Audio, Speech, Lang. Process.,
+vol. 24, no. 4, pp. 796–806, 2016.
+
+[34] N. Kanda et al., “End-to-end speaker-attributed asr with transformer,” in Proc. Interspeech, 2021, pp. 4413–4417.
+
+[13] C. Cui, “Joint speech separation, diarization, and recognition for
+automatic meeting transcription,” Theses, Université de Lorraine,
+Oct. 2024. [Online]. Available: https://hal.univ-lorraine.fr/
+tel-04813660
+
+[35] E. Perez et al., “FiLM: visual reasoning with a general conditioning layer,” in Proc. AAAI, ser. AAAI’18/IAAI’18/EAAI’18.
+AAAI Press, 2018.
+
+[14] M. Shakeel, Y. Sudo, Y. Peng, C.-J. Lin, and S. Watanabe,
+“Unifying diarization, separation, and ASR with multi-speaker
+encoder,” 2025. [Online]. Available: https://openreview.net/
+forum?id=5oaUMZEjWe
+
+[36] S. Chen et al., “Wavlm: Large-scale self-supervised pre-training
+for full stack speech processing,” IEEE J. Sel. Topics Signal Process., vol. 16, no. 6, pp. 1505–1518, 2022.
+
+[15] I. Medennikov et al., “Target-speaker voice activity detection: A
+novel approach for multi-speaker diarization in a dinner party scenario,” in Proc. Interspeech, 2020, pp. 274–278.
+
+[37] A. Graves et al., “Connectionist temporal classification: labelling
+unsegmented sequence data with recurrent neural networks,” in
+Proc. ICML, ser. ICML ’06, 2006, p. 369–376.
+
+[16] S. Ding, Q. Wang, S.-Y. Chang, L. Wan, and I. Lopez Moreno,
+“Personal vad: Speaker-conditioned voice activity detection,” in
+Proc. Odyssey, 2020, pp. 433–439.
+
+[38] V. Panayotov, G. Chen, D. Povey, and S. Khudanpur, “Librispeech: An asr corpus based on public domain audio books,”
+in Proc. ICASSP, 2015, pp. 5206–5210.
+
+[17] J. Du et al., “Speech separation of a target speaker based on deep
+neural networks,” in Proc. ICSP, 2014, pp. 473–477.
+
+[39] G. Wichern et al., “Wham!: Extending speech separation to noisy
+environments,” in Proc. Interspeech, 2019, pp. 1368–1372.
+
+[18] R. Gu et al., “Neural spatial filter: Target speaker speech separation assisted with directional information,” in Proc. Interspeech,
+2019, pp. 4290–4294.
+
+[40] J. Ao et al., “USED: universal speaker extraction and diarization,”
+IEEE Trans. Audio, Speech, Lang. Process., vol. 33, pp. 96–110,
+2025.
+
+[19] Z. Huang, D. Raj, P. Garcı́a, and S. Khudanpur, “Adapting
+self-supervised models to multi-talker speech recognition using
+speaker embeddings,” in Proc. ICASSP, 2023, pp. 1–5.
+
+[41] B. Desplanques et al., “ECAPA-TDNN: Emphasized channel attention, propagation and aggregation in tdnn based speaker verification,” in Proc. Interspeech, 2020, pp. 3830–3834.
+
+[20] T. Moriya et al., “Streaming target-speaker ASR with neural transducer,” in Proc. Interspeech, 2022, pp. 2673–2677.
+
+[42] A. Nagrani, J. S. Chung, W. Xie, and A. Zisserman, “Voxceleb:
+Large-scale speaker verification in the wild,” Computer speech &
+language, vol. 60, p. 101027, 2020.
+
+[21] T. Ashihara, T. Moriya, S. Horiguchi et al., “Investigation of
+speaker representation for target-speaker speech processing,” in
+Proc. SLT, 2024, pp. 423–430.
+
+[43] I. Loshchilov and F. Hutter, “Decoupled weight decay regularization,” in Proc. ICLR, 2017.
+
+1687
+
+
