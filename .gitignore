@@ -95,3 +95,5 @@ code/stability_matrix/
 code/runs/_*/
 code/_aug_smoke_out/
 code/_aug_smoke_selftest/
+
+code/_aug_manifests_poc1k/
