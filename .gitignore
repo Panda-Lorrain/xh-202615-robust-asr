@@ -91,3 +91,7 @@ code/.*_apikey
 code/out_*_slices*.json
 code/pos_pairs_midwar.json
 code/stability_matrix/
+
+code/runs/_*/
+code/_aug_smoke_out/
+code/_aug_smoke_selftest/
