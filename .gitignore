@@ -97,3 +97,8 @@ code/_aug_smoke_out/
 code/_aug_smoke_selftest/
 
 code/_aug_manifests_poc1k/
+
+code/.venv_tse/
+code/TSELM/
+code/runs/_tse_poc/
+code/_aug_manifests_poc1k/
