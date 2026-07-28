@@ -49,8 +49,28 @@ def parse_transcript(tsv_path: str) -> Dict[str, str]:
 
 
 def collect_wav_items(wav_root: str, transcript: Dict[str, str]) -> List[Dict]:
-    """遍历 wav_root/<spk>/<utt>.wav → [{wav, ref, spk, utt}] (只保留有 transcript 的)。"""
+    """遍历 wav_root/<split>/<spk>/<utt>.wav (train/dev/test 三 split) → [{wav, ref, spk, utt}]。
+
+    Aishell-1 实际结构: wav/{train,dev,test}/SXXXX/BAC009SXXXXWYYYY.wav
+    兼容 (无 split): wav/SXXXX/BAC009SXXXXWYYYY.wav
+    """
     items = []
+    # 优先三层 split 结构
+    for wav_path in glob.glob(os.path.join(wav_root, "*", "*", "*.wav")):
+        utt_id = os.path.splitext(os.path.basename(wav_path))[0]
+        if utt_id not in transcript:
+            continue
+        spk = os.path.basename(os.path.dirname(wav_path))
+        items.append({
+            "wav": wav_path.replace("\\", "/"),
+            "ref": transcript[utt_id],
+            "spk": spk,
+            "utt": utt_id,
+            "split": os.path.basename(os.path.dirname(os.path.dirname(wav_path))),
+        })
+    if items:
+        return items
+    # 退化: 两层结构 (无 split)
     for wav_path in glob.glob(os.path.join(wav_root, "*", "*.wav")):
         utt_id = os.path.splitext(os.path.basename(wav_path))[0]
         if utt_id not in transcript:
@@ -61,6 +81,7 @@ def collect_wav_items(wav_root: str, transcript: Dict[str, str]) -> List[Dict]:
             "ref": transcript[utt_id],
             "spk": spk,
             "utt": utt_id,
+            "split": "all",
         })
     return items
 

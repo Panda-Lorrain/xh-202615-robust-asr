@@ -1,5 +1,30 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
+> 🔴 **2026-07-28 最新（当前恢复点）**：**分场景路由反转 multi-voice NO-GO（全量坐实）+ 多信号拒识 task6 强 NO-GO 放弃 + TSE 方案就绪等算力**。本轮在 07-27 基础上做了 6 个 task 全量验证+定位真瓶颈。**未 commit**（用户把关身份和未验证标注）。
+>
+> **① 分场景路由★★★反转 multi-voice NO-GO（task1 全量 1350 pos 坐实）**：按 diar 分出人数 n_spk 路由——**n_spk=1（单人，40%）走主线不分离；n_spk=2（重叠，60%）SepFormer 分离+二选一**。机制坐实：SepFormer 对**单人破坏**（Δ+0.165）、对**重叠救回**（Δ−0.157），无差别混算抵消看似 net neutral，**分场景后净正**。之前 NO-GO 是因为没分场景。**全量数字**：transcribe CER **0.3427→0.2941（−14.2%）** / 含拒 thr0.27 **0.5931→0.5727（−3.4%，CER 腿 16.26→17.09，+0.83）**。**外推 −20.7% 没坐实**（采样偏差：原 483 抽样 n_spk=2 里 43% 是主战场，但全 805 池里 99% 是死区，外推把主战场高收益错误扩散；全量坐实救了避免基于外推误集成）。**铁证 cmd_2637**：主线切片（含重叠区）转"已经进行过一轮交"（非目标错）→ SepFormer srcB 转"哺乳期要少吃什么"=ref（CER=0 完美）。**对照 cmd_146**：单人样本，主线"打开观影模式"完美 → SepFormer srcA"打开关机"破坏（单人不该分离）。
+>
+> **② 含拒收益小的根因（收益漏斗，+0.83 为什么有限）**：transcribe −14.2% 被四层吃到含拒 −3.4%：① heuristic 选错 16.6%（213 条）② 死区占 n_spk=2 的 99%（SepFormer Δ−0.072 vs 主战场 Δ−0.111，收益小）③ n_spk=1（40%）走主线无空间 ④ **含拒 thr0.27 拒掉 55% n_spk=2（445 条 CER=1.0，最大损失）**——分场景改进转写但被拒的没进转写。
+>
+> **③ 多信号拒识 task6 强 NO-GO（放弃）**：task4 pos 侧有效——pos 含拒 CER **0.5937→0.4468（−22%，CER 腿 16.25→22.13，+5.88）**，机制是被 thr0.27 拒的 445 条里 SepFormer target 路常是清晰家居指令 → content_gate + home_kw"补救接受"，precision **83%**（救回 187 条，mean CER 0.187）。**但 task6 neg 474 条实测强 NO-GO**：neg 真实 RR 损失 **36.71%**（174/474 错误接受，是 task4 代理上界 8.3% 的 **4.4 倍**），neg RR **0.9051→0.5380** 灾难性下降，**net −8.81**（pos CER 腿 +5.88 完全被 neg RR 腿 −14.68 反噬且超额），收紧关键词/长度几乎无效（174→168）。**根因=架构性死结**：174 条错误 rescue 里 29-49% 是**干扰人说了完整家居指令**（如"打开空气净化器""开启烹饪模式""把灯打开""打开洗碗机"），文本上和真 target 指令无法区分——内容信号"文本像指令"在 pos/neg 上对称失败（pos: target 说指令→选指令路=target 路 有效；neg: 干扰人也说指令→选指令路=干扰人路=漏拒 失效）。"文本像指令"分不开是谁说的，只有声纹能分但 sim 在 SepFormer 后失效（SI-SDR 破坏声纹），死结。**task4 代理失效教训**：pos 另一路（干扰人说闲话）通过率 9.19% 代理 neg，但 neg 干扰人就是说家居话（题目设计测拒识）通过率 40.56%，pos/neg 干扰人行为不同不能用 pos 代理 neg 的拒识风险。**结论：多信号 rescue 放弃；分场景路由（task1 含拒 +0.83）仍成立（不依赖内容补救）；TSE（task5）是唯一治本路径**（enrollment 引导分离 target，绕开"内容分不开谁说的"死结）。
+>
+> **④ 选路天花板 + 真瓶颈定位（task2 坐实）**：选路 oracle 含拒 CER **0.5524**（heuristic 0.5733）——**选路侧到顶**，空间只 0.021。LLM 泛化二选一（"哪个更像对助手交互"）选对率 **78% < heuristic 84%**——**用户"LLM 更强"假设不成立**。"都录入"假设推翻：真双指令 TRAP 仅 3.35%，但反证**单选 target 路可靠**（非 target 路基本不是指令）。**真瓶颈 = sep 质量**（23.4% 样本 sep 两路都烂 CER≥0.8，选路救不回）+ 含拒 thr 拒掉 55%。
+>
+> **⑤ TSE 方案就绪（task5，等算力训练）**：V1=STFT 复数 mask TSE + ECAPA-lite 声纹 + 联合 loss（−SI-SNR + CTC，避纯 SI-SDR 陷阱）。三红线对齐：联合 loss 避 SI-SDR 破坏 mel / 死区增广（按失败分布加权）/ 中文 Aishell+MUSAN。冒烟通过（数据增广对齐题目规格 + 训练 10step loss 收敛）。**推理路径红线**：TSE 只分离 → 喂 qwen3 ASR（不能用自写 ASR 出文本，否则弱于主线 qwen3 0.3436）。算力 L20 ~8h ~64 元/round，等用户租。**GO 判据**：死区子集 TSE 分离→qwen3 的 ΔCER>0.05。
+>
+> **⑥ cmd_18 数据错配（官方素材问题，先记下）**：enrollment kws_18 是男声，recognition target 是女声——enrollment 和 recognition 的 target 不是同一人。死区里可能有批数据质量问题（enrollment-recognition 错配），不是模型问题。须排查。
+>
+> **⑦ 用户方法论再次胜利**：全量坐实不信抽样（task1 修正 −20.7% 外推为 −14.2%，抓到采样偏差）+ 人耳判据（听 cmd_146/2637 坐实 SepFormer 分场景，推翻"SepFormer 破坏 mel"笼统归因）。
+>
+> **🎧 关键待办（用户交代下一个 agent）**：
+> 1. **~~task6 neg 验证~~（已完成，强 NO-GO）**：neg 474 条实测 RR 损失 **36.71%**（远超 ≥8% 放弃线），neg RR 0.9051→0.5380，net −8.81。**多信号 rescue 已放弃**，详见 ③ 段 + memory `multi-signal-reject-rescue`。根因=干扰人 29-49% 也说完整家居指令，内容信号 pos/neg 对称失效，架构性死结。
+> 2. **租 L20 算力训 TSE（task5）**：V1 方案就绪（code/tse_train.py + 数据增广），L20 ~8h ~64 元/round，等用户租。GO 判据 ΔCER>0.05 on 死区子集。**TSE 是多信号死结的唯一治本路径**（enrollment 引导分离 target，绕开"内容分不开谁说的"）。
+> 3. **问主办方权重**：w1（CER 腿）/ w2（RR 腿）/ w_eff（效率腿）的具体值——决定 thr 是否重扫 + TSE 投入力度。
+>
+> **memory 重点读**：`scene-route-overturns-multivoice-nogo`（分场景路由核心，仍成立） / `multi-signal-reject-rescue`（**task6 强 NO-GO 已放弃**） / `multivoice-content-routing-is-mainline`（07-28 段更新：整体 NO-GO 被分场景推翻，但多信号 rescue 部分已 NO-GO） / `overlap-is-cer-failure-rootcause`（07-28 段：分场景全量坐实） / `cer-ceiling-oracle-fusion-net-negative`（07-28 段：多信号 pos 曾部分推翻"CER 到顶"，但 task6 neg 强 NO-GO 后该推翻不成立，CER 到顶结论维持） / `non-voiceprint-target-selection`（07-28 段：选路到顶 0.5524，真瓶颈=sep 质量）。
+>
+> **本轮 docs（待 commit）**：task1 分场景全量 / task2 选路天花板 / task4 多信号 pos / task5 TSE 方案 / task6 neg（**已出：强 NO-GO**）。
+
 > 🔴 **2026-07-27 最新（当前恢复点）**：**消除信息隔阂 + 5 路轻量改进全证伪 + 推翻"到顶" + 战略转向自训中文 TSE**。用户挑战 memory 旧结论"0.3436 物理天花板/到顶"，要求逐环节用真数据核实 + 人耳听样本验证（不靠 memory 二手归因）。本轮 10+ commit 全 push（`fd17e9f` 最新）。
 >
 > **① 推翻"到顶"**：死区(sim<0.4, 占全量 78.8%) 真地板仅 ~10%（用户人耳听 13 条高 CER 死区样本，全听得清 target）→ 90% 可修，理论空间 **CER 0.3436 → ~0.15**。"mel 摧毁物理地板"归因被推翻（用户方法论纠正：地板判据=人耳能否听清，弃用"mel 摧毁"模糊词）。
