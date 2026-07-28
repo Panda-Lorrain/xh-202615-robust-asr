@@ -1,5 +1,32 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
+> 🔴 **2026-07-27 最新（当前恢复点）**：**消除信息隔阂 + 5 路轻量改进全证伪 + 推翻"到顶" + 战略转向自训中文 TSE**。用户挑战 memory 旧结论"0.3436 物理天花板/到顶"，要求逐环节用真数据核实 + 人耳听样本验证（不靠 memory 二手归因）。本轮 10+ commit 全 push（`fd17e9f` 最新）。
+>
+> **① 推翻"到顶"**：死区(sim<0.4, 占全量 78.8%) 真地板仅 ~10%（用户人耳听 13 条高 CER 死区样本，全听得清 target）→ 90% 可修，理论空间 **CER 0.3436 → ~0.15**。"mel 摧毁物理地板"归因被推翻（用户方法论纠正：地板判据=人耳能否听清，弃用"mel 摧毁"模糊词）。
+>
+> **② 真瓶颈链（不是 mel 摧毁）**：diar 分对（spk0/spk1 emb 余弦 0.219 男女可分，内容对）→ **cut_target_timeline 切 full timeline 含重叠区**（物理混合收进切片）→ SepFormer 分离后**选路失效**（sim 选对率 25%，SI-SDR 破坏声纹）。enrollment 污染假设证伪（拆 enroll 各段仍选 spk0）。详见 memory `overlap-is-cer-failure-rootcause`（最全，A/B1/B2/2637诊断/分区POC/multi-voice/死区诊断全链条）。
+>
+> **③ 得分 70-73**：CER 含拒 0.5934 → 腿 16.26（**短板**）；RR 0.9494（content_gate 扩词典）→ 腿 37.97（近满分）；效率 18-19（估，L20 未真测）= **72-73/100**。CER 腿是唯一提升杠杆。
+>
+> **④ 5 路轻量改进全证伪（共性：轻量实现证伪，方向 oracle 有效，要兑现得重投入）**：
+> - **multi-voice 整体 NO-GO**：主战场 SepFormer 破坏 mel（0.178 vs argmax 0.059）；整体 Δ+0.0035 net neutral；RTF 翻倍
+> - **selector fallback NO-GO**：死区 Δ-0.003 零收益
+> - **SepFormer 盲分离**：oracle 选路 0.603（分离有效，救回 41%，9 条 CER=0）；sim 选路 1.249（25% 废）
+> - **微调 qwen POC 退化**：合成数据域不匹配（Aishell 朗读≠家居/程序重叠≠真实相位/程序小声≠真实小声），Δ+0.147，**死区退化最严重**（与目标相反）；loss 收敛 0.009 但 hold-out 退化（hold-out 救了，没盲目扩 1 万）
+> - **TSE 英文权重 zero-shot 中文证伪**：TSELM 6 条 0 救回（HiFiGAN 英文 kmeans 重建中文崩溃）；USEF-TSE 缺包；Whisper-Sidecar **核实无公开权重**
+>
+> **⑤ multi-voice 证伪诊断（用户质疑触发，澄清归因）**：用户怀疑"两路都家居指令不多"——**对**。"92% 双 accept"是 content_gate 宽松放行率（拒新闻用的），**真"两路都像家居指令"仅 25%**。选路（cmd_score）80% 准，不是大问题。**NO-GO 真因 = SepFormer 破坏 mel（B 类铁证：cmd_146 等 argmax CER=0 → SepFormer 后 0.6+），不是选路**。详见 `docs/verify_mv_fail.md`。
+>
+> **⑥ 方法论纠正（必守）**：地板判据=人耳可辨度（不用"mel 摧毁"）；hold-out 评测（loss 骗人，POC 必看 ΔCER）；外部训练允许（主办方 2026-07-27 确认，memory `external-training-allowed`）；**派 agent 不亲自跑**（核心负责人模式，memory `core-leader-delegate-mode`）。
+>
+> **🎧 关键待办（用户交代下一个 agent）**：
+> 1. **用户正在听 B 类样本验证**：`code/runs/_verify_mv_fail/B_<uid>/`（cmd_146/2007/2129/277/73）——听 `argmax_target_slice.wav`（主线清晰）vs `sep_sourceA.wav`（SepFormer 破坏后），亲自验证"SepFormer 怎么把好的搞坏"。**听完用户会反馈**。
+> 2. **下一步：启动自训中文 TSE**（用户确认要做，是最可执行的重投入）：Aishell1Mix 数据现成（`E:/midea_datasets/data_aishell` 14.5G + `musan_extracted` 10.3G 已下）+ 租算力（L20/A100 几天，用户愿租）+ 攻"分离"治本（绕开 SepFormer 中文 OOD + 选路失效）。**第 1-2 步本机能做**（生成 Aishell1Mix 重叠数据 + TSE 训练脚本，`data_aug_recipe.py`/`build_aishell_manifest.py` 已就绪），**第 3 步租算力训练**。TSE 调研见 `docs/research_speaker_separation.md`（Top5：Whisper-Sidecar 最对症 MIT+中文验证但要自训 / TS-ASR-AD=候选X / USEF-TSE）。
+>
+> **memory 重点读**：`overlap-is-cer-failure-rootcause`（最全） / `multivoice-content-routing-is-mainline`（multi-voice 全 NO-GO + 真因） / `external-training-allowed`（外部训练允许 + 微调 POC 退化） / `core-leader-delegate-mode`（派 agent 工作方式） / `non-voiceprint-target-selection`（Whisper-Sidecar 等，部分修正）。
+>
+> **本轮 docs**：`deadzone_diag` / `multivoice_full_validation` / `sepformer_ceiling_B2` / `partition_cut_poc` / `oracle_speaker_ceiling_A` / `separation_ceiling_B1` / `diag_2637_diar_fail` / `fix_cut_boundary` / `tse_poc` / `qwen_lora_poc` / `verify_mv_fail` / `verify_deadzone` / `verify_deadzone2` / `verify_sample_cmd_2475` / `research_speaker_separation` / `qwen_finetune_data_recipe` / `hf_cache_cleanup` / `链路验收清单`。
+
 > 🔴 **2026-07-24 最新（当前恢复点）**：CER 后处理/解码侧探索闭环 — **6 路全证伪 + 规则E品牌同音修复集成（唯一确定净正 Δ-0.001）**。用户诉求"CER 占 40% 大头重点强化"。5-agent workflow（错误模式量化+规则实测+context设计+beam可行性+综合决策）+ 5 GPU 实验。**CER 0.3432（baseline batch 口径，对齐 poc 0.3436）→ 0.3422（规则E集成后）**，天花板坐实（55%=370 条无解幻觉 babble 摧毁 mel，45% 可救但全落 ±0.04 噪声地板）。① context C1 场景+词汇 Δ-0.0067（改善166>恶化69但主战场[0.2,0.4)回退+0.0044→门槛③失败噪声内）/ C2 纯词表 Δ+0.2042 灾难（死区热词回吐 CER 飙124，Issue#106 死区全面爆发坐实）② 零RTF rep_penalty1.1 Δ+0.0006 / no_repeat4 Δ+0.0001（qwen 幻觉是**无关型非循环型**，DiCoW"直击循环幻觉"假设不迁移）③ LLM 精准保守（Qwen2.5-3B+程序裁剪只留严格同音 TONE3 单字替换）Δ+0.0012 改7恶17——**改对7=品牌功能名（智控温/轻干洗/净呼吸/洗衣机筒）=规则E 已覆盖零增量，改错17=3B 过度纠正常用词（制热→智热/顶灯→鼎灯/最高→髙）+繁体+桶筒语境误判**，LLM 后纠正**严格劣于规则E**（3B 无判断"原文是否正确"能力，程序裁剪压不住）。✅**规则E集成** `text_utils.brand_homophone_fix`（美的功能名锚点+ pypinyin TONE3 严格同音，零回退 Δ-0.001 改9恶0，**领域知识非 A集统计合规可提交 B集**）→ enroll_infer L380(vanilla/dicow)+L425(qwen/firered) digit_postproc 后 + requirements 声明 pypinyin==0.55.0。**⚠️教训**：实验前必须验证切片目录=baseline 源（首轮 C1/C2 误用 target_slices_qwen CER0.4384 vs poc 源 target_slices_full 0.3436，白跑20min，诚实 baseline 交叉验证救了结论）。commit `93657ab` + 交接文档 commit。**CER 腿解码侧/后处理彻底 exhausted**，突破只剩更强 LLM(7B+效率代价)/模型替换(已证伪)/A集外训练(违规)。ROI 转效率腿(L20)+答辩腿（6路实证证伪+Issue#106 死区回吐发现=诚实归因硬弹药）。详见下【2026-07-24】段 + memory `cer-improvement-directions`。
 
 > 🔴 **2026-07-23 最新（当前恢复点）**：Qwen3 重跑 CAM++/SepFormer **双证伪**——用户核心假设"是 DiCoW 差不是方法错"**不成立**。① CAM++ 声纹强化 GO=否：Qwen3 oracle（exp_spk_oracle_qwen.py，死区60+主战场60）显示 cer_gain 死区+0.146/主战场+0.106（选 target 是问题，部分推翻 vanilla "oracle 0.607 封闭"），但 miss 中正确 target sim≥0.2 仅 0%/21% → 声纹层提不出正确 target（babble 摧毁 who 信号），CAM++ 救不了。② SepFormer GO=否（更狠）：exp_sepformer_qwen.py（死区40）SepFormer+Qwen3 0.687 vs argmax 0.410（Δ+0.277），oracle 0.413≈argmax → 分离没拎出更干净 target。**新发现**：Qwen3 下选 target 是真问题（cer_gain +0.1~0.15），解药在**非声纹 target 选择**（diar 改进/enrollment-conditioned TSE 联合），留新方向线索。CER 腿 qwen 0.3436 天花板坐实，死区物理极限换更强转写器也救不了。答辩硬弹药。**另本轮还做了**: 目录整理(删~5.5G中间产物 + out_*/json/csv归 code/runs/ rename保留历史 + docs/实验结果汇总.md) / 效率迁移性分析(4-agent workflow: 4060→L20三不统一+家居RTF推算实时阈值0.2-0.3 L20外推0.09-0.12优秀) / 非声纹深探全证伪(ASE关键帧net更差 + CAM++替换wespeaker CER噪声内 + Whisper-Sidecar NO-GO无权重绑Whisper净亏) → **CER腿彻底到底, ROI转效率腿+答辩**。commit `6eb1fa6`+`dcff974` 全 push。详见下【2026-07-23】段 + memory `spk-oracle-poc`/`non-voiceprint-target-selection`/`efficiency-portability-audit`。
