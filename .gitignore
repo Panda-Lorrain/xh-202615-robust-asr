@@ -102,3 +102,8 @@ code/.venv_tse/
 code/TSELM/
 code/runs/_tse_poc/
 code/_aug_manifests_poc1k/
+
+# ===== 2026-07-29 TSE 冒烟测试产物(可重生成, 不入库; 同 _aug_smoke_out 规范; 含 24MB tse_asr_joint.pt 权重) =====
+code/_aug_build_smoke/
+code/_tse_aug_smoke/
+code/_tse_train_smoke/
