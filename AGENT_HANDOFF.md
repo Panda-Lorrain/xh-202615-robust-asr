@@ -1,5 +1,30 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
+> 🔴 **2026-07-30 当前恢复点：Phase-3 Sidecar 显著回退 + 稳定提交线
+> Dataset-A 全量重跑完成。** Phase-3 冻结 Qwen3-ASR-1.7B，
+> 8/24 层 Sidecar（rank 64，1,427,521 可训练参数）仅用 AISHELL-1
+> official train + MUSAN 训练；synthetic val ASR loss
+> `5.7891→4.0566`，但锁定 checkpoint 后一次性 A 集同进程配对 CER
+> `0.342948→0.376458`，Δ`+0.033510`，bootstrap 95% CI
+> `[+0.021655,+0.045744]`，**显著 NO-GO：不租算力扩训、不集成、不用
+> A 集调参。**
+>
+> 随后以固定提交配置（Qwen、thr0.27、sim_only、关 LLM/SE、开
+> content_gate、batch1）从原始 A 音频重跑：pos 1364 条累计池 CER
+> `0.620059`（逐句平均是 `0.7230`，两口径严禁混用）；neg 474 条
+> RR `94.73%`（449/474）；4060 pos/neg RTF `0.277/0.206`，合并
+> `0.253`。按累计池 CER，质量腿 `53.09/80`，总分估计
+> `68.66–73.09/100`；L20 效率近满分时约 `73.09`。content gate
+> pos 多误拒 35 条、neg 多正确拒 20 条，净约 `+0.75` 分，维持开启。
+>
+> 固定 scene route + content gate 在 1350 共同样本上 CER
+> `0.6168→0.5919`，约 `+0.99` 个质量分，但尚缺 L20 batch1
+> 端到端效率验证。**下一步不是训练模型**：先把 scene route 做成可开关
+> 候选，在 L20 测真实总分；同时确认主办方 CER 聚合与效率公式，并修复
+> Qwen 子进程峰值显存遥测。没有新的非 A 真实开发集，不再调阈值/
+> content gate/模型。详见 `docs/全量评测与下一步_2026-07-30.md` 和
+> `code/runs/full_eval_20260730_summary.json`。
+>
 > 🔴 **2026-07-29 训练数据/loss 回修完成：声学翻正，Qwen CER 仍
 > NO-GO**：审计发现旧 synthetic 数据把 `target_gain_db` 叠加在已标定
 > SIR/SNR 后，train 最低实测到 `-12.65/-12.61 dB`，超出声明的
