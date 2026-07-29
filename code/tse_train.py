@@ -21,7 +21,7 @@
                               │   ├── (mix_ri, d_vec) → MaskNet → mask [B,2,F,T]
                               │   │
                               ▼   ▼
-                       est_ri = mix_ri * mask ──ISTFT──► est_wav [B,T]   ─► -SI-SNR(est, clean_target)
+                       est_ri = complex_mul(mix_ri, mask) ──ISTFT──► est_wav
                                           │
                                           ▼ mel
                                        ASR encoder + CTC head → ctc_logits ─► CTC(logits, ref_tokens)
@@ -46,14 +46,13 @@
 冒烟 (本机 4060, CPU 也可):
   uv run --python code/.venv_tse python code/tse_train.py \
       --manifest code/_tse_aug_smoke/manifest.jsonl \
-      --out-dir code/_tse_train_smoke --steps 10 --batch-size 2 \
-      --seg-samples 32000 --device cuda
+      --out-dir code/_tse_train_smoke --steps 10 --batch-size 2 --device cuda
 
 全量 (租算力 L20/A100):
   uv run --python code/.venv_tse python code/tse_train.py \
       --manifest /path/full_manifest.jsonl \
       --out-dir /path/full_out --steps 100000 --batch-size 8 \
-      --seg-samples 64000 --device cuda --lr 2e-4
+      --device cuda --lr 2e-4
 """
 from __future__ import annotations
 
@@ -82,6 +81,7 @@ SR = 16000
 # 1. SI-SNR loss (zero-mean, scale-invariant)
 # ============================================================================
 def si_snr(est: torch.Tensor, target: torch.Tensor,
+           lengths: Optional[torch.Tensor] = None,
            eps: float = 1e-8) -> torch.Tensor:
     """SI-SNR (scale-invariant SNR) for batches.
 
@@ -91,8 +91,17 @@ def si_snr(est: torch.Tensor, target: torch.Tensor,
     Returns:
         [B] per-sample SI-SNR in dB
     """
-    est = est - est.mean(dim=-1, keepdim=True)
-    target = target - target.mean(dim=-1, keepdim=True)
+    if lengths is None:
+        lengths = torch.full(
+            (est.size(0),), est.size(1), dtype=torch.long, device=est.device
+        )
+    time = torch.arange(est.size(1), device=est.device).unsqueeze(0)
+    mask = (time < lengths.unsqueeze(1)).to(est.dtype)
+    denom = lengths.clamp_min(1).to(est.dtype).unsqueeze(1)
+    est = (est - (est * mask).sum(dim=-1, keepdim=True) / denom) * mask
+    target = (
+        target - (target * mask).sum(dim=-1, keepdim=True) / denom
+    ) * mask
     dot = (est * target).sum(dim=-1, keepdim=True)
     energy = (target ** 2).sum(dim=-1, keepdim=True) + eps
     s_target = (dot / energy) * target
@@ -121,7 +130,7 @@ class SpeakerEncoder(nn.Module):
     def forward(self, mel: torch.Tensor) -> torch.Tensor:
         """mel: [B, n_mels, T] -> d_vec: [B, d_out]"""
         x = mel.unsqueeze(1)  # [B, 1, n_mels, T]
-        return self.net(x)
+        return F.normalize(self.net(x), dim=-1)
 
 
 class TCNBlock(nn.Module):
@@ -171,6 +180,19 @@ class MaskNet(nn.Module):
         for blk in self.tcn_blocks:
             x = blk(x)
         return torch.tanh(self.proj_out(x))  # [B, 2, F, T]
+
+
+def apply_complex_mask(mix_ri: torch.Tensor,
+                       mask_ri: torch.Tensor) -> torch.Tensor:
+    """Apply a complex ratio mask to [real, imag] tensors."""
+    if mix_ri.shape != mask_ri.shape or mix_ri.size(1) != 2:
+        raise ValueError(
+            f"expected matching [B,2,F,T] tensors, got "
+            f"{tuple(mix_ri.shape)} and {tuple(mask_ri.shape)}"
+        )
+    xr, xi = mix_ri[:, 0], mix_ri[:, 1]
+    mr, mi = mask_ri[:, 0], mask_ri[:, 1]
+    return torch.stack((xr * mr - xi * mi, xr * mi + xi * mr), dim=1)
 
 
 class ASRLayer(nn.Module):
@@ -257,7 +279,7 @@ class TSE_ASR_Joint(nn.Module):
         mix_ri = torch.stack([stft.real, stft.imag], dim=1)  # [B, 2, F, T]
         # 3) mask
         m = self.mask_net(mix_ri, d_vec)  # [B, 2, F, T]
-        est_ri = mix_ri * m
+        est_ri = apply_complex_mask(mix_ri, m)
         est_stft = torch.complex(est_ri[:, 0], est_ri[:, 1])
         T_in = mix.size(-1)
         est_wav = torch.istft(est_stft, self.n_fft, self.hop,
@@ -295,9 +317,12 @@ def encode_text(text: str, vocab: Dict[str, int]) -> List[int]:
 # ============================================================================
 class TSEDataset(Dataset):
     def __init__(self, manifest_path: str, vocab: Dict[str, int],
-                 seg_samples: int = 32000, enroll_samples: int = 28800):
-        """seg_samples: 训练裁剪长度 (32k=2.0s @ 16kHz)
-        enroll_samples: enrollment 裁剪/补零长度 (28.8k=1.8s)"""
+                 seg_samples: int = 0, enroll_samples: int = 28800):
+        """Load complete labeled utterances.
+
+        seg_samples is a deprecated safety limit. Labeled utterances are never
+        cropped because a segment-level transcript/forced alignment is absent.
+        """
         self.rows = [json.loads(l) for l in open(manifest_path, encoding="utf-8")
                      if l.strip()]
         self.vocab = vocab
@@ -307,43 +332,59 @@ class TSEDataset(Dataset):
     def __len__(self):
         return len(self.rows)
 
-    def _load_wav(self, path: str, target_len: int) -> np.ndarray:
-        wav, _ = torchaudio.load(path)  # [1, T]
+    def _load_wav(self, path: str) -> np.ndarray:
+        wav, sr = torchaudio.load(path)  # [1, T]
+        if sr != SR:
+            wav = torchaudio.functional.resample(wav, sr, SR)
         wav = wav.mean(dim=0).numpy().astype(np.float32)  # [T]
-        # 裁剪/补零到 target_len
-        if len(wav) >= target_len:
-            max_start = len(wav) - target_len
-            start = random.randint(0, max_start) if max_start > 0 else 0
-            wav = wav[start:start + target_len]
-        else:
-            wav = np.pad(wav, (0, target_len - len(wav)))
         return wav
 
     def __getitem__(self, idx: int):
         r = self.rows[idx]
-        mix = self._load_wav(r["recognition_audio"], self.seg)
-        # clean_target 与 recognition 等长 (tse_data_aug 保证)
-        clean = self._load_wav(r["clean_target_audio"], self.seg)
-        enroll = self._load_wav(r["enrollment_audio"], self.enroll_n)
+        mix = self._load_wav(r["recognition_audio"])
+        clean = self._load_wav(r["clean_target_audio"])
+        if len(mix) != len(clean):
+            raise ValueError(
+                f"{r['id']}: recognition/clean length mismatch "
+                f"{len(mix)} != {len(clean)}"
+            )
+        if self.seg > 0 and len(mix) > self.seg:
+            raise ValueError(
+                f"{r['id']}: {len(mix)} samples exceed --seg-samples={self.seg}; "
+                "cropping is forbidden without segment-level transcripts"
+            )
+        enroll = self._load_wav(r["enrollment_audio"])
+        if len(enroll) >= self.enroll_n:
+            max_start = len(enroll) - self.enroll_n
+            start = random.randint(0, max_start) if max_start > 0 else 0
+            enroll = enroll[start:start + self.enroll_n]
+        else:
+            enroll = np.pad(enroll, (0, self.enroll_n - len(enroll)))
         tokens = encode_text(r.get("ref", ""), self.vocab)
-        if len(tokens) == 0:
-            # 防止 CTC 0 长度目标崩; 用 blank+pad 兜底 (冒烟时 n_mels=80 / 小词表可能出现)
-            tokens = [0]
         return (torch.from_numpy(mix), torch.from_numpy(clean),
                 torch.from_numpy(enroll), torch.tensor(tokens, dtype=torch.long),
                 r["id"])
 
 
 def collate_fn(batch):
-    mixes = torch.stack([b[0] for b in batch], dim=0)
-    cleans = torch.stack([b[1] for b in batch], dim=0)
+    wav_lens = torch.tensor([len(b[0]) for b in batch], dtype=torch.long)
+    mixes = torch.nn.utils.rnn.pad_sequence(
+        [b[0] for b in batch], batch_first=True, padding_value=0.0
+    )
+    cleans = torch.nn.utils.rnn.pad_sequence(
+        [b[1] for b in batch], batch_first=True, padding_value=0.0
+    )
     enrolls = torch.stack([b[2] for b in batch], dim=0)
     tokens = [b[3] for b in batch]
     ids = [b[4] for b in batch]
     token_lens = torch.tensor([len(t) for t in tokens], dtype=torch.long)
-    tokens_padded = torch.nn.utils.rnn.pad_sequence(
-        tokens, batch_first=True, padding_value=0)
-    return mixes, cleans, enrolls, tokens_padded, token_lens, ids
+    if any(len(t) for t in tokens):
+        tokens_padded = torch.nn.utils.rnn.pad_sequence(
+            tokens, batch_first=True, padding_value=0
+        )
+    else:
+        tokens_padded = torch.empty((len(batch), 0), dtype=torch.long)
+    return mixes, cleans, enrolls, wav_lens, tokens_padded, token_lens, ids
 
 
 # ============================================================================
@@ -376,7 +417,9 @@ def train(args):
                     seg_samples=args.seg_samples,
                     enroll_samples=args.enroll_samples)
     dl = DataLoader(ds, batch_size=args.batch_size, shuffle=True,
-                    collate_fn=collate_fn, drop_last=True, num_workers=0)
+                    collate_fn=collate_fn, drop_last=False, num_workers=0)
+    if len(ds) == 0:
+        raise ValueError("empty training manifest")
 
     # 4) 优化器
     opt = torch.optim.Adam(model.parameters(), lr=args.lr)
@@ -390,20 +433,26 @@ def train(args):
     model.train()
     print(f"[train] 开始训练, 目标 {args.steps} steps, alpha={args.alpha} (SI-SNR) beta={args.beta} (CTC)")
     while step < args.steps:
-        for mix, clean, enroll, tokens, token_lens, ids in dl:
+        for mix, clean, enroll, wav_lens, tokens, token_lens, ids in dl:
             mix = mix.to(device); clean = clean.to(device)
             enroll = enroll.to(device)
+            wav_lens = wav_lens.to(device)
             tokens = tokens.to(device); token_lens = token_lens.to(device)
 
             est_wav, ctc_logits = model(mix, enroll)
             # SI-SNR loss (越大越好 → 取负)
-            L_sisnr = -si_snr(est_wav, clean).mean()
+            L_sisnr = -si_snr(est_wav, clean, wav_lens).mean()
             # CTC loss (log-probs, target, input_len, target_len, blank=0)
             log_probs = F.log_softmax(ctc_logits, dim=-1).transpose(0, 1)  # [T, B, V]
-            input_lens = torch.full((mix.size(0),), log_probs.size(0),
-                                    dtype=torch.long, device=device)
+            input_lens = (wav_lens // args.hop + 1).clamp_max(log_probs.size(0))
+            if torch.any(token_lens > input_lens):
+                bad = [
+                    ids[i] for i in range(len(ids))
+                    if token_lens[i] > input_lens[i]
+                ]
+                raise ValueError(f"CTC target longer than input frames: {bad}")
             L_ctc = F.ctc_loss(log_probs, tokens, input_lens, token_lens,
-                               blank=0, zero_infinity=True)
+                               blank=0, zero_infinity=False)
             loss = args.alpha * L_sisnr + args.beta * L_ctc
 
             opt.zero_grad()
@@ -452,8 +501,8 @@ def main():
     ap.add_argument("--out-dir", required=True)
     ap.add_argument("--steps", type=int, default=10)
     ap.add_argument("--batch-size", type=int, default=2)
-    ap.add_argument("--seg-samples", type=int, default=32000,
-                    help="训练段长 (samples, 32k=2.0s)")
+    ap.add_argument("--seg-samples", type=int, default=0,
+                    help="弃用的安全上限；0=整句。无分段标注时禁止裁剪")
     ap.add_argument("--enroll-samples", type=int, default=28800,
                     help="enrollment 段长 (28.8k=1.8s 题目规格)")
     # 模型超参

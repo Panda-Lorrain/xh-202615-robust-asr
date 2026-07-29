@@ -10,8 +10,8 @@ Aishell-1 目录结构 (解压 data_aishell.tgz 后):
 本脚本:
   - 解析 transcript → {utt_id: 去空格文本}
   - 遍历 wav 目录 → [{wav, ref, spk}]
-  - 按说话人切分: 一部分当 target, 一部分当 interferer
-    (跨说话人切保证 target≠interferer, 同说话人 utterance 自重叠不出现)
+  - 按说话人切分 train/val；每个 split 内说话人可轮换 target/interferer
+    (逐条混合时再保证 target≠interferer，避免永久角色造成标签泄漏)
   - 输出 3 个 jsonl: target / interferer / (noise 走 MUSAN 另建)
 
 注意: Aishell 是新闻朗读 (非家居指令), 文本不是空调/灯/温度类。
@@ -92,9 +92,10 @@ def split_target_interferer(items: List[Dict],
                             max_utts_per_target: int = 5,
                             max_utts_per_interferer: int = 5,
                             seed: int = 42) -> tuple:
-    """按说话人切分: 选 n_target_speakers 当 target, n_interferer_speakers 当干扰。
+    """Build two role pools from the same speakers.
 
-    跨说话人切 → 保证 target 和 interferer 不是同一人 (避免自重叠泄漏)。
+    The historical implementation assigned speakers permanently to one role,
+    allowing a separator to identify targets without using enrollment.
     """
     # 按说话人分组
     by_spk: Dict[str, List[Dict]] = {}
@@ -103,28 +104,79 @@ def split_target_interferer(items: List[Dict],
     speakers = sorted(by_spk.keys())
     rng = random.Random(seed)
     rng.shuffle(speakers)
-    if len(speakers) < n_target_speakers + n_interferer_speakers:
+    n_speakers = n_target_speakers + n_interferer_speakers
+    if len(speakers) < n_speakers:
         raise SystemExit(
             f"[split] 说话人不够: 共 {len(speakers)} 个, 需要 "
             f"{n_target_speakers + n_interferer_speakers} 个"
         )
-    target_spks = speakers[:n_target_speakers]
-    interf_spks = speakers[n_target_speakers:n_target_speakers + n_interferer_speakers]
+    selected_spks = speakers[:n_speakers]
 
     target_items = []
-    for spk in target_spks:
+    for spk in selected_spks:
         utts = by_spk[spk]
         rng.shuffle(utts)
         for it in utts[:max_utts_per_target]:
             target_items.append({"wav": it["wav"], "ref": it["ref"],
                                  "spk": it["spk"], "utt": it["utt"]})
     interferer_items = []
-    for spk in interf_spks:
+    for spk in selected_spks:
         utts = by_spk[spk]
         rng.shuffle(utts)
         for it in utts[:max_utts_per_interferer]:
-            interferer_items.append({"wav": it["wav"]})  # ref 不需要
+            interferer_items.append({
+                "wav": it["wav"], "spk": it["spk"], "utt": it["utt"]
+            })  # ref 不需要
     return target_items, interferer_items
+
+
+def split_train_val_speakers(
+    items: List[Dict],
+    n_target_speakers: int,
+    n_interferer_speakers: int,
+    n_val_target_speakers: int,
+    n_val_interferer_speakers: int,
+    max_utts_per_target: int,
+    max_utts_per_interferer: int,
+    seed: int,
+) -> tuple:
+    """Create speaker-disjoint train/val splits with role-swappable pools."""
+    by_spk: Dict[str, List[Dict]] = {}
+    for it in items:
+        by_spk.setdefault(it["spk"], []).append(it)
+    speakers = sorted(by_spk)
+    rng = random.Random(seed)
+    rng.shuffle(speakers)
+    n_train_speakers = n_target_speakers + n_interferer_speakers
+    n_val_speakers = n_val_target_speakers + n_val_interferer_speakers
+    required = n_train_speakers + n_val_speakers
+    if len(speakers) < required:
+        raise SystemExit(
+            f"[split] 说话人不够: 共 {len(speakers)} 个, train+val 需要 {required} 个"
+        )
+
+    train_speakers = speakers[:n_train_speakers]
+    val_speakers = speakers[n_train_speakers:required]
+
+    def collect(selected, limit, include_ref):
+        rows = []
+        for spk in selected:
+            utterances = list(by_spk[spk])
+            rng.shuffle(utterances)
+            for it in utterances[:limit]:
+                row = {"wav": it["wav"], "spk": it["spk"], "utt": it["utt"]}
+                if include_ref:
+                    row["ref"] = it["ref"]
+                rows.append(row)
+        return rows
+
+    train_target = collect(train_speakers, max_utts_per_target, True)
+    train_interferer = collect(
+        train_speakers, max_utts_per_interferer, False
+    )
+    val_target = collect(val_speakers, max_utts_per_target, True)
+    val_interferer = collect(val_speakers, max_utts_per_interferer, False)
+    return train_target, train_interferer, val_target, val_interferer
 
 
 def collect_musan_noise(musan_root: str,
@@ -160,11 +212,22 @@ def main():
     ap.add_argument("--out-dir", required=True)
     ap.add_argument("--n-target-speakers", type=int, default=10)
     ap.add_argument("--n-interferer-speakers", type=int, default=10)
+    ap.add_argument("--n-val-target-speakers", type=int, default=2)
+    ap.add_argument("--n-val-interferer-speakers", type=int, default=2)
     ap.add_argument("--max-utts-per-target", type=int, default=5)
     ap.add_argument("--max-utts-per-interferer", type=int, default=5)
     ap.add_argument("--max-noise", type=int, default=20)
+    ap.add_argument(
+        "--source-splits",
+        nargs="+",
+        default=["train"],
+        help="AISHELL official splits allowed for synthetic train/val (default: train)",
+    )
     ap.add_argument("--seed", type=int, default=42)
     args = ap.parse_args()
+
+    if args.max_utts_per_target < 2:
+        ap.error("--max-utts-per-target must be >=2 for distinct enrollment utterances")
 
     os.makedirs(args.out_dir, exist_ok=True)
 
@@ -176,31 +239,62 @@ def main():
     print(f"[build] transcript 条数: {len(transcript)}")
     print(f"[build] 收集 wav: {wav_root}")
     items = collect_wav_items(wav_root, transcript)
+    if any(item.get("split") != "all" for item in items):
+        allowed_splits = set(args.source_splits)
+        items = [item for item in items if item.get("split") in allowed_splits]
+        if not items:
+            ap.error(
+                f"--source-splits selected no audio: {sorted(allowed_splits)}"
+            )
     print(f"[build] 总 wav 条数 (有 transcript): {len(items)}")
 
-    target_items, interferer_items = split_target_interferer(
+    (target_items, interferer_items,
+     val_target_items, val_interferer_items) = split_train_val_speakers(
         items,
         n_target_speakers=args.n_target_speakers,
         n_interferer_speakers=args.n_interferer_speakers,
+        n_val_target_speakers=args.n_val_target_speakers,
+        n_val_interferer_speakers=args.n_val_interferer_speakers,
         max_utts_per_target=args.max_utts_per_target,
         max_utts_per_interferer=args.max_utts_per_interferer,
         seed=args.seed,
     )
+    train_speaker_count = (
+        args.n_target_speakers + args.n_interferer_speakers
+    )
+    val_speaker_count = (
+        args.n_val_target_speakers + args.n_val_interferer_speakers
+    )
     print(f"[build] target utts: {len(target_items)} "
-          f"({args.n_target_speakers} 说话人 × ≤{args.max_utts_per_target})")
+          f"({train_speaker_count} 可交换角色说话人 "
+          f"× ≤{args.max_utts_per_target})")
     print(f"[build] interferer utts: {len(interferer_items)} "
-          f"({args.n_interferer_speakers} 说话人 × ≤{args.max_utts_per_interferer})")
+          f"({train_speaker_count} 可交换角色说话人 "
+          f"× ≤{args.max_utts_per_interferer})")
+    print(f"[build] val target/interferer utts: "
+          f"{len(val_target_items)}/{len(val_interferer_items)} "
+          f"({val_speaker_count} val 说话人, 与 train speaker-disjoint)")
 
     target_path = os.path.join(args.out_dir, "target.jsonl")
     interf_path = os.path.join(args.out_dir, "interferer.jsonl")
+    val_target_path = os.path.join(args.out_dir, "target_val.jsonl")
+    val_interf_path = os.path.join(args.out_dir, "interferer_val.jsonl")
     with open(target_path, "w", encoding="utf-8") as f:
         for it in target_items:
             f.write(json.dumps(it, ensure_ascii=False) + "\n")
     with open(interf_path, "w", encoding="utf-8") as f:
         for it in interferer_items:
             f.write(json.dumps(it, ensure_ascii=False) + "\n")
+    with open(val_target_path, "w", encoding="utf-8") as f:
+        for it in val_target_items:
+            f.write(json.dumps(it, ensure_ascii=False) + "\n")
+    with open(val_interf_path, "w", encoding="utf-8") as f:
+        for it in val_interferer_items:
+            f.write(json.dumps(it, ensure_ascii=False) + "\n")
     print(f"[build] 写: {target_path}")
     print(f"[build] 写: {interf_path}")
+    print(f"[build] 写: {val_target_path}")
+    print(f"[build] 写: {val_interf_path}")
 
     if args.musan_root:
         noise_items = collect_musan_noise(args.musan_root, max_items=args.max_noise)
