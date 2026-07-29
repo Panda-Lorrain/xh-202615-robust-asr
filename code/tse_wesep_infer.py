@@ -26,6 +26,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--wesep-root", default="code/WeSep")
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--batch-size", type=int, default=1)
+    parser.add_argument("--limit", type=int, default=0)
+    parser.add_argument(
+        "--cap-rms-to-mixture",
+        action="store_true",
+        help="attenuate estimates whose RMS exceeds the online mixture RMS",
+    )
     return parser.parse_args()
 
 
@@ -55,7 +61,7 @@ def main() -> None:
     model.load_state_dict(checkpoint["model"])
     model.to(device).eval()
 
-    dataset = WeSepDataset(args.manifest)
+    dataset = WeSepDataset(args.manifest, args.limit)
     loader = DataLoader(
         dataset,
         batch_size=args.batch_size,
@@ -81,10 +87,23 @@ def main() -> None:
                 estimate = estimate.cpu()
                 for index, uid in enumerate(ids):
                     length = int(lengths[index])
+                    output = estimate[index, :length]
+                    gain_scale = 1.0
+                    if args.cap_rms_to_mixture:
+                        mixture_rms = mix[index, :length].square().mean().sqrt()
+                        estimate_rms = output.square().mean().sqrt()
+                        gain_scale = min(
+                            1.0,
+                            float(
+                                mixture_rms
+                                / estimate_rms.clamp_min(1e-8)
+                            ),
+                        )
+                        output = output * gain_scale
                     output_audio = audio_dir / f"{uid}.wav"
                     torchaudio.save(
                         str(output_audio),
-                        estimate[index, :length].unsqueeze(0),
+                        output.unsqueeze(0),
                         SR,
                     )
                     source = rows_by_id[uid]
@@ -97,6 +116,7 @@ def main() -> None:
                         ],
                         "clean_target_audio": source["clean_target_audio"],
                         "target_spk": source.get("target_spk"),
+                        "output_gain_scale": gain_scale,
                     }
                     handle.write(
                         json.dumps(row, ensure_ascii=False) + "\n"

@@ -1,5 +1,30 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
+> 🔴 **2026-07-29 训练数据/loss 回修完成：声学翻正，Qwen CER 仍
+> NO-GO**：审计发现旧 synthetic 数据把 `target_gain_db` 叠加在已标定
+> SIR/SNR 后，train 最低实测到 `-12.65/-12.61 dB`，超出声明的
+> `[-5,5] dB`。`tse_data_aug.py` 新增 `balanced/hard/legacy` profile；
+> 新 balanced 800 train/200 val 实测 SIR/SNR 均约 `[-5,5] dB`。
+> `tse_wesep_train.py` 新增 Qwen 精确规格 128-bin log-mel L1 和
+> target-normalized waveform L1、联合验证选模、checkpoint 初始化/
+> eval-only/smoke limits。`qwen_asr_backend.py` 新增同一模型进程内按 UID
+> 配对 raw/enhanced 转写，消除跨进程漂移。
+>
+> 从旧 `poc64r3_e5/best.pt` 微调 100 step（lr2e-4，loss =
+> SI-SNR + 5×mel + 1×wave）后，固定新 speaker-disjoint val40：
+> SI-SNRi `+2.264 dB`、nondegraded `85%`；Qwen mel L1
+> `0.6146(raw)→0.4264`；wave L1 `2.196→1.262`；输出/mix RMS 中位
+> 从 mel-only 模型约 `5.04×` 修到 `0.64×`。但同进程 paired Qwen
+> CER `0.9427→0.9533`（Δ`+0.0107`，CI
+> `[-0.0444,+0.0635]`，12 better/14 same/14 worse）；再续训 100 step
+> 为 Δ`+0.0200`。**结论：separator 声学与前端代理已明确越过噪声地板，
+> 但最终 CER 仍未过 Δ≤-0.05 门槛，不准进 Phase-3/主线。**
+> 最优 POC checkpoint（本地 ignored）：
+> `code/runs/tse_wesep_phase2/finetune_balanced_qwenmel_w5_wave1_s100/best.pt`。
+> 后续若继续，只做 frozen Qwen audio encoder 表征/ASR loss 直接反传；
+> 不再在同一 val 上调 mel/wave loss 权重。完整说明见
+> `docs/tse_train_plan.md` 顶部。
+>
 > 🔴 **2026-07-29 Qwen 精确 mel failure proxy + speaker-LOSO 完成，仍
 > NO-GO**：新增 `code/tse_failure_proxy.py` 和
 > `tests/test_tse_failure_proxy.py`。在线特征只比较 raw overlap 与增强

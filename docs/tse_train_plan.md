@@ -1,5 +1,23 @@
 # 自训中文 TSE 训练方案 (2026-07-28)
 
+> **2026-07-29 数据/loss 回修实测**：历史 synthetic train/val 的
+> `target_gain_db` 在 SIR/SNR 标定后再次只衰减 target，使最终实测
+> SIR/SNR 最低到 `-12.65/-12.61 dB`，超出声明的 `[-5,5] dB`。
+> 新增 TSE 专用 `balanced/hard/legacy` profile；balanced 800 train /
+> 200 val 的最终实测 SIR/SNR 均稳定在约 `[-5,5] dB`。
+>
+> WeSep loss 从纯 SI-SNR 改为 `SI-SNR + 5×Qwen-128bin-logmel-L1 +
+> target-normalized-waveform-L1`，并改用联合验证目标选 checkpoint。
+> 从旧 `+1.0956 dB` checkpoint 微调 100 step 后，固定 40 条新
+> speaker-disjoint val 上 SI-SNRi `+2.264 dB`、nondegraded `85%`；
+> Qwen mel L1 从 raw `0.6146` 降到 `0.4264`，waveform L1 从 raw
+> `2.196` 降到 `1.262`，输出/mix RMS 中位从约 `5.04×` 修到 `0.64×`。
+> 但同进程 paired Qwen CER 仍为 `0.9427→0.9533`
+>（Δ`+0.0107`，CI `[-0.0444,+0.0635]`）；再续训 100 step 为
+> Δ`+0.0200`。**声学/前端代理已超过噪声地板，但最终 CER 仍 NO-GO。**
+> 下一步若继续，只允许直接接 frozen Qwen audio encoder 表征/ASR loss，
+> 不再调 mel/waveform 代理权重。
+>
 > **2026-07-29 Phase-2 POC**：已接入官方 WeSep pBSRNN + 离线
 > CAM++ 512d enrollment embedding。speaker-disjoint 40 条 synthetic val
 > 上 SI-SNRi `+1.0956 dB`，但冻结 Qwen3-ASR 官方累计池 CER 仅

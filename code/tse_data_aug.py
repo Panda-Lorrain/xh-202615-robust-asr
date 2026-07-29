@@ -61,11 +61,83 @@ import soundfile as sf
 _HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, _HERE)
 from data_aug_recipe import (  # noqa: E402
-    sample_aug_params, make_fast, cut_enrollment,
+    sample_aug_params as sample_legacy_aug_params, make_fast, cut_enrollment,
     pollute_enrollment, SR,
 )
 from simulate_pipeline import _fit_noise  # noqa: E402
 from build_dataset import gen_white, gen_pink, gen_babble  # noqa: E402
+
+
+TSE_AUGMENTATION_PROFILES = {
+    "balanced": {
+        "overlap_weights": [0.10, 0.20, 0.30, 0.25, 0.15],
+        "sir_weights": [0.10, 0.20, 0.40, 0.20, 0.10],
+        "snr_weights": [0.10, 0.20, 0.40, 0.20, 0.10],
+        "noise_weights": [0.30, 0.30, 0.40],
+        "fast_probability": 0.15,
+        "enroll_pollute_probability": 0.15,
+    },
+    "hard": {
+        "overlap_weights": [0.05, 0.10, 0.25, 0.35, 0.25],
+        "sir_weights": [0.20, 0.25, 0.30, 0.15, 0.10],
+        "snr_weights": [0.20, 0.25, 0.30, 0.15, 0.10],
+        "noise_weights": [0.20, 0.25, 0.55],
+        "fast_probability": 0.30,
+        "enroll_pollute_probability": 0.30,
+    },
+}
+
+
+def sample_tse_aug_params(
+    rng: random.Random, profile: str = "balanced"
+) -> Dict:
+    """Sample TSE difficulty without compounding quiet gain and SIR/SNR.
+
+    Relative target loudness is already represented by SIR and SNR. Applying
+    an additional target-only gain after calibration pushed the historical
+    synthetic set down to about -12 dB, outside the advertised [-5, 5] range.
+    """
+    if profile == "legacy":
+        return sample_legacy_aug_params(rng)
+    if profile not in TSE_AUGMENTATION_PROFILES:
+        raise ValueError(
+            f"unknown TSE augmentation profile {profile!r}; expected "
+            f"{sorted(TSE_AUGMENTATION_PROFILES)} or 'legacy'"
+        )
+    config = TSE_AUGMENTATION_PROFILES[profile]
+    overlap = rng.choices(
+        [0.0, 0.25, 0.5, 0.75, 1.0],
+        config["overlap_weights"],
+        k=1,
+    )[0]
+    sir = rng.choices(
+        [-5.0, -3.0, 0.0, 3.0, 5.0], config["sir_weights"], k=1
+    )[0]
+    snr = rng.choices(
+        [-5.0, -3.0, 0.0, 3.0, 5.0], config["snr_weights"], k=1
+    )[0]
+    noise_type = rng.choices(
+        ["white", "pink", "babble"], config["noise_weights"], k=1
+    )[0]
+    speed = (
+        rng.uniform(1.1, 1.4)
+        if rng.random() < config["fast_probability"]
+        else 1.0
+    )
+    return {
+        "overlap_ratio": float(overlap),
+        "sir_db": float(sir),
+        "snr_db": float(snr),
+        "noise_type": noise_type,
+        # Do not shift the calibrated final SIR/SNR a second time.
+        "target_gain_db": 0.0,
+        "target_speed_rate": float(speed),
+        "enroll_dur_sec": float(rng.uniform(1.5, 2.5)),
+        "enroll_pollute_p": float(
+            config["enroll_pollute_probability"]
+        ),
+        "enroll_pollute_snr_db": float(rng.uniform(8.0, 15.0)),
+    }
 
 
 def _active_rms(wav: np.ndarray, eps: float = 1e-8) -> float:
@@ -307,6 +379,7 @@ def build_tse_pairs(
     n_per_target: int = 10,
     seed: int = 42,
     progress_every: int = 5,
+    augmentation_profile: str = "balanced",
 ):
     """批量生成 TSE 训练三元组 → out_dir/{enrollment,recognition,clean_target}/*.wav
     + manifest.jsonl。
@@ -382,7 +455,7 @@ def build_tse_pairs(
                     f"no different-speaker interferer for target {ti['spk']}"
                 )
             for k in range(n_per_target):
-                params = sample_aug_params(rng)
+                params = sample_tse_aug_params(rng, augmentation_profile)
                 interferer = rng.choice(valid_interferers)
                 interferer_wav = interferer["wav"]
                 noise_wav = (noise_pool[rng.randrange(len(noise_pool))]
@@ -411,6 +484,7 @@ def build_tse_pairs(
                     "interferer_src": interferer["src"],
                     "interferer_spk": interferer["spk"],
                     "enrollment_src": enrollment_item["wav"],
+                    "augmentation_profile": augmentation_profile,
                     **aug,
                 }
                 fout.write(json.dumps(rec_line, ensure_ascii=False) + "\n")
@@ -500,6 +574,15 @@ def main():
                          help="noise.jsonl (可选)")
     p_build.add_argument("--out", required=True)
     p_build.add_argument("--n-per-target", type=int, default=10)
+    p_build.add_argument(
+        "--augmentation-profile",
+        choices=["balanced", "hard", "legacy"],
+        default="balanced",
+        help=(
+            "balanced keeps final measured SIR/SNR in [-5,5] dB; hard "
+            "biases overlap/babble; legacy reproduces compounded quiet gain"
+        ),
+    )
     p_build.add_argument("--seed", type=int, default=42)
 
     args = ap.parse_args()
@@ -514,7 +597,8 @@ def main():
         noise_items = (_load(args.noise_manifest) if args.noise_manifest else [])
         build_tse_pairs(target_items, interferer_items, noise_items,
                         out_dir=args.out, n_per_target=args.n_per_target,
-                        seed=args.seed)
+                        seed=args.seed,
+                        augmentation_profile=args.augmentation_profile)
 
 
 if __name__ == "__main__":
