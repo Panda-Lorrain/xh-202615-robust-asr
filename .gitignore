@@ -34,6 +34,7 @@ code/TS-ASR-Whisper/
 code/3D-Speaker/
 code/FireRedASR/
 code/DiCoW-inference/
+code/WeSep/
 code/annot_pack/
 code/experiments/
 code/out_*/
@@ -107,3 +108,13 @@ code/_aug_manifests_poc1k/
 code/_aug_build_smoke/
 code/_tse_aug_smoke/
 code/_tse_train_smoke/
+code/_tse_aug_smoke_phase1/
+code/_tse_train_smoke_phase1/
+code/_tse_wesep_smoke_phase2/
+code/tse_embedding_cache/
+code/WeSep/
+.uv-cache/
+code/_tse_phase2_manifests/
+code/_tse_phase2_train/
+code/_tse_phase2_val/
+code/runs/tse_wesep_phase2/
