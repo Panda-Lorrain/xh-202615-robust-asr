@@ -23,6 +23,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--raw-json", required=True)
     parser.add_argument("--enhanced-json", required=True)
     parser.add_argument("--output", required=True)
+    parser.add_argument(
+        "--route-manifest",
+        help="optional overlap-fallback manifest with per-segment features",
+    )
     parser.add_argument("--bootstrap-samples", type=int, default=10000)
     parser.add_argument("--seed", type=int, default=20260729)
     return parser.parse_args()
@@ -37,6 +41,16 @@ def main() -> None:
     ]
     raw = json.load(open(args.raw_json, encoding="utf-8"))
     enhanced = json.load(open(args.enhanced_json, encoding="utf-8"))
+    routes_by_id = {}
+    if args.route_manifest:
+        routes_by_id = {
+            str(row["id"]): row
+            for row in (
+                json.loads(line)
+                for line in open(args.route_manifest, encoding="utf-8")
+                if line.strip()
+            )
+        }
     refs = [row["ref"] for row in rows]
     raw_hyps = [submit_norm(raw.get(row["id"], "")) for row in rows]
     enhanced_hyps = [
@@ -81,6 +95,24 @@ def main() -> None:
     ]
     oracle_metric = CERMetric()
     oracle_metric.update(oracle_hyps, refs)
+    per_sample = []
+    for index, row in enumerate(rows):
+        uid = str(row["id"])
+        route_row = routes_by_id.get(uid, {})
+        per_sample.append(
+            {
+                "id": uid,
+                "ref": refs[index],
+                "raw_hyp": raw_hyps[index],
+                "enhanced_hyp": enhanced_hyps[index],
+                "raw_errors": int(raw_errors[index]),
+                "enhanced_errors": int(enhanced_errors[index]),
+                "delta_errors": int(
+                    enhanced_errors[index] - raw_errors[index]
+                ),
+                "segments": route_row.get("segments", []),
+            }
+        )
     result = {
         "n": len(rows),
         "raw_cer": raw_result["cer"],
@@ -96,12 +128,20 @@ def main() -> None:
         "same": int(np.sum(enhanced_errors == raw_errors)),
         "worse": int(np.sum(enhanced_errors > raw_errors)),
         "oracle_fallback_cer": oracle_metric.compute()["cer"],
+        "per_sample": per_sample,
     }
     Path(args.output).write_text(
         json.dumps(result, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
-    print(json.dumps(result, ensure_ascii=False, indent=2))
+    print(
+        json.dumps(
+            {key: value for key, value in result.items()
+             if key != "per_sample"},
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
 
 
 if __name__ == "__main__":

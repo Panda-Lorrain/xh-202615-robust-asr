@@ -1,5 +1,38 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
+> 🔴 **2026-07-29 Qwen 精确 mel failure proxy + speaker-LOSO 完成，仍
+> NO-GO**：新增 `code/tse_failure_proxy.py` 和
+> `tests/test_tse_failure_proxy.py`。在线特征只比较 raw overlap 与增强
+> candidate；ref/Qwen errors 仅离线拟合和评估。按 4 个 target speaker
+> leave-one-speaker-out，Qwen 自带精确 128-bin Whisper 前端的
+> `logmel_l2` 最好：raw CER `1.2870` → routed `1.2419`
+>（Δ`-0.0451`，bootstrap CI `[-0.1105,+0.0109]`，接受 28/40）。
+> 4 折阈值稳定在 `0.314810–0.315132`，说明比 CAM++ cosine 更贴近 ASR
+> 失败，但仍未达到 ΔCER `-0.05` 且 CI 上界 <0 的双门槛；并且是同一
+> 40 条里 6 个代理择优，结果仍偏乐观。**不要集成到主线或进入
+> Phase-3。按预注册规则回修数据/损失；若试 frozen Qwen encoder drift，
+> 必须换新的 speaker-disjoint validation，不能继续在这 40 条上挑特征。**
+> 详见 `docs/tse_overlap_fallback.md`。
+>
+> 🔴 **2026-07-29 overlap-only + fallback POC 完成，仍 NO-GO**：
+> 新增 `code/tse_overlap_fallback.py` 与
+> `tests/test_tse_overlap_fallback.py`。固定 40 条 val 上，显式 RMS
+> gain matching 后 overlap-only SI-SNRi `+0.4760 dB`、Qwen CER
+> `1.2870→1.2726`（Δ`-0.0144`，CI `[-0.0873,+0.0504]`）；
+> CAM++ cosine 阈值 `0.193641` fallback 后 SI-SNRi `+0.5012 dB`、
+> P10 `-0.3999 dB`，但 Qwen CER 仅 `1.2744`（Δ`-0.0126`，CI
+> `[-0.0764,+0.0424]`）。两者均未过 ΔCER `-0.05` 门槛。
+> 零 overlap 2 条已验证精确直通。重要新发现：SI-SNR 尺度不变使
+> pBSRNN 原始输出 RMS 达 mixture 3.61–6.52 倍，旧 PCM 导出存在隐式
+> 削波，overlap 拼接必须显式 gain matching。CAM++ cosine 能收窄声学
+> P10，但不是可靠的 Qwen 失败代理。详见
+> `docs/tse_overlap_fallback.md`。另发现 Qwen 对 SHA256 相同的 raw WAV
+> 跨进程复跑仍有 `+0.0126` CER 漂移；换复跑 raw 后两方案 ΔCER 分别为
+> `-0.0271/-0.0253`，CI 仍跨 0，NO-GO 不变。后续小收益实验必须做
+> 同进程配对控制。**下一步只验证 Qwen encoder/mel
+> distortion 等线上失败代理并做 speaker-LOSO；仍未过门槛则回修数据/
+> loss，不扩大模型、不进入 Phase-3。**
+>
 > 🔴 **2026-07-29 阶段二 pBSRNN POC 实测**：阶段一二次审查又修正了永久 target/interferer 说话人角色泄漏、被 SIR/SNR 重标定抵消的 `target_gain_db`、虚假的波形 overlap 元数据、缺 env noise 静默降级，以及 AISHELL dev/test 混入 synthetic train 的风险。现为 split 内角色可交换、逐条强制不同说话人、记录 active overlap 与最终实测 SIR/SNR、官方 train-only。阶段二新增 `tse_campp_embeddings.py`、`tse_wesep_train.py`、`tse_wesep_infer.py`、`tse_qwen_compare.py`。WeSep 上游固定 `99eca54`，CAM++ 实测 512d，必须 `joint_training=False,use_spk_transform=False`。16 train / 4 val speaker 的 160/40 triples 上，中型 BSRNN 最佳 val SI-SNRi `+1.0956 dB`（P10 `-0.9442`，nondegraded `52.5%`）；冻结 Qwen 成对 CER `1.2870→1.2671`（Δ`-0.0199`，14 better/20 same/6 worse，bootstrap 95% CI `[-0.1162,+0.0831]`），未过 ΔCER `-0.05` 门槛。oracle fallback 可到 `1.1841`，因此结论为：**无条件全段 TSE NO-GO；下一步只做 overlap-only + failure-aware fallback，未过门槛不进入阶段三正式训练。**
 >
 > **下一个 Agent 从这里开始（不要重跑已证伪的全段方案）**
