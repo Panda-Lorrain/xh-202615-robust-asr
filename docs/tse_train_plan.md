@@ -1,18 +1,32 @@
 # 自训中文 TSE 训练方案 (2026-07-28)
 
+> **2026-07-29 Phase-2 POC**：已接入官方 WeSep pBSRNN + 离线
+> CAM++ 512d enrollment embedding。speaker-disjoint 40 条 synthetic val
+> 上 SI-SNRi `+1.0956 dB`，但冻结 Qwen3-ASR 官方累计池 CER 仅
+> `1.2870→1.2671`，bootstrap CI 跨 0。无条件全段增强不准入主线。
+> 下一实验固定为 overlap-only，并用输出 speaker cosine、能量/峰值/NaN
+> 检测做 failure-aware fallback。相对 raw CER 绝对下降未达到 `0.05`
+> 前，不启动 Phase-3 正式训练。
+>
+> 恢复执行细节以 `AGENT_HANDOFF.md` 顶部“下一个 Agent 从这里开始”为准。
+> 特别注意：路由阈值只能在 speaker-disjoint val 上使用可上线特征拟合，
+> 不能使用 ref、clean target 或 Qwen CER，后者只用于离线评估。
+>
 > **任务**：攻死区分离质量瓶颈。当前主线 qwen3-ASR pos CER 0.3436（含拒 0.5934），SepFormer 英文权重 sepformer-whamr16k 盲分离破坏 mel（B 类铁证：argmax CER 0 → SepFormer 后 0.6+）。CLAUDE.md 三红线：①中文数据 ②避免纯 SI-SDR 陷阱（EoW 感知-识别鸿沟）③数据对齐题目规格。
 >
-> **状态**：本机冒烟已通过（数据增广 + 训练前向反向），等用户租算力跑全量。
+> **2026-07-29 状态修正**：阶段一训练正确性整改完成。旧冒烟只能证明程序不崩，
+> 且存在监督错位和 enrollment 泄漏，**禁止按旧方案直接跑 100k steps**。
+> 自写 V1 现在作为数据/损失正确性基准；阶段二改为 WeSep pBSRNN POC。
 
 ---
 
 ## TL;DR (5 行)
 
-1. **主推方案 V1（实现 + 冒烟通过）**：自写 STFT-mask TSE + ECAPA-lite speaker encoder + 简化 Conformer ASR + CTC head，**联合 loss `L = α·(-SI-SNR) + β·CTC`**（α=β=1 起步），3 件套数据增广对齐题目规格。
-2. **避免纯 SI-SDR 陷阱**：CTC 项把"分离为识别服务"压力传到 mask net，避免"分离听着干净但 mel 失真 ASR 转错"（即 SepFormer 的失败模式）。
-3. **冒烟结果**：tse_data_aug 4 三元组对齐（enroll ~2s / recog==clean_tgt 等长）+ tse_train 10 step 不崩（SI-SNR -12.66→-8.17dB 收敛，CTC 54→30 收敛），4060 上 0.6s/step。
-4. **备选 V2（方案不实现）**：Whisper-Sidecar 自训思路（frozen Whisper encoder + Sidecar mask 在 embedding 空间分离 + 纯 ASR loss），完全绕 SI-SDR 但工程复杂需 4×GPU × 数天。
-5. **算力需求**：6.14M 参数，单 GPU 可训；A100 上 10 万 step ~ 4-5h，L20 上 ~ 6-8h，4060 上 ~ 16h（batch=2）；建议租 A100/L20 跑 V1 起步。
+1. **阶段一已修正**：整句 recognition/clean 成对读取、动态 padding、真实长度 loss、正确 complex mask、独立 enrollment。
+2. **数据分布已修正**：随机前/后重叠、显式 SIR、target-relative SNR，并输出 speaker-disjoint train/val 清单。
+3. **旧结论撤回**：自写 CTC 只约束临时 encoder，不等价于 Qwen3 ASR-aware；旧 10-step loss 下降不构成模型有效证据。
+4. **阶段二主推**：WeSep pBSRNN + 预训练中文 ECAPA/ERes2Net，只处理 overlap 区，分离失败回退原 mixture。
+5. **阶段三候选**：在 Qwen3 AuT 表征内加入 enrollment-conditioned Sidecar/target activity head，直接以最终 CER 优化。
 
 ---
 
@@ -22,7 +36,8 @@
 
 | 方案 | 中文 | 绕纯 SI-SDR | 短 enroll (~1.8s) | 现成实现 | 工程成本 | 选否 |
 |------|------|------------|------------------|---------|---------|------|
-| **V1. STFT-mask TSE + ASR-joint (本方案主推)** | 自训 | ✅(联合) | ✅ | 自写但简单 | 低 (1 GPU 数 h) | ⭐ 主推 |
+| V1. STFT-mask TSE + 临时 CTC | 自训 | ⚠不对齐 Qwen3 | ✅ | 自写 | 低 | 仅正确性基准 |
+| **V2. WeSep pBSRNN + 中文 ECAPA** | 自训 | ❌(需 Qwen CER 选模) | ✅ | 官方 toolkit | 中 | ⭐ 阶段二主推 |
 | V2. Whisper-Sidecar 自训 | ✅(Whisper frozen) | ✅✅(纯 ASR) | ⚠(原 3s, 自训可调) | 有代码 (LingweiMeng) | 高 (4×GPU 数天) | 备选/升级 |
 | TS-ASR-AD (Honda RI 2025) | 自训 | ✅(ASR+VAD) | ⚠(原 5s) | ❌ 无代码 | 高 | 远期 |
 | SpEx+ (SpeechBrain) | 自训 | ❌(纯 SI-SNR) | ⚠(原 5s) | ✅ | 中 | 不选 (EoW 陷阱) |
@@ -338,23 +353,21 @@ python code/tse_train.py \
 | 文件 | 状态 | 用途 |
 |------|------|------|
 | `docs/tse_train_plan.md` (本文件) | ✅ 完成 | 完整方案 |
-| `code/tse_data_aug.py` | ✅ 完成 + 冒烟通过 | 3 件套数据增广 |
-| `code/tse_train.py` | ✅ 完成 + 冒烟通过 | 训练脚本（含联合 loss） |
-| `code/_tse_aug_smoke/` | ✅ 4 三元组冒烟产物 | 本机验证用 |
-| `code/_tse_train_smoke/` | ✅ 10 step 冒烟产物 | 本机验证用 |
-| `code/build_aishell_manifest.py` | ✅ 已有 | 输入清单装配 |
+| `code/tse_data_aug.py` | ✅ 阶段一纠错 + 冒烟通过 | 严格对齐 3 件套数据增广 |
+| `code/tse_train.py` | ✅ 阶段一纠错 + 冒烟通过 | 正确性基准，不直接全量训练 |
+| `tests/test_tse_phase1_logic.py` | ✅ 6 项通过 | 对齐/SIR/SNR/complex mask/split 不变量 |
+| `code/_tse_aug_smoke_phase1/` | ✅ 4 三元组 | 修复后本机验证，gitignored |
+| `code/_tse_train_smoke_phase1/` | ✅ 3 step CUDA | 修复后本机验证，gitignored |
+| `code/build_aishell_manifest.py` | ✅ speaker-disjoint train/val | 输入清单装配 |
 | `code/data_aug_recipe.py` | ✅ 已有 | 增广工具库（被 tse_data_aug 复用） |
 
 ## 十、下一步行动
 
-1. **用户决策**：是否启动全量训练（需租 L20/A100，~8h，~64 元）
-2. **若启动**：
-   - 本机跑 `build_aishell_manifest.py --aishell-root E:/midea_datasets/data_aishell --musan-root E:/midea_datasets/musan_extracted/musan --out-dir /path/manifests --n-target-speakers 200 --n-interferer-speakers 200 --max-utts-per-target 20 --max-noise 100`（生成清单）
-   - 本机跑 `tse_data_aug.py build --target-manifest /... --interferer-manifest /... --noise-manifest /... --out /path/full_aug --n-per-target 30 --seed 42`（生成 3-5 万对，~1-2h）
-   - 上传数据 + 代码到 L20 → `tse_train.py --steps 100000 --batch-size 8`
-3. **训练后 POC**：用 `exp_tse_poc.py` 同框架跑死区样本（cmd_18/2098/2251），对比主线 qwen3 CER
-4. **若 POC 有效（ΔCER>0.05）**：集成到 enroll_infer.py 作为可选 ASR 前端（`--tse-frontend`）
-5. **若 POC 无效**：升级到 V2（Whisper-Sidecar 思路），或换 SpEx+ separator 替换 MaskNet
+1. 引入官方 WeSep，先复现 pBSRNN recipe 和推理接口。
+2. 用修复后的生成器构造 1k train + speaker-disjoint val，不碰 A 集训练。
+3. pBSRNN 输出统一送 Qwen3，和原 mixture、SepFormer 同框架比较 CER。
+4. 死区 Qwen3 `ΔCER>0.05` 且 RR 下降不超过 1pp 才扩到 10k/全量。
+5. 有效后再加入 overlap-only scene route 与 extraction-failure fallback。
 
 ---
 

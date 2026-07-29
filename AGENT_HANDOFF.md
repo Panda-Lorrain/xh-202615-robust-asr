@@ -1,5 +1,41 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
+> 🔴 **2026-07-29 阶段二 pBSRNN POC 实测**：阶段一二次审查又修正了永久 target/interferer 说话人角色泄漏、被 SIR/SNR 重标定抵消的 `target_gain_db`、虚假的波形 overlap 元数据、缺 env noise 静默降级，以及 AISHELL dev/test 混入 synthetic train 的风险。现为 split 内角色可交换、逐条强制不同说话人、记录 active overlap 与最终实测 SIR/SNR、官方 train-only。阶段二新增 `tse_campp_embeddings.py`、`tse_wesep_train.py`、`tse_wesep_infer.py`、`tse_qwen_compare.py`。WeSep 上游固定 `99eca54`，CAM++ 实测 512d，必须 `joint_training=False,use_spk_transform=False`。16 train / 4 val speaker 的 160/40 triples 上，中型 BSRNN 最佳 val SI-SNRi `+1.0956 dB`（P10 `-0.9442`，nondegraded `52.5%`）；冻结 Qwen 成对 CER `1.2870→1.2671`（Δ`-0.0199`，14 better/20 same/6 worse，bootstrap 95% CI `[-0.1162,+0.0831]`），未过 ΔCER `-0.05` 门槛。oracle fallback 可到 `1.1841`，因此结论为：**无条件全段 TSE NO-GO；下一步只做 overlap-only + failure-aware fallback，未过门槛不进入阶段三正式训练。**
+>
+> **下一个 Agent 从这里开始（不要重跑已证伪的全段方案）**
+>
+> 1. 先读 `docs/tse_train_plan.md`、`code/tse_wesep_train.py` 和
+>    `code/tse_wesep_infer.py`。本机可复用但未进 Git 的资产：
+>    `code/_tse_phase2_{train,val}/manifest_campp.jsonl`、
+>    `code/runs/tse_wesep_phase2/poc64r3_e5/best.pt`、
+>    `qwen_{raw,bsrnn}.json`。WeSep 在 `code/WeSep`，commit `99eca54`。
+>    干净 checkout 需执行
+>    `git clone https://github.com/wenet-e2e/wesep.git code/WeSep` 后
+>    `git -C code/WeSep checkout 99eca54`。当前 BSRNN 为双向 LSTM，
+>    项目入口强制 batch=1，禁止变长 padding batch。
+> 2. 新增 `code/tse_overlap_fallback.py`，不要改上游 WeSep。输入 manifest、
+>    checkpoint 和 overlap intervals；只在 overlap 区段加约 0.25 s 上下文运行
+>    BSRNN，使用短 cross-fade 拼回原音频，非 overlap 样本必须 bit-identical
+>    或数值等价直通。synthetic val 可由 `target_start_sample`、
+>    `interferer_start_sample` 和源长度得到 oracle overlap；真实链路再接
+>    DiariZen overlap timeline。
+> 3. 每个增强区段记录 failure features：输出/ enrollment CAM++ cosine、
+>    输出与 mixture RMS/峰值比、finite/NaN、clipping、区段时长。先在固定
+>    speaker-disjoint val 扫阈值，失败回退原 mixture/当前 scene route；
+>    禁止用 ref、Qwen CER 或 clean target 作为线上路由特征。
+> 4. 固定同一 40 条 ID 做四组消融：raw、unconditional BSRNN、
+>    overlap-only、overlap-only+fallback。先跑 SI-SNRi/非退化率，再用
+>    `qwen_asr_backend.py` 和 `tse_qwen_compare.py` 成对计算官方累计池 CER，
+>    输出逐条 route/reason/features，避免只报均值。
+> 5. Phase-2 GO：相对 raw CER 绝对下降至少 `0.05`，bootstrap 95% CI
+>    上界小于 0；非 overlap CER 退化不超过 `0.005`，拒识 recall 退化不超过
+>    1 个百分点，并且不差于现有 SepFormer scene route。未过则继续修数据/
+>    fallback，不扩大 BSRNN。通过后才允许开始 Phase-3：
+>    Qwen audio encoder 前 1/3 层的小 Sidecar/STNO bias + target activity head，
+>    冻结主体做小规模 POC，新增参数不超过 5%。
+>
+> 🔴 **2026-07-29 最新（TSE 阶段一纠错完成）**：审计发现原 V1 训练存在四个会使全量训练失真的问题并已修复：① recognition/clean 独立随机裁剪导致 SI-SNR 错位；② 2 秒音频配整句 CTC 标签；③ complex mask 被错误实现为实虚部逐元素乘法；④ enrollment 从 target 同一 utterance 截取，存在内容泄漏。现已改为整句动态 padding + 长度感知 SI-SNR/CTC、正确复数乘法、同 speaker 不同 utterance enrollment、随机 leading/trailing overlap、显式 SIR 与 target-relative SNR、speaker-disjoint train/val manifest。新增 `tests/test_tse_phase1_logic.py`，6 项通过；修复后 4 条 WAV 增广 + 3-step CUDA 冒烟通过。**不要按旧计划直接训练自写 V1 100k steps**：其临时 CTC encoder 不等于 Qwen3，下一步进入阶段二，优先复现 WeSep pBSRNN + 预训练中文 ECAPA，只在 overlap 区运行并加失败回退；GO 判据仍为死区 Qwen3 ΔCER>0.05。
+>
 > 🔴 **2026-07-28 最新（当前恢复点）**：**分场景路由反转 multi-voice NO-GO（全量坐实）+ 多信号拒识 task6 强 NO-GO 放弃 + TSE 方案就绪等算力**。本轮在 07-27 基础上做了 6 个 task 全量验证+定位真瓶颈。**未 commit**（用户把关身份和未验证标注）。
 >
 > **① 分场景路由★★★反转 multi-voice NO-GO（task1 全量 1350 pos 坐实）**：按 diar 分出人数 n_spk 路由——**n_spk=1（单人，40%）走主线不分离；n_spk=2（重叠，60%）SepFormer 分离+二选一**。机制坐实：SepFormer 对**单人破坏**（Δ+0.165）、对**重叠救回**（Δ−0.157），无差别混算抵消看似 net neutral，**分场景后净正**。之前 NO-GO 是因为没分场景。**全量数字**：transcribe CER **0.3427→0.2941（−14.2%）** / 含拒 thr0.27 **0.5931→0.5727（−3.4%，CER 腿 16.26→17.09，+0.83）**。**外推 −20.7% 没坐实**（采样偏差：原 483 抽样 n_spk=2 里 43% 是主战场，但全 805 池里 99% 是死区，外推把主战场高收益错误扩散；全量坐实救了避免基于外推误集成）。**铁证 cmd_2637**：主线切片（含重叠区）转"已经进行过一轮交"（非目标错）→ SepFormer srcB 转"哺乳期要少吃什么"=ref（CER=0 完美）。**对照 cmd_146**：单人样本，主线"打开观影模式"完美 → SepFormer srcA"打开关机"破坏（单人不该分离）。
