@@ -1,0 +1,12 @@
+{
+  "mode": "pos",
+  "n": 1364,
+  "manifest_miss": 0,
+  "overall_cer": 0.723,
+  "correct_rate(CER<0.5)": 0.3453,
+  "near_perfect(CER<0.1)": 0.0125,
+  "cer_accepted_only": 0.4485,
+  "false_reject_rate(伤CER)": 0.4978,
+  "n_rejected": 679,
+  "miss_ids": []
+}

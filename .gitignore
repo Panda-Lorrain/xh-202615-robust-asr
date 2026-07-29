@@ -125,3 +125,9 @@ code/_tse_phase3_manifests_expanded/
 code/_tse_phase3_train_expanded/
 code/_tse_phase3_val_expanded/
 code/_tse_phase3_expanded_poc/
+
+# ===== 2026-07-30 Dataset-A full evaluation intermediates (~0.28GB, reproducible) =====
+# Keep the root result/timing JSON files as auditable evidence; ignore copied WAVs
+# and backend target slices.
+code/runs/full_eval_*/_work/
+code/runs/full_eval_*/_slices/

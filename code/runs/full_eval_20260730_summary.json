@@ -1,0 +1,68 @@
+{
+  "experiment": "dataset_a_full_submission_line_evaluation",
+  "date": "2026-07-30",
+  "dataset_policy": {
+    "dataset_a_role": "test_only",
+    "used_for_training": false,
+    "used_for_checkpoint_selection": false,
+    "used_for_threshold_tuning_in_this_run": false
+  },
+  "configuration": {
+    "asr_backend": "qwen",
+    "sim_threshold": 0.27,
+    "llm": false,
+    "speech_enhancement": false,
+    "content_gate": true,
+    "asr_batch_size": 1,
+    "device": "NVIDIA GeForce RTX 4060 Laptop GPU"
+  },
+  "positive_set": {
+    "n": 1364,
+    "transcribe_pool_cer": 0.34419680403700587,
+    "sim_only_pool_cer": 0.5966148023549201,
+    "content_gate_pool_cer": 0.6200588730025232,
+    "per_utterance_mean_cer": 0.7230,
+    "sim_rejections": 644,
+    "content_gate_total_rejections": 679,
+    "content_gate_added_rejections": 35,
+    "wall_seconds": 968.971,
+    "audio_seconds": 3498.069,
+    "overall_rtf": 0.277
+  },
+  "negative_set": {
+    "n": 474,
+    "sim_only_rejections": 429,
+    "content_gate_rejections": 449,
+    "rejection_rate": 0.9472573839662447,
+    "wall_seconds": 377.0,
+    "audio_seconds": 1828.06,
+    "overall_rtf": 0.2062
+  },
+  "combined": {
+    "quality_score_out_of_80_using_pool_cer": 53.0879404385489,
+    "combined_rtx4060_rtf": 0.252710927579861,
+    "estimated_efficiency_score_out_of_20": [
+      15.57,
+      20.0
+    ],
+    "estimated_total_score_out_of_100_using_pool_cer": [
+      68.6579404385489,
+      73.0879404385489
+    ],
+    "estimated_total_score_out_of_100_using_per_utterance_mean_cer": [
+      64.54,
+      68.97
+    ]
+  },
+  "fixed_scene_route_offline_combination_on_1350": {
+    "mainline_content_gate_pool_cer": 0.6167550371155885,
+    "scene_route_content_gate_pool_cer": 0.5919406150583245,
+    "quality_score_gain": 0.9925768818905598,
+    "status": "candidate_only; requires L20 end-to-end efficiency measurement and non-A validation"
+  },
+  "telemetry_limitations": [
+    "The Qwen backend runs in a child process, so result.json peak_mem_mib does not include Qwen peak VRAM.",
+    "The organizer's exact CER aggregation and efficiency mapping must be confirmed."
+  ],
+  "verdict": "Keep the stable Qwen submission line. Do not rent compute for further Sidecar training. Next validate optional scene routing and end-to-end efficiency on L20."
+}

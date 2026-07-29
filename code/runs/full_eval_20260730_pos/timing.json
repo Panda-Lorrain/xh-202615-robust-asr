@@ -1,0 +1,8200 @@
+{
+  "device": "cuda:0",
+  "n_utt": 1364,
+  "total_audio_sec": 3498.069,
+  "total_wall_sec": 968.971,
+  "overall_rtf": 0.277,
+  "phases": {
+    "enroll_diar_dicow": {
+      "wall_sec": 968.895,
+      "mean_rtf": 0.0988
+    }
+  },
+  "per_utt": [
+    {
+      "utt_id": "utt0000_cmd_0",
+      "audio_sec": 4.36,
+      "wall_sec": null,
+      "rtf": 0.1529
+    },
+    {
+      "utt_id": "utt0001_cmd_1",
+      "audio_sec": 3.632,
+      "wall_sec": null,
+      "rtf": 0.075
+    },
+    {
+      "utt_id": "utt0002_cmd_2",
+      "audio_sec": 2.596,
+      "wall_sec": null,
+      "rtf": 0.0749
+    },
+    {
+      "utt_id": "utt0003_cmd_3",
+      "audio_sec": 3.576,
+      "wall_sec": null,
+      "rtf": 0.0504
+    },
+    {
+      "utt_id": "utt0004_cmd_4",
+      "audio_sec": 2.1,
+      "wall_sec": null,
+      "rtf": 0.0958
+    },
+    {
+      "utt_id": "utt0005_cmd_5",
+      "audio_sec": 1.944,
+      "wall_sec": null,
+      "rtf": 0.096
+    },
+    {
+      "utt_id": "utt0006_cmd_6",
+      "audio_sec": 3.016,
+      "wall_sec": null,
+      "rtf": 0.1323
+    },
+    {
+      "utt_id": "utt0007_cmd_7",
+      "audio_sec": 1.884,
+      "wall_sec": null,
+      "rtf": 0.1244
+    },
+    {
+      "utt_id": "utt0008_cmd_8",
+      "audio_sec": 1.744,
+      "wall_sec": null,
+      "rtf": 0.1217
+    },
+    {
+      "utt_id": "utt0009_cmd_9",
+      "audio_sec": 4.504,
+      "wall_sec": null,
+      "rtf": 0.0459
+    },
+    {
+      "utt_id": "utt0010_cmd_10",
+      "audio_sec": 2.34,
+      "wall_sec": null,
+      "rtf": 0.075
+    },
+    {
+      "utt_id": "utt0011_cmd_11",
+      "audio_sec": 2.88,
+      "wall_sec": null,
+      "rtf": 0.0739
+    },
+    {
+      "utt_id": "utt0012_cmd_12",
+      "audio_sec": 2.576,
+      "wall_sec": null,
+      "rtf": 0.0803
+    },
+    {
+      "utt_id": "utt0013_cmd_13",
+      "audio_sec": 2.104,
+      "wall_sec": null,
+      "rtf": 0.0991
+    },
+    {
+      "utt_id": "utt0014_cmd_14",
+      "audio_sec": 2.592,
+      "wall_sec": null,
+      "rtf": 0.098
+    },
+    {
+      "utt_id": "utt0015_cmd_15",
+      "audio_sec": 1.776,
+      "wall_sec": null,
+      "rtf": 0.097
+    },
+    {
+      "utt_id": "utt0016_cmd_16",
+      "audio_sec": 1.9,
+      "wall_sec": null,
+      "rtf": 0.0875
+    },
+    {
+      "utt_id": "utt0017_cmd_17",
+      "audio_sec": 3.356,
+      "wall_sec": null,
+      "rtf": 0.0613
+    },
+    {
+      "utt_id": "utt0018_cmd_18",
+      "audio_sec": 1.872,
+      "wall_sec": null,
+      "rtf": 0.1335
+    },
+    {
+      "utt_id": "utt0019_cmd_19",
+      "audio_sec": 3.336,
+      "wall_sec": null,
+      "rtf": 0.0676
+    },
+    {
+      "utt_id": "utt0020_cmd_20",
+      "audio_sec": 7.932,
+      "wall_sec": null,
+      "rtf": 0.0363
+    },
+    {
+      "utt_id": "utt0021_cmd_21",
+      "audio_sec": 3.448,
+      "wall_sec": null,
+      "rtf": 0.0611
+    },
+    {
+      "utt_id": "utt0022_cmd_22",
+      "audio_sec": 1.7,
+      "wall_sec": null,
+      "rtf": 0.1139
+    },
+    {
+      "utt_id": "utt0023_cmd_23",
+      "audio_sec": 1.752,
+      "wall_sec": null,
+      "rtf": 0.136
+    },
+    {
+      "utt_id": "utt0024_cmd_24",
+      "audio_sec": 3.404,
+      "wall_sec": null,
+      "rtf": 0.0725
+    },
+    {
+      "utt_id": "utt0025_cmd_25",
+      "audio_sec": 1.736,
+      "wall_sec": null,
+      "rtf": 0.1147
+    },
+    {
+      "utt_id": "utt0026_cmd_26",
+      "audio_sec": 2.128,
+      "wall_sec": null,
+      "rtf": 0.0911
+    },
+    {
+      "utt_id": "utt0027_cmd_27",
+      "audio_sec": 1.76,
+      "wall_sec": null,
+      "rtf": 0.0948
+    },
+    {
+      "utt_id": "utt0028_cmd_28",
+      "audio_sec": 2.9,
+      "wall_sec": null,
+      "rtf": 0.0701
+    },
+    {
+      "utt_id": "utt0029_cmd_29",
+      "audio_sec": 4.772,
+      "wall_sec": null,
+      "rtf": 0.0358
+    },
+    {
+      "utt_id": "utt0030_cmd_30",
+      "audio_sec": 1.976,
+      "wall_sec": null,
+      "rtf": 0.1098
+    },
+    {
+      "utt_id": "utt0031_cmd_31",
+      "audio_sec": 5.296,
+      "wall_sec": null,
+      "rtf": 0.0463
+    },
+    {
+      "utt_id": "utt0032_cmd_32",
+      "audio_sec": 3.952,
+      "wall_sec": null,
+      "rtf": 0.0597
+    },
+    {
+      "utt_id": "utt0033_cmd_33",
+      "audio_sec": 4.96,
+      "wall_sec": null,
+      "rtf": 0.0493
+    },
+    {
+      "utt_id": "utt0034_cmd_34",
+      "audio_sec": 1.864,
+      "wall_sec": null,
+      "rtf": 0.1559
+    },
+    {
+      "utt_id": "utt0035_cmd_35",
+      "audio_sec": 1.908,
+      "wall_sec": null,
+      "rtf": 0.0937
+    },
+    {
+      "utt_id": "utt0036_cmd_36",
+      "audio_sec": 2.088,
+      "wall_sec": null,
+      "rtf": 0.0812
+    },
+    {
+      "utt_id": "utt0037_cmd_37",
+      "audio_sec": 3.02,
+      "wall_sec": null,
+      "rtf": 0.0627
+    },
+    {
+      "utt_id": "utt0038_cmd_38",
+      "audio_sec": 2.528,
+      "wall_sec": null,
+      "rtf": 0.1118
+    },
+    {
+      "utt_id": "utt0039_cmd_39",
+      "audio_sec": 2.1,
+      "wall_sec": null,
+      "rtf": 0.0807
+    },
+    {
+      "utt_id": "utt0040_cmd_40",
+      "audio_sec": 1.9,
+      "wall_sec": null,
+      "rtf": 0.1531
+    },
+    {
+      "utt_id": "utt0041_cmd_41",
+      "audio_sec": 2.732,
+      "wall_sec": null,
+      "rtf": 0.0727
+    },
+    {
+      "utt_id": "utt0042_cmd_42",
+      "audio_sec": 2.488,
+      "wall_sec": null,
+      "rtf": 0.1189
+    },
+    {
+      "utt_id": "utt0043_cmd_43",
+      "audio_sec": 2.012,
+      "wall_sec": null,
+      "rtf": 0.1077
+    },
+    {
+      "utt_id": "utt0044_cmd_44",
+      "audio_sec": 1.604,
+      "wall_sec": null,
+      "rtf": 0.1127
+    },
+    {
+      "utt_id": "utt0045_cmd_45",
+      "audio_sec": 1.528,
+      "wall_sec": null,
+      "rtf": 0.1171
+    },
+    {
+      "utt_id": "utt0046_cmd_46",
+      "audio_sec": 1.924,
+      "wall_sec": null,
+      "rtf": 0.0938
+    },
+    {
+      "utt_id": "utt0047_cmd_47",
+      "audio_sec": 2.94,
+      "wall_sec": null,
+      "rtf": 0.0658
+    },
+    {
+      "utt_id": "utt0048_cmd_48",
+      "audio_sec": 2.496,
+      "wall_sec": null,
+      "rtf": 0.0806
+    },
+    {
+      "utt_id": "utt0049_cmd_49",
+      "audio_sec": 1.864,
+      "wall_sec": null,
+      "rtf": 0.0914
+    },
+    {
+      "utt_id": "utt0050_cmd_50",
+      "audio_sec": 2.22,
+      "wall_sec": null,
+      "rtf": 0.0767
+    },
+    {
+      "utt_id": "utt0051_cmd_51",
+      "audio_sec": 5.024,
+      "wall_sec": null,
+      "rtf": 0.0708
+    },
+    {
+      "utt_id": "utt0052_cmd_52",
+      "audio_sec": 1.788,
+      "wall_sec": null,
+      "rtf": 0.097
+    },
+    {
+      "utt_id": "utt0053_cmd_53",
+      "audio_sec": 3.836,
+      "wall_sec": null,
+      "rtf": 0.0518
+    },
+    {
+      "utt_id": "utt0054_cmd_54",
+      "audio_sec": 1.696,
+      "wall_sec": null,
+      "rtf": 0.1036
+    },
+    {
+      "utt_id": "utt0055_cmd_55",
+      "audio_sec": 3.988,
+      "wall_sec": null,
+      "rtf": 0.0463
+    },
+    {
+      "utt_id": "utt0056_cmd_56",
+      "audio_sec": 2.192,
+      "wall_sec": null,
+      "rtf": 0.1077
+    },
+    {
+      "utt_id": "utt0057_cmd_57",
+      "audio_sec": 2.28,
+      "wall_sec": null,
+      "rtf": 0.1402
+    },
+    {
+      "utt_id": "utt0058_cmd_58",
+      "audio_sec": 2.984,
+      "wall_sec": null,
+      "rtf": 0.0801
+    },
+    {
+      "utt_id": "utt0059_cmd_59",
+      "audio_sec": 1.88,
+      "wall_sec": null,
+      "rtf": 0.0891
+    },
+    {
+      "utt_id": "utt0060_cmd_60",
+      "audio_sec": 1.764,
+      "wall_sec": null,
+      "rtf": 0.116
+    },
+    {
+      "utt_id": "utt0061_cmd_61",
+      "audio_sec": 5.904,
+      "wall_sec": null,
+      "rtf": 0.0476
+    },
+    {
+      "utt_id": "utt0062_cmd_62",
+      "audio_sec": 1.224,
+      "wall_sec": null,
+      "rtf": 0.1986
+    },
+    {
+      "utt_id": "utt0063_cmd_63",
+      "audio_sec": 1.808,
+      "wall_sec": null,
+      "rtf": 0.1117
+    },
+    {
+      "utt_id": "utt0064_cmd_64",
+      "audio_sec": 2.06,
+      "wall_sec": null,
+      "rtf": 0.1168
+    },
+    {
+      "utt_id": "utt0065_cmd_65",
+      "audio_sec": 1.632,
+      "wall_sec": null,
+      "rtf": 0.1058
+    },
+    {
+      "utt_id": "utt0066_cmd_66",
+      "audio_sec": 1.616,
+      "wall_sec": null,
+      "rtf": 0.1189
+    },
+    {
+      "utt_id": "utt0067_cmd_67",
+      "audio_sec": 1.852,
+      "wall_sec": null,
+      "rtf": 0.1046
+    },
+    {
+      "utt_id": "utt0068_cmd_68",
+      "audio_sec": 2.348,
+      "wall_sec": null,
+      "rtf": 0.0804
+    },
+    {
+      "utt_id": "utt0069_cmd_69",
+      "audio_sec": 2.012,
+      "wall_sec": null,
+      "rtf": 0.0984
+    },
+    {
+      "utt_id": "utt0070_cmd_70",
+      "audio_sec": 1.904,
+      "wall_sec": null,
+      "rtf": 0.1263
+    },
+    {
+      "utt_id": "utt0071_cmd_71",
+      "audio_sec": 3.8,
+      "wall_sec": null,
+      "rtf": 0.0578
+    },
+    {
+      "utt_id": "utt0072_cmd_72",
+      "audio_sec": 1.908,
+      "wall_sec": null,
+      "rtf": 0.0913
+    },
+    {
+      "utt_id": "utt0073_cmd_73",
+      "audio_sec": 1.736,
+      "wall_sec": null,
+      "rtf": 0.1164
+    },
+    {
+      "utt_id": "utt0074_cmd_74",
+      "audio_sec": 5.672,
+      "wall_sec": null,
+      "rtf": 0.0366
+    },
+    {
+      "utt_id": "utt0075_cmd_75",
+      "audio_sec": 2.188,
+      "wall_sec": null,
+      "rtf": 0.0784
+    },
+    {
+      "utt_id": "utt0076_cmd_76",
+      "audio_sec": 2.544,
+      "wall_sec": null,
+      "rtf": 0.1031
+    },
+    {
+      "utt_id": "utt0077_cmd_77",
+      "audio_sec": 1.684,
+      "wall_sec": null,
+      "rtf": 0.1341
+    },
+    {
+      "utt_id": "utt0078_cmd_78",
+      "audio_sec": 2.584,
+      "wall_sec": null,
+      "rtf": 0.0724
+    },
+    {
+      "utt_id": "utt0079_cmd_79",
+      "audio_sec": 2.016,
+      "wall_sec": null,
+      "rtf": 0.079
+    },
+    {
+      "utt_id": "utt0080_cmd_80",
+      "audio_sec": 2.068,
+      "wall_sec": null,
+      "rtf": 0.0845
+    },
+    {
+      "utt_id": "utt0081_cmd_81",
+      "audio_sec": 1.656,
+      "wall_sec": null,
+      "rtf": 0.101
+    },
+    {
+      "utt_id": "utt0082_cmd_82",
+      "audio_sec": 2.284,
+      "wall_sec": null,
+      "rtf": 0.0774
+    },
+    {
+      "utt_id": "utt0083_cmd_83",
+      "audio_sec": 1.944,
+      "wall_sec": null,
+      "rtf": 0.0989
+    },
+    {
+      "utt_id": "utt0084_cmd_84",
+      "audio_sec": 4.828,
+      "wall_sec": null,
+      "rtf": 0.0444
+    },
+    {
+      "utt_id": "utt0085_cmd_85",
+      "audio_sec": 1.792,
+      "wall_sec": null,
+      "rtf": 0.1607
+    },
+    {
+      "utt_id": "utt0086_cmd_86",
+      "audio_sec": 2.084,
+      "wall_sec": null,
+      "rtf": 0.095
+    },
+    {
+      "utt_id": "utt0087_cmd_87",
+      "audio_sec": 1.828,
+      "wall_sec": null,
+      "rtf": 0.0831
+    },
+    {
+      "utt_id": "utt0088_cmd_88",
+      "audio_sec": 1.716,
+      "wall_sec": null,
+      "rtf": 0.0967
+    },
+    {
+      "utt_id": "utt0089_cmd_89",
+      "audio_sec": 3.168,
+      "wall_sec": null,
+      "rtf": 0.0581
+    },
+    {
+      "utt_id": "utt0090_cmd_90",
+      "audio_sec": 1.744,
+      "wall_sec": null,
+      "rtf": 0.0963
+    },
+    {
+      "utt_id": "utt0091_cmd_91",
+      "audio_sec": 2.636,
+      "wall_sec": null,
+      "rtf": 0.1062
+    },
+    {
+      "utt_id": "utt0092_cmd_92",
+      "audio_sec": 1.772,
+      "wall_sec": null,
+      "rtf": 0.1538
+    },
+    {
+      "utt_id": "utt0093_cmd_93",
+      "audio_sec": 2.624,
+      "wall_sec": null,
+      "rtf": 0.1045
+    },
+    {
+      "utt_id": "utt0094_cmd_94",
+      "audio_sec": 3.604,
+      "wall_sec": null,
+      "rtf": 0.048
+    },
+    {
+      "utt_id": "utt0095_cmd_95",
+      "audio_sec": 2.456,
+      "wall_sec": null,
+      "rtf": 0.0703
+    },
+    {
+      "utt_id": "utt0096_cmd_96",
+      "audio_sec": 2.428,
+      "wall_sec": null,
+      "rtf": 0.0695
+    },
+    {
+      "utt_id": "utt0097_cmd_97",
+      "audio_sec": 3.708,
+      "wall_sec": null,
+      "rtf": 0.0739
+    },
+    {
+      "utt_id": "utt0098_cmd_98",
+      "audio_sec": 1.792,
+      "wall_sec": null,
+      "rtf": 0.0974
+    },
+    {
+      "utt_id": "utt0099_cmd_99",
+      "audio_sec": 1.996,
+      "wall_sec": null,
+      "rtf": 0.079
+    },
+    {
+      "utt_id": "utt0100_cmd_100",
+      "audio_sec": 2.568,
+      "wall_sec": null,
+      "rtf": 0.0674
+    },
+    {
+      "utt_id": "utt0101_cmd_101",
+      "audio_sec": 1.44,
+      "wall_sec": null,
+      "rtf": 0.102
+    },
+    {
+      "utt_id": "utt0102_cmd_102",
+      "audio_sec": 2.432,
+      "wall_sec": null,
+      "rtf": 0.0595
+    },
+    {
+      "utt_id": "utt0103_cmd_103",
+      "audio_sec": 2.228,
+      "wall_sec": null,
+      "rtf": 0.0794
+    },
+    {
+      "utt_id": "utt0104_cmd_104",
+      "audio_sec": 2.676,
+      "wall_sec": null,
+      "rtf": 0.0696
+    },
+    {
+      "utt_id": "utt0105_cmd_105",
+      "audio_sec": 4.004,
+      "wall_sec": null,
+      "rtf": 0.038
+    },
+    {
+      "utt_id": "utt0106_cmd_106",
+      "audio_sec": 2.216,
+      "wall_sec": null,
+      "rtf": 0.0668
+    },
+    {
+      "utt_id": "utt0107_cmd_107",
+      "audio_sec": 1.964,
+      "wall_sec": null,
+      "rtf": 0.0925
+    },
+    {
+      "utt_id": "utt0108_cmd_108",
+      "audio_sec": 4.312,
+      "wall_sec": null,
+      "rtf": 0.0704
+    },
+    {
+      "utt_id": "utt0109_cmd_109",
+      "audio_sec": 1.764,
+      "wall_sec": null,
+      "rtf": 0.1081
+    },
+    {
+      "utt_id": "utt0110_cmd_110",
+      "audio_sec": 7.104,
+      "wall_sec": null,
+      "rtf": 0.0342
+    },
+    {
+      "utt_id": "utt0111_cmd_111",
+      "audio_sec": 2.232,
+      "wall_sec": null,
+      "rtf": 0.0648
+    },
+    {
+      "utt_id": "utt0112_cmd_112",
+      "audio_sec": 1.816,
+      "wall_sec": null,
+      "rtf": 0.0819
+    },
+    {
+      "utt_id": "utt0113_cmd_113",
+      "audio_sec": 3.64,
+      "wall_sec": null,
+      "rtf": 0.0469
+    },
+    {
+      "utt_id": "utt0114_cmd_114",
+      "audio_sec": 2.476,
+      "wall_sec": null,
+      "rtf": 0.0603
+    },
+    {
+      "utt_id": "utt0115_cmd_115",
+      "audio_sec": 2.664,
+      "wall_sec": null,
+      "rtf": 0.0561
+    },
+    {
+      "utt_id": "utt0116_cmd_116",
+      "audio_sec": 3.508,
+      "wall_sec": null,
+      "rtf": 0.0504
+    },
+    {
+      "utt_id": "utt0117_cmd_117",
+      "audio_sec": 6.476,
+      "wall_sec": null,
+      "rtf": 0.0282
+    },
+    {
+      "utt_id": "utt0118_cmd_118",
+      "audio_sec": 5.36,
+      "wall_sec": null,
+      "rtf": 0.0333
+    },
+    {
+      "utt_id": "utt0119_cmd_119",
+      "audio_sec": 2.464,
+      "wall_sec": null,
+      "rtf": 0.0699
+    },
+    {
+      "utt_id": "utt0120_cmd_120",
+      "audio_sec": 1.876,
+      "wall_sec": null,
+      "rtf": 0.0788
+    },
+    {
+      "utt_id": "utt0121_cmd_121",
+      "audio_sec": 2.336,
+      "wall_sec": null,
+      "rtf": 0.0776
+    },
+    {
+      "utt_id": "utt0122_cmd_122",
+      "audio_sec": 3.552,
+      "wall_sec": null,
+      "rtf": 0.0676
+    },
+    {
+      "utt_id": "utt0123_cmd_123",
+      "audio_sec": 2.036,
+      "wall_sec": null,
+      "rtf": 0.0792
+    },
+    {
+      "utt_id": "utt0124_cmd_124",
+      "audio_sec": 2.624,
+      "wall_sec": null,
+      "rtf": 0.0682
+    },
+    {
+      "utt_id": "utt0125_cmd_125",
+      "audio_sec": 1.56,
+      "wall_sec": null,
+      "rtf": 0.0955
+    },
+    {
+      "utt_id": "utt0126_cmd_126",
+      "audio_sec": 3.628,
+      "wall_sec": null,
+      "rtf": 0.0481
+    },
+    {
+      "utt_id": "utt0127_cmd_127",
+      "audio_sec": 2.172,
+      "wall_sec": null,
+      "rtf": 0.0814
+    },
+    {
+      "utt_id": "utt0128_cmd_128",
+      "audio_sec": 6.068,
+      "wall_sec": null,
+      "rtf": 0.0297
+    },
+    {
+      "utt_id": "utt0129_cmd_129",
+      "audio_sec": 2.692,
+      "wall_sec": null,
+      "rtf": 0.0559
+    },
+    {
+      "utt_id": "utt0130_cmd_130",
+      "audio_sec": 1.776,
+      "wall_sec": null,
+      "rtf": 0.0875
+    },
+    {
+      "utt_id": "utt0131_cmd_131",
+      "audio_sec": 2.448,
+      "wall_sec": null,
+      "rtf": 0.066
+    },
+    {
+      "utt_id": "utt0132_cmd_132",
+      "audio_sec": 2.388,
+      "wall_sec": null,
+      "rtf": 0.0606
+    },
+    {
+      "utt_id": "utt0133_cmd_133",
+      "audio_sec": 3.836,
+      "wall_sec": null,
+      "rtf": 0.0451
+    },
+    {
+      "utt_id": "utt0134_cmd_134",
+      "audio_sec": 2.668,
+      "wall_sec": null,
+      "rtf": 0.062
+    },
+    {
+      "utt_id": "utt0135_cmd_135",
+      "audio_sec": 2.28,
+      "wall_sec": null,
+      "rtf": 0.0668
+    },
+    {
+      "utt_id": "utt0136_cmd_136",
+      "audio_sec": 2.38,
+      "wall_sec": null,
+      "rtf": 0.0689
+    },
+    {
+      "utt_id": "utt0137_cmd_137",
+      "audio_sec": 3.74,
+      "wall_sec": null,
+      "rtf": 0.0404
+    },
+    {
+      "utt_id": "utt0138_cmd_138",
+      "audio_sec": 2.036,
+      "wall_sec": null,
+      "rtf": 0.0768
+    },
+    {
+      "utt_id": "utt0139_cmd_139",
+      "audio_sec": 3.74,
+      "wall_sec": null,
+      "rtf": 0.0476
+    },
+    {
+      "utt_id": "utt0140_cmd_140",
+      "audio_sec": 1.7,
+      "wall_sec": null,
+      "rtf": 0.0865
+    },
+    {
+      "utt_id": "utt0141_cmd_141",
+      "audio_sec": 2.156,
+      "wall_sec": null,
+      "rtf": 0.0715
+    },
+    {
+      "utt_id": "utt0142_cmd_142",
+      "audio_sec": 1.86,
+      "wall_sec": null,
+      "rtf": 0.0922
+    },
+    {
+      "utt_id": "utt0143_cmd_143",
+      "audio_sec": 4.62,
+      "wall_sec": null,
+      "rtf": 0.0497
+    },
+    {
+      "utt_id": "utt0144_cmd_144",
+      "audio_sec": 1.4,
+      "wall_sec": null,
+      "rtf": 0.2203
+    },
+    {
+      "utt_id": "utt0145_cmd_145",
+      "audio_sec": 2.5,
+      "wall_sec": null,
+      "rtf": 0.1147
+    },
+    {
+      "utt_id": "utt0146_cmd_146",
+      "audio_sec": 1.928,
+      "wall_sec": null,
+      "rtf": 0.081
+    },
+    {
+      "utt_id": "utt0147_cmd_147",
+      "audio_sec": 2.448,
+      "wall_sec": null,
+      "rtf": 0.1068
+    },
+    {
+      "utt_id": "utt0148_cmd_148",
+      "audio_sec": 2.54,
+      "wall_sec": null,
+      "rtf": 0.1209
+    },
+    {
+      "utt_id": "utt0149_cmd_149",
+      "audio_sec": 2.56,
+      "wall_sec": null,
+      "rtf": 0.0742
+    },
+    {
+      "utt_id": "utt0150_cmd_150",
+      "audio_sec": 1.512,
+      "wall_sec": null,
+      "rtf": 0.2059
+    },
+    {
+      "utt_id": "utt0151_cmd_151",
+      "audio_sec": 2.112,
+      "wall_sec": null,
+      "rtf": 0.0728
+    },
+    {
+      "utt_id": "utt0152_cmd_152",
+      "audio_sec": 1.768,
+      "wall_sec": null,
+      "rtf": 0.1008
+    },
+    {
+      "utt_id": "utt0153_cmd_153",
+      "audio_sec": 1.004,
+      "wall_sec": null,
+      "rtf": 0.1475
+    },
+    {
+      "utt_id": "utt0154_cmd_154",
+      "audio_sec": 2.44,
+      "wall_sec": null,
+      "rtf": 0.0608
+    },
+    {
+      "utt_id": "utt0155_cmd_155",
+      "audio_sec": 1.668,
+      "wall_sec": null,
+      "rtf": 0.0896
+    },
+    {
+      "utt_id": "utt0156_cmd_156",
+      "audio_sec": 1.72,
+      "wall_sec": null,
+      "rtf": 0.1017
+    },
+    {
+      "utt_id": "utt0157_cmd_157",
+      "audio_sec": 4.444,
+      "wall_sec": null,
+      "rtf": 0.0338
+    },
+    {
+      "utt_id": "utt0158_cmd_158",
+      "audio_sec": 1.768,
+      "wall_sec": null,
+      "rtf": 0.0818
+    },
+    {
+      "utt_id": "utt0159_cmd_159",
+      "audio_sec": 4.676,
+      "wall_sec": null,
+      "rtf": 0.032
+    },
+    {
+      "utt_id": "utt0160_cmd_160",
+      "audio_sec": 1.724,
+      "wall_sec": null,
+      "rtf": 0.0863
+    },
+    {
+      "utt_id": "utt0161_cmd_161",
+      "audio_sec": 3.92,
+      "wall_sec": null,
+      "rtf": 0.0454
+    },
+    {
+      "utt_id": "utt0162_cmd_162",
+      "audio_sec": 1.836,
+      "wall_sec": null,
+      "rtf": 0.0793
+    },
+    {
+      "utt_id": "utt0163_cmd_163",
+      "audio_sec": 2.576,
+      "wall_sec": null,
+      "rtf": 0.0682
+    },
+    {
+      "utt_id": "utt0164_cmd_164",
+      "audio_sec": 3.232,
+      "wall_sec": null,
+      "rtf": 0.0537
+    },
+    {
+      "utt_id": "utt0165_cmd_165",
+      "audio_sec": 1.928,
+      "wall_sec": null,
+      "rtf": 0.0779
+    },
+    {
+      "utt_id": "utt0166_cmd_166",
+      "audio_sec": 2.096,
+      "wall_sec": null,
+      "rtf": 0.0722
+    },
+    {
+      "utt_id": "utt0167_cmd_167",
+      "audio_sec": 2.22,
+      "wall_sec": null,
+      "rtf": 0.0684
+    },
+    {
+      "utt_id": "utt0168_cmd_168",
+      "audio_sec": 2.468,
+      "wall_sec": null,
+      "rtf": 0.0621
+    },
+    {
+      "utt_id": "utt0169_cmd_169",
+      "audio_sec": 1.6,
+      "wall_sec": null,
+      "rtf": 0.0947
+    },
+    {
+      "utt_id": "utt0170_cmd_170",
+      "audio_sec": 2.144,
+      "wall_sec": null,
+      "rtf": 0.0704
+    },
+    {
+      "utt_id": "utt0171_cmd_171",
+      "audio_sec": 2.392,
+      "wall_sec": null,
+      "rtf": 0.0898
+    },
+    {
+      "utt_id": "utt0172_cmd_172",
+      "audio_sec": 2.192,
+      "wall_sec": null,
+      "rtf": 0.0664
+    },
+    {
+      "utt_id": "utt0173_cmd_173",
+      "audio_sec": 2.464,
+      "wall_sec": null,
+      "rtf": 0.0603
+    },
+    {
+      "utt_id": "utt0174_cmd_174",
+      "audio_sec": 2.32,
+      "wall_sec": null,
+      "rtf": 0.1085
+    },
+    {
+      "utt_id": "utt0175_cmd_175",
+      "audio_sec": 2.06,
+      "wall_sec": null,
+      "rtf": 0.118
+    },
+    {
+      "utt_id": "utt0176_cmd_176",
+      "audio_sec": 3.064,
+      "wall_sec": null,
+      "rtf": 0.0593
+    },
+    {
+      "utt_id": "utt0177_cmd_177",
+      "audio_sec": 2.528,
+      "wall_sec": null,
+      "rtf": 0.0597
+    },
+    {
+      "utt_id": "utt0178_cmd_178",
+      "audio_sec": 2.884,
+      "wall_sec": null,
+      "rtf": 0.0614
+    },
+    {
+      "utt_id": "utt0179_cmd_179",
+      "audio_sec": 3.472,
+      "wall_sec": null,
+      "rtf": 0.0429
+    },
+    {
+      "utt_id": "utt0180_cmd_180",
+      "audio_sec": 2.928,
+      "wall_sec": null,
+      "rtf": 0.0595
+    },
+    {
+      "utt_id": "utt0181_cmd_181",
+      "audio_sec": 1.764,
+      "wall_sec": null,
+      "rtf": 0.0844
+    },
+    {
+      "utt_id": "utt0182_cmd_182",
+      "audio_sec": 3.32,
+      "wall_sec": null,
+      "rtf": 0.0454
+    },
+    {
+      "utt_id": "utt0183_cmd_183",
+      "audio_sec": 3.76,
+      "wall_sec": null,
+      "rtf": 0.04
+    },
+    {
+      "utt_id": "utt0184_cmd_184",
+      "audio_sec": 2.176,
+      "wall_sec": null,
+      "rtf": 0.0683
+    },
+    {
+      "utt_id": "utt0185_cmd_185",
+      "audio_sec": 1.776,
+      "wall_sec": null,
+      "rtf": 0.0938
+    },
+    {
+      "utt_id": "utt0186_cmd_186",
+      "audio_sec": 2.676,
+      "wall_sec": null,
+      "rtf": 0.0643
+    },
+    {
+      "utt_id": "utt0187_cmd_187",
+      "audio_sec": 1.944,
+      "wall_sec": null,
+      "rtf": 0.0778
+    },
+    {
+      "utt_id": "utt0188_cmd_188",
+      "audio_sec": 2.368,
+      "wall_sec": null,
+      "rtf": 0.0637
+    },
+    {
+      "utt_id": "utt0189_cmd_189",
+      "audio_sec": 1.956,
+      "wall_sec": null,
+      "rtf": 0.1425
+    },
+    {
+      "utt_id": "utt0190_cmd_190",
+      "audio_sec": 1.712,
+      "wall_sec": null,
+      "rtf": 0.0871
+    },
+    {
+      "utt_id": "utt0191_cmd_191",
+      "audio_sec": 2.388,
+      "wall_sec": null,
+      "rtf": 0.0626
+    },
+    {
+      "utt_id": "utt0192_cmd_192",
+      "audio_sec": 2.468,
+      "wall_sec": null,
+      "rtf": 0.0703
+    },
+    {
+      "utt_id": "utt0193_cmd_193",
+      "audio_sec": 2.824,
+      "wall_sec": null,
+      "rtf": 0.0524
+    },
+    {
+      "utt_id": "utt0194_cmd_194",
+      "audio_sec": 2.628,
+      "wall_sec": null,
+      "rtf": 0.0576
+    },
+    {
+      "utt_id": "utt0195_cmd_195",
+      "audio_sec": 1.7,
+      "wall_sec": null,
+      "rtf": 0.091
+    },
+    {
+      "utt_id": "utt0196_cmd_196",
+      "audio_sec": 2.216,
+      "wall_sec": null,
+      "rtf": 0.0687
+    },
+    {
+      "utt_id": "utt0197_cmd_197",
+      "audio_sec": 1.784,
+      "wall_sec": null,
+      "rtf": 0.0849
+    },
+    {
+      "utt_id": "utt0198_cmd_198",
+      "audio_sec": 2.688,
+      "wall_sec": null,
+      "rtf": 0.0532
+    },
+    {
+      "utt_id": "utt0199_cmd_199",
+      "audio_sec": 1.656,
+      "wall_sec": null,
+      "rtf": 0.0913
+    },
+    {
+      "utt_id": "utt0200_cmd_200",
+      "audio_sec": 2.804,
+      "wall_sec": null,
+      "rtf": 0.1084
+    },
+    {
+      "utt_id": "utt0201_cmd_201",
+      "audio_sec": 5.0,
+      "wall_sec": null,
+      "rtf": 0.0497
+    },
+    {
+      "utt_id": "utt0202_cmd_202",
+      "audio_sec": 1.844,
+      "wall_sec": null,
+      "rtf": 0.0813
+    },
+    {
+      "utt_id": "utt0203_cmd_203",
+      "audio_sec": 2.976,
+      "wall_sec": null,
+      "rtf": 0.0972
+    },
+    {
+      "utt_id": "utt0204_cmd_204",
+      "audio_sec": 1.736,
+      "wall_sec": null,
+      "rtf": 0.0886
+    },
+    {
+      "utt_id": "utt0205_cmd_205",
+      "audio_sec": 1.74,
+      "wall_sec": null,
+      "rtf": 0.0862
+    },
+    {
+      "utt_id": "utt0206_cmd_206",
+      "audio_sec": 3.396,
+      "wall_sec": null,
+      "rtf": 0.053
+    },
+    {
+      "utt_id": "utt0207_cmd_207",
+      "audio_sec": 2.044,
+      "wall_sec": null,
+      "rtf": 0.1224
+    },
+    {
+      "utt_id": "utt0208_cmd_208",
+      "audio_sec": 4.264,
+      "wall_sec": null,
+      "rtf": 0.0507
+    },
+    {
+      "utt_id": "utt0209_cmd_209",
+      "audio_sec": 2.692,
+      "wall_sec": null,
+      "rtf": 0.0556
+    },
+    {
+      "utt_id": "utt0210_cmd_210",
+      "audio_sec": 6.328,
+      "wall_sec": null,
+      "rtf": 0.0398
+    },
+    {
+      "utt_id": "utt0211_cmd_211",
+      "audio_sec": 2.572,
+      "wall_sec": null,
+      "rtf": 0.0983
+    },
+    {
+      "utt_id": "utt0212_cmd_212",
+      "audio_sec": 2.092,
+      "wall_sec": null,
+      "rtf": 0.1117
+    },
+    {
+      "utt_id": "utt0213_cmd_213",
+      "audio_sec": 2.06,
+      "wall_sec": null,
+      "rtf": 0.0966
+    },
+    {
+      "utt_id": "utt0214_cmd_214",
+      "audio_sec": 8.768,
+      "wall_sec": null,
+      "rtf": 0.0326
+    },
+    {
+      "utt_id": "utt0215_cmd_215",
+      "audio_sec": 1.952,
+      "wall_sec": null,
+      "rtf": 0.0891
+    },
+    {
+      "utt_id": "utt0216_cmd_216",
+      "audio_sec": 1.676,
+      "wall_sec": null,
+      "rtf": 0.1039
+    },
+    {
+      "utt_id": "utt0217_cmd_217",
+      "audio_sec": 2.568,
+      "wall_sec": null,
+      "rtf": 0.1055
+    },
+    {
+      "utt_id": "utt0218_cmd_218",
+      "audio_sec": 1.584,
+      "wall_sec": null,
+      "rtf": 0.0959
+    },
+    {
+      "utt_id": "utt0219_cmd_219",
+      "audio_sec": 2.068,
+      "wall_sec": null,
+      "rtf": 0.0766
+    },
+    {
+      "utt_id": "utt0220_cmd_220",
+      "audio_sec": 2.084,
+      "wall_sec": null,
+      "rtf": 0.0745
+    },
+    {
+      "utt_id": "utt0221_cmd_221",
+      "audio_sec": 2.904,
+      "wall_sec": null,
+      "rtf": 0.0527
+    },
+    {
+      "utt_id": "utt0222_cmd_222",
+      "audio_sec": 4.548,
+      "wall_sec": null,
+      "rtf": 0.0415
+    },
+    {
+      "utt_id": "utt0223_cmd_223",
+      "audio_sec": 1.728,
+      "wall_sec": null,
+      "rtf": 0.1104
+    },
+    {
+      "utt_id": "utt0224_cmd_224",
+      "audio_sec": 3.424,
+      "wall_sec": null,
+      "rtf": 0.0721
+    },
+    {
+      "utt_id": "utt0225_cmd_225",
+      "audio_sec": 4.16,
+      "wall_sec": null,
+      "rtf": 0.046
+    },
+    {
+      "utt_id": "utt0226_cmd_226",
+      "audio_sec": 5.796,
+      "wall_sec": null,
+      "rtf": 0.0454
+    },
+    {
+      "utt_id": "utt0227_cmd_227",
+      "audio_sec": 2.144,
+      "wall_sec": null,
+      "rtf": 0.1117
+    },
+    {
+      "utt_id": "utt0228_cmd_228",
+      "audio_sec": 3.184,
+      "wall_sec": null,
+      "rtf": 0.0773
+    },
+    {
+      "utt_id": "utt0229_cmd_229",
+      "audio_sec": 2.22,
+      "wall_sec": null,
+      "rtf": 0.0788
+    },
+    {
+      "utt_id": "utt0230_cmd_230",
+      "audio_sec": 5.14,
+      "wall_sec": null,
+      "rtf": 0.04
+    },
+    {
+      "utt_id": "utt0231_cmd_231",
+      "audio_sec": 4.252,
+      "wall_sec": null,
+      "rtf": 0.0506
+    },
+    {
+      "utt_id": "utt0232_cmd_232",
+      "audio_sec": 2.044,
+      "wall_sec": null,
+      "rtf": 0.0876
+    },
+    {
+      "utt_id": "utt0233_cmd_233",
+      "audio_sec": 2.84,
+      "wall_sec": null,
+      "rtf": 0.086
+    },
+    {
+      "utt_id": "utt0234_cmd_234",
+      "audio_sec": 4.524,
+      "wall_sec": null,
+      "rtf": 0.0476
+    },
+    {
+      "utt_id": "utt0235_cmd_235",
+      "audio_sec": 4.624,
+      "wall_sec": null,
+      "rtf": 0.0547
+    },
+    {
+      "utt_id": "utt0236_cmd_236",
+      "audio_sec": 2.344,
+      "wall_sec": null,
+      "rtf": 0.0729
+    },
+    {
+      "utt_id": "utt0237_cmd_237",
+      "audio_sec": 1.96,
+      "wall_sec": null,
+      "rtf": 0.1471
+    },
+    {
+      "utt_id": "utt0238_cmd_238",
+      "audio_sec": 3.524,
+      "wall_sec": null,
+      "rtf": 0.0727
+    },
+    {
+      "utt_id": "utt0239_cmd_239",
+      "audio_sec": 2.336,
+      "wall_sec": null,
+      "rtf": 0.0981
+    },
+    {
+      "utt_id": "utt0240_cmd_240",
+      "audio_sec": 1.576,
+      "wall_sec": null,
+      "rtf": 0.1213
+    },
+    {
+      "utt_id": "utt0241_cmd_241",
+      "audio_sec": 2.12,
+      "wall_sec": null,
+      "rtf": 0.0955
+    },
+    {
+      "utt_id": "utt0242_cmd_242",
+      "audio_sec": 2.112,
+      "wall_sec": null,
+      "rtf": 0.0919
+    },
+    {
+      "utt_id": "utt0243_cmd_243",
+      "audio_sec": 1.736,
+      "wall_sec": null,
+      "rtf": 0.1042
+    },
+    {
+      "utt_id": "utt0244_cmd_244",
+      "audio_sec": 1.64,
+      "wall_sec": null,
+      "rtf": 0.1049
+    },
+    {
+      "utt_id": "utt0245_cmd_245",
+      "audio_sec": 2.652,
+      "wall_sec": null,
+      "rtf": 0.0801
+    },
+    {
+      "utt_id": "utt0246_cmd_246",
+      "audio_sec": 2.268,
+      "wall_sec": null,
+      "rtf": 0.132
+    },
+    {
+      "utt_id": "utt0247_cmd_247",
+      "audio_sec": 1.728,
+      "wall_sec": null,
+      "rtf": 0.1858
+    },
+    {
+      "utt_id": "utt0248_cmd_248",
+      "audio_sec": 2.036,
+      "wall_sec": null,
+      "rtf": 0.0904
+    },
+    {
+      "utt_id": "utt0249_cmd_249",
+      "audio_sec": 2.476,
+      "wall_sec": null,
+      "rtf": 0.0662
+    },
+    {
+      "utt_id": "utt0250_cmd_250",
+      "audio_sec": 3.084,
+      "wall_sec": null,
+      "rtf": 0.0632
+    },
+    {
+      "utt_id": "utt0251_cmd_251",
+      "audio_sec": 1.836,
+      "wall_sec": null,
+      "rtf": 0.0866
+    },
+    {
+      "utt_id": "utt0252_cmd_252",
+      "audio_sec": 2.38,
+      "wall_sec": null,
+      "rtf": 0.0662
+    },
+    {
+      "utt_id": "utt0253_cmd_253",
+      "audio_sec": 2.252,
+      "wall_sec": null,
+      "rtf": 0.1025
+    },
+    {
+      "utt_id": "utt0254_cmd_254",
+      "audio_sec": 2.18,
+      "wall_sec": null,
+      "rtf": 0.0735
+    },
+    {
+      "utt_id": "utt0255_cmd_255",
+      "audio_sec": 1.864,
+      "wall_sec": null,
+      "rtf": 0.0849
+    },
+    {
+      "utt_id": "utt0256_cmd_256",
+      "audio_sec": 1.692,
+      "wall_sec": null,
+      "rtf": 0.0906
+    },
+    {
+      "utt_id": "utt0257_cmd_257",
+      "audio_sec": 2.368,
+      "wall_sec": null,
+      "rtf": 0.0652
+    },
+    {
+      "utt_id": "utt0258_cmd_258",
+      "audio_sec": 2.108,
+      "wall_sec": null,
+      "rtf": 0.0692
+    },
+    {
+      "utt_id": "utt0259_cmd_259",
+      "audio_sec": 2.616,
+      "wall_sec": null,
+      "rtf": 0.0893
+    },
+    {
+      "utt_id": "utt0260_cmd_260",
+      "audio_sec": 4.572,
+      "wall_sec": null,
+      "rtf": 0.0411
+    },
+    {
+      "utt_id": "utt0261_cmd_261",
+      "audio_sec": 1.144,
+      "wall_sec": null,
+      "rtf": 0.1279
+    },
+    {
+      "utt_id": "utt0262_cmd_262",
+      "audio_sec": 3.416,
+      "wall_sec": null,
+      "rtf": 0.0703
+    },
+    {
+      "utt_id": "utt0263_cmd_263",
+      "audio_sec": 1.536,
+      "wall_sec": null,
+      "rtf": 0.0954
+    },
+    {
+      "utt_id": "utt0264_cmd_264",
+      "audio_sec": 2.984,
+      "wall_sec": null,
+      "rtf": 0.0829
+    },
+    {
+      "utt_id": "utt0265_cmd_265",
+      "audio_sec": 2.064,
+      "wall_sec": null,
+      "rtf": 0.0722
+    },
+    {
+      "utt_id": "utt0266_cmd_266",
+      "audio_sec": 2.144,
+      "wall_sec": null,
+      "rtf": 0.0714
+    },
+    {
+      "utt_id": "utt0267_cmd_267",
+      "audio_sec": 7.076,
+      "wall_sec": null,
+      "rtf": 0.0251
+    },
+    {
+      "utt_id": "utt0268_cmd_268",
+      "audio_sec": 2.044,
+      "wall_sec": null,
+      "rtf": 0.0743
+    },
+    {
+      "utt_id": "utt0269_cmd_269",
+      "audio_sec": 2.136,
+      "wall_sec": null,
+      "rtf": 0.0709
+    },
+    {
+      "utt_id": "utt0270_cmd_270",
+      "audio_sec": 3.24,
+      "wall_sec": null,
+      "rtf": 0.0665
+    },
+    {
+      "utt_id": "utt0271_cmd_271",
+      "audio_sec": 1.468,
+      "wall_sec": null,
+      "rtf": 0.1
+    },
+    {
+      "utt_id": "utt0272_cmd_272",
+      "audio_sec": 1.7,
+      "wall_sec": null,
+      "rtf": 0.0856
+    },
+    {
+      "utt_id": "utt0273_cmd_273",
+      "audio_sec": 4.696,
+      "wall_sec": null,
+      "rtf": 0.0365
+    },
+    {
+      "utt_id": "utt0274_cmd_274",
+      "audio_sec": 2.196,
+      "wall_sec": null,
+      "rtf": 0.0682
+    },
+    {
+      "utt_id": "utt0275_cmd_275",
+      "audio_sec": 2.26,
+      "wall_sec": null,
+      "rtf": 0.0645
+    },
+    {
+      "utt_id": "utt0276_cmd_276",
+      "audio_sec": 2.008,
+      "wall_sec": null,
+      "rtf": 0.073
+    },
+    {
+      "utt_id": "utt0277_cmd_277",
+      "audio_sec": 2.116,
+      "wall_sec": null,
+      "rtf": 0.0718
+    },
+    {
+      "utt_id": "utt0278_cmd_278",
+      "audio_sec": 3.516,
+      "wall_sec": null,
+      "rtf": 0.0498
+    },
+    {
+      "utt_id": "utt0279_cmd_279",
+      "audio_sec": 1.644,
+      "wall_sec": null,
+      "rtf": 0.0918
+    },
+    {
+      "utt_id": "utt0280_cmd_280",
+      "audio_sec": 0.992,
+      "wall_sec": null,
+      "rtf": 0.1498
+    },
+    {
+      "utt_id": "utt0281_cmd_281",
+      "audio_sec": 2.232,
+      "wall_sec": null,
+      "rtf": 0.0643
+    },
+    {
+      "utt_id": "utt0282_cmd_282",
+      "audio_sec": 2.396,
+      "wall_sec": null,
+      "rtf": 0.0693
+    },
+    {
+      "utt_id": "utt0283_cmd_283",
+      "audio_sec": 2.988,
+      "wall_sec": null,
+      "rtf": 0.0604
+    },
+    {
+      "utt_id": "utt0284_cmd_284",
+      "audio_sec": 2.004,
+      "wall_sec": null,
+      "rtf": 0.0732
+    },
+    {
+      "utt_id": "utt0285_cmd_285",
+      "audio_sec": 1.072,
+      "wall_sec": null,
+      "rtf": 0.2623
+    },
+    {
+      "utt_id": "utt0286_cmd_286",
+      "audio_sec": 1.68,
+      "wall_sec": null,
+      "rtf": 0.0911
+    },
+    {
+      "utt_id": "utt0287_cmd_287",
+      "audio_sec": 2.188,
+      "wall_sec": null,
+      "rtf": 0.067
+    },
+    {
+      "utt_id": "utt0288_cmd_288",
+      "audio_sec": 4.168,
+      "wall_sec": null,
+      "rtf": 0.036
+    },
+    {
+      "utt_id": "utt0289_cmd_289",
+      "audio_sec": 2.348,
+      "wall_sec": null,
+      "rtf": 0.0759
+    },
+    {
+      "utt_id": "utt0290_cmd_290",
+      "audio_sec": 2.516,
+      "wall_sec": null,
+      "rtf": 0.0586
+    },
+    {
+      "utt_id": "utt0291_cmd_291",
+      "audio_sec": 2.28,
+      "wall_sec": null,
+      "rtf": 0.0647
+    },
+    {
+      "utt_id": "utt0292_cmd_292",
+      "audio_sec": 2.26,
+      "wall_sec": null,
+      "rtf": 0.0847
+    },
+    {
+      "utt_id": "utt0293_cmd_293",
+      "audio_sec": 2.172,
+      "wall_sec": null,
+      "rtf": 0.0714
+    },
+    {
+      "utt_id": "utt0294_cmd_294",
+      "audio_sec": 1.468,
+      "wall_sec": null,
+      "rtf": 0.1013
+    },
+    {
+      "utt_id": "utt0295_cmd_295",
+      "audio_sec": 2.384,
+      "wall_sec": null,
+      "rtf": 0.0642
+    },
+    {
+      "utt_id": "utt0296_cmd_296",
+      "audio_sec": 2.892,
+      "wall_sec": null,
+      "rtf": 0.105
+    },
+    {
+      "utt_id": "utt0297_cmd_297",
+      "audio_sec": 2.376,
+      "wall_sec": null,
+      "rtf": 0.0635
+    },
+    {
+      "utt_id": "utt0298_cmd_298",
+      "audio_sec": 1.68,
+      "wall_sec": null,
+      "rtf": 0.09
+    },
+    {
+      "utt_id": "utt0299_cmd_299",
+      "audio_sec": 1.744,
+      "wall_sec": null,
+      "rtf": 0.0844
+    },
+    {
+      "utt_id": "utt0300_cmd_300",
+      "audio_sec": 2.596,
+      "wall_sec": null,
+      "rtf": 0.0783
+    },
+    {
+      "utt_id": "utt0301_cmd_301",
+      "audio_sec": 5.216,
+      "wall_sec": null,
+      "rtf": 0.0603
+    },
+    {
+      "utt_id": "utt0302_cmd_302",
+      "audio_sec": 1.576,
+      "wall_sec": null,
+      "rtf": 0.0978
+    },
+    {
+      "utt_id": "utt0303_cmd_303",
+      "audio_sec": 1.836,
+      "wall_sec": null,
+      "rtf": 0.0834
+    },
+    {
+      "utt_id": "utt0304_cmd_304",
+      "audio_sec": 4.364,
+      "wall_sec": null,
+      "rtf": 0.0353
+    },
+    {
+      "utt_id": "utt0305_cmd_305",
+      "audio_sec": 3.056,
+      "wall_sec": null,
+      "rtf": 0.0838
+    },
+    {
+      "utt_id": "utt0306_cmd_306",
+      "audio_sec": 3.72,
+      "wall_sec": null,
+      "rtf": 0.0471
+    },
+    {
+      "utt_id": "utt0307_cmd_307",
+      "audio_sec": 4.544,
+      "wall_sec": null,
+      "rtf": 0.0401
+    },
+    {
+      "utt_id": "utt0308_cmd_308",
+      "audio_sec": 1.876,
+      "wall_sec": null,
+      "rtf": 0.1142
+    },
+    {
+      "utt_id": "utt0309_cmd_309",
+      "audio_sec": 2.016,
+      "wall_sec": null,
+      "rtf": 0.1042
+    },
+    {
+      "utt_id": "utt0310_cmd_310",
+      "audio_sec": 1.888,
+      "wall_sec": null,
+      "rtf": 0.1333
+    },
+    {
+      "utt_id": "utt0311_cmd_311",
+      "audio_sec": 2.304,
+      "wall_sec": null,
+      "rtf": 0.1127
+    },
+    {
+      "utt_id": "utt0312_cmd_312",
+      "audio_sec": 2.592,
+      "wall_sec": null,
+      "rtf": 0.0834
+    },
+    {
+      "utt_id": "utt0313_cmd_313",
+      "audio_sec": 1.184,
+      "wall_sec": null,
+      "rtf": 0.2067
+    },
+    {
+      "utt_id": "utt0314_cmd_314",
+      "audio_sec": 3.364,
+      "wall_sec": null,
+      "rtf": 0.0468
+    },
+    {
+      "utt_id": "utt0315_cmd_315",
+      "audio_sec": 2.3,
+      "wall_sec": null,
+      "rtf": 0.1248
+    },
+    {
+      "utt_id": "utt0316_cmd_316",
+      "audio_sec": 2.216,
+      "wall_sec": null,
+      "rtf": 0.123
+    },
+    {
+      "utt_id": "utt0317_cmd_317",
+      "audio_sec": 2.604,
+      "wall_sec": null,
+      "rtf": 0.0857
+    },
+    {
+      "utt_id": "utt0318_cmd_318",
+      "audio_sec": 3.436,
+      "wall_sec": null,
+      "rtf": 0.0631
+    },
+    {
+      "utt_id": "utt0319_cmd_319",
+      "audio_sec": 2.356,
+      "wall_sec": null,
+      "rtf": 0.1246
+    },
+    {
+      "utt_id": "utt0320_cmd_320",
+      "audio_sec": 4.244,
+      "wall_sec": null,
+      "rtf": 0.0811
+    },
+    {
+      "utt_id": "utt0321_cmd_321",
+      "audio_sec": 1.876,
+      "wall_sec": null,
+      "rtf": 0.115
+    },
+    {
+      "utt_id": "utt0322_cmd_322",
+      "audio_sec": 2.84,
+      "wall_sec": null,
+      "rtf": 0.0865
+    },
+    {
+      "utt_id": "utt0323_cmd_323",
+      "audio_sec": 2.916,
+      "wall_sec": null,
+      "rtf": 0.0601
+    },
+    {
+      "utt_id": "utt0324_cmd_324",
+      "audio_sec": 2.28,
+      "wall_sec": null,
+      "rtf": 0.1609
+    },
+    {
+      "utt_id": "utt0325_cmd_325",
+      "audio_sec": 3.804,
+      "wall_sec": null,
+      "rtf": 0.0988
+    },
+    {
+      "utt_id": "utt0326_cmd_326",
+      "audio_sec": 2.084,
+      "wall_sec": null,
+      "rtf": 0.0904
+    },
+    {
+      "utt_id": "utt0327_cmd_327",
+      "audio_sec": 1.996,
+      "wall_sec": null,
+      "rtf": 0.0868
+    },
+    {
+      "utt_id": "utt0328_cmd_328",
+      "audio_sec": 3.86,
+      "wall_sec": null,
+      "rtf": 0.0528
+    },
+    {
+      "utt_id": "utt0329_cmd_329",
+      "audio_sec": 1.752,
+      "wall_sec": null,
+      "rtf": 0.0942
+    },
+    {
+      "utt_id": "utt0330_cmd_330",
+      "audio_sec": 1.972,
+      "wall_sec": null,
+      "rtf": 0.0832
+    },
+    {
+      "utt_id": "utt0331_cmd_331",
+      "audio_sec": 3.84,
+      "wall_sec": null,
+      "rtf": 0.0661
+    },
+    {
+      "utt_id": "utt0332_cmd_332",
+      "audio_sec": 1.836,
+      "wall_sec": null,
+      "rtf": 0.1502
+    },
+    {
+      "utt_id": "utt0333_cmd_333",
+      "audio_sec": 3.484,
+      "wall_sec": null,
+      "rtf": 0.0507
+    },
+    {
+      "utt_id": "utt0334_cmd_334",
+      "audio_sec": 3.376,
+      "wall_sec": null,
+      "rtf": 0.049
+    },
+    {
+      "utt_id": "utt0335_cmd_335",
+      "audio_sec": 1.916,
+      "wall_sec": null,
+      "rtf": 0.081
+    },
+    {
+      "utt_id": "utt0336_cmd_336",
+      "audio_sec": 3.564,
+      "wall_sec": null,
+      "rtf": 0.0787
+    },
+    {
+      "utt_id": "utt0337_cmd_337",
+      "audio_sec": 2.56,
+      "wall_sec": null,
+      "rtf": 0.0635
+    },
+    {
+      "utt_id": "utt0338_cmd_338",
+      "audio_sec": 10.704,
+      "wall_sec": null,
+      "rtf": 0.0237
+    },
+    {
+      "utt_id": "utt0339_cmd_339",
+      "audio_sec": 2.388,
+      "wall_sec": null,
+      "rtf": 0.0825
+    },
+    {
+      "utt_id": "utt0340_cmd_340",
+      "audio_sec": 1.724,
+      "wall_sec": null,
+      "rtf": 0.094
+    },
+    {
+      "utt_id": "utt0341_cmd_341",
+      "audio_sec": 2.616,
+      "wall_sec": null,
+      "rtf": 0.0649
+    },
+    {
+      "utt_id": "utt0342_cmd_342",
+      "audio_sec": 3.076,
+      "wall_sec": null,
+      "rtf": 0.0819
+    },
+    {
+      "utt_id": "utt0343_cmd_343",
+      "audio_sec": 1.98,
+      "wall_sec": null,
+      "rtf": 0.0828
+    },
+    {
+      "utt_id": "utt0344_cmd_344",
+      "audio_sec": 1.788,
+      "wall_sec": null,
+      "rtf": 0.1323
+    },
+    {
+      "utt_id": "utt0345_cmd_345",
+      "audio_sec": 2.216,
+      "wall_sec": null,
+      "rtf": 0.0771
+    },
+    {
+      "utt_id": "utt0346_cmd_346",
+      "audio_sec": 2.872,
+      "wall_sec": null,
+      "rtf": 0.0701
+    },
+    {
+      "utt_id": "utt0347_cmd_347",
+      "audio_sec": 2.14,
+      "wall_sec": null,
+      "rtf": 0.0851
+    },
+    {
+      "utt_id": "utt0348_cmd_348",
+      "audio_sec": 2.088,
+      "wall_sec": null,
+      "rtf": 0.0958
+    },
+    {
+      "utt_id": "utt0349_cmd_349",
+      "audio_sec": 1.296,
+      "wall_sec": null,
+      "rtf": 0.1439
+    },
+    {
+      "utt_id": "utt0350_cmd_350",
+      "audio_sec": 2.104,
+      "wall_sec": null,
+      "rtf": 0.1149
+    },
+    {
+      "utt_id": "utt0351_cmd_351",
+      "audio_sec": 3.248,
+      "wall_sec": null,
+      "rtf": 0.0597
+    },
+    {
+      "utt_id": "utt0352_cmd_352",
+      "audio_sec": 1.82,
+      "wall_sec": null,
+      "rtf": 0.1306
+    },
+    {
+      "utt_id": "utt0353_cmd_353",
+      "audio_sec": 2.736,
+      "wall_sec": null,
+      "rtf": 0.0668
+    },
+    {
+      "utt_id": "utt0354_cmd_354",
+      "audio_sec": 4.728,
+      "wall_sec": null,
+      "rtf": 0.0362
+    },
+    {
+      "utt_id": "utt0355_cmd_355",
+      "audio_sec": 2.316,
+      "wall_sec": null,
+      "rtf": 0.074
+    },
+    {
+      "utt_id": "utt0356_cmd_356",
+      "audio_sec": 1.812,
+      "wall_sec": null,
+      "rtf": 0.1101
+    },
+    {
+      "utt_id": "utt0357_cmd_357",
+      "audio_sec": 2.272,
+      "wall_sec": null,
+      "rtf": 0.0794
+    },
+    {
+      "utt_id": "utt0358_cmd_358",
+      "audio_sec": 2.876,
+      "wall_sec": null,
+      "rtf": 0.0607
+    },
+    {
+      "utt_id": "utt0359_cmd_359",
+      "audio_sec": 1.984,
+      "wall_sec": null,
+      "rtf": 0.0849
+    },
+    {
+      "utt_id": "utt0360_cmd_360",
+      "audio_sec": 1.448,
+      "wall_sec": null,
+      "rtf": 0.1166
+    },
+    {
+      "utt_id": "utt0361_cmd_361",
+      "audio_sec": 1.84,
+      "wall_sec": null,
+      "rtf": 0.0996
+    },
+    {
+      "utt_id": "utt0362_cmd_362",
+      "audio_sec": 3.268,
+      "wall_sec": null,
+      "rtf": 0.0572
+    },
+    {
+      "utt_id": "utt0363_cmd_363",
+      "audio_sec": 1.94,
+      "wall_sec": null,
+      "rtf": 0.0876
+    },
+    {
+      "utt_id": "utt0364_cmd_2000",
+      "audio_sec": 4.08,
+      "wall_sec": null,
+      "rtf": 0.0641
+    },
+    {
+      "utt_id": "utt0365_cmd_2001",
+      "audio_sec": 4.06,
+      "wall_sec": null,
+      "rtf": 0.0652
+    },
+    {
+      "utt_id": "utt0366_cmd_2002",
+      "audio_sec": 1.87,
+      "wall_sec": null,
+      "rtf": 0.149
+    },
+    {
+      "utt_id": "utt0367_cmd_2003",
+      "audio_sec": 1.82,
+      "wall_sec": null,
+      "rtf": 0.0922
+    },
+    {
+      "utt_id": "utt0368_cmd_2004",
+      "audio_sec": 2.28,
+      "wall_sec": null,
+      "rtf": 0.1659
+    },
+    {
+      "utt_id": "utt0369_cmd_2005",
+      "audio_sec": 1.91,
+      "wall_sec": null,
+      "rtf": 0.1907
+    },
+    {
+      "utt_id": "utt0370_cmd_2006",
+      "audio_sec": 1.58,
+      "wall_sec": null,
+      "rtf": 0.1407
+    },
+    {
+      "utt_id": "utt0371_cmd_2007",
+      "audio_sec": 1.82,
+      "wall_sec": null,
+      "rtf": 0.148
+    },
+    {
+      "utt_id": "utt0372_cmd_2008",
+      "audio_sec": 2.09,
+      "wall_sec": null,
+      "rtf": 0.1234
+    },
+    {
+      "utt_id": "utt0373_cmd_2009",
+      "audio_sec": 1.5,
+      "wall_sec": null,
+      "rtf": 0.1841
+    },
+    {
+      "utt_id": "utt0374_cmd_2010",
+      "audio_sec": 1.93,
+      "wall_sec": null,
+      "rtf": 0.1277
+    },
+    {
+      "utt_id": "utt0375_cmd_2011",
+      "audio_sec": 1.83,
+      "wall_sec": null,
+      "rtf": 0.1432
+    },
+    {
+      "utt_id": "utt0376_cmd_2012",
+      "audio_sec": 2.88,
+      "wall_sec": null,
+      "rtf": 0.0846
+    },
+    {
+      "utt_id": "utt0377_cmd_2013",
+      "audio_sec": 3.06,
+      "wall_sec": null,
+      "rtf": 0.0944
+    },
+    {
+      "utt_id": "utt0378_cmd_2014",
+      "audio_sec": 3.18,
+      "wall_sec": null,
+      "rtf": 0.0894
+    },
+    {
+      "utt_id": "utt0379_cmd_2015",
+      "audio_sec": 2.86,
+      "wall_sec": null,
+      "rtf": 0.073
+    },
+    {
+      "utt_id": "utt0380_cmd_2016",
+      "audio_sec": 1.94,
+      "wall_sec": null,
+      "rtf": 0.1324
+    },
+    {
+      "utt_id": "utt0381_cmd_2017",
+      "audio_sec": 1.77,
+      "wall_sec": null,
+      "rtf": 0.1474
+    },
+    {
+      "utt_id": "utt0382_cmd_2018",
+      "audio_sec": 2.37,
+      "wall_sec": null,
+      "rtf": 0.1328
+    },
+    {
+      "utt_id": "utt0383_cmd_2019",
+      "audio_sec": 2.03,
+      "wall_sec": null,
+      "rtf": 0.1511
+    },
+    {
+      "utt_id": "utt0384_cmd_2020",
+      "audio_sec": 2.03,
+      "wall_sec": null,
+      "rtf": 0.1312
+    },
+    {
+      "utt_id": "utt0385_cmd_2021",
+      "audio_sec": 1.61,
+      "wall_sec": null,
+      "rtf": 0.1519
+    },
+    {
+      "utt_id": "utt0386_cmd_2022",
+      "audio_sec": 3.52,
+      "wall_sec": null,
+      "rtf": 0.0747
+    },
+    {
+      "utt_id": "utt0387_cmd_2023",
+      "audio_sec": 1.48,
+      "wall_sec": null,
+      "rtf": 0.1907
+    },
+    {
+      "utt_id": "utt0388_cmd_2024",
+      "audio_sec": 3.01,
+      "wall_sec": null,
+      "rtf": 0.1017
+    },
+    {
+      "utt_id": "utt0389_cmd_2025",
+      "audio_sec": 2.76,
+      "wall_sec": null,
+      "rtf": 0.0924
+    },
+    {
+      "utt_id": "utt0390_cmd_2026",
+      "audio_sec": 1.79,
+      "wall_sec": null,
+      "rtf": 0.0941
+    },
+    {
+      "utt_id": "utt0391_cmd_2027",
+      "audio_sec": 2.54,
+      "wall_sec": null,
+      "rtf": 0.0979
+    },
+    {
+      "utt_id": "utt0392_cmd_2028",
+      "audio_sec": 1.64,
+      "wall_sec": null,
+      "rtf": 0.1059
+    },
+    {
+      "utt_id": "utt0393_cmd_2029",
+      "audio_sec": 2.61,
+      "wall_sec": null,
+      "rtf": 0.1073
+    },
+    {
+      "utt_id": "utt0394_cmd_2030",
+      "audio_sec": 2.332,
+      "wall_sec": null,
+      "rtf": 0.112
+    },
+    {
+      "utt_id": "utt0395_cmd_2031",
+      "audio_sec": 2.55,
+      "wall_sec": null,
+      "rtf": 0.123
+    },
+    {
+      "utt_id": "utt0396_cmd_2032",
+      "audio_sec": 3.04,
+      "wall_sec": null,
+      "rtf": 0.1009
+    },
+    {
+      "utt_id": "utt0397_cmd_2033",
+      "audio_sec": 3.08,
+      "wall_sec": null,
+      "rtf": 0.0674
+    },
+    {
+      "utt_id": "utt0398_cmd_2034",
+      "audio_sec": 1.58,
+      "wall_sec": null,
+      "rtf": 0.1767
+    },
+    {
+      "utt_id": "utt0399_cmd_2035",
+      "audio_sec": 1.83,
+      "wall_sec": null,
+      "rtf": 0.1391
+    },
+    {
+      "utt_id": "utt0400_cmd_2036",
+      "audio_sec": 1.55,
+      "wall_sec": null,
+      "rtf": 0.1544
+    },
+    {
+      "utt_id": "utt0401_cmd_2037",
+      "audio_sec": 1.89,
+      "wall_sec": null,
+      "rtf": 0.1568
+    },
+    {
+      "utt_id": "utt0402_cmd_2038",
+      "audio_sec": 2.4,
+      "wall_sec": null,
+      "rtf": 0.1048
+    },
+    {
+      "utt_id": "utt0403_cmd_2039",
+      "audio_sec": 1.78,
+      "wall_sec": null,
+      "rtf": 0.0988
+    },
+    {
+      "utt_id": "utt0404_cmd_2040",
+      "audio_sec": 1.74,
+      "wall_sec": null,
+      "rtf": 0.1602
+    },
+    {
+      "utt_id": "utt0405_cmd_2041",
+      "audio_sec": 2.35,
+      "wall_sec": null,
+      "rtf": 0.1123
+    },
+    {
+      "utt_id": "utt0406_cmd_2042",
+      "audio_sec": 1.77,
+      "wall_sec": null,
+      "rtf": 0.1533
+    },
+    {
+      "utt_id": "utt0407_cmd_2043",
+      "audio_sec": 2.4,
+      "wall_sec": null,
+      "rtf": 0.1366
+    },
+    {
+      "utt_id": "utt0408_cmd_2044",
+      "audio_sec": 2.15,
+      "wall_sec": null,
+      "rtf": 0.0876
+    },
+    {
+      "utt_id": "utt0409_cmd_2045",
+      "audio_sec": 2.79,
+      "wall_sec": null,
+      "rtf": 0.069
+    },
+    {
+      "utt_id": "utt0410_cmd_2046",
+      "audio_sec": 2.42,
+      "wall_sec": null,
+      "rtf": 0.1036
+    },
+    {
+      "utt_id": "utt0411_cmd_2047",
+      "audio_sec": 2.11,
+      "wall_sec": null,
+      "rtf": 0.1265
+    },
+    {
+      "utt_id": "utt0412_cmd_2048",
+      "audio_sec": 2.25,
+      "wall_sec": null,
+      "rtf": 0.1245
+    },
+    {
+      "utt_id": "utt0413_cmd_2049",
+      "audio_sec": 2.36,
+      "wall_sec": null,
+      "rtf": 0.1018
+    },
+    {
+      "utt_id": "utt0414_cmd_2050",
+      "audio_sec": 2.03,
+      "wall_sec": null,
+      "rtf": 0.0999
+    },
+    {
+      "utt_id": "utt0415_cmd_2051",
+      "audio_sec": 3.86,
+      "wall_sec": null,
+      "rtf": 0.0442
+    },
+    {
+      "utt_id": "utt0416_cmd_2052",
+      "audio_sec": 2.1,
+      "wall_sec": null,
+      "rtf": 0.1379
+    },
+    {
+      "utt_id": "utt0417_cmd_2053",
+      "audio_sec": 3.16,
+      "wall_sec": null,
+      "rtf": 0.0772
+    },
+    {
+      "utt_id": "utt0418_cmd_2054",
+      "audio_sec": 2.17,
+      "wall_sec": null,
+      "rtf": 0.0788
+    },
+    {
+      "utt_id": "utt0419_cmd_2055",
+      "audio_sec": 5.4,
+      "wall_sec": null,
+      "rtf": 0.0427
+    },
+    {
+      "utt_id": "utt0420_cmd_2056",
+      "audio_sec": 2.06,
+      "wall_sec": null,
+      "rtf": 0.1269
+    },
+    {
+      "utt_id": "utt0421_cmd_2057",
+      "audio_sec": 2.07,
+      "wall_sec": null,
+      "rtf": 0.1413
+    },
+    {
+      "utt_id": "utt0422_cmd_2058",
+      "audio_sec": 1.82,
+      "wall_sec": null,
+      "rtf": 0.1699
+    },
+    {
+      "utt_id": "utt0423_cmd_2059",
+      "audio_sec": 1.87,
+      "wall_sec": null,
+      "rtf": 0.0986
+    },
+    {
+      "utt_id": "utt0424_cmd_2060",
+      "audio_sec": 3.38,
+      "wall_sec": null,
+      "rtf": 0.0786
+    },
+    {
+      "utt_id": "utt0425_cmd_2061",
+      "audio_sec": 1.8,
+      "wall_sec": null,
+      "rtf": 0.1432
+    },
+    {
+      "utt_id": "utt0426_cmd_2062",
+      "audio_sec": 2.49,
+      "wall_sec": null,
+      "rtf": 0.1224
+    },
+    {
+      "utt_id": "utt0427_cmd_2063",
+      "audio_sec": 2.71,
+      "wall_sec": null,
+      "rtf": 0.1198
+    },
+    {
+      "utt_id": "utt0428_cmd_2064",
+      "audio_sec": 4.7,
+      "wall_sec": null,
+      "rtf": 0.0623
+    },
+    {
+      "utt_id": "utt0429_cmd_2065",
+      "audio_sec": 2.08,
+      "wall_sec": null,
+      "rtf": 0.1146
+    },
+    {
+      "utt_id": "utt0430_cmd_2066",
+      "audio_sec": 2.66,
+      "wall_sec": null,
+      "rtf": 0.078
+    },
+    {
+      "utt_id": "utt0431_cmd_2067",
+      "audio_sec": 1.88,
+      "wall_sec": null,
+      "rtf": 0.1246
+    },
+    {
+      "utt_id": "utt0432_cmd_2068",
+      "audio_sec": 2.58,
+      "wall_sec": null,
+      "rtf": 0.1084
+    },
+    {
+      "utt_id": "utt0433_cmd_2069",
+      "audio_sec": 2.79,
+      "wall_sec": null,
+      "rtf": 0.1111
+    },
+    {
+      "utt_id": "utt0434_cmd_2070",
+      "audio_sec": 2.68,
+      "wall_sec": null,
+      "rtf": 0.0909
+    },
+    {
+      "utt_id": "utt0435_cmd_2071",
+      "audio_sec": 1.66,
+      "wall_sec": null,
+      "rtf": 0.1425
+    },
+    {
+      "utt_id": "utt0436_cmd_2072",
+      "audio_sec": 1.82,
+      "wall_sec": null,
+      "rtf": 0.1359
+    },
+    {
+      "utt_id": "utt0437_cmd_2073",
+      "audio_sec": 1.83,
+      "wall_sec": null,
+      "rtf": 0.1494
+    },
+    {
+      "utt_id": "utt0438_cmd_2074",
+      "audio_sec": 2.25,
+      "wall_sec": null,
+      "rtf": 0.1034
+    },
+    {
+      "utt_id": "utt0439_cmd_2075",
+      "audio_sec": 2.29,
+      "wall_sec": null,
+      "rtf": 0.1212
+    },
+    {
+      "utt_id": "utt0440_cmd_2076",
+      "audio_sec": 3.63,
+      "wall_sec": null,
+      "rtf": 0.0771
+    },
+    {
+      "utt_id": "utt0441_cmd_2077",
+      "audio_sec": 3.06,
+      "wall_sec": null,
+      "rtf": 0.0722
+    },
+    {
+      "utt_id": "utt0442_cmd_2078",
+      "audio_sec": 2.1,
+      "wall_sec": null,
+      "rtf": 0.1263
+    },
+    {
+      "utt_id": "utt0443_cmd_2079",
+      "audio_sec": 1.6,
+      "wall_sec": null,
+      "rtf": 0.1869
+    },
+    {
+      "utt_id": "utt0444_cmd_2080",
+      "audio_sec": 2.59,
+      "wall_sec": null,
+      "rtf": 0.0967
+    },
+    {
+      "utt_id": "utt0445_cmd_2081",
+      "audio_sec": 1.72,
+      "wall_sec": null,
+      "rtf": 0.0875
+    },
+    {
+      "utt_id": "utt0446_cmd_2082",
+      "audio_sec": 2.12,
+      "wall_sec": null,
+      "rtf": 0.096
+    },
+    {
+      "utt_id": "utt0447_cmd_2083",
+      "audio_sec": 2.62,
+      "wall_sec": null,
+      "rtf": 0.0571
+    },
+    {
+      "utt_id": "utt0448_cmd_2084",
+      "audio_sec": 3.77,
+      "wall_sec": null,
+      "rtf": 0.0726
+    },
+    {
+      "utt_id": "utt0449_cmd_2085",
+      "audio_sec": 2.64,
+      "wall_sec": null,
+      "rtf": 0.1011
+    },
+    {
+      "utt_id": "utt0450_cmd_2086",
+      "audio_sec": 1.33,
+      "wall_sec": null,
+      "rtf": 0.1783
+    },
+    {
+      "utt_id": "utt0451_cmd_2087",
+      "audio_sec": 3.23,
+      "wall_sec": null,
+      "rtf": 0.0713
+    },
+    {
+      "utt_id": "utt0452_cmd_2088",
+      "audio_sec": 4.24,
+      "wall_sec": null,
+      "rtf": 0.0661
+    },
+    {
+      "utt_id": "utt0453_cmd_2089",
+      "audio_sec": 2.26,
+      "wall_sec": null,
+      "rtf": 0.1372
+    },
+    {
+      "utt_id": "utt0454_cmd_2090",
+      "audio_sec": 2.97,
+      "wall_sec": null,
+      "rtf": 0.1002
+    },
+    {
+      "utt_id": "utt0455_cmd_2091",
+      "audio_sec": 3.01,
+      "wall_sec": null,
+      "rtf": 0.0728
+    },
+    {
+      "utt_id": "utt0456_cmd_2092",
+      "audio_sec": 1.93,
+      "wall_sec": null,
+      "rtf": 0.1114
+    },
+    {
+      "utt_id": "utt0457_cmd_2093",
+      "audio_sec": 2.37,
+      "wall_sec": null,
+      "rtf": 0.0708
+    },
+    {
+      "utt_id": "utt0458_cmd_2094",
+      "audio_sec": 2.08,
+      "wall_sec": null,
+      "rtf": 0.1013
+    },
+    {
+      "utt_id": "utt0459_cmd_2095",
+      "audio_sec": 2.14,
+      "wall_sec": null,
+      "rtf": 0.1118
+    },
+    {
+      "utt_id": "utt0460_cmd_2096",
+      "audio_sec": 1.8,
+      "wall_sec": null,
+      "rtf": 0.1393
+    },
+    {
+      "utt_id": "utt0461_cmd_2097",
+      "audio_sec": 2.68,
+      "wall_sec": null,
+      "rtf": 0.106
+    },
+    {
+      "utt_id": "utt0462_cmd_2098",
+      "audio_sec": 1.73,
+      "wall_sec": null,
+      "rtf": 0.1427
+    },
+    {
+      "utt_id": "utt0463_cmd_2099",
+      "audio_sec": 1.72,
+      "wall_sec": null,
+      "rtf": 0.1491
+    },
+    {
+      "utt_id": "utt0464_cmd_2100",
+      "audio_sec": 5.43,
+      "wall_sec": null,
+      "rtf": 0.0544
+    },
+    {
+      "utt_id": "utt0465_cmd_2101",
+      "audio_sec": 2.45,
+      "wall_sec": null,
+      "rtf": 0.1015
+    },
+    {
+      "utt_id": "utt0466_cmd_2102",
+      "audio_sec": 1.71,
+      "wall_sec": null,
+      "rtf": 0.0978
+    },
+    {
+      "utt_id": "utt0467_cmd_2103",
+      "audio_sec": 3.24,
+      "wall_sec": null,
+      "rtf": 0.0518
+    },
+    {
+      "utt_id": "utt0468_cmd_2104",
+      "audio_sec": 2.39,
+      "wall_sec": null,
+      "rtf": 0.1202
+    },
+    {
+      "utt_id": "utt0469_cmd_2105",
+      "audio_sec": 2.892,
+      "wall_sec": null,
+      "rtf": 0.0871
+    },
+    {
+      "utt_id": "utt0470_cmd_2106",
+      "audio_sec": 1.88,
+      "wall_sec": null,
+      "rtf": 0.0942
+    },
+    {
+      "utt_id": "utt0471_cmd_2107",
+      "audio_sec": 3.87,
+      "wall_sec": null,
+      "rtf": 0.0456
+    },
+    {
+      "utt_id": "utt0472_cmd_2108",
+      "audio_sec": 2.89,
+      "wall_sec": null,
+      "rtf": 0.0652
+    },
+    {
+      "utt_id": "utt0473_cmd_2109",
+      "audio_sec": 1.54,
+      "wall_sec": null,
+      "rtf": 0.1818
+    },
+    {
+      "utt_id": "utt0474_cmd_2110",
+      "audio_sec": 1.84,
+      "wall_sec": null,
+      "rtf": 0.0895
+    },
+    {
+      "utt_id": "utt0475_cmd_2111",
+      "audio_sec": 2.73,
+      "wall_sec": null,
+      "rtf": 0.1051
+    },
+    {
+      "utt_id": "utt0476_cmd_2112",
+      "audio_sec": 2.5,
+      "wall_sec": null,
+      "rtf": 0.1106
+    },
+    {
+      "utt_id": "utt0477_cmd_2113",
+      "audio_sec": 2.43,
+      "wall_sec": null,
+      "rtf": 0.1136
+    },
+    {
+      "utt_id": "utt0478_cmd_2114",
+      "audio_sec": 3.77,
+      "wall_sec": null,
+      "rtf": 0.064
+    },
+    {
+      "utt_id": "utt0479_cmd_2115",
+      "audio_sec": 2.56,
+      "wall_sec": null,
+      "rtf": 0.1068
+    },
+    {
+      "utt_id": "utt0480_cmd_2116",
+      "audio_sec": 2.44,
+      "wall_sec": null,
+      "rtf": 0.1173
+    },
+    {
+      "utt_id": "utt0481_cmd_2117",
+      "audio_sec": 2.89,
+      "wall_sec": null,
+      "rtf": 0.1019
+    },
+    {
+      "utt_id": "utt0482_cmd_2118",
+      "audio_sec": 2.01,
+      "wall_sec": null,
+      "rtf": 0.1249
+    },
+    {
+      "utt_id": "utt0483_cmd_2119",
+      "audio_sec": 1.67,
+      "wall_sec": null,
+      "rtf": 0.1076
+    },
+    {
+      "utt_id": "utt0484_cmd_2120",
+      "audio_sec": 2.71,
+      "wall_sec": null,
+      "rtf": 0.0894
+    },
+    {
+      "utt_id": "utt0485_cmd_2121",
+      "audio_sec": 2.9,
+      "wall_sec": null,
+      "rtf": 0.0994
+    },
+    {
+      "utt_id": "utt0486_cmd_2122",
+      "audio_sec": 3.4,
+      "wall_sec": null,
+      "rtf": 0.0698
+    },
+    {
+      "utt_id": "utt0487_cmd_2123",
+      "audio_sec": 2.45,
+      "wall_sec": null,
+      "rtf": 0.1002
+    },
+    {
+      "utt_id": "utt0488_cmd_2124",
+      "audio_sec": 2.3,
+      "wall_sec": null,
+      "rtf": 0.0767
+    },
+    {
+      "utt_id": "utt0489_cmd_2125",
+      "audio_sec": 3.05,
+      "wall_sec": null,
+      "rtf": 0.0908
+    },
+    {
+      "utt_id": "utt0490_cmd_2126",
+      "audio_sec": 2.54,
+      "wall_sec": null,
+      "rtf": 0.0998
+    },
+    {
+      "utt_id": "utt0491_cmd_2127",
+      "audio_sec": 3.29,
+      "wall_sec": null,
+      "rtf": 0.0643
+    },
+    {
+      "utt_id": "utt0492_cmd_2128",
+      "audio_sec": 2.12,
+      "wall_sec": null,
+      "rtf": 0.1319
+    },
+    {
+      "utt_id": "utt0493_cmd_2129",
+      "audio_sec": 2.24,
+      "wall_sec": null,
+      "rtf": 0.1096
+    },
+    {
+      "utt_id": "utt0494_cmd_2130",
+      "audio_sec": 2.07,
+      "wall_sec": null,
+      "rtf": 0.1355
+    },
+    {
+      "utt_id": "utt0495_cmd_2131",
+      "audio_sec": 2.92,
+      "wall_sec": null,
+      "rtf": 0.0975
+    },
+    {
+      "utt_id": "utt0496_cmd_2132",
+      "audio_sec": 2.51,
+      "wall_sec": null,
+      "rtf": 0.1122
+    },
+    {
+      "utt_id": "utt0497_cmd_2133",
+      "audio_sec": 2.99,
+      "wall_sec": null,
+      "rtf": 0.0741
+    },
+    {
+      "utt_id": "utt0498_cmd_2134",
+      "audio_sec": 2.38,
+      "wall_sec": null,
+      "rtf": 0.1107
+    },
+    {
+      "utt_id": "utt0499_cmd_2135",
+      "audio_sec": 2.81,
+      "wall_sec": null,
+      "rtf": 0.0898
+    },
+    {
+      "utt_id": "utt0500_cmd_2136",
+      "audio_sec": 2.63,
+      "wall_sec": null,
+      "rtf": 0.1019
+    },
+    {
+      "utt_id": "utt0501_cmd_2137",
+      "audio_sec": 1.87,
+      "wall_sec": null,
+      "rtf": 0.1203
+    },
+    {
+      "utt_id": "utt0502_cmd_2138",
+      "audio_sec": 2.13,
+      "wall_sec": null,
+      "rtf": 0.0779
+    },
+    {
+      "utt_id": "utt0503_cmd_2139",
+      "audio_sec": 3.48,
+      "wall_sec": null,
+      "rtf": 0.0779
+    },
+    {
+      "utt_id": "utt0504_cmd_2140",
+      "audio_sec": 1.57,
+      "wall_sec": null,
+      "rtf": 0.1632
+    },
+    {
+      "utt_id": "utt0505_cmd_2141",
+      "audio_sec": 2.24,
+      "wall_sec": null,
+      "rtf": 0.0739
+    },
+    {
+      "utt_id": "utt0506_cmd_2142",
+      "audio_sec": 2.1,
+      "wall_sec": null,
+      "rtf": 0.1028
+    },
+    {
+      "utt_id": "utt0507_cmd_2143",
+      "audio_sec": 3.32,
+      "wall_sec": null,
+      "rtf": 0.0506
+    },
+    {
+      "utt_id": "utt0508_cmd_2144",
+      "audio_sec": 2.02,
+      "wall_sec": null,
+      "rtf": 0.1239
+    },
+    {
+      "utt_id": "utt0509_cmd_2145",
+      "audio_sec": 2.38,
+      "wall_sec": null,
+      "rtf": 0.073
+    },
+    {
+      "utt_id": "utt0510_cmd_2146",
+      "audio_sec": 3.31,
+      "wall_sec": null,
+      "rtf": 0.0478
+    },
+    {
+      "utt_id": "utt0511_cmd_2147",
+      "audio_sec": 3.21,
+      "wall_sec": null,
+      "rtf": 0.0789
+    },
+    {
+      "utt_id": "utt0512_cmd_2148",
+      "audio_sec": 1.95,
+      "wall_sec": null,
+      "rtf": 0.1334
+    },
+    {
+      "utt_id": "utt0513_cmd_2149",
+      "audio_sec": 1.95,
+      "wall_sec": null,
+      "rtf": 0.0891
+    },
+    {
+      "utt_id": "utt0514_cmd_2150",
+      "audio_sec": 1.85,
+      "wall_sec": null,
+      "rtf": 0.1216
+    },
+    {
+      "utt_id": "utt0515_cmd_2151",
+      "audio_sec": 1.91,
+      "wall_sec": null,
+      "rtf": 0.1525
+    },
+    {
+      "utt_id": "utt0516_cmd_2152",
+      "audio_sec": 2.95,
+      "wall_sec": null,
+      "rtf": 0.0913
+    },
+    {
+      "utt_id": "utt0517_cmd_2153",
+      "audio_sec": 3.07,
+      "wall_sec": null,
+      "rtf": 0.0863
+    },
+    {
+      "utt_id": "utt0518_cmd_2154",
+      "audio_sec": 1.73,
+      "wall_sec": null,
+      "rtf": 0.1525
+    },
+    {
+      "utt_id": "utt0519_cmd_2155",
+      "audio_sec": 2.65,
+      "wall_sec": null,
+      "rtf": 0.0962
+    },
+    {
+      "utt_id": "utt0520_cmd_2156",
+      "audio_sec": 3.08,
+      "wall_sec": null,
+      "rtf": 0.0935
+    },
+    {
+      "utt_id": "utt0521_cmd_2157",
+      "audio_sec": 1.95,
+      "wall_sec": null,
+      "rtf": 0.1948
+    },
+    {
+      "utt_id": "utt0522_cmd_2158",
+      "audio_sec": 2.07,
+      "wall_sec": null,
+      "rtf": 0.1402
+    },
+    {
+      "utt_id": "utt0523_cmd_2159",
+      "audio_sec": 2.25,
+      "wall_sec": null,
+      "rtf": 0.0693
+    },
+    {
+      "utt_id": "utt0524_cmd_2160",
+      "audio_sec": 2.02,
+      "wall_sec": null,
+      "rtf": 0.1188
+    },
+    {
+      "utt_id": "utt0525_cmd_2161",
+      "audio_sec": 2.48,
+      "wall_sec": null,
+      "rtf": 0.1102
+    },
+    {
+      "utt_id": "utt0526_cmd_2162",
+      "audio_sec": 2.98,
+      "wall_sec": null,
+      "rtf": 0.0562
+    },
+    {
+      "utt_id": "utt0527_cmd_2163",
+      "audio_sec": 1.69,
+      "wall_sec": null,
+      "rtf": 0.1508
+    },
+    {
+      "utt_id": "utt0528_cmd_2164",
+      "audio_sec": 4.89,
+      "wall_sec": null,
+      "rtf": 0.0534
+    },
+    {
+      "utt_id": "utt0529_cmd_2165",
+      "audio_sec": 2.26,
+      "wall_sec": null,
+      "rtf": 0.0995
+    },
+    {
+      "utt_id": "utt0530_cmd_2166",
+      "audio_sec": 2.6,
+      "wall_sec": null,
+      "rtf": 0.1014
+    },
+    {
+      "utt_id": "utt0531_cmd_2167",
+      "audio_sec": 3.5,
+      "wall_sec": null,
+      "rtf": 0.0772
+    },
+    {
+      "utt_id": "utt0532_cmd_2168",
+      "audio_sec": 3.3,
+      "wall_sec": null,
+      "rtf": 0.0826
+    },
+    {
+      "utt_id": "utt0533_cmd_2169",
+      "audio_sec": 2.06,
+      "wall_sec": null,
+      "rtf": 0.1312
+    },
+    {
+      "utt_id": "utt0534_cmd_2170",
+      "audio_sec": 1.74,
+      "wall_sec": null,
+      "rtf": 0.0963
+    },
+    {
+      "utt_id": "utt0535_cmd_2171",
+      "audio_sec": 1.39,
+      "wall_sec": null,
+      "rtf": 0.1175
+    },
+    {
+      "utt_id": "utt0536_cmd_2172",
+      "audio_sec": 3.33,
+      "wall_sec": null,
+      "rtf": 0.0775
+    },
+    {
+      "utt_id": "utt0537_cmd_2173",
+      "audio_sec": 3.09,
+      "wall_sec": null,
+      "rtf": 0.0918
+    },
+    {
+      "utt_id": "utt0538_cmd_2174",
+      "audio_sec": 1.92,
+      "wall_sec": null,
+      "rtf": 0.1397
+    },
+    {
+      "utt_id": "utt0539_cmd_2175",
+      "audio_sec": 1.93,
+      "wall_sec": null,
+      "rtf": 0.1247
+    },
+    {
+      "utt_id": "utt0540_cmd_2176",
+      "audio_sec": 1.74,
+      "wall_sec": null,
+      "rtf": 0.1436
+    },
+    {
+      "utt_id": "utt0541_cmd_2177",
+      "audio_sec": 3.52,
+      "wall_sec": null,
+      "rtf": 0.0501
+    },
+    {
+      "utt_id": "utt0542_cmd_2178",
+      "audio_sec": 3.53,
+      "wall_sec": null,
+      "rtf": 0.0473
+    },
+    {
+      "utt_id": "utt0543_cmd_2179",
+      "audio_sec": 2.35,
+      "wall_sec": null,
+      "rtf": 0.1182
+    },
+    {
+      "utt_id": "utt0544_cmd_2180",
+      "audio_sec": 1.82,
+      "wall_sec": null,
+      "rtf": 0.1303
+    },
+    {
+      "utt_id": "utt0545_cmd_2181",
+      "audio_sec": 2.94,
+      "wall_sec": null,
+      "rtf": 0.083
+    },
+    {
+      "utt_id": "utt0546_cmd_2182",
+      "audio_sec": 2.51,
+      "wall_sec": null,
+      "rtf": 0.1052
+    },
+    {
+      "utt_id": "utt0547_cmd_2183",
+      "audio_sec": 2.16,
+      "wall_sec": null,
+      "rtf": 0.1005
+    },
+    {
+      "utt_id": "utt0548_cmd_2184",
+      "audio_sec": 2.87,
+      "wall_sec": null,
+      "rtf": 0.0558
+    },
+    {
+      "utt_id": "utt0549_cmd_2185",
+      "audio_sec": 2.78,
+      "wall_sec": null,
+      "rtf": 0.0928
+    },
+    {
+      "utt_id": "utt0550_cmd_2186",
+      "audio_sec": 2.14,
+      "wall_sec": null,
+      "rtf": 0.0763
+    },
+    {
+      "utt_id": "utt0551_cmd_2187",
+      "audio_sec": 2.72,
+      "wall_sec": null,
+      "rtf": 0.0568
+    },
+    {
+      "utt_id": "utt0552_cmd_2188",
+      "audio_sec": 3.51,
+      "wall_sec": null,
+      "rtf": 0.0666
+    },
+    {
+      "utt_id": "utt0553_cmd_2189",
+      "audio_sec": 2.74,
+      "wall_sec": null,
+      "rtf": 0.0559
+    },
+    {
+      "utt_id": "utt0554_cmd_2190",
+      "audio_sec": 3.4,
+      "wall_sec": null,
+      "rtf": 0.0792
+    },
+    {
+      "utt_id": "utt0555_cmd_2191",
+      "audio_sec": 1.8,
+      "wall_sec": null,
+      "rtf": 0.1412
+    },
+    {
+      "utt_id": "utt0556_cmd_2192",
+      "audio_sec": 2.99,
+      "wall_sec": null,
+      "rtf": 0.1003
+    },
+    {
+      "utt_id": "utt0557_cmd_2193",
+      "audio_sec": 3.36,
+      "wall_sec": null,
+      "rtf": 0.0473
+    },
+    {
+      "utt_id": "utt0558_cmd_2194",
+      "audio_sec": 2.98,
+      "wall_sec": null,
+      "rtf": 0.0687
+    },
+    {
+      "utt_id": "utt0559_cmd_2195",
+      "audio_sec": 3.39,
+      "wall_sec": null,
+      "rtf": 0.0967
+    },
+    {
+      "utt_id": "utt0560_cmd_2196",
+      "audio_sec": 2.16,
+      "wall_sec": null,
+      "rtf": 0.1324
+    },
+    {
+      "utt_id": "utt0561_cmd_2197",
+      "audio_sec": 2.41,
+      "wall_sec": null,
+      "rtf": 0.0717
+    },
+    {
+      "utt_id": "utt0562_cmd_2198",
+      "audio_sec": 2.26,
+      "wall_sec": null,
+      "rtf": 0.1076
+    },
+    {
+      "utt_id": "utt0563_cmd_2199",
+      "audio_sec": 2.52,
+      "wall_sec": null,
+      "rtf": 0.0951
+    },
+    {
+      "utt_id": "utt0564_cmd_2200",
+      "audio_sec": 1.89,
+      "wall_sec": null,
+      "rtf": 0.0884
+    },
+    {
+      "utt_id": "utt0565_cmd_2201",
+      "audio_sec": 1.7,
+      "wall_sec": null,
+      "rtf": 0.1404
+    },
+    {
+      "utt_id": "utt0566_cmd_2202",
+      "audio_sec": 3.01,
+      "wall_sec": null,
+      "rtf": 0.0971
+    },
+    {
+      "utt_id": "utt0567_cmd_2203",
+      "audio_sec": 2.36,
+      "wall_sec": null,
+      "rtf": 0.1127
+    },
+    {
+      "utt_id": "utt0568_cmd_2204",
+      "audio_sec": 4.29,
+      "wall_sec": null,
+      "rtf": 0.062
+    },
+    {
+      "utt_id": "utt0569_cmd_2205",
+      "audio_sec": 3.26,
+      "wall_sec": null,
+      "rtf": 0.0915
+    },
+    {
+      "utt_id": "utt0570_cmd_2206",
+      "audio_sec": 2.02,
+      "wall_sec": null,
+      "rtf": 0.1274
+    },
+    {
+      "utt_id": "utt0571_cmd_2207",
+      "audio_sec": 1.99,
+      "wall_sec": null,
+      "rtf": 0.1258
+    },
+    {
+      "utt_id": "utt0572_cmd_2208",
+      "audio_sec": 2.29,
+      "wall_sec": null,
+      "rtf": 0.1135
+    },
+    {
+      "utt_id": "utt0573_cmd_2209",
+      "audio_sec": 2.29,
+      "wall_sec": null,
+      "rtf": 0.0733
+    },
+    {
+      "utt_id": "utt0574_cmd_2210",
+      "audio_sec": 2.17,
+      "wall_sec": null,
+      "rtf": 0.1009
+    },
+    {
+      "utt_id": "utt0575_cmd_2211",
+      "audio_sec": 1.75,
+      "wall_sec": null,
+      "rtf": 0.1621
+    },
+    {
+      "utt_id": "utt0576_cmd_2212",
+      "audio_sec": 1.96,
+      "wall_sec": null,
+      "rtf": 0.1439
+    },
+    {
+      "utt_id": "utt0577_cmd_2213",
+      "audio_sec": 2.6,
+      "wall_sec": null,
+      "rtf": 0.1037
+    },
+    {
+      "utt_id": "utt0578_cmd_2214",
+      "audio_sec": 3.25,
+      "wall_sec": null,
+      "rtf": 0.0849
+    },
+    {
+      "utt_id": "utt0579_cmd_2215",
+      "audio_sec": 2.81,
+      "wall_sec": null,
+      "rtf": 0.0623
+    },
+    {
+      "utt_id": "utt0580_cmd_2216",
+      "audio_sec": 2.07,
+      "wall_sec": null,
+      "rtf": 0.1338
+    },
+    {
+      "utt_id": "utt0581_cmd_2217",
+      "audio_sec": 2.04,
+      "wall_sec": null,
+      "rtf": 0.1409
+    },
+    {
+      "utt_id": "utt0582_cmd_2218",
+      "audio_sec": 2.0,
+      "wall_sec": null,
+      "rtf": 0.0848
+    },
+    {
+      "utt_id": "utt0583_cmd_2219",
+      "audio_sec": 5.89,
+      "wall_sec": null,
+      "rtf": 0.0348
+    },
+    {
+      "utt_id": "utt0584_cmd_2220",
+      "audio_sec": 1.66,
+      "wall_sec": null,
+      "rtf": 0.0
+    },
+    {
+      "utt_id": "utt0585_cmd_2221",
+      "audio_sec": 2.69,
+      "wall_sec": null,
+      "rtf": 0.1011
+    },
+    {
+      "utt_id": "utt0586_cmd_2222",
+      "audio_sec": 2.01,
+      "wall_sec": null,
+      "rtf": 0.0847
+    },
+    {
+      "utt_id": "utt0587_cmd_2223",
+      "audio_sec": 2.05,
+      "wall_sec": null,
+      "rtf": 0.0869
+    },
+    {
+      "utt_id": "utt0588_cmd_2224",
+      "audio_sec": 2.99,
+      "wall_sec": null,
+      "rtf": 0.1079
+    },
+    {
+      "utt_id": "utt0589_cmd_2225",
+      "audio_sec": 1.64,
+      "wall_sec": null,
+      "rtf": 0.1582
+    },
+    {
+      "utt_id": "utt0590_cmd_2226",
+      "audio_sec": 3.07,
+      "wall_sec": null,
+      "rtf": 0.0876
+    },
+    {
+      "utt_id": "utt0591_cmd_2227",
+      "audio_sec": 1.7,
+      "wall_sec": null,
+      "rtf": 0.0
+    },
+    {
+      "utt_id": "utt0592_cmd_2228",
+      "audio_sec": 3.39,
+      "wall_sec": null,
+      "rtf": 0.0628
+    },
+    {
+      "utt_id": "utt0593_cmd_2229",
+      "audio_sec": 1.99,
+      "wall_sec": null,
+      "rtf": 0.145
+    },
+    {
+      "utt_id": "utt0594_cmd_2230",
+      "audio_sec": 2.58,
+      "wall_sec": null,
+      "rtf": 0.0657
+    },
+    {
+      "utt_id": "utt0595_cmd_2231",
+      "audio_sec": 2.69,
+      "wall_sec": null,
+      "rtf": 0.0958
+    },
+    {
+      "utt_id": "utt0596_cmd_2232",
+      "audio_sec": 1.83,
+      "wall_sec": null,
+      "rtf": 0.1561
+    },
+    {
+      "utt_id": "utt0597_cmd_2233",
+      "audio_sec": 2.51,
+      "wall_sec": null,
+      "rtf": 0.1011
+    },
+    {
+      "utt_id": "utt0598_cmd_2234",
+      "audio_sec": 2.11,
+      "wall_sec": null,
+      "rtf": 0.0802
+    },
+    {
+      "utt_id": "utt0599_cmd_2235",
+      "audio_sec": 1.85,
+      "wall_sec": null,
+      "rtf": 0.1485
+    },
+    {
+      "utt_id": "utt0600_cmd_2236",
+      "audio_sec": 2.89,
+      "wall_sec": null,
+      "rtf": 0.0868
+    },
+    {
+      "utt_id": "utt0601_cmd_2237",
+      "audio_sec": 1.93,
+      "wall_sec": null,
+      "rtf": 0.1052
+    },
+    {
+      "utt_id": "utt0602_cmd_2238",
+      "audio_sec": 2.13,
+      "wall_sec": null,
+      "rtf": 0.0782
+    },
+    {
+      "utt_id": "utt0603_cmd_2239",
+      "audio_sec": 1.74,
+      "wall_sec": null,
+      "rtf": 0.1697
+    },
+    {
+      "utt_id": "utt0604_cmd_2240",
+      "audio_sec": 2.51,
+      "wall_sec": null,
+      "rtf": 0.0669
+    },
+    {
+      "utt_id": "utt0605_cmd_2241",
+      "audio_sec": 2.69,
+      "wall_sec": null,
+      "rtf": 0.0631
+    },
+    {
+      "utt_id": "utt0606_cmd_2242",
+      "audio_sec": 3.61,
+      "wall_sec": null,
+      "rtf": 0.0795
+    },
+    {
+      "utt_id": "utt0607_cmd_2243",
+      "audio_sec": 2.71,
+      "wall_sec": null,
+      "rtf": 0.0634
+    },
+    {
+      "utt_id": "utt0608_cmd_2244",
+      "audio_sec": 2.44,
+      "wall_sec": null,
+      "rtf": 0.1157
+    },
+    {
+      "utt_id": "utt0609_cmd_2245",
+      "audio_sec": 3.29,
+      "wall_sec": null,
+      "rtf": 0.0729
+    },
+    {
+      "utt_id": "utt0610_cmd_2246",
+      "audio_sec": 2.99,
+      "wall_sec": null,
+      "rtf": 0.0583
+    },
+    {
+      "utt_id": "utt0611_cmd_2247",
+      "audio_sec": 2.29,
+      "wall_sec": null,
+      "rtf": 0.1054
+    },
+    {
+      "utt_id": "utt0612_cmd_2248",
+      "audio_sec": 2.4,
+      "wall_sec": null,
+      "rtf": 0.1018
+    },
+    {
+      "utt_id": "utt0613_cmd_2249",
+      "audio_sec": 3.88,
+      "wall_sec": null,
+      "rtf": 0.0463
+    },
+    {
+      "utt_id": "utt0614_cmd_2250",
+      "audio_sec": 1.94,
+      "wall_sec": null,
+      "rtf": 0.0909
+    },
+    {
+      "utt_id": "utt0615_cmd_2251",
+      "audio_sec": 2.09,
+      "wall_sec": null,
+      "rtf": 0.144
+    },
+    {
+      "utt_id": "utt0616_cmd_2252",
+      "audio_sec": 2.61,
+      "wall_sec": null,
+      "rtf": 0.0965
+    },
+    {
+      "utt_id": "utt0617_cmd_2253",
+      "audio_sec": 1.7,
+      "wall_sec": null,
+      "rtf": 0.1502
+    },
+    {
+      "utt_id": "utt0618_cmd_2254",
+      "audio_sec": 3.3,
+      "wall_sec": null,
+      "rtf": 0.0754
+    },
+    {
+      "utt_id": "utt0619_cmd_2255",
+      "audio_sec": 2.49,
+      "wall_sec": null,
+      "rtf": 0.1158
+    },
+    {
+      "utt_id": "utt0620_cmd_2256",
+      "audio_sec": 2.17,
+      "wall_sec": null,
+      "rtf": 0.1333
+    },
+    {
+      "utt_id": "utt0621_cmd_2257",
+      "audio_sec": 2.82,
+      "wall_sec": null,
+      "rtf": 0.0606
+    },
+    {
+      "utt_id": "utt0622_cmd_2258",
+      "audio_sec": 1.93,
+      "wall_sec": null,
+      "rtf": 0.1202
+    },
+    {
+      "utt_id": "utt0623_cmd_2259",
+      "audio_sec": 1.45,
+      "wall_sec": null,
+      "rtf": 0.1854
+    },
+    {
+      "utt_id": "utt0624_cmd_2260",
+      "audio_sec": 1.94,
+      "wall_sec": null,
+      "rtf": 0.1487
+    },
+    {
+      "utt_id": "utt0625_cmd_2261",
+      "audio_sec": 1.83,
+      "wall_sec": null,
+      "rtf": 0.1323
+    },
+    {
+      "utt_id": "utt0626_cmd_2262",
+      "audio_sec": 1.63,
+      "wall_sec": null,
+      "rtf": 0.1715
+    },
+    {
+      "utt_id": "utt0627_cmd_2263",
+      "audio_sec": 1.73,
+      "wall_sec": null,
+      "rtf": 0.165
+    },
+    {
+      "utt_id": "utt0628_cmd_2264",
+      "audio_sec": 3.17,
+      "wall_sec": null,
+      "rtf": 0.0878
+    },
+    {
+      "utt_id": "utt0629_cmd_2265",
+      "audio_sec": 3.0,
+      "wall_sec": null,
+      "rtf": 0.095
+    },
+    {
+      "utt_id": "utt0630_cmd_2266",
+      "audio_sec": 2.33,
+      "wall_sec": null,
+      "rtf": 0.1159
+    },
+    {
+      "utt_id": "utt0631_cmd_2267",
+      "audio_sec": 1.9,
+      "wall_sec": null,
+      "rtf": 0.0872
+    },
+    {
+      "utt_id": "utt0632_cmd_2268",
+      "audio_sec": 3.38,
+      "wall_sec": null,
+      "rtf": 0.0831
+    },
+    {
+      "utt_id": "utt0633_cmd_2269",
+      "audio_sec": 4.64,
+      "wall_sec": null,
+      "rtf": 0.059
+    },
+    {
+      "utt_id": "utt0634_cmd_2270",
+      "audio_sec": 3.12,
+      "wall_sec": null,
+      "rtf": 0.092
+    },
+    {
+      "utt_id": "utt0635_cmd_2271",
+      "audio_sec": 2.61,
+      "wall_sec": null,
+      "rtf": 0.1071
+    },
+    {
+      "utt_id": "utt0636_cmd_2272",
+      "audio_sec": 2.05,
+      "wall_sec": null,
+      "rtf": 0.1336
+    },
+    {
+      "utt_id": "utt0637_cmd_2273",
+      "audio_sec": 3.75,
+      "wall_sec": null,
+      "rtf": 0.067
+    },
+    {
+      "utt_id": "utt0638_cmd_2274",
+      "audio_sec": 2.35,
+      "wall_sec": null,
+      "rtf": 0.1273
+    },
+    {
+      "utt_id": "utt0639_cmd_2275",
+      "audio_sec": 1.89,
+      "wall_sec": null,
+      "rtf": 0.1898
+    },
+    {
+      "utt_id": "utt0640_cmd_2276",
+      "audio_sec": 2.65,
+      "wall_sec": null,
+      "rtf": 0.1312
+    },
+    {
+      "utt_id": "utt0641_cmd_2277",
+      "audio_sec": 1.9,
+      "wall_sec": null,
+      "rtf": 0.1278
+    },
+    {
+      "utt_id": "utt0642_cmd_2278",
+      "audio_sec": 2.51,
+      "wall_sec": null,
+      "rtf": 0.0745
+    },
+    {
+      "utt_id": "utt0643_cmd_2279",
+      "audio_sec": 2.84,
+      "wall_sec": null,
+      "rtf": 0.0926
+    },
+    {
+      "utt_id": "utt0644_cmd_2280",
+      "audio_sec": 2.01,
+      "wall_sec": null,
+      "rtf": 0.1372
+    },
+    {
+      "utt_id": "utt0645_cmd_2281",
+      "audio_sec": 2.21,
+      "wall_sec": null,
+      "rtf": 0.0656
+    },
+    {
+      "utt_id": "utt0646_cmd_2282",
+      "audio_sec": 2.72,
+      "wall_sec": null,
+      "rtf": 0.0576
+    },
+    {
+      "utt_id": "utt0647_cmd_2283",
+      "audio_sec": 3.36,
+      "wall_sec": null,
+      "rtf": 0.0699
+    },
+    {
+      "utt_id": "utt0648_cmd_2284",
+      "audio_sec": 2.7,
+      "wall_sec": null,
+      "rtf": 0.0577
+    },
+    {
+      "utt_id": "utt0649_cmd_2285",
+      "audio_sec": 3.31,
+      "wall_sec": null,
+      "rtf": 0.0852
+    },
+    {
+      "utt_id": "utt0650_cmd_2286",
+      "audio_sec": 2.61,
+      "wall_sec": null,
+      "rtf": 0.1318
+    },
+    {
+      "utt_id": "utt0651_cmd_2287",
+      "audio_sec": 1.77,
+      "wall_sec": null,
+      "rtf": 0.1494
+    },
+    {
+      "utt_id": "utt0652_cmd_2288",
+      "audio_sec": 2.01,
+      "wall_sec": null,
+      "rtf": 0.0761
+    },
+    {
+      "utt_id": "utt0653_cmd_2289",
+      "audio_sec": 1.9,
+      "wall_sec": null,
+      "rtf": 0.1367
+    },
+    {
+      "utt_id": "utt0654_cmd_2290",
+      "audio_sec": 2.54,
+      "wall_sec": null,
+      "rtf": 0.0956
+    },
+    {
+      "utt_id": "utt0655_cmd_2291",
+      "audio_sec": 3.22,
+      "wall_sec": null,
+      "rtf": 0.07
+    },
+    {
+      "utt_id": "utt0656_cmd_2292",
+      "audio_sec": 3.13,
+      "wall_sec": null,
+      "rtf": 0.1117
+    },
+    {
+      "utt_id": "utt0657_cmd_2293",
+      "audio_sec": 3.24,
+      "wall_sec": null,
+      "rtf": 0.1232
+    },
+    {
+      "utt_id": "utt0658_cmd_2294",
+      "audio_sec": 2.77,
+      "wall_sec": null,
+      "rtf": 0.0925
+    },
+    {
+      "utt_id": "utt0659_cmd_2295",
+      "audio_sec": 2.7,
+      "wall_sec": null,
+      "rtf": 0.1113
+    },
+    {
+      "utt_id": "utt0660_cmd_2296",
+      "audio_sec": 1.75,
+      "wall_sec": null,
+      "rtf": 0.1515
+    },
+    {
+      "utt_id": "utt0661_cmd_2297",
+      "audio_sec": 2.15,
+      "wall_sec": null,
+      "rtf": 0.1166
+    },
+    {
+      "utt_id": "utt0662_cmd_2298",
+      "audio_sec": 2.03,
+      "wall_sec": null,
+      "rtf": 0.0985
+    },
+    {
+      "utt_id": "utt0663_cmd_2299",
+      "audio_sec": 3.03,
+      "wall_sec": null,
+      "rtf": 0.0797
+    },
+    {
+      "utt_id": "utt0664_cmd_2300",
+      "audio_sec": 2.52,
+      "wall_sec": null,
+      "rtf": 0.0584
+    },
+    {
+      "utt_id": "utt0665_cmd_2301",
+      "audio_sec": 3.07,
+      "wall_sec": null,
+      "rtf": 0.0866
+    },
+    {
+      "utt_id": "utt0666_cmd_2302",
+      "audio_sec": 2.44,
+      "wall_sec": null,
+      "rtf": 0.1178
+    },
+    {
+      "utt_id": "utt0667_cmd_2303",
+      "audio_sec": 2.07,
+      "wall_sec": null,
+      "rtf": 0.1705
+    },
+    {
+      "utt_id": "utt0668_cmd_2304",
+      "audio_sec": 2.29,
+      "wall_sec": null,
+      "rtf": 0.1476
+    },
+    {
+      "utt_id": "utt0669_cmd_2305",
+      "audio_sec": 2.39,
+      "wall_sec": null,
+      "rtf": 0.0972
+    },
+    {
+      "utt_id": "utt0670_cmd_2306",
+      "audio_sec": 3.64,
+      "wall_sec": null,
+      "rtf": 0.0664
+    },
+    {
+      "utt_id": "utt0671_cmd_2307",
+      "audio_sec": 2.54,
+      "wall_sec": null,
+      "rtf": 0.0608
+    },
+    {
+      "utt_id": "utt0672_cmd_2308",
+      "audio_sec": 1.84,
+      "wall_sec": null,
+      "rtf": 0.1229
+    },
+    {
+      "utt_id": "utt0673_cmd_2309",
+      "audio_sec": 2.31,
+      "wall_sec": null,
+      "rtf": 0.0963
+    },
+    {
+      "utt_id": "utt0674_cmd_2310",
+      "audio_sec": 2.41,
+      "wall_sec": null,
+      "rtf": 0.0635
+    },
+    {
+      "utt_id": "utt0675_cmd_2311",
+      "audio_sec": 2.39,
+      "wall_sec": null,
+      "rtf": 0.0937
+    },
+    {
+      "utt_id": "utt0676_cmd_2312",
+      "audio_sec": 3.02,
+      "wall_sec": null,
+      "rtf": 0.0872
+    },
+    {
+      "utt_id": "utt0677_cmd_2313",
+      "audio_sec": 2.09,
+      "wall_sec": null,
+      "rtf": 0.0741
+    },
+    {
+      "utt_id": "utt0678_cmd_2314",
+      "audio_sec": 2.42,
+      "wall_sec": null,
+      "rtf": 0.0618
+    },
+    {
+      "utt_id": "utt0679_cmd_2315",
+      "audio_sec": 3.52,
+      "wall_sec": null,
+      "rtf": 0.084
+    },
+    {
+      "utt_id": "utt0680_cmd_2316",
+      "audio_sec": 1.89,
+      "wall_sec": null,
+      "rtf": 0.1224
+    },
+    {
+      "utt_id": "utt0681_cmd_2317",
+      "audio_sec": 2.34,
+      "wall_sec": null,
+      "rtf": 0.1115
+    },
+    {
+      "utt_id": "utt0682_cmd_2318",
+      "audio_sec": 1.93,
+      "wall_sec": null,
+      "rtf": 0.1249
+    },
+    {
+      "utt_id": "utt0683_cmd_2319",
+      "audio_sec": 2.14,
+      "wall_sec": null,
+      "rtf": 0.1506
+    },
+    {
+      "utt_id": "utt0684_cmd_2320",
+      "audio_sec": 4.59,
+      "wall_sec": null,
+      "rtf": 0.0609
+    },
+    {
+      "utt_id": "utt0685_cmd_2321",
+      "audio_sec": 2.1,
+      "wall_sec": null,
+      "rtf": 0.1055
+    },
+    {
+      "utt_id": "utt0686_cmd_2322",
+      "audio_sec": 2.51,
+      "wall_sec": null,
+      "rtf": 0.0835
+    },
+    {
+      "utt_id": "utt0687_cmd_2323",
+      "audio_sec": 1.62,
+      "wall_sec": null,
+      "rtf": 0.1782
+    },
+    {
+      "utt_id": "utt0688_cmd_2324",
+      "audio_sec": 3.15,
+      "wall_sec": null,
+      "rtf": 0.0973
+    },
+    {
+      "utt_id": "utt0689_cmd_2325",
+      "audio_sec": 2.08,
+      "wall_sec": null,
+      "rtf": 0.1488
+    },
+    {
+      "utt_id": "utt0690_cmd_2326",
+      "audio_sec": 2.32,
+      "wall_sec": null,
+      "rtf": 0.1059
+    },
+    {
+      "utt_id": "utt0691_cmd_2327",
+      "audio_sec": 1.53,
+      "wall_sec": null,
+      "rtf": 0.1826
+    },
+    {
+      "utt_id": "utt0692_cmd_2328",
+      "audio_sec": 1.84,
+      "wall_sec": null,
+      "rtf": 0.1614
+    },
+    {
+      "utt_id": "utt0693_cmd_2329",
+      "audio_sec": 1.8,
+      "wall_sec": null,
+      "rtf": 0.0985
+    },
+    {
+      "utt_id": "utt0694_cmd_2330",
+      "audio_sec": 3.12,
+      "wall_sec": null,
+      "rtf": 0.0929
+    },
+    {
+      "utt_id": "utt0695_cmd_2331",
+      "audio_sec": 1.87,
+      "wall_sec": null,
+      "rtf": 0.1353
+    },
+    {
+      "utt_id": "utt0696_cmd_2332",
+      "audio_sec": 2.96,
+      "wall_sec": null,
+      "rtf": 0.1007
+    },
+    {
+      "utt_id": "utt0697_cmd_2333",
+      "audio_sec": 2.01,
+      "wall_sec": null,
+      "rtf": 0.1316
+    },
+    {
+      "utt_id": "utt0698_cmd_2334",
+      "audio_sec": 2.02,
+      "wall_sec": null,
+      "rtf": 0.1234
+    },
+    {
+      "utt_id": "utt0699_cmd_2335",
+      "audio_sec": 2.98,
+      "wall_sec": null,
+      "rtf": 0.0863
+    },
+    {
+      "utt_id": "utt0700_cmd_2336",
+      "audio_sec": 3.56,
+      "wall_sec": null,
+      "rtf": 0.0486
+    },
+    {
+      "utt_id": "utt0701_cmd_2337",
+      "audio_sec": 1.8,
+      "wall_sec": null,
+      "rtf": 0.1397
+    },
+    {
+      "utt_id": "utt0702_cmd_2338",
+      "audio_sec": 1.86,
+      "wall_sec": null,
+      "rtf": 0.0889
+    },
+    {
+      "utt_id": "utt0703_cmd_2339",
+      "audio_sec": 2.37,
+      "wall_sec": null,
+      "rtf": 0.1131
+    },
+    {
+      "utt_id": "utt0704_cmd_2340",
+      "audio_sec": 3.36,
+      "wall_sec": null,
+      "rtf": 0.0858
+    },
+    {
+      "utt_id": "utt0705_cmd_2341",
+      "audio_sec": 1.64,
+      "wall_sec": null,
+      "rtf": 0.15
+    },
+    {
+      "utt_id": "utt0706_cmd_2342",
+      "audio_sec": 3.02,
+      "wall_sec": null,
+      "rtf": 0.0853
+    },
+    {
+      "utt_id": "utt0707_cmd_2343",
+      "audio_sec": 1.84,
+      "wall_sec": null,
+      "rtf": 0.0922
+    },
+    {
+      "utt_id": "utt0708_cmd_2344",
+      "audio_sec": 3.11,
+      "wall_sec": null,
+      "rtf": 0.093
+    },
+    {
+      "utt_id": "utt0709_cmd_2345",
+      "audio_sec": 2.76,
+      "wall_sec": null,
+      "rtf": 0.0916
+    },
+    {
+      "utt_id": "utt0710_cmd_2346",
+      "audio_sec": 2.36,
+      "wall_sec": null,
+      "rtf": 0.1044
+    },
+    {
+      "utt_id": "utt0711_cmd_2347",
+      "audio_sec": 2.72,
+      "wall_sec": null,
+      "rtf": 0.0951
+    },
+    {
+      "utt_id": "utt0712_cmd_2348",
+      "audio_sec": 3.66,
+      "wall_sec": null,
+      "rtf": 0.0813
+    },
+    {
+      "utt_id": "utt0713_cmd_2349",
+      "audio_sec": 1.65,
+      "wall_sec": null,
+      "rtf": 0.1415
+    },
+    {
+      "utt_id": "utt0714_cmd_2350",
+      "audio_sec": 1.64,
+      "wall_sec": null,
+      "rtf": 0.1756
+    },
+    {
+      "utt_id": "utt0715_cmd_2351",
+      "audio_sec": 2.77,
+      "wall_sec": null,
+      "rtf": 0.0855
+    },
+    {
+      "utt_id": "utt0716_cmd_2352",
+      "audio_sec": 3.66,
+      "wall_sec": null,
+      "rtf": 0.0466
+    },
+    {
+      "utt_id": "utt0717_cmd_2353",
+      "audio_sec": 1.8,
+      "wall_sec": null,
+      "rtf": 0.0968
+    },
+    {
+      "utt_id": "utt0718_cmd_2354",
+      "audio_sec": 1.84,
+      "wall_sec": null,
+      "rtf": 0.1563
+    },
+    {
+      "utt_id": "utt0719_cmd_2355",
+      "audio_sec": 3.12,
+      "wall_sec": null,
+      "rtf": 0.0958
+    },
+    {
+      "utt_id": "utt0720_cmd_2356",
+      "audio_sec": 2.17,
+      "wall_sec": null,
+      "rtf": 0.1354
+    },
+    {
+      "utt_id": "utt0721_cmd_2357",
+      "audio_sec": 4.12,
+      "wall_sec": null,
+      "rtf": 0.0713
+    },
+    {
+      "utt_id": "utt0722_cmd_2358",
+      "audio_sec": 1.98,
+      "wall_sec": null,
+      "rtf": 0.1401
+    },
+    {
+      "utt_id": "utt0723_cmd_2359",
+      "audio_sec": 1.63,
+      "wall_sec": null,
+      "rtf": 0.1085
+    },
+    {
+      "utt_id": "utt0724_cmd_2360",
+      "audio_sec": 2.02,
+      "wall_sec": null,
+      "rtf": 0.0811
+    },
+    {
+      "utt_id": "utt0725_cmd_2361",
+      "audio_sec": 2.71,
+      "wall_sec": null,
+      "rtf": 0.0931
+    },
+    {
+      "utt_id": "utt0726_cmd_2362",
+      "audio_sec": 1.76,
+      "wall_sec": null,
+      "rtf": 0.1422
+    },
+    {
+      "utt_id": "utt0727_cmd_2363",
+      "audio_sec": 1.93,
+      "wall_sec": null,
+      "rtf": 0.1359
+    },
+    {
+      "utt_id": "utt0728_cmd_2364",
+      "audio_sec": 3.18,
+      "wall_sec": null,
+      "rtf": 0.0793
+    },
+    {
+      "utt_id": "utt0729_cmd_2365",
+      "audio_sec": 3.25,
+      "wall_sec": null,
+      "rtf": 0.0914
+    },
+    {
+      "utt_id": "utt0730_cmd_2366",
+      "audio_sec": 5.06,
+      "wall_sec": null,
+      "rtf": 0.0489
+    },
+    {
+      "utt_id": "utt0731_cmd_2367",
+      "audio_sec": 2.23,
+      "wall_sec": null,
+      "rtf": 0.1105
+    },
+    {
+      "utt_id": "utt0732_cmd_2368",
+      "audio_sec": 2.42,
+      "wall_sec": null,
+      "rtf": 0.1028
+    },
+    {
+      "utt_id": "utt0733_cmd_2369",
+      "audio_sec": 4.8,
+      "wall_sec": null,
+      "rtf": 0.0612
+    },
+    {
+      "utt_id": "utt0734_cmd_2370",
+      "audio_sec": 2.67,
+      "wall_sec": null,
+      "rtf": 0.1049
+    },
+    {
+      "utt_id": "utt0735_cmd_2371",
+      "audio_sec": 2.39,
+      "wall_sec": null,
+      "rtf": 0.1032
+    },
+    {
+      "utt_id": "utt0736_cmd_2372",
+      "audio_sec": 3.13,
+      "wall_sec": null,
+      "rtf": 0.0817
+    },
+    {
+      "utt_id": "utt0737_cmd_2373",
+      "audio_sec": 2.24,
+      "wall_sec": null,
+      "rtf": 0.1265
+    },
+    {
+      "utt_id": "utt0738_cmd_2374",
+      "audio_sec": 1.93,
+      "wall_sec": null,
+      "rtf": 0.0896
+    },
+    {
+      "utt_id": "utt0739_cmd_2375",
+      "audio_sec": 2.87,
+      "wall_sec": null,
+      "rtf": 0.0993
+    },
+    {
+      "utt_id": "utt0740_cmd_2376",
+      "audio_sec": 2.85,
+      "wall_sec": null,
+      "rtf": 0.0618
+    },
+    {
+      "utt_id": "utt0741_cmd_2377",
+      "audio_sec": 2.74,
+      "wall_sec": null,
+      "rtf": 0.0625
+    },
+    {
+      "utt_id": "utt0742_cmd_2378",
+      "audio_sec": 3.27,
+      "wall_sec": null,
+      "rtf": 0.0788
+    },
+    {
+      "utt_id": "utt0743_cmd_2379",
+      "audio_sec": 3.03,
+      "wall_sec": null,
+      "rtf": 0.0938
+    },
+    {
+      "utt_id": "utt0744_cmd_2380",
+      "audio_sec": 3.78,
+      "wall_sec": null,
+      "rtf": 0.0741
+    },
+    {
+      "utt_id": "utt0745_cmd_2381",
+      "audio_sec": 1.98,
+      "wall_sec": null,
+      "rtf": 0.1474
+    },
+    {
+      "utt_id": "utt0746_cmd_2382",
+      "audio_sec": 2.76,
+      "wall_sec": null,
+      "rtf": 0.0934
+    },
+    {
+      "utt_id": "utt0747_cmd_2383",
+      "audio_sec": 1.69,
+      "wall_sec": null,
+      "rtf": 0.1527
+    },
+    {
+      "utt_id": "utt0748_cmd_2384",
+      "audio_sec": 2.09,
+      "wall_sec": null,
+      "rtf": 0.1399
+    },
+    {
+      "utt_id": "utt0749_cmd_2385",
+      "audio_sec": 1.69,
+      "wall_sec": null,
+      "rtf": 0.1525
+    },
+    {
+      "utt_id": "utt0750_cmd_2386",
+      "audio_sec": 2.72,
+      "wall_sec": null,
+      "rtf": 0.0923
+    },
+    {
+      "utt_id": "utt0751_cmd_2387",
+      "audio_sec": 2.35,
+      "wall_sec": null,
+      "rtf": 0.1038
+    },
+    {
+      "utt_id": "utt0752_cmd_2388",
+      "audio_sec": 1.99,
+      "wall_sec": null,
+      "rtf": 0.0859
+    },
+    {
+      "utt_id": "utt0753_cmd_2389",
+      "audio_sec": 3.45,
+      "wall_sec": null,
+      "rtf": 0.0873
+    },
+    {
+      "utt_id": "utt0754_cmd_2390",
+      "audio_sec": 1.97,
+      "wall_sec": null,
+      "rtf": 0.1494
+    },
+    {
+      "utt_id": "utt0755_cmd_2391",
+      "audio_sec": 2.48,
+      "wall_sec": null,
+      "rtf": 0.1178
+    },
+    {
+      "utt_id": "utt0756_cmd_2392",
+      "audio_sec": 1.56,
+      "wall_sec": null,
+      "rtf": 0.1906
+    },
+    {
+      "utt_id": "utt0757_cmd_2393",
+      "audio_sec": 2.87,
+      "wall_sec": null,
+      "rtf": 0.0895
+    },
+    {
+      "utt_id": "utt0758_cmd_2394",
+      "audio_sec": 1.63,
+      "wall_sec": null,
+      "rtf": 0.1768
+    },
+    {
+      "utt_id": "utt0759_cmd_2395",
+      "audio_sec": 4.34,
+      "wall_sec": null,
+      "rtf": 0.0633
+    },
+    {
+      "utt_id": "utt0760_cmd_2396",
+      "audio_sec": 2.68,
+      "wall_sec": null,
+      "rtf": 0.0968
+    },
+    {
+      "utt_id": "utt0761_cmd_2397",
+      "audio_sec": 1.8,
+      "wall_sec": null,
+      "rtf": 0.0915
+    },
+    {
+      "utt_id": "utt0762_cmd_2398",
+      "audio_sec": 4.1,
+      "wall_sec": null,
+      "rtf": 0.0673
+    },
+    {
+      "utt_id": "utt0763_cmd_2399",
+      "audio_sec": 2.42,
+      "wall_sec": null,
+      "rtf": 0.1145
+    },
+    {
+      "utt_id": "utt0764_cmd_2400",
+      "audio_sec": 3.47,
+      "wall_sec": null,
+      "rtf": 0.0742
+    },
+    {
+      "utt_id": "utt0765_cmd_2401",
+      "audio_sec": 1.98,
+      "wall_sec": null,
+      "rtf": 0.1475
+    },
+    {
+      "utt_id": "utt0766_cmd_2402",
+      "audio_sec": 1.73,
+      "wall_sec": null,
+      "rtf": 0.1397
+    },
+    {
+      "utt_id": "utt0767_cmd_2403",
+      "audio_sec": 2.32,
+      "wall_sec": null,
+      "rtf": 0.1047
+    },
+    {
+      "utt_id": "utt0768_cmd_2404",
+      "audio_sec": 2.0,
+      "wall_sec": null,
+      "rtf": 0.1446
+    },
+    {
+      "utt_id": "utt0769_cmd_2405",
+      "audio_sec": 2.47,
+      "wall_sec": null,
+      "rtf": 0.0961
+    },
+    {
+      "utt_id": "utt0770_cmd_2406",
+      "audio_sec": 2.65,
+      "wall_sec": null,
+      "rtf": 0.1094
+    },
+    {
+      "utt_id": "utt0771_cmd_2407",
+      "audio_sec": 1.99,
+      "wall_sec": null,
+      "rtf": 0.1269
+    },
+    {
+      "utt_id": "utt0772_cmd_2408",
+      "audio_sec": 2.9,
+      "wall_sec": null,
+      "rtf": 0.0559
+    },
+    {
+      "utt_id": "utt0773_cmd_2409",
+      "audio_sec": 2.27,
+      "wall_sec": null,
+      "rtf": 0.1117
+    },
+    {
+      "utt_id": "utt0774_cmd_2410",
+      "audio_sec": 3.34,
+      "wall_sec": null,
+      "rtf": 0.0497
+    },
+    {
+      "utt_id": "utt0775_cmd_2411",
+      "audio_sec": 2.21,
+      "wall_sec": null,
+      "rtf": 0.1363
+    },
+    {
+      "utt_id": "utt0776_cmd_2412",
+      "audio_sec": 1.89,
+      "wall_sec": null,
+      "rtf": 0.0884
+    },
+    {
+      "utt_id": "utt0777_cmd_2413",
+      "audio_sec": 3.06,
+      "wall_sec": null,
+      "rtf": 0.0786
+    },
+    {
+      "utt_id": "utt0778_cmd_2414",
+      "audio_sec": 2.04,
+      "wall_sec": null,
+      "rtf": 0.1211
+    },
+    {
+      "utt_id": "utt0779_cmd_2415",
+      "audio_sec": 1.96,
+      "wall_sec": null,
+      "rtf": 0.1485
+    },
+    {
+      "utt_id": "utt0780_cmd_2416",
+      "audio_sec": 2.5,
+      "wall_sec": null,
+      "rtf": 0.1122
+    },
+    {
+      "utt_id": "utt0781_cmd_2417",
+      "audio_sec": 1.68,
+      "wall_sec": null,
+      "rtf": 0.1009
+    },
+    {
+      "utt_id": "utt0782_cmd_2418",
+      "audio_sec": 2.7,
+      "wall_sec": null,
+      "rtf": 0.0639
+    },
+    {
+      "utt_id": "utt0783_cmd_2419",
+      "audio_sec": 1.7,
+      "wall_sec": null,
+      "rtf": 0.0982
+    },
+    {
+      "utt_id": "utt0784_cmd_2420",
+      "audio_sec": 2.74,
+      "wall_sec": null,
+      "rtf": 0.0903
+    },
+    {
+      "utt_id": "utt0785_cmd_2421",
+      "audio_sec": 2.31,
+      "wall_sec": null,
+      "rtf": 0.0761
+    },
+    {
+      "utt_id": "utt0786_cmd_2422",
+      "audio_sec": 3.18,
+      "wall_sec": null,
+      "rtf": 0.0904
+    },
+    {
+      "utt_id": "utt0787_cmd_2423",
+      "audio_sec": 1.82,
+      "wall_sec": null,
+      "rtf": 0.0939
+    },
+    {
+      "utt_id": "utt0788_cmd_2424",
+      "audio_sec": 2.22,
+      "wall_sec": null,
+      "rtf": 0.1061
+    },
+    {
+      "utt_id": "utt0789_cmd_2425",
+      "audio_sec": 2.0,
+      "wall_sec": null,
+      "rtf": 0.1195
+    },
+    {
+      "utt_id": "utt0790_cmd_2426",
+      "audio_sec": 2.44,
+      "wall_sec": null,
+      "rtf": 0.0961
+    },
+    {
+      "utt_id": "utt0791_cmd_2427",
+      "audio_sec": 2.31,
+      "wall_sec": null,
+      "rtf": 0.1127
+    },
+    {
+      "utt_id": "utt0792_cmd_2428",
+      "audio_sec": 3.3,
+      "wall_sec": null,
+      "rtf": 0.0733
+    },
+    {
+      "utt_id": "utt0793_cmd_2429",
+      "audio_sec": 2.22,
+      "wall_sec": null,
+      "rtf": 0.1154
+    },
+    {
+      "utt_id": "utt0794_cmd_2430",
+      "audio_sec": 1.89,
+      "wall_sec": null,
+      "rtf": 0.1365
+    },
+    {
+      "utt_id": "utt0795_cmd_2431",
+      "audio_sec": 1.83,
+      "wall_sec": null,
+      "rtf": 0.1565
+    },
+    {
+      "utt_id": "utt0796_cmd_2432",
+      "audio_sec": 3.32,
+      "wall_sec": null,
+      "rtf": 0.0775
+    },
+    {
+      "utt_id": "utt0797_cmd_2433",
+      "audio_sec": 3.85,
+      "wall_sec": null,
+      "rtf": 0.0745
+    },
+    {
+      "utt_id": "utt0798_cmd_2434",
+      "audio_sec": 2.88,
+      "wall_sec": null,
+      "rtf": 0.0604
+    },
+    {
+      "utt_id": "utt0799_cmd_2435",
+      "audio_sec": 1.9,
+      "wall_sec": null,
+      "rtf": 0.1325
+    },
+    {
+      "utt_id": "utt0800_cmd_2436",
+      "audio_sec": 2.71,
+      "wall_sec": null,
+      "rtf": 0.0955
+    },
+    {
+      "utt_id": "utt0801_cmd_2437",
+      "audio_sec": 2.84,
+      "wall_sec": null,
+      "rtf": 0.0615
+    },
+    {
+      "utt_id": "utt0802_cmd_2438",
+      "audio_sec": 3.39,
+      "wall_sec": null,
+      "rtf": 0.0725
+    },
+    {
+      "utt_id": "utt0803_cmd_2439",
+      "audio_sec": 4.62,
+      "wall_sec": null,
+      "rtf": 0.0547
+    },
+    {
+      "utt_id": "utt0804_cmd_2440",
+      "audio_sec": 2.86,
+      "wall_sec": null,
+      "rtf": 0.1057
+    },
+    {
+      "utt_id": "utt0805_cmd_2441",
+      "audio_sec": 2.45,
+      "wall_sec": null,
+      "rtf": 0.1025
+    },
+    {
+      "utt_id": "utt0806_cmd_2442",
+      "audio_sec": 3.98,
+      "wall_sec": null,
+      "rtf": 0.0414
+    },
+    {
+      "utt_id": "utt0807_cmd_2443",
+      "audio_sec": 1.72,
+      "wall_sec": null,
+      "rtf": 0.176
+    },
+    {
+      "utt_id": "utt0808_cmd_2444",
+      "audio_sec": 2.99,
+      "wall_sec": null,
+      "rtf": 0.0839
+    },
+    {
+      "utt_id": "utt0809_cmd_2445",
+      "audio_sec": 1.98,
+      "wall_sec": null,
+      "rtf": 0.1374
+    },
+    {
+      "utt_id": "utt0810_cmd_2446",
+      "audio_sec": 1.98,
+      "wall_sec": null,
+      "rtf": 0.1243
+    },
+    {
+      "utt_id": "utt0811_cmd_2447",
+      "audio_sec": 2.34,
+      "wall_sec": null,
+      "rtf": 0.1184
+    },
+    {
+      "utt_id": "utt0812_cmd_2448",
+      "audio_sec": 1.62,
+      "wall_sec": null,
+      "rtf": 0.1036
+    },
+    {
+      "utt_id": "utt0813_cmd_2449",
+      "audio_sec": 2.01,
+      "wall_sec": null,
+      "rtf": 0.1212
+    },
+    {
+      "utt_id": "utt0814_cmd_2450",
+      "audio_sec": 3.31,
+      "wall_sec": null,
+      "rtf": 0.0781
+    },
+    {
+      "utt_id": "utt0815_cmd_2451",
+      "audio_sec": 2.06,
+      "wall_sec": null,
+      "rtf": 0.1275
+    },
+    {
+      "utt_id": "utt0816_cmd_2452",
+      "audio_sec": 2.49,
+      "wall_sec": null,
+      "rtf": 0.069
+    },
+    {
+      "utt_id": "utt0817_cmd_2453",
+      "audio_sec": 2.21,
+      "wall_sec": null,
+      "rtf": 0.1322
+    },
+    {
+      "utt_id": "utt0818_cmd_2454",
+      "audio_sec": 7.46,
+      "wall_sec": null,
+      "rtf": 0.0391
+    },
+    {
+      "utt_id": "utt0819_cmd_2455",
+      "audio_sec": 2.71,
+      "wall_sec": null,
+      "rtf": 0.1042
+    },
+    {
+      "utt_id": "utt0820_cmd_2456",
+      "audio_sec": 2.71,
+      "wall_sec": null,
+      "rtf": 0.0918
+    },
+    {
+      "utt_id": "utt0821_cmd_2457",
+      "audio_sec": 3.05,
+      "wall_sec": null,
+      "rtf": 0.0579
+    },
+    {
+      "utt_id": "utt0822_cmd_2458",
+      "audio_sec": 1.44,
+      "wall_sec": null,
+      "rtf": 0.1165
+    },
+    {
+      "utt_id": "utt0823_cmd_2459",
+      "audio_sec": 1.63,
+      "wall_sec": null,
+      "rtf": 0.1783
+    },
+    {
+      "utt_id": "utt0824_cmd_2460",
+      "audio_sec": 1.91,
+      "wall_sec": null,
+      "rtf": 0.0999
+    },
+    {
+      "utt_id": "utt0825_cmd_2461",
+      "audio_sec": 2.68,
+      "wall_sec": null,
+      "rtf": 0.1076
+    },
+    {
+      "utt_id": "utt0826_cmd_2462",
+      "audio_sec": 2.4,
+      "wall_sec": null,
+      "rtf": 0.0687
+    },
+    {
+      "utt_id": "utt0827_cmd_2463",
+      "audio_sec": 3.77,
+      "wall_sec": null,
+      "rtf": 0.0629
+    },
+    {
+      "utt_id": "utt0828_cmd_2464",
+      "audio_sec": 2.95,
+      "wall_sec": null,
+      "rtf": 0.0936
+    },
+    {
+      "utt_id": "utt0829_cmd_2465",
+      "audio_sec": 2.93,
+      "wall_sec": null,
+      "rtf": 0.0941
+    },
+    {
+      "utt_id": "utt0830_cmd_2466",
+      "audio_sec": 2.36,
+      "wall_sec": null,
+      "rtf": 0.1196
+    },
+    {
+      "utt_id": "utt0831_cmd_2467",
+      "audio_sec": 1.7,
+      "wall_sec": null,
+      "rtf": 0.1332
+    },
+    {
+      "utt_id": "utt0832_cmd_2468",
+      "audio_sec": 1.57,
+      "wall_sec": null,
+      "rtf": 0.1595
+    },
+    {
+      "utt_id": "utt0833_cmd_2469",
+      "audio_sec": 2.14,
+      "wall_sec": null,
+      "rtf": 0.1245
+    },
+    {
+      "utt_id": "utt0834_cmd_2470",
+      "audio_sec": 1.73,
+      "wall_sec": null,
+      "rtf": 0.155
+    },
+    {
+      "utt_id": "utt0835_cmd_2471",
+      "audio_sec": 2.36,
+      "wall_sec": null,
+      "rtf": 0.1332
+    },
+    {
+      "utt_id": "utt0836_cmd_2472",
+      "audio_sec": 3.28,
+      "wall_sec": null,
+      "rtf": 0.0736
+    },
+    {
+      "utt_id": "utt0837_cmd_2473",
+      "audio_sec": 3.05,
+      "wall_sec": null,
+      "rtf": 0.0919
+    },
+    {
+      "utt_id": "utt0838_cmd_2474",
+      "audio_sec": 1.71,
+      "wall_sec": null,
+      "rtf": 0.1635
+    },
+    {
+      "utt_id": "utt0839_cmd_2475",
+      "audio_sec": 2.14,
+      "wall_sec": null,
+      "rtf": 0.1263
+    },
+    {
+      "utt_id": "utt0840_cmd_2476",
+      "audio_sec": 2.44,
+      "wall_sec": null,
+      "rtf": 0.1099
+    },
+    {
+      "utt_id": "utt0841_cmd_2477",
+      "audio_sec": 2.3,
+      "wall_sec": null,
+      "rtf": 0.0655
+    },
+    {
+      "utt_id": "utt0842_cmd_2478",
+      "audio_sec": 2.42,
+      "wall_sec": null,
+      "rtf": 0.1456
+    },
+    {
+      "utt_id": "utt0843_cmd_2479",
+      "audio_sec": 2.19,
+      "wall_sec": null,
+      "rtf": 0.1396
+    },
+    {
+      "utt_id": "utt0844_cmd_2480",
+      "audio_sec": 2.0,
+      "wall_sec": null,
+      "rtf": 0.1411
+    },
+    {
+      "utt_id": "utt0845_cmd_2481",
+      "audio_sec": 1.75,
+      "wall_sec": null,
+      "rtf": 0.1394
+    },
+    {
+      "utt_id": "utt0846_cmd_2482",
+      "audio_sec": 2.76,
+      "wall_sec": null,
+      "rtf": 0.0842
+    },
+    {
+      "utt_id": "utt0847_cmd_2483",
+      "audio_sec": 1.6,
+      "wall_sec": null,
+      "rtf": 0.2022
+    },
+    {
+      "utt_id": "utt0848_cmd_2484",
+      "audio_sec": 2.7,
+      "wall_sec": null,
+      "rtf": 0.1004
+    },
+    {
+      "utt_id": "utt0849_cmd_2485",
+      "audio_sec": 2.81,
+      "wall_sec": null,
+      "rtf": 0.1146
+    },
+    {
+      "utt_id": "utt0850_cmd_2486",
+      "audio_sec": 3.91,
+      "wall_sec": null,
+      "rtf": 0.0989
+    },
+    {
+      "utt_id": "utt0851_cmd_2487",
+      "audio_sec": 1.63,
+      "wall_sec": null,
+      "rtf": 0.1748
+    },
+    {
+      "utt_id": "utt0852_cmd_2488",
+      "audio_sec": 2.41,
+      "wall_sec": null,
+      "rtf": 0.0923
+    },
+    {
+      "utt_id": "utt0853_cmd_2489",
+      "audio_sec": 2.69,
+      "wall_sec": null,
+      "rtf": 0.0697
+    },
+    {
+      "utt_id": "utt0854_cmd_2490",
+      "audio_sec": 3.02,
+      "wall_sec": null,
+      "rtf": 0.0496
+    },
+    {
+      "utt_id": "utt0855_cmd_2491",
+      "audio_sec": 1.64,
+      "wall_sec": null,
+      "rtf": 0.0933
+    },
+    {
+      "utt_id": "utt0856_cmd_2492",
+      "audio_sec": 1.83,
+      "wall_sec": null,
+      "rtf": 0.1486
+    },
+    {
+      "utt_id": "utt0857_cmd_2493",
+      "audio_sec": 2.98,
+      "wall_sec": null,
+      "rtf": 0.119
+    },
+    {
+      "utt_id": "utt0858_cmd_2494",
+      "audio_sec": 2.58,
+      "wall_sec": null,
+      "rtf": 0.1008
+    },
+    {
+      "utt_id": "utt0859_cmd_2495",
+      "audio_sec": 3.19,
+      "wall_sec": null,
+      "rtf": 0.104
+    },
+    {
+      "utt_id": "utt0860_cmd_2496",
+      "audio_sec": 2.67,
+      "wall_sec": null,
+      "rtf": 0.0537
+    },
+    {
+      "utt_id": "utt0861_cmd_2497",
+      "audio_sec": 3.61,
+      "wall_sec": null,
+      "rtf": 0.0624
+    },
+    {
+      "utt_id": "utt0862_cmd_2498",
+      "audio_sec": 1.89,
+      "wall_sec": null,
+      "rtf": 0.1241
+    },
+    {
+      "utt_id": "utt0863_cmd_2499",
+      "audio_sec": 2.47,
+      "wall_sec": null,
+      "rtf": 0.0611
+    },
+    {
+      "utt_id": "utt0864_cmd_2500",
+      "audio_sec": 1.93,
+      "wall_sec": null,
+      "rtf": 0.08
+    },
+    {
+      "utt_id": "utt0865_cmd_2501",
+      "audio_sec": 2.05,
+      "wall_sec": null,
+      "rtf": 0.1111
+    },
+    {
+      "utt_id": "utt0866_cmd_2502",
+      "audio_sec": 2.39,
+      "wall_sec": null,
+      "rtf": 0.1019
+    },
+    {
+      "utt_id": "utt0867_cmd_2503",
+      "audio_sec": 2.18,
+      "wall_sec": null,
+      "rtf": 0.1228
+    },
+    {
+      "utt_id": "utt0868_cmd_2504",
+      "audio_sec": 2.05,
+      "wall_sec": null,
+      "rtf": 0.1534
+    },
+    {
+      "utt_id": "utt0869_cmd_2505",
+      "audio_sec": 2.9,
+      "wall_sec": null,
+      "rtf": 0.1687
+    },
+    {
+      "utt_id": "utt0870_cmd_2506",
+      "audio_sec": 2.02,
+      "wall_sec": null,
+      "rtf": 0.1358
+    },
+    {
+      "utt_id": "utt0871_cmd_2507",
+      "audio_sec": 3.06,
+      "wall_sec": null,
+      "rtf": 0.1084
+    },
+    {
+      "utt_id": "utt0872_cmd_2508",
+      "audio_sec": 2.4,
+      "wall_sec": null,
+      "rtf": 0.1175
+    },
+    {
+      "utt_id": "utt0873_cmd_2509",
+      "audio_sec": 2.0,
+      "wall_sec": null,
+      "rtf": 0.1465
+    },
+    {
+      "utt_id": "utt0874_cmd_2510",
+      "audio_sec": 2.18,
+      "wall_sec": null,
+      "rtf": 0.1147
+    },
+    {
+      "utt_id": "utt0875_cmd_2511",
+      "audio_sec": 2.52,
+      "wall_sec": null,
+      "rtf": 0.062
+    },
+    {
+      "utt_id": "utt0876_cmd_2512",
+      "audio_sec": 2.84,
+      "wall_sec": null,
+      "rtf": 0.056
+    },
+    {
+      "utt_id": "utt0877_cmd_2513",
+      "audio_sec": 3.29,
+      "wall_sec": null,
+      "rtf": 0.0737
+    },
+    {
+      "utt_id": "utt0878_cmd_2514",
+      "audio_sec": 4.34,
+      "wall_sec": null,
+      "rtf": 0.071
+    },
+    {
+      "utt_id": "utt0879_cmd_2515",
+      "audio_sec": 2.51,
+      "wall_sec": null,
+      "rtf": 0.1619
+    },
+    {
+      "utt_id": "utt0880_cmd_2516",
+      "audio_sec": 1.75,
+      "wall_sec": null,
+      "rtf": 0.1408
+    },
+    {
+      "utt_id": "utt0881_cmd_2517",
+      "audio_sec": 2.36,
+      "wall_sec": null,
+      "rtf": 0.112
+    },
+    {
+      "utt_id": "utt0882_cmd_2518",
+      "audio_sec": 1.8,
+      "wall_sec": null,
+      "rtf": 0.1572
+    },
+    {
+      "utt_id": "utt0883_cmd_2519",
+      "audio_sec": 2.46,
+      "wall_sec": null,
+      "rtf": 0.1271
+    },
+    {
+      "utt_id": "utt0884_cmd_2520",
+      "audio_sec": 1.66,
+      "wall_sec": null,
+      "rtf": 0.1718
+    },
+    {
+      "utt_id": "utt0885_cmd_2521",
+      "audio_sec": 1.67,
+      "wall_sec": null,
+      "rtf": 0.1443
+    },
+    {
+      "utt_id": "utt0886_cmd_2522",
+      "audio_sec": 3.88,
+      "wall_sec": null,
+      "rtf": 0.0661
+    },
+    {
+      "utt_id": "utt0887_cmd_2523",
+      "audio_sec": 3.0,
+      "wall_sec": null,
+      "rtf": 0.0977
+    },
+    {
+      "utt_id": "utt0888_cmd_2524",
+      "audio_sec": 2.5,
+      "wall_sec": null,
+      "rtf": 0.106
+    },
+    {
+      "utt_id": "utt0889_cmd_2525",
+      "audio_sec": 4.11,
+      "wall_sec": null,
+      "rtf": 0.0678
+    },
+    {
+      "utt_id": "utt0890_cmd_2526",
+      "audio_sec": 2.15,
+      "wall_sec": null,
+      "rtf": 0.1433
+    },
+    {
+      "utt_id": "utt0891_cmd_2527",
+      "audio_sec": 2.33,
+      "wall_sec": null,
+      "rtf": 0.1103
+    },
+    {
+      "utt_id": "utt0892_cmd_2528",
+      "audio_sec": 2.03,
+      "wall_sec": null,
+      "rtf": 0.14
+    },
+    {
+      "utt_id": "utt0893_cmd_2529",
+      "audio_sec": 2.07,
+      "wall_sec": null,
+      "rtf": 0.1168
+    },
+    {
+      "utt_id": "utt0894_cmd_2530",
+      "audio_sec": 2.61,
+      "wall_sec": null,
+      "rtf": 0.1082
+    },
+    {
+      "utt_id": "utt0895_cmd_2531",
+      "audio_sec": 2.53,
+      "wall_sec": null,
+      "rtf": 0.1312
+    },
+    {
+      "utt_id": "utt0896_cmd_2532",
+      "audio_sec": 2.42,
+      "wall_sec": null,
+      "rtf": 0.1187
+    },
+    {
+      "utt_id": "utt0897_cmd_2533",
+      "audio_sec": 2.88,
+      "wall_sec": null,
+      "rtf": 0.1443
+    },
+    {
+      "utt_id": "utt0898_cmd_2534",
+      "audio_sec": 2.49,
+      "wall_sec": null,
+      "rtf": 0.1191
+    },
+    {
+      "utt_id": "utt0899_cmd_2535",
+      "audio_sec": 1.98,
+      "wall_sec": null,
+      "rtf": 0.1262
+    },
+    {
+      "utt_id": "utt0900_cmd_2536",
+      "audio_sec": 3.45,
+      "wall_sec": null,
+      "rtf": 0.0688
+    },
+    {
+      "utt_id": "utt0901_cmd_2537",
+      "audio_sec": 1.92,
+      "wall_sec": null,
+      "rtf": 0.1478
+    },
+    {
+      "utt_id": "utt0902_cmd_2538",
+      "audio_sec": 2.5,
+      "wall_sec": null,
+      "rtf": 0.1056
+    },
+    {
+      "utt_id": "utt0903_cmd_2539",
+      "audio_sec": 2.84,
+      "wall_sec": null,
+      "rtf": 0.1068
+    },
+    {
+      "utt_id": "utt0904_cmd_2540",
+      "audio_sec": 2.66,
+      "wall_sec": null,
+      "rtf": 0.0575
+    },
+    {
+      "utt_id": "utt0905_cmd_2541",
+      "audio_sec": 2.45,
+      "wall_sec": null,
+      "rtf": 0.1064
+    },
+    {
+      "utt_id": "utt0906_cmd_2542",
+      "audio_sec": 2.45,
+      "wall_sec": null,
+      "rtf": 0.1296
+    },
+    {
+      "utt_id": "utt0907_cmd_2543",
+      "audio_sec": 2.25,
+      "wall_sec": null,
+      "rtf": 0.1413
+    },
+    {
+      "utt_id": "utt0908_cmd_2544",
+      "audio_sec": 3.08,
+      "wall_sec": null,
+      "rtf": 0.0905
+    },
+    {
+      "utt_id": "utt0909_cmd_2545",
+      "audio_sec": 2.84,
+      "wall_sec": null,
+      "rtf": 0.1057
+    },
+    {
+      "utt_id": "utt0910_cmd_2546",
+      "audio_sec": 1.8,
+      "wall_sec": null,
+      "rtf": 0.1251
+    },
+    {
+      "utt_id": "utt0911_cmd_2547",
+      "audio_sec": 1.82,
+      "wall_sec": null,
+      "rtf": 0.1322
+    },
+    {
+      "utt_id": "utt0912_cmd_2548",
+      "audio_sec": 2.32,
+      "wall_sec": null,
+      "rtf": 0.1159
+    },
+    {
+      "utt_id": "utt0913_cmd_2549",
+      "audio_sec": 1.67,
+      "wall_sec": null,
+      "rtf": 0.1526
+    },
+    {
+      "utt_id": "utt0914_cmd_2550",
+      "audio_sec": 2.35,
+      "wall_sec": null,
+      "rtf": 0.1044
+    },
+    {
+      "utt_id": "utt0915_cmd_2551",
+      "audio_sec": 1.47,
+      "wall_sec": null,
+      "rtf": 0.1449
+    },
+    {
+      "utt_id": "utt0916_cmd_2552",
+      "audio_sec": 3.38,
+      "wall_sec": null,
+      "rtf": 0.0735
+    },
+    {
+      "utt_id": "utt0917_cmd_2553",
+      "audio_sec": 2.7,
+      "wall_sec": null,
+      "rtf": 0.0951
+    },
+    {
+      "utt_id": "utt0918_cmd_2554",
+      "audio_sec": 3.79,
+      "wall_sec": null,
+      "rtf": 0.0658
+    },
+    {
+      "utt_id": "utt0919_cmd_2555",
+      "audio_sec": 4.09,
+      "wall_sec": null,
+      "rtf": 0.0572
+    },
+    {
+      "utt_id": "utt0920_cmd_2556",
+      "audio_sec": 3.0,
+      "wall_sec": null,
+      "rtf": 0.0594
+    },
+    {
+      "utt_id": "utt0921_cmd_2557",
+      "audio_sec": 3.54,
+      "wall_sec": null,
+      "rtf": 0.0648
+    },
+    {
+      "utt_id": "utt0922_cmd_2558",
+      "audio_sec": 1.63,
+      "wall_sec": null,
+      "rtf": 0.0935
+    },
+    {
+      "utt_id": "utt0923_cmd_2559",
+      "audio_sec": 2.23,
+      "wall_sec": null,
+      "rtf": 0.1272
+    },
+    {
+      "utt_id": "utt0924_cmd_2560",
+      "audio_sec": 2.65,
+      "wall_sec": null,
+      "rtf": 0.1019
+    },
+    {
+      "utt_id": "utt0925_cmd_2561",
+      "audio_sec": 1.94,
+      "wall_sec": null,
+      "rtf": 0.124
+    },
+    {
+      "utt_id": "utt0926_cmd_2562",
+      "audio_sec": 3.28,
+      "wall_sec": null,
+      "rtf": 0.0704
+    },
+    {
+      "utt_id": "utt0927_cmd_2563",
+      "audio_sec": 2.07,
+      "wall_sec": null,
+      "rtf": 0.1097
+    },
+    {
+      "utt_id": "utt0928_cmd_2564",
+      "audio_sec": 2.28,
+      "wall_sec": null,
+      "rtf": 0.1244
+    },
+    {
+      "utt_id": "utt0929_cmd_2565",
+      "audio_sec": 2.92,
+      "wall_sec": null,
+      "rtf": 0.0932
+    },
+    {
+      "utt_id": "utt0930_cmd_2566",
+      "audio_sec": 2.07,
+      "wall_sec": null,
+      "rtf": 0.0745
+    },
+    {
+      "utt_id": "utt0931_cmd_2567",
+      "audio_sec": 1.66,
+      "wall_sec": null,
+      "rtf": 0.1618
+    },
+    {
+      "utt_id": "utt0932_cmd_2568",
+      "audio_sec": 1.6,
+      "wall_sec": null,
+      "rtf": 0.1515
+    },
+    {
+      "utt_id": "utt0933_cmd_2569",
+      "audio_sec": 3.53,
+      "wall_sec": null,
+      "rtf": 0.0429
+    },
+    {
+      "utt_id": "utt0934_cmd_2570",
+      "audio_sec": 2.37,
+      "wall_sec": null,
+      "rtf": 0.1149
+    },
+    {
+      "utt_id": "utt0935_cmd_2571",
+      "audio_sec": 1.85,
+      "wall_sec": null,
+      "rtf": 0.1428
+    },
+    {
+      "utt_id": "utt0936_cmd_2572",
+      "audio_sec": 1.89,
+      "wall_sec": null,
+      "rtf": 0.1233
+    },
+    {
+      "utt_id": "utt0937_cmd_2573",
+      "audio_sec": 1.81,
+      "wall_sec": null,
+      "rtf": 0.1287
+    },
+    {
+      "utt_id": "utt0938_cmd_2574",
+      "audio_sec": 2.11,
+      "wall_sec": null,
+      "rtf": 0.1098
+    },
+    {
+      "utt_id": "utt0939_cmd_2575",
+      "audio_sec": 2.44,
+      "wall_sec": null,
+      "rtf": 0.1076
+    },
+    {
+      "utt_id": "utt0940_cmd_2576",
+      "audio_sec": 2.05,
+      "wall_sec": null,
+      "rtf": 0.1329
+    },
+    {
+      "utt_id": "utt0941_cmd_2577",
+      "audio_sec": 3.0,
+      "wall_sec": null,
+      "rtf": 0.0783
+    },
+    {
+      "utt_id": "utt0942_cmd_2578",
+      "audio_sec": 4.29,
+      "wall_sec": null,
+      "rtf": 0.042
+    },
+    {
+      "utt_id": "utt0943_cmd_2579",
+      "audio_sec": 2.2,
+      "wall_sec": null,
+      "rtf": 0.0723
+    },
+    {
+      "utt_id": "utt0944_cmd_2580",
+      "audio_sec": 3.3,
+      "wall_sec": null,
+      "rtf": 0.0805
+    },
+    {
+      "utt_id": "utt0945_cmd_2581",
+      "audio_sec": 1.84,
+      "wall_sec": null,
+      "rtf": 0.1351
+    },
+    {
+      "utt_id": "utt0946_cmd_2582",
+      "audio_sec": 4.47,
+      "wall_sec": null,
+      "rtf": 0.0692
+    },
+    {
+      "utt_id": "utt0947_cmd_2583",
+      "audio_sec": 2.08,
+      "wall_sec": null,
+      "rtf": 0.1289
+    },
+    {
+      "utt_id": "utt0948_cmd_2584",
+      "audio_sec": 2.38,
+      "wall_sec": null,
+      "rtf": 0.0611
+    },
+    {
+      "utt_id": "utt0949_cmd_2585",
+      "audio_sec": 1.83,
+      "wall_sec": null,
+      "rtf": 0.1239
+    },
+    {
+      "utt_id": "utt0950_cmd_2586",
+      "audio_sec": 3.07,
+      "wall_sec": null,
+      "rtf": 0.088
+    },
+    {
+      "utt_id": "utt0951_cmd_2587",
+      "audio_sec": 2.14,
+      "wall_sec": null,
+      "rtf": 0.1296
+    },
+    {
+      "utt_id": "utt0952_cmd_2588",
+      "audio_sec": 3.19,
+      "wall_sec": null,
+      "rtf": 0.0846
+    },
+    {
+      "utt_id": "utt0953_cmd_2589",
+      "audio_sec": 4.03,
+      "wall_sec": null,
+      "rtf": 0.0651
+    },
+    {
+      "utt_id": "utt0954_cmd_2590",
+      "audio_sec": 2.68,
+      "wall_sec": null,
+      "rtf": 0.09
+    },
+    {
+      "utt_id": "utt0955_cmd_2591",
+      "audio_sec": 2.14,
+      "wall_sec": null,
+      "rtf": 0.0707
+    },
+    {
+      "utt_id": "utt0956_cmd_2592",
+      "audio_sec": 2.33,
+      "wall_sec": null,
+      "rtf": 0.1202
+    },
+    {
+      "utt_id": "utt0957_cmd_2593",
+      "audio_sec": 1.6,
+      "wall_sec": null,
+      "rtf": 0.1665
+    },
+    {
+      "utt_id": "utt0958_cmd_2594",
+      "audio_sec": 2.46,
+      "wall_sec": null,
+      "rtf": 0.0644
+    },
+    {
+      "utt_id": "utt0959_cmd_2595",
+      "audio_sec": 1.78,
+      "wall_sec": null,
+      "rtf": 0.1364
+    },
+    {
+      "utt_id": "utt0960_cmd_2596",
+      "audio_sec": 2.31,
+      "wall_sec": null,
+      "rtf": 0.0669
+    },
+    {
+      "utt_id": "utt0961_cmd_2597",
+      "audio_sec": 3.76,
+      "wall_sec": null,
+      "rtf": 0.0599
+    },
+    {
+      "utt_id": "utt0962_cmd_2598",
+      "audio_sec": 2.34,
+      "wall_sec": null,
+      "rtf": 0.1126
+    },
+    {
+      "utt_id": "utt0963_cmd_2599",
+      "audio_sec": 2.31,
+      "wall_sec": null,
+      "rtf": 0.1133
+    },
+    {
+      "utt_id": "utt0964_cmd_2600",
+      "audio_sec": 3.39,
+      "wall_sec": null,
+      "rtf": 0.063
+    },
+    {
+      "utt_id": "utt0965_cmd_2601",
+      "audio_sec": 3.8,
+      "wall_sec": null,
+      "rtf": 0.0576
+    },
+    {
+      "utt_id": "utt0966_cmd_2602",
+      "audio_sec": 2.31,
+      "wall_sec": null,
+      "rtf": 0.1197
+    },
+    {
+      "utt_id": "utt0967_cmd_2603",
+      "audio_sec": 1.84,
+      "wall_sec": null,
+      "rtf": 0.1034
+    },
+    {
+      "utt_id": "utt0968_cmd_2604",
+      "audio_sec": 1.75,
+      "wall_sec": null,
+      "rtf": 0.1583
+    },
+    {
+      "utt_id": "utt0969_cmd_2605",
+      "audio_sec": 3.38,
+      "wall_sec": null,
+      "rtf": 0.0473
+    },
+    {
+      "utt_id": "utt0970_cmd_2606",
+      "audio_sec": 2.2,
+      "wall_sec": null,
+      "rtf": 0.1232
+    },
+    {
+      "utt_id": "utt0971_cmd_2607",
+      "audio_sec": 2.54,
+      "wall_sec": null,
+      "rtf": 0.0967
+    },
+    {
+      "utt_id": "utt0972_cmd_2608",
+      "audio_sec": 2.94,
+      "wall_sec": null,
+      "rtf": 0.0561
+    },
+    {
+      "utt_id": "utt0973_cmd_2609",
+      "audio_sec": 1.71,
+      "wall_sec": null,
+      "rtf": 0.1613
+    },
+    {
+      "utt_id": "utt0974_cmd_2610",
+      "audio_sec": 1.91,
+      "wall_sec": null,
+      "rtf": 0.1397
+    },
+    {
+      "utt_id": "utt0975_cmd_2611",
+      "audio_sec": 1.83,
+      "wall_sec": null,
+      "rtf": 0.1286
+    },
+    {
+      "utt_id": "utt0976_cmd_2612",
+      "audio_sec": 2.23,
+      "wall_sec": null,
+      "rtf": 0.1125
+    },
+    {
+      "utt_id": "utt0977_cmd_2613",
+      "audio_sec": 2.22,
+      "wall_sec": null,
+      "rtf": 0.0853
+    },
+    {
+      "utt_id": "utt0978_cmd_2614",
+      "audio_sec": 3.47,
+      "wall_sec": null,
+      "rtf": 0.0477
+    },
+    {
+      "utt_id": "utt0979_cmd_2615",
+      "audio_sec": 1.97,
+      "wall_sec": null,
+      "rtf": 0.1385
+    },
+    {
+      "utt_id": "utt0980_cmd_2616",
+      "audio_sec": 2.2,
+      "wall_sec": null,
+      "rtf": 0.0732
+    },
+    {
+      "utt_id": "utt0981_cmd_2617",
+      "audio_sec": 2.16,
+      "wall_sec": null,
+      "rtf": 0.0718
+    },
+    {
+      "utt_id": "utt0982_cmd_2618",
+      "audio_sec": 3.38,
+      "wall_sec": null,
+      "rtf": 0.0658
+    },
+    {
+      "utt_id": "utt0983_cmd_2619",
+      "audio_sec": 1.46,
+      "wall_sec": null,
+      "rtf": 0.1538
+    },
+    {
+      "utt_id": "utt0984_cmd_2620",
+      "audio_sec": 3.09,
+      "wall_sec": null,
+      "rtf": 0.0847
+    },
+    {
+      "utt_id": "utt0985_cmd_2621",
+      "audio_sec": 3.23,
+      "wall_sec": null,
+      "rtf": 0.0488
+    },
+    {
+      "utt_id": "utt0986_cmd_2622",
+      "audio_sec": 1.85,
+      "wall_sec": null,
+      "rtf": 0.138
+    },
+    {
+      "utt_id": "utt0987_cmd_2623",
+      "audio_sec": 1.81,
+      "wall_sec": null,
+      "rtf": 0.1328
+    },
+    {
+      "utt_id": "utt0988_cmd_2624",
+      "audio_sec": 2.77,
+      "wall_sec": null,
+      "rtf": 0.059
+    },
+    {
+      "utt_id": "utt0989_cmd_2625",
+      "audio_sec": 2.68,
+      "wall_sec": null,
+      "rtf": 0.0947
+    },
+    {
+      "utt_id": "utt0990_cmd_2626",
+      "audio_sec": 2.75,
+      "wall_sec": null,
+      "rtf": 0.063
+    },
+    {
+      "utt_id": "utt0991_cmd_2627",
+      "audio_sec": 2.08,
+      "wall_sec": null,
+      "rtf": 0.1247
+    },
+    {
+      "utt_id": "utt0992_cmd_2628",
+      "audio_sec": 3.37,
+      "wall_sec": null,
+      "rtf": 0.0477
+    },
+    {
+      "utt_id": "utt0993_cmd_2629",
+      "audio_sec": 2.72,
+      "wall_sec": null,
+      "rtf": 0.0823
+    },
+    {
+      "utt_id": "utt0994_cmd_2630",
+      "audio_sec": 2.15,
+      "wall_sec": null,
+      "rtf": 0.1031
+    },
+    {
+      "utt_id": "utt0995_cmd_2631",
+      "audio_sec": 1.94,
+      "wall_sec": null,
+      "rtf": 0.1148
+    },
+    {
+      "utt_id": "utt0996_cmd_2632",
+      "audio_sec": 2.51,
+      "wall_sec": null,
+      "rtf": 0.1081
+    },
+    {
+      "utt_id": "utt0997_cmd_2633",
+      "audio_sec": 1.61,
+      "wall_sec": null,
+      "rtf": 0.1499
+    },
+    {
+      "utt_id": "utt0998_cmd_2634",
+      "audio_sec": 2.72,
+      "wall_sec": null,
+      "rtf": 0.0567
+    },
+    {
+      "utt_id": "utt0999_cmd_2635",
+      "audio_sec": 2.85,
+      "wall_sec": null,
+      "rtf": 0.0561
+    },
+    {
+      "utt_id": "utt1000_cmd_2636",
+      "audio_sec": 3.59,
+      "wall_sec": null,
+      "rtf": 0.0607
+    },
+    {
+      "utt_id": "utt1001_cmd_2637",
+      "audio_sec": 2.48,
+      "wall_sec": null,
+      "rtf": 0.0874
+    },
+    {
+      "utt_id": "utt1002_cmd_2638",
+      "audio_sec": 2.18,
+      "wall_sec": null,
+      "rtf": 0.0764
+    },
+    {
+      "utt_id": "utt1003_cmd_2639",
+      "audio_sec": 4.1,
+      "wall_sec": null,
+      "rtf": 0.0525
+    },
+    {
+      "utt_id": "utt1004_cmd_2640",
+      "audio_sec": 2.29,
+      "wall_sec": null,
+      "rtf": 0.1152
+    },
+    {
+      "utt_id": "utt1005_cmd_2641",
+      "audio_sec": 2.61,
+      "wall_sec": null,
+      "rtf": 0.0909
+    },
+    {
+      "utt_id": "utt1006_cmd_2642",
+      "audio_sec": 2.39,
+      "wall_sec": null,
+      "rtf": 0.1081
+    },
+    {
+      "utt_id": "utt1007_cmd_2643",
+      "audio_sec": 2.9,
+      "wall_sec": null,
+      "rtf": 0.0569
+    },
+    {
+      "utt_id": "utt1008_cmd_2644",
+      "audio_sec": 3.74,
+      "wall_sec": null,
+      "rtf": 0.0761
+    },
+    {
+      "utt_id": "utt1009_cmd_2645",
+      "audio_sec": 2.58,
+      "wall_sec": null,
+      "rtf": 0.1092
+    },
+    {
+      "utt_id": "utt1010_cmd_2646",
+      "audio_sec": 2.05,
+      "wall_sec": null,
+      "rtf": 0.1107
+    },
+    {
+      "utt_id": "utt1011_cmd_2647",
+      "audio_sec": 1.63,
+      "wall_sec": null,
+      "rtf": 0.1497
+    },
+    {
+      "utt_id": "utt1012_cmd_2648",
+      "audio_sec": 3.18,
+      "wall_sec": null,
+      "rtf": 0.0721
+    },
+    {
+      "utt_id": "utt1013_cmd_2649",
+      "audio_sec": 1.71,
+      "wall_sec": null,
+      "rtf": 0.1371
+    },
+    {
+      "utt_id": "utt1014_cmd_2650",
+      "audio_sec": 2.59,
+      "wall_sec": null,
+      "rtf": 0.0725
+    },
+    {
+      "utt_id": "utt1015_cmd_2651",
+      "audio_sec": 3.85,
+      "wall_sec": null,
+      "rtf": 0.0599
+    },
+    {
+      "utt_id": "utt1016_cmd_2652",
+      "audio_sec": 3.03,
+      "wall_sec": null,
+      "rtf": 0.1131
+    },
+    {
+      "utt_id": "utt1017_cmd_2653",
+      "audio_sec": 2.01,
+      "wall_sec": null,
+      "rtf": 0.0797
+    },
+    {
+      "utt_id": "utt1018_cmd_2654",
+      "audio_sec": 5.76,
+      "wall_sec": null,
+      "rtf": 0.0389
+    },
+    {
+      "utt_id": "utt1019_cmd_2655",
+      "audio_sec": 2.64,
+      "wall_sec": null,
+      "rtf": 0.1046
+    },
+    {
+      "utt_id": "utt1020_cmd_2656",
+      "audio_sec": 2.5,
+      "wall_sec": null,
+      "rtf": 0.1145
+    },
+    {
+      "utt_id": "utt1021_cmd_2657",
+      "audio_sec": 2.78,
+      "wall_sec": null,
+      "rtf": 0.0766
+    },
+    {
+      "utt_id": "utt1022_cmd_2658",
+      "audio_sec": 3.44,
+      "wall_sec": null,
+      "rtf": 0.0717
+    },
+    {
+      "utt_id": "utt1023_cmd_2659",
+      "audio_sec": 1.73,
+      "wall_sec": null,
+      "rtf": 0.1293
+    },
+    {
+      "utt_id": "utt1024_cmd_2660",
+      "audio_sec": 2.62,
+      "wall_sec": null,
+      "rtf": 0.1158
+    },
+    {
+      "utt_id": "utt1025_cmd_2661",
+      "audio_sec": 1.79,
+      "wall_sec": null,
+      "rtf": 0.2222
+    },
+    {
+      "utt_id": "utt1026_cmd_2662",
+      "audio_sec": 1.86,
+      "wall_sec": null,
+      "rtf": 0.2
+    },
+    {
+      "utt_id": "utt1027_cmd_2663",
+      "audio_sec": 2.75,
+      "wall_sec": null,
+      "rtf": 0.1018
+    },
+    {
+      "utt_id": "utt1028_cmd_2664",
+      "audio_sec": 2.03,
+      "wall_sec": null,
+      "rtf": 0.0795
+    },
+    {
+      "utt_id": "utt1029_cmd_2665",
+      "audio_sec": 2.13,
+      "wall_sec": null,
+      "rtf": 0.1212
+    },
+    {
+      "utt_id": "utt1030_cmd_2666",
+      "audio_sec": 2.41,
+      "wall_sec": null,
+      "rtf": 0.1292
+    },
+    {
+      "utt_id": "utt1031_cmd_2667",
+      "audio_sec": 2.17,
+      "wall_sec": null,
+      "rtf": 0.1371
+    },
+    {
+      "utt_id": "utt1032_cmd_2668",
+      "audio_sec": 3.32,
+      "wall_sec": null,
+      "rtf": 0.0681
+    },
+    {
+      "utt_id": "utt1033_cmd_2669",
+      "audio_sec": 3.16,
+      "wall_sec": null,
+      "rtf": 0.085
+    },
+    {
+      "utt_id": "utt1034_cmd_2670",
+      "audio_sec": 2.8,
+      "wall_sec": null,
+      "rtf": 0.1153
+    },
+    {
+      "utt_id": "utt1035_cmd_2671",
+      "audio_sec": 2.39,
+      "wall_sec": null,
+      "rtf": 0.1176
+    },
+    {
+      "utt_id": "utt1036_cmd_2672",
+      "audio_sec": 1.77,
+      "wall_sec": null,
+      "rtf": 0.1913
+    },
+    {
+      "utt_id": "utt1037_cmd_2673",
+      "audio_sec": 2.68,
+      "wall_sec": null,
+      "rtf": 0.1006
+    },
+    {
+      "utt_id": "utt1038_cmd_2674",
+      "audio_sec": 3.45,
+      "wall_sec": null,
+      "rtf": 0.0823
+    },
+    {
+      "utt_id": "utt1039_cmd_2675",
+      "audio_sec": 1.95,
+      "wall_sec": null,
+      "rtf": 0.0944
+    },
+    {
+      "utt_id": "utt1040_cmd_2676",
+      "audio_sec": 1.67,
+      "wall_sec": null,
+      "rtf": 0.1213
+    },
+    {
+      "utt_id": "utt1041_cmd_2677",
+      "audio_sec": 2.51,
+      "wall_sec": null,
+      "rtf": 0.0993
+    },
+    {
+      "utt_id": "utt1042_cmd_2678",
+      "audio_sec": 2.07,
+      "wall_sec": null,
+      "rtf": 0.134
+    },
+    {
+      "utt_id": "utt1043_cmd_2679",
+      "audio_sec": 1.75,
+      "wall_sec": null,
+      "rtf": 0.1053
+    },
+    {
+      "utt_id": "utt1044_cmd_2680",
+      "audio_sec": 3.6,
+      "wall_sec": null,
+      "rtf": 0.0813
+    },
+    {
+      "utt_id": "utt1045_cmd_2681",
+      "audio_sec": 3.57,
+      "wall_sec": null,
+      "rtf": 0.0883
+    },
+    {
+      "utt_id": "utt1046_cmd_2682",
+      "audio_sec": 1.82,
+      "wall_sec": null,
+      "rtf": 0.16
+    },
+    {
+      "utt_id": "utt1047_cmd_2683",
+      "audio_sec": 1.64,
+      "wall_sec": null,
+      "rtf": 0.1853
+    },
+    {
+      "utt_id": "utt1048_cmd_2684",
+      "audio_sec": 2.0,
+      "wall_sec": null,
+      "rtf": 0.0794
+    },
+    {
+      "utt_id": "utt1049_cmd_2685",
+      "audio_sec": 2.96,
+      "wall_sec": null,
+      "rtf": 0.0923
+    },
+    {
+      "utt_id": "utt1050_cmd_2686",
+      "audio_sec": 3.38,
+      "wall_sec": null,
+      "rtf": 0.0804
+    },
+    {
+      "utt_id": "utt1051_cmd_2687",
+      "audio_sec": 2.09,
+      "wall_sec": null,
+      "rtf": 0.1478
+    },
+    {
+      "utt_id": "utt1052_cmd_2688",
+      "audio_sec": 2.03,
+      "wall_sec": null,
+      "rtf": 0.1258
+    },
+    {
+      "utt_id": "utt1053_cmd_2689",
+      "audio_sec": 2.67,
+      "wall_sec": null,
+      "rtf": 0.1064
+    },
+    {
+      "utt_id": "utt1054_cmd_2690",
+      "audio_sec": 3.54,
+      "wall_sec": null,
+      "rtf": 0.0811
+    },
+    {
+      "utt_id": "utt1055_cmd_2691",
+      "audio_sec": 2.46,
+      "wall_sec": null,
+      "rtf": 0.1222
+    },
+    {
+      "utt_id": "utt1056_cmd_2692",
+      "audio_sec": 2.29,
+      "wall_sec": null,
+      "rtf": 0.1121
+    },
+    {
+      "utt_id": "utt1057_cmd_2693",
+      "audio_sec": 2.47,
+      "wall_sec": null,
+      "rtf": 0.1026
+    },
+    {
+      "utt_id": "utt1058_cmd_2694",
+      "audio_sec": 2.24,
+      "wall_sec": null,
+      "rtf": 0.1304
+    },
+    {
+      "utt_id": "utt1059_cmd_2695",
+      "audio_sec": 2.53,
+      "wall_sec": null,
+      "rtf": 0.0676
+    },
+    {
+      "utt_id": "utt1060_cmd_2696",
+      "audio_sec": 1.89,
+      "wall_sec": null,
+      "rtf": 0.1573
+    },
+    {
+      "utt_id": "utt1061_cmd_2697",
+      "audio_sec": 2.95,
+      "wall_sec": null,
+      "rtf": 0.0909
+    },
+    {
+      "utt_id": "utt1062_cmd_2698",
+      "audio_sec": 2.83,
+      "wall_sec": null,
+      "rtf": 0.0887
+    },
+    {
+      "utt_id": "utt1063_cmd_2699",
+      "audio_sec": 2.58,
+      "wall_sec": null,
+      "rtf": 0.1152
+    },
+    {
+      "utt_id": "utt1064_cmd_2700",
+      "audio_sec": 2.21,
+      "wall_sec": null,
+      "rtf": 0.1341
+    },
+    {
+      "utt_id": "utt1065_cmd_2701",
+      "audio_sec": 3.99,
+      "wall_sec": null,
+      "rtf": 0.0622
+    },
+    {
+      "utt_id": "utt1066_cmd_2702",
+      "audio_sec": 3.25,
+      "wall_sec": null,
+      "rtf": 0.0695
+    },
+    {
+      "utt_id": "utt1067_cmd_2703",
+      "audio_sec": 1.97,
+      "wall_sec": null,
+      "rtf": 0.1302
+    },
+    {
+      "utt_id": "utt1068_cmd_2704",
+      "audio_sec": 3.21,
+      "wall_sec": null,
+      "rtf": 0.0763
+    },
+    {
+      "utt_id": "utt1069_cmd_2705",
+      "audio_sec": 2.68,
+      "wall_sec": null,
+      "rtf": 0.1007
+    },
+    {
+      "utt_id": "utt1070_cmd_2706",
+      "audio_sec": 2.37,
+      "wall_sec": null,
+      "rtf": 0.1007
+    },
+    {
+      "utt_id": "utt1071_cmd_2707",
+      "audio_sec": 3.97,
+      "wall_sec": null,
+      "rtf": 0.0447
+    },
+    {
+      "utt_id": "utt1072_cmd_2708",
+      "audio_sec": 2.41,
+      "wall_sec": null,
+      "rtf": 0.0655
+    },
+    {
+      "utt_id": "utt1073_cmd_2709",
+      "audio_sec": 2.31,
+      "wall_sec": null,
+      "rtf": 0.1047
+    },
+    {
+      "utt_id": "utt1074_cmd_2710",
+      "audio_sec": 2.65,
+      "wall_sec": null,
+      "rtf": 0.1115
+    },
+    {
+      "utt_id": "utt1075_cmd_2711",
+      "audio_sec": 2.66,
+      "wall_sec": null,
+      "rtf": 0.0629
+    },
+    {
+      "utt_id": "utt1076_cmd_2712",
+      "audio_sec": 1.79,
+      "wall_sec": null,
+      "rtf": 0.0907
+    },
+    {
+      "utt_id": "utt1077_cmd_2713",
+      "audio_sec": 1.76,
+      "wall_sec": null,
+      "rtf": 0.159
+    },
+    {
+      "utt_id": "utt1078_cmd_2714",
+      "audio_sec": 1.96,
+      "wall_sec": null,
+      "rtf": 0.0879
+    },
+    {
+      "utt_id": "utt1079_cmd_2715",
+      "audio_sec": 1.73,
+      "wall_sec": null,
+      "rtf": 0.1393
+    },
+    {
+      "utt_id": "utt1080_cmd_2716",
+      "audio_sec": 1.92,
+      "wall_sec": null,
+      "rtf": 0.1309
+    },
+    {
+      "utt_id": "utt1081_cmd_2717",
+      "audio_sec": 2.78,
+      "wall_sec": null,
+      "rtf": 0.0629
+    },
+    {
+      "utt_id": "utt1082_cmd_2718",
+      "audio_sec": 4.06,
+      "wall_sec": null,
+      "rtf": 0.0635
+    },
+    {
+      "utt_id": "utt1083_cmd_2719",
+      "audio_sec": 1.78,
+      "wall_sec": null,
+      "rtf": 0.0988
+    },
+    {
+      "utt_id": "utt1084_cmd_2720",
+      "audio_sec": 1.92,
+      "wall_sec": null,
+      "rtf": 0.0934
+    },
+    {
+      "utt_id": "utt1085_cmd_2721",
+      "audio_sec": 3.01,
+      "wall_sec": null,
+      "rtf": 0.0807
+    },
+    {
+      "utt_id": "utt1086_cmd_2722",
+      "audio_sec": 2.15,
+      "wall_sec": null,
+      "rtf": 0.1252
+    },
+    {
+      "utt_id": "utt1087_cmd_2723",
+      "audio_sec": 1.77,
+      "wall_sec": null,
+      "rtf": 0.1338
+    },
+    {
+      "utt_id": "utt1088_cmd_2724",
+      "audio_sec": 3.58,
+      "wall_sec": null,
+      "rtf": 0.0732
+    },
+    {
+      "utt_id": "utt1089_cmd_2725",
+      "audio_sec": 2.974,
+      "wall_sec": null,
+      "rtf": 0.0602
+    },
+    {
+      "utt_id": "utt1090_cmd_2726",
+      "audio_sec": 2.05,
+      "wall_sec": null,
+      "rtf": 0.1176
+    },
+    {
+      "utt_id": "utt1091_cmd_2727",
+      "audio_sec": 2.34,
+      "wall_sec": null,
+      "rtf": 0.1193
+    },
+    {
+      "utt_id": "utt1092_cmd_2728",
+      "audio_sec": 1.96,
+      "wall_sec": null,
+      "rtf": 0.0913
+    },
+    {
+      "utt_id": "utt1093_cmd_2729",
+      "audio_sec": 3.56,
+      "wall_sec": null,
+      "rtf": 0.0484
+    },
+    {
+      "utt_id": "utt1094_cmd_2730",
+      "audio_sec": 4.59,
+      "wall_sec": null,
+      "rtf": 0.0592
+    },
+    {
+      "utt_id": "utt1095_cmd_2731",
+      "audio_sec": 1.89,
+      "wall_sec": null,
+      "rtf": 0.1357
+    },
+    {
+      "utt_id": "utt1096_cmd_2732",
+      "audio_sec": 3.68,
+      "wall_sec": null,
+      "rtf": 0.0656
+    },
+    {
+      "utt_id": "utt1097_cmd_2733",
+      "audio_sec": 1.73,
+      "wall_sec": null,
+      "rtf": 0.1763
+    },
+    {
+      "utt_id": "utt1098_cmd_2734",
+      "audio_sec": 1.73,
+      "wall_sec": null,
+      "rtf": 0.1675
+    },
+    {
+      "utt_id": "utt1099_cmd_2735",
+      "audio_sec": 1.94,
+      "wall_sec": null,
+      "rtf": 0.1315
+    },
+    {
+      "utt_id": "utt1100_cmd_2736",
+      "audio_sec": 3.03,
+      "wall_sec": null,
+      "rtf": 0.0851
+    },
+    {
+      "utt_id": "utt1101_cmd_2737",
+      "audio_sec": 2.78,
+      "wall_sec": null,
+      "rtf": 0.103
+    },
+    {
+      "utt_id": "utt1102_cmd_2738",
+      "audio_sec": 3.55,
+      "wall_sec": null,
+      "rtf": 0.0732
+    },
+    {
+      "utt_id": "utt1103_cmd_2739",
+      "audio_sec": 2.76,
+      "wall_sec": null,
+      "rtf": 0.0643
+    },
+    {
+      "utt_id": "utt1104_cmd_2740",
+      "audio_sec": 2.13,
+      "wall_sec": null,
+      "rtf": 0.1212
+    },
+    {
+      "utt_id": "utt1105_cmd_2741",
+      "audio_sec": 4.04,
+      "wall_sec": null,
+      "rtf": 0.0633
+    },
+    {
+      "utt_id": "utt1106_cmd_2742",
+      "audio_sec": 4.43,
+      "wall_sec": null,
+      "rtf": 0.0539
+    },
+    {
+      "utt_id": "utt1107_cmd_2743",
+      "audio_sec": 1.96,
+      "wall_sec": null,
+      "rtf": 0.1431
+    },
+    {
+      "utt_id": "utt1108_cmd_2744",
+      "audio_sec": 2.28,
+      "wall_sec": null,
+      "rtf": 0.1088
+    },
+    {
+      "utt_id": "utt1109_cmd_2745",
+      "audio_sec": 2.26,
+      "wall_sec": null,
+      "rtf": 0.0763
+    },
+    {
+      "utt_id": "utt1110_cmd_2746",
+      "audio_sec": 1.86,
+      "wall_sec": null,
+      "rtf": 0.1394
+    },
+    {
+      "utt_id": "utt1111_cmd_2747",
+      "audio_sec": 3.9,
+      "wall_sec": null,
+      "rtf": 0.0608
+    },
+    {
+      "utt_id": "utt1112_cmd_2748",
+      "audio_sec": 1.98,
+      "wall_sec": null,
+      "rtf": 0.1433
+    },
+    {
+      "utt_id": "utt1113_cmd_2749",
+      "audio_sec": 1.68,
+      "wall_sec": null,
+      "rtf": 0.1589
+    },
+    {
+      "utt_id": "utt1114_cmd_2750",
+      "audio_sec": 1.62,
+      "wall_sec": null,
+      "rtf": 0.1817
+    },
+    {
+      "utt_id": "utt1115_cmd_2751",
+      "audio_sec": 2.18,
+      "wall_sec": null,
+      "rtf": 0.1186
+    },
+    {
+      "utt_id": "utt1116_cmd_2752",
+      "audio_sec": 4.81,
+      "wall_sec": null,
+      "rtf": 0.0515
+    },
+    {
+      "utt_id": "utt1117_cmd_2753",
+      "audio_sec": 1.7,
+      "wall_sec": null,
+      "rtf": 0.1732
+    },
+    {
+      "utt_id": "utt1118_cmd_2754",
+      "audio_sec": 3.28,
+      "wall_sec": null,
+      "rtf": 0.0788
+    },
+    {
+      "utt_id": "utt1119_cmd_2755",
+      "audio_sec": 3.1,
+      "wall_sec": null,
+      "rtf": 0.0923
+    },
+    {
+      "utt_id": "utt1120_cmd_2756",
+      "audio_sec": 2.71,
+      "wall_sec": null,
+      "rtf": 0.1044
+    },
+    {
+      "utt_id": "utt1121_cmd_2757",
+      "audio_sec": 3.66,
+      "wall_sec": null,
+      "rtf": 0.077
+    },
+    {
+      "utt_id": "utt1122_cmd_2758",
+      "audio_sec": 2.4,
+      "wall_sec": null,
+      "rtf": 0.0718
+    },
+    {
+      "utt_id": "utt1123_cmd_2759",
+      "audio_sec": 2.54,
+      "wall_sec": null,
+      "rtf": 0.1147
+    },
+    {
+      "utt_id": "utt1124_cmd_2760",
+      "audio_sec": 3.38,
+      "wall_sec": null,
+      "rtf": 0.0889
+    },
+    {
+      "utt_id": "utt1125_cmd_2761",
+      "audio_sec": 1.72,
+      "wall_sec": null,
+      "rtf": 0.1692
+    },
+    {
+      "utt_id": "utt1126_cmd_2762",
+      "audio_sec": 1.81,
+      "wall_sec": null,
+      "rtf": 0.1079
+    },
+    {
+      "utt_id": "utt1127_cmd_2763",
+      "audio_sec": 1.57,
+      "wall_sec": null,
+      "rtf": 0.1816
+    },
+    {
+      "utt_id": "utt1128_cmd_2764",
+      "audio_sec": 1.73,
+      "wall_sec": null,
+      "rtf": 0.1671
+    },
+    {
+      "utt_id": "utt1129_cmd_2765",
+      "audio_sec": 3.59,
+      "wall_sec": null,
+      "rtf": 0.0702
+    },
+    {
+      "utt_id": "utt1130_cmd_2766",
+      "audio_sec": 2.4,
+      "wall_sec": null,
+      "rtf": 0.132
+    },
+    {
+      "utt_id": "utt1131_cmd_2767",
+      "audio_sec": 2.41,
+      "wall_sec": null,
+      "rtf": 0.0707
+    },
+    {
+      "utt_id": "utt1132_cmd_2768",
+      "audio_sec": 1.92,
+      "wall_sec": null,
+      "rtf": 0.141
+    },
+    {
+      "utt_id": "utt1133_cmd_2769",
+      "audio_sec": 1.99,
+      "wall_sec": null,
+      "rtf": 0.1235
+    },
+    {
+      "utt_id": "utt1134_cmd_2770",
+      "audio_sec": 1.72,
+      "wall_sec": null,
+      "rtf": 0.1619
+    },
+    {
+      "utt_id": "utt1135_cmd_2771",
+      "audio_sec": 1.99,
+      "wall_sec": null,
+      "rtf": 0.1496
+    },
+    {
+      "utt_id": "utt1136_cmd_2772",
+      "audio_sec": 2.41,
+      "wall_sec": null,
+      "rtf": 0.1081
+    },
+    {
+      "utt_id": "utt1137_cmd_2773",
+      "audio_sec": 2.03,
+      "wall_sec": null,
+      "rtf": 0.154
+    },
+    {
+      "utt_id": "utt1138_cmd_2774",
+      "audio_sec": 2.63,
+      "wall_sec": null,
+      "rtf": 0.104
+    },
+    {
+      "utt_id": "utt1139_cmd_2775",
+      "audio_sec": 2.52,
+      "wall_sec": null,
+      "rtf": 0.1053
+    },
+    {
+      "utt_id": "utt1140_cmd_2776",
+      "audio_sec": 1.83,
+      "wall_sec": null,
+      "rtf": 0.1202
+    },
+    {
+      "utt_id": "utt1141_cmd_2777",
+      "audio_sec": 2.16,
+      "wall_sec": null,
+      "rtf": 0.0757
+    },
+    {
+      "utt_id": "utt1142_cmd_2778",
+      "audio_sec": 1.6,
+      "wall_sec": null,
+      "rtf": 0.1705
+    },
+    {
+      "utt_id": "utt1143_cmd_2779",
+      "audio_sec": 2.72,
+      "wall_sec": null,
+      "rtf": 0.0578
+    },
+    {
+      "utt_id": "utt1144_cmd_2780",
+      "audio_sec": 1.66,
+      "wall_sec": null,
+      "rtf": 0.167
+    },
+    {
+      "utt_id": "utt1145_cmd_2781",
+      "audio_sec": 3.08,
+      "wall_sec": null,
+      "rtf": 0.0549
+    },
+    {
+      "utt_id": "utt1146_cmd_2782",
+      "audio_sec": 2.28,
+      "wall_sec": null,
+      "rtf": 0.1254
+    },
+    {
+      "utt_id": "utt1147_cmd_2783",
+      "audio_sec": 1.76,
+      "wall_sec": null,
+      "rtf": 0.1392
+    },
+    {
+      "utt_id": "utt1148_cmd_2784",
+      "audio_sec": 3.14,
+      "wall_sec": null,
+      "rtf": 0.0787
+    },
+    {
+      "utt_id": "utt1149_cmd_2785",
+      "audio_sec": 2.31,
+      "wall_sec": null,
+      "rtf": 0.0686
+    },
+    {
+      "utt_id": "utt1150_cmd_2786",
+      "audio_sec": 2.78,
+      "wall_sec": null,
+      "rtf": 0.0595
+    },
+    {
+      "utt_id": "utt1151_cmd_2787",
+      "audio_sec": 2.36,
+      "wall_sec": null,
+      "rtf": 0.0968
+    },
+    {
+      "utt_id": "utt1152_cmd_2788",
+      "audio_sec": 4.28,
+      "wall_sec": null,
+      "rtf": 0.0577
+    },
+    {
+      "utt_id": "utt1153_cmd_2789",
+      "audio_sec": 2.59,
+      "wall_sec": null,
+      "rtf": 0.06
+    },
+    {
+      "utt_id": "utt1154_cmd_2790",
+      "audio_sec": 1.48,
+      "wall_sec": null,
+      "rtf": 0.1844
+    },
+    {
+      "utt_id": "utt1155_cmd_2791",
+      "audio_sec": 3.31,
+      "wall_sec": null,
+      "rtf": 0.0833
+    },
+    {
+      "utt_id": "utt1156_cmd_2792",
+      "audio_sec": 3.54,
+      "wall_sec": null,
+      "rtf": 0.0727
+    },
+    {
+      "utt_id": "utt1157_cmd_2793",
+      "audio_sec": 3.14,
+      "wall_sec": null,
+      "rtf": 0.0515
+    },
+    {
+      "utt_id": "utt1158_cmd_2794",
+      "audio_sec": 3.83,
+      "wall_sec": null,
+      "rtf": 0.0688
+    },
+    {
+      "utt_id": "utt1159_cmd_2795",
+      "audio_sec": 3.79,
+      "wall_sec": null,
+      "rtf": 0.0719
+    },
+    {
+      "utt_id": "utt1160_cmd_2796",
+      "audio_sec": 2.16,
+      "wall_sec": null,
+      "rtf": 0.1356
+    },
+    {
+      "utt_id": "utt1161_cmd_2797",
+      "audio_sec": 2.07,
+      "wall_sec": null,
+      "rtf": 0.0862
+    },
+    {
+      "utt_id": "utt1162_cmd_2798",
+      "audio_sec": 2.99,
+      "wall_sec": null,
+      "rtf": 0.0923
+    },
+    {
+      "utt_id": "utt1163_cmd_2799",
+      "audio_sec": 2.52,
+      "wall_sec": null,
+      "rtf": 0.0716
+    },
+    {
+      "utt_id": "utt1164_cmd_2800",
+      "audio_sec": 4.36,
+      "wall_sec": null,
+      "rtf": 0.0569
+    },
+    {
+      "utt_id": "utt1165_cmd_2801",
+      "audio_sec": 3.42,
+      "wall_sec": null,
+      "rtf": 0.0556
+    },
+    {
+      "utt_id": "utt1166_cmd_2802",
+      "audio_sec": 1.9,
+      "wall_sec": null,
+      "rtf": 0.0958
+    },
+    {
+      "utt_id": "utt1167_cmd_2803",
+      "audio_sec": 2.28,
+      "wall_sec": null,
+      "rtf": 0.0763
+    },
+    {
+      "utt_id": "utt1168_cmd_2804",
+      "audio_sec": 4.18,
+      "wall_sec": null,
+      "rtf": 0.0408
+    },
+    {
+      "utt_id": "utt1169_cmd_2805",
+      "audio_sec": 2.65,
+      "wall_sec": null,
+      "rtf": 0.0672
+    },
+    {
+      "utt_id": "utt1170_cmd_2806",
+      "audio_sec": 2.33,
+      "wall_sec": null,
+      "rtf": 0.1143
+    },
+    {
+      "utt_id": "utt1171_cmd_2807",
+      "audio_sec": 1.77,
+      "wall_sec": null,
+      "rtf": 0.1406
+    },
+    {
+      "utt_id": "utt1172_cmd_2808",
+      "audio_sec": 3.19,
+      "wall_sec": null,
+      "rtf": 0.0844
+    },
+    {
+      "utt_id": "utt1173_cmd_2809",
+      "audio_sec": 2.95,
+      "wall_sec": null,
+      "rtf": 0.0939
+    },
+    {
+      "utt_id": "utt1174_cmd_2810",
+      "audio_sec": 1.75,
+      "wall_sec": null,
+      "rtf": 0.1604
+    },
+    {
+      "utt_id": "utt1175_cmd_2811",
+      "audio_sec": 2.6,
+      "wall_sec": null,
+      "rtf": 0.0959
+    },
+    {
+      "utt_id": "utt1176_cmd_2812",
+      "audio_sec": 2.63,
+      "wall_sec": null,
+      "rtf": 0.1014
+    },
+    {
+      "utt_id": "utt1177_cmd_2813",
+      "audio_sec": 2.72,
+      "wall_sec": null,
+      "rtf": 0.1052
+    },
+    {
+      "utt_id": "utt1178_cmd_2814",
+      "audio_sec": 1.69,
+      "wall_sec": null,
+      "rtf": 0.1558
+    },
+    {
+      "utt_id": "utt1179_cmd_2815",
+      "audio_sec": 3.61,
+      "wall_sec": null,
+      "rtf": 0.0778
+    },
+    {
+      "utt_id": "utt1180_cmd_2816",
+      "audio_sec": 4.04,
+      "wall_sec": null,
+      "rtf": 0.0682
+    },
+    {
+      "utt_id": "utt1181_cmd_2817",
+      "audio_sec": 2.2,
+      "wall_sec": null,
+      "rtf": 0.129
+    },
+    {
+      "utt_id": "utt1182_cmd_2818",
+      "audio_sec": 1.8,
+      "wall_sec": null,
+      "rtf": 0.1573
+    },
+    {
+      "utt_id": "utt1183_cmd_2819",
+      "audio_sec": 2.28,
+      "wall_sec": null,
+      "rtf": 0.1244
+    },
+    {
+      "utt_id": "utt1184_cmd_2820",
+      "audio_sec": 2.02,
+      "wall_sec": null,
+      "rtf": 0.1198
+    },
+    {
+      "utt_id": "utt1185_cmd_2821",
+      "audio_sec": 4.26,
+      "wall_sec": null,
+      "rtf": 0.0584
+    },
+    {
+      "utt_id": "utt1186_cmd_2822",
+      "audio_sec": 1.77,
+      "wall_sec": null,
+      "rtf": 0.1575
+    },
+    {
+      "utt_id": "utt1187_cmd_2823",
+      "audio_sec": 3.24,
+      "wall_sec": null,
+      "rtf": 0.0752
+    },
+    {
+      "utt_id": "utt1188_cmd_2824",
+      "audio_sec": 1.57,
+      "wall_sec": null,
+      "rtf": 0.1605
+    },
+    {
+      "utt_id": "utt1189_cmd_2825",
+      "audio_sec": 3.32,
+      "wall_sec": null,
+      "rtf": 0.0519
+    },
+    {
+      "utt_id": "utt1190_cmd_2826",
+      "audio_sec": 1.93,
+      "wall_sec": null,
+      "rtf": 0.1229
+    },
+    {
+      "utt_id": "utt1191_cmd_2827",
+      "audio_sec": 2.19,
+      "wall_sec": null,
+      "rtf": 0.134
+    },
+    {
+      "utt_id": "utt1192_cmd_2828",
+      "audio_sec": 2.76,
+      "wall_sec": null,
+      "rtf": 0.0895
+    },
+    {
+      "utt_id": "utt1193_cmd_2829",
+      "audio_sec": 2.0,
+      "wall_sec": null,
+      "rtf": 0.1363
+    },
+    {
+      "utt_id": "utt1194_cmd_2830",
+      "audio_sec": 2.46,
+      "wall_sec": null,
+      "rtf": 0.1083
+    },
+    {
+      "utt_id": "utt1195_cmd_2831",
+      "audio_sec": 2.64,
+      "wall_sec": null,
+      "rtf": 0.0608
+    },
+    {
+      "utt_id": "utt1196_cmd_2832",
+      "audio_sec": 2.45,
+      "wall_sec": null,
+      "rtf": 0.1169
+    },
+    {
+      "utt_id": "utt1197_cmd_2833",
+      "audio_sec": 1.76,
+      "wall_sec": null,
+      "rtf": 0.1478
+    },
+    {
+      "utt_id": "utt1198_cmd_2834",
+      "audio_sec": 2.75,
+      "wall_sec": null,
+      "rtf": 0.09
+    },
+    {
+      "utt_id": "utt1199_cmd_2835",
+      "audio_sec": 2.72,
+      "wall_sec": null,
+      "rtf": 0.0579
+    },
+    {
+      "utt_id": "utt1200_cmd_2836",
+      "audio_sec": 2.96,
+      "wall_sec": null,
+      "rtf": 0.0854
+    },
+    {
+      "utt_id": "utt1201_cmd_2837",
+      "audio_sec": 2.09,
+      "wall_sec": null,
+      "rtf": 0.1355
+    },
+    {
+      "utt_id": "utt1202_cmd_2838",
+      "audio_sec": 1.84,
+      "wall_sec": null,
+      "rtf": 0.1526
+    },
+    {
+      "utt_id": "utt1203_cmd_2839",
+      "audio_sec": 2.45,
+      "wall_sec": null,
+      "rtf": 0.068
+    },
+    {
+      "utt_id": "utt1204_cmd_2840",
+      "audio_sec": 2.06,
+      "wall_sec": null,
+      "rtf": 0.1342
+    },
+    {
+      "utt_id": "utt1205_cmd_2841",
+      "audio_sec": 3.5,
+      "wall_sec": null,
+      "rtf": 0.0831
+    },
+    {
+      "utt_id": "utt1206_cmd_2842",
+      "audio_sec": 3.17,
+      "wall_sec": null,
+      "rtf": 0.0569
+    },
+    {
+      "utt_id": "utt1207_cmd_2843",
+      "audio_sec": 2.33,
+      "wall_sec": null,
+      "rtf": 0.1317
+    },
+    {
+      "utt_id": "utt1208_cmd_2844",
+      "audio_sec": 2.47,
+      "wall_sec": null,
+      "rtf": 0.1166
+    },
+    {
+      "utt_id": "utt1209_cmd_2845",
+      "audio_sec": 1.89,
+      "wall_sec": null,
+      "rtf": 0.1569
+    },
+    {
+      "utt_id": "utt1210_cmd_2846",
+      "audio_sec": 3.42,
+      "wall_sec": null,
+      "rtf": 0.0759
+    },
+    {
+      "utt_id": "utt1211_cmd_2847",
+      "audio_sec": 2.4,
+      "wall_sec": null,
+      "rtf": 0.1074
+    },
+    {
+      "utt_id": "utt1212_cmd_2848",
+      "audio_sec": 1.92,
+      "wall_sec": null,
+      "rtf": 0.0879
+    },
+    {
+      "utt_id": "utt1213_cmd_2849",
+      "audio_sec": 3.65,
+      "wall_sec": null,
+      "rtf": 0.049
+    },
+    {
+      "utt_id": "utt1214_cmd_2850",
+      "audio_sec": 2.91,
+      "wall_sec": null,
+      "rtf": 0.0955
+    },
+    {
+      "utt_id": "utt1215_cmd_2851",
+      "audio_sec": 2.88,
+      "wall_sec": null,
+      "rtf": 0.0606
+    },
+    {
+      "utt_id": "utt1216_cmd_2852",
+      "audio_sec": 2.37,
+      "wall_sec": null,
+      "rtf": 0.1083
+    },
+    {
+      "utt_id": "utt1217_cmd_2853",
+      "audio_sec": 2.31,
+      "wall_sec": null,
+      "rtf": 0.1076
+    },
+    {
+      "utt_id": "utt1218_cmd_2854",
+      "audio_sec": 1.73,
+      "wall_sec": null,
+      "rtf": 0.1685
+    },
+    {
+      "utt_id": "utt1219_cmd_2855",
+      "audio_sec": 2.36,
+      "wall_sec": null,
+      "rtf": 0.1098
+    },
+    {
+      "utt_id": "utt1220_cmd_2856",
+      "audio_sec": 1.9,
+      "wall_sec": null,
+      "rtf": 0.0924
+    },
+    {
+      "utt_id": "utt1221_cmd_2857",
+      "audio_sec": 4.26,
+      "wall_sec": null,
+      "rtf": 0.0587
+    },
+    {
+      "utt_id": "utt1222_cmd_2858",
+      "audio_sec": 1.84,
+      "wall_sec": null,
+      "rtf": 0.1388
+    },
+    {
+      "utt_id": "utt1223_cmd_2859",
+      "audio_sec": 2.16,
+      "wall_sec": null,
+      "rtf": 0.1221
+    },
+    {
+      "utt_id": "utt1224_cmd_2860",
+      "audio_sec": 2.65,
+      "wall_sec": null,
+      "rtf": 0.0989
+    },
+    {
+      "utt_id": "utt1225_cmd_2861",
+      "audio_sec": 2.74,
+      "wall_sec": null,
+      "rtf": 0.107
+    },
+    {
+      "utt_id": "utt1226_cmd_2862",
+      "audio_sec": 3.33,
+      "wall_sec": null,
+      "rtf": 0.0686
+    },
+    {
+      "utt_id": "utt1227_cmd_2863",
+      "audio_sec": 2.57,
+      "wall_sec": null,
+      "rtf": 0.0875
+    },
+    {
+      "utt_id": "utt1228_cmd_2864",
+      "audio_sec": 2.0,
+      "wall_sec": null,
+      "rtf": 0.1352
+    },
+    {
+      "utt_id": "utt1229_cmd_2865",
+      "audio_sec": 1.6,
+      "wall_sec": null,
+      "rtf": 0.1029
+    },
+    {
+      "utt_id": "utt1230_cmd_2866",
+      "audio_sec": 3.46,
+      "wall_sec": null,
+      "rtf": 0.084
+    },
+    {
+      "utt_id": "utt1231_cmd_2867",
+      "audio_sec": 2.16,
+      "wall_sec": null,
+      "rtf": 0.131
+    },
+    {
+      "utt_id": "utt1232_cmd_2868",
+      "audio_sec": 1.65,
+      "wall_sec": null,
+      "rtf": 0.1055
+    },
+    {
+      "utt_id": "utt1233_cmd_2869",
+      "audio_sec": 2.46,
+      "wall_sec": null,
+      "rtf": 0.1037
+    },
+    {
+      "utt_id": "utt1234_cmd_2870",
+      "audio_sec": 3.41,
+      "wall_sec": null,
+      "rtf": 0.0741
+    },
+    {
+      "utt_id": "utt1235_cmd_2871",
+      "audio_sec": 2.63,
+      "wall_sec": null,
+      "rtf": 0.0953
+    },
+    {
+      "utt_id": "utt1236_cmd_2872",
+      "audio_sec": 2.54,
+      "wall_sec": null,
+      "rtf": 0.0676
+    },
+    {
+      "utt_id": "utt1237_cmd_2873",
+      "audio_sec": 1.99,
+      "wall_sec": null,
+      "rtf": 0.1439
+    },
+    {
+      "utt_id": "utt1238_cmd_2874",
+      "audio_sec": 4.18,
+      "wall_sec": null,
+      "rtf": 0.0611
+    },
+    {
+      "utt_id": "utt1239_cmd_2875",
+      "audio_sec": 2.43,
+      "wall_sec": null,
+      "rtf": 0.1179
+    },
+    {
+      "utt_id": "utt1240_cmd_2876",
+      "audio_sec": 3.4,
+      "wall_sec": null,
+      "rtf": 0.0866
+    },
+    {
+      "utt_id": "utt1241_cmd_2877",
+      "audio_sec": 4.05,
+      "wall_sec": null,
+      "rtf": 0.0601
+    },
+    {
+      "utt_id": "utt1242_cmd_2878",
+      "audio_sec": 1.59,
+      "wall_sec": null,
+      "rtf": 0.16
+    },
+    {
+      "utt_id": "utt1243_cmd_2879",
+      "audio_sec": 2.71,
+      "wall_sec": null,
+      "rtf": 0.0663
+    },
+    {
+      "utt_id": "utt1244_cmd_2880",
+      "audio_sec": 1.71,
+      "wall_sec": null,
+      "rtf": 0.1509
+    },
+    {
+      "utt_id": "utt1245_cmd_2881",
+      "audio_sec": 4.33,
+      "wall_sec": null,
+      "rtf": 0.0369
+    },
+    {
+      "utt_id": "utt1246_cmd_2882",
+      "audio_sec": 1.66,
+      "wall_sec": null,
+      "rtf": 0.105
+    },
+    {
+      "utt_id": "utt1247_cmd_2883",
+      "audio_sec": 2.35,
+      "wall_sec": null,
+      "rtf": 0.1205
+    },
+    {
+      "utt_id": "utt1248_cmd_2884",
+      "audio_sec": 3.1,
+      "wall_sec": null,
+      "rtf": 0.0886
+    },
+    {
+      "utt_id": "utt1249_cmd_2885",
+      "audio_sec": 2.57,
+      "wall_sec": null,
+      "rtf": 0.0927
+    },
+    {
+      "utt_id": "utt1250_cmd_2886",
+      "audio_sec": 1.93,
+      "wall_sec": null,
+      "rtf": 0.1426
+    },
+    {
+      "utt_id": "utt1251_cmd_2887",
+      "audio_sec": 1.87,
+      "wall_sec": null,
+      "rtf": 0.1561
+    },
+    {
+      "utt_id": "utt1252_cmd_2888",
+      "audio_sec": 2.09,
+      "wall_sec": null,
+      "rtf": 0.1344
+    },
+    {
+      "utt_id": "utt1253_cmd_2889",
+      "audio_sec": 1.61,
+      "wall_sec": null,
+      "rtf": 0.1617
+    },
+    {
+      "utt_id": "utt1254_cmd_2890",
+      "audio_sec": 2.85,
+      "wall_sec": null,
+      "rtf": 0.0855
+    },
+    {
+      "utt_id": "utt1255_cmd_2891",
+      "audio_sec": 2.47,
+      "wall_sec": null,
+      "rtf": 0.0687
+    },
+    {
+      "utt_id": "utt1256_cmd_2892",
+      "audio_sec": 3.25,
+      "wall_sec": null,
+      "rtf": 0.093
+    },
+    {
+      "utt_id": "utt1257_cmd_2893",
+      "audio_sec": 2.04,
+      "wall_sec": null,
+      "rtf": 0.0826
+    },
+    {
+      "utt_id": "utt1258_cmd_2894",
+      "audio_sec": 3.32,
+      "wall_sec": null,
+      "rtf": 0.0861
+    },
+    {
+      "utt_id": "utt1259_cmd_2895",
+      "audio_sec": 2.1,
+      "wall_sec": null,
+      "rtf": 0.1262
+    },
+    {
+      "utt_id": "utt1260_cmd_2896",
+      "audio_sec": 1.69,
+      "wall_sec": null,
+      "rtf": 0.1718
+    },
+    {
+      "utt_id": "utt1261_cmd_2897",
+      "audio_sec": 2.91,
+      "wall_sec": null,
+      "rtf": 0.1002
+    },
+    {
+      "utt_id": "utt1262_cmd_2898",
+      "audio_sec": 1.92,
+      "wall_sec": null,
+      "rtf": 0.1352
+    },
+    {
+      "utt_id": "utt1263_cmd_2899",
+      "audio_sec": 2.0,
+      "wall_sec": null,
+      "rtf": 0.084
+    },
+    {
+      "utt_id": "utt1264_cmd_2900",
+      "audio_sec": 3.39,
+      "wall_sec": null,
+      "rtf": 0.0511
+    },
+    {
+      "utt_id": "utt1265_cmd_2901",
+      "audio_sec": 2.72,
+      "wall_sec": null,
+      "rtf": 0.0644
+    },
+    {
+      "utt_id": "utt1266_cmd_2902",
+      "audio_sec": 1.7,
+      "wall_sec": null,
+      "rtf": 0.1741
+    },
+    {
+      "utt_id": "utt1267_cmd_2903",
+      "audio_sec": 2.73,
+      "wall_sec": null,
+      "rtf": 0.1055
+    },
+    {
+      "utt_id": "utt1268_cmd_2904",
+      "audio_sec": 2.89,
+      "wall_sec": null,
+      "rtf": 0.0916
+    },
+    {
+      "utt_id": "utt1269_cmd_2905",
+      "audio_sec": 3.68,
+      "wall_sec": null,
+      "rtf": 0.0706
+    },
+    {
+      "utt_id": "utt1270_cmd_2906",
+      "audio_sec": 2.28,
+      "wall_sec": null,
+      "rtf": 0.0693
+    },
+    {
+      "utt_id": "utt1271_cmd_2907",
+      "audio_sec": 2.11,
+      "wall_sec": null,
+      "rtf": 0.1383
+    },
+    {
+      "utt_id": "utt1272_cmd_2908",
+      "audio_sec": 2.27,
+      "wall_sec": null,
+      "rtf": 0.1339
+    },
+    {
+      "utt_id": "utt1273_cmd_2909",
+      "audio_sec": 1.5,
+      "wall_sec": null,
+      "rtf": 0.1072
+    },
+    {
+      "utt_id": "utt1274_cmd_2910",
+      "audio_sec": 3.23,
+      "wall_sec": null,
+      "rtf": 0.0908
+    },
+    {
+      "utt_id": "utt1275_cmd_2911",
+      "audio_sec": 2.06,
+      "wall_sec": null,
+      "rtf": 0.1192
+    },
+    {
+      "utt_id": "utt1276_cmd_2912",
+      "audio_sec": 2.17,
+      "wall_sec": null,
+      "rtf": 0.0732
+    },
+    {
+      "utt_id": "utt1277_cmd_2913",
+      "audio_sec": 2.34,
+      "wall_sec": null,
+      "rtf": 0.127
+    },
+    {
+      "utt_id": "utt1278_cmd_2914",
+      "audio_sec": 2.54,
+      "wall_sec": null,
+      "rtf": 0.0681
+    },
+    {
+      "utt_id": "utt1279_cmd_2915",
+      "audio_sec": 2.07,
+      "wall_sec": null,
+      "rtf": 0.1387
+    },
+    {
+      "utt_id": "utt1280_cmd_2916",
+      "audio_sec": 1.84,
+      "wall_sec": null,
+      "rtf": 0.1356
+    },
+    {
+      "utt_id": "utt1281_cmd_2917",
+      "audio_sec": 2.41,
+      "wall_sec": null,
+      "rtf": 0.1054
+    },
+    {
+      "utt_id": "utt1282_cmd_2918",
+      "audio_sec": 1.96,
+      "wall_sec": null,
+      "rtf": 0.0888
+    },
+    {
+      "utt_id": "utt1283_cmd_2919",
+      "audio_sec": 3.02,
+      "wall_sec": null,
+      "rtf": 0.0967
+    },
+    {
+      "utt_id": "utt1284_cmd_2920",
+      "audio_sec": 2.82,
+      "wall_sec": null,
+      "rtf": 0.1033
+    },
+    {
+      "utt_id": "utt1285_cmd_2921",
+      "audio_sec": 2.3,
+      "wall_sec": null,
+      "rtf": 0.0709
+    },
+    {
+      "utt_id": "utt1286_cmd_2922",
+      "audio_sec": 2.08,
+      "wall_sec": null,
+      "rtf": 0.0837
+    },
+    {
+      "utt_id": "utt1287_cmd_2923",
+      "audio_sec": 2.14,
+      "wall_sec": null,
+      "rtf": 0.1209
+    },
+    {
+      "utt_id": "utt1288_cmd_2924",
+      "audio_sec": 2.15,
+      "wall_sec": null,
+      "rtf": 0.1141
+    },
+    {
+      "utt_id": "utt1289_cmd_2925",
+      "audio_sec": 4.05,
+      "wall_sec": null,
+      "rtf": 0.0717
+    },
+    {
+      "utt_id": "utt1290_cmd_2926",
+      "audio_sec": 2.3,
+      "wall_sec": null,
+      "rtf": 0.1131
+    },
+    {
+      "utt_id": "utt1291_cmd_2927",
+      "audio_sec": 1.84,
+      "wall_sec": null,
+      "rtf": 0.0955
+    },
+    {
+      "utt_id": "utt1292_cmd_2928",
+      "audio_sec": 2.65,
+      "wall_sec": null,
+      "rtf": 0.1098
+    },
+    {
+      "utt_id": "utt1293_cmd_2929",
+      "audio_sec": 3.03,
+      "wall_sec": null,
+      "rtf": 0.0929
+    },
+    {
+      "utt_id": "utt1294_cmd_2930",
+      "audio_sec": 1.67,
+      "wall_sec": null,
+      "rtf": 0.1013
+    },
+    {
+      "utt_id": "utt1295_cmd_2931",
+      "audio_sec": 2.61,
+      "wall_sec": null,
+      "rtf": 0.1179
+    },
+    {
+      "utt_id": "utt1296_cmd_2932",
+      "audio_sec": 1.72,
+      "wall_sec": null,
+      "rtf": 0.1428
+    },
+    {
+      "utt_id": "utt1297_cmd_2933",
+      "audio_sec": 2.73,
+      "wall_sec": null,
+      "rtf": 0.0579
+    },
+    {
+      "utt_id": "utt1298_cmd_2934",
+      "audio_sec": 3.87,
+      "wall_sec": null,
+      "rtf": 0.0724
+    },
+    {
+      "utt_id": "utt1299_cmd_2935",
+      "audio_sec": 2.61,
+      "wall_sec": null,
+      "rtf": 0.1105
+    },
+    {
+      "utt_id": "utt1300_cmd_2936",
+      "audio_sec": 1.95,
+      "wall_sec": null,
+      "rtf": 0.1291
+    },
+    {
+      "utt_id": "utt1301_cmd_2937",
+      "audio_sec": 2.94,
+      "wall_sec": null,
+      "rtf": 0.0912
+    },
+    {
+      "utt_id": "utt1302_cmd_2938",
+      "audio_sec": 3.82,
+      "wall_sec": null,
+      "rtf": 0.0643
+    },
+    {
+      "utt_id": "utt1303_cmd_2939",
+      "audio_sec": 2.41,
+      "wall_sec": null,
+      "rtf": 0.1198
+    },
+    {
+      "utt_id": "utt1304_cmd_2940",
+      "audio_sec": 2.32,
+      "wall_sec": null,
+      "rtf": 0.1128
+    },
+    {
+      "utt_id": "utt1305_cmd_2941",
+      "audio_sec": 1.74,
+      "wall_sec": null,
+      "rtf": 0.152
+    },
+    {
+      "utt_id": "utt1306_cmd_2942",
+      "audio_sec": 2.15,
+      "wall_sec": null,
+      "rtf": 0.0824
+    },
+    {
+      "utt_id": "utt1307_cmd_2943",
+      "audio_sec": 2.35,
+      "wall_sec": null,
+      "rtf": 0.1106
+    },
+    {
+      "utt_id": "utt1308_cmd_2944",
+      "audio_sec": 3.39,
+      "wall_sec": null,
+      "rtf": 0.0872
+    },
+    {
+      "utt_id": "utt1309_cmd_2945",
+      "audio_sec": 4.41,
+      "wall_sec": null,
+      "rtf": 0.0556
+    },
+    {
+      "utt_id": "utt1310_cmd_2946",
+      "audio_sec": 1.94,
+      "wall_sec": null,
+      "rtf": 0.1587
+    },
+    {
+      "utt_id": "utt1311_cmd_2947",
+      "audio_sec": 3.17,
+      "wall_sec": null,
+      "rtf": 0.0851
+    },
+    {
+      "utt_id": "utt1312_cmd_2948",
+      "audio_sec": 2.62,
+      "wall_sec": null,
+      "rtf": 0.0613
+    },
+    {
+      "utt_id": "utt1313_cmd_2949",
+      "audio_sec": 3.5,
+      "wall_sec": null,
+      "rtf": 0.0717
+    },
+    {
+      "utt_id": "utt1314_cmd_2950",
+      "audio_sec": 3.08,
+      "wall_sec": null,
+      "rtf": 0.0923
+    },
+    {
+      "utt_id": "utt1315_cmd_2951",
+      "audio_sec": 1.66,
+      "wall_sec": null,
+      "rtf": 0.17
+    },
+    {
+      "utt_id": "utt1316_cmd_2952",
+      "audio_sec": 3.6,
+      "wall_sec": null,
+      "rtf": 0.0479
+    },
+    {
+      "utt_id": "utt1317_cmd_2953",
+      "audio_sec": 1.52,
+      "wall_sec": null,
+      "rtf": 0.1139
+    },
+    {
+      "utt_id": "utt1318_cmd_2954",
+      "audio_sec": 3.37,
+      "wall_sec": null,
+      "rtf": 0.0775
+    },
+    {
+      "utt_id": "utt1319_cmd_2955",
+      "audio_sec": 2.18,
+      "wall_sec": null,
+      "rtf": 0.1199
+    },
+    {
+      "utt_id": "utt1320_cmd_2956",
+      "audio_sec": 2.63,
+      "wall_sec": null,
+      "rtf": 0.098
+    },
+    {
+      "utt_id": "utt1321_cmd_2957",
+      "audio_sec": 2.18,
+      "wall_sec": null,
+      "rtf": 0.1083
+    },
+    {
+      "utt_id": "utt1322_cmd_2958",
+      "audio_sec": 1.56,
+      "wall_sec": null,
+      "rtf": 0.178
+    },
+    {
+      "utt_id": "utt1323_cmd_2959",
+      "audio_sec": 1.68,
+      "wall_sec": null,
+      "rtf": 0.0986
+    },
+    {
+      "utt_id": "utt1324_cmd_2960",
+      "audio_sec": 2.25,
+      "wall_sec": null,
+      "rtf": 0.0736
+    },
+    {
+      "utt_id": "utt1325_cmd_2961",
+      "audio_sec": 1.99,
+      "wall_sec": null,
+      "rtf": 0.1467
+    },
+    {
+      "utt_id": "utt1326_cmd_2962",
+      "audio_sec": 4.23,
+      "wall_sec": null,
+      "rtf": 0.0403
+    },
+    {
+      "utt_id": "utt1327_cmd_2963",
+      "audio_sec": 2.98,
+      "wall_sec": null,
+      "rtf": 0.0852
+    },
+    {
+      "utt_id": "utt1328_cmd_2964",
+      "audio_sec": 3.71,
+      "wall_sec": null,
+      "rtf": 0.068
+    },
+    {
+      "utt_id": "utt1329_cmd_2965",
+      "audio_sec": 3.53,
+      "wall_sec": null,
+      "rtf": 0.0926
+    },
+    {
+      "utt_id": "utt1330_cmd_2966",
+      "audio_sec": 1.94,
+      "wall_sec": null,
+      "rtf": 0.0871
+    },
+    {
+      "utt_id": "utt1331_cmd_2967",
+      "audio_sec": 2.77,
+      "wall_sec": null,
+      "rtf": 0.1049
+    },
+    {
+      "utt_id": "utt1332_cmd_2968",
+      "audio_sec": 3.5,
+      "wall_sec": null,
+      "rtf": 0.0718
+    },
+    {
+      "utt_id": "utt1333_cmd_2969",
+      "audio_sec": 1.67,
+      "wall_sec": null,
+      "rtf": 0.177
+    },
+    {
+      "utt_id": "utt1334_cmd_2970",
+      "audio_sec": 1.71,
+      "wall_sec": null,
+      "rtf": 0.1588
+    },
+    {
+      "utt_id": "utt1335_cmd_2971",
+      "audio_sec": 3.21,
+      "wall_sec": null,
+      "rtf": 0.0895
+    },
+    {
+      "utt_id": "utt1336_cmd_2972",
+      "audio_sec": 3.18,
+      "wall_sec": null,
+      "rtf": 0.0768
+    },
+    {
+      "utt_id": "utt1337_cmd_2973",
+      "audio_sec": 3.5,
+      "wall_sec": null,
+      "rtf": 0.0811
+    },
+    {
+      "utt_id": "utt1338_cmd_2974",
+      "audio_sec": 2.06,
+      "wall_sec": null,
+      "rtf": 0.0781
+    },
+    {
+      "utt_id": "utt1339_cmd_2975",
+      "audio_sec": 2.4,
+      "wall_sec": null,
+      "rtf": 0.1238
+    },
+    {
+      "utt_id": "utt1340_cmd_2976",
+      "audio_sec": 1.6,
+      "wall_sec": null,
+      "rtf": 0.1569
+    },
+    {
+      "utt_id": "utt1341_cmd_2977",
+      "audio_sec": 2.74,
+      "wall_sec": null,
+      "rtf": 0.1051
+    },
+    {
+      "utt_id": "utt1342_cmd_2978",
+      "audio_sec": 3.16,
+      "wall_sec": null,
+      "rtf": 0.0911
+    },
+    {
+      "utt_id": "utt1343_cmd_2979",
+      "audio_sec": 2.11,
+      "wall_sec": null,
+      "rtf": 0.12
+    },
+    {
+      "utt_id": "utt1344_cmd_2980",
+      "audio_sec": 3.25,
+      "wall_sec": null,
+      "rtf": 0.0498
+    },
+    {
+      "utt_id": "utt1345_cmd_2981",
+      "audio_sec": 2.31,
+      "wall_sec": null,
+      "rtf": 0.119
+    },
+    {
+      "utt_id": "utt1346_cmd_2982",
+      "audio_sec": 1.88,
+      "wall_sec": null,
+      "rtf": 0.162
+    },
+    {
+      "utt_id": "utt1347_cmd_2983",
+      "audio_sec": 1.73,
+      "wall_sec": null,
+      "rtf": 0.1528
+    },
+    {
+      "utt_id": "utt1348_cmd_2984",
+      "audio_sec": 2.13,
+      "wall_sec": null,
+      "rtf": 0.0838
+    },
+    {
+      "utt_id": "utt1349_cmd_2985",
+      "audio_sec": 2.6,
+      "wall_sec": null,
+      "rtf": 0.1003
+    },
+    {
+      "utt_id": "utt1350_cmd_2986",
+      "audio_sec": 2.37,
+      "wall_sec": null,
+      "rtf": 0.1201
+    },
+    {
+      "utt_id": "utt1351_cmd_2987",
+      "audio_sec": 1.99,
+      "wall_sec": null,
+      "rtf": 0.1535
+    },
+    {
+      "utt_id": "utt1352_cmd_2988",
+      "audio_sec": 3.6,
+      "wall_sec": null,
+      "rtf": 0.0763
+    },
+    {
+      "utt_id": "utt1353_cmd_2989",
+      "audio_sec": 3.47,
+      "wall_sec": null,
+      "rtf": 0.0817
+    },
+    {
+      "utt_id": "utt1354_cmd_2990",
+      "audio_sec": 2.07,
+      "wall_sec": null,
+      "rtf": 0.1232
+    },
+    {
+      "utt_id": "utt1355_cmd_2991",
+      "audio_sec": 3.9,
+      "wall_sec": null,
+      "rtf": 0.0456
+    },
+    {
+      "utt_id": "utt1356_cmd_2992",
+      "audio_sec": 2.14,
+      "wall_sec": null,
+      "rtf": 0.0771
+    },
+    {
+      "utt_id": "utt1357_cmd_2993",
+      "audio_sec": 2.44,
+      "wall_sec": null,
+      "rtf": 0.1051
+    },
+    {
+      "utt_id": "utt1358_cmd_2994",
+      "audio_sec": 3.28,
+      "wall_sec": null,
+      "rtf": 0.0787
+    },
+    {
+      "utt_id": "utt1359_cmd_2995",
+      "audio_sec": 2.32,
+      "wall_sec": null,
+      "rtf": 0.1072
+    },
+    {
+      "utt_id": "utt1360_cmd_2996",
+      "audio_sec": 1.62,
+      "wall_sec": null,
+      "rtf": 0.1045
+    },
+    {
+      "utt_id": "utt1361_cmd_2997",
+      "audio_sec": 2.64,
+      "wall_sec": null,
+      "rtf": 0.0639
+    },
+    {
+      "utt_id": "utt1362_cmd_2998",
+      "audio_sec": 2.78,
+      "wall_sec": null,
+      "rtf": 0.1032
+    },
+    {
+      "utt_id": "utt1363_cmd_2999",
+      "audio_sec": 1.59,
+      "wall_sec": null,
+      "rtf": 0.1128
+    }
+  ],
+  "duration_infer_sec": 318.341
+}
