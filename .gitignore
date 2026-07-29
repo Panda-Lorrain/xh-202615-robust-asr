@@ -119,3 +119,9 @@ code/_tse_phase2_train/
 code/_tse_phase2_val/
 code/_tse_phase2_*/
 code/runs/tse_wesep_phase2/
+
+# ===== Phase-3 expanded synthetic corpus (AISHELL-train/MUSAN, ~3GB, reproducible) =====
+code/_tse_phase3_manifests_expanded/
+code/_tse_phase3_train_expanded/
+code/_tse_phase3_val_expanded/
+code/_tse_phase3_expanded_poc/

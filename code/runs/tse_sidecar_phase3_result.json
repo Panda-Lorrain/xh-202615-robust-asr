@@ -1,0 +1,57 @@
+{
+  "experiment": "phase3_frozen_qwen_sidecar",
+  "date": "2026-07-30",
+  "training_data": {
+    "sources": [
+      "AISHELL-1 official train split",
+      "MUSAN"
+    ],
+    "dataset_a_used_for_training": false,
+    "train_rows": 5200,
+    "validation_rows": 800,
+    "train_target_speakers": 260,
+    "validation_target_speakers": 40,
+    "train_unique_refs": 5173,
+    "speaker_disjoint": true,
+    "utterance_disjoint": true
+  },
+  "model": {
+    "base": "Qwen3-ASR-1.7B",
+    "audio_encoder_layers": 24,
+    "sidecar_layers": 8,
+    "sidecar_rank": 64,
+    "trainable_parameters": 1427521,
+    "base_frozen": true,
+    "peak_vram_gib": 5.16
+  },
+  "training": {
+    "updates": 650,
+    "gradient_accumulation": 8,
+    "learning_rate": 0.00005,
+    "checkpoint_selected_on": "first 100 fixed synthetic validation rows",
+    "dataset_a_used_for_checkpoint_selection": false
+  },
+  "synthetic_validation_full_800": {
+    "zero_total_loss": 5.859461315348744,
+    "trained_total_loss": 4.142073636725545,
+    "zero_asr_loss": 5.789049965515733,
+    "trained_asr_loss": 4.056589861251414,
+    "zero_activity_loss": 0.7041135582327843,
+    "trained_activity_loss": 0.8548377456329763
+  },
+  "dataset_a_one_shot_paired_evaluation": {
+    "n": 1350,
+    "baseline_cer": 0.3429480381760339,
+    "trained_cer": 0.37645811240721105,
+    "delta_cer": 0.033510074231177134,
+    "bootstrap_95_ci": [
+      0.02165536757202246,
+      0.04574403986580028
+    ],
+    "better": 110,
+    "same": 1017,
+    "worse": 223,
+    "same_process_paired": true
+  },
+  "verdict": "NO-GO: synthetic ASR loss improved but Dataset-A CER significantly regressed; do not rent compute or integrate"
+}

@@ -18,6 +18,7 @@ remain paired with the correct audio.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from contextlib import contextmanager
 from types import MethodType
 from typing import List, Optional
 
@@ -53,6 +54,27 @@ class _SidecarLayer(nn.Module):
         condition = self.enrollment(enrollment).to(hidden.dtype)
         residual = self.up(F.silu(self.down(self.norm(hidden)) + condition))
         return hidden + gate.to(hidden.dtype) * residual
+
+
+class _TargetActivityHead(nn.Module):
+    """Enrollment-conditioned target activity, not a generic speech VAD."""
+
+    def __init__(
+        self,
+        hidden_size: int,
+        enrollment_dim: int,
+        rank: int,
+    ):
+        super().__init__()
+        self.norm = nn.LayerNorm(hidden_size)
+        self.hidden = nn.Linear(hidden_size, rank, bias=False)
+        self.enrollment = nn.Linear(enrollment_dim, rank, bias=False)
+        self.classifier = nn.Linear(rank, 1)
+
+    def forward(self, hidden: Tensor, enrollment: Tensor) -> Tensor:
+        query = self.enrollment(enrollment)
+        fused = F.silu(self.hidden(self.norm(hidden)) + query)
+        return self.classifier(fused).squeeze(-1)
 
 
 class _InjectedEncoderLayer(nn.Module):
@@ -95,11 +117,10 @@ class FrozenQwenSidecar(nn.Module):
         for parameter in self.thinker.parameters():
             parameter.requires_grad_(False)
 
-        self.activity_head = nn.Sequential(
-            nn.LayerNorm(self.hidden_size),
-            nn.Linear(self.hidden_size, max(32, config.rank)),
-            nn.SiLU(),
-            nn.Linear(max(32, config.rank), 1),
+        self.activity_head = _TargetActivityHead(
+            self.hidden_size,
+            config.enrollment_dim,
+            max(32, config.rank),
         )
         self.adapters = nn.ModuleList(
             [_SidecarLayer(self.hidden_size, config) for _ in range(config.layers)]
@@ -108,6 +129,11 @@ class FrozenQwenSidecar(nn.Module):
         self._activity: Optional[Tensor] = None
         self._activity_logits: List[Tensor] = []
         self._audio_index = 0
+        reference = next(
+            thinker.audio_tower.parameters(), next(self.adapters.parameters())
+        )
+        self.activity_head.to(device=reference.device, dtype=reference.dtype)
+        self.adapters.to(device=reference.device, dtype=reference.dtype)
         self._install_layers()
         self._install_audio_tower_context()
 
@@ -133,8 +159,10 @@ class FrozenQwenSidecar(nn.Module):
         if self._enrollment is None:
             raise RuntimeError("Sidecar context missing; call FrozenQwenSidecar.forward")
         index = min(self._audio_index, self._enrollment.size(0) - 1)
-        enrollment = self._enrollment[index : index + 1].to(hidden.device)
-        logits = self.activity_head(hidden).squeeze(-1)
+        enrollment = self._enrollment[index : index + 1].to(
+            device=hidden.device, dtype=hidden.dtype
+        )
+        logits = self.activity_head(hidden, enrollment)
         gate = torch.sigmoid(logits).unsqueeze(-1)
         self._activity_logits.append(logits)
         return enrollment, gate
@@ -171,12 +199,44 @@ class FrozenQwenSidecar(nn.Module):
         self._audio_index = 0
         output = self.thinker(*args, **kwargs)
         activity_loss = self._activity_loss(self._activity_logits, target_activity)
-        total_loss = output.loss
+        asr_loss = output.loss
+        total_loss = asr_loss
         if total_loss is not None:
             total_loss = total_loss + self.config.activity_loss_weight * activity_loss.to(total_loss.device)
         output.loss = total_loss
+        output.sidecar_asr_loss = asr_loss
         output.sidecar_activity_loss = activity_loss
         return output
+
+    @contextmanager
+    def inference_context(self, enrollment_embeddings: Tensor):
+        """Provide enrollment conditions while ``thinker.generate`` runs."""
+        if (
+            enrollment_embeddings.ndim != 2
+            or enrollment_embeddings.size(1) != self.config.enrollment_dim
+        ):
+            raise ValueError(
+                "invalid inference enrollment shape "
+                f"{tuple(enrollment_embeddings.shape)}"
+            )
+        self._enrollment = enrollment_embeddings
+        self._activity = None
+        self._activity_logits = []
+        self._audio_index = 0
+        try:
+            yield
+        finally:
+            self._enrollment = None
+            self._activity = None
+            self._activity_logits = []
+            self._audio_index = 0
+
+    def train(self, mode: bool = True):
+        """Keep the frozen Qwen backbone deterministic while training Sidecar."""
+        super().train(False)
+        self.activity_head.train(mode)
+        self.adapters.train(mode)
+        return self
 
     def trainable_state_dict(self) -> dict[str, Tensor]:
         """A compact checkpoint containing only newly introduced parameters."""
@@ -191,6 +251,20 @@ class FrozenQwenSidecar(nn.Module):
             }
         )
         return state
+
+    def load_trainable_state_dict(self, state: dict[str, Tensor]) -> None:
+        activity = {
+            name.removeprefix("activity_head."): value
+            for name, value in state.items()
+            if name.startswith("activity_head.")
+        }
+        adapters = {
+            name.removeprefix("adapters."): value
+            for name, value in state.items()
+            if name.startswith("adapters.")
+        }
+        self.activity_head.load_state_dict(activity, strict=True)
+        self.adapters.load_state_dict(adapters, strict=True)
 
     @property
     def trainable_parameter_count(self) -> int:
