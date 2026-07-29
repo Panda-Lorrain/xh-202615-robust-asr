@@ -23,9 +23,15 @@
 
 ---
 
-## 🚀 最新进展（2026-07-19 稳定性闭环 + qwen 主线）
+## 🚀 最新进展（2026-07-29 TSE 阶段二全量 NO-GO + qwen 主线稳定）
 
-> **当前算分**（qwen + content_gate，w1=w2=0.4 假设，待主办方确认权重）：**CER 腿 15.32 + RR 腿 37.98 = 53.3 / 80**，效率腿 20 分待 L20 batch=1 RTF 实测。
+> **当前提交线**（主线 qwen + content_gate，含拒 thr0.27）：**CER 0.5934（CER 腿 16.26）+ RR 腿 ~37.97 + 效率腿 18-19（待 L20 实测）≈ 70-73 / 100**（w1=w2=0.4 假设，待主办方确认权重）。
+
+### 🔴 战略进展线（2026-07-27 ~ 07-29）
+
+- **2026-07-29 TSE「唯一治本路径」阶段二全量 NO-GO（声学翻正，CER 不动）**：实际训 WeSep pBSRNN（160/40 speaker-disjoint triples）+ 5 轮验证全 NO-GO。声学侧明确有效（val SI-SNRi +1.096→+2.264 dB、Qwen mel L1 −31%、wave L1 −43%、RMS 失配 5.04×→0.64×），但冻结 Qwen 配对 CER 1.2870→1.2671（Δ−0.0199，bootstrap CI 跨 0）未过 ΔCER≤−0.05 门槛。**核心发现=感知-识别鸿沟**：separator 声学收益没传导到 ASR CER（印证 EoW 论文）。唯一未试=Phase-3 冻结 Qwen audio encoder 前 1/3 层 + 小 Sidecar/STNO bias + ASR loss 直接反传（新增参数<5%）。详见 `docs/tse_train_plan.md` + `AGENT_HANDOFF.md`【2026-07-29】。
+- **2026-07-28 分场景路由反转 multi-voice NO-GO（全量 1350 pos 坐实，+0.83 未集成主线）**：按 diar 分 n_spk 路由——单人 40% 走主线不分离 / 重叠 60% SepFormer 分离+二选一。机制：SepFormer 单人破坏 Δ+0.165 / 重叠救回 Δ−0.157，分场景后净正。transcribe CER 0.3427→0.2941（−14.2%）/ 含拒 0.5931→0.5727（−3.4%）。外推 −20.7% 被全量纠正（采样偏差）。多信号拒识 task6 强 NO-GO 放弃（neg RR 损失 36.71% 反噬）。
+- **2026-07-27 消除信息隔阂 + 推翻"到顶"**：用户挑战"0.3436 物理天花板"——死区真地板仅 ~10%（非不可修），理论空间 0.3436→~0.15。真瓶颈=双人重叠区物理混合（非 mel 摧毁）。5 路轻量改进全证伪。外部数据训练已解禁（主办方确认）。
 
 ### 主线：Qwen3-ASR + 声纹切 target timeline（2026-07-11，zero-training）
 复用 enroll_infer 的 DiariZen diar + wespeaker 选 target → 切 target timeline → **Qwen3-ASR-1.7B**（ExtremeNoise 4× 鲁棒迁移，Apache2.0）drop-in 转写。全量 1350 条官方口径：
