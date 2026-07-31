@@ -46,7 +46,7 @@
 - **`_txt/` 论文全文文本（pdftotext 提取，供 Agent 精读）**：19 篇核心论文（10 命名核心 + US-PVAD + SELD + 5 篇 TS-ASR：FDDT/DiCoW/SE-DiCoW/TS-RNNT/NOTSOFAR + CUSIDE-array + 智慧家庭综述）；原件 PDF 已清理，索引见 `docs/paper_index.md`
 - `pdf2txt.py` — 纯 Python zlib PDF 提取（无库时备用）
 - **`code/` 代码区**：⭐`submit_infer.py`（标准化推理入口，4 阶段 subprocess）/ `enroll_infer.py`（wespeaker 声纹+diar+DiCoW 转 target）/ `se_denoise.py`+`noise_classify.py`（DeepFilterNet3 条件化）/ `llm_reject.py`（Qwen2.5-3B）/ `fuse_eval.py`（多策略融合扫工作点）/ `eval_metrics.py`+`eval_full_test.py`（评测，⚠️ `eval_metrics.py` 无 CLI，复用需 `import cer()` 或用 `eval_full_test.py` 包装）/ `simulate_pipeline.py`（仿真）/ `make_readme_progress.py`（README 进度图生成）/ DiCoW-inference、TS-ASR-Whisper（开源仓库，gitignore 不入库）
-- **`test_wav/` / `test_wav_clean/` 测试音频**
+- **`test_wav/` 测试音频（开发调试用）**
 
 ## 核心结论
 1. **组合主线（稳健底盘，通道无关）**：`Personal VAD(产生STNO) + DiCoW/SE-DiCoW(Whisper TS-ASR转写) + Qwen-2.5-3B LLM语义拒识`。每环节开源。单通道即可跑通，是下限保障。
