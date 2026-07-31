@@ -197,7 +197,7 @@
 
 > 🔴 **2026-07-23 最新（当前恢复点）**：Qwen3 重跑 CAM++/SepFormer **双证伪**——用户核心假设"是 DiCoW 差不是方法错"**不成立**。① CAM++ 声纹强化 GO=否：Qwen3 oracle（exp_spk_oracle_qwen.py，死区60+主战场60）显示 cer_gain 死区+0.146/主战场+0.106（选 target 是问题，部分推翻 vanilla "oracle 0.607 封闭"），但 miss 中正确 target sim≥0.2 仅 0%/21% → 声纹层提不出正确 target（babble 摧毁 who 信号），CAM++ 救不了。② SepFormer GO=否（更狠）：exp_sepformer_qwen.py（死区40）SepFormer+Qwen3 0.687 vs argmax 0.410（Δ+0.277），oracle 0.413≈argmax → 分离没拎出更干净 target。**新发现**：Qwen3 下选 target 是真问题（cer_gain +0.1~0.15），解药在**非声纹 target 选择**（diar 改进/enrollment-conditioned TSE 联合），留新方向线索。CER 腿 qwen 0.3436 天花板坐实，死区物理极限换更强转写器也救不了。答辩硬弹药。**另本轮还做了**: 目录整理(删~5.5G中间产物 + out_*/json/csv归 code/runs/ rename保留历史 + docs/实验结果汇总.md) / 效率迁移性分析(4-agent workflow: 4060→L20三不统一+家居RTF推算实时阈值0.2-0.3 L20外推0.09-0.12优秀) / 非声纹深探全证伪(ASE关键帧net更差 + CAM++替换wespeaker CER噪声内 + Whisper-Sidecar NO-GO无权重绑Whisper净亏) → **CER腿彻底到底, ROI转效率腿+答辩**。commit `6eb1fa6`+`dcff974` 全 push。详见下【2026-07-23】段 + memory `spk-oracle-poc`/`non-voiceprint-target-selection`/`efficiency-portability-audit`。
 
-> 🔴 **2026-07-20 晚 最新（当前恢复点）**：CER 边际探索闭环 — 全量 oracle + ASE-PVAD 实跑**双证伪**，cascaded CER 近极限坐实。用户战略从"答辩 100 分"转向"**初赛进前 10-20 名**"（入围依据 = B 集成绩 + 脚本核查 + 客观指标，**A 集排行榜仅供参考不决定入围**，见 `待确认_主办方口径与外部输入.md`）。核心发现：① 主战场全量 668 oracle **GO=否**（60 条抽样 GO=是 是假象，cer_gain 虚高 3x）② 主战场 78% 损失是音频摧毁（切对 target 也救不回），22% 选错 target ③ ASE-PVAD（出题方 ICASSP2026 论文 #02）实跑**证伪**（救回 26/改错 33，CER +0.004，根因 zero-training：wespeaker 没学过用增强 embedding）④ **不是菜是架构极限**（出题方 NOTSOFAR CHiME-8 冠军死区也翻车），但端到端联合训练路线（没走）可能更强。**下一步用户定：效率腿 L20（最大杠杆，要租算力）/ 接受 CER 天花板保基本盘**。产物**未 commit**（本地）。详见下【2026-07-20 CER 边际探索】段 + memory `mainfield-oracle-full-debunked`。
+> 🔴 **2026-07-20 晚 最新（当前恢复点）**：CER 边际探索闭环 — 全量 oracle + ASE-PVAD 实跑**双证伪**，cascaded CER 近极限坐实。用户战略从"答辩 100 分"转向"**初赛进前 10-20 名**"（入围依据 = B 集成绩 + 脚本核查 + 客观指标，**A 集排行榜仅供参考不决定入围**，见 `docs/待确认_主办方口径与外部输入.md`）。核心发现：① 主战场全量 668 oracle **GO=否**（60 条抽样 GO=是 是假象，cer_gain 虚高 3x）② 主战场 78% 损失是音频摧毁（切对 target 也救不回），22% 选错 target ③ ASE-PVAD（出题方 ICASSP2026 论文 #02）实跑**证伪**（救回 26/改错 33，CER +0.004，根因 zero-training：wespeaker 没学过用增强 embedding）④ **不是菜是架构极限**（出题方 NOTSOFAR CHiME-8 冠军死区也翻车），但端到端联合训练路线（没走）可能更强。**下一步用户定：效率腿 L20（最大杠杆，要租算力）/ 接受 CER 天花板保基本盘**。产物**未 commit**（本地）。详见下【2026-07-20 CER 边际探索】段 + memory `mainfield-oracle-full-debunked`。
 
 > 🔴 **2026-07-20 最新状态（当前恢复点）**：接手收拾 + 答辩准备刷新(**7 commit 全 push**): A.收拾 07-18 游离改动 4 commit(content_gate 反转默认开 joint+0.826 `226e239` / qwen context 归档不启用 `7bba69f` / mainbattle oracle 归档 verdict 不可信 `bafcbf4` / 主办方问题清单 `3469756`) + B.答辩刷新 3 commit(README+FAQ 刷到 qwen 主线算分 53.3/80 `44a94e0` / 进度图重做真测版 3 子图 `089e6e7` / 补 SE bug 真相+时间线+技术亮点 `842706e`). **答辩材料全就绪**(算分/FAQ/README/进度图/时间线/技术亮点一致到 07-19 qwen 主线). **未入库**: out_smoke_fp32.json(孤立临时冒烟, 留本地). **下一步**: 答辩演练稿(待写) > 效率腿 L20(等租算力) > R4 hold-out.
 
@@ -853,7 +853,7 @@ B 集按 FAQ C9 必须单一 thr → 用 A 集模拟 B 集混合场景选 thr �
 2. 🔴 **B 集混合提交端到端**（B 集到手后）：见上 follow-up #2。`make_pairs` 产无 ref 混合 manifest → `bash code/run_baodi.sh B 0.27` → to_submission → 自检整份同一 thr
 3. 🟡 **灰区选择性 LLM A/B**（可选高价值）：见上 follow-up #3。对 max_sim∈[0.2,0.4] 跑 LLM 二次校验救 RR 腿
 4. 🔧 **攻 CER 声纹强化**（本机可跑，研究性）：CAM++ per-speaker / US-PVAD 在 vanilla 路线下复评（先前 CAM++ 证伪 0.191<wespeaker 0.218 是 dicow 路线评的，vanilla 下声纹错→直接转错段权重更高，值得复评），攻低 sim 桶(0.2-0.4 CER 0.6-0.75)timeline 切割
-5. 📄 **答辩 FAQ + 演练**：`03_答辩FAQ与风险预案.md` 待写；核心论点 = Phase1 vanilla 反 cascaded 突破 + 可复现性工程化 + T27 统一 thr（含 caliber-A 风险诚实披露）+ babble 归因 + 诚实组合主线极限
+5. 📄 **答辩 FAQ + 演练**：`docs/03_答辩FAQ与风险预案.md` 待写；核心论点 = Phase1 vanilla 反 cascaded 突破 + 可复现性工程化 + T27 统一 thr（含 caliber-A 风险诚实披露）+ babble 归因 + 诚实组合主线极限
 6. ⚡ **L20 端到端耗时真测**：submit_infer 显存自适应（L20 48G 大 batch）+ 租 AutoDL L20 验证（官方 L20 评效率，本机仅 4060，memory `l20-eval-hardware`）
 7. ⚠️ **CER 进一步破局**（大工程，时间充裕再做）：端到端联合训练 X（反 cascaded，出题方偏好）/ SepFormer 提 target mel 再喂 vanilla
 
@@ -893,7 +893,7 @@ vanilla 路线集成（T25，pos CER 0.667 / neg RR 98.52%）+ 可复现性改�
 1. 🔧 **统一 thr 选点**（B 集混合集必需）：扫统一 thr 优化 CER40+RR40 加权。A 集初评 pos/neg 分开 thr 合规（独立测试集），B 集必须统一。⚠️ **建议向主办方确认"A 集初评可否分 thr"**（合规风险）
 2. 🔧 **攻 CER**（声纹强化）：CAM++ per-speaker / US-PVAD 改善低 sim 桶（0.2-0.4）timeline 切割。vanilla 路线下声纹错→直接转错段；先前 CAM++ 证伪是 DiCoW 路线评的，vanilla 下值得复评
 3. ⚡ **L20 端到端耗时真测**：submit_infer（vanilla）显存自适应（L20 48G 大 batch）+ 租 AutoDL L20 验证（官方 L20 评效率，本机 4060，memory `l20-eval-hardware`）
-4. 📄 **答辩 FAQ + 演练**：`03_答辩FAQ与风险预案.md` 待写；答辩核心 = Phase 1 vanilla 反 cascaded 突破 + 可复现性工程化 + 诚实归因
+4. 📄 **答辩 FAQ + 演练**：`docs/03_答辩FAQ与风险预案.md` 待写；答辩核心 = Phase 1 vanilla 反 cascaded 突破 + 可复现性工程化 + 诚实归因
 5. ⚠️ **CER 进一步破局**（大工程）：端到端联合 X / babble 专用源分离（SepFormer 提 target mel）
 
 ### 关键 commit（master，已 push）
@@ -993,7 +993,7 @@ code/.venv/Scripts/python.exe code/analyze_pos_full.py code/out_pos_full/result.
 4. ⚠️ **P2-④ sim_thr 待主办方评测口径**：CER 均值→thr=0.4 / correct_rate→thr=0.2 / pos 不许拒→thr=0。**Phase 1 改变格局**：thr=0.20 vanilla overall CER 0.711 已 <1，不像 dicow 路线 pos CER 全档 ~1.0 无 thr 能救——vanilla 路线下 thr 选择更宽松
 5. 🔧 **保底执行**（fallback，仍备用）：上面命令跑 pos+neg 全量 thr=0.4 关LLM，确认最终 CER/RR 提交数字（保底仍有效，Phase 1 失败时退路）
 6. ⚡ **L20 耗时验证**：submit_infer（含 vanilla 后端）显存自适应（L20 48GB 大 batch）+ 租 AutoDL L20 验证端到端（官方 L20 评效率，本机仅 4060，memory `l20-eval-hardware`）
-7. 📄 **答辩 FAQ + 演练**：`03_答辩FAQ与风险预案.md` 待写；答辩重点讲故事 = **Phase 1 vanilla 突破反 cascaded（新核心论点）** / babble 归因清晰 / 单通道确认 / 工程优化（Gap3·繁简·langfix）/ 诚实组合主线极限 + 端到端 X 是未来方向
+7. 📄 **答辩 FAQ + 演练**：`docs/03_答辩FAQ与风险预案.md` 待写；答辩重点讲故事 = **Phase 1 vanilla 突破反 cascaded（新核心论点）** / babble 归因清晰 / 单通道确认 / 工程优化（Gap3·繁简·langfix）/ 诚实组合主线极限 + 端到端 X 是未来方向
 8. ⚠️ **CER 进一步破局**（如要冲，大工程）：①端到端联合训练 X（反 cascaded，出题方偏好，`docs/02_上限候选深读.md`）②babble 专用源分离（SepFormer 提 target mel 再喂 vanilla/DiCoW，同时救 sim+转写）—— Phase 1 已用 zero-training 拿大部分收益，这两条留待时间充裕
 
 ## 7. 环境与工具规范（必读，省踩坑）

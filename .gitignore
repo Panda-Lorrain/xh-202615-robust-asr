@@ -135,3 +135,10 @@ code/runs/full_eval_*/_slices/
 # ===== 2026-07-31 家居指令 TSE 数据流水线产物(CosyVoice 合成 + RIR 装配, 可重生, 不入库) =====
 code/_tts_pool/
 code/_home_tse_poc/
+
+# ===== 2026-08-01 目录整理：归档区(experiments/data)里原本 ignored 的临时产物，移动后重新忽略 =====
+code/experiments/_*.py
+code/experiments/_*.json
+code/data/_*.json
+code/data/out_*.json
+code/data/pos_pairs_midwar.json

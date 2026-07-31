@@ -111,49 +111,38 @@ DiCoW FDDT/STNO 条件化在极重 babble 下反作用（英文幻觉 18.8%、CE
 
 ```
 xh-202615-robust-asr/
-├── 📦 交付（比赛提交物）
-│   ├── 设计报告.md                   # 实际实现版技术方案
-│   ├── 使用说明.md                   # submit_infer用法 + 3 venv + 权重 + 格式
-│   └── 测试验证方案.md               # 评测指标 + 仿真结果诚实表 + A集流程
-│
-├── 📄 技术文档
-│   ├── 00_技术路线总纲与行动地图.md    # 全局架构与行动计划
-│   ├── 01_模块技术细节全解_答辩级.md   # 各模块详细技术方案
-│   ├── 02_上限候选深读.md             # 差异化技术方向
-│   └── 03_答辩FAQ与风险预案.md        # 答辩准备与风险应对
+├── 📦 交付/                         # 比赛提交物（设计报告/使用说明/测试验证方案）
 │
 ├── 📚 论文资料
-│   ├── papers/                        # 原始 PDF 论文
-│   ├── _txt/                          # 论文文本提取
-│   └── paper_index.md                 # 论文索引与分类
+│   ├── papers/                        # 原始 PDF 论文（19 篇）
+│   └── _txt/                          # 论文文本提取
+│
+├── 📄 根目录 · 状态中枢（7 个 .md + 工具）
+│   ├── README.md / CLAUDE.md / AGENTS.md / AGENT_HANDOFF.md   # 入口与交接
+│   ├── PROGRESS.md / RESULTS.md / REPRO_SETUP.md              # 进度/结果/复现
+│   └── pdf2txt.py / deploy_cosyvoice.sh                       # 论文提取 / TTS 部署工具
 │
 ├── 💻 代码实现
 │   └── code/
-│       ├── submit_infer.py              # ⭐ 标准化推理入口（result.json+timing.json）
-│       ├── enroll_infer.py              # wespeaker 声纹锁定 + diar + DiCoW 转写
-│       ├── se_denoise.py / noise_classify.py  # DeepFilterNet3 条件化降噪 + 噪声估计
-│       ├── llm_reject.py                # Qwen2.5-3B 语义拒识
-│       ├── eval_metrics.py / eval_full_test.py  # 评测（CER/RTF/拒识率）
-│       ├── simulate_pipeline.py / build_dataset.py  # 数据仿真
-│       ├── minimal_infer.py / stno_experiment.py    # 机制验证
-│       ├── babble_oracle_test.py / vanilla_whisper_test.py / stno_ablation.py  # T22 babble 归因
-│       ├── apply_dicow_langfix.py       # DiCoW language 死代码补丁
-│       ├── make_readme_progress.py      # README 进度图生成
-│       └── experiments/                 # 📦 归档区（CAM++ 证伪 / SE·enroll·LLM·fuse 实验 json + 评测脚本 fuse_eval/eval_se_cer 等 + 诊断）
+│       ├── ⭐ 核心提交链路（22 个 .py + .sh 原位不动，提交零风险）
+│       │   ├── submit_infer.py / enroll_infer.py / to_submission.py
+│       │   ├── se_denoise.py / noise_classify.py / llm_reject.py
+│       │   ├── scene_route_backend.py / qwen_asr_backend.py / firered_asr_backend.py
+│       │   ├── eval_metrics.py / eval_datasetA.py / eval_full_test.py
+│       │   ├── repro.py / text_utils.py / simulate_pipeline.py / make_pairs_from_datasetA.py
+│       │   ├── run_baodi.sh / setenv*.sh / deploy_l20.sh / run_efficiency_l20.sh
+│       │   └── requirements.txt / home_bias_phrases.txt
+│       │      （核心数据：pos/neg_pairs_datasetA.json）
+│       ├── 📦 experiments/             # 归档区：125+ 已完成实验脚本（exp_/poc_/verify_/analyze_/tse_/...）
+│       ├── 📊 data/                    # 归档区：实验产物 .json（27）/ 语料 .jsonl / 官方 .csv
+│       └── runs/ demo_web/ patches/    # 运行产物与工具
 │
-├── 📊 进度与结果
-│   ├── PROGRESS.md                    # 开发进度记录
-│   ├── RESULTS.md                     # 实测结果与分析
-│   └── docs/
-│       ├── progress_overview.png        # 📊 README 进度概览图（真测版: 路线突破+sim分桶+稳定性）
-│       ├── cer_progress_dashboard.html  # 可交互看板（light/dark 自适应）
-│       └── superpowers/                 # 设计稿（plans/specs）
-│
-└── 📖 论文精读
-    ├── 核心论文精读与方案.md
-    ├── 论文精读_US-PVAD_超短参考.md
-    ├── 论文精读_增强与纠错路线.md
-    └── 资料扩展_TS-ASR与开源资产.md
+└── 📂 docs/ · 文档区（整理后集中收纳）
+    ├── 00_技术路线总纲与行动地图.md ~ 03_答辩FAQ与风险预案.md   # 技术路线/模块/上限/答辩
+    ├── paper_index.md / 核心论文精读与方案.md / 论文精读_*.md / 资料扩展_*.md
+    ├── 边缘部署规划.md / 项目阶段盘点.md / 待问主办方.md / 待确认_*.md
+    ├── progress_overview.png / cer_progress_dashboard.html
+    └── superpowers/                    # 设计稿（plans/specs）
 ```
 
 ---
@@ -277,7 +266,7 @@ python stno_experiment.py
 5. **Reject-or-Not** (2512.10257) - LLM 拒识基准
 6. **RASTAR** (2602.12287) - 检索增强纠错
 
-详见 [`papers/`](papers/) 目录和 [`paper_index.md`](paper_index.md)。
+详见 [`papers/`](papers/) 目录和 [`paper_index.md`](docs/paper_index.md)。
 
 ---
 
