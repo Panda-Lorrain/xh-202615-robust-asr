@@ -1,7 +1,7 @@
 # 美的 AI 研究院 论文清单
 > 题目：XH-202615《复杂交互场景的抗干扰语音指令识别技术》参考资料
 > 整理日期：2026-06-26 ｜ **2026-06-27 核实修正：撤销虚构的「OOD ASR」——IEEE 10890695 实为异常声检测 DASM**
-> 2026-06-27 补充：加入 TS-ASR 五篇 + CUSIDE-array + 智慧家庭综述 + SELD，全部 PDF 迁入 `papers/` 子目录
+> 2026-06-27 补充：加入 TS-ASR 五篇 + CUSIDE-array + 智慧家庭综述 + SELD，全部 PDF 迁入 `_txt/` 子目录
 > 来源：https://ai.midea.com/#/papers + 用户提供的 16 个链接 + 后续扩展
 
 ## 一、下载状态总览
@@ -12,7 +12,7 @@
 | 🔒 付费墙未下载 | **5 篇** | **仅 jdkjjournal 与本题相关**；其余 4 篇（异常声检测×2、语音隐写、制冷噪声）均与本题无关 |
 
 本地目录：`E:\midea_target_asr\papers\`（PDF）  `E:\midea_target_asr\_txt\`（pdftotext 提取全文）
-文件命名规则：`序号_完整英文标题_原始ID.pdf`（仅去掉 Windows 非法字符 `?:`，不缩写、不翻译；分级与中文说明见本清单）
+文件命名规则：`序号_完整英文标题_原始ID.txt`（仅去掉 Windows 非法字符 `?:`，不缩写、不翻译；分级与中文说明见本清单）
 
 ---
 
@@ -22,38 +22,38 @@
 
 | # | 中文译名 / 说明 | 原标题（英文） | 来源 | 本地文件 |
 |---|---|---|---|---|
-| 1 | **智能家居语音助手「查询拒识」基准 + 基于 LLM 的改进方法** | Reject or Not: A Benchmark for Voice Assistant Query Rejection in Smart Home Scenario and an Improved Method Based on LLMs | arxiv 2512.10257 | `papers/01_Reject or Not A Benchmark for Voice Assistant Query Rejection in Smart Home Scenario and an Improved Method Based on LLMs_2512.10257.pdf` |
-| 2 | **面向短注册语音的 Personal VAD 自适应声纹自增强** | Adaptive Speaker Embedding Self-Augmentation for Personal Voice Activity Detection with Short Enrollment Speech | arxiv 2601.12769 | `papers/02_Adaptive Speaker Embedding Self-Augmentation for Personal Voice Activity Detection with Short Enrollment Speech_2601.12769.pdf` |
-| 3 | **超短参考语音的 Personal VAD（US-PVAD，APSIPA 2024）** | Personal Voice Activity Detection With Ultra-Short Reference Speech | IEEE 10848915 | `papers/12_Personal_Voice_Activity_Detection_With_Ultra-Short_Reference_Speech.pdf` |
+| 1 | **智能家居语音助手「查询拒识」基准 + 基于 LLM 的改进方法** | Reject or Not: A Benchmark for Voice Assistant Query Rejection in Smart Home Scenario and an Improved Method Based on LLMs | arxiv 2512.10257 | `_txt/01_Reject or Not A Benchmark for Voice Assistant Query Rejection in Smart Home Scenario and an Improved Method Based on LLMs_2512.10257.txt` |
+| 2 | **面向短注册语音的 Personal VAD 自适应声纹自增强** | Adaptive Speaker Embedding Self-Augmentation for Personal Voice Activity Detection with Short Enrollment Speech | arxiv 2601.12769 | `_txt/02_Adaptive Speaker Embedding Self-Augmentation for Personal Voice Activity Detection with Short Enrollment Speech_2601.12769.txt` |
+| 3 | **超短参考语音的 Personal VAD（US-PVAD，APSIPA 2024）** | Personal Voice Activity Detection With Ultra-Short Reference Speech | IEEE 10848915 | `_txt/12_Personal_Voice_Activity_Detection_With_Ultra-Short_Reference_Speech.txt` |
 | ~~4~~ | ~~带噪多说话人端到端 OOD 语音识别~~ | ~~End-to-End OOD Speech Recognition…~~ | ~~IEEE 10890695~~ | ❌ **已撤销：OCR 误认，10890695 实为异常声检测 DASM，见边缘 #13b** |
 
 ### ⭐⭐⭐⭐ 推荐
 
 | # | 中文译名 / 说明 | 原标题（英文） | 来源 | 本地文件 |
 |---|---|---|---|---|
-| 5 | **噪声环境下的端到端方向感知 KWS（带空间先验，美的）** | End-to-End Direction-Aware Keyword Spotting with Spatial Priors in Noisy Environments | arxiv 2603.09505 | `papers/03_End-to-End Direction-Aware Keyword Spotting with Spatial Priors in Noisy Environments_2603.09505.pdf` |
-| 6 | **带噪多说话人场景下的端到端 DOA 引导语音提取（DSENet）** | End-to-End DOA-Guided Speech Extraction in Noisy Multi-Talker Scenarios | arxiv 2507.20926 | `papers/04_End-to-End DOA-Guided Speech Extraction in Noisy Multi-Talker Scenarios_2507.20926.pdf` |
-| 7 | **几何感知声学处理：联合回声消除与降噪的动态空间网络（VSAEC）** | Geometry-Aware Acoustic Processing: A Dynamic Spatial Network for Joint Echo Cancellation and Noise Suppression | midea_file | `papers/07_Geometry-Aware Acoustic Processing A Dynamic Spatial Network for Joint Echo Cancellation and Noise Suppression_midea.pdf` |
+| 5 | **噪声环境下的端到端方向感知 KWS（带空间先验，美的）** | End-to-End Direction-Aware Keyword Spotting with Spatial Priors in Noisy Environments | arxiv 2603.09505 | `_txt/03_End-to-End Direction-Aware Keyword Spotting with Spatial Priors in Noisy Environments_2603.09505.txt` |
+| 6 | **带噪多说话人场景下的端到端 DOA 引导语音提取（DSENet）** | End-to-End DOA-Guided Speech Extraction in Noisy Multi-Talker Scenarios | arxiv 2507.20926 | `_txt/04_End-to-End DOA-Guided Speech Extraction in Noisy Multi-Talker Scenarios_2507.20926.txt` |
+| 7 | **几何感知声学处理：联合回声消除与降噪的动态空间网络（VSAEC）** | Geometry-Aware Acoustic Processing: A Dynamic Spatial Network for Joint Echo Cancellation and Noise Suppression | midea_file | `_txt/07_Geometry-Aware Acoustic Processing A Dynamic Spatial Network for Joint Echo Cancellation and Noise Suppression_midea.txt` |
 
 ### ⭐⭐⭐ 参考
 
 | # | 中文译名 / 说明 | 原标题（英文） | 来源 | 本地文件 |
 |---|---|---|---|---|
-| 8 | **基于方差保持插值的扩散模型语音增强（VPIDM）** | Variance-Preserving-Based Interpolation Diffusion Models for Speech Enhancement | arxiv 2306.08527 | `papers/05_Variance-Preserving-Based Interpolation Diffusion Models for Speech Enhancement_2306.08527.pdf` |
-| 9 | **检索增强 + 自适应 CoT 的 ASR 命名实体纠错（RASTAR）** | Retrieval-Augmented Self-Taught Reasoning Model with Adaptive Chain-of-Thought for ASR Named Entity Correction | arxiv 2602.12287 | `papers/06_Retrieval-Augmented Self-Taught Reasoning Model with Adaptive Chain-of-Thought for ASR Named Entity Correction_2602.12287.pdf` |
-| 10 | **基于类别相关声分离的真实场景声事件定位与检测（SELD，APSIPA 2023）** | Improving Sound Event Localization and Detection with Class-Dependent Sound Separation for Real-World Scenarios | IEEE 10317385 | `papers/13_Improving Sound Event Localization and Detection with Class-Dependent Sound Separation for Real-World Scenarios.pdf` |
-| 11 | **智慧家庭语音交互意图理解评测现状（中文综述）** | —— | jdkjjournal | `papers/14_智慧家庭语音交互意图理解评测现状.pdf` ✅ 已下载 |
-| 11b | **CUSIDE-array：流式多通道端到端语音识别系统** | CUSIDE-array: A Streaming Multi-Channel End-to-End Speech Recognition System with Realistic Evaluations | arxiv | `papers/11_CUSIDE-array A Streaming Multi-Channel End-to-End Speech Recognition System with Realistic Evaluations.pdf` |
+| 8 | **基于方差保持插值的扩散模型语音增强（VPIDM）** | Variance-Preserving-Based Interpolation Diffusion Models for Speech Enhancement | arxiv 2306.08527 | `_txt/05_Variance-Preserving-Based Interpolation Diffusion Models for Speech Enhancement_2306.08527.txt` |
+| 9 | **检索增强 + 自适应 CoT 的 ASR 命名实体纠错（RASTAR）** | Retrieval-Augmented Self-Taught Reasoning Model with Adaptive Chain-of-Thought for ASR Named Entity Correction | arxiv 2602.12287 | `_txt/06_Retrieval-Augmented Self-Taught Reasoning Model with Adaptive Chain-of-Thought for ASR Named Entity Correction_2602.12287.txt` |
+| 10 | **基于类别相关声分离的真实场景声事件定位与检测（SELD，APSIPA 2023）** | Improving Sound Event Localization and Detection with Class-Dependent Sound Separation for Real-World Scenarios | IEEE 10317385 | `_txt/13_Improving Sound Event Localization and Detection with Class-Dependent Sound Separation for Real-World Scenarios.txt` |
+| 11 | **智慧家庭语音交互意图理解评测现状（中文综述）** | —— | jdkjjournal | `_txt/14_智慧家庭语音交互意图理解评测现状.txt` ✅ 已下载 |
+| 11b | **CUSIDE-array：流式多通道端到端语音识别系统** | CUSIDE-array: A Streaming Multi-Channel End-to-End Speech Recognition System with Realistic Evaluations | arxiv | `_txt/11_CUSIDE-array A Streaming Multi-Channel End-to-End Speech Recognition System with Realistic Evaluations.txt` |
 
 ### ⭐⭐ / ⭐ 次要或边缘（均与本题关系不大）
 
 | # | 中文译名 / 说明 | 原标题（英文） | 来源 | 本地文件 |
 |---|---|---|---|---|
-| 12 | **当生成对抗网络遇到序列标注挑战** | When Generative Adversarial Networks Meet Sequence Labeling Challenges | ACL 2024 | `papers/08_When Generative Adversarial Networks Meet Sequence Labeling Challenges_EMNLP2024.pdf` |
+| 12 | **当生成对抗网络遇到序列标注挑战** | When Generative Adversarial Networks Meet Sequence Labeling Challenges | ACL 2024 | `_txt/08_When Generative Adversarial Networks Meet Sequence Labeling Challenges_EMNLP2024.txt` |
 | 13 | **自监督增强扩散模型的异常声检测（SSDM）** | Self-Supervised Augmented Diffusion Model for Anomalous Sound Detection | IEEE 10849056 | 🔒 无关 |
 | 13b | **扩散增强子中心建模的异常声检测（DASM，ICASSP 2025）** ⚠️原 OCR 误认为「OOD ASR」 | Diffusion Augmentation Sub-center Modeling for Unsupervised Anomalous Sound Detection with Partially Attribute-Unavailable Conditions | IEEE 10890695 | 🔒 无关 |
-| 14 | **关于下一词预测的支持样本** | On Support Samples of Next Word Prediction | arxiv 2506.04047 | `papers/10_On Support Samples of Next Word Prediction_2506.04047.pdf` |
-| 15 | **细粒度语音情感识别的 emotion neural transducer** | Emotion Neural Transducer for Fine-Grained Speech Emotion Recognition | arxiv 2403.19224 | `papers/09_Emotion Neural Transducer for Fine-Grained Speech Emotion Recognition_2403.19224.pdf` |
+| 14 | **关于下一词预测的支持样本** | On Support Samples of Next Word Prediction | arxiv 2506.04047 | `_txt/10_On Support Samples of Next Word Prediction_2506.04047.txt` |
+| 15 | **细粒度语音情感识别的 emotion neural transducer** | Emotion Neural Transducer for Fine-Grained Speech Emotion Recognition | arxiv 2403.19224 | `_txt/09_Emotion Neural Transducer for Fine-Grained Speech Emotion Recognition_2403.19224.txt` |
 | 16 | **基于非目标转换的语音隐写（安全通信）** | Non-Target Conversion Based Speech Steganography for Secure Communication | IEEE 10849273 | 🔒 弱相关 |
 | 17 | **制冷设备流致噪声的声音特性调谐（美的制冷业务）** | Tuning the sound characteristics of flow-induced noise in refrigeration equipment | ScienceDirect | 🔒 无关 |
 
@@ -65,11 +65,11 @@
 
 | # | 中文译名 / 说明 | 原标题（英文） | 来源 | 本地文件 |
 |---|---|---|---|---|
-| 18 | **FDDT：面向 Whisper 的 frozen decoder 调优（TS-ASR 基础）** | FDDT: Frozen Decoder Distillation and Tuning for Whisper | arxiv 2409.09543 | `papers/FDDT_TS-ASR-Whisper_2409.09543.pdf` |
-| 19 | **DiCoW：decoder-informed 音频编码器（TS-ASR 核心）** | DiCoW: Decoder-Informed Audio Encoder for Target-Speaker ASR | arxiv 2501.00114 | `papers/DiCoW_2501.00114.pdf` |
-| 20 | **SE-DiCoW：带 cross-attention 的增强版（重叠场景）** | SE-DiCoW: Speaker-Enhanced Decoder-Informed Whisper | arxiv 2601.19194 | `papers/SE-DiCoW_2601.19194.pdf` |
-| 21 | **TS-RNNT：Hadamard 积预注册的流式 TS-ASR** | Target-Speaker RNNT with Hadamard Product Pre-Registration | arxiv 2209.04175 | `papers/TS-RNNT_streaming_2209.04175.pdf` |
-| 22 | **NOTSOFAR：CHiME-8 多通道流式 ASR 基线** | NOTSOFAR: Near-field Talker Separation and Far-field ASR | arxiv 2409.02041 | `papers/NOTSOFAR1_CHiME8_2409.02041.pdf` |
+| 18 | **FDDT：面向 Whisper 的 frozen decoder 调优（TS-ASR 基础）** | FDDT: Frozen Decoder Distillation and Tuning for Whisper | arxiv 2409.09543 | `_txt/FDDT_TS-ASR-Whisper_2409.09543.txt` |
+| 19 | **DiCoW：decoder-informed 音频编码器（TS-ASR 核心）** | DiCoW: Decoder-Informed Audio Encoder for Target-Speaker ASR | arxiv 2501.00114 | `_txt/DiCoW_2501.00114.txt` |
+| 20 | **SE-DiCoW：带 cross-attention 的增强版（重叠场景）** | SE-DiCoW: Speaker-Enhanced Decoder-Informed Whisper | arxiv 2601.19194 | `_txt/SE-DiCoW_2601.19194.txt` |
+| 21 | **TS-RNNT：Hadamard 积预注册的流式 TS-ASR** | Target-Speaker RNNT with Hadamard Product Pre-Registration | arxiv 2209.04175 | `_txt/TS-RNNT_streaming_2209.04175.txt` |
+| 22 | **NOTSOFAR：CHiME-8 多通道流式 ASR 基线** | NOTSOFAR: Near-field Talker Separation and Far-field ASR | arxiv 2409.02041 | `_txt/NOTSOFAR1_CHiME8_2409.02041.txt` |
 
 ---
 
@@ -98,7 +98,7 @@
 
 ## 六、付费墙 5 篇说明
 
-1. ~~**jdkjjournal（智慧家庭语音意图综述）**~~ → ✅ 已下载（`papers/14_智慧家庭语音交互意图理解评测现状.pdf`）
+1. ~~**jdkjjournal（智慧家庭语音意图综述）**~~ → ✅ 已下载（`_txt/14_智慧家庭语音交互意图理解评测现状.txt`）
 2. ~~**IEEE 10890695（OOD ASR）**~~ → **已撤销**：OCR 误认，实际为 **DASM 异常声检测（ICASSP 2025）**，与本题无关，无需找。
 3. **IEEE 10849056（SSDM 异常声检测）、IEEE 10849273（语音隐写）、ScienceDirect（制冷噪声）**——均与本题无关，可不下。
 

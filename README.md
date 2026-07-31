@@ -114,8 +114,7 @@ xh-202615-robust-asr/
 ├── 📦 交付/                         # 比赛提交物（设计报告/使用说明/测试验证方案）
 │
 ├── 📚 论文资料
-│   ├── papers/                        # 原始 PDF 论文（19 篇）
-│   └── _txt/                          # 论文文本提取
+│   └── _txt/                          # 论文全文文本（pdftotext 提取，19 篇，供 Agent 精读）
 │
 ├── 📄 根目录 · 状态中枢（7 个 .md + 工具）
 │   ├── README.md / CLAUDE.md / AGENTS.md / AGENT_HANDOFF.md   # 入口与交接
@@ -266,7 +265,7 @@ python stno_experiment.py
 5. **Reject-or-Not** (2512.10257) - LLM 拒识基准
 6. **RASTAR** (2602.12287) - 检索增强纠错
 
-详见 [`papers/`](papers/) 目录和 [`paper_index.md`](docs/paper_index.md)。
+详见 [`_txt/`](_txt/) 目录和 [`paper_index.md`](docs/paper_index.md)。
 
 ---
 
