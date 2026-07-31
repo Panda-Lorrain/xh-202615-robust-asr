@@ -37,6 +37,12 @@ def main():
                     help="repetition_penalty 透传 generate(直击循环英文幻觉, 近零RTF; 1.0=关=原greedy; 建议1.05-1.2)")
     ap.add_argument("--no-repeat-ngram-size", type=int, default=0,
                     help="no_repeat_ngram_size 透传 generate(硬ban n-gram重复=循环幻觉克星, 近零RTF; 0=关; 中文建议>=3避免误杀叠字)")
+    ap.add_argument("--bias-phrases-file", default="",
+                    help="解码期短语偏置文件(JSON数组或逐行短语)；默认空=关闭")
+    ap.add_argument("--bias-strength", type=float, default=0.8,
+                    help="top-K 内候选 token 的 logits 加分；仅 --bias-phrases-file 生效")
+    ap.add_argument("--bias-top-k", type=int, default=20,
+                    help="只偏置当前 logits top-K 内的短语候选，防止从噪声凭空回吐热词")
     args = ap.parse_args()
     if bool(args.paired_slice_dir) != bool(args.paired_out):
         ap.error("--paired-slice-dir and --paired-out must be provided together")
@@ -59,17 +65,45 @@ def main():
     print(f"[load] Qwen3-ASR {args.model} bf16 ...")
     model = Qwen3ASRModel.from_pretrained(args.model, dtype=torch.bfloat16, device_map="cuda:0")
 
-    # 零RTF解码参数: monkey-patch model.model.generate 注入 rep_penalty/no_repeat_ngram_size
+    # 解码参数: monkey-patch model.model.generate 注入重复抑制/声学 top-K 锚定短语偏置
     # (transcribe→_infer_asr_transformers→self.model.generate 不暴露这些 kwarg, 包一层注入;
     #  默认值=原greedy行为, 向后兼容; C1/C2 context 实验不受影响)
-    if args.rep_penalty != 1.0 or args.no_repeat_ngram_size > 0:
+    _phrase_processor = None
+    if args.bias_phrases_file:
+        from qwen_phrase_bias import (
+            AcousticTopKPhraseBias,
+            load_phrases,
+            tokenize_phrases,
+        )
+        phrases = load_phrases(args.bias_phrases_file)
+        tokenized = tokenize_phrases(model.processor.tokenizer, phrases)
+        _phrase_processor = AcousticTopKPhraseBias(
+            tokenized, bias=args.bias_strength, top_k=args.bias_top_k
+        )
+        print(
+            f"[bias] phrases={len(phrases)} tokenized={len(tokenized)} "
+            f"strength={args.bias_strength} top_k={args.bias_top_k}"
+        )
+
+    if (args.rep_penalty != 1.0 or args.no_repeat_ngram_size > 0
+            or _phrase_processor is not None):
         _orig_generate = model.model.generate
         def _patched_generate(*a, **kw):
             kw.setdefault("repetition_penalty", args.rep_penalty)
             kw.setdefault("no_repeat_ngram_size", args.no_repeat_ngram_size)
+            if _phrase_processor is not None:
+                from transformers import LogitsProcessorList
+                current = list(kw.get("logits_processor") or [])
+                kw["logits_processor"] = LogitsProcessorList(
+                    current + [_phrase_processor]
+                )
             return _orig_generate(*a, **kw)
         model.model.generate = _patched_generate
-        print(f"[patch] generate rep_penalty={args.rep_penalty} no_repeat_ngram_size={args.no_repeat_ngram_size}")
+        print(
+            f"[patch] generate rep_penalty={args.rep_penalty} "
+            f"no_repeat_ngram_size={args.no_repeat_ngram_size} "
+            f"phrase_bias={_phrase_processor is not None}"
+        )
 
     if args.paired_slice_dir:
         paired_slices = sorted(
