@@ -136,6 +136,47 @@ def test_run_enroll_pairs_backend():
     print("test_run_enroll_pairs_backend OK")
 
 
+def test_run_scene_route_command():
+    import submit_infer as si
+    captured = {}
+
+    def fake_run(cmd, py):
+        captured["cmd"] = cmd
+        captured["py"] = py
+        return 1.25
+
+    orig = si._run
+    si._run = fake_run
+    try:
+        wall = si.run_scene_route(
+            "enroll.json", "scene.json", "work", "cuda:0", seed=7, py="python"
+        )
+    finally:
+        si._run = orig
+    assert wall == 1.25
+    assert captured["py"] == "python"
+    assert captured["cmd"][0].endswith("scene_route_backend.py")
+    assert captured["cmd"][captured["cmd"].index("--qwen-batch-size") + 1] == "1"
+    assert captured["cmd"][captured["cmd"].index("--seed") + 1] == "7"
+    print("test_run_scene_route_command OK")
+
+
+def test_scene_route_pure_logic():
+    from scene_route_backend import eligible_scene_uids, choose_scene_text
+
+    rows = [
+        {"recognition": "a.wav", "speakers": ["S0", "S1"]},
+        {"recognition": "b.wav", "speakers": ["S0"]},
+        {"recognition": "c.wav", "speakers": ["S0", "S1"], "error": "bad"},
+    ]
+    assert eligible_scene_uids(rows) == ["a"]
+    idx, reason, scores = choose_scene_text(["打开空调", "中国市场同比增长"])
+    assert idx == 0
+    assert isinstance(reason, str)
+    assert scores[0] > scores[1]
+    print("test_scene_route_pure_logic OK")
+
+
 if __name__ == "__main__":
     test_utt_id()
     test_audio_duration()
@@ -146,4 +187,6 @@ if __name__ == "__main__":
     test_build_result()
     test_build_timing()
     test_run_enroll_pairs_backend()
+    test_run_scene_route_command()
+    test_scene_route_pure_logic()
     print("ALL PASS")

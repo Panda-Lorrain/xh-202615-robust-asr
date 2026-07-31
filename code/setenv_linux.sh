@@ -29,6 +29,8 @@ export MODEL_QWEN="/root/hf_cache/Qwen2.5-3B-Instruct"
 # Qwen3-ASR / FireRedASR(独立 venv 后端, qwen_asr_backend.py / firered_asr_backend.py 读)
 export MODEL_QWEN3_ASR="/root/hf_cache/Qwen3-ASR-1.7B"
 export MODEL_FIRERED="/root/hf_cache/FireRedASR-AED-L"
+# 可选 scene route；启用 --scene-route 前必须确认该缓存已存在，代码不会隐式下载
+export MODEL_SEPFORMER="/root/hf_cache/sepformer-whamr16k"
 # DeepFilterNet3(SE 阶段, 非 HF, GitHub Rikorose/DeepFilterNet release)
 export DF_MODEL_BASE_DIR="/root/df_cache/DeepFilterNet3"
 export DF_CACHE_DIR="/root/df_cache/DeepFilterNet/Cache"

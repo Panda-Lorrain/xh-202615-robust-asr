@@ -184,6 +184,28 @@ def run_llm(infer_json, out_json, device, seed=42, py=PY_LLM):
                  "--device", device, "--seed", str(seed)], py)
 
 
+def run_scene_route(enroll_json, out_json, work_dir, device, seed=42, py=PY_MAIN):
+    """双人样本运行固定 SepFormer+Qwen heuristic 路由；失败由后端标记回退主线。"""
+    return _run(
+        [
+            os.path.join(HERE, "scene_route_backend.py"),
+            "--enroll-json",
+            enroll_json,
+            "--out-json",
+            out_json,
+            "--work-dir",
+            work_dir,
+            "--device",
+            device,
+            "--seed",
+            str(seed),
+            "--qwen-batch-size",
+            "1",
+        ],
+        py,
+    )
+
+
 def main():
     ap = argparse.ArgumentParser(description="标准化推理: enrollment+recognition -> result.json+timing.json")
     g = ap.add_mutually_exclusive_group(required=True)
@@ -196,6 +218,12 @@ def main():
     ap.add_argument("--content-gate", action="store_true",
                     help="开 content_gate: sim≥thr 的 accept 若转写非有效家居指令则加拒"
                          "(hold-out val +1.6分证泛化, 默认关; run_baodi 用 BAODI_GATE=1 开)")
+    ap.add_argument(
+        "--scene-route",
+        action="store_true",
+        help="候选开关：双人样本走 SepFormer 两路+Qwen heuristic，失败回退主线；"
+             "仅支持 --asr-backend qwen，默认关闭",
+    )
     ap.add_argument("--enroll-augment", action="store_true",
                     help="enrollment 加噪增强(干净+多档加噪 emb 均值,提 babble 下声纹鲁棒 → 提 sim)")
     ap.add_argument("--aug-snrs", default="10,5,0", help="enrollment 加噪增强 SNR 档(逗号分)")
@@ -216,6 +244,8 @@ def main():
 
     if not args.pairs and not args.recognition_folder:
         ap.error("--enrollment 需配 --recognition-folder")
+    if args.scene_route and args.asr_backend != "qwen":
+        ap.error("--scene-route 仅支持 --asr-backend qwen")
     use_llm = not args.no_llm
     use_se = not args.no_se
 
@@ -320,6 +350,31 @@ def main():
     phases["enroll_diar_dicow"] = {"wall_sec": round(e_wall, 3),
                                    "mean_rtf": round(sum_rtf / n_rtf, 4) if n_rtf else None}
 
+    # --- 阶段2.5: 可选固定场景路由 ---
+    # 只改双人样本 transcript；声纹 max_sim/拒识保持主线信号。后端任何失败均回退原文本。
+    if args.scene_route:
+        scene_out = os.path.join(work_dir, "scene_route.json")
+        scene_wall = run_scene_route(
+            enroll_all, scene_out, work_dir, args.device, args.seed
+        )
+        with open(scene_out, encoding="utf-8") as f:
+            scene_payload = json.load(f)
+        scene_routes = scene_payload.get("routes", {})
+        for row in all_rows:
+            uid = utt_id_from_path(row.get("recognition", ""))
+            route = scene_routes.get(uid, {})
+            row["scene_route"] = route
+            if route.get("status") == "routed":
+                row["transcript"] = route.get("transcript", "")
+                row["chars"] = len(row["transcript"])
+        phases["scene_route"] = {
+            "wall_sec": round(scene_wall, 3),
+            "n_eligible": scene_payload.get("n_eligible", 0),
+            "n_routed": scene_payload.get("n_routed", 0),
+            "n_fallback": scene_payload.get("n_fallback", 0),
+            "qwen_batch_size": 1,
+        }
+
     # 汇总 enroll 输出(utt_id -> row)
     enr_map = {}
     for r in all_rows:
@@ -369,13 +424,15 @@ def main():
             "batch_size": r.get("batch_size", 1),  # 可复现性: per-utt batch(FAQ 核查可见)
             "peak_mem_mib": r.get("peak_mem_mib"),  # 可复现性: per-utt 峰值显存(FAQ 核查硬要求 5)
             "diar_fail": bool(r.get("error")),
+            "scene_route": r.get("scene_route") if args.scene_route else None,
         })
         dur = audio_duration_s(dst)
         per_utt.append({"utt_id": uid, "audio_sec": round(dur, 3),
                         "wall_sec": None, "rtf": round(float(r.get("rtf", 0.0) or 0.0), 4)})
 
     cfg = {"se": use_se, "llm": use_llm, "strategy": args.strategy if use_llm else "sim_only",
-           "sim_thr": args.sim_thr, "device": args.device, "asr_backend": args.asr_backend}
+           "sim_thr": args.sim_thr, "device": args.device, "asr_backend": args.asr_backend,
+           "scene_route": args.scene_route}
     result = build_result(items, cfg)
     timing = build_timing(args.device, len(items), total_audio, total_wall, phases, per_utt)
     timing["duration_infer_sec"] = round(duration_infer_sec, 3)

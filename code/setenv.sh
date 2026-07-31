@@ -31,6 +31,8 @@ export MODEL_VANILLA="E:/hf_cache/whisper-large-v3-turbo"
 export MODEL_DICOW="E:/hf_cache/DiCoW_v3_2"
 export MODEL_DIAR="E:/hf_cache/diarizen-wavlm-large-s80-md"
 export MODEL_QWEN="E:/hf_cache/Qwen2.5-3B-Instruct"
+# 可选 scene route；启用 --scene-route 前必须确认该缓存已存在，代码不会隐式下载
+export MODEL_SEPFORMER="E:/hf_cache/sepformer-whamr16k"
 # DF3 例外：非 HF 模型，原始权重来自 GitHub Rikorose/DeepFilterNet
 export DF_MODEL_BASE_DIR="E:/df_cache/DeepFilterNet/Cache/DeepFilterNet3"
 
