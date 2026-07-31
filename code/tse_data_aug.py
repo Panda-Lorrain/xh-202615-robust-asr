@@ -273,6 +273,8 @@ def synthesize_tse_triple(
     enroll_pollute_snr_db: float = 10.0,
     sir_db: Optional[float] = None,
     rng: Optional[random.Random] = None,
+    rir_pool: Optional[List[np.ndarray]] = None,
+    rir_prob: float = 0.5,
 ):
     """合成一条 TSE 训练三元组: (enrollment, recognition, clean_target, params)。
 
@@ -295,6 +297,18 @@ def synthesize_tse_triple(
     if target_speed_rate != 1.0:
         t = make_fast(t, target_speed_rate)
 
+    # 1b) 可选 RIR 卷积 (MIT IR Survey, 见 rir_augment.py)。卷积在前/标定在后:
+    # 下游 _scale_to_sir 与 add_noise_relative_to_target 自动以卷积后 RMS 标定,
+    # SIR/SNR 自动正确。target 与 clean_target 共同一 RIR → SI-SDR 监督严格对齐;
+    # enrollment 走独立路径 (cut_enrollment) 不卷积。两人抽不同 RIR 模拟不同位置。
+    rir_applied = False
+    rir_interferer = None
+    if rir_pool is not None and len(rir_pool) >= 2 and rng.random() < rir_prob:
+        from rir_augment import apply_rir, sample_two_rirs
+        _rir_t, rir_interferer = sample_two_rirs(rir_pool, rng)
+        t = apply_rir(t, _rir_t)
+        rir_applied = True
+
     # 2) enrollment 必须来自同 speaker 的另一 utterance。
     if enrollment_wav is None:
         raise ValueError("enrollment_wav is required and must be a distinct utterance")
@@ -310,8 +324,17 @@ def synthesize_tse_triple(
 
     # 4) 完整 target + 随机前后重叠。SIR 独立于背景噪声 SNR。
     sir_db = float(rng.uniform(-5.0, 5.0) if sir_db is None else sir_db)
+    # interferer RIR 注入 (与 step1 target 同批抽取的 rir_interferer)。
+    # 在 mix_with_random_timing 前卷积, 保证 interference = nominal_mixed -
+    # nominal_clean_target 数学上 = 卷积后的 interferer buffer, SI-SDR 对齐成立。
+    interferer_proc = interferer_wav
+    if rir_applied and rir_interferer is not None:
+        from rir_augment import apply_rir
+        interferer_proc = apply_rir(
+            np.asarray(interferer_wav, dtype=np.float32), rir_interferer
+        )
     nominal_mixed, nominal_clean_target, timing_meta = mix_with_random_timing(
-        t, interferer_wav, overlap_ratio, sir_db, rng
+        t, interferer_proc, overlap_ratio, sir_db, rng
     )
     interference = nominal_mixed - nominal_clean_target
     gain = 10.0 ** (float(target_gain_db) / 20.0)
@@ -363,6 +386,7 @@ def synthesize_tse_triple(
         "enroll_dur_sec": float(enroll_dur_sec),
         "enroll_pollute": bool(enroll_polluted),
         "enroll_pollute_snr_db": float(enroll_pollute_snr_db),
+        "rir_applied": bool(rir_applied),
         **timing_meta,
     }
     return (enroll.astype(np.float32),
@@ -380,6 +404,7 @@ def build_tse_pairs(
     seed: int = 42,
     progress_every: int = 5,
     augmentation_profile: str = "balanced",
+    rir_root: str = "",
 ):
     """批量生成 TSE 训练三元组 → out_dir/{enrollment,recognition,clean_target}/*.wav
     + manifest.jsonl。
@@ -392,6 +417,10 @@ def build_tse_pairs(
     os.makedirs(os.path.join(out_dir, "recognition"), exist_ok=True)
     os.makedirs(os.path.join(out_dir, "clean_target"), exist_ok=True)
     rng = random.Random(seed)
+    rir_pool = None
+    if rir_root:
+        from rir_augment import load_rir_pool
+        rir_pool = load_rir_pool(rir_root, sr=SR)
     manifest_path = os.path.join(out_dir, "manifest.jsonl")
     cnt = 0
     t0 = time.time()
@@ -464,7 +493,8 @@ def build_tse_pairs(
                 enroll, recog, clean_tgt, aug = synthesize_tse_triple(
                     t_wav, interferer_wav, noise_wav,
                     enrollment_wav=target_audio[enrollment_item["wav"]],
-                    nontarget_pool=nontarget_pool, rng=rng, **params,
+                    nontarget_pool=nontarget_pool, rng=rng,
+                    rir_pool=rir_pool, **params,
                 )
                 uid = f"{os.path.splitext(os.path.basename(ti['wav']))[0]}_k{k:03d}"
                 enr_path = os.path.join(out_dir, "enrollment", uid + ".wav")
