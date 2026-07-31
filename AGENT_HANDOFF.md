@@ -1,5 +1,12 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
+> 🔴 **2026-07-31 家居指令 TSE 数据流水线建成 + LoRA POC v1/v2 域 gap NO-GO（A 路封死）**。
+> **① 数据流水线（task1-3 完成）**：CosyVoice 2（WSL ~/cosyvoice，8 坑全解 → `deploy_cosyvoice.sh`）+ MIT IR Survey 270 RIR（`rir_augment.py` 纯 numpy FFT 卷积，注入 `tse_data_aug.py` step1 target / step4 interferer，clean_target 共享 RIR 保 SI-SDR 对齐）+ AISHELL-1 200 声纹 zero-shot 克隆 → 1000 干净 target + 500 interferer（`_home_cmd_corpus` 385 条家居指令 / `_chitchat` 500 闲话）→ `build_poc_data.py` 装配 **900 train + 100 val 三件套**（speaker-disjoint 180/20，SI-SDR 等长 1000/1000 ✓，难度 active_overlap med 0.50 / SNR −5~5 / babble 39% / RIR 50%）。用户人耳认可难度（"SNR−5+100%重叠+babble 下勉强听见 target"）。产物 gitignore（`_tts_pool` 191M + `_home_tse_poc` 334M 可重生）。
+> **② LoRA POC v1**（lr1e-4/steps200/dropout0.05，家居域）：A 集 1350 ΔCER **+0.0351**（0.3436→0.3787）退化，但比旧新闻域 0.491 好（域匹配方向对）；train loss 6.94→0.42（min≈0.00004 过拟合）。
+> **③ LoRA POC v2**（lr5e-5/steps100/dropout0.1，三重降过拟合）：ΔCER **+0.1409**（0.3436→0.4845）**退化更狠**；loss 没降到位(0.92，过拟合确实缓解)但 A 集更差，死区[0.2,0.3) Δ+0.43 炸裂。
+> **④ 核心结论 = 域 gap 结构性（非过拟合）**：调参降过拟合反而更差 → 证伪"v1 是过拟合"，真根因是**合成域(CosyVoice) vs 真人域(A 集) gap**。LoRA（纯 ASR 无 enrollment）路彻底封死。**三层墙诊断**（cascaded+通用 ASR 框架 CER 攻不动、18+ 路全证伪的共同根因）：① 感知-识别鸿沟（声学/SI-SNR/mel/loss 改善不传导 CER，TSE+Phase3+LoRA 四证，印证 EoW）② A 集死区 78.8% 物理地板（sim<0.4 信号被 babble−5dB 物理淹没，SOTA MiMo 0.417 也翻车，信息论极限）③ 架构不匹配（Qwen3-ASR 通用转写器不认识 target，LoRA 改转写不改"选 target"，而瓶颈恰在选 target）。
+> **⑤ 下一步二选一（待用户定）**：A 路（调参）已死。**B=端到端 Phase-3 完整版**（speaker embedding 内生注入 + ASR loss 直接反传，唯一能碰墙 3 的路，攻题目本质，需租 L20 + 扩 10k 数据，论文级工程）vs **C=归档转腿**（接受 cascaded CER 到顶 16.26/40，转效率 L20 + 答辩，把 18+ 路系统性证伪做答辩主线）。提交线不变 qwen 含拒 0.6201。详见 `docs/家居指令数据集制作计划_2026-07-31.md`（已补执行结果）+ memory `synth-data-lora-domain-gap-nogo`。
+>
 > 🔴 **2026-07-30 声学 top-K 锚定短语偏置 POC：NO-GO，不进主线。**
 > 为区别于已证伪的 Qwen 软 `context`，新增了真正的解码期短语 logits
 > bias：只有家电短语候选 token 已进入原模型 top-20 时才加 `+0.8`，
