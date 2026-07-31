@@ -1,5 +1,18 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
+> 🔴 **2026-07-30 声学 top-K 锚定短语偏置 POC：NO-GO，不进主线。**
+> 为区别于已证伪的 Qwen 软 `context`，新增了真正的解码期短语 logits
+> bias：只有家电短语候选 token 已进入原模型 top-20 时才加 `+0.8`，
+> 避免从低信息音频凭空回吐热词。baseline/候选在同一模型进程配对，
+> 先锁参数后只跑非 Dataset-A 的早期智能家居合成集。平衡烟测 30 条
+> （10条指令、5档 overlap 各6条）pool CER `0.2989→0.2960`，
+> Δ`-0.0029`，未过预设 `-0.01` 门槛；唯一变化在 0% overlap
+> 的一条“换成暖色→调成暖色”，25%–100% overlap 全部零变化。
+> 结论：安全但触达不了核心重叠瓶颈，不扩全量、不扫 bias/top-K、
+> 不碰 Dataset A、不接提交线。保留默认关闭的复现代码
+> `qwen_phrase_bias.py` / `exp_qwen_phrase_bias.py`。这只否定低成本
+> 解码偏置，不否定需要匹配数据重新训练的 CALM 类联合声学—语言模型。
+>
 > 🔴 **2026-07-30 当前恢复点：Phase-3 Sidecar 显著回退 + 稳定提交线
 > Dataset-A 全量重跑完成。** Phase-3 冻结 Qwen3-ASR-1.7B，
 > 8/24 层 Sidecar（rank 64，1,427,521 可训练参数）仅用 AISHELL-1
@@ -19,8 +32,10 @@
 >
 > 固定 scene route + content gate 在 1350 共同样本上 CER
 > `0.6168→0.5919`，约 `+0.99` 个质量分，但尚缺 L20 batch1
-> 端到端效率验证。**下一步不是训练模型**：先把 scene route 做成可开关
-> 候选，在 L20 测真实总分；同时确认主办方 CER 聚合与效率公式，并修复
+> 端到端效率验证。scene route 已于 2026-07-30 接成
+> `submit_infer.py --scene-route` 可选候选（默认关闭、单条失败回退主线、
+> Qwen 固定 batch1、缺 SepFormer 缓存时禁止隐式下载）。**下一步不是训练
+> 模型**：在 L20 测真实总分；同时确认主办方 CER 聚合与效率公式，并修复
 > Qwen 子进程峰值显存遥测。没有新的非 A 真实开发集，不再调阈值/
 > content gate/模型。详见 `docs/全量评测与下一步_2026-07-30.md` 和
 > `code/runs/full_eval_20260730_summary.json`。
