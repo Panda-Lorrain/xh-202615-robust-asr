@@ -37,8 +37,8 @@ if [[ "$SET" == "B" || "$SET" == "mixed" ]]; then
 else
   THR="${2:-0.4}"
 fi
-# vanilla 作提交主线(CER 0.664 减半, 反 cascaded); BAODI_BACKEND=dicow 切回 fallback/答辩对比基线
-BACKEND="${BAODI_BACKEND:-vanilla}"
+# qwen 作提交主线(07-11 起主线已切, CER 0.6201); BAODI_BACKEND=vanilla 切回早期保底基线, =dicow 答辩对比
+BACKEND="${BAODI_BACKEND:-qwen}"
 
 # thr 范围校验(防误传 2.0/-1 导致全 utt 同样被拒/放, result.json 静默错误输出)
 if ! awk "BEGIN{exit !($THR>=0 && $THR<=1)}" 2>/dev/null; then
