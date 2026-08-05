@@ -1,0 +1,340 @@
+{
+  "config": {
+    "pos_source": "E:\\midea_target_asr\\code\\runs\\poc_qwen_asr_full_result.json",
+    "neg_source": "E:\\midea_target_asr\\code\\runs\\full_eval_20260730_neg\\result.json",
+    "n_pos": 1350,
+    "n_neg": 474,
+    "w1": 0.5,
+    "w2": 0.5,
+    "anchor_thr": 0.27,
+    "anchor_with_gate_CER": 0.6201,
+    "anchor_with_gate_RR": 0.9473,
+    "anchor_Overall": 0.6636
+  },
+  "anchor_validation": {
+    "sim_only_CER_at_027": 0.5934,
+    "delta_gate": 0.0267,
+    "n_sim_reject_at_027": 429,
+    "n_gate_reject_fixed": 20,
+    "rr_at_027_recomputed": 0.9473,
+    "rr_anchor_match": true
+  },
+  "scan": [
+    {
+      "thr": 0.1,
+      "sim_only_CER": 0.382,
+      "with_gate_CER": 0.4086,
+      "with_gate_RR": 0.4557,
+      "Overall": 0.5235,
+      "d_Overall_vs_027": -0.1401,
+      "n_sim_reject_neg": 196
+    },
+    {
+      "thr": 0.11,
+      "sim_only_CER": 0.3852,
+      "with_gate_CER": 0.4118,
+      "with_gate_RR": 0.5042,
+      "Overall": 0.5462,
+      "d_Overall_vs_027": -0.1174,
+      "n_sim_reject_neg": 219
+    },
+    {
+      "thr": 0.12,
+      "sim_only_CER": 0.3922,
+      "with_gate_CER": 0.4188,
+      "with_gate_RR": 0.5612,
+      "Overall": 0.5712,
+      "d_Overall_vs_027": -0.0924,
+      "n_sim_reject_neg": 246
+    },
+    {
+      "thr": 0.13,
+      "sim_only_CER": 0.4036,
+      "with_gate_CER": 0.4303,
+      "with_gate_RR": 0.5886,
+      "Overall": 0.5792,
+      "d_Overall_vs_027": -0.0844,
+      "n_sim_reject_neg": 259
+    },
+    {
+      "thr": 0.14,
+      "sim_only_CER": 0.4147,
+      "with_gate_CER": 0.4414,
+      "with_gate_RR": 0.6266,
+      "Overall": 0.5926,
+      "d_Overall_vs_027": -0.071,
+      "n_sim_reject_neg": 277
+    },
+    {
+      "thr": 0.15,
+      "sim_only_CER": 0.4203,
+      "with_gate_CER": 0.4469,
+      "with_gate_RR": 0.6751,
+      "Overall": 0.6141,
+      "d_Overall_vs_027": -0.0495,
+      "n_sim_reject_neg": 300
+    },
+    {
+      "thr": 0.155,
+      "sim_only_CER": 0.4286,
+      "with_gate_CER": 0.4553,
+      "with_gate_RR": 0.692,
+      "Overall": 0.6183,
+      "d_Overall_vs_027": -0.0453,
+      "n_sim_reject_neg": 308
+    },
+    {
+      "thr": 0.16,
+      "sim_only_CER": 0.4369,
+      "with_gate_CER": 0.4636,
+      "with_gate_RR": 0.7152,
+      "Overall": 0.6258,
+      "d_Overall_vs_027": -0.0378,
+      "n_sim_reject_neg": 319
+    },
+    {
+      "thr": 0.165,
+      "sim_only_CER": 0.4471,
+      "with_gate_CER": 0.4738,
+      "with_gate_RR": 0.7278,
+      "Overall": 0.627,
+      "d_Overall_vs_027": -0.0366,
+      "n_sim_reject_neg": 325
+    },
+    {
+      "thr": 0.17,
+      "sim_only_CER": 0.4516,
+      "with_gate_CER": 0.4783,
+      "with_gate_RR": 0.7405,
+      "Overall": 0.6311,
+      "d_Overall_vs_027": -0.0325,
+      "n_sim_reject_neg": 331
+    },
+    {
+      "thr": 0.175,
+      "sim_only_CER": 0.4591,
+      "with_gate_CER": 0.4857,
+      "with_gate_RR": 0.7595,
+      "Overall": 0.6369,
+      "d_Overall_vs_027": -0.0267,
+      "n_sim_reject_neg": 340
+    },
+    {
+      "thr": 0.18,
+      "sim_only_CER": 0.4671,
+      "with_gate_CER": 0.4938,
+      "with_gate_RR": 0.7679,
+      "Overall": 0.6371,
+      "d_Overall_vs_027": -0.0265,
+      "n_sim_reject_neg": 344
+    },
+    {
+      "thr": 0.185,
+      "sim_only_CER": 0.4718,
+      "with_gate_CER": 0.4985,
+      "with_gate_RR": 0.7764,
+      "Overall": 0.639,
+      "d_Overall_vs_027": -0.0246,
+      "n_sim_reject_neg": 348
+    },
+    {
+      "thr": 0.19,
+      "sim_only_CER": 0.4824,
+      "with_gate_CER": 0.5091,
+      "with_gate_RR": 0.7932,
+      "Overall": 0.6421,
+      "d_Overall_vs_027": -0.0215,
+      "n_sim_reject_neg": 356
+    },
+    {
+      "thr": 0.195,
+      "sim_only_CER": 0.4867,
+      "with_gate_CER": 0.5134,
+      "with_gate_RR": 0.7975,
+      "Overall": 0.642,
+      "d_Overall_vs_027": -0.0216,
+      "n_sim_reject_neg": 358
+    },
+    {
+      "thr": 0.2,
+      "sim_only_CER": 0.4912,
+      "with_gate_CER": 0.5179,
+      "with_gate_RR": 0.8122,
+      "Overall": 0.6472,
+      "d_Overall_vs_027": -0.0164,
+      "n_sim_reject_neg": 365
+    },
+    {
+      "thr": 0.205,
+      "sim_only_CER": 0.4953,
+      "with_gate_CER": 0.522,
+      "with_gate_RR": 0.8312,
+      "Overall": 0.6546,
+      "d_Overall_vs_027": -0.009,
+      "n_sim_reject_neg": 374
+    },
+    {
+      "thr": 0.21,
+      "sim_only_CER": 0.5027,
+      "with_gate_CER": 0.5293,
+      "with_gate_RR": 0.8439,
+      "Overall": 0.6573,
+      "d_Overall_vs_027": -0.0063,
+      "n_sim_reject_neg": 380
+    },
+    {
+      "thr": 0.215,
+      "sim_only_CER": 0.5088,
+      "with_gate_CER": 0.5355,
+      "with_gate_RR": 0.8502,
+      "Overall": 0.6574,
+      "d_Overall_vs_027": -0.0062,
+      "n_sim_reject_neg": 383
+    },
+    {
+      "thr": 0.22,
+      "sim_only_CER": 0.5173,
+      "with_gate_CER": 0.544,
+      "with_gate_RR": 0.8629,
+      "Overall": 0.6595,
+      "d_Overall_vs_027": -0.0041,
+      "n_sim_reject_neg": 389
+    },
+    {
+      "thr": 0.225,
+      "sim_only_CER": 0.5217,
+      "with_gate_CER": 0.5484,
+      "with_gate_RR": 0.8713,
+      "Overall": 0.6614,
+      "d_Overall_vs_027": -0.0022,
+      "n_sim_reject_neg": 393
+    },
+    {
+      "thr": 0.23,
+      "sim_only_CER": 0.5291,
+      "with_gate_CER": 0.5557,
+      "with_gate_RR": 0.8945,
+      "Overall": 0.6694,
+      "d_Overall_vs_027": 0.0058,
+      "n_sim_reject_neg": 404
+    },
+    {
+      "thr": 0.235,
+      "sim_only_CER": 0.5408,
+      "with_gate_CER": 0.5675,
+      "with_gate_RR": 0.8966,
+      "Overall": 0.6646,
+      "d_Overall_vs_027": 0.001,
+      "n_sim_reject_neg": 405
+    },
+    {
+      "thr": 0.24,
+      "sim_only_CER": 0.5434,
+      "with_gate_CER": 0.57,
+      "with_gate_RR": 0.9072,
+      "Overall": 0.6686,
+      "d_Overall_vs_027": 0.005,
+      "n_sim_reject_neg": 410
+    },
+    {
+      "thr": 0.245,
+      "sim_only_CER": 0.5536,
+      "with_gate_CER": 0.5802,
+      "with_gate_RR": 0.9072,
+      "Overall": 0.6635,
+      "d_Overall_vs_027": -0.0001,
+      "n_sim_reject_neg": 410
+    },
+    {
+      "thr": 0.25,
+      "sim_only_CER": 0.5586,
+      "with_gate_CER": 0.5853,
+      "with_gate_RR": 0.9114,
+      "Overall": 0.663,
+      "d_Overall_vs_027": -0.0006,
+      "n_sim_reject_neg": 412
+    },
+    {
+      "thr": 0.255,
+      "sim_only_CER": 0.5723,
+      "with_gate_CER": 0.599,
+      "with_gate_RR": 0.9219,
+      "Overall": 0.6615,
+      "d_Overall_vs_027": -0.0021,
+      "n_sim_reject_neg": 417
+    },
+    {
+      "thr": 0.26,
+      "sim_only_CER": 0.5824,
+      "with_gate_CER": 0.6091,
+      "with_gate_RR": 0.9304,
+      "Overall": 0.6607,
+      "d_Overall_vs_027": -0.0029,
+      "n_sim_reject_neg": 421
+    },
+    {
+      "thr": 0.265,
+      "sim_only_CER": 0.5887,
+      "with_gate_CER": 0.6153,
+      "with_gate_RR": 0.943,
+      "Overall": 0.6639,
+      "d_Overall_vs_027": 0.0003,
+      "n_sim_reject_neg": 427
+    },
+    {
+      "thr": 0.27,
+      "sim_only_CER": 0.5934,
+      "with_gate_CER": 0.6201,
+      "with_gate_RR": 0.9473,
+      "Overall": 0.6636,
+      "d_Overall_vs_027": -0.0,
+      "n_sim_reject_neg": 429
+    },
+    {
+      "thr": 0.28,
+      "sim_only_CER": 0.6035,
+      "with_gate_CER": 0.6302,
+      "with_gate_RR": 0.9557,
+      "Overall": 0.6628,
+      "d_Overall_vs_027": -0.0008,
+      "n_sim_reject_neg": 433
+    },
+    {
+      "thr": 0.29,
+      "sim_only_CER": 0.6262,
+      "with_gate_CER": 0.6529,
+      "with_gate_RR": 0.9599,
+      "Overall": 0.6535,
+      "d_Overall_vs_027": -0.0101,
+      "n_sim_reject_neg": 435
+    },
+    {
+      "thr": 0.3,
+      "sim_only_CER": 0.6435,
+      "with_gate_CER": 0.6702,
+      "with_gate_RR": 0.9662,
+      "Overall": 0.648,
+      "d_Overall_vs_027": -0.0156,
+      "n_sim_reject_neg": 438
+    }
+  ],
+  "optimal": {
+    "thr": 0.23,
+    "with_gate_CER": 0.5557,
+    "with_gate_RR": 0.8945,
+    "Overall": 0.6694,
+    "vs_anchor": {
+      "dCER": -0.0644,
+      "dRR": -0.0528,
+      "dOverall": 0.0058,
+      "net_positive": true,
+      "break_even_satisfied": true
+    }
+  },
+  "band_diagnosis_020_027": {
+    "neg_count": 64,
+    "pos_count": 231,
+    "pos_avg_transcribe_cer_per_sample": 0.4157,
+    "pos_pool_transcribe_cer": 0.3781
+  }
+}

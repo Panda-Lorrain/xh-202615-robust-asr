@@ -87,7 +87,18 @@ if [[ "${BAODI_GATE:-1}" == "0" ]]; then GATE_FLAG=""; fi
 # BAODI_SE=1 可恢复 SE(⚠️ 仅 qwen 后端做过 A/B; vanilla/dicow 后端 SE 效果未测)。
 SE_FLAG="--no-se"
 if [[ "${BAODI_SE:-0}" == "1" ]]; then SE_FLAG=""; fi
-echo "[baodi] backend=$BACKEND 关LLM(--no-llm) + thr=$THR + strategy=sim_only + content_gate=${BAODI_GATE:-1} + se=${BAODI_SE:-off}  → $OUT"
+# scene-route(2026-08-05): diar n_spk=2 双人样本走 SepFormer 盲分离两路 + Qwen heuristic 二选一;
+# n_spk=1 单人/失败样本回退主线 argmax. 全量坐实 Overall +0.74(CER 腿 +1.00 / RR 腿 -0.26),
+# 机制二分干净(单人 identity 锚点 MATCH + 重叠救回), 见 docs/全量提交评测_2026-08-05.md +
+# memory scene-route-overturns-multivoice-nogo.
+# 默认开(BAODI_SCENE_ROUTE=1, 提交主线=scene_route: CER 0.5952/RR 0.9409/Overall 0.6729, +0.74分);
+# BAODI_SCENE_ROUTE=0 显式关回退老主线(CER 0.6201/RR 0.9473/Overall 0.6636),
+# 仅 --asr-backend qwen 生效(submit_infer.py:247 守卫). 配套: MODEL_SEPFORMER 由 setenv.sh 指向
+# E:/hf_cache/sepformer-whamr16k; Qwen 子进程走 scene_route_backend.py 默认 code/.venv_qwen.
+# 效率腿暂未跑(SepFormer 加推理 + 额外 Qwen 子进程, RTF 上升), 用户决策暂不管效率腿.
+SCENE_FLAG=""
+if [[ "${BAODI_SCENE_ROUTE:-1}" == "1" ]]; then SCENE_FLAG="--scene-route"; fi
+echo "[baodi] backend=$BACKEND 关LLM(--no-llm) + thr=$THR + strategy=sim_only + content_gate=${BAODI_GATE:-1} + se=${BAODI_SE:-off} + scene_route=${BAODI_SCENE_ROUTE:-1}  → $OUT"
 exec "$PY" code/submit_infer.py \
   --pairs "$PAIRS" --out-dir "$OUT" --no-llm --sim-thr "$THR" --strategy sim_only \
-  --asr-backend "$BACKEND" $GATE_FLAG $SE_FLAG
+  --asr-backend "$BACKEND" $GATE_FLAG $SE_FLAG $SCENE_FLAG

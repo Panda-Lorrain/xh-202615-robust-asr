@@ -1,0 +1,104 @@
+{
+  "config": {
+    "source": "E:\\midea_target_asr\\code\\runs\\_scene_route_full\\per_sample.json",
+    "n": 1350,
+    "thr": 0.27,
+    "gate": "on (is_valid_command, len_thr=22)",
+    "submit_norm": "digit_postproc(to_simplified(text))",
+    "anchor_mainline_gate_cer": [
+      0.6168,
+      0.6174
+    ],
+    "anchor_scene_gate_cer": [
+      0.5919,
+      0.5925
+    ]
+  },
+  "overall": {
+    "mainline": {
+      "transcribe_cer": 0.3436,
+      "gate_cer": 0.6174
+    },
+    "scene_route": {
+      "transcribe_cer": 0.2948,
+      "gate_cer": 0.5925
+    },
+    "delta_sr_minus_ml": {
+      "transcribe": -0.0488,
+      "gate": -0.0249
+    }
+  },
+  "anchor_match": {
+    "mainline_gate_cer": 0.6174,
+    "mainline_match": true,
+    "scene_gate_cer": 0.5925,
+    "scene_match": true
+  },
+  "nspk_buckets": {
+    "1": {
+      "n": 543,
+      "ml_transcribe_cer": 0.1014,
+      "sr_transcribe_cer": 0.1014,
+      "ml_gate_cer": 0.4029,
+      "sr_gate_cer": 0.4029,
+      "delta_gate": 0.0
+    },
+    "2": {
+      "n": 805,
+      "ml_transcribe_cer": 0.5186,
+      "sr_transcribe_cer": 0.4346,
+      "ml_gate_cer": 0.7734,
+      "sr_gate_cer": 0.7305,
+      "delta_gate": -0.0429
+    },
+    "3": {
+      "n": 2,
+      "ml_transcribe_cer": 0.0556,
+      "sr_transcribe_cer": 0.0556,
+      "ml_gate_cer": 0.0556,
+      "sr_gate_cer": 0.0556,
+      "delta_gate": 0.0
+    }
+  },
+  "overlap_bucket_nspk_ge2": {
+    "n": 807,
+    "ml_transcribe_cer": 0.5171,
+    "sr_transcribe_cer": 0.4334,
+    "ml_gate_cer": 0.771,
+    "sr_gate_cer": 0.7282,
+    "delta_gate": -0.0428
+  },
+  "route_buckets": {
+    "nspk1_mainline": {
+      "n": 545,
+      "ml_transcribe_cer": 0.1012,
+      "sr_transcribe_cer": 0.1012,
+      "ml_gate_cer": 0.4014,
+      "sr_gate_cer": 0.4014,
+      "delta_gate": 0.0
+    },
+    "nspk2_sep": {
+      "n": 805,
+      "ml_transcribe_cer": 0.5186,
+      "sr_transcribe_cer": 0.4346,
+      "ml_gate_cer": 0.7734,
+      "sr_gate_cer": 0.7305,
+      "delta_gate": -0.0429
+    }
+  },
+  "reject_diag": {
+    "n_sim_reject": 630,
+    "mainline_gate_total_reject": 665,
+    "mainline_gate_only_reject": 35,
+    "scene_gate_total_reject": 646,
+    "scene_gate_only_reject": 16,
+    "text_same_count": 744,
+    "text_diff_count": 606
+  },
+  "mechanism_verdict": {
+    "nspk1_delta_gate": 0.0,
+    "nspk2_delta_gate": -0.0429,
+    "nspk1_flat": true,
+    "nspk2_rescued": true
+  }
+}
