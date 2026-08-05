@@ -1,0 +1,98 @@
+{
+  "cache": {
+    "cache_sha256": "c92e0d8095b56f429a6c13d8a557e53166c1d67df102e4e95edfc1e91fcec045",
+    "contract": {
+      "c_only_queries_optimised": 0,
+      "dataset_a_used": false,
+      "dev_groups": 12,
+      "dev_queries": 24,
+      "dev_query_foreign_count": 11,
+      "dev_query_positive_count": 1,
+      "final_deferred": true,
+      "train_groups": 96,
+      "train_queries": 192,
+      "train_query_foreign_count": 95,
+      "train_query_positive_count": 1
+    },
+    "manifest_sha256": "9c1f75194c03cce937d1b0ecc0177fcd959d29c5d7d98bd67927b9646613c87d",
+    "report_sha256": "28e937195a0f42dea87d80a08d596b1d018bc2e7c3b5896afccc706da59e6f93",
+    "root": "E:/midea_target_asr/code/runs/dacf_v3_features_train_dev_v06_20260806"
+  },
+  "dataset_a_used": false,
+  "failure_mode_removed": {
+    "pair_logit": "scaled cosine plus one global calibration bias",
+    "prior_model": "DACFV4Relation",
+    "query_embedding": "raw CAM++ L2 normalisation only",
+    "query_projection": "absent",
+    "relation_mlp": "absent",
+    "train_only_observation": "learned query projection changed raw CAM++ off-diagonal cosine from 0.436 to 0.921"
+  },
+  "loss_weights": {
+    "absent_latent_energy": 0.02,
+    "foreign_activity": 0.25,
+    "hard_foreign_margin": 0.5,
+    "positive_activity": 1.0,
+    "presence": 1.0,
+    "view_consistency": 0.1
+  },
+  "mechanism_gate": {
+    "activity_frame_auc": 0.8,
+    "collapsed_mixture_auc_max": 0.55,
+    "collapsed_query_auc_max": 0.55,
+    "foreign_rr": 0.95,
+    "mixture_permutation_auc_drop": 0.2,
+    "mixture_top2_exact": 0.75,
+    "presence_auc": 0.85,
+    "present_A_recall": 0.75,
+    "present_B_recall": 0.75,
+    "present_recall": 0.8,
+    "query_response_ci_lower": 0.05,
+    "query_response_mean": 0.2,
+    "query_to_mixture_top1": 0.75
+  },
+  "model": {
+    "class": "DACFV4AnchorRelation",
+    "parameter_limit": 2000000,
+    "trainable_parameters": 386098
+  },
+  "pairing_contract": {
+    "c_only_queries_optimised": 0,
+    "final_deferred": true,
+    "membership_label_recomputed_for_destination_mixture": true,
+    "query_foreign_mixtures_per_batch": 7,
+    "query_positive_mixtures_per_batch": 1,
+    "query_rows": "present A/B only",
+    "same_query_both_labels_in_update": true
+  },
+  "protocol_version": "dacf-v4-anchor-allpairs-mechanism-v0.1",
+  "schema": "dacf-v4-anchor-allpairs-preregistration-v0.1",
+  "selection_policy": {
+    "checkpoint": "epoch_30_final_only",
+    "dev_evaluation_count": 1,
+    "early_stop": false,
+    "final_opened": false,
+    "hyperparameter_scan": false,
+    "qwen_integration": false,
+    "scheduler": "none"
+  },
+  "source_sha256": {
+    "code/experiments/dacf_v4_anchor_relation.py": "e4ccffd40f56c3e4e39ca23a6fe1d11dacd6329fa4c529f80213dbb4cf12bcc0",
+    "code/experiments/dacf_v4_objective.py": "02db97eb1fa793043846b35d5b87aa7b7e02252305c41f3576322331251536fc",
+    "code/experiments/dacf_v4_relation.py": "dadfcd535a272e99fecb1668f250c536daa566166856cab563969d05c2b62158",
+    "code/experiments/train_dacf_v3_mechanism.py": "5353d5adf5df7fa45cc52474a30a980ccf1a725dd185e5dbbec1c656724f50e6",
+    "code/experiments/train_dacf_v4_allpairs.py": "559add563b24c0d14866bca0294f23316825b9ab546ae6870c88b0566fb1f140",
+    "code/experiments/train_dacf_v4_anchor_allpairs.py": "c78b3c753699d910ecf66c62e2cf8cf6c074a9ae25670874e7685da919218f06"
+  },
+  "threshold": 0.5,
+  "training": {
+    "bootstrap_replicates": 2000,
+    "device": "auto",
+    "epochs": 30,
+    "grad_clip_norm": 5.0,
+    "groups_per_batch": 8,
+    "hard_foreign_margin": 0.2,
+    "learning_rate": 0.0003,
+    "seed": 2026080617,
+    "weight_decay": 0.0001
+  }
+}

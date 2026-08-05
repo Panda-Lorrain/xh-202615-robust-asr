@@ -1,0 +1,597 @@
+{
+  "cache_contract": {
+    "c_only_queries_optimised": 0,
+    "dataset_a_used": false,
+    "dev_groups": 12,
+    "dev_queries": 24,
+    "dev_query_foreign_count": 11,
+    "dev_query_positive_count": 1,
+    "final_deferred": true,
+    "train_groups": 96,
+    "train_queries": 192,
+    "train_query_foreign_count": 95,
+    "train_query_positive_count": 1
+  },
+  "checkpoint": {
+    "frozen_before_dev": true,
+    "path": "E:/midea_target_asr/code/runs/dacf_v4_allpairs_formal_v01_20260806/final_checkpoint.pt",
+    "sha256_after_dev": "56d4540c858092c814db824bb231fb983b980473195fb9b7c07575dfe2374344",
+    "sha256_before_dev": "56d4540c858092c814db824bb231fb983b980473195fb9b7c07575dfe2374344"
+  },
+  "dataset_a_used": false,
+  "dev": {
+    "gate": {
+      "checks": {
+        "view1": {
+          "activity_frame_auc": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.8,
+            "value": 0.6287690843999115
+          },
+          "collapsed_mixture_auc_max": {
+            "passed": true,
+            "relation": "<=",
+            "threshold": 0.55,
+            "value": 0.5
+          },
+          "collapsed_query_auc_max": {
+            "passed": true,
+            "relation": "<=",
+            "threshold": 0.55,
+            "value": 0.4990530303030303
+          },
+          "foreign_rr": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.95,
+            "value": 0.4431818181818182
+          },
+          "mixture_permutation_auc_drop": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.2,
+            "value": 0.19412878787878785
+          },
+          "mixture_top2_exact": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.75,
+            "value": 0.0
+          },
+          "presence_auc": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.85,
+            "value": 0.6821338383838383
+          },
+          "present_A_recall": {
+            "passed": true,
+            "relation": ">=",
+            "threshold": 0.75,
+            "value": 0.9166666666666666
+          },
+          "present_B_recall": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.75,
+            "value": 0.6666666666666666
+          },
+          "present_recall": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.8,
+            "value": 0.7916666666666666
+          },
+          "query_response_ci_lower": {
+            "passed": false,
+            "relation": ">",
+            "threshold": 0.05,
+            "value": -0.06294757028420767
+          },
+          "query_response_mean": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.2,
+            "value": -0.032796027759710945
+          },
+          "query_to_mixture_top1": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.75,
+            "value": 0.20833333333333334
+          }
+        },
+        "view2": {
+          "activity_frame_auc": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.8,
+            "value": 0.6259491578545257
+          },
+          "collapsed_mixture_auc_max": {
+            "passed": true,
+            "relation": "<=",
+            "threshold": 0.55,
+            "value": 0.5
+          },
+          "collapsed_query_auc_max": {
+            "passed": true,
+            "relation": "<=",
+            "threshold": 0.55,
+            "value": 0.4990530303030303
+          },
+          "foreign_rr": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.95,
+            "value": 0.4621212121212121
+          },
+          "mixture_permutation_auc_drop": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.2,
+            "value": 0.171875
+          },
+          "mixture_top2_exact": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.75,
+            "value": 0.0
+          },
+          "presence_auc": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.85,
+            "value": 0.6636679292929293
+          },
+          "present_A_recall": {
+            "passed": true,
+            "relation": ">=",
+            "threshold": 0.75,
+            "value": 0.8333333333333334
+          },
+          "present_B_recall": {
+            "passed": true,
+            "relation": ">=",
+            "threshold": 0.75,
+            "value": 0.75
+          },
+          "present_recall": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.8,
+            "value": 0.7916666666666666
+          },
+          "query_response_ci_lower": {
+            "passed": false,
+            "relation": ">",
+            "threshold": 0.05,
+            "value": -0.059642064416160184
+          },
+          "query_response_mean": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.2,
+            "value": -0.03649164860447248
+          },
+          "query_to_mixture_top1": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.75,
+            "value": 0.20833333333333334
+          }
+        }
+      },
+      "fixed_gate": {
+        "activity_frame_auc": 0.8,
+        "collapsed_mixture_auc_max": 0.55,
+        "collapsed_query_auc_max": 0.55,
+        "foreign_rr": 0.95,
+        "mixture_permutation_auc_drop": 0.2,
+        "mixture_top2_exact": 0.75,
+        "presence_auc": 0.85,
+        "present_A_recall": 0.75,
+        "present_B_recall": 0.75,
+        "present_recall": 0.8,
+        "query_response_ci_lower": 0.05,
+        "query_response_mean": 0.2,
+        "query_to_mixture_top1": 0.75
+      },
+      "gated_views": [
+        "view1",
+        "view2"
+      ],
+      "passed": false
+    },
+    "view1": {
+      "activity_frame_auc": 0.6287690843999115,
+      "collapsed_mixture_auc": 0.5,
+      "collapsed_query_auc": 0.4990530303030303,
+      "foreign_pairs": 264,
+      "foreign_rr": 0.4431818181818182,
+      "mixture_permutation_auc": 0.4880050505050505,
+      "mixture_permutation_auc_drop": 0.19412878787878785,
+      "mixture_top2_exact": 0.0,
+      "pair_count": 288,
+      "positive_pairs": 24,
+      "presence_auc": 0.6821338383838383,
+      "present_A_recall": 0.9166666666666666,
+      "present_B_recall": 0.6666666666666666,
+      "present_recall": 0.7916666666666666,
+      "query_response_ci_95": {
+        "lower": -0.06294757028420767,
+        "replicates": 2000,
+        "upper": -0.012501694789777217
+      },
+      "query_response_mean": -0.032796027759710945,
+      "query_to_mixture_top1": 0.20833333333333334,
+      "threshold": 0.5
+    },
+    "view2": {
+      "activity_frame_auc": 0.6259491578545257,
+      "collapsed_mixture_auc": 0.5,
+      "collapsed_query_auc": 0.4990530303030303,
+      "foreign_pairs": 264,
+      "foreign_rr": 0.4621212121212121,
+      "mixture_permutation_auc": 0.4917929292929293,
+      "mixture_permutation_auc_drop": 0.171875,
+      "mixture_top2_exact": 0.0,
+      "pair_count": 288,
+      "positive_pairs": 24,
+      "presence_auc": 0.6636679292929293,
+      "present_A_recall": 0.8333333333333334,
+      "present_B_recall": 0.75,
+      "present_recall": 0.7916666666666666,
+      "query_response_ci_95": {
+        "lower": -0.059642064416160184,
+        "replicates": 2000,
+        "upper": -0.01729252319782973
+      },
+      "query_response_mean": -0.03649164860447248,
+      "query_to_mixture_top1": 0.20833333333333334,
+      "threshold": 0.5
+    },
+    "view_averaged": {
+      "activity_frame_auc": 0.6280053611021288,
+      "collapsed_mixture_auc": 0.5,
+      "collapsed_query_auc": 0.4981060606060606,
+      "foreign_pairs": 264,
+      "foreign_rr": 0.4583333333333333,
+      "mixture_permutation_auc": 0.4881628787878788,
+      "mixture_permutation_auc_drop": 0.19034090909090906,
+      "mixture_top2_exact": 0.0,
+      "pair_count": 288,
+      "positive_pairs": 24,
+      "presence_auc": 0.6785037878787878,
+      "present_A_recall": 0.8333333333333334,
+      "present_B_recall": 0.6666666666666666,
+      "present_recall": 0.75,
+      "query_response_ci_95": {
+        "lower": -0.05808818344958127,
+        "replicates": 2000,
+        "upper": -0.01378182278325161
+      },
+      "query_response_mean": -0.03338371651868025,
+      "query_to_mixture_top1": 0.25,
+      "threshold": 0.5
+    }
+  },
+  "dev_evaluation_count": 1,
+  "pairing_contract": {
+    "c_only_queries_optimised": 0,
+    "negative_pair_coverage": 0.8989035087719298,
+    "negative_source_destination_pairs_seen": 8198,
+    "negative_source_destination_pairs_total": 9120,
+    "same_query_both_labels_per_update": true
+  },
+  "preregistration": {
+    "path": "E:/midea_target_asr/code/runs/dacf_v4_allpairs_prereg_v01_20260806.json",
+    "sha256": "dfb0d6ac56de5db07daef4bc706a5bf2c6654d7ecc1a5f8898a28c488e64f273",
+    "validated": true
+  },
+  "protocol_version": "dacf-v4-allpairs-mechanism-v0.1",
+  "runtime_sec": 60.74442540000018,
+  "same_text_different_speaker": {
+    "required_before_qwen": true,
+    "status": "deferred"
+  },
+  "schema": "dacf-v4-allpairs-report-v0.1",
+  "train_diagnostic": {
+    "gate": {
+      "checks": {
+        "view1": {
+          "activity_frame_auc": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.8,
+            "value": 0.6250905349441863
+          },
+          "collapsed_mixture_auc_max": {
+            "passed": true,
+            "relation": "<=",
+            "threshold": 0.55,
+            "value": 0.5
+          },
+          "collapsed_query_auc_max": {
+            "passed": true,
+            "relation": "<=",
+            "threshold": 0.55,
+            "value": 0.4999862938596491
+          },
+          "foreign_rr": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.95,
+            "value": 0.5092105263157894
+          },
+          "mixture_permutation_auc_drop": {
+            "passed": true,
+            "relation": ">=",
+            "threshold": 0.2,
+            "value": 0.30199795550073105
+          },
+          "mixture_top2_exact": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.75,
+            "value": 0.020833333333333332
+          },
+          "presence_auc": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.85,
+            "value": 0.7631727430555556
+          },
+          "present_A_recall": {
+            "passed": true,
+            "relation": ">=",
+            "threshold": 0.75,
+            "value": 0.8645833333333334
+          },
+          "present_B_recall": {
+            "passed": true,
+            "relation": ">=",
+            "threshold": 0.75,
+            "value": 0.875
+          },
+          "present_recall": {
+            "passed": true,
+            "relation": ">=",
+            "threshold": 0.8,
+            "value": 0.8697916666666666
+          },
+          "query_response_ci_lower": {
+            "passed": false,
+            "relation": ">",
+            "threshold": 0.05,
+            "value": -0.07904446112224832
+          },
+          "query_response_mean": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.2,
+            "value": -0.06633708144848545
+          },
+          "query_to_mixture_top1": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.75,
+            "value": 0.052083333333333336
+          }
+        },
+        "view2": {
+          "activity_frame_auc": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.8,
+            "value": 0.6220209819386359
+          },
+          "collapsed_mixture_auc_max": {
+            "passed": true,
+            "relation": "<=",
+            "threshold": 0.55,
+            "value": 0.5
+          },
+          "collapsed_query_auc_max": {
+            "passed": true,
+            "relation": "<=",
+            "threshold": 0.55,
+            "value": 0.5000137061403509
+          },
+          "foreign_rr": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.95,
+            "value": 0.5101425438596491
+          },
+          "mixture_permutation_auc_drop": {
+            "passed": true,
+            "relation": ">=",
+            "threshold": 0.2,
+            "value": 0.30181649191337717
+          },
+          "mixture_top2_exact": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.75,
+            "value": 0.010416666666666666
+          },
+          "presence_auc": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.85,
+            "value": 0.7641628689236111
+          },
+          "present_A_recall": {
+            "passed": true,
+            "relation": ">=",
+            "threshold": 0.75,
+            "value": 0.8541666666666666
+          },
+          "present_B_recall": {
+            "passed": true,
+            "relation": ">=",
+            "threshold": 0.75,
+            "value": 0.8020833333333334
+          },
+          "present_recall": {
+            "passed": true,
+            "relation": ">=",
+            "threshold": 0.8,
+            "value": 0.828125
+          },
+          "query_response_ci_lower": {
+            "passed": false,
+            "relation": ">",
+            "threshold": 0.05,
+            "value": -0.07248689241241664
+          },
+          "query_response_mean": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.2,
+            "value": -0.061230155949791275
+          },
+          "query_to_mixture_top1": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.75,
+            "value": 0.07291666666666667
+          }
+        }
+      },
+      "fixed_gate": {
+        "activity_frame_auc": 0.8,
+        "collapsed_mixture_auc_max": 0.55,
+        "collapsed_query_auc_max": 0.55,
+        "foreign_rr": 0.95,
+        "mixture_permutation_auc_drop": 0.2,
+        "mixture_top2_exact": 0.75,
+        "presence_auc": 0.85,
+        "present_A_recall": 0.75,
+        "present_B_recall": 0.75,
+        "present_recall": 0.8,
+        "query_response_ci_lower": 0.05,
+        "query_response_mean": 0.2,
+        "query_to_mixture_top1": 0.75
+      },
+      "gated_views": [
+        "view1",
+        "view2"
+      ],
+      "passed": false
+    },
+    "view1": {
+      "activity_frame_auc": 0.6250905349441863,
+      "collapsed_mixture_auc": 0.5,
+      "collapsed_query_auc": 0.4999862938596491,
+      "foreign_pairs": 18240,
+      "foreign_rr": 0.5092105263157894,
+      "mixture_permutation_auc": 0.46117478755482455,
+      "mixture_permutation_auc_drop": 0.30199795550073105,
+      "mixture_top2_exact": 0.020833333333333332,
+      "pair_count": 18432,
+      "positive_pairs": 192,
+      "presence_auc": 0.7631727430555556,
+      "present_A_recall": 0.8645833333333334,
+      "present_B_recall": 0.875,
+      "present_recall": 0.8697916666666666,
+      "query_response_ci_95": {
+        "lower": -0.07904446112224832,
+        "replicates": 2000,
+        "upper": -0.054435534100048255
+      },
+      "query_response_mean": -0.06633708144848545,
+      "query_to_mixture_top1": 0.052083333333333336,
+      "threshold": 0.5
+    },
+    "view2": {
+      "activity_frame_auc": 0.6220209819386359,
+      "collapsed_mixture_auc": 0.5,
+      "collapsed_query_auc": 0.5000137061403509,
+      "foreign_pairs": 18240,
+      "foreign_rr": 0.5101425438596491,
+      "mixture_permutation_auc": 0.4623463770102339,
+      "mixture_permutation_auc_drop": 0.30181649191337717,
+      "mixture_top2_exact": 0.010416666666666666,
+      "pair_count": 18432,
+      "positive_pairs": 192,
+      "presence_auc": 0.7641628689236111,
+      "present_A_recall": 0.8541666666666666,
+      "present_B_recall": 0.8020833333333334,
+      "present_recall": 0.828125,
+      "query_response_ci_95": {
+        "lower": -0.07248689241241664,
+        "replicates": 2000,
+        "upper": -0.050193742111635714
+      },
+      "query_response_mean": -0.061230155949791275,
+      "query_to_mixture_top1": 0.07291666666666667,
+      "threshold": 0.5
+    },
+    "view_averaged": {
+      "activity_frame_auc": 0.6242708951019647,
+      "collapsed_mixture_auc": 0.5,
+      "collapsed_query_auc": 0.5,
+      "foreign_pairs": 18240,
+      "foreign_rr": 0.5097587719298246,
+      "mixture_permutation_auc": 0.46130471034356724,
+      "mixture_permutation_auc_drop": 0.307125336942617,
+      "mixture_top2_exact": 0.010416666666666666,
+      "pair_count": 18432,
+      "positive_pairs": 192,
+      "presence_auc": 0.7684300472861842,
+      "present_A_recall": 0.875,
+      "present_B_recall": 0.8854166666666666,
+      "present_recall": 0.8802083333333334,
+      "query_response_ci_95": {
+        "lower": -0.07277117277456759,
+        "replicates": 2000,
+        "upper": -0.049933090699293345
+      },
+      "query_response_mean": -0.06063545844517648,
+      "query_to_mixture_top1": 0.06770833333333333,
+      "threshold": 0.5
+    }
+  },
+  "training": {
+    "config": {
+      "bootstrap_replicates": 2000,
+      "device": "auto",
+      "epochs": 30,
+      "grad_clip_norm": 5.0,
+      "groups_per_batch": 8,
+      "hard_foreign_margin": 0.2,
+      "learning_rate": 0.0003,
+      "seed": 2026080617,
+      "weight_decay": 0.0001
+    },
+    "device": "cuda",
+    "early_stop": false,
+    "hyperparameter_scan": false,
+    "loss_first": 2.2456814348697662,
+    "loss_last": 1.4953083246946335,
+    "loss_weights": {
+      "absent_latent_energy": 0.02,
+      "foreign_activity": 0.25,
+      "hard_foreign_margin": 0.5,
+      "positive_activity": 1.0,
+      "presence": 1.0,
+      "view_consistency": 0.1
+    },
+    "optimizer": "AdamW",
+    "precision": "FP32",
+    "scheduler": "none",
+    "updates": 360
+  },
+  "verdict": "implementation-NO-GO",
+  "verdict_scope": {
+    "cer": "not measured",
+    "final_opened": false,
+    "official_negative_rr": "not measured",
+    "qwen_integration": "not run",
+    "rtf": "not measured",
+    "scope": "all-pairs identity mechanism only"
+  }
+}
