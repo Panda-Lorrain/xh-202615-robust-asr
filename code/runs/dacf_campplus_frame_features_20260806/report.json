@@ -1,0 +1,338 @@
+{
+  "artifacts": {
+    "enhanced_manifest": "features_manifest.jsonl",
+    "modified_onnx": "model/campplus_frame.onnx",
+    "report": "report.json"
+  },
+  "audit": {
+    "dataset_a_used": false,
+    "group_overlap": [],
+    "source_overlap": [],
+    "speaker_overlap": [],
+    "train_groups": 24,
+    "train_rows": 72,
+    "train_sources": 264,
+    "train_speakers": 72,
+    "val_groups": 8,
+    "val_rows": 24,
+    "val_sources": 88,
+    "val_speakers": 24
+  },
+  "backend": "sherpa-campp-onnx-prepool",
+  "capacity_metrics": {
+    "train": {
+      "clean_enrollment_final_embedding_same_vs_different": {
+        "auc": 0.9691466701443228,
+        "different_speaker_count": 5112,
+        "interpretation": "speaker-disjoint same/different embedding audit; speaker ids are audit labels only",
+        "query_view": "clean enrollment final embedding vs enrollment view2 final embedding",
+        "same_speaker_count": 72
+      },
+      "d9_clean_enrollment_final_embedding_same_vs_different": {
+        "auc": 0.970649126238915,
+        "different_speaker_count": 5112,
+        "interpretation": "speaker-disjoint same/different embedding audit; speaker ids are audit labels only",
+        "query_view": "D9 clean enrollment final embedding vs D9 enrollment view2 final embedding",
+        "same_speaker_count": 72
+      },
+      "enrollment_audio": {
+        "absent_count": 24,
+        "frame_max_auc": 0.5338541666666666,
+        "interpretation": "frozen untrained pre-pool cosine capacity only; no threshold, window, model-selection, CER, RR, or submission claim",
+        "positive_count": 48,
+        "query_view": "enrollment_prepool",
+        "role_ordering_audit": {
+          "group_count": 24,
+          "interpretation": "descriptive A/B/C ordering only; no role-conditioned feature or threshold",
+          "per_metric": {
+            "frame_max": {
+              "c_lower_than_a_count": 19,
+              "c_lower_than_a_fraction": 0.7916666666666666,
+              "c_lower_than_b_count": 15,
+              "c_lower_than_b_fraction": 0.625,
+              "c_lower_than_both_count": 15,
+              "c_lower_than_both_fraction": 0.625
+            },
+            "top25_pre": {
+              "c_lower_than_a_count": 18,
+              "c_lower_than_a_fraction": 0.75,
+              "c_lower_than_b_count": 11,
+              "c_lower_than_b_fraction": 0.4583333333333333,
+              "c_lower_than_both_count": 10,
+              "c_lower_than_both_fraction": 0.4166666666666667
+            },
+            "whole_pre": {
+              "c_lower_than_a_count": 18,
+              "c_lower_than_a_fraction": 0.75,
+              "c_lower_than_b_count": 10,
+              "c_lower_than_b_fraction": 0.4166666666666667,
+              "c_lower_than_both_count": 9,
+              "c_lower_than_both_fraction": 0.375
+            }
+          },
+          "query_view": "enrollment_prepool"
+        },
+        "top25_fraction_fixed": 0.25,
+        "top25_pre_auc": 0.5355902777777778,
+        "whole_pooled_cosine_auc": 0.5243055555555556,
+        "whole_pre_auc": 0.5243055555555556
+      },
+      "enrollment_audio_view2": {
+        "absent_count": 24,
+        "frame_max_auc": 0.5659722222222222,
+        "interpretation": "frozen untrained pre-pool cosine capacity only; no threshold, window, model-selection, CER, RR, or submission claim",
+        "positive_count": 48,
+        "query_view": "view2_prepool",
+        "role_ordering_audit": {
+          "group_count": 24,
+          "interpretation": "descriptive A/B/C ordering only; no role-conditioned feature or threshold",
+          "per_metric": {
+            "frame_max": {
+              "c_lower_than_a_count": 17,
+              "c_lower_than_a_fraction": 0.7083333333333334,
+              "c_lower_than_b_count": 15,
+              "c_lower_than_b_fraction": 0.625,
+              "c_lower_than_both_count": 10,
+              "c_lower_than_both_fraction": 0.4166666666666667
+            },
+            "top25_pre": {
+              "c_lower_than_a_count": 16,
+              "c_lower_than_a_fraction": 0.6666666666666666,
+              "c_lower_than_b_count": 16,
+              "c_lower_than_b_fraction": 0.6666666666666666,
+              "c_lower_than_both_count": 11,
+              "c_lower_than_both_fraction": 0.4583333333333333
+            },
+            "whole_pre": {
+              "c_lower_than_a_count": 13,
+              "c_lower_than_a_fraction": 0.5416666666666666,
+              "c_lower_than_b_count": 16,
+              "c_lower_than_b_fraction": 0.6666666666666666,
+              "c_lower_than_both_count": 9,
+              "c_lower_than_both_fraction": 0.375
+            }
+          },
+          "query_view": "view2_prepool"
+        },
+        "top25_fraction_fixed": 0.25,
+        "top25_pre_auc": 0.5503472222222222,
+        "whole_pooled_cosine_auc": 0.5425347222222222,
+        "whole_pre_auc": 0.5425347222222222
+      },
+      "enrollment_view_agreement": {
+        "count": 72,
+        "final_embedding_cosine_mean": 0.9155519488785002,
+        "final_embedding_cosine_median": 0.9387134611606598,
+        "final_embedding_cosine_min": 0.7385541200637817,
+        "interpretation": "same-speaker enrollment dual-view agreement; not a threshold",
+        "prepool_cosine_mean": 0.9556462251477771,
+        "prepool_cosine_median": 0.9703778326511383,
+        "prepool_cosine_min": 0.846598207950592,
+        "prepool_cosine_p10": 0.8966705799102783
+      }
+    },
+    "val": {
+      "clean_enrollment_final_embedding_same_vs_different": {
+        "auc": 0.9689764492753623,
+        "different_speaker_count": 552,
+        "interpretation": "speaker-disjoint same/different embedding audit; speaker ids are audit labels only",
+        "query_view": "clean enrollment final embedding vs enrollment view2 final embedding",
+        "same_speaker_count": 24
+      },
+      "d9_clean_enrollment_final_embedding_same_vs_different": {
+        "auc": 0.971316425120773,
+        "different_speaker_count": 552,
+        "interpretation": "speaker-disjoint same/different embedding audit; speaker ids are audit labels only",
+        "query_view": "D9 clean enrollment final embedding vs D9 enrollment view2 final embedding",
+        "same_speaker_count": 24
+      },
+      "enrollment_audio": {
+        "absent_count": 8,
+        "frame_max_auc": 0.5703125,
+        "interpretation": "frozen untrained pre-pool cosine capacity only; no threshold, window, model-selection, CER, RR, or submission claim",
+        "positive_count": 16,
+        "query_view": "enrollment_prepool",
+        "role_ordering_audit": {
+          "group_count": 8,
+          "interpretation": "descriptive A/B/C ordering only; no role-conditioned feature or threshold",
+          "per_metric": {
+            "frame_max": {
+              "c_lower_than_a_count": 5,
+              "c_lower_than_a_fraction": 0.625,
+              "c_lower_than_b_count": 6,
+              "c_lower_than_b_fraction": 0.75,
+              "c_lower_than_both_count": 4,
+              "c_lower_than_both_fraction": 0.5
+            },
+            "top25_pre": {
+              "c_lower_than_a_count": 4,
+              "c_lower_than_a_fraction": 0.5,
+              "c_lower_than_b_count": 5,
+              "c_lower_than_b_fraction": 0.625,
+              "c_lower_than_both_count": 2,
+              "c_lower_than_both_fraction": 0.25
+            },
+            "whole_pre": {
+              "c_lower_than_a_count": 3,
+              "c_lower_than_a_fraction": 0.375,
+              "c_lower_than_b_count": 5,
+              "c_lower_than_b_fraction": 0.625,
+              "c_lower_than_both_count": 1,
+              "c_lower_than_both_fraction": 0.125
+            }
+          },
+          "query_view": "enrollment_prepool"
+        },
+        "top25_fraction_fixed": 0.25,
+        "top25_pre_auc": 0.5234375,
+        "whole_pooled_cosine_auc": 0.5,
+        "whole_pre_auc": 0.5
+      },
+      "enrollment_audio_view2": {
+        "absent_count": 8,
+        "frame_max_auc": 0.546875,
+        "interpretation": "frozen untrained pre-pool cosine capacity only; no threshold, window, model-selection, CER, RR, or submission claim",
+        "positive_count": 16,
+        "query_view": "view2_prepool",
+        "role_ordering_audit": {
+          "group_count": 8,
+          "interpretation": "descriptive A/B/C ordering only; no role-conditioned feature or threshold",
+          "per_metric": {
+            "frame_max": {
+              "c_lower_than_a_count": 5,
+              "c_lower_than_a_fraction": 0.625,
+              "c_lower_than_b_count": 6,
+              "c_lower_than_b_fraction": 0.75,
+              "c_lower_than_both_count": 4,
+              "c_lower_than_both_fraction": 0.5
+            },
+            "top25_pre": {
+              "c_lower_than_a_count": 5,
+              "c_lower_than_a_fraction": 0.625,
+              "c_lower_than_b_count": 6,
+              "c_lower_than_b_fraction": 0.75,
+              "c_lower_than_both_count": 4,
+              "c_lower_than_both_fraction": 0.5
+            },
+            "whole_pre": {
+              "c_lower_than_a_count": 4,
+              "c_lower_than_a_fraction": 0.5,
+              "c_lower_than_b_count": 6,
+              "c_lower_than_b_fraction": 0.75,
+              "c_lower_than_both_count": 3,
+              "c_lower_than_both_fraction": 0.375
+            }
+          },
+          "query_view": "view2_prepool"
+        },
+        "top25_fraction_fixed": 0.25,
+        "top25_pre_auc": 0.53125,
+        "whole_pooled_cosine_auc": 0.515625,
+        "whole_pre_auc": 0.515625
+      },
+      "enrollment_view_agreement": {
+        "count": 24,
+        "final_embedding_cosine_mean": 0.9259626020987829,
+        "final_embedding_cosine_median": 0.9701731503009796,
+        "final_embedding_cosine_min": 0.6182669997215271,
+        "interpretation": "same-speaker enrollment dual-view agreement; not a threshold",
+        "prepool_cosine_mean": 0.9636039212346077,
+        "prepool_cosine_median": 0.9845015108585358,
+        "prepool_cosine_min": 0.817596435546875,
+        "prepool_cosine_p10": 0.9073970019817352
+      }
+    }
+  },
+  "counts": {
+    "backend_calls": 224,
+    "enrollment_feature_count": 96,
+    "enrollment_view2_feature_count": 96,
+    "feature_manifest_rows": 96,
+    "groups": 32,
+    "input_rows": 96,
+    "mixture_feature_count": 32,
+    "train_groups": 24,
+    "unique_mixtures": 32,
+    "val_groups": 8
+  },
+  "d9_final_embedding_comparison": {
+    "enrollment_audio": {
+      "cosine_mean": 0.9910898177574078,
+      "cosine_min": 0.8740201592445374,
+      "cosine_p10": 0.9791828393936157,
+      "count": 96,
+      "interpretation": "new final 512d embedding versus existing D9 NPY/NPZ, no retraining",
+      "max_abs_max": 0.08454304933547974,
+      "root": "E:\\midea_target_asr\\code\\runs\\dacf_counterfactual_probe32_campp_20260806"
+    },
+    "enrollment_audio_view2": {
+      "cosine_mean": 0.9904890010754267,
+      "cosine_min": 0.919630765914917,
+      "cosine_p10": 0.9696768820285797,
+      "count": 96,
+      "interpretation": "new final 512d embedding versus existing D9 NPY/NPZ, no retraining",
+      "max_abs_max": 0.06194186955690384,
+      "root": "E:\\midea_target_asr\\code\\runs\\dacf_counterfactual_probe32_campp_20260806"
+    },
+    "mixture": {
+      "cosine_mean": 0.9995047971606255,
+      "cosine_min": 0.9976028203964233,
+      "cosine_p10": 0.9986224114894867,
+      "count": 32,
+      "interpretation": "new final 512d embedding versus existing D9 NPY/NPZ, no retraining",
+      "max_abs_max": 0.009212784469127655,
+      "root": "E:\\midea_target_asr\\code\\runs\\dacf_counterfactual_probe32_campp_20260806"
+    },
+    "root": "E:\\midea_target_asr\\code\\runs\\dacf_counterfactual_probe32_campp_20260806"
+  },
+  "dataset_a_policy": "hard reject path/flag; not read",
+  "dataset_a_used": false,
+  "fbank_contract": {
+    "direct_ort_input": true,
+    "frame_count_rule": "max(1, num_samples//160)",
+    "frame_shift_samples": 160,
+    "partial_tail_policy": "discard at most one partial 160-sample tail frame; never request it from sherpa",
+    "query_role_id_used_as_feature_input": false,
+    "sample_rate": 16000,
+    "shape_after_reshape": "[T,80]",
+    "source": "sherpa_onnx.SpeakerEmbeddingExtractor stream.get_frames"
+  },
+  "inputs": {
+    "train_manifest": "E:\\midea_target_asr\\code\\runs\\dacf_counterfactual_probe32_20260806\\train\\manifest.jsonl",
+    "val_manifest": "E:\\midea_target_asr\\code\\runs\\dacf_counterfactual_probe32_20260806\\val\\manifest.jsonl"
+  },
+  "limitations": [
+    "whole_pre/frame_max/top25_pre are frozen untrained cosine capacity metrics only.",
+    "top25 fraction is fixed at 0.25; no validation tuning or operating threshold is used.",
+    "No Dataset-A, optimizer, CER, rejection-rate, or submission result is measured here.",
+    "A/B/C rows reuse one byte-verified mixture feature artifact per SHA256.",
+    "D9 comparison is an embedding parity check, not a new training signal."
+  ],
+  "model": {
+    "modified_path": "E:\\midea_target_asr\\code\\runs\\dacf_campplus_frame_features_20260806\\model\\campplus_frame.onnx",
+    "modified_sha256": "df42eec5ed94f92f74a8f3cce1df804f43c6f564a6827cd8abfbfdfa9b3fc402",
+    "original_path": "E:\\hf_cache\\campplus\\campplus.onnx",
+    "original_sha256": "bd308886b6986c89e92ebf1480bc709652d5a4197fbbfa52e4c0be017dbcd0b9",
+    "prepool_layout": "[B,512,T] -> [T,512]",
+    "prepool_output_name": "onnx::ReduceMean_4602",
+    "source_unchanged": true
+  },
+  "prepool_contract": {
+    "ort_layout": "[B,512,T]",
+    "query_role_id_used_as_feature_input": false,
+    "saved_layout": "[T,512]",
+    "source_node": "onnx::ReduceMean_4602",
+    "top25_rule": "mean of the largest ceil(0.25*T) frame cosines"
+  },
+  "runtime_sec": 8.024077699999907,
+  "schema": "dacf-campp-frame-feature-report-v0.1",
+  "split_runtime_sec": {
+    "train": 4.467843499998708,
+    "val": 1.4576600000000326
+  },
+  "threshold_selection_allowed": false,
+  "training_allowed": false,
+  "validation_window_tuning_allowed": false,
+  "verdict": "implementation-NO-GO",
+  "verdict_scope": "raw CAM++ pre-pool capacity implementation only; not a direction-NO-GO and not a CER/RR/RTF/integration claim"
+}

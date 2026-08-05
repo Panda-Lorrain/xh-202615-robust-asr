@@ -1,0 +1,38 @@
+{
+  "dataset_a_used": false,
+  "eligible_speakers_after_exclusion": 244,
+  "excluded_manifest_sha256": {
+    "E:/midea_target_asr/code/runs/dacf_counterfactual_probe32_20260806/train/manifest.jsonl": "a82688589e2e657e45aaa5efd3038f3a5de72ec788fc4323655eea8b2ca41e2b",
+    "E:/midea_target_asr/code/runs/dacf_counterfactual_probe32_20260806/val/manifest.jsonl": "9f77771834e376fb63ef4c41e220abd4a5685b61f467caad6e78b1fd5b09b2dd"
+  },
+  "excluded_speakers": 96,
+  "experiment_id": "dacf-campp-cross-query-scale-only-v0.1",
+  "final_manifest": "E:/midea_target_asr/code/runs/dacf_scale80_20260806/raw/final/manifest.jsonl",
+  "final_mixtures": 16,
+  "final_records": 48,
+  "hard_negative_verified_count": 0,
+  "max_mixtures": 80,
+  "n_final_mixtures": 16,
+  "n_train_mixtures": 48,
+  "n_val_mixtures": 16,
+  "out_dir": "E:/midea_target_asr/code/runs/dacf_scale80_20260806/raw",
+  "preregistered": true,
+  "preregistration": "E:/midea_target_asr/code/runs/dacf_scale80_20260806/raw/PREREGISTRATION.json",
+  "preregistration_sha256": "bb04217f0eea60e413f18bd0fbbced0812401a53b16a982cd0c294a3ac2320b2",
+  "records_per_mixture": 3,
+  "schema_version": "dacf-counterfactual-v0.2",
+  "seed": 2026080602,
+  "source_speakers_after_exclusion": 244,
+  "source_speakers_before_exclusion": 340,
+  "source_splits": [
+    "train"
+  ],
+  "total_mixtures": 80,
+  "total_records": 240,
+  "train_manifest": "E:/midea_target_asr/code/runs/dacf_scale80_20260806/raw/train/manifest.jsonl",
+  "train_mixtures": 48,
+  "train_records": 144,
+  "val_manifest": "E:/midea_target_asr/code/runs/dacf_scale80_20260806/raw/val/manifest.jsonl",
+  "val_mixtures": 16,
+  "val_records": 48
+}

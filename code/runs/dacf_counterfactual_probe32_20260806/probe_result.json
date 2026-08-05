@@ -1,0 +1,145 @@
+{
+  "after_train": {
+    "absent_output_rms_mean": 0.0005278425869619241,
+    "absent_probability_mean": 0.4881764041880767,
+    "absent_queries": 24,
+    "absent_rr": 0.7916666666666666,
+    "fixed_threshold": 0.5,
+    "groups": 24,
+    "loss_mean": {
+      "activity": 0.6832742939392725,
+      "counterfactual": 0.012584711347396174,
+      "disentangle": 7.673453155284922e-07,
+      "environment": 0.0,
+      "identity": 1.264873410264651,
+      "presence": 0.6904045467575392,
+      "reconstruction": 0.2260394978026549,
+      "total": 1.7387904077768326
+    },
+    "permutation_presence_loss_delta_mean": 0.004967000335454941,
+    "positive_queries": 48,
+    "presence_margin_mean": 0.00336548654983441,
+    "present_probability_mean": 0.49154189073791105,
+    "present_recall": 0.2916666666666667,
+    "query_permutation_response_mean": 0.00336548654983441,
+    "query_permutation_response_min": -0.04315744340419769,
+    "roc_auc": 0.5442708333333334,
+    "target_l1_mean": {
+      "absent_C": 0.00039535709462749463,
+      "present_A": 0.009461542120940672,
+      "present_B": 0.010717987228417769
+    },
+    "unaffected_query_drift_mean": 0.0
+  },
+  "after_val": {
+    "absent_output_rms_mean": 0.0005164109434190323,
+    "absent_probability_mean": 0.4928868431597948,
+    "absent_queries": 8,
+    "absent_rr": 0.875,
+    "fixed_threshold": 0.5,
+    "groups": 8,
+    "loss_mean": {
+      "activity": 0.6900002211332321,
+      "counterfactual": 0.011441778799053282,
+      "disentangle": 6.580723394147923e-07,
+      "environment": 0.0,
+      "identity": 1.3090487867593765,
+      "presence": 0.6946374028921127,
+      "reconstruction": 0.20978283882141113,
+      "total": 1.7367671430110931
+    },
+    "permutation_presence_loss_delta_mean": -0.0013703443109989166,
+    "positive_queries": 16,
+    "presence_margin_mean": -0.0009278487414121628,
+    "present_probability_mean": 0.49195899441838264,
+    "present_recall": 0.3125,
+    "query_permutation_response_mean": -0.0009278487414121628,
+    "query_permutation_response_min": -0.04909829795360565,
+    "roc_auc": 0.5234375,
+    "target_l1_mean": {
+      "absent_C": 0.0003934534843210713,
+      "present_A": 0.007937619477161206,
+      "present_B": 0.009910079708788544
+    },
+    "unaffected_query_drift_mean": 0.0
+  },
+  "audit": {
+    "source_overlap": 0,
+    "speaker_overlap": 0,
+    "train_rows": 72,
+    "train_speakers": 72,
+    "val_rows": 24,
+    "val_speakers": 24
+  },
+  "before_val": {
+    "absent_output_rms_mean": 0.039421831839717925,
+    "absent_probability_mean": 0.46522040478885174,
+    "absent_queries": 8,
+    "absent_rr": 0.75,
+    "fixed_threshold": 0.5,
+    "groups": 8,
+    "loss_mean": {
+      "activity": 0.8031487017869949,
+      "counterfactual": 0.011441536218626425,
+      "disentangle": 1.5129215358267688e-12,
+      "environment": 0.0,
+      "identity": 1.6089294850826263,
+      "presence": 0.702111579477787,
+      "reconstruction": 0.9165774658322334,
+      "total": 2.5941722989082336
+    },
+    "permutation_presence_loss_delta_mean": 1.2438744306564331e-05,
+    "positive_queries": 16,
+    "presence_margin_mean": 8.3213672041893e-06,
+    "present_probability_mean": 0.4652287261560559,
+    "present_recall": 0.25,
+    "query_permutation_response_mean": 8.3213672041893e-06,
+    "query_permutation_response_min": -7.610023021697998e-05,
+    "roc_auc": 0.515625,
+    "target_l1_mean": {
+      "absent_C": 0.030252398108132184,
+      "present_A": 0.027224269171711057,
+      "present_B": 0.026365805533714592
+    },
+    "unaffected_query_drift_mean": 0.0
+  },
+  "cer_measured": false,
+  "checkpoint": "E:/midea_target_asr/code/runs/dacf_counterfactual_probe32_20260806/probe_checkpoint.pt",
+  "cuda_peak_memory_mib": 118.64697265625,
+  "dataset_a_used": false,
+  "device": "cuda",
+  "fixed_presence_threshold": 0.5,
+  "gate_checks": {
+    "absent_rr": true,
+    "present_recall": false,
+    "query_response": false,
+    "roc_auc": false
+  },
+  "gate_thresholds": {
+    "min_query_response": 0.2,
+    "min_val_absent_rr": 0.75,
+    "min_val_auc": 0.8,
+    "min_val_present_recall": 0.75
+  },
+  "hard_negative_verified": false,
+  "learning_rate": 0.003,
+  "limitations": [
+    "AISHELL read speech is not a verified complete-command hard negative.",
+    "This small probe does not establish CER, RR, RTF, or integration value.",
+    "One seed and one fixed update budget are a mechanism gate, not a final estimate."
+  ],
+  "scope": "mini-G2 speaker-disjoint query-control probe",
+  "seed": 20260806,
+  "status": "implementation-NO-GO",
+  "threshold_tuned": false,
+  "train_groups": 24,
+  "train_loss_first": 2.5497453212738037,
+  "train_loss_last": 1.8648697137832642,
+  "train_loss_tail_mean": 1.7548839052518208,
+  "train_manifest": "E:/midea_target_asr/code/runs/dacf_counterfactual_probe32_20260806/train/manifest.jsonl",
+  "train_manifest_sha256": "a82688589e2e657e45aaa5efd3038f3a5de72ec788fc4323655eea8b2ca41e2b",
+  "updates": 240,
+  "val_groups": 8,
+  "val_manifest": "E:/midea_target_asr/code/runs/dacf_counterfactual_probe32_20260806/val/manifest.jsonl",
+  "val_manifest_sha256": "9f77771834e376fb63ef4c41e220abd4a5685b61f467caad6e78b1fd5b09b2dd"
+}

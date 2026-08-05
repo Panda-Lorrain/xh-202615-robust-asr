@@ -1,0 +1,241 @@
+{
+  "artifacts": {
+    "base_mixtures": [
+      {
+        "absent_speaker": "001-M",
+        "base_mixture_id": "realps4_probe_0000",
+        "enrollment_session": "S03",
+        "mixture_environment_id": "synthetic_sum|session=S01|recording=AISHELL-4_20200616_M_R001S01C01|channel=C01",
+        "mixture_session": "S01",
+        "mixture_sha256": "4fcc7e8dbb5d1a07d165a26acadc9556048504ade93430b417b54d2a3599ae38",
+        "mixture_speakers": {
+          "A": "003-F",
+          "B": "004-F"
+        },
+        "recognition_source_audio": [
+          "E:/midea_datasets/REAL-PS4/AISHELL-4/enrolment_speakers/AISHELL-4_20200616_M_R001S01C01_003-F_577.85_585.12.wav",
+          "E:/midea_datasets/REAL-PS4/AISHELL-4/enrolment_speakers/AISHELL-4_20200616_M_R001S01C01_004-F_329.54_338.45.wav"
+        ],
+        "record_count": 6,
+        "timing": {
+          "interferer_start_samples": 58151,
+          "output_samples": 200631,
+          "overlap_ratio_requested": 0.5,
+          "overlap_samples": 58152,
+          "peak_normalization_scale": 0.8993939598160565,
+          "sample_rate": 16000,
+          "sir_db_measured": -0.8816296993545424,
+          "sir_db_requested": 0.0,
+          "target_start_samples": 0
+        }
+      },
+      {
+        "absent_speaker": "002-F",
+        "base_mixture_id": "realps4_probe_0001",
+        "enrollment_session": "S02",
+        "mixture_environment_id": "synthetic_sum|session=S04|recording=AISHELL-4_20200616_M_R001S04C01|channel=C01",
+        "mixture_session": "S04",
+        "mixture_sha256": "f30063360359910a437b206d3bd83fa964e1d13999f86b133b4ee5bdf99c6ef7",
+        "mixture_speakers": {
+          "A": "004-F",
+          "B": "001-M"
+        },
+        "recognition_source_audio": [
+          "E:/midea_datasets/REAL-PS4/AISHELL-4/enrolment_speakers/AISHELL-4_20200616_M_R001S04C01_004-F_1186.63_1192.59.wav",
+          "E:/midea_datasets/REAL-PS4/AISHELL-4/enrolment_speakers/AISHELL-4_20200616_M_R001S04C01_001-M_163.17_168.75.wav"
+        ],
+        "record_count": 6,
+        "timing": {
+          "interferer_start_samples": 50658,
+          "output_samples": 139903,
+          "overlap_ratio_requested": 0.5,
+          "overlap_samples": 44622,
+          "peak_normalization_scale": 0.711436251537935,
+          "sample_rate": 16000,
+          "sir_db_measured": 0.2841783931405275,
+          "sir_db_requested": 0.0,
+          "target_start_samples": 0
+        }
+      },
+      {
+        "absent_speaker": "003-F",
+        "base_mixture_id": "realps4_probe_0002",
+        "enrollment_session": "S03",
+        "mixture_environment_id": "synthetic_sum|session=S02|recording=AISHELL-4_20200616_M_R001S02C01|channel=C01",
+        "mixture_session": "S02",
+        "mixture_sha256": "45674697f7711398afe5d215ea9b3e6d25bd840c76b31874a522c6fc4bf78fc2",
+        "mixture_speakers": {
+          "A": "001-M",
+          "B": "002-F"
+        },
+        "recognition_source_audio": [
+          "E:/midea_datasets/REAL-PS4/AISHELL-4/enrolment_speakers/AISHELL-4_20200616_M_R001S02C01_001-M_865.76_871.36.wav",
+          "E:/midea_datasets/REAL-PS4/AISHELL-4/enrolment_speakers/AISHELL-4_20200616_M_R001S02C01_002-F_942.99_948.74.wav"
+        ],
+        "record_count": 6,
+        "timing": {
+          "interferer_start_samples": 44848,
+          "output_samples": 136789,
+          "overlap_ratio_requested": 0.5,
+          "overlap_samples": 44848,
+          "peak_normalization_scale": 1.0,
+          "sample_rate": 16000,
+          "sir_db_measured": -0.10736146490397558,
+          "sir_db_requested": 0.0,
+          "target_start_samples": 0
+        }
+      },
+      {
+        "absent_speaker": "004-F",
+        "base_mixture_id": "realps4_probe_0003",
+        "enrollment_session": "S02",
+        "mixture_environment_id": "synthetic_sum|session=S05|recording=AISHELL-4_20200616_M_R001S05C01|channel=C01",
+        "mixture_session": "S05",
+        "mixture_sha256": "e56bc0bc9d7ba7cbad7f74f5b62c53b4f0dcd2d2d85abe865f88d292d0a74e4a",
+        "mixture_speakers": {
+          "A": "002-F",
+          "B": "003-F"
+        },
+        "recognition_source_audio": [
+          "E:/midea_datasets/REAL-PS4/AISHELL-4/enrolment_speakers/AISHELL-4_20200616_M_R001S05C01_002-F_188.70_200.57.wav",
+          "E:/midea_datasets/REAL-PS4/AISHELL-4/enrolment_speakers/AISHELL-4_20200616_M_R001S05C01_003-F_318.86_324.26.wav"
+        ],
+        "record_count": 6,
+        "timing": {
+          "interferer_start_samples": 146716,
+          "output_samples": 233124,
+          "overlap_ratio_requested": 0.5,
+          "overlap_samples": 43204,
+          "peak_normalization_scale": 0.8490373793562576,
+          "sample_rate": 16000,
+          "sir_db_measured": 3.420167719540386,
+          "sir_db_requested": 0.0,
+          "target_start_samples": 0
+        }
+      }
+    ],
+    "manifest_jsonl": "code/runs/dacf_realps4_probe_20260806/manifest.jsonl"
+  },
+  "limitations": [
+    "The same four speaker IDs repeat across sessions, so this is not speaker-disjoint.",
+    "There is no complete mixture/transcript package in this input; this is not a CER set.",
+    "The A+B recognition WAV is a synthetic sum of two real fragments, not native overlap; background is superposed.",
+    "Do not train a model, select a rejection threshold, or claim Dataset-A generalization from this probe."
+  ],
+  "policy": {
+    "cer_evaluation_available": false,
+    "dataset_a_used": false,
+    "threshold_selection_allowed": false,
+    "training_allowed": false
+  },
+  "probe": {
+    "background_is_superposed": true,
+    "base_mixtures": 4,
+    "comparison_grid_counts": {
+      "cross_env__correct": 8,
+      "cross_env__wrong": 4,
+      "same_env__correct": 8,
+      "same_env__wrong": 4
+    },
+    "condition_counts": {
+      "cross_env": 12,
+      "same_env": 12
+    },
+    "default_base_mixtures": 4,
+    "max_base_mixtures": 16,
+    "mixture_is_native_real_overlap": false,
+    "overlap_ratio": 0.5,
+    "recognition_audio_reused_across_conditions": true,
+    "record_count": 24,
+    "records_per_base": 6,
+    "role_counts": {
+      "absent_C": 8,
+      "present_A": 8,
+      "present_B": 8
+    },
+    "seed": 20260806,
+    "sir_db": 0.0,
+    "synthetic_sum_of_real_fragments": true
+  },
+  "readme": {
+    "comparison_grid": {
+      "cross_env_correct": "present A/B enrollment from enrollment_session",
+      "cross_env_wrong": "absent C enrollment from enrollment_session",
+      "same_env_correct": "present A/B enrollment from mixture_session",
+      "same_env_wrong": "absent C enrollment from mixture_session"
+    },
+    "design": "The recognition WAV is a deterministic synthetic sum of two different real meeting-room fragments (A+B). The second fragment is additive background; this is not a native REAL-PS4 overlap recording. It is queried with present A, present B, and absent C enrollments from the mixture session and from another session.",
+    "freeze_gate": "Run only after the model is frozen from external speaker-disjoint data such as AISHELL-1; use this set for mechanism audit, not calibration.",
+    "not_for": [
+      "CER: REAL-PS4 enrollment_speakers has no complete recognition transcript here",
+      "threshold selection or Dataset-A score claims",
+      "speaker-disjoint generalization claims"
+    ],
+    "purpose": "Mechanism audit of speaker presence and environment transfer.",
+    "threshold_selection_allowed": false,
+    "title": "DACF D6 REAL-PS4 same/cross-environment presence probe",
+    "training_allowed": false
+  },
+  "schema_version": "dacf-realps4-presence-v0.1",
+  "source": {
+    "channels": 1,
+    "dataset_a_used": false,
+    "root": "E:/midea_datasets/REAL-PS4/AISHELL-4/enrolment_speakers",
+    "sample_rate": 16000,
+    "sessions": [
+      "S01",
+      "S02",
+      "S03",
+      "S04",
+      "S05",
+      "S06"
+    ],
+    "source_audio_unchanged": true,
+    "speaker_label_map": {
+      "001-M": 0,
+      "002-F": 1,
+      "003-F": 2,
+      "004-F": 3
+    },
+    "speakers_by_session": {
+      "S01": [
+        "001-M",
+        "002-F",
+        "003-F",
+        "004-F"
+      ],
+      "S02": [
+        "001-M",
+        "002-F",
+        "003-F",
+        "004-F"
+      ],
+      "S03": [
+        "001-M",
+        "002-F",
+        "003-F",
+        "004-F"
+      ],
+      "S04": [
+        "001-M",
+        "002-F",
+        "003-F",
+        "004-F"
+      ],
+      "S05": [
+        "001-M",
+        "002-F",
+        "003-F",
+        "004-F"
+      ],
+      "S06": [
+        "001-M",
+        "002-F",
+        "003-F",
+        "004-F"
+      ]
+    },
+    "transcript_unavailable": true,
+    "wav_count": 109
+  }
+}

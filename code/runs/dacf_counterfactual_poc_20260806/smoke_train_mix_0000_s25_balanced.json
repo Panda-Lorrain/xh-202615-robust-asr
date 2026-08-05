@@ -1,0 +1,360 @@
+{
+  "activity_hop_samples": 160,
+  "after": {
+    "absent_output_rms": 0.002983739599585533,
+    "losses": {
+      "activity": 0.5265466570854187,
+      "counterfactual": 0.004323743749409914,
+      "ctc": null,
+      "disentangle": 0.00016448907263111323,
+      "environment": -0.0,
+      "identity": 0.0016867320518940687,
+      "presence": 0.07406683266162872,
+      "reconstruction": 0.23920094966888428,
+      "total": 0.8443084955215454
+    },
+    "presence_prob": {
+      "absent_C": 0.06648216396570206,
+      "present_A": 0.9225803017616272,
+      "present_B": 0.9248756170272827
+    },
+    "query_swap_audio_delta": {
+      "mean_pairwise": 0.0004130916689367344,
+      "present_A_vs_absent_C": 0.000616885197814554,
+      "present_A_vs_present_B": 8.712007547728717e-05,
+      "present_B_vs_absent_C": 0.000535269733518362
+    },
+    "target_l1": {
+      "absent_C": 0.002355650532990694,
+      "present_A": 0.003480535466223955,
+      "present_B": 0.003870876971632242
+    }
+  },
+  "backward_ok": true,
+  "base_mixture_id": "train_mix_0000",
+  "before": {
+    "absent_output_rms": 0.017099617049098015,
+    "losses": {
+      "activity": 0.8375208973884583,
+      "counterfactual": 0.004045844078063965,
+      "ctc": null,
+      "disentangle": 1.1378676863585402e-12,
+      "environment": -0.0,
+      "identity": 1.609102487564087,
+      "presence": 0.706781804561615,
+      "reconstruction": 0.948131263256073,
+      "total": 2.6573901176452637
+    },
+    "presence_prob": {
+      "absent_C": 0.4178445190191269,
+      "present_A": 0.41785094141960144,
+      "present_B": 0.4179217517375946
+    },
+    "query_swap_audio_delta": {
+      "mean_pairwise": 0.0,
+      "present_A_vs_absent_C": 0.0,
+      "present_A_vs_present_B": 0.0,
+      "present_B_vs_absent_C": 0.0
+    },
+    "target_l1": {
+      "absent_C": 0.013527069240808487,
+      "present_A": 0.012633808888494968,
+      "present_B": 0.012315434403717518
+    }
+  },
+  "counterfactual_source": "query_role_id",
+  "ctc_enabled": false,
+  "cuda_peak_memory_mib": 116.37158203125,
+  "dataset_a_read": false,
+  "device": "cuda",
+  "effective_batch_size": 6,
+  "environment_id_map": {
+    "train:train_mix_0000:env": 0
+  },
+  "identity_positive_pairs": 3,
+  "identity_source": "query_speaker_label",
+  "limitations": [
+    "Does not answer generalization or held-out performance.",
+    "Does not answer CER or submission score.",
+    "The permutation control is one deterministic group, not a statistical conclusion."
+  ],
+  "manifest": "E:/midea_target_asr/code/runs/dacf_counterfactual_poc_20260806/train/manifest.jsonl",
+  "mixture_sha256": "39a1bb990ae7007213ba3cec044ebf497bf9b82b1553dccb7eb7af2c9a7a7288",
+  "model": {
+    "d_model": 16,
+    "hop_length": 160,
+    "n_fft": 400,
+    "n_heads": 4,
+    "sample_rate": 16000,
+    "win_length": 400
+  },
+  "permutation_absent_control": {
+    "labels_unchanged": true,
+    "loss_change": {
+      "activity": 0.44189023971557617,
+      "counterfactual": -0.00015525659546256065,
+      "ctc": null,
+      "disentangle": 0.0,
+      "environment": 0.0,
+      "identity": 0.0,
+      "presence": 1.902420088648796,
+      "reconstruction": -0.006071880459785461,
+      "total": 2.3380831480026245
+    },
+    "note": "One deterministic enrollment permutation on one fixed three-query group; this is not a statistical or generalization conclusion.",
+    "original": {
+      "absent_output_rms": 0.002983739599585533,
+      "losses": {
+        "activity": 0.5265466570854187,
+        "counterfactual": 0.004323743749409914,
+        "ctc": null,
+        "disentangle": 0.00016448907263111323,
+        "environment": -0.0,
+        "identity": 0.0016867320518940687,
+        "presence": 0.07406683266162872,
+        "reconstruction": 0.23920094966888428,
+        "total": 0.8443084955215454
+      },
+      "presence_prob": {
+        "absent_C": 0.06648216396570206,
+        "present_A": 0.9225803017616272,
+        "present_B": 0.9248756170272827
+      },
+      "query_swap_audio_delta": {
+        "mean_pairwise": 0.0004130916689367344,
+        "present_A_vs_absent_C": 0.000616885197814554,
+        "present_A_vs_present_B": 8.712007547728717e-05,
+        "present_B_vs_absent_C": 0.000535269733518362
+      },
+      "target_l1": {
+        "absent_C": 0.002355650532990694,
+        "present_A": 0.003480535466223955,
+        "present_B": 0.003870876971632242
+      }
+    },
+    "permutation": [
+      4,
+      5,
+      2,
+      3,
+      0,
+      1
+    ],
+    "permuted": {
+      "absent_output_rms": 0.0022583547979593277,
+      "losses": {
+        "activity": 0.9684368968009949,
+        "counterfactual": 0.004168487153947353,
+        "ctc": null,
+        "disentangle": 0.00016448907263111323,
+        "environment": -0.0,
+        "identity": 0.0016867320518940687,
+        "presence": 1.9764869213104248,
+        "reconstruction": 0.23312906920909882,
+        "total": 3.18239164352417
+      },
+      "presence_prob": {
+        "absent_C": 0.9225803017616272,
+        "present_A": 0.06648216396570206,
+        "present_B": 0.9248756170272827
+      },
+      "query_swap_audio_delta": {
+        "mean_pairwise": 0.0004130916689367344,
+        "present_A_vs_absent_C": 0.000616885197814554,
+        "present_A_vs_present_B": 0.000535269733518362,
+        "present_B_vs_absent_C": 8.712007547728717e-05
+      },
+      "target_l1": {
+        "absent_C": 0.0017632602248340845,
+        "present_A": 0.0038265215698629618,
+        "present_B": 0.003870876971632242
+      }
+    },
+    "presence_prob_change": {
+      "absent_C": 0.8560981377959251,
+      "present_A": -0.8560981377959251,
+      "present_B": 0.0
+    }
+  },
+  "permutation_negative_control": {
+    "labels_unchanged": true,
+    "loss_change": {
+      "activity": 0.0023055672645568848,
+      "counterfactual": 2.6221387088298798e-06,
+      "ctc": null,
+      "disentangle": 0.0,
+      "environment": 0.0,
+      "identity": 0.0,
+      "presence": -7.450580596923828e-09,
+      "reconstruction": 0.00023028254508972168,
+      "total": 0.002538442611694336
+    },
+    "note": "One deterministic enrollment permutation on one fixed three-query group; this is not a statistical or generalization conclusion.",
+    "original": {
+      "absent_output_rms": 0.002983739599585533,
+      "losses": {
+        "activity": 0.5265466570854187,
+        "counterfactual": 0.004323743749409914,
+        "ctc": null,
+        "disentangle": 0.00016448907263111323,
+        "environment": -0.0,
+        "identity": 0.0016867320518940687,
+        "presence": 0.07406683266162872,
+        "reconstruction": 0.23920094966888428,
+        "total": 0.8443084955215454
+      },
+      "presence_prob": {
+        "absent_C": 0.06648216396570206,
+        "present_A": 0.9225803017616272,
+        "present_B": 0.9248756170272827
+      },
+      "query_swap_audio_delta": {
+        "mean_pairwise": 0.0004130916689367344,
+        "present_A_vs_absent_C": 0.000616885197814554,
+        "present_A_vs_present_B": 8.712007547728717e-05,
+        "present_B_vs_absent_C": 0.000535269733518362
+      },
+      "target_l1": {
+        "absent_C": 0.002355650532990694,
+        "present_A": 0.003480535466223955,
+        "present_B": 0.003870876971632242
+      }
+    },
+    "permutation": [
+      2,
+      3,
+      0,
+      1,
+      4,
+      5
+    ],
+    "permuted": {
+      "absent_output_rms": 0.002983739599585533,
+      "losses": {
+        "activity": 0.5288522243499756,
+        "counterfactual": 0.004326365888118744,
+        "ctc": null,
+        "disentangle": 0.00016448907263111323,
+        "environment": -0.0,
+        "identity": 0.0016867320518940687,
+        "presence": 0.07406682521104813,
+        "reconstruction": 0.239431232213974,
+        "total": 0.8468469381332397
+      },
+      "presence_prob": {
+        "absent_C": 0.06648216396570206,
+        "present_A": 0.9248756170272827,
+        "present_B": 0.9225803017616272
+      },
+      "query_swap_audio_delta": {
+        "mean_pairwise": 0.0004130916737873728,
+        "present_A_vs_absent_C": 0.000535269733518362,
+        "present_A_vs_present_B": 8.71200900292024e-05,
+        "present_B_vs_absent_C": 0.000616885197814554
+      },
+      "target_l1": {
+        "absent_C": 0.002355650532990694,
+        "present_A": 0.0035226934123784304,
+        "present_B": 0.0038380641490221024
+      }
+    },
+    "presence_prob_change": {
+      "absent_C": 0.0,
+      "present_A": 0.0022953152656555176,
+      "present_B": -0.0022953152656555176
+    }
+  },
+  "query_speaker_label_map": {
+    "101": 0,
+    "116": 1,
+    "290": 2
+  },
+  "scope": "fixed-mixture query-control and constrained overfit",
+  "seed": 20260806,
+  "speaker_id_map": {
+    "S0103": 0,
+    "S0118": 1,
+    "S0515": 2
+  },
+  "status": "smoke_only",
+  "steps": 25,
+  "submission_chain_used": false,
+  "view_count": 2,
+  "vocab": {
+    "blank_index": 0,
+    "char_to_id": {
+      "一": 1,
+      "七": 2,
+      "业": 3,
+      "中": 4,
+      "久": 5,
+      "二": 6,
+      "件": 7,
+      "依": 8,
+      "八": 9,
+      "其": 10,
+      "十": 11,
+      "单": 12,
+      "卖": 13,
+      "商": 14,
+      "夕": 15,
+      "天": 16,
+      "式": 17,
+      "撑": 18,
+      "支": 19,
+      "新": 20,
+      "无": 21,
+      "日": 22,
+      "昨": 23,
+      "是": 24,
+      "月": 25,
+      "模": 26,
+      "法": 27,
+      "电": 28,
+      "硬": 29,
+      "纯": 30,
+      "网": 31,
+      "节": 32,
+      "长": 33,
+      "靠": 34
+    },
+    "size": 35,
+    "tokens": [
+      "<blank>",
+      "一",
+      "七",
+      "业",
+      "中",
+      "久",
+      "二",
+      "件",
+      "依",
+      "八",
+      "其",
+      "十",
+      "单",
+      "卖",
+      "商",
+      "夕",
+      "天",
+      "式",
+      "撑",
+      "支",
+      "新",
+      "无",
+      "日",
+      "昨",
+      "是",
+      "月",
+      "模",
+      "法",
+      "电",
+      "硬",
+      "纯",
+      "网",
+      "节",
+      "长",
+      "靠"
+    ]
+  }
+}

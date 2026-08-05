@@ -1,0 +1,434 @@
+{
+  "artifacts": {
+    "checkpoint": "E:/midea_target_asr/code/runs/dacf_campp_cross_query_probe_20260806/matcher_checkpoint_v02_reaudit.pt",
+    "result_json": "E:/midea_target_asr/code/runs/dacf_campp_cross_query_probe_20260806/matcher_result_v02_reaudit.json"
+  },
+  "audit": {
+    "cache_file_count": 225,
+    "cache_sha256": "85bd97e6cf851e09cc8a6ee032881610cf2958f0e6fc5583964bf80fbb8528f7",
+    "cache_sha256_scope": "manifest plus referenced mixture/query/activity files",
+    "dataset_a_used": false,
+    "final_groups": 0,
+    "final_rows": 0,
+    "final_speakers": 0,
+    "group_overlap": [],
+    "manifest_path": "E:/midea_target_asr/code/runs/dacf_campp_cross_query_probe_20260806/features_manifest.jsonl",
+    "manifest_sha256": "9a4e52473271b4821e3be5b1eb61feeb03c3ecd8627f7124012127796058d735",
+    "pairwise_identity_overlap": {
+      "train/final": {
+        "group": [],
+        "speaker": []
+      },
+      "train/val": {
+        "group": [],
+        "speaker": []
+      },
+      "val/final": {
+        "group": [],
+        "speaker": []
+      }
+    },
+    "query_role_id_audit_values": {
+      "absent_C": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "present_A": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "present_B": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "query_role_id_used_as_model_input": false,
+    "speaker_overlap": [],
+    "split_artifact_overlap": {
+      "train/final": {
+        "activity_path": [],
+        "mixture_path": [],
+        "mixture_sha": [],
+        "query_feature_path": []
+      },
+      "train/val": {
+        "activity_path": [],
+        "mixture_path": [],
+        "mixture_sha": [],
+        "query_feature_path": []
+      },
+      "val/final": {
+        "activity_path": [],
+        "mixture_path": [],
+        "mixture_sha": [],
+        "query_feature_path": []
+      }
+    },
+    "train_groups": 24,
+    "train_rows": 72,
+    "train_speakers": 72,
+    "val_groups": 8,
+    "val_rows": 24,
+    "val_speakers": 24
+  },
+  "both_views_passed": false,
+  "cache_root": "E:/midea_target_asr/code/runs/dacf_campp_cross_query_probe_20260806",
+  "cache_sha256": "85bd97e6cf851e09cc8a6ee032881610cf2958f0e6fc5583964bf80fbb8528f7",
+  "cache_sha256_scope": "manifest plus referenced mixture/query/activity files",
+  "cer_measured": false,
+  "config": {
+    "abc_margin": 0.2,
+    "fixed_presence_threshold": 0.5,
+    "gradient_clip_norm": 5.0,
+    "logit_scale": 10.0,
+    "loss_weights": {
+      "abc_margin": 1.0,
+      "activity_bce": 1.0,
+      "presence_bce": 1.0,
+      "view_logits_consistency": 0.1
+    },
+    "optimizer": "AdamW",
+    "optimizer_weight_decay": 0.0001,
+    "query_dim": 32,
+    "top_fraction": 0.25
+  },
+  "dataset_a_used": false,
+  "decision_split": "val",
+  "device": "cuda",
+  "final_used_for_selection": false,
+  "gate": {
+    "main": {
+      "checks": {
+        "absent_rr": false,
+        "activity_auc": false,
+        "auc": false,
+        "present_recall": false,
+        "query_response_mean": false
+      },
+      "passed": false
+    },
+    "view2": {
+      "checks": {
+        "absent_rr": false,
+        "activity_auc": false,
+        "auc": false,
+        "present_recall": false,
+        "query_response_mean": false
+      },
+      "passed": false
+    }
+  },
+  "gate_thresholds": {
+    "absent_rr": 0.75,
+    "activity_auc": 0.7,
+    "auc": 0.8,
+    "present_recall": 0.75,
+    "query_response_mean": 0.2
+  },
+  "hard_negative_verified": false,
+  "learning_rate": 0.003,
+  "limitations": [
+    "Dataset-A was false and not read; it is forbidden for this probe.",
+    "CER was not measured and the submission chain was not used.",
+    "A verified home-command hard-negative set was not available or validated.",
+    "The fixed val gate is a mechanism gate, not a CER/RR/RTF integration gate."
+  ],
+  "manifest": "E:/midea_target_asr/code/runs/dacf_campp_cross_query_probe_20260806/features_manifest.jsonl",
+  "manifest_sha256": "9a4e52473271b4821e3be5b1eb61feeb03c3ecd8627f7124012127796058d735",
+  "model": {
+    "campp_parameters_unfrozen": false,
+    "class": "DACFCAMPPQueryMatcher",
+    "input_features": [
+      "mixture_tokens",
+      "enrollment_embedding"
+    ],
+    "parameter_limit": 100000,
+    "parameter_limit_passed": true,
+    "query_role_id_used_as_model_input": false,
+    "trainable_parameter_count": 49153
+  },
+  "runtime_sec": 3.469215400000394,
+  "schema": "dacf-campp-cross-query-report-v0.2",
+  "seed": 20260806,
+  "threshold_tuned": false,
+  "train": {
+    "main": {
+      "absent_probability_mean": 0.3199445423670113,
+      "absent_queries": 24,
+      "absent_rr": 1.0,
+      "activity_auc": 0.8063277367118514,
+      "auc": 0.9427083333333334,
+      "c_lower_both_ratio": 0.9583333333333334,
+      "fixed_presence_threshold": 0.5,
+      "group_bootstrap": {
+        "ci95": {
+          "absent_rr": [
+            1.0,
+            1.0
+          ],
+          "activity_auc_group_mean": [
+            0.7646172024262672,
+            0.8431989624510319
+          ],
+          "auc": [
+            0.8967013888888888,
+            0.9817925347222222
+          ],
+          "present_recall": [
+            0.7083333333333334,
+            0.9166666666666666
+          ],
+          "query_response_mean": [
+            0.14183264717964145,
+            0.29089110574180566
+          ]
+        },
+        "samples": 2000,
+        "seed": 20270806,
+        "unit": "base_mixture_id"
+      },
+      "groups": 24,
+      "present_probability_mean": 0.6044189212843776,
+      "present_queries": 48,
+      "present_recall": 0.8125,
+      "query_response_mean": 0.21268026173735657,
+      "query_response_min_margin_mean": 0.21268026173735657,
+      "roc_auc": 0.9427083333333334
+    },
+    "view2": {
+      "absent_probability_mean": 0.33967902705383796,
+      "absent_queries": 24,
+      "absent_rr": 0.875,
+      "activity_auc": 0.7980233010800092,
+      "auc": 0.9227430555555556,
+      "c_lower_both_ratio": 0.9166666666666666,
+      "fixed_presence_threshold": 0.5,
+      "group_bootstrap": {
+        "ci95": {
+          "absent_rr": [
+            0.7083333333333334,
+            1.0
+          ],
+          "activity_auc_group_mean": [
+            0.7593630966202659,
+            0.8436162014648875
+          ],
+          "auc": [
+            0.8715060763888889,
+            0.9713541666666666
+          ],
+          "present_recall": [
+            0.6666666666666666,
+            0.8958333333333334
+          ],
+          "query_response_mean": [
+            0.12756975082835803,
+            0.26838712858346603
+          ]
+        },
+        "samples": 2000,
+        "seed": 20270807,
+        "unit": "base_mixture_id"
+      },
+      "groups": 24,
+      "present_probability_mean": 0.6219512528429428,
+      "present_queries": 48,
+      "present_recall": 0.7916666666666666,
+      "query_response_mean": 0.19547460530884564,
+      "query_response_min_margin_mean": 0.19547460530884564,
+      "roc_auc": 0.9227430555555556
+    }
+  },
+  "train_loss_component_means": {
+    "abc_margin": 0.10523151645902544,
+    "activity_bce": 0.7359225603441397,
+    "presence_bce": 0.6762730366860826,
+    "total": 1.5353544438878695,
+    "view_logits_consistency": 0.1792733457754366
+  },
+  "train_loss_first": 1.5187506675720215,
+  "train_loss_last": 1.1566399335861206,
+  "train_loss_tail_mean": 1.1599265535672505,
+  "updates": 240,
+  "val": {
+    "main": {
+      "absent_probability_mean": 0.4946254547685385,
+      "absent_queries": 8,
+      "absent_rr": 0.5,
+      "activity_auc": 0.5289220729105492,
+      "auc": 0.546875,
+      "c_lower_both_ratio": 0.5,
+      "fixed_presence_threshold": 0.5,
+      "group_bootstrap": {
+        "ci95": {
+          "absent_rr": [
+            0.125,
+            0.875
+          ],
+          "activity_auc_group_mean": [
+            0.34539053889568444,
+            0.7465371985229368
+          ],
+          "auc": [
+            0.34375,
+            0.734375
+          ],
+          "present_recall": [
+            0.1875,
+            0.8125
+          ],
+          "query_response_mean": [
+            -0.18187631159089507,
+            0.10813581384718418
+          ]
+        },
+        "samples": 2000,
+        "seed": 20280806,
+        "unit": "base_mixture_id"
+      },
+      "groups": 8,
+      "present_probability_mean": 0.540210410952568,
+      "present_queries": 16,
+      "present_recall": 0.5,
+      "query_response_mean": -0.0334632582962513,
+      "query_response_min_margin_mean": -0.0334632582962513,
+      "roc_auc": 0.546875
+    },
+    "view2": {
+      "absent_probability_mean": 0.5190362129360437,
+      "absent_queries": 8,
+      "absent_rr": 0.5,
+      "activity_auc": 0.5279064502376011,
+      "auc": 0.546875,
+      "c_lower_both_ratio": 0.375,
+      "fixed_presence_threshold": 0.5,
+      "group_bootstrap": {
+        "ci95": {
+          "absent_rr": [
+            0.125,
+            0.875
+          ],
+          "activity_auc_group_mean": [
+            0.34510203415561985,
+            0.6614469846987217
+          ],
+          "auc": [
+            0.328125,
+            0.7421875
+          ],
+          "present_recall": [
+            0.3125,
+            0.8125
+          ],
+          "query_response_mean": [
+            -0.18127817483618855,
+            0.05553394556045532
+          ]
+        },
+        "samples": 2000,
+        "seed": 20280807,
+        "unit": "base_mixture_id"
+      },
+      "groups": 8,
+      "present_probability_mean": 0.5492044854909182,
+      "present_queries": 16,
+      "present_recall": 0.5625,
+      "query_response_mean": -0.06307116709649563,
+      "query_response_min_margin_mean": -0.06307116709649563,
+      "roc_auc": 0.546875
+    }
+  },
+  "val_used_for_selection": false,
+  "verdict": "implementation-NO-GO",
+  "verdict_scope": "fixed matcher mechanism gate on val split only"
+}

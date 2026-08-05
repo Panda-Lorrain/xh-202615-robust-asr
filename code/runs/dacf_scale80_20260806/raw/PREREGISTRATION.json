@@ -1,0 +1,42 @@
+{
+  "aishell_root": "E:/midea_datasets/data_aishell",
+  "build": {
+    "augmentation_profile": "balanced",
+    "final_mixtures": 16,
+    "seed": 2026080602,
+    "train_mixtures": 48,
+    "val_mixtures": 16
+  },
+  "dataset_a_used": false,
+  "excluded_manifest_sha256": {
+    "E:/midea_target_asr/code/runs/dacf_counterfactual_probe32_20260806/train/manifest.jsonl": "a82688589e2e657e45aaa5efd3038f3a5de72ec788fc4323655eea8b2ca41e2b",
+    "E:/midea_target_asr/code/runs/dacf_counterfactual_probe32_20260806/val/manifest.jsonl": "9f77771834e376fb63ef4c41e220abd4a5685b61f467caad6e78b1fd5b09b2dd"
+  },
+  "experiment_id": "dacf-campp-cross-query-scale-only-v0.1",
+  "fixed_gate": {
+    "absent_rr": 0.75,
+    "activity_auc": 0.7,
+    "auc": 0.8,
+    "both_enrollment_views_required": true,
+    "present_recall": 0.75,
+    "query_response_mean": 0.2
+  },
+  "limitations": [
+    "AISHELL-1 read speech is not a verified home-command hard negative.",
+    "Passing this gate is only conditional-GO for mechanism scaling.",
+    "CER, negative-set RR, and RTF are not measured at this stage."
+  ],
+  "matcher": {
+    "architecture": "DACFCAMPPQueryMatcher-v0.1-unchanged",
+    "fixed_presence_threshold": 0.5,
+    "learning_rate": 0.003,
+    "seed": 20260806,
+    "updates": 480
+  },
+  "schema": "dacf-scale-falsification-preregistration-v0.1",
+  "selection_policy": "one scale-only run; train updates parameters, validation is observed once after fixed training, and final holdout alone decides the gate; no split selects seed, threshold, learning rate, update count, architecture, or checkpoint",
+  "source_corpus": "AISHELL-1",
+  "source_splits": [
+    "train"
+  ]
+}

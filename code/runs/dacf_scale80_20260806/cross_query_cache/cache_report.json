@@ -1,0 +1,78 @@
+{
+  "allowed_source_root": "E:/midea_datasets/data_aishell",
+  "artifacts": {
+    "cache_report": "cache_report.json",
+    "manifest": "features_manifest.jsonl",
+    "mixture_dir": "mixture",
+    "query_dir": "query"
+  },
+  "cache_schema": "dacf-campp-cross-query-cache-v0.2",
+  "cache_sha256": "d84a1fb5a4ad1142000997d7865c6349cc7a855e9fd2a4f5d4b968214577e7e0",
+  "cache_sha256_scope": "features_manifest.jsonl plus every generated mixture/*.npz and query/*.npz; excludes self-referential cache_report.json",
+  "counts": {
+    "groups": 80,
+    "mixture_npz": 80,
+    "query_npz": 240,
+    "rows": 240,
+    "splits": {
+      "final": {
+        "groups": 16,
+        "query_speakers": 48,
+        "rows": 48
+      },
+      "train": {
+        "groups": 48,
+        "query_speakers": 144,
+        "rows": 144
+      },
+      "val": {
+        "groups": 16,
+        "query_speakers": 48,
+        "rows": 48
+      }
+    }
+  },
+  "dataset_a_policy": "hard reject forbidden-corpus markers and true flags; no forbidden corpus path is read",
+  "dataset_a_used": false,
+  "frame_feature_root": "E:/midea_target_asr/code/runs/dacf_scale80_20260806/frame_features",
+  "manifest_sha256": "ce942013ad28852af64ff8f2143ee38b12f497eed1de21dfdd7529fc565810c2",
+  "output_root": "E:/midea_target_asr/code/runs/dacf_scale80_20260806/cross_query_cache",
+  "overlap_audit": {
+    "train_vs_final": {
+      "group_id_overlap": [],
+      "mixture_feature_path_overlap": [],
+      "mixture_path_overlap": [],
+      "mixture_sha256_overlap": [],
+      "query_speaker_overlap": [],
+      "source_path_overlap": []
+    },
+    "train_vs_val": {
+      "group_id_overlap": [],
+      "mixture_feature_path_overlap": [],
+      "mixture_path_overlap": [],
+      "mixture_sha256_overlap": [],
+      "query_speaker_overlap": [],
+      "source_path_overlap": []
+    },
+    "val_vs_final": {
+      "group_id_overlap": [],
+      "mixture_feature_path_overlap": [],
+      "mixture_path_overlap": [],
+      "mixture_sha256_overlap": [],
+      "query_speaker_overlap": [],
+      "source_path_overlap": []
+    }
+  },
+  "schema": "dacf-campp-cross-query-cache-report-v0.2",
+  "source_corpus": "AISHELL-1",
+  "split_contract": {
+    "expected_groups": {
+      "final": 16,
+      "train": 48,
+      "val": 16
+    },
+    "final_gate_split": "final",
+    "train_role": "training_only",
+    "val_role": "observation_only"
+  }
+}

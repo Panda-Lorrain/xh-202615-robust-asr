@@ -1,0 +1,325 @@
+{
+  "schema_version": "dacf-qwen-real-smoke-v0.1",
+  "role": "D8",
+  "created_at_utc": "2026-08-05T18:15:25.662856+00:00",
+  "verdict": "conditional-GO",
+  "direction": "direction-unresolved",
+  "status": "passed-contract-smoke",
+  "contract": {
+    "offline_only": true,
+    "local_files_only": true,
+    "dataset_a_read": false,
+    "optimizer_used": false,
+    "optimizer_step_used": false,
+    "training_run": false,
+    "batch_size": 1,
+    "pure_asr_backward": true,
+    "auxiliary_loss_weights": {
+      "presence": 0.0,
+      "activity": 0.0
+    }
+  },
+  "paths": {
+    "model_dir": "E:\\hf_cache\\Qwen3-ASR-1.7B",
+    "manifest": "E:\\midea_target_asr\\code\\runs\\dacf_counterfactual_poc_20260806\\train\\manifest.jsonl",
+    "result": "E:\\midea_target_asr\\code\\runs\\dacf_qwen_real_smoke_20260806\\result.json",
+    "recognition_audio": "E:\\midea_target_asr\\code\\runs\\dacf_counterfactual_poc_20260806\\train\\recognition\\train_mix_0000.wav",
+    "enrollment_audio": "E:\\midea_target_asr\\code\\runs\\dacf_counterfactual_poc_20260806\\train\\enrollment\\train_mix_0000__present_A.wav",
+    "target_source": "E:\\midea_datasets\\data_aishell\\wav\\train\\S0515\\BAC009S0515W0383.wav"
+  },
+  "sample": {
+    "id": "train_mix_0000__present_A",
+    "query_role": "present_A",
+    "query_role_id": 0,
+    "target_present": true,
+    "clean_target_is_empty": false,
+    "query_speaker_id": "S0515",
+    "target_speaker_id": "S0515",
+    "source_corpus": "AISHELL-1",
+    "split": "train",
+    "reference_chars": 16,
+    "dataset_a_used": false,
+    "recognition_sample_rate": 16000,
+    "enrollment_sample_rate": 16000,
+    "recognition_samples": 156884,
+    "enrollment_samples": 31839
+  },
+  "runtime": {
+    "model_load_seconds": 2.638197799999034,
+    "cuda_available": true,
+    "device": "cuda:0",
+    "qwen_autocast": "cuda:bfloat16",
+    "thinker_parameter_devices": [
+      "cuda:0"
+    ],
+    "thinker_parameter_dtypes": [
+      "torch.bfloat16"
+    ],
+    "torch_version": "2.6.0+cu124",
+    "cuda_version": "12.4",
+    "processor_tensor_shapes": {
+      "input_ids": [
+        1,
+        157
+      ],
+      "attention_mask": [
+        1,
+        157
+      ],
+      "feature_attention_mask": [
+        1,
+        980
+      ],
+      "input_features": [
+        1,
+        128,
+        980
+      ],
+      "labels": [
+        1,
+        157
+      ]
+    },
+    "processor_tensor_dtypes": {
+      "input_ids": "torch.int64",
+      "attention_mask": "torch.int64",
+      "feature_attention_mask": "torch.int32",
+      "input_features": "torch.float32",
+      "labels": "torch.int64"
+    },
+    "waveform_dtype": "torch.float32",
+    "waveform_device": "cuda:0",
+    "smoke_wall_seconds_baseline_zero_small": 1.680394700000761,
+    "peak_cuda_memory_allocated_bytes": 5129192448,
+    "peak_cuda_memory_reserved_bytes": 5165285376,
+    "peak_cuda_memory_allocated_mib": 4891.5791015625,
+    "peak_cuda_memory_reserved_mib": 4926.0,
+    "baseline_loss": 6.714730739593506,
+    "zero_gate_loss": 6.714730739593506,
+    "small_gate_loss": 6.7170023918151855,
+    "small_gate_value": 0.01,
+    "process_wall_seconds_including_failure": 10.310499500001242
+  },
+  "audio_layer": {
+    "wrapper_class": "_InjectedAudioLayer",
+    "base_class": "Qwen3ASRAudioEncoderLayer",
+    "hidden_size": 1024,
+    "layer_index": 0,
+    "hook_call_count_zero_plus_small": 2,
+    "hook_records": [
+      {
+        "shape": [
+          127,
+          1024
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "cuda:0",
+        "output_kind": "sequence"
+      },
+      {
+        "shape": [
+          127,
+          1024
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "cuda:0",
+        "output_kind": "sequence"
+      }
+    ],
+    "observed_layouts": [
+      "utterance_[T,H]"
+    ]
+  },
+  "checks": {
+    "baseline_forward_labels_ok": true,
+    "zero_gate_forward_labels_ok": true,
+    "zero_gate_logits_exact_equal": true,
+    "zero_gate_logits_max_abs_diff": 0.0,
+    "zero_gate_loss_exact_equal": true,
+    "zero_gate_loss_abs_diff": 0.0,
+    "zero_gate_equivalent": true,
+    "strict_gradient_contract": true,
+    "zero_gate_first_gate_gradient_nonzero": true,
+    "zero_gate_first_dacf_gradient_zero": true,
+    "small_gate_asr_reaches_gate": true,
+    "small_gate_asr_reaches_bridge_non_gate": true,
+    "small_gate_asr_reaches_dacf": true,
+    "frozen_thinker_requires_grad_false": true,
+    "zero_backward_no_frozen_thinker_grad": true,
+    "small_backward_no_frozen_thinker_grad": true,
+    "auxiliary_loss_weights_zero": true,
+    "required_contract_checks": [
+      "baseline_forward_labels_ok",
+      "zero_gate_forward_labels_ok",
+      "zero_gate_equivalent",
+      "zero_gate_first_gate_gradient_nonzero",
+      "zero_gate_first_dacf_gradient_zero",
+      "small_gate_asr_reaches_gate",
+      "small_gate_asr_reaches_bridge_non_gate",
+      "small_gate_asr_reaches_dacf",
+      "frozen_thinker_requires_grad_false",
+      "zero_backward_no_frozen_thinker_grad",
+      "small_backward_no_frozen_thinker_grad",
+      "auxiliary_loss_weights_zero",
+      "strict_gradient_contract"
+    ],
+    "all_required_contract_checks_pass": true,
+    "audio_layer_hook_two_forwards": true,
+    "audio_layer_call_count_per_forward_is_one": true
+  },
+  "gradients": {
+    "zero_gate_first_pure_asr": {
+      "gate": {
+        "trainable_parameter_tensors": 3,
+        "gradient_tensors": 3,
+        "nonzero_gradient_tensors": 1,
+        "finite": true,
+        "sum_of_l2_norms": 0.5859375,
+        "by_name": {
+          "0.gate": 0.5859375,
+          "0.down.bias": 0.0,
+          "0.up.bias": 0.0
+        }
+      },
+      "bridge_all": {
+        "trainable_parameter_tensors": 7,
+        "gradient_tensors": 7,
+        "nonzero_gradient_tensors": 1,
+        "finite": true,
+        "sum_of_l2_norms": 0.5859375,
+        "by_name": {
+          "0.gate": 0.5859375,
+          "0.norm.weight": 0.0,
+          "0.norm.bias": 0.0,
+          "0.down.weight": 0.0,
+          "0.down.bias": 0.0,
+          "0.up.weight": 0.0,
+          "0.up.bias": 0.0
+        }
+      },
+      "dacf": {
+        "trainable_parameter_tensors": 62,
+        "gradient_tensors": 36,
+        "nonzero_gradient_tensors": 0,
+        "finite": true,
+        "sum_of_l2_norms": 0.0,
+        "by_name": {
+          "mixture_encoder.0.weight": 0.0,
+          "mixture_encoder.0.bias": 0.0,
+          "mixture_encoder.2.weight": 0.0,
+          "mixture_encoder.2.bias": 0.0,
+          "enrollment_encoder.0.weight": 0.0,
+          "enrollment_encoder.0.bias": 0.0,
+          "enrollment_encoder.2.weight": 0.0,
+          "enrollment_encoder.2.bias": 0.0,
+          "speaker_branch.0.weight": 0.0,
+          "speaker_branch.0.bias": 0.0,
+          "speaker_branch.2.weight": 0.0,
+          "speaker_branch.2.bias": 0.0,
+          "mixture_norm.weight": 0.0,
+          "mixture_norm.bias": 0.0,
+          "speaker_norm.weight": 0.0,
+          "speaker_norm.bias": 0.0,
+          "speaker_cross.in_proj_weight": 0.0,
+          "speaker_cross.in_proj_bias": 0.0,
+          "speaker_cross.out_proj.weight": 0.0,
+          "speaker_cross.out_proj.bias": 0.0,
+          "speaker_gate.weight": 0.0,
+          "speaker_gate.bias": 0.0,
+          "speaker_film_scale.weight": 0.0,
+          "speaker_film_scale.bias": 0.0,
+          "speaker_film_bias.weight": 0.0,
+          "speaker_film_bias.bias": 0.0,
+          "speaker_condition_norm.weight": 0.0,
+          "speaker_condition_norm.bias": 0.0,
+          "counterfactual_speaker.weight": 0.0,
+          "counterfactual_speaker.bias": 0.0,
+          "counterfactual_mixture.weight": 0.0,
+          "counterfactual_mixture.bias": 0.0,
+          "counterfactual_gate.weight": 0.0,
+          "counterfactual_gate.bias": 0.0,
+          "query_norm.weight": 0.0,
+          "query_norm.bias": 0.0
+        }
+      },
+      "frozen_thinker_gradient_leaks": []
+    },
+    "small_gate_0.01_pure_asr": {
+      "gate": {
+        "trainable_parameter_tensors": 3,
+        "gradient_tensors": 3,
+        "nonzero_gradient_tensors": 3,
+        "finite": true,
+        "sum_of_l2_norms": 0.1795271853916347,
+        "by_name": {
+          "0.gate": 0.162109375,
+          "0.down.bias": 0.0031953048892319202,
+          "0.up.bias": 0.014222505502402782
+        }
+      },
+      "bridge_all": {
+        "trainable_parameter_tensors": 7,
+        "gradient_tensors": 7,
+        "nonzero_gradient_tensors": 7,
+        "finite": true,
+        "sum_of_l2_norms": 0.20807546214200556,
+        "by_name": {
+          "0.gate": 0.162109375,
+          "0.norm.weight": 0.001760584651492536,
+          "0.norm.bias": 0.0018480041762813926,
+          "0.down.weight": 0.019483555108308792,
+          "0.down.bias": 0.0031953048892319202,
+          "0.up.weight": 0.005456132814288139,
+          "0.up.bias": 0.014222505502402782
+        }
+      },
+      "dacf": {
+        "trainable_parameter_tensors": 62,
+        "gradient_tensors": 36,
+        "nonzero_gradient_tensors": 36,
+        "finite": true,
+        "sum_of_l2_norms": 0.12419677362959192,
+        "by_name": {
+          "mixture_encoder.0.weight": 0.05975295603275299,
+          "mixture_encoder.0.bias": 0.008402245119214058,
+          "mixture_encoder.2.weight": 0.01672610454261303,
+          "mixture_encoder.2.bias": 0.02467453107237816,
+          "enrollment_encoder.0.weight": 4.176988295512274e-05,
+          "enrollment_encoder.0.bias": 8.2435462900321e-06,
+          "enrollment_encoder.2.weight": 1.1089977306255605e-05,
+          "enrollment_encoder.2.bias": 2.7089847208117135e-05,
+          "speaker_branch.0.weight": 3.120576366200112e-05,
+          "speaker_branch.0.bias": 0.0001176807054434903,
+          "speaker_branch.2.weight": 7.135814666980878e-05,
+          "speaker_branch.2.bias": 0.0004489863640628755,
+          "mixture_norm.weight": 0.001732908422127366,
+          "mixture_norm.bias": 0.0018132264958694577,
+          "speaker_norm.weight": 5.1427105063339695e-05,
+          "speaker_norm.bias": 5.1238330343039706e-05,
+          "speaker_cross.in_proj_weight": 0.00037139724008738995,
+          "speaker_cross.in_proj_bias": 6.568952812813222e-05,
+          "speaker_cross.out_proj.weight": 0.0005448000156320632,
+          "speaker_cross.out_proj.bias": 0.00011813620949396864,
+          "speaker_gate.weight": 2.5348683266201988e-05,
+          "speaker_gate.bias": 2.5348683266201988e-05,
+          "speaker_film_scale.weight": 0.0001730411167955026,
+          "speaker_film_scale.bias": 0.0001730411167955026,
+          "speaker_film_bias.weight": 0.00018278077186550945,
+          "speaker_film_bias.bias": 0.00018278077186550945,
+          "speaker_condition_norm.weight": 0.0017345327651128173,
+          "speaker_condition_norm.bias": 0.0018316892674192786,
+          "counterfactual_speaker.weight": 0.000287421396933496,
+          "counterfactual_speaker.bias": 9.746543946675956e-05,
+          "counterfactual_mixture.weight": 0.0005775997415184975,
+          "counterfactual_mixture.bias": 9.746543946675956e-05,
+          "counterfactual_gate.weight": 0.00016853994748089463,
+          "counterfactual_gate.bias": 2.3255272026290186e-05,
+          "query_norm.weight": 0.0017240557353943586,
+          "query_norm.bias": 0.0018303231336176395
+        }
+      },
+      "frozen_thinker_gradient_leaks": []
+    }
+  },
+  "error": null
+}

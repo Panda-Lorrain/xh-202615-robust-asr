@@ -1,0 +1,712 @@
+{
+  "artifacts": {
+    "checkpoint": "E:/midea_target_asr/code/runs/dacf_scale80_20260806/matcher_checkpoint.pt",
+    "result_json": "E:/midea_target_asr/code/runs/dacf_scale80_20260806/matcher_result.json"
+  },
+  "audit": {
+    "cache_file_count": 321,
+    "cache_sha256": "d84a1fb5a4ad1142000997d7865c6349cc7a855e9fd2a4f5d4b968214577e7e0",
+    "cache_sha256_scope": "features_manifest.jsonl plus every generated mixture/*.npz and query/*.npz; excludes self-referential cache_report.json",
+    "dataset_a_used": false,
+    "final_groups": 16,
+    "final_rows": 48,
+    "final_speakers": 48,
+    "group_overlap": [],
+    "loader_cache_sha256": "65ca2f94e75371ad70cc7e8e06e76fe0f960da561c60b5412be6f61e1d06d4b4",
+    "manifest_path": "E:/midea_target_asr/code/runs/dacf_scale80_20260806/cross_query_cache/features_manifest.jsonl",
+    "manifest_sha256": "ce942013ad28852af64ff8f2143ee38b12f497eed1de21dfdd7529fc565810c2",
+    "pairwise_identity_overlap": {
+      "train/final": {
+        "group": [],
+        "speaker": []
+      },
+      "train/val": {
+        "group": [],
+        "speaker": []
+      },
+      "val/final": {
+        "group": [],
+        "speaker": []
+      }
+    },
+    "provenance_cache_validation": {
+      "allowed_source_root": "E:/midea_datasets/data_aishell",
+      "cache_schema": "dacf-campp-cross-query-cache-v0.2",
+      "cache_sha256": "d84a1fb5a4ad1142000997d7865c6349cc7a855e9fd2a4f5d4b968214577e7e0",
+      "manifest_sha256": "ce942013ad28852af64ff8f2143ee38b12f497eed1de21dfdd7529fc565810c2",
+      "overlap_audit": {
+        "train_vs_final": {
+          "group_id_overlap": [],
+          "mixture_feature_path_overlap": [],
+          "mixture_path_overlap": [],
+          "mixture_sha256_overlap": [],
+          "query_speaker_overlap": [],
+          "source_path_overlap": []
+        },
+        "train_vs_val": {
+          "group_id_overlap": [],
+          "mixture_feature_path_overlap": [],
+          "mixture_path_overlap": [],
+          "mixture_sha256_overlap": [],
+          "query_speaker_overlap": [],
+          "source_path_overlap": []
+        },
+        "val_vs_final": {
+          "group_id_overlap": [],
+          "mixture_feature_path_overlap": [],
+          "mixture_path_overlap": [],
+          "mixture_sha256_overlap": [],
+          "query_speaker_overlap": [],
+          "source_path_overlap": []
+        }
+      },
+      "schema": "dacf-campp-cross-query-cache-report-v0.2",
+      "source_corpus": "AISHELL-1",
+      "split_contract": {
+        "expected_groups": {
+          "final": 16,
+          "train": 48,
+          "val": 16
+        },
+        "final_gate_split": "final",
+        "train_role": "training_only",
+        "val_role": "observation_only"
+      }
+    },
+    "provenance_locked": true,
+    "query_role_id_audit_values": {
+      "absent_C": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "present_A": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "present_B": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "query_role_id_used_as_model_input": false,
+    "speaker_overlap": [],
+    "split_artifact_overlap": {
+      "train/final": {
+        "activity_path": [],
+        "mixture_path": [],
+        "mixture_sha": [],
+        "query_feature_path": []
+      },
+      "train/val": {
+        "activity_path": [],
+        "mixture_path": [],
+        "mixture_sha": [],
+        "query_feature_path": []
+      },
+      "val/final": {
+        "activity_path": [],
+        "mixture_path": [],
+        "mixture_sha": [],
+        "query_feature_path": []
+      }
+    },
+    "train_groups": 48,
+    "train_rows": 144,
+    "train_speakers": 144,
+    "val_groups": 16,
+    "val_rows": 48,
+    "val_speakers": 48
+  },
+  "both_views_passed": false,
+  "cache_root": "E:/midea_target_asr/code/runs/dacf_scale80_20260806/cross_query_cache",
+  "cache_sha256": "d84a1fb5a4ad1142000997d7865c6349cc7a855e9fd2a4f5d4b968214577e7e0",
+  "cache_sha256_scope": "features_manifest.jsonl plus every generated mixture/*.npz and query/*.npz; excludes self-referential cache_report.json",
+  "cer_measured": false,
+  "config": {
+    "abc_margin": 0.2,
+    "fixed_presence_threshold": 0.5,
+    "gradient_clip_norm": 5.0,
+    "logit_scale": 10.0,
+    "loss_weights": {
+      "abc_margin": 1.0,
+      "activity_bce": 1.0,
+      "presence_bce": 1.0,
+      "view_logits_consistency": 0.1
+    },
+    "optimizer": "AdamW",
+    "optimizer_weight_decay": 0.0001,
+    "query_dim": 32,
+    "top_fraction": 0.25
+  },
+  "dataset_a_used": false,
+  "decision_split": "final",
+  "device": "cuda",
+  "final": {
+    "main": {
+      "absent_probability_mean": 0.6553158517926931,
+      "absent_queries": 16,
+      "absent_rr": 0.25,
+      "activity_auc": 0.4749678529465131,
+      "auc": 0.44140625,
+      "c_lower_both_ratio": 0.125,
+      "fixed_presence_threshold": 0.5,
+      "group_bootstrap": {
+        "ci95": {
+          "absent_rr": [
+            0.0625,
+            0.5
+          ],
+          "activity_auc_group_mean": [
+            0.43046773897530854,
+            0.5547825041332316
+          ],
+          "auc": [
+            0.361328125,
+            0.513671875
+          ],
+          "present_recall": [
+            0.46875,
+            0.84375
+          ],
+          "query_response_mean": [
+            -0.1970852279686369,
+            -0.07086374480277303
+          ]
+        },
+        "samples": 2000,
+        "seed": 20290806,
+        "unit": "base_mixture_id"
+      },
+      "groups": 16,
+      "present_probability_mean": 0.5956161747453734,
+      "present_queries": 32,
+      "present_recall": 0.65625,
+      "query_response_mean": -0.13195371278561652,
+      "query_response_min_margin_mean": -0.13195371278561652,
+      "roc_auc": 0.44140625
+    },
+    "view2": {
+      "absent_probability_mean": 0.6489818282425404,
+      "absent_queries": 16,
+      "absent_rr": 0.25,
+      "activity_auc": 0.4932460539075608,
+      "auc": 0.470703125,
+      "c_lower_both_ratio": 0.4375,
+      "fixed_presence_threshold": 0.5,
+      "group_bootstrap": {
+        "ci95": {
+          "absent_rr": [
+            0.0625,
+            0.5
+          ],
+          "activity_auc_group_mean": [
+            0.4346930426794939,
+            0.6379974620155169
+          ],
+          "auc": [
+            0.390576171875,
+            0.55859375
+          ],
+          "present_recall": [
+            0.5,
+            0.90625
+          ],
+          "query_response_mean": [
+            -0.1394170178566128,
+            -0.01725031672976913
+          ]
+        },
+        "samples": 2000,
+        "seed": 20290807,
+        "unit": "base_mixture_id"
+      },
+      "groups": 16,
+      "present_probability_mean": 0.6225886191241443,
+      "present_queries": 32,
+      "present_recall": 0.71875,
+      "query_response_mean": -0.07477859314531088,
+      "query_response_min_margin_mean": -0.07477859314531088,
+      "roc_auc": 0.470703125
+    }
+  },
+  "final_used_for_selection": false,
+  "gate": {
+    "main": {
+      "checks": {
+        "absent_rr": false,
+        "activity_auc": false,
+        "auc": false,
+        "present_recall": false,
+        "query_response_mean": false
+      },
+      "passed": false
+    },
+    "view2": {
+      "checks": {
+        "absent_rr": false,
+        "activity_auc": false,
+        "auc": false,
+        "present_recall": false,
+        "query_response_mean": false
+      },
+      "passed": false
+    }
+  },
+  "gate_thresholds": {
+    "absent_rr": 0.75,
+    "activity_auc": 0.7,
+    "auc": 0.8,
+    "present_recall": 0.75,
+    "query_response_mean": 0.2
+  },
+  "hard_negative_verified": false,
+  "learning_rate": 0.003,
+  "limitations": [
+    "Dataset-A was false and not read; it is forbidden for this probe.",
+    "CER was not measured and the submission chain was not used.",
+    "A verified home-command hard-negative set was not available or validated.",
+    "The fixed final gate is a mechanism gate, not a CER/RR/RTF integration gate."
+  ],
+  "manifest": "E:/midea_target_asr/code/runs/dacf_scale80_20260806/cross_query_cache/features_manifest.jsonl",
+  "manifest_sha256": "ce942013ad28852af64ff8f2143ee38b12f497eed1de21dfdd7529fc565810c2",
+  "model": {
+    "campp_parameters_unfrozen": false,
+    "class": "DACFCAMPPQueryMatcher",
+    "input_features": [
+      "mixture_tokens",
+      "enrollment_embedding"
+    ],
+    "parameter_limit": 100000,
+    "parameter_limit_passed": true,
+    "query_role_id_used_as_model_input": false,
+    "trainable_parameter_count": 49153
+  },
+  "runtime_sec": 12.831730800000514,
+  "schema": "dacf-campp-cross-query-report-v0.2",
+  "seed": 20260806,
+  "threshold_tuned": false,
+  "train": {
+    "main": {
+      "absent_probability_mean": 0.4239981403419127,
+      "absent_queries": 48,
+      "absent_rr": 0.6458333333333334,
+      "activity_auc": 0.6521634407765091,
+      "auc": 0.7228732638888888,
+      "c_lower_both_ratio": 0.7916666666666666,
+      "fixed_presence_threshold": 0.5,
+      "group_bootstrap": {
+        "ci95": {
+          "absent_rr": [
+            0.5,
+            0.7708333333333334
+          ],
+          "activity_auc_group_mean": [
+            0.7043088534297818,
+            0.7737059505718938
+          ],
+          "auc": [
+            0.6768608940972222,
+            0.7795247395833332
+          ],
+          "present_recall": [
+            0.5104166666666666,
+            0.7395833333333334
+          ],
+          "query_response_mean": [
+            0.08261673760910829,
+            0.16304640411205276
+          ]
+        },
+        "samples": 2000,
+        "seed": 20270806,
+        "unit": "base_mixture_id"
+      },
+      "groups": 48,
+      "present_probability_mean": 0.5990477070833246,
+      "present_queries": 96,
+      "present_recall": 0.625,
+      "query_response_mean": 0.12108858744613826,
+      "query_response_min_margin_mean": 0.12108858744613826,
+      "roc_auc": 0.7228732638888888
+    },
+    "view2": {
+      "absent_probability_mean": 0.4102156185545027,
+      "absent_queries": 48,
+      "absent_rr": 0.6458333333333334,
+      "activity_auc": 0.6459220601209963,
+      "auc": 0.7133246527777778,
+      "c_lower_both_ratio": 0.9166666666666666,
+      "fixed_presence_threshold": 0.5,
+      "group_bootstrap": {
+        "ci95": {
+          "absent_rr": [
+            0.5,
+            0.7708333333333334
+          ],
+          "activity_auc_group_mean": [
+            0.7162835212611403,
+            0.7782897434554569
+          ],
+          "auc": [
+            0.6744791666666666,
+            0.7684461805555556
+          ],
+          "present_recall": [
+            0.49973958333333335,
+            0.7395833333333334
+          ],
+          "query_response_mean": [
+            0.09733396884985268,
+            0.17109490459163984
+          ]
+        },
+        "samples": 2000,
+        "seed": 20270807,
+        "unit": "base_mixture_id"
+      },
+      "groups": 48,
+      "present_probability_mean": 0.5881039164960384,
+      "present_queries": 96,
+      "present_recall": 0.6145833333333334,
+      "query_response_mean": 0.13255151718234023,
+      "query_response_min_margin_mean": 0.13255151718234023,
+      "roc_auc": 0.7133246527777778
+    }
+  },
+  "train_loss_component_means": {
+    "abc_margin": 0.13026476044906304,
+    "activity_bce": 0.6881673506771525,
+    "presence_bce": 0.6685269589225451,
+    "total": 1.5002974866578975,
+    "view_logits_consistency": 0.13338416907402764
+  },
+  "train_loss_first": 7.359010219573975,
+  "train_loss_last": 1.2591413259506226,
+  "train_loss_tail_mean": 1.377869836986065,
+  "updates": 480,
+  "val": {
+    "main": {
+      "absent_probability_mean": 0.5593872983008623,
+      "absent_queries": 16,
+      "absent_rr": 0.3125,
+      "activity_auc": 0.5121893830509975,
+      "auc": 0.46875,
+      "c_lower_both_ratio": 0.3125,
+      "fixed_presence_threshold": 0.5,
+      "group_bootstrap": {
+        "ci95": {
+          "absent_rr": [
+            0.125,
+            0.5625
+          ],
+          "activity_auc_group_mean": [
+            0.40256254447916345,
+            0.6156603212375437
+          ],
+          "auc": [
+            0.34765625,
+            0.587890625
+          ],
+          "present_recall": [
+            0.4375,
+            0.8125
+          ],
+          "query_response_mean": [
+            -0.16072142450138927,
+            -0.02052665222436197
+          ]
+        },
+        "samples": 2000,
+        "seed": 20280806,
+        "unit": "base_mixture_id"
+      },
+      "groups": 16,
+      "present_probability_mean": 0.5351261394098401,
+      "present_queries": 32,
+      "present_recall": 0.625,
+      "query_response_mean": -0.09203872457146645,
+      "query_response_min_margin_mean": -0.09203872457146645,
+      "roc_auc": 0.46875
+    },
+    "view2": {
+      "absent_probability_mean": 0.5702331587672234,
+      "absent_queries": 16,
+      "absent_rr": 0.3125,
+      "activity_auc": 0.5087986434383156,
+      "auc": 0.41796875,
+      "c_lower_both_ratio": 0.1875,
+      "fixed_presence_threshold": 0.5,
+      "group_bootstrap": {
+        "ci95": {
+          "absent_rr": [
+            0.125,
+            0.5625
+          ],
+          "activity_auc_group_mean": [
+            0.3684778925448289,
+            0.5514351573903375
+          ],
+          "auc": [
+            0.310546875,
+            0.51171875
+          ],
+          "present_recall": [
+            0.34375,
+            0.78125
+          ],
+          "query_response_mean": [
+            -0.13223425280302764,
+            -0.03164076944813134
+          ]
+        },
+        "samples": 2000,
+        "seed": 20280807,
+        "unit": "base_mixture_id"
+      },
+      "groups": 16,
+      "present_probability_mean": 0.5320796528831124,
+      "present_queries": 32,
+      "present_recall": 0.5625,
+      "query_response_mean": -0.08371992968022823,
+      "query_response_min_margin_mean": -0.08371992968022823,
+      "roc_auc": 0.41796875
+    }
+  },
+  "val_used_for_selection": false,
+  "verdict": "implementation-NO-GO",
+  "verdict_scope": "fixed matcher mechanism gate on final split only"
+}

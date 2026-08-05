@@ -1,0 +1,120 @@
+{
+  "artifacts": {
+    "enhanced_manifest": "features_manifest.jsonl",
+    "report": "report.json"
+  },
+  "audit": {
+    "dataset_a_used": false,
+    "source_overlap": [],
+    "speaker_overlap": [],
+    "train_groups": 24,
+    "train_rows": 72,
+    "train_sources": 120,
+    "train_speakers": 72,
+    "val_groups": 8,
+    "val_rows": 24,
+    "val_sources": 40,
+    "val_speakers": 24
+  },
+  "capacity_metrics": {
+    "train": {
+      "enrollment_audio": {
+        "absent_count": 24,
+        "interpretation": "untrained cosine capacity only; not a threshold, model-selection, home-command hard-negative, CER, or submission result",
+        "positive_count": 48,
+        "query_view": "enrollment",
+        "top25_mean_auc": 0.5234375,
+        "whole_cosine_auc": 0.5355902777777778,
+        "window_max_auc": 0.53125
+      },
+      "enrollment_audio_view2": {
+        "absent_count": 24,
+        "interpretation": "untrained cosine capacity only; not a threshold, model-selection, home-command hard-negative, CER, or submission result",
+        "positive_count": 48,
+        "query_view": "view2",
+        "top25_mean_auc": 0.5034722222222222,
+        "whole_cosine_auc": 0.5295138888888888,
+        "window_max_auc": 0.5182291666666666
+      },
+      "enrollment_view_agreement": {
+        "cosine_mean": 0.9174424625105329,
+        "cosine_median": 0.9363895654678345,
+        "cosine_min": 0.7385541200637817,
+        "cosine_p10": 0.8322450220584869,
+        "count": 72,
+        "interpretation": "same-speaker enrollment-view stability only; not a target-presence threshold or mixture capacity result"
+      }
+    },
+    "val": {
+      "enrollment_audio": {
+        "absent_count": 8,
+        "interpretation": "untrained cosine capacity only; not a threshold, model-selection, home-command hard-negative, CER, or submission result",
+        "positive_count": 16,
+        "query_view": "enrollment",
+        "top25_mean_auc": 0.453125,
+        "whole_cosine_auc": 0.5546875,
+        "window_max_auc": 0.46875
+      },
+      "enrollment_audio_view2": {
+        "absent_count": 8,
+        "interpretation": "untrained cosine capacity only; not a threshold, model-selection, home-command hard-negative, CER, or submission result",
+        "positive_count": 16,
+        "query_view": "view2",
+        "top25_mean_auc": 0.4453125,
+        "whole_cosine_auc": 0.546875,
+        "window_max_auc": 0.453125
+      },
+      "enrollment_view_agreement": {
+        "cosine_mean": 0.9299493879079819,
+        "cosine_median": 0.969446063041687,
+        "cosine_min": 0.6657841205596924,
+        "cosine_p10": 0.797807264328003,
+        "count": 24,
+        "interpretation": "same-speaker enrollment-view stability only; not a target-presence threshold or mixture capacity result"
+      }
+    }
+  },
+  "counts": {
+    "enrollment_embedding_count": 96,
+    "enrollment_view2_embedding_count": 96,
+    "extractor_calls": 635,
+    "feature_manifest_rows": 96,
+    "groups": 32,
+    "input_rows": 96,
+    "mixture_feature_count": 32,
+    "mixture_window_embedding_count": 411,
+    "unique_mixtures": 32
+  },
+  "dataset_a_policy": "hard reject path/flag; not read",
+  "dataset_a_used": false,
+  "inputs": {
+    "train_manifest": "E:\\midea_target_asr\\code\\runs\\dacf_counterfactual_probe32_20260806\\train\\manifest.jsonl",
+    "val_manifest": "E:\\midea_target_asr\\code\\runs\\dacf_counterfactual_probe32_20260806\\val\\manifest.jsonl"
+  },
+  "limitations": [
+    "Cosine AUC is an untrained capacity probe, not threshold/model selection.",
+    "No home-command hard-negative or Dataset-A data was used.",
+    "No CER, rejection-rate, optimizer, or submission result is measured here.",
+    "Mixture features are keyed by verified byte SHA256 and reused across A/B/C."
+  ],
+  "model": {
+    "feature_dim": 512,
+    "path": "E:\\hf_cache\\campplus\\campplus.onnx",
+    "sha256": "bd308886b6986c89e92ebf1480bc709652d5a4197fbbfa52e4c0be017dbcd0b9"
+  },
+  "runtime_sec": 11.446576900001673,
+  "schema": "dacf-campp-feature-report-v0.1",
+  "split_runtime_sec": {
+    "train": 8.024940799999968,
+    "val": 2.705801899999642
+  },
+  "verdict": "conditional-GO",
+  "verdict_scope": "feature-layer audit only; not CER/integration GO",
+  "windowing": {
+    "hop_sec": 0.5,
+    "sample_rate": 16000,
+    "short_audio_padding": "reflect_then_tile",
+    "tail_coverage": true,
+    "window_sec": 1.5
+  }
+}
