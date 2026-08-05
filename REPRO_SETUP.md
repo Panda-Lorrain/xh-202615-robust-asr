@@ -27,6 +27,7 @@ cd ../..
 | DiariZen | `BUT-FIT/diarizen-wavlm-large-s80-md` | diarization + wespeaker 声纹 |
 | Qwen2.5-3B-Instruct | `Qwen/Qwen2.5-3B-Instruct` | LLM 拒识（trust_remote_code）|
 | **Qwen3-ASR-1.7B** | `Qwen/Qwen3-ASR-1.7B` | **中文原生 ASR 后端(`--asr-backend qwen`, 候选2 CER 腿+10分); Apache2.0; 走 code/.venv_qwen 独立环境** |
+| **SepFormer (sepformer-whamr16k)** | `speechbrain/sepformer-whamr16k` | **scene_route 双人样本 SepFormer 盲分离(`--scene-route` 默认开, Overall+0.74); 需 `speechbrain==1.0.3`(code/requirements.txt); env `MODEL_SEPFORMER` 指权重目录; 缺则 submit_infer 启动预检 ap.error**(对抗审查 H2, 2026-08-06) |
 
 **DF3 例外**（非 HF 模型）：DeepFilterNet3 原始权重来自 GitHub [`Rikorose/DeepFilterNet`](https://github.com/rikorose/deepfilternet) release，`init_df(model_base_dir=...)` 接目录路径。下载后设 env `DF_MODEL_BASE_DIR` 指向。
 
@@ -50,6 +51,12 @@ uv pip install -r code/requirements.txt   # cn2an/zhconv/editdistance/jiwer 等(
 #   inspect.getmodule 遍历触发 lazy resolve ImportError → enroll_infer(librosa.load→lazy_loader→inspect)连锁崩。
 #   已在 enroll_infer 顶部固化 patch inspect.getmodule(捕获返 None), 无需手动。enroll_infer --asr-backend qwen
 #   内部 subprocess 调 code/.venv_qwen/python code/qwen_asr_backend.py(venv 隔离, 不污染主 venv)。
+#
+# scene_route(2026-08-05 集成, --scene-route 默认开, Overall+0.74)部署(对抗审查 H2, 2026-08-06):
+#   speechbrain==1.0.3 已在 code/requirements.txt(uv pip install -r 即装)
+#   SepFormer 权重: huggingface-cli download speechbrain/sepformer-whamr16k --local-dir E:/hf_cache/sepformer-whamr16k
+#   setenv.sh / setenv_linux.sh 设 MODEL_SEPFORMER=E:/hf_cache/sepformer-whamr16k(scene_route_backend.py:128 SepformerSeparation)
+#   缺 speechbrain → submit_infer 启动预检 ap.error(非 ImportError 中途崩)
 ```
 
 ⚠️ **cn2an/zhconv 必装**（2026-07-08 workflow④ 发现并修复）：`text_utils.digit_postproc`/`to_simplified` 在缺包时 graceful 跳过 + RuntimeWarning 告警（不崩），但官方 CER 口径**不归一繁体/数字** → 缺包会让提交 content 残留繁体/阿拉伯数字，对齐简体中文数字 ref 时 CER 虚高（数字 ~0.03 全量、含数字句更甚；繁体更多）。`code/requirements.txt` 已声明，**务必 `uv pip install -r code/requirements.txt`**。`to_submission.py` 已加 digit_postproc 兜底（SSOT），enroll_infer:317-319 双归一。

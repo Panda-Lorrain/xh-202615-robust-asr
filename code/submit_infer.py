@@ -249,17 +249,38 @@ def main():
     use_llm = not args.no_llm
     use_se = not args.no_se
 
+    # 依赖预检(防主办方全新环境缺 cn2an/zhconv/pypinyin 致归一静默 skip → CER 虚高 ~0.03+,
+    # memory lessons-pitfalls §workflow④ + 2026-08-06 对抗审查 H1): 子进程 graceful skip 告警被
+    # submit_infer capture_output=True 吞掉, 必须主进程启动硬检, 缺则非 0 退出而非静默失效。
+    import importlib.util
+    for _mod in ("cn2an", "zhconv", "pypinyin"):
+        if importlib.util.find_spec(_mod) is None:
+            ap.error(
+                f"依赖 {_mod} 未装: 提交归一(数字/繁简/品牌同音)会静默 skip, 官方 CER 口径(不归一数字/繁简)"
+                f"下虚高 ~0.03+。装: uv pip install -r code/requirements.txt (已声明)"
+            )
+
+    # scene_route 依赖预检(对抗审查 H2, 2026-08-06): speechbrain 未声明致主办方 ImportError 整个提交崩。
+    if args.scene_route and importlib.util.find_spec("speechbrain") is None:
+        ap.error(
+            "开 --scene-route 但 speechbrain 未装: scene_route_backend SepFormer 加载会 ImportError"
+            "致整个提交崩(scene_route +0.74 变 −∞)。装: uv pip install -r code/requirements.txt"
+            "(speechbrain==1.0.3) + MODEL_SEPFORMER 权重见 REPRO_SETUP.md"
+        )
+
     # 保底守卫（GAP3，memory baodi-config-no-llm）：裸调默认 flag
     # （LLM ON / sim_thr=0.2 / strategy=llm_or_sim）→ RTF~1.0 + neg RR~0.77 双崩。
     # ⚠️ 统一 thr=0.27(B 集, T27 对抗验证推荐)< 0.35 守卫阈值 → 必须经 run_baodi.sh B
     # （export BAODI_OK=1 opt-in）或显式 BAODI_OK=1, 已由对抗验证背书非裸调灾难。
-    if not os.environ.get("BAODI_OK") and (use_llm or args.sim_thr < 0.35):
+    if not os.environ.get("BAODI_OK") and (use_llm or args.sim_thr < 0.35 or use_se):
         ap.error(
-            "检测到非保底配置（LLM ON 或 sim_thr<0.35），裸调默认即灾难"
-            "（RTF~1.0 + neg RR~0.77，见 memory baodi-config-no-llm）。\n"
+            "检测到非保底配置（LLM ON 或 sim_thr<0.35 或 SE ON），裸调默认即灾难"
+            "（LLM: RTF~1.0+neg RR~0.77; SE ON: CER+0.1049+RTF+45% 误开, "
+            "见 memory baodi-config-no-llm/se-bug-orphan-truth）。\n"
+            "  保底始终关SE: run_baodi.sh 默认 --no-se; 或显式加 --no-se。\n"
             "  A 集分thr保底: bash code/run_baodi.sh pos|neg [thr]\n"
             "  B 集统一thr(推荐0.27, T27对抗验证): bash code/run_baodi.sh B [thr]\n"
-            "  实验裸调: BAODI_OK=1 python code/submit_infer.py ... （显式 opt-in）"
+            "  实验裸调(含故意开SE): BAODI_OK=1 python code/submit_infer.py ... （显式 opt-in）"
         )
     if use_llm and not os.path.exists(PY_LLM):
         ap.error(f"开 LLM 但 {PY_LLM} 不存在（.venv_llm 未部署）；保底请加 --no-llm。")
@@ -432,7 +453,7 @@ def main():
 
     cfg = {"se": use_se, "llm": use_llm, "strategy": args.strategy if use_llm else "sim_only",
            "sim_thr": args.sim_thr, "device": args.device, "asr_backend": args.asr_backend,
-           "scene_route": args.scene_route}
+           "scene_route": args.scene_route, "content_gate": args.content_gate}
     result = build_result(items, cfg)
     timing = build_timing(args.device, len(items), total_audio, total_wall, phases, per_utt)
     timing["duration_infer_sec"] = round(duration_infer_sec, 3)

@@ -12,3 +12,4 @@ librosa==0.10.2.post1
 torch==2.5.1            # CUDA build: 本机 +cu124; 主办方 L20 按 CUDA 驱动选 index-url(见 pytorch.org)
 transformers==4.42.4
 pyarrow==24.0.0          # enroll_infer:38 import 预热(避免 pyannote 扫 sys.path 触发 WinError 6714); 缺则 enroll_infer import 期崩(2026-07-15 审查 leak#2, 本机经 datasets 泄漏故本地能跑, L40 全新 venv 必缺)
+speechbrain==1.0.3       # scene_route_backend.py SepFormer 加载(from speechbrain.inference.separation import SepformerSeparation); 缺则 --scene-route ImportError 整个提交崩(对抗审查 H2, 2026-08-06); MODEL_SEPFORMER 权重见 REPRO_SETUP.md
