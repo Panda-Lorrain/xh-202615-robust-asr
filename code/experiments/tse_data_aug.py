@@ -275,6 +275,7 @@ def synthesize_tse_triple(
     rng: Optional[random.Random] = None,
     rir_pool: Optional[List[np.ndarray]] = None,
     rir_prob: float = 0.5,
+    same_env_enrollment: bool = False,
 ):
     """合成一条 TSE 训练三元组: (enrollment, recognition, clean_target, params)。
 
@@ -300,9 +301,12 @@ def synthesize_tse_triple(
     # 1b) 可选 RIR 卷积 (MIT IR Survey, 见 rir_augment.py)。卷积在前/标定在后:
     # 下游 _scale_to_sir 与 add_noise_relative_to_target 自动以卷积后 RMS 标定,
     # SIR/SNR 自动正确。target 与 clean_target 共同一 RIR → SI-SDR 监督严格对齐;
-    # enrollment 走独立路径 (cut_enrollment) 不卷积。两人抽不同 RIR 模拟不同位置。
+    # enrollment 默认走独立路径 (cut_enrollment) 不卷积。两人抽不同 RIR 模拟不同位置。
+    # same_env_enrollment=True 时, enrollment 会复用 target 的 _rir_t (见 step 4b),
+    # 对齐 A 集 "enrollment 与 mixture 同房间" 铁律 (ΔBG≈0)。
     rir_applied = False
     rir_interferer = None
+    _rir_t = None
     if rir_pool is not None and len(rir_pool) >= 2 and rng.random() < rir_prob:
         from rir_augment import apply_rir, sample_two_rirs
         _rir_t, rir_interferer = sample_two_rirs(rir_pool, rng)
@@ -316,11 +320,15 @@ def synthesize_tse_triple(
         np.asarray(enrollment_wav, dtype=np.float32), enroll_dur_sec, SR, rng
     )
 
-    # 3) enrollment 污染 (可选)
-    enroll_polluted = rng.random() < enroll_pollute_p and noise_wav is not None
-    if enroll_polluted:
-        enroll = pollute_enrollment(enroll, noise_wav,
-                                     enroll_pollute_snr_db, rng, pollute_p=1.0)
+    # 3) enrollment 污染 (可选)。same_env_enrollment 模式跳过此步 (改在 step 4b
+    # 用 mixture 同源同段同水平噪声 + target 同 RIR 污染, 保证 ΔBG≈0)。
+    if same_env_enrollment:
+        enroll_polluted = False
+    else:
+        enroll_polluted = rng.random() < enroll_pollute_p and noise_wav is not None
+        if enroll_polluted:
+            enroll = pollute_enrollment(enroll, noise_wav,
+                                         enroll_pollute_snr_db, rng, pollute_p=1.0)
 
     # 4) 完整 target + 随机前后重叠。SIR 独立于背景噪声 SNR。
     sir_db = float(rng.uniform(-5.0, 5.0) if sir_db is None else sir_db)
@@ -369,11 +377,36 @@ def synthesize_tse_triple(
         _active_rms(clean_target) / max(_active_rms(scaled_noise), 1e-8)
     )
 
+    # 4b) same_env_enrollment: enrollment 卷 target 同一 RIR + 加 mixture 同源同段
+    # 同水平噪声, 对齐 A 集 "enrollment 与 mixture 同房间同底噪" 铁律 (ΔBG≈0)。
+    # 取 scaled_noise (= mixture 中实际噪声波形) 的一个随机连续段, 绝对水平直接
+    # 复用 → enrollment 底噪 ≈ mixture 底噪。不同段模拟真实录制中 enroll/mix 是
+    # 同一房间的不同时间窗 (同源不同段), 频谱形态完全一致。
+    enroll_rir_applied = False
+    if same_env_enrollment:
+        if _rir_t is not None:
+            from rir_augment import apply_rir as _apply_rir
+            enroll = _apply_rir(enroll, _rir_t)
+            enroll_rir_applied = True
+        ne = len(enroll)
+        if len(scaled_noise) >= ne:
+            start = rng.randrange(len(scaled_noise) - ne + 1)
+            enr_noise = scaled_noise[start:start + ne].astype(np.float32)
+        else:
+            reps = int(np.ceil(ne / max(len(scaled_noise), 1)))
+            enr_noise = np.tile(scaled_noise, reps)[:ne].astype(np.float32)
+        enroll = (enroll + enr_noise).astype(np.float32)
+
+    # peak-norm: same_env 时用统一 scale (考虑 enroll 峰值), 保证 ΔBG 精确不偏。
     peak = float(np.max(np.abs(recognition))) if recognition.size else 0.0
+    if same_env_enrollment:
+        peak = max(peak, float(np.max(np.abs(enroll))) if enroll.size else 0.0)
     if peak > 0.99:
         scale = 0.99 / peak
         recognition *= scale
         clean_target *= scale
+        if same_env_enrollment:
+            enroll *= scale
 
     metadata = {
         "overlap_ratio": float(overlap_ratio),
@@ -387,6 +420,8 @@ def synthesize_tse_triple(
         "enroll_pollute": bool(enroll_polluted),
         "enroll_pollute_snr_db": float(enroll_pollute_snr_db),
         "rir_applied": bool(rir_applied),
+        "same_env_enrollment": bool(same_env_enrollment),
+        "enroll_rir_applied": bool(enroll_rir_applied),
         **timing_meta,
     }
     return (enroll.astype(np.float32),
@@ -405,6 +440,7 @@ def build_tse_pairs(
     progress_every: int = 5,
     augmentation_profile: str = "balanced",
     rir_root: str = "",
+    same_env_enrollment: bool = False,
 ):
     """批量生成 TSE 训练三元组 → out_dir/{enrollment,recognition,clean_target}/*.wav
     + manifest.jsonl。
@@ -494,7 +530,8 @@ def build_tse_pairs(
                     t_wav, interferer_wav, noise_wav,
                     enrollment_wav=target_audio[enrollment_item["wav"]],
                     nontarget_pool=nontarget_pool, rng=rng,
-                    rir_pool=rir_pool, **params,
+                    rir_pool=rir_pool, same_env_enrollment=same_env_enrollment,
+                    **params,
                 )
                 uid = f"{os.path.splitext(os.path.basename(ti['wav']))[0]}_k{k:03d}"
                 enr_path = os.path.join(out_dir, "enrollment", uid + ".wav")
@@ -614,6 +651,11 @@ def main():
         ),
     )
     p_build.add_argument("--seed", type=int, default=42)
+    p_build.add_argument(
+        "--same-env",
+        action="store_true",
+        help="enrollment shares target RIR + mixture noise (ΔBG≈0, 对齐 A 集)",
+    )
 
     args = ap.parse_args()
     if args.cmd == "smoke":
@@ -628,7 +670,8 @@ def main():
         build_tse_pairs(target_items, interferer_items, noise_items,
                         out_dir=args.out, n_per_target=args.n_per_target,
                         seed=args.seed,
-                        augmentation_profile=args.augmentation_profile)
+                        augmentation_profile=args.augmentation_profile,
+                        same_env_enrollment=args.same_env)
 
 
 if __name__ == "__main__":
