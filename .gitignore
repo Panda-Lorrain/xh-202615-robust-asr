@@ -145,3 +145,7 @@ code/data/pos_pairs_midwar.json
 
 # ===== 2026-08-05 第三方公开数据集/方法仓库 clone（REAL-T / REAL-TSE-Challenge / PS4_repo / wesep-real-tse，含独立 .git，1.4G+，禁入库）=====
 external/
+
+# 大产物(实验输出/切片, 不入库, 2026-08-06)
+code/runs/efficiency_full_*/
+code/_target_slices_qwen/

@@ -28,7 +28,7 @@ def _safe_getmodule(*a, **k):
     except (ImportError, AttributeError): return None
 _inspect.getmodule = _safe_getmodule
 
-import os, sys, json, argparse, glob, time
+import os, sys, json, argparse, glob, time, gc
 import torch
 import numpy as np
 import librosa
@@ -133,10 +133,13 @@ def main():
     ap.add_argument("--asr-batch-size", type=int, default=16,
                     help="qwen/firered 后端 batch 推理大小(透传 qwen_asr_backend.py --batch-size; "
                          "0=逐条; 稳定性测试 B1 维度扫描用; 默认 16 与 qwen_asr_backend 一致)")
+    ap.add_argument("--emit-asr-meta", action="store_true",
+                    help="qwen 后端额外保存 token 解码置信度元数据(仅探针，默认关闭)")
     ap.add_argument("--diar-dtype", default="fp32", choices=["fp32", "fp16"],
                     help="DiariZen diar 精度(fp32默认安全; fp16典型1.8-2x加速+显存减半, WavLM-Large fp16 可能数值溢出需 hold-out 验证不稳则回退)")
     args = ap.parse_args()
     set_global_seed(args.seed)  # 可复现性: 固定 torch/numpy/cudnn(FAQ 核查硬要求 2)
+    _t_main0 = time.time()  # [profile] 桶A(enroll 侧模型加载): 含 import 冷启动 + from_pretrained(wespeaker 复用 diar._embedding 不单计)
     if not args.pairs and not args.enrollment:
         ap.error("--pairs 与 --enrollment 至少填一个")
 
@@ -170,6 +173,7 @@ def main():
     print(f"[load] DiariZen {args.diarization_model} ({args.diar_dtype})")
     from diarizen.pipelines.inference import DiariZenPipeline
     diar = DiariZenPipeline.from_pretrained(args.diarization_model).to(device)
+    print(f"[enroll-profile] model_load(DiariZen+wespeaker+fe)={time.time()-_t_main0:.1f}s (含 import 冷启动 + from_pretrained)")
     if args.diar_dtype == "fp16":
         raise NotImplementedError("DiariZenPipeline(pyannote Pipeline)非nn.Module不支持.half(); "
                                   "深入内部model转fp16工程量大+数值风险,收益仅极严RTF映射下, NO-GO(2026-07-18 hold-out)")
@@ -402,6 +406,14 @@ def main():
     if args.asr_backend in ("qwen", "firered"):
         # 批量切片转写(独立 venv 隔离), 填 transcript + 提交归一(与 vanilla SSOT 一致)
         import subprocess
+        # DiariZen 只负责前面的 diar/embedding；独立 ASR 子进程启动前释放其 GPU
+        # 模型，避免 8GB 卡上 DiariZen + Qwen/FireRed 双模型造成 vLLM 初始化/OOM。
+        # get_emb 闭包也捕获 diar，必须一并释放，单独 del diar 不足。
+        del get_emb
+        del diar
+        gc.collect()
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
         # 跨平台 *_asr_backend venv python: 原 E:/.../Scripts/python.exe 硬编码在 Linux 阻塞。
         # 平台检测(Win Scripts/python.exe / Linux bin/python) + env override(PY_QWEN/PY_FIRERED)。
         _be_script = {"qwen": "qwen_asr_backend.py", "firered": "firered_asr_backend.py"}[args.asr_backend]
@@ -411,13 +423,36 @@ def main():
             os.path.join(_be_venv, "Scripts", "python.exe") if os.name == "nt"
             else os.path.join(_be_venv, "bin", "python"))
         uid2text_path = os.path.join(args.save_target_audio, "_uid2text.json")
+        uid2meta_path = os.path.join(args.save_target_audio, "_uid2meta.json")
         _be_script_full = os.path.join(_HERE, _be_script)
         print(f"\n[{args.asr_backend}] 批量转写切片 {args.save_target_audio} (py={_be_py}) ...")
-        subprocess.check_call([_be_py, _be_script_full, "--slice-dir", args.save_target_audio,
-                               "--out", uid2text_path, "--seed", str(args.seed),
-                               "--context", args.context,
-                               "--batch-size", str(args.asr_batch_size)])
+        _t_qwall0 = time.time()  # [profile] qwen 子进程墙钟(含 load + transcribe + 启动/IO/拷贝 overhead)
+        _qwen_cmd = [_be_py, _be_script_full, "--slice-dir", args.save_target_audio,
+                     "--out", uid2text_path, "--seed", str(args.seed),
+                     "--context", args.context,
+                     "--batch-size", str(args.asr_batch_size)]
+        if args.asr_backend == "qwen" and args.emit_asr_meta:
+            _qwen_cmd += ["--meta-out", uid2meta_path]
+        subprocess.check_call(_qwen_cmd)
+        qwen_subprocess_wall = time.time() - _t_qwall0
         uid2text = json.load(open(uid2text_path, encoding="utf-8"))
+        uid2meta = {}
+        if args.asr_backend == "qwen" and args.emit_asr_meta and os.path.exists(uid2meta_path):
+            uid2meta = json.load(open(uid2meta_path, encoding="utf-8"))
+        # 读 qwen_asr_backend sidecar 拇 overhead(子进程启动/IO/拷贝 = wall - load - transcribe)
+        _timing_path = os.path.join(args.save_target_audio, "_qwen_timing.json")
+        if os.path.exists(_timing_path):
+            try:
+                _qt = json.load(open(_timing_path, encoding="utf-8"))
+                _overhead = qwen_subprocess_wall - float(_qt.get("load_sec", 0.0)) - float(_qt.get("transcribe_sec", 0.0))
+                print(f"[qwen-profile] load={float(_qt.get('load_sec', 0)):.1f}s "
+                      f"transcribe={float(_qt.get('transcribe_sec', 0)):.1f}s "
+                      f"overhead={_overhead:.1f}s wall={qwen_subprocess_wall:.1f}s "
+                      f"n_uid={_qt.get('n_uid', 0)} bs={_qt.get('batch_size', 0)}")
+            except Exception as _e:
+                print(f"[qwen-profile] wall={qwen_subprocess_wall:.1f}s (sidecar parse fail: {type(_e).__name__}: {_e})")
+        else:
+            print(f"[qwen-profile] wall={qwen_subprocess_wall:.1f}s (no sidecar at {_timing_path})")
         n_filled = 0
         for r in results:
             _uid_q = os.path.splitext(os.path.basename(r.get("recognition", "")))[0]
@@ -425,6 +460,8 @@ def main():
                 t = brand_homophone_fix(digit_postproc(to_simplified(uid2text[_uid_q])))  # 繁简+数字+品牌同音修复(零回退Δ-0.001, SSOT)
                 r["transcript"] = t
                 r["chars"] = len(t)
+                if _uid_q in uid2meta:
+                    r["asr_meta"] = uid2meta[_uid_q]
                 n_filled += 1
         print(f"[{args.asr_backend}] 填 {n_filled}/{len(results)} 条 transcript")
 
