@@ -1,0 +1,114 @@
+{
+  "aishell_root": "E:/midea_datasets/data_aishell",
+  "augmentation_profile": "balanced",
+  "dataset_a_policy": "hard-reject paths, flags, and non-AISHELL source corpus before generation",
+  "dataset_a_used": false,
+  "experiment_id": "dacf-v3-official-aishell-v0.2",
+  "fixed_gate": {
+    "absent_rr": 0.95,
+    "activity_auc": 0.8,
+    "batch1_rtf_increment_max": 0.05,
+    "both_enrollment_views_required": true,
+    "clean_cer_regression_max": 0.005,
+    "negative_rr_drop_max": 0.01,
+    "paired_cer_bootstrap_ci_upper": 0.0,
+    "paired_cer_delta_max": -0.05,
+    "presence_auc": 0.85,
+    "presence_threshold": 0.5,
+    "present_recall": 0.8,
+    "query_permutation_auc_drop_min": 0.15,
+    "query_response_group_bootstrap_ci_lower": 0.05,
+    "query_response_mean": 0.2,
+    "same_text_different_speaker_auc_deferred": 0.75,
+    "same_text_different_speaker_required_stage": "designed real-home-command hard-negative gate before Qwen integration; not part of the AISHELL mechanism gate because this protocol does not construct same-text speaker swaps"
+  },
+  "generation_policy": {
+    "audio_copy": false,
+    "builder": "build_dacf_counterfactual",
+    "chunk_seed_policy": "split seed plus zero-based generation chunk index",
+    "manifest_layout": "generation/<protocol_split>/chunk_<index>/<builder_split>/manifest.jsonl",
+    "max_generation_chunk_groups": 80
+  },
+  "hop_samples": 160,
+  "limitations": [
+    "AISHELL-1 is read speech, not verified home-command audio.",
+    "hard_negative_verified_count=0 is required and is not real home-command rejection evidence.",
+    "same-text/different-speaker AUC is deferred to a deliberately constructed hard-negative suite before Qwen integration; it is not computable by construction here.",
+    "final is not used to select a checkpoint, threshold, seed, or implementation."
+  ],
+  "official_group_capacity_upper_bound": {
+    "dev": 13,
+    "test": 6,
+    "train": 113
+  },
+  "official_speaker_counts": {
+    "dev": 40,
+    "test": 20,
+    "train": 340
+  },
+  "schema": "dacf-v3-official-aishell-protocol-v0.2",
+  "selection_policy": {
+    "dev": "dev may be observed once after the checkpoint and threshold are fixed; it cannot change them",
+    "final": "final is opened once only after code, seed, update count, checkpoint, and threshold are frozen",
+    "final_selects": "none",
+    "forbidden": "no split may select architecture, seed, augmentation, hop, gate, update count, checkpoint, or threshold after preregistration",
+    "train": "train is the only split allowed to optimize parameters"
+  },
+  "source_corpus": "AISHELL-1",
+  "split_protocol": {
+    "dev": {
+      "augmentation_profile": "balanced",
+      "builder_manifest_split": "val",
+      "capacity": {
+        "available_capacity_groups": 13,
+        "available_speaker_count": 40,
+        "effective_capacity_groups": 13,
+        "eligible_speaker_count": 40,
+        "official_capacity_upper_bound_groups": 13,
+        "official_speaker_count": 40,
+        "requested_groups": 12,
+        "source_split": "dev"
+      },
+      "groups": 12,
+      "hop_samples": 160,
+      "seed": 2026080604,
+      "source_split": "dev"
+    },
+    "final": {
+      "augmentation_profile": "balanced",
+      "builder_manifest_split": "final",
+      "capacity": {
+        "available_capacity_groups": 6,
+        "available_speaker_count": 20,
+        "effective_capacity_groups": 6,
+        "eligible_speaker_count": 20,
+        "official_capacity_upper_bound_groups": 6,
+        "official_speaker_count": 20,
+        "requested_groups": 6,
+        "source_split": "test"
+      },
+      "groups": 6,
+      "hop_samples": 160,
+      "seed": 2026080605,
+      "source_split": "test"
+    },
+    "train": {
+      "augmentation_profile": "balanced",
+      "builder_manifest_split": "train",
+      "capacity": {
+        "available_capacity_groups": 113,
+        "available_speaker_count": 340,
+        "effective_capacity_groups": 113,
+        "eligible_speaker_count": 340,
+        "official_capacity_upper_bound_groups": 113,
+        "official_speaker_count": 340,
+        "requested_groups": 96,
+        "source_split": "train"
+      },
+      "groups": 96,
+      "hop_samples": 160,
+      "seed": 2026080603,
+      "source_split": "train"
+    }
+  }
+}

@@ -1,6 +1,6 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
-> 🟠 **2026-08-06 DACF 原创前端：真实 Qwen 梯度链打通；冻结 CAM++ 后匹配路线经一次性 final holdout 终局 NO-GO；转 DACF-v3 早期 log-mel 查询注入。**
+> 🔴 **2026-08-06 DACF-v3 正式机制门已裁决 `implementation-NO-GO`；根因锁定为一人一角色捷径，立即转 DACF-v4 角色轮换 + 显式关系瓶颈。**
 >
 > **研究命题**：固定同一字节级 mixture，只干预 enrollment：`M(A+B)+qA->A`、`+qB->B`、`+qC(absent)->blank`。speaker anchor 只负责 identity/presence/activity，environment anchor 只能做 acoustic adaptation；absent-C 必须包含“干扰人可说完整指令”的真实 hard negative。该组合而非 cross-attn/FiLM 外形才是 DACF 的新增机制。方向总标签仍为 `direction-unresolved`。
 >
@@ -14,9 +14,13 @@
 >
 > **DACF-v2b 终局裁决**：24/8 小探针的 49,153 参数 low-rank cross-query 虽把 train AUC 做到 `0.943/0.923`，val 两 view 都只有 `0.547`。审计补上 Dataset-A allowlist/provenance、cross-split source/SHA/path/group 守卫、activity gate、final-only decision 与 2000 次 group bootstrap 后，按预注册只做一次 scale-only：排除旧 96 位 speaker，用 240 位全新 AISHELL-train speaker 建 `48/16/16` group。final enrollment identity AUC=`0.974`，但 matcher final presence AUC=`0.441/0.471`、recall=`0.656/0.719`、RR=`0.25/0.25`、activity AUC=`0.475/0.493`、query-response=`-0.132/-0.075`；AUC CI=`[0.361,0.514]/[0.391,0.559]`，两个 view 五门全败。裁决仅为**冻结 CAM++ pre-pool + 低秩后匹配=`implementation-NO-GO`**；禁止调 final、重跑 seed 或接 Qwen。
 >
-> **当前恢复点**：转 DACF-v3，不再扩大 v1/v2b。目标 speaker query 必须从 log-mel/浅层时序编码开始参与 mixture representation 形成；训练仍用 byte-identical `M(A+B)+qA/qB/qC`，但最终裁决必须使用从未被 v2b 打开的新 speaker holdout，并在 identity/presence/activity 与“干扰人说完整家居指令” hard-negative 门通过后才允许接 Qwen。当前仍未得到 CER 改善数字，提交线保持累计池 CER `0.6201`、RR `94.73%`、Overall `0.6636`。L20 暂不可租不阻塞前端机制门。完整文档：`docs/DACF双锚点反事实前端研究计划_2026-08-06.md`。
+> **当前恢复点**：禁止给 v3 续训、换 seed 或扫参，转 DACF-v4。train/dev/final 仍 official speaker-disjoint，但 train 内必须让同一 speaker 跨不同环境平衡轮换 present/absent；模型的 activity/presence 必须来自 normalized mixture key 与 enrollment query 的 cosine/relation，而不能从 query-only FiLM 通路直接读标签。当前仍未得到 CER 改善数字，提交线保持累计池 CER `0.6201`、RR `94.73%`、Overall `0.6636`。L20 暂不可租不阻塞机制门。完整文档：`docs/DACF双锚点反事实前端研究计划_2026-08-06.md`。
 >
-> **测试状态**：counterfactual/scale builder、CAM++ whole/window/pre-pool、provenance cache、cross-query 训练/裁决、Qwen latent/真实 smoke 等共 `65 passed, 1 skipped`；唯一 skip 是 Windows 当前账户无 symlink 创建权限。含 TemporaryDirectory 的 39 项在沙箱外独立复跑全过，确认先前 `WinError 5` 只是沙箱 ACL。真实 cache schema=`v0.2`，manifest/cache SHA256 分别为 `ce9420...10c2` / `d84a1f...e7e0`，所有 cross-split overlap 审计为空。该轮没有测官方 CER、neg RR、clean degradation 或 batch1 RTF，也没有真实家居 hard negative，不得冒充集成收益。
+> **DACF-v3 正式结果**：Qwen-exact log-mel 与 ECST G1 均通过后，使用 AISHELL official train/dev/test=`96/12/6` 组、固定 1,920 update、无 early stop/扫参、threshold=`0.5`、2000 次 group bootstrap。checkpoint 在 dev 前冻结，dev 只观察一次，前后 SHA 均为 `3d03e238...8f41`，official final 未打开。两个 enrollment view 的 presence AUC=`0.462/0.417`、activity AUC=`0.610/0.608`、recall=`0.583/0.583`、RR=`0.417/0.333`、query-response=`-0.032/-0.065`、permutation AUC drop=`-0.028/-0.128`，所有固定门失败。精确裁决是 **frozen CAM++ + FiLM ECST v0.2=`implementation-NO-GO`**；没有运行 Qwen、CER、official neg RR 或 RTF。
+>
+> **v3 根因与 v4 路线**：冻结 checkpoint 的 train-only 反查中 presence AUC=`0.935/0.951`、query-response=`0.444/0.453`，而 dev 跌到随机以下；train activity AUC 仍约 `0.635`、permutation drop 仅约 `0.064`。v0.2 每位 train speaker 只出现于一个组和一个角色，模型走了 speaker→role/label 记忆捷径，没有学会 mixture-query identity。v4 同时堵两处：①同一 speaker 跨环境、源句和 present/absent 角色轮换；②逐帧 identity key 与 query 的显式 cosine/relation bottleneck，外加跨 batch foreign enrollment negatives、query-only/mixture-only ablation 门。方向总标签仍为 `direction-unresolved`。
+>
+> **测试与数据状态**：v3 模型/objective/protocol/cache/trainer/G1 共 `43 passed, 1 skipped`；唯一 skip 是 Windows 当前账户无 symlink 创建权限。正式 cache 有 108 组/324 query 行，Qwen feature 恰好每 mixture 提取一次、两套 CAM++ enrollment view 共 648 次；Dataset-A=0，train/dev/final 的 speaker/source/path/SHA overlap 全为空，final 在 cache 与训练中均 deferred。cache SHA=`c92e0d...c045`，manifest SHA=`9c1f75...c87d`。该轮没有测官方 CER、neg RR、clean degradation 或 batch1 RTF，也没有真实家居 hard negative，不得冒充集成收益。
 
 > ⚠️⚠️ **2026-08-05 反瓶颈审计（覆盖性框架，先读本段，再读下方历史时间线）**：详见 `docs/反瓶颈审计与后续Agent作战令_2026-08-05.md` + `docs/反瓶颈审计补充_speaker-aware_2026-08-05.md`。**核心观念：区分 `implementation-NO-GO`（某套代码/参数/数据没过门槛）与 `direction-NO-GO`（整个方向无空间）**。下方时间线里所有"封顶/到顶/别再投/唯一治本/A 路封死/三层墙/exhausted"措辞，都是**具体实现/规则/合成数据**层面的 NO-GO，**不是方向封顶**——已被封住的只是"在 A 集不训练 + 合成失配数据训 + 接当前 Qwen/声纹拒识栈"的低成本路径。**尚未封顶（direction-unresolved）**：①同环境/真实录音 TSE 全量验证 ②真实录音域 TSE（REAL-PS4/AISHELL-4/自录家居）③目标条件化 ASR 联合训练（target embedding/activity + ASR loss 真实域，区别于已 NO-GO 的合成域 Sidecar）④非内容拒识校准（Qwen decoder 置信度/token entropy/音频质量/双路一致性）⑤分场景路由提交 A/B（+0.99 待 L20 batch1）。**裁决纪律四标签**：`implementation-NO-GO` / `conditional-GO` / `direction-unresolved` / `integrate-GO`。**下方 07-29~08-05 段落为历史记录，其条件性 NO-GO 解释以审计文件为准，不得把"某实现 NO-GO"覆盖成"整个方向无空间"**。**08-05 提交线真值**：累计池 CER 0.6201（腿 15.20）/ RR 94.73%（腿 37.89）/ Overall 0.6636（~第9）；w1=w2=0.5。
 

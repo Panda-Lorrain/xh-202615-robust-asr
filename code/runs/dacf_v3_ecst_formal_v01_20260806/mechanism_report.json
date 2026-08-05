@@ -1,0 +1,667 @@
+{
+  "cache": {
+    "cache_sha256": "c92e0d8095b56f429a6c13d8a557e53166c1d67df102e4e95edfc1e91fcec045",
+    "dataset_a_used": false,
+    "final_deferred": true,
+    "groups": {
+      "dev": 12,
+      "train": 96
+    },
+    "manifest_sha256": "9c1f75194c03cce937d1b0ecc0177fcd959d29c5d7d98bd67927b9646613c87d",
+    "root": "E:/midea_target_asr/code/runs/dacf_v3_features_train_dev_v06_20260806",
+    "splits": [
+      "train",
+      "dev"
+    ]
+  },
+  "checkpoint": {
+    "exists": true,
+    "frozen_before_dev": true,
+    "model_class": "DACFV3ECST",
+    "path": "E:/midea_target_asr/code/runs/dacf_v3_ecst_formal_v01_20260806/final_checkpoint.pt",
+    "sha256_after_dev": "3d03e238c11126ff48f28348a5332c7e0abec166c516c3efe60ac57827228f41",
+    "sha256_before_dev": "3d03e238c11126ff48f28348a5332c7e0abec166c516c3efe60ac57827228f41"
+  },
+  "checkpoint_frozen_before_dev": true,
+  "dev": {
+    "cluster_bootstrap_ci_95": {
+      "group": {
+        "absent_rr": {
+          "lower": 0.16666666666666666,
+          "status": "ok",
+          "upper": 0.6666666666666666,
+          "valid_replicates": 2000
+        },
+        "activity_frame_auc": {
+          "lower": 0.5748280524005454,
+          "status": "ok",
+          "upper": 0.6954632986457702,
+          "valid_replicates": 2000
+        },
+        "clusters": 12,
+        "presence_auc": {
+          "lower": 0.2604166666666667,
+          "status": "ok",
+          "upper": 0.6423611111111112,
+          "valid_replicates": 2000
+        },
+        "present_recall": {
+          "lower": 0.3333333333333333,
+          "status": "ok",
+          "upper": 0.8333333333333334,
+          "valid_replicates": 2000
+        },
+        "query_permutation_auc_drop": {
+          "lower": -0.30217013888888894,
+          "status": "ok",
+          "upper": 0.1736111111111111,
+          "valid_replicates": 2000
+        },
+        "query_response_mean": {
+          "lower": -0.1749268427103137,
+          "status": "ok",
+          "upper": 0.09669231949374056,
+          "valid_replicates": 2000
+        },
+        "replicates": 2000,
+        "same_text_different_speaker_auc": {
+          "reason": "too few valid bootstrap replicates",
+          "status": "unavailable",
+          "valid_replicates": 0
+        },
+        "status": "ok"
+      },
+      "speaker": {
+        "absent_rr": {
+          "lower": 0.125,
+          "status": "ok",
+          "upper": 0.7058823529411765,
+          "valid_replicates": 2000
+        },
+        "activity_frame_auc": {
+          "lower": 0.5733847033073151,
+          "status": "ok",
+          "upper": 0.6880618217958983,
+          "valid_replicates": 2000
+        },
+        "clusters": 36,
+        "presence_auc": {
+          "lower": 0.2569444444444444,
+          "status": "ok",
+          "upper": 0.6563281249999996,
+          "valid_replicates": 2000
+        },
+        "present_recall": {
+          "lower": 0.391304347826087,
+          "status": "ok",
+          "upper": 0.782608695652174,
+          "valid_replicates": 2000
+        },
+        "query_permutation_auc_drop": {
+          "lower": -0.26764214046822743,
+          "status": "ok",
+          "upper": 0.15260064935064935,
+          "valid_replicates": 2000
+        },
+        "query_response_mean": {
+          "reason": "too few valid bootstrap replicates",
+          "status": "unavailable",
+          "valid_replicates": 0
+        },
+        "replicates": 2000,
+        "same_text_different_speaker_auc": {
+          "reason": "too few valid bootstrap replicates",
+          "status": "unavailable",
+          "valid_replicates": 0
+        },
+        "status": "ok"
+      }
+    },
+    "group_count": 12,
+    "metrics": {
+      "absent_rr": 0.4166666666666667,
+      "activity_frame_auc": 0.6291064985280576,
+      "activity_frame_auc_scope": "present rows only; absent all-zero frames excluded",
+      "presence_auc": 0.4548611111111111,
+      "present_recall": 0.5833333333333334,
+      "query_permutation_auc_drop": -0.059027777777777735,
+      "query_response": {
+        "bootstrap_ci_95": {
+          "lower": -0.1749268427103137,
+          "status": "ok",
+          "upper": 0.09669231949374056,
+          "valid_replicates": 2000
+        },
+        "group_count": 12,
+        "mean": -0.04812182920674483
+      },
+      "same_text_different_speaker_auc": {
+        "reason": "same-text evaluation field is missing from at least one cache row",
+        "state": "not_constructed",
+        "status": "deferred",
+        "value": null
+      },
+      "threshold": 0.5
+    },
+    "query_permutation_policy": "sorted dev groups cyclic +1; within-split speaker uniqueness makes every permuted enrollment absent from the destination mixture",
+    "row_count": 36
+  },
+  "dev_evaluation_count": 1,
+  "dev_views": {
+    "view1": {
+      "cluster_bootstrap_ci_95": {
+        "group": {
+          "absent_rr": {
+            "lower": 0.16666666666666666,
+            "status": "ok",
+            "upper": 0.6666666666666666,
+            "valid_replicates": 2000
+          },
+          "activity_frame_auc": {
+            "lower": 0.5549656817063493,
+            "status": "ok",
+            "upper": 0.6817855559407188,
+            "valid_replicates": 2000
+          },
+          "clusters": 12,
+          "presence_auc": {
+            "lower": 0.3090277777777778,
+            "status": "ok",
+            "upper": 0.6285590277777773,
+            "valid_replicates": 2000
+          },
+          "present_recall": {
+            "lower": 0.375,
+            "status": "ok",
+            "upper": 0.7916666666666666,
+            "valid_replicates": 2000
+          },
+          "query_permutation_auc_drop": {
+            "lower": -0.25,
+            "status": "ok",
+            "upper": 0.2048611111111111,
+            "valid_replicates": 2000
+          },
+          "query_response_mean": {
+            "lower": -0.16397892416765292,
+            "status": "ok",
+            "upper": 0.10470616823683178,
+            "valid_replicates": 2000
+          },
+          "replicates": 2000,
+          "same_text_different_speaker_auc": {
+            "reason": "too few valid bootstrap replicates",
+            "status": "unavailable",
+            "valid_replicates": 0
+          },
+          "status": "ok"
+        },
+        "speaker": {
+          "absent_rr": {
+            "lower": 0.13312500000000002,
+            "status": "ok",
+            "upper": 0.7142857142857143,
+            "valid_replicates": 2000
+          },
+          "activity_frame_auc": {
+            "lower": 0.5503447680232538,
+            "status": "ok",
+            "upper": 0.6767974188745923,
+            "valid_replicates": 2000
+          },
+          "clusters": 36,
+          "presence_auc": {
+            "lower": 0.25712662337662334,
+            "status": "ok",
+            "upper": 0.6875,
+            "valid_replicates": 2000
+          },
+          "present_recall": {
+            "lower": 0.375,
+            "status": "ok",
+            "upper": 0.782608695652174,
+            "valid_replicates": 2000
+          },
+          "query_permutation_auc_drop": {
+            "lower": -0.25129994526546245,
+            "status": "ok",
+            "upper": 0.21531378998967995,
+            "valid_replicates": 2000
+          },
+          "query_response_mean": {
+            "reason": "too few valid bootstrap replicates",
+            "status": "unavailable",
+            "valid_replicates": 0
+          },
+          "replicates": 2000,
+          "same_text_different_speaker_auc": {
+            "reason": "too few valid bootstrap replicates",
+            "status": "unavailable",
+            "valid_replicates": 0
+          },
+          "status": "ok"
+        }
+      },
+      "group_count": 12,
+      "metrics": {
+        "absent_rr": 0.4166666666666667,
+        "activity_frame_auc": 0.6101575205012868,
+        "activity_frame_auc_scope": "present rows only; absent all-zero frames excluded",
+        "presence_auc": 0.4618055555555556,
+        "present_recall": 0.5833333333333334,
+        "query_permutation_auc_drop": -0.027777777777777735,
+        "query_response": {
+          "bootstrap_ci_95": {
+            "lower": -0.16397892416765292,
+            "status": "ok",
+            "upper": 0.10470616823683178,
+            "valid_replicates": 2000
+          },
+          "group_count": 12,
+          "mean": -0.031709957867860794
+        },
+        "same_text_different_speaker_auc": {
+          "reason": "same-text evaluation field is missing from at least one cache row",
+          "state": "not_constructed",
+          "status": "deferred",
+          "value": null
+        },
+        "threshold": 0.5
+      },
+      "query_permutation_policy": "sorted dev groups cyclic +1; within-split speaker uniqueness makes every permuted enrollment absent from the destination mixture",
+      "row_count": 36
+    },
+    "view2": {
+      "cluster_bootstrap_ci_95": {
+        "group": {
+          "absent_rr": {
+            "lower": 0.08333333333333333,
+            "status": "ok",
+            "upper": 0.5833333333333334,
+            "valid_replicates": 2000
+          },
+          "activity_frame_auc": {
+            "lower": 0.556229878210133,
+            "status": "ok",
+            "upper": 0.6812218425806161,
+            "valid_replicates": 2000
+          },
+          "clusters": 12,
+          "presence_auc": {
+            "lower": 0.2534722222222222,
+            "status": "ok",
+            "upper": 0.6111979166666662,
+            "valid_replicates": 2000
+          },
+          "present_recall": {
+            "lower": 0.375,
+            "status": "ok",
+            "upper": 0.7916666666666666,
+            "valid_replicates": 2000
+          },
+          "query_permutation_auc_drop": {
+            "lower": -0.3611111111111111,
+            "status": "ok",
+            "upper": 0.10078124999999956,
+            "valid_replicates": 2000
+          },
+          "query_response_mean": {
+            "lower": -0.227266607247293,
+            "status": "ok",
+            "upper": 0.10312254888315993,
+            "valid_replicates": 2000
+          },
+          "replicates": 2000,
+          "same_text_different_speaker_auc": {
+            "reason": "too few valid bootstrap replicates",
+            "status": "unavailable",
+            "valid_replicates": 0
+          },
+          "status": "ok"
+        },
+        "speaker": {
+          "absent_rr": {
+            "lower": 0.08333333333333333,
+            "status": "ok",
+            "upper": 0.6,
+            "valid_replicates": 2000
+          },
+          "activity_frame_auc": {
+            "lower": 0.553003836416074,
+            "status": "ok",
+            "upper": 0.6761585691667698,
+            "valid_replicates": 2000
+          },
+          "clusters": 36,
+          "presence_auc": {
+            "lower": 0.22179220779220782,
+            "status": "ok",
+            "upper": 0.6254461889425657,
+            "valid_replicates": 2000
+          },
+          "present_recall": {
+            "lower": 0.38095238095238093,
+            "status": "ok",
+            "upper": 0.7727272727272727,
+            "valid_replicates": 2000
+          },
+          "query_permutation_auc_drop": {
+            "lower": -0.34910747872816833,
+            "status": "ok",
+            "upper": 0.08699414715719048,
+            "valid_replicates": 2000
+          },
+          "query_response_mean": {
+            "reason": "too few valid bootstrap replicates",
+            "status": "unavailable",
+            "valid_replicates": 0
+          },
+          "replicates": 2000,
+          "same_text_different_speaker_auc": {
+            "reason": "too few valid bootstrap replicates",
+            "status": "unavailable",
+            "valid_replicates": 0
+          },
+          "status": "ok"
+        }
+      },
+      "group_count": 12,
+      "metrics": {
+        "absent_rr": 0.3333333333333333,
+        "activity_frame_auc": 0.6084894873555662,
+        "activity_frame_auc_scope": "present rows only; absent all-zero frames excluded",
+        "presence_auc": 0.4166666666666667,
+        "present_recall": 0.5833333333333334,
+        "query_permutation_auc_drop": -0.12847222222222215,
+        "query_response": {
+          "bootstrap_ci_95": {
+            "lower": -0.227266607247293,
+            "status": "ok",
+            "upper": 0.10312254888315993,
+            "valid_replicates": 2000
+          },
+          "group_count": 12,
+          "mean": -0.06453370054562886
+        },
+        "same_text_different_speaker_auc": {
+          "reason": "same-text evaluation field is missing from at least one cache row",
+          "state": "not_constructed",
+          "status": "deferred",
+          "value": null
+        },
+        "threshold": 0.5
+      },
+      "query_permutation_policy": "sorted dev groups cyclic +1; within-split speaker uniqueness makes every permuted enrollment absent from the destination mixture",
+      "row_count": 36
+    }
+  },
+  "mechanism_gate": {
+    "checkpoint_selection": "none; dev is observed once after final checkpoint freeze",
+    "checks": {
+      "view1": {
+        "absent_rr": {
+          "passed": false,
+          "relation": ">=",
+          "status": "ok",
+          "threshold": 0.95,
+          "value": 0.4166666666666667
+        },
+        "activity_frame_auc": {
+          "passed": false,
+          "relation": ">=",
+          "status": "ok",
+          "threshold": 0.8,
+          "value": 0.6101575205012868
+        },
+        "presence_auc": {
+          "passed": false,
+          "relation": ">=",
+          "status": "ok",
+          "threshold": 0.85,
+          "value": 0.4618055555555556
+        },
+        "present_recall": {
+          "passed": false,
+          "relation": ">=",
+          "status": "ok",
+          "threshold": 0.8,
+          "value": 0.5833333333333334
+        },
+        "query_permutation_auc_drop": {
+          "passed": false,
+          "relation": ">=",
+          "status": "ok",
+          "threshold": 0.15,
+          "value": -0.027777777777777735
+        },
+        "query_response_ci_lower": {
+          "passed": false,
+          "relation": ">",
+          "status": "ok",
+          "threshold": 0.05,
+          "value": -0.16397892416765292
+        },
+        "query_response_mean": {
+          "passed": false,
+          "relation": ">=",
+          "status": "ok",
+          "threshold": 0.2,
+          "value": -0.031709957867860794
+        }
+      },
+      "view2": {
+        "absent_rr": {
+          "passed": false,
+          "relation": ">=",
+          "status": "ok",
+          "threshold": 0.95,
+          "value": 0.3333333333333333
+        },
+        "activity_frame_auc": {
+          "passed": false,
+          "relation": ">=",
+          "status": "ok",
+          "threshold": 0.8,
+          "value": 0.6084894873555662
+        },
+        "presence_auc": {
+          "passed": false,
+          "relation": ">=",
+          "status": "ok",
+          "threshold": 0.85,
+          "value": 0.4166666666666667
+        },
+        "present_recall": {
+          "passed": false,
+          "relation": ">=",
+          "status": "ok",
+          "threshold": 0.8,
+          "value": 0.5833333333333334
+        },
+        "query_permutation_auc_drop": {
+          "passed": false,
+          "relation": ">=",
+          "status": "ok",
+          "threshold": 0.15,
+          "value": -0.12847222222222215
+        },
+        "query_response_ci_lower": {
+          "passed": false,
+          "relation": ">",
+          "status": "ok",
+          "threshold": 0.05,
+          "value": -0.227266607247293
+        },
+        "query_response_mean": {
+          "passed": false,
+          "relation": ">=",
+          "status": "ok",
+          "threshold": 0.2,
+          "value": -0.06453370054562886
+        }
+      }
+    },
+    "fixed_gate": {
+      "absent_rr": 0.95,
+      "activity_frame_auc": 0.8,
+      "presence_auc": 0.85,
+      "present_recall": 0.8,
+      "query_permutation_auc_drop": 0.15,
+      "query_response_ci_lower": 0.05,
+      "query_response_mean": 0.2
+    },
+    "gated_views": [
+      "view1",
+      "view2"
+    ],
+    "passed": false,
+    "threshold": 0.5
+  },
+  "protocol_version": "dacf-v3-mechanism-protocol-v0.2",
+  "runtime_sec": 184.90910200000144,
+  "same_text_different_speaker": {
+    "reason": "same-text evaluation field is missing from at least one cache row",
+    "status": "deferred"
+  },
+  "same_text_metric": {
+    "current_mechanism_gate": false,
+    "enforcement_stage": "before Qwen integration",
+    "reason": "current AISHELL protocol does not construct same-text/different-speaker speaker swaps",
+    "required_suite": "real home-command hard-negative suite with same-text/different-speaker swaps",
+    "state": "not_constructed",
+    "status": "deferred",
+    "threshold_before_qwen": 0.75,
+    "value": null
+  },
+  "schema": "dacf-v3-mechanism-training-report-v0.2",
+  "threshold": 0.5,
+  "training": {
+    "checkpoint_frozen_before_dev": true,
+    "checkpoint_policy": "fixed_updates_final_checkpoint_then_one_dev_evaluation",
+    "config": {
+      "bootstrap_replicates": 2000,
+      "counterfactual_margin": 0.2,
+      "device": "auto",
+      "epochs": 20,
+      "grad_clip_norm": 5.0,
+      "groups_per_epoch": 96,
+      "learning_rate": 0.0003,
+      "seed": 2026080606,
+      "weight_decay": 0.0001
+    },
+    "dev_evaluation_count": 1,
+    "device": "cuda",
+    "early_stop": false,
+    "epochs": 20,
+    "final_epoch": 20,
+    "fixed_updates": 1920,
+    "full_group_sampling": true,
+    "gradient_clip_norm": 5.0,
+    "groups_per_epoch": 96,
+    "groups_per_update": 1,
+    "hyperparameter_scan": false,
+    "loss_first": 1.4807102680206299,
+    "loss_last": 1.0995124578475952,
+    "loss_weights": {
+      "absent_latent_energy": 0.05,
+      "activity": 1.0,
+      "counterfactual_margin": 0.5,
+      "presence": 1.0,
+      "view_consistency": 0.1
+    },
+    "optimizer": "AdamW",
+    "precision": "FP32",
+    "query_role_id_used_as_model_input": false,
+    "scheduler": "none",
+    "seed": 2026080606,
+    "threshold": 0.5,
+    "updates_completed": 1920
+  },
+  "training_preregistration": {
+    "actual": {
+      "bootstrap_replicates": 2000,
+      "bootstrap_seed_offset": 7001,
+      "checkpoint": "epoch_20_final_only",
+      "counterfactual_margin": 0.2,
+      "cublas_workspace_config": ":4096:8",
+      "cudnn_benchmark": false,
+      "cudnn_deterministic": true,
+      "dev_evaluation_count": 1,
+      "early_stop": false,
+      "epochs": 20,
+      "gradient_clip_norm": 5.0,
+      "groups_per_epoch": 96,
+      "groups_per_update": 1,
+      "hyperparameter_scan": false,
+      "learning_rate": 0.0003,
+      "loss_weights": {
+        "absent_latent_energy": 0.05,
+        "activity": 1.0,
+        "counterfactual_margin": 0.5,
+        "presence": 1.0,
+        "view_consistency": 0.1
+      },
+      "model_architecture": "DACFV3ECST",
+      "one_complete_abc_group_per_step": true,
+      "optimizer": "AdamW",
+      "precision": "FP32",
+      "query_permutation_policy": "sorted dev groups cyclic +1; all source speakers absent from destination mixture",
+      "scheduler": "none",
+      "seed": 2026080606,
+      "threshold": 0.5,
+      "torch_deterministic_algorithms": true,
+      "updates": 1920,
+      "weight_decay": 0.0001
+    },
+    "expected": {
+      "bootstrap_replicates": 2000,
+      "bootstrap_seed_offset": 7001,
+      "checkpoint": "epoch_20_final_only",
+      "counterfactual_margin": 0.2,
+      "cublas_workspace_config": ":4096:8",
+      "cudnn_benchmark": false,
+      "cudnn_deterministic": true,
+      "dev_evaluation_count": 1,
+      "early_stop": false,
+      "epochs": 20,
+      "gradient_clip_norm": 5.0,
+      "groups_per_epoch": 96,
+      "groups_per_update": 1,
+      "hyperparameter_scan": false,
+      "learning_rate": 0.0003,
+      "loss_weights": {
+        "absent_latent_energy": 0.05,
+        "activity": 1.0,
+        "counterfactual_margin": 0.5,
+        "presence": 1.0,
+        "view_consistency": 0.1
+      },
+      "model_architecture": "DACFV3ECST",
+      "one_complete_abc_group_per_step": true,
+      "optimizer": "AdamW",
+      "precision": "FP32",
+      "query_permutation_policy": "sorted dev groups cyclic +1; all source speakers absent from destination mixture",
+      "scheduler": "none",
+      "seed": 2026080606,
+      "threshold": 0.5,
+      "torch_deterministic_algorithms": true,
+      "updates": 1920,
+      "weight_decay": 0.0001
+    },
+    "external_path": "E:/midea_target_asr/code/runs/dacf_v3_training_prereg_v01_20260806.json",
+    "external_sha256": "dac75f5ef4a75d3b39b8328f3ca277c3bef6a4d52df7b049c4b513970ca1e9ee",
+    "external_validated": true,
+    "independent_preregistration_must_match": true,
+    "matches_default_contract": true,
+    "protocol_version": "dacf-v3-mechanism-protocol-v0.2"
+  },
+  "verdict": "implementation-NO-GO",
+  "verdict_scope": {
+    "cer": "not measured",
+    "final_opened": false,
+    "official_negative_rr": "not measured",
+    "qwen_integration": "not run",
+    "rtf": "not measured",
+    "scope": "mechanism-only"
+  }
+}

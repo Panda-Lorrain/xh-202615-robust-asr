@@ -1,0 +1,63 @@
+{
+  "audit": {
+    "mixture_sha256": "bc35f68b17f1b51192431105f2127fff7fcbdca7664af2b09dc069cf06c0c885",
+    "query_npz_sha256": [
+      "50b3f1c41daeb47ebaa9c87dcf5d6da76c6f65aaa397f8ad277fada68abc0fd1",
+      "b3175489f01ff1e1e086f5f8a8de4d6b2ba30cde357df5697e0916f30e7a0649",
+      "2d773ef88987b11137abbf4a2d1035a698f3e5e1692b7bbc1dc29c6f6a720686"
+    ],
+    "qwen_feature_contract": {
+      "dither": 0.0,
+      "feature_size": 128,
+      "hop_length": 160,
+      "n_fft": 400
+    },
+    "qwen_logmel_sha256": "8b281a90df9de7dc399e8fe12c7b2470ebc1e41d9b9ec15dbbb02c932ba41544",
+    "recognition_audio": "E:/midea_target_asr/code/runs/dacf_scale80_20260806/raw/train/recognition/train_mix_0000.wav"
+  },
+  "dataset_a_used": false,
+  "device": "cuda:0",
+  "group_id": "train_mix_0000",
+  "learning_rate": 0.003,
+  "loss_first": 1.4130513668060303,
+  "loss_last": 0.3522922396659851,
+  "presence": {
+    "final_main": [
+      0.0027624655049294233,
+      0.9835594296455383,
+      0.9948741793632507
+    ],
+    "final_view2": [
+      0.0026052005123347044,
+      0.9796628355979919,
+      0.9951494336128235
+    ],
+    "initial_main": [
+      0.43882569670677185,
+      0.4671982526779175,
+      0.4564248323440552
+    ],
+    "initial_view2": [
+      0.43152713775634766,
+      0.44223663210868835,
+      0.4740525782108307
+    ],
+    "swap_equivariance_error": 1.1641532182693481e-09,
+    "swap_indices": [
+      1,
+      0
+    ],
+    "swapped_main": [
+      0.9835594296455383,
+      0.0027624666690826416,
+      0.9948741793632507
+    ]
+  },
+  "runtime_sec": 2.3673194000002695,
+  "schema": "dacf-v3-ecst-g1-v0.1",
+  "seed": 20260806,
+  "trainable_parameters": 428162,
+  "updates": 60,
+  "verdict": "conditional-GO",
+  "verdict_scope": "one-group controllability only; no unseen-speaker, CER, RR, hard-negative, or RTF claim"
+}
