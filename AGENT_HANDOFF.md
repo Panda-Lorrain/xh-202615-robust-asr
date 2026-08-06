@@ -1,5 +1,21 @@
 # AGENT 交接文档 — 美的目标说话人 ASR（XH-202615）
 
+> 📦 **2026-08-06 提交准备线（独立于下方 DACF 研究线）：to_submission 三 gap 修复 + build_submission 一键脚本 + scene_route 开全量产物装配完成 + FAQ 核查（硬件 L20→3090）+ whisper 权重修复。提交 JSON 就绪（Overall≈0.673），duration 待租 3090。**
+>
+> **① FAQ 核查（官方群 2026-08-06）→ memory 已更正**：(a) 评测硬件 = **RTX 3090 24G**（非 L20！[[l20-eval-hardware]] 已全改；Ampere GA102 sm_86，本机 4060 不同代不可外推）；(b) **RR 通过 `avg_rr` 字段提交**（FAQ 第1条，to_submission 已补）；(c) 临时榜(A集)仅供参考不决定入围，**最终入围=B集+提交脚本核查**（官方 3090 跑 B 集核实）→ 脚本须零依赖+batch1+3090干净跑通；(d) 效率20%=时间10%+内存10%；pos错拒=删除错误CER1.0/neg只算RR/外部数据不限（已知坐实）。
+>
+> **② to_submission.py 修 3 gap**（smoke 验证全对）：(1) final_cer 改**累计池** total_errors/total_chars（弃逐句算术平均，用 cer_pool）；(2) 补 **avg_rr** 字段（neg 正确拒识率）；(3) duration 默认读 **total_wall_sec**（端到端含加载，非漏 Qwen 转写的 duration_infer_sec）。
+>
+> **③ build_submission.py（新）**：一键 run_baodi(pos+neg) → to_submission(pos+neg) → 合并单文件 submission_final.json（final_cer 取 pos 累计池 / avg_rr 取 neg / duration=pos wall+neg wall；id 加 pos_/neg_ 前缀避撞键，待主办方确认）。`--skip-infer` 用已有产物装配。
+>
+> **④ scene_route 开全量产物（4060 实测）**：final_cer **0.595**（累计池）/ avg_rr **0.9409**（neg 446/474）/ Overall **≈0.673**（~第8）/ 1838 条 id 唯一 / scene_route 生效 **59%**（pos 双人走 SepFormer）/ duration **2382s**（pos 1455+neg 927，⚠️4060 非 3090 真值）。产物 `code/submission_final.json`（out_*/ 被 gitignore 不入库）。
+>
+> **⑤ 环境修复**：whisper-large-v3-turbo 权重缺失（E 盘空壳，08-05 重建 venv 时中断下载致 enroll_infer qwen fe 加载崩）→ 从 C 盘默认 cache（2026-07-08 完整 1.6GB safetensors）复制到 E:/hf_cache/whisper-large-v3-turbo/（零下载，与 MODEL_VANILLA 对齐，fe 加载验证通过）。enroll_infer qwen 模式只需 fe(preprocessor_config.json) 不加载 ASR 权重。
+>
+> **⑥ 工程教训**：background agent 跑 30min 长任务会被中途回收（pos 跑完 neg 没跑），改用 Bash run_in_background 单进程串行独占；neg 首跑 FileNotFoundError 是 pos 残留进程占 GPU + 并发 neg 抢 8GB 显存所致，清场杀残留 python 独占后 run4 成功。
+>
+> **🎧 待办**：① 租 3090 实测 duration（替换 4060 的 2382s，`run_efficiency_l20.sh` 逻辑通用）+ B 集核查预演 ② 发群问主办方 7 条（id 方案 pos_/neg_ 前缀？/ avg_rr 位置？/ label 词表？/ duration 含加载？/ 3090 CUDA+torch+联网？/ content 归一？/ pos+neg 1个还是2个JSON）③ 打包提交包（代码+权重清单+requirements+部署脚本适配3090+使用说明）。**scene_route 全开是 B 集统一配置（无法分 pos/neg），neg 的耗时+RR 代价已计入 net +0.74，不为 A 榜临时优化 neg。**
+
 > 🔴 **2026-08-06 DACF-v3、v4a all-pairs、v4a anchor-preserving 三个正式机制实现均为 `implementation-NO-GO`；真实进展是逐层排除 q-only 与 query-collapse，下一唯一合理实现为 v4b 多正环境角色轮换。**
 >
 > **研究命题**：固定同一字节级 mixture，只干预 enrollment：`M(A+B)+qA->A`、`+qB->B`、`+qC(absent)->blank`。speaker anchor 只负责 identity/presence/activity，environment anchor 只能做 acoustic adaptation；absent-C 必须包含“干扰人可说完整指令”的真实 hard negative。该组合而非 cross-attn/FiLM 外形才是 DACF 的新增机制。方向总标签仍为 `direction-unresolved`。
