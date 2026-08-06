@@ -16,7 +16,9 @@
 >
 > **🎧 待办**：① 租 3090 实测 duration（替换 4060 的 2382s，`run_efficiency_l20.sh` 逻辑通用）+ B 集核查预演 ② 发群问主办方 7 条（id 方案 pos_/neg_ 前缀？/ avg_rr 位置？/ label 词表？/ duration 含加载？/ 3090 CUDA+torch+联网？/ content 归一？/ pos+neg 1个还是2个JSON）③ 打包提交包（代码+权重清单+requirements+部署脚本适配3090+使用说明）。**scene_route 全开是 B 集统一配置（无法分 pos/neg），neg 的耗时+RR 代价已计入 net +0.74，不为 A 榜临时优化 neg。**
 
-> 🔴 **2026-08-06 DACF-v3、v4a all-pairs、v4a anchor-preserving 三个正式机制实现均为 `implementation-NO-GO`；真实进展是逐层排除 q-only 与 query-collapse，下一唯一合理实现为 v4b 多正环境角色轮换。**
+> 🔴 **2026-08-06 DACF-v3、v4a all-pairs、v4a anchor-preserving、v4b 多正环境 四个正式机制实现均为 `implementation-NO-GO`；真实进展是逐层排除 q-only、query-collapse 与单环境身份 gap。v4b 拆掉 speaker→role 捷径后 train auc 也跌到随机，冻结 Qwen3-mel+CAM++ 特征线就此封口（见下），方向仍 `direction-unresolved`（须学 speaker encoder / 真实域联合训练）。**
+
+> **DACF-v4b 正式结果（诚实多正环境协议，封口冻结特征线）**：train 48 speaker×6 round=96 group、dev 12 未见 speaker=24 group，每人严格 2A+2B+2C 跨环境复用，从协议根上拆掉 v3 的 speaker→role 捷径。复用 v4 关系头（368,786 参<2M）+ v4 目标（activity 鲁棒版 `dacf_v4b_objective`，对 1/240 全活跃 pair 优雅处理不改共享 v4 目标），新写去重-speaker 多正例 all-pairs 批 + 按 destination `mixture_speakers` 重算 presence。预注册 `9ab3199c…` 锁 11 指标 gate 后训 30 epoch/360 update，checkpoint dev 前冻结 SHA 校验通过。**dev presence_auc=`0.516/0.521`、activity=`0.628/0.627`、top2=`0.04/0.00`、permutation_drop=`0.078/0.039`、foreign_rr=`0.43/0.45`，9/11 门 FAIL**（仅 collapsed_query/mixture=`0.500` PASS 反退化）。**决定性证据：train presence_auc 也仅 `0.554/0.550`（随机）**——v3 的 train 0.93 全是捷径，拆掉后冻结 Qwen3-mel+CAM++ 里几乎提不出任何跨 utterance/跨环境成员信号，连训练 speaker 都不行。裁决 **冻结现成特征+小关系头=`implementation-NO-GO`**；方向仍 `direction-unresolved`，下一步须端到端学说话人表征或真实域目标条件化联合训练（审计横幅③）。产物 `code/runs/dacf_v4b_allpairs_v01_20260806/`，代码 `code/experiments/{dacf_v4b_objective,train_dacf_v4b_allpairs}.py`。
 >
 > **研究命题**：固定同一字节级 mixture，只干预 enrollment：`M(A+B)+qA->A`、`+qB->B`、`+qC(absent)->blank`。speaker anchor 只负责 identity/presence/activity，environment anchor 只能做 acoustic adaptation；absent-C 必须包含“干扰人可说完整指令”的真实 hard negative。该组合而非 cross-attn/FiLM 外形才是 DACF 的新增机制。方向总标签仍为 `direction-unresolved`。
 >

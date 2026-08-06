@@ -1,0 +1,73 @@
+{
+  "cache": {
+    "cache_sha256": "369d70bddbc48297aca7691061c46d3a5f09170c2f2ed5d2e71e12af1a5c2894",
+    "contract": {
+      "c_only_queries_optimised": 0,
+      "dataset_a_used": false,
+      "dev_bank_speakers": 12,
+      "dev_groups": 24,
+      "dev_query_positive_max": 4,
+      "dev_query_positive_min": 4,
+      "final_deferred": true,
+      "single_environment_shortcut_removed": true,
+      "train_bank_speakers": 48,
+      "train_groups": 96,
+      "train_query_positive_max": 4,
+      "train_query_positive_min": 4
+    },
+    "features_manifest_sha256": "c4d8f7292ff08b6d9d0b03936df00a7690c3b890e567c48adf357a1a0f2f9939",
+    "report_sha256": "18193210ed53bc2cb63c5aefd2c2a956ef8b8ba799b237c3c6b17ffae7c82160",
+    "root": "E:/midea_target_asr/code/runs/dacf_v4b_features_v01_20260806"
+  },
+  "config": {
+    "bootstrap_replicates": 2000,
+    "device": "auto",
+    "epochs": 30,
+    "grad_clip_norm": 5.0,
+    "groups_per_batch": 8,
+    "hard_foreign_margin": 0.2,
+    "learning_rate": 0.0003,
+    "seed": 2026080617,
+    "weight_decay": 0.0001
+  },
+  "dataset_a_used": false,
+  "gate": {
+    "gated_views": [
+      "view1",
+      "view2"
+    ],
+    "mechanism_gate": {
+      "activity_frame_auc": 0.8,
+      "collapsed_mixture_auc_max": 0.55,
+      "collapsed_query_auc_max": 0.55,
+      "foreign_rr": 0.95,
+      "mixture_permutation_auc_drop": 0.2,
+      "mixture_top2_exact": 0.75,
+      "presence_auc": 0.85,
+      "present_recall": 0.8,
+      "query_response_ci_lower": 0.05,
+      "query_response_mean": 0.2,
+      "query_to_mixture_top1": 0.75
+    },
+    "threshold": 0.5
+  },
+  "model": {
+    "class": "DACFV4Relation",
+    "input_allowlist": [
+      "mixture.input_features",
+      "mixture.feature_attention_mask",
+      "query.enrollment_embedding",
+      "query.enrollment_embedding_view2"
+    ],
+    "parameter_cap": 2000000,
+    "trainable_parameter_count": 368786
+  },
+  "protocol_version": "dacf-v4b-allpairs-mechanism-v0.1",
+  "schema": "dacf-v4b-allpairs-preregistration-v0.1",
+  "source_hashes": {
+    "code/experiments/dacf_v4_objective.py": "02db97eb1fa793043846b35d5b87aa7b7e02252305c41f3576322331251536fc",
+    "code/experiments/dacf_v4_relation.py": "dadfcd535a272e99fecb1668f250c536daa566166856cab563969d05c2b62158",
+    "code/experiments/dacf_v4b_objective.py": "ff53fe6f9afa24997cca0587413a46c7f3e7176ea74aa60999ad09354683ed04",
+    "code/experiments/train_dacf_v4b_allpairs.py": "bcea39ffb7457b232d3b753eb316b6d6c1fb7eca581c5601a36834d67e45e3ef"
+  }
+}

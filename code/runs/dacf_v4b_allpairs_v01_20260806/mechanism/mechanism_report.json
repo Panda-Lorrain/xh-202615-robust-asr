@@ -1,0 +1,559 @@
+{
+  "cache_contract": {
+    "c_only_queries_optimised": 0,
+    "dataset_a_used": false,
+    "dev_bank_speakers": 12,
+    "dev_groups": 24,
+    "dev_query_positive_max": 4,
+    "dev_query_positive_min": 4,
+    "final_deferred": true,
+    "single_environment_shortcut_removed": true,
+    "train_bank_speakers": 48,
+    "train_groups": 96,
+    "train_query_positive_max": 4,
+    "train_query_positive_min": 4
+  },
+  "checkpoint": {
+    "frozen_before_dev": true,
+    "path": "E:/midea_target_asr/code/runs/dacf_v4b_allpairs_v01_20260806/mechanism/final_checkpoint.pt",
+    "sha256_after_dev": "48f8cbc571e9fceaa2d80e7cb5820e9ffdb744ca4f2315c81f9c18c6c8743705",
+    "sha256_before_dev": "48f8cbc571e9fceaa2d80e7cb5820e9ffdb744ca4f2315c81f9c18c6c8743705"
+  },
+  "dataset_a_used": false,
+  "dev": {
+    "bank_speakers": 12,
+    "gate": {
+      "checks": {
+        "view1": {
+          "activity_frame_auc": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.8,
+            "value": 0.6275077297317088
+          },
+          "collapsed_mixture_auc_max": {
+            "passed": true,
+            "relation": "<=",
+            "threshold": 0.55,
+            "value": 0.5
+          },
+          "collapsed_query_auc_max": {
+            "passed": true,
+            "relation": "<=",
+            "threshold": 0.55,
+            "value": 0.5
+          },
+          "foreign_rr": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.95,
+            "value": 0.42916666666666664
+          },
+          "mixture_permutation_auc_drop": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.2,
+            "value": 0.07838541666666671
+          },
+          "mixture_top2_exact": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.75,
+            "value": 0.041666666666666664
+          },
+          "presence_auc": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.85,
+            "value": 0.5159722222222223
+          },
+          "present_recall": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.8,
+            "value": 0.5625
+          },
+          "query_response_ci_lower": {
+            "passed": false,
+            "relation": ">",
+            "threshold": 0.05,
+            "value": -0.03971728235483169
+          },
+          "query_response_mean": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.2,
+            "value": -0.02720428134004275
+          },
+          "query_to_mixture_top1": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.75,
+            "value": 0.16666666666666666
+          }
+        },
+        "view2": {
+          "activity_frame_auc": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.8,
+            "value": 0.6265276232953957
+          },
+          "collapsed_mixture_auc_max": {
+            "passed": true,
+            "relation": "<=",
+            "threshold": 0.55,
+            "value": 0.5
+          },
+          "collapsed_query_auc_max": {
+            "passed": true,
+            "relation": "<=",
+            "threshold": 0.55,
+            "value": 0.5
+          },
+          "foreign_rr": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.95,
+            "value": 0.44583333333333336
+          },
+          "mixture_permutation_auc_drop": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.2,
+            "value": 0.03932291666666671
+          },
+          "mixture_top2_exact": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.75,
+            "value": 0.0
+          },
+          "presence_auc": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.85,
+            "value": 0.5205729166666667
+          },
+          "present_recall": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.8,
+            "value": 0.625
+          },
+          "query_response_ci_lower": {
+            "passed": false,
+            "relation": ">",
+            "threshold": 0.05,
+            "value": -0.03795997073563437
+          },
+          "query_response_mean": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.2,
+            "value": -0.025702187791466713
+          },
+          "query_to_mixture_top1": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.75,
+            "value": 0.16666666666666666
+          }
+        }
+      },
+      "fixed_gate": {
+        "activity_frame_auc": 0.8,
+        "collapsed_mixture_auc_max": 0.55,
+        "collapsed_query_auc_max": 0.55,
+        "foreign_rr": 0.95,
+        "mixture_permutation_auc_drop": 0.2,
+        "mixture_top2_exact": 0.75,
+        "presence_auc": 0.85,
+        "present_recall": 0.8,
+        "query_response_ci_lower": 0.05,
+        "query_response_mean": 0.2,
+        "query_to_mixture_top1": 0.75
+      },
+      "gated_views": [
+        "view1",
+        "view2"
+      ],
+      "passed": false
+    },
+    "view1": {
+      "activity_frame_auc": 0.6275077297317088,
+      "collapsed_mixture_auc": 0.5,
+      "collapsed_query_auc": 0.5,
+      "foreign_pairs": 240,
+      "foreign_rr": 0.42916666666666664,
+      "mixture_permutation_auc": 0.43758680555555557,
+      "mixture_permutation_auc_drop": 0.07838541666666671,
+      "mixture_top2_exact": 0.041666666666666664,
+      "pair_count": 288,
+      "positive_pairs": 48,
+      "presence_auc": 0.5159722222222223,
+      "present_recall": 0.5625,
+      "query_response_ci_95": {
+        "lower": -0.03971728235483169,
+        "replicates": 2000,
+        "upper": -0.016509437110895912
+      },
+      "query_response_mean": -0.02720428134004275,
+      "query_to_mixture_top1": 0.16666666666666666,
+      "threshold": 0.5
+    },
+    "view2": {
+      "activity_frame_auc": 0.6265276232953957,
+      "collapsed_mixture_auc": 0.5,
+      "collapsed_query_auc": 0.5,
+      "foreign_pairs": 240,
+      "foreign_rr": 0.44583333333333336,
+      "mixture_permutation_auc": 0.48125,
+      "mixture_permutation_auc_drop": 0.03932291666666671,
+      "mixture_top2_exact": 0.0,
+      "pair_count": 288,
+      "positive_pairs": 48,
+      "presence_auc": 0.5205729166666667,
+      "present_recall": 0.625,
+      "query_response_ci_95": {
+        "lower": -0.03795997073563437,
+        "replicates": 2000,
+        "upper": -0.01586609429990252
+      },
+      "query_response_mean": -0.025702187791466713,
+      "query_to_mixture_top1": 0.16666666666666666,
+      "threshold": 0.5
+    }
+  },
+  "dev_evaluation_count": 1,
+  "pairing_contract": {
+    "bank_deduplication": "one enrolment identity per speaker",
+    "c_only_queries_optimised": 0,
+    "foreign_pairs_seen": 35384,
+    "positive_pairs_seen": 5760,
+    "same_query_both_labels_per_update": true
+  },
+  "preregistration": {
+    "cache": {
+      "cache_sha256": "369d70bddbc48297aca7691061c46d3a5f09170c2f2ed5d2e71e12af1a5c2894",
+      "contract": {
+        "c_only_queries_optimised": 0,
+        "dataset_a_used": false,
+        "dev_bank_speakers": 12,
+        "dev_groups": 24,
+        "dev_query_positive_max": 4,
+        "dev_query_positive_min": 4,
+        "final_deferred": true,
+        "single_environment_shortcut_removed": true,
+        "train_bank_speakers": 48,
+        "train_groups": 96,
+        "train_query_positive_max": 4,
+        "train_query_positive_min": 4
+      },
+      "features_manifest_sha256": "c4d8f7292ff08b6d9d0b03936df00a7690c3b890e567c48adf357a1a0f2f9939",
+      "report_sha256": "18193210ed53bc2cb63c5aefd2c2a956ef8b8ba799b237c3c6b17ffae7c82160",
+      "root": "E:/midea_target_asr/code/runs/dacf_v4b_features_v01_20260806"
+    },
+    "config": {
+      "bootstrap_replicates": 2000,
+      "device": "auto",
+      "epochs": 30,
+      "grad_clip_norm": 5.0,
+      "groups_per_batch": 8,
+      "hard_foreign_margin": 0.2,
+      "learning_rate": 0.0003,
+      "seed": 2026080617,
+      "weight_decay": 0.0001
+    },
+    "dataset_a_used": false,
+    "gate": {
+      "gated_views": [
+        "view1",
+        "view2"
+      ],
+      "mechanism_gate": {
+        "activity_frame_auc": 0.8,
+        "collapsed_mixture_auc_max": 0.55,
+        "collapsed_query_auc_max": 0.55,
+        "foreign_rr": 0.95,
+        "mixture_permutation_auc_drop": 0.2,
+        "mixture_top2_exact": 0.75,
+        "presence_auc": 0.85,
+        "present_recall": 0.8,
+        "query_response_ci_lower": 0.05,
+        "query_response_mean": 0.2,
+        "query_to_mixture_top1": 0.75
+      },
+      "threshold": 0.5
+    },
+    "model": {
+      "class": "DACFV4Relation",
+      "input_allowlist": [
+        "mixture.input_features",
+        "mixture.feature_attention_mask",
+        "query.enrollment_embedding",
+        "query.enrollment_embedding_view2"
+      ],
+      "parameter_cap": 2000000,
+      "trainable_parameter_count": 368786
+    },
+    "preregistration_sha256": "9ab3199c8ca15a77b3a46b8446fac7871f77ff08c5051c03e388e2dc76da3f4e",
+    "protocol_version": "dacf-v4b-allpairs-mechanism-v0.1",
+    "schema": "dacf-v4b-allpairs-preregistration-v0.1",
+    "source_hashes": {
+      "code/experiments/dacf_v4_objective.py": "02db97eb1fa793043846b35d5b87aa7b7e02252305c41f3576322331251536fc",
+      "code/experiments/dacf_v4_relation.py": "dadfcd535a272e99fecb1668f250c536daa566166856cab563969d05c2b62158",
+      "code/experiments/dacf_v4b_objective.py": "ff53fe6f9afa24997cca0587413a46c7f3e7176ea74aa60999ad09354683ed04",
+      "code/experiments/train_dacf_v4b_allpairs.py": "bcea39ffb7457b232d3b753eb316b6d6c1fb7eca581c5601a36834d67e45e3ef"
+    }
+  },
+  "protocol_version": "dacf-v4b-allpairs-mechanism-v0.1",
+  "runtime_sec": 215.9610257000022,
+  "schema": "dacf-v4b-allpairs-report-v0.1",
+  "train_diagnostic": {
+    "bank_speakers": 48,
+    "gate": {
+      "checks": {
+        "view1": {
+          "activity_frame_auc": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.8,
+            "value": 0.6499305768454483
+          },
+          "collapsed_mixture_auc_max": {
+            "passed": true,
+            "relation": "<=",
+            "threshold": 0.55,
+            "value": 0.5
+          },
+          "collapsed_query_auc_max": {
+            "passed": true,
+            "relation": "<=",
+            "threshold": 0.55,
+            "value": 0.5
+          },
+          "foreign_rr": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.95,
+            "value": 0.3942481884057971
+          },
+          "mixture_permutation_auc_drop": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.2,
+            "value": 0.06383333805102659
+          },
+          "mixture_top2_exact": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.75,
+            "value": 0.0
+          },
+          "presence_auc": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.85,
+            "value": 0.5543590306083938
+          },
+          "present_recall": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.8,
+            "value": 0.6875
+          },
+          "query_response_ci_lower": {
+            "passed": false,
+            "relation": ">",
+            "threshold": 0.05,
+            "value": -0.05222585574762585
+          },
+          "query_response_mean": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.2,
+            "value": -0.04091133666224778
+          },
+          "query_to_mixture_top1": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.75,
+            "value": 0.041666666666666664
+          }
+        },
+        "view2": {
+          "activity_frame_auc": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.8,
+            "value": 0.6467549349617309
+          },
+          "collapsed_mixture_auc_max": {
+            "passed": true,
+            "relation": "<=",
+            "threshold": 0.55,
+            "value": 0.5
+          },
+          "collapsed_query_auc_max": {
+            "passed": true,
+            "relation": "<=",
+            "threshold": 0.55,
+            "value": 0.5
+          },
+          "foreign_rr": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.95,
+            "value": 0.4110054347826087
+          },
+          "mixture_permutation_auc_drop": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.2,
+            "value": 0.06254481808574885
+          },
+          "mixture_top2_exact": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.75,
+            "value": 0.010416666666666666
+          },
+          "presence_auc": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.85,
+            "value": 0.5498447878925121
+          },
+          "present_recall": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.8,
+            "value": 0.671875
+          },
+          "query_response_ci_lower": {
+            "passed": false,
+            "relation": ">",
+            "threshold": 0.05,
+            "value": -0.053538595636685685
+          },
+          "query_response_mean": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.2,
+            "value": -0.04265437833964825
+          },
+          "query_to_mixture_top1": {
+            "passed": false,
+            "relation": ">=",
+            "threshold": 0.75,
+            "value": 0.0625
+          }
+        }
+      },
+      "fixed_gate": {
+        "activity_frame_auc": 0.8,
+        "collapsed_mixture_auc_max": 0.55,
+        "collapsed_query_auc_max": 0.55,
+        "foreign_rr": 0.95,
+        "mixture_permutation_auc_drop": 0.2,
+        "mixture_top2_exact": 0.75,
+        "presence_auc": 0.85,
+        "present_recall": 0.8,
+        "query_response_ci_lower": 0.05,
+        "query_response_mean": 0.2,
+        "query_to_mixture_top1": 0.75
+      },
+      "gated_views": [
+        "view1",
+        "view2"
+      ],
+      "passed": false
+    },
+    "view1": {
+      "activity_frame_auc": 0.6499305768454483,
+      "collapsed_mixture_auc": 0.5,
+      "collapsed_query_auc": 0.5,
+      "foreign_pairs": 4416,
+      "foreign_rr": 0.3942481884057971,
+      "mixture_permutation_auc": 0.49052569255736717,
+      "mixture_permutation_auc_drop": 0.06383333805102659,
+      "mixture_top2_exact": 0.0,
+      "pair_count": 4608,
+      "positive_pairs": 192,
+      "presence_auc": 0.5543590306083938,
+      "present_recall": 0.6875,
+      "query_response_ci_95": {
+        "lower": -0.05222585574762585,
+        "replicates": 2000,
+        "upper": -0.030768341289755582
+      },
+      "query_response_mean": -0.04091133666224778,
+      "query_to_mixture_top1": 0.041666666666666664,
+      "threshold": 0.5
+    },
+    "view2": {
+      "activity_frame_auc": 0.6467549349617309,
+      "collapsed_mixture_auc": 0.5,
+      "collapsed_query_auc": 0.5,
+      "foreign_pairs": 4416,
+      "foreign_rr": 0.4110054347826087,
+      "mixture_permutation_auc": 0.48729996980676327,
+      "mixture_permutation_auc_drop": 0.06254481808574885,
+      "mixture_top2_exact": 0.010416666666666666,
+      "pair_count": 4608,
+      "positive_pairs": 192,
+      "presence_auc": 0.5498447878925121,
+      "present_recall": 0.671875,
+      "query_response_ci_95": {
+        "lower": -0.053538595636685685,
+        "replicates": 2000,
+        "upper": -0.032254970791594444
+      },
+      "query_response_mean": -0.04265437833964825,
+      "query_to_mixture_top1": 0.0625,
+      "threshold": 0.5
+    }
+  },
+  "training": {
+    "config": {
+      "bootstrap_replicates": 2000,
+      "device": "auto",
+      "epochs": 30,
+      "grad_clip_norm": 5.0,
+      "groups_per_batch": 8,
+      "hard_foreign_margin": 0.2,
+      "learning_rate": 0.0003,
+      "seed": 2026080617,
+      "weight_decay": 0.0001
+    },
+    "device": "cpu",
+    "early_stop": false,
+    "hyperparameter_scan": false,
+    "loss_first": 2.0781101882457733,
+    "loss_last": 1.6028147041797638,
+    "loss_weights": {
+      "absent_latent_energy": 0.02,
+      "foreign_activity": 0.25,
+      "hard_foreign_margin": 0.5,
+      "positive_activity": 1.0,
+      "presence": 1.0,
+      "view_consistency": 0.1
+    },
+    "optimizer": "AdamW",
+    "precision": "FP32",
+    "scheduler": "none",
+    "updates": 360
+  },
+  "verdict": "implementation-NO-GO",
+  "verdict_scope": {
+    "cer": "not measured",
+    "final_opened": false,
+    "official_negative_rr": "not measured",
+    "qwen_integration": "not run",
+    "rtf": "not measured",
+    "same_env_enrollment_caveat": "AISHELL-1 enrolment shares the mixture noise type/RIR class (same_env_enrollment=true); real-domain transfer is unproven.",
+    "scope": "v4b cross-environment all-pairs identity mechanism only",
+    "single_environment_shortcut_removed": true
+  }
+}
