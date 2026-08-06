@@ -1,6 +1,8 @@
 # code/.venv 主推理+评测 venv 依赖(2026-07-08 声明, 修 workflow④ leak#1: cn2an/zhconv 原未声明)
-# 主办方复现: 在 code/.venv 执行  uv pip install -r code/requirements.txt
-# 大件 DiCoW/DiariZen/pyannote 由 REPRO_SETUP.md §1 git clone 管, 不在此列
+# 双 venv 架构: 此文件装进 code/.venv(主: enroll_infer/diar/SepFormer/content_gate/评测);
+#   Qwen3-ASR 转写子进程跑 code/.venv_qwen(只装 qwen-asr + torch cu124, 见 deploy_3090.sh step3)。
+# 主办方复现: 直接 bash code/deploy_3090.sh(幂等建双 venv + 下权重 + 生成 pairs), 不要只手动装一个 venv。
+# 大件 DiCoW/DiariZen submodule 由 deploy_3090.sh step2 git clone 管, 不在此列。
 cn2an==0.5.24            # text_utils.digit_postproc 阿拉伯→中文数字(缺则官方口径CER虚高~0.03)
 zhconv==1.4.3           # text_utils.to_simplified 繁→简(缺则官方口径CER虚高)
 pypinyin==0.55.0        # text_utils.brand_homophone_fix 功能名同音判断(缺则跳过Δ-0.001收益丢, 2026-07-24)
@@ -9,7 +11,7 @@ jiwer==4.0.0            # eval_metrics 旧 cer()(向后兼容, 逐条 jiwer.wer)
 numpy==1.26.4
 soundfile==0.14.0
 librosa==0.10.2.post1
-torch==2.5.1            # CUDA build: 本机 +cu124; 主办方 L20 按 CUDA 驱动选 index-url(见 pytorch.org)
+torch==2.5.1            # CUDA build: 本机 +cu124; 主办方 3090 按 CUDA 驱动选 index-url(见 pytorch.org)
 transformers==4.42.4
 pyarrow==24.0.0          # enroll_infer:38 import 预热(避免 pyannote 扫 sys.path 触发 WinError 6714); 缺则 enroll_infer import 期崩(2026-07-15 审查 leak#2, 本机经 datasets 泄漏故本地能跑, L40 全新 venv 必缺)
 speechbrain==1.0.3       # scene_route_backend.py SepFormer 加载(from speechbrain.inference.separation import SepformerSeparation); 缺则 --scene-route ImportError 整个提交崩(对抗审查 H2, 2026-08-06); MODEL_SEPFORMER 权重见 REPRO_SETUP.md

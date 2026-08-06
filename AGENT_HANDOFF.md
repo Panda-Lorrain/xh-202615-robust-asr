@@ -14,7 +14,7 @@
 >
 > **⑥ 工程教训**：background agent 跑 30min 长任务会被中途回收（pos 跑完 neg 没跑），改用 Bash run_in_background 单进程串行独占；neg 首跑 FileNotFoundError 是 pos 残留进程占 GPU + 并发 neg 抢 8GB 显存所致，清场杀残留 python 独占后 run4 成功。
 >
-> **🎧 待办**：① 租 3090 实测 duration（替换 4060 的 2382s，`run_efficiency_l20.sh` 逻辑通用）+ B 集核查预演 ② 发群问主办方 7 条（id 方案 pos_/neg_ 前缀？/ avg_rr 位置？/ label 词表？/ duration 含加载？/ 3090 CUDA+torch+联网？/ content 归一？/ pos+neg 1个还是2个JSON）③ 打包提交包（代码+权重清单+requirements+部署脚本适配3090+使用说明）。**scene_route 全开是 B 集统一配置（无法分 pos/neg），neg 的耗时+RR 代价已计入 net +0.74，不为 A 榜临时优化 neg。**
+> **🎧 待办**：① 租 3090 实测 duration（替换 4060 的 2382s，`run_efficiency_3090.sh` 直接实测不外推）+ B 集核查预演 ② 发群问主办方 7 条（id 方案 pos_/neg_ 前缀？/ avg_rr 位置？/ label 词表？/ duration 含加载？/ 3090 CUDA+torch+联网？/ content 归一？/ pos+neg 1个还是2个JSON）③ ~~打包提交包~~ ✅(2026-08-06)：脚本正名 deploy_3090/run_efficiency_3090 + 删 L40×1.5 折算 + deploy 补 sepformer 预下 + requirements 双venv注释 + `docs/提交权重清单_2026-08-06.md`（4 运行时权重+双venv架构+部署流程）。**scene_route 全开是 B 集统一配置（无法分 pos/neg），neg 的耗时+RR 代价已计入 net +0.74，不为 A 榜临时优化 neg。**
 
 > 🔴 **2026-08-06 DACF-v3、v4a all-pairs、v4a anchor-preserving、v4b 多正环境 四个正式机制实现均为 `implementation-NO-GO`；真实进展是逐层排除 q-only、query-collapse 与单环境身份 gap。v4b 拆掉 speaker→role 捷径后 train auc 也跌到随机，冻结 Qwen3-mel+CAM++ 特征线就此封口（见下），方向仍 `direction-unresolved`（须学 speaker encoder / 真实域联合训练）。**
 

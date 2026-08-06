@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# L20 效率腿实测一键(默认关 SE, qwen 后端, 全量 batch=1 口径 + 换算; L40 可近似, RTF×1.5)。2026-07-18 阶段0 准备, 2026-07-23 l40→l20 正名。
+# 3090 效率腿实测一键(默认关 SE, qwen 后端, 全量 batch=1 口径)。2026-08-06 FAQ 坐实官方评测硬件=RTX 3090 24G(sm_86); 直接在 3090 实测, 不外推(原 L40×1.5 折算作废)。
 # 用法: 在项目根
-#   SMOKE=1 bash code/run_efficiency_l20.sh   # 冒烟 5 条(确认管线通, ~1min, 强烈建议先跑)
-#   bash code/run_efficiency_l20.sh           # 全量 pos+neg + 换算(~15-30min on L20)
-#   ONLY=pos bash code/run_efficiency_l20.sh  # 只跑 pos
-# 前置: deploy_l20.sh 已跑完。
+#   SMOKE=1 bash code/run_efficiency_3090.sh   # 冒烟 5 条(确认管线通, ~1min, 强烈建议先跑)
+#   bash code/run_efficiency_3090.sh           # 全量 pos+neg(~15-30min on 3090)
+#   ONLY=pos bash code/run_efficiency_3090.sh  # 只跑 pos
+# 前置: deploy_3090.sh 已跑完。
 # 产出: code/out_{pos,neg}_baodi/{timing.json,result.json} + /root/efficiency_*.txt
 set -euo pipefail
 cd "$(dirname "$0")/.." || { echo "[fatal] cd 项目根失败"; exit 1; }
