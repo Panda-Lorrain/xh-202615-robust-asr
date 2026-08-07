@@ -1,0 +1,97 @@
+==============================================================================
+ROOT CAUSE AUDIT v2.2 — SELFCHECK (enrollment-free integrity)
+==============================================================================
+universe: n=1350 uid_sha1=828dd297c8fd1a24af55b2f4cb0adf5b6d7c1c6a
+n_spk dist: {1: 543, 2: 805, 3: 2}
+
+[1] Enrollment-free recomputation assert
+    all_assert_pass = True
+    n_records = 1350, n_fail = 0
+
+[2] n_spk=1 must have global_diar_overlap_ratio == 0 (asserted in [1])
+    n_spk=1 nonzero overlap count = 0  (must be 0)
+
+[3] n_spk=2 manual set-operation cross-check (inclusion-exclusion, 10 cases)
+    uid=cmd_2027 psaf=[94, 88] sum=182 stored_speech=126 re_overlap_IE=56 stored_overlap=56 match=True
+    uid=cmd_2428 psaf=[75, 89] sum=164 stored_speech=164 re_overlap_IE=0 stored_overlap=0 match=True
+    uid=cmd_336 psaf=[14, 153] sum=167 stored_speech=167 re_overlap_IE=0 stored_overlap=0 match=True
+    uid=cmd_2466 psaf=[112, 56] sum=168 stored_speech=112 re_overlap_IE=56 stored_overlap=56 match=True
+    uid=cmd_2571 psaf=[76, 63] sum=139 stored_speech=76 re_overlap_IE=63 stored_overlap=63 match=True
+    uid=cmd_2061 psaf=[49, 40] sum=89 stored_speech=89 re_overlap_IE=0 stored_overlap=0 match=True
+    uid=cmd_2401 psaf=[74, 72] sum=146 stored_speech=90 re_overlap_IE=56 stored_overlap=56 match=True
+    uid=cmd_2551 psaf=[46, 58] sum=104 stored_speech=73 re_overlap_IE=31 stored_overlap=31 match=True
+    uid=cmd_2609 psaf=[40, 44] sum=84 stored_speech=62 re_overlap_IE=22 stored_overlap=22 match=True
+    uid=cmd_2370 psaf=[91, 109] sum=200 stored_speech=112 re_overlap_IE=88 stored_overlap=88 match=True
+    all 10 IE match = True
+
+[4] S+D+I == edit_distance identity (per-sample)
+    all pass = True  (across n=1350 samples)
+
+[5] 20 random samples (enrollment-free view)
+    uid=cmd_64 n_spk=1 psaf=[90] overlap=0 speech=90 global_ratio=0.0000
+    uid=cmd_2903 n_spk=2 psaf=[91, 92] overlap=48 speech=135 global_ratio=0.3556
+    uid=cmd_160 n_spk=1 psaf=[59] overlap=0 speech=59 global_ratio=0.0000
+    uid=cmd_2539 n_spk=2 psaf=[104, 137] overlap=100 speech=141 global_ratio=0.7092
+    uid=cmd_353 n_spk=1 psaf=[110] overlap=0 speech=110 global_ratio=0.0000
+    uid=cmd_2149 n_spk=1 psaf=[59] overlap=0 speech=59 global_ratio=0.0000
+    uid=cmd_148 n_spk=2 psaf=[24, 102] overlap=0 speech=126 global_ratio=0.0000
+    uid=cmd_2351 n_spk=2 psaf=[99, 101] overlap=63 speech=137 global_ratio=0.4599
+    uid=cmd_2826 n_spk=2 psaf=[82, 79] overlap=66 speech=95 global_ratio=0.6947
+    uid=cmd_2282 n_spk=1 psaf=[112] overlap=0 speech=112 global_ratio=0.0000
+    uid=cmd_341 n_spk=1 psaf=[108] overlap=0 speech=108 global_ratio=0.0000
+    uid=cmd_16 n_spk=1 psaf=[69] overlap=0 speech=69 global_ratio=0.0000
+    uid=cmd_2765 n_spk=2 psaf=[86, 95] overlap=2 speech=179 global_ratio=0.0112
+    uid=cmd_303 n_spk=1 psaf=[69] overlap=0 speech=69 global_ratio=0.0000
+    uid=cmd_2057 n_spk=2 psaf=[86, 39] overlap=39 speech=86 global_ratio=0.4535
+    uid=cmd_2824 n_spk=2 psaf=[65, 52] overlap=50 speech=67 global_ratio=0.7463
+    uid=cmd_2568 n_spk=2 psaf=[45, 58] overlap=39 speech=64 global_ratio=0.6094
+    uid=cmd_2000 n_spk=2 psaf=[158, 159] overlap=114 speech=203 global_ratio=0.5616
+    uid=cmd_2669 n_spk=2 psaf=[70, 106] overlap=53 speech=123 global_ratio=0.4309
+    uid=cmd_2750 n_spk=2 psaf=[38, 51] overlap=20 speech=69 global_ratio=0.2899
+
+[6] n_spk=2 internal primary association (enrollment-free)
+    global_overlap_vs_CER: rho=0.17997875552392997, CI=[0.1160, 0.2473], n=805
+    global_overlap_vs_max_sim: rho=-0.11627790860573194, CI=[-0.1827, -0.0420], n=805
+    global_overlap_vs_false_reject: rho=0.10383424774374439, CI=[0.0295, 0.1694], n=805
+
+[7] selected_target_overlap contrast (system-dependent)
+    selected_overlap_vs_CER: rho=0.18350250795616374, CI=[0.1217, 0.2482]
+    selected_overlap_vs_max_sim: rho=-0.13944330646016811, CI=[-0.2032, -0.0707]
+    selected_overlap_vs_false_reject: rho=0.1219020589910677, CI=[0.0506, 0.1868]
+
+[8] Quartile dose table within n_spk=2 (Q1=lowest overlap)
+       Q    n   ov_med   pool_CER  sim_med   frej cyclic  overlong  lowjac
+      Q1  201   0.0038     0.3216   0.3036  0.403  0.000     0.000   0.279
+      Q2  201   0.3314     0.5613   0.2320  0.622  0.005     0.035   0.443
+      Q3  201   0.5495     0.6118   0.2273  0.642  0.000     0.045   0.468
+      Q4  202   0.7210     0.6055   0.2540  0.535  0.000     0.064   0.460
+
+[9] Step n_spk=1 -> n_spk=2 (for context only)
+    n_spk=1: n=543 pooled_CER=0.1014 sim_med=0.3366 overlap_med=0.0000 frej=0.343
+    n_spk=2: n=805 pooled_CER=0.5186 sim_med=0.2521 overlap_med=0.4414 frej=0.550
+    ΔCER(n2-n1) = +0.4173
+
+[10] Stop condition
+     rho_pass = False  (rho=0.17997875552392997)
+     dose_pass = False  (monotonic=False, Q1->Q4 spread=0.2839)
+     STOP_TRIGGERED = True
+     verdict: 主要信号来自多说话人场景阶跃, 而非 overlap continuous dose
+     dose_pattern: Q1->Q2 step=+0.2398, Q2->Q4 spread=0.0504, Q1 near zero=True
+     -> Q1->Q2 large step + Q2-Q4 plateau pattern: CER jumps at 'any overlap presence' (binary) then is flat across Q2-Q4 dose range. This is a threshold/binary-presence pattern, NOT a continuous monotonic dose response.
+
+[Three-tier conclusion]
+OBSERVATION:
+  在 n_spk=2 子集(n=805)内, enrollment-free global_diar_overlap_ratio 与 per-sample CER 的 Spearman rho = 0.1800, bootstrap 95% CI [0.1160, 0.2473]; 点估计 |rho|<0.20 但 CI 上界 0.247 略高于 0.20 (borderline negative, 非强负).
+  四分位 pooled CER Q1->Q4 = [0.3216, 0.5613, 0.6118, 0.6055]; Q1->Q2 step = +0.2398 (Q1 overlap_med=0.0038 近零=基本无重叠), Q2->Q4 spread = 0.0504 (平坦); non-monotonic (Q3->Q4 略降).
+  对照: n_spk=1 -> n_spk=2 pooled CER 0.1014 -> 0.5186 (Δ=+0.4173, speaker-count step 远大于 n_spk=2 内 dose)..
+INFERENCE:
+  n_spk=2 内 continuous overlap DOSE 与 CER 的连续关联弱 (rho=0.18 borderline): Q1(无重叠)->Q2(有重叠) 有 threshold step, 但 Q2-Q4 剂量段平坦 -> 主要模式是 'any overlap presence' 的二元 threshold 效应, 而非 'more overlap = worse' 的 连续 dose 响应.
+  跨 n_spk=1 -> n_spk=2 的场景阶跃 (ΔCER +0.42) 远大于 n_spk=2 内 Q2-Q4 dose spread (<0.06) -> speaker-count / scene-complexity signal 主导.
+  selected_target_overlap 的 rho (0.184) 与 global_overlap 的 rho (0.180) 几乎相同, 无证据表明 selected '更准确' —— 即使略有差异也应归因 pipeline coupling / target_idx=argmax(sim) 内生性 (selected 计算依赖 target_idx 而 target_idx 依赖 sim)..
+UNRESOLVED:
+  1) DiariZen overlap 测量误差未量化 (frame_hz=50, PVAD-style;
+  真实重叠 start/end 边界可能与 active_count 不一致);
+  2) SNR / babble / target loudness 第三变量未控制 (overlap 高的样本可能 同时 SNR 低/目标音量小, 这是混淆而不是 overlap 的因果证据);
+  3) max_sim 既用于 target_idx 选择 (selected_overlap 内生) 又作为关联变量, 存在 measurement coupling;
+  4) low_ref_jaccard 与 CER 同源 (都依赖 ref), 不作独立机制证据.;
+==============================================================================

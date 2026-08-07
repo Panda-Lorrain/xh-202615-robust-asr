@@ -1,0 +1,602 @@
+{
+  "spec_version": "v2.2",
+  "universe": {
+    "n_records": 1350,
+    "uid_sha1": "828dd297c8fd1a24af55b2f4cb0adf5b6d7c1c6a",
+    "n_spk_distribution": {
+      "1": 543,
+      "2": 805,
+      "3": 2
+    },
+    "thresholds": {
+      "THR_REJECT": 0.27,
+      "OVERLONG_RATIO": 1.6,
+      "LOW_JACCARD": 0.25
+    }
+  },
+  "self_proof": {
+    "all_assert_pass": true,
+    "n_records": 1350,
+    "n_fail": 0,
+    "failures": []
+  },
+  "sdi_identity_assert_pass": true,
+  "manual_set_check_nspk2": [
+    {
+      "uid": "cmd_2027",
+      "n_spk": 2,
+      "per_speaker_active_frames": [
+        94,
+        88
+      ],
+      "sum_per_speaker_active_frames": 182,
+      "stored_global_speech_frames": 126,
+      "recomputed_overlap_via_inclusion_exclusion": 56,
+      "stored_global_overlap_frames": 56,
+      "match": true
+    },
+    {
+      "uid": "cmd_2428",
+      "n_spk": 2,
+      "per_speaker_active_frames": [
+        75,
+        89
+      ],
+      "sum_per_speaker_active_frames": 164,
+      "stored_global_speech_frames": 164,
+      "recomputed_overlap_via_inclusion_exclusion": 0,
+      "stored_global_overlap_frames": 0,
+      "match": true
+    },
+    {
+      "uid": "cmd_336",
+      "n_spk": 2,
+      "per_speaker_active_frames": [
+        14,
+        153
+      ],
+      "sum_per_speaker_active_frames": 167,
+      "stored_global_speech_frames": 167,
+      "recomputed_overlap_via_inclusion_exclusion": 0,
+      "stored_global_overlap_frames": 0,
+      "match": true
+    },
+    {
+      "uid": "cmd_2466",
+      "n_spk": 2,
+      "per_speaker_active_frames": [
+        112,
+        56
+      ],
+      "sum_per_speaker_active_frames": 168,
+      "stored_global_speech_frames": 112,
+      "recomputed_overlap_via_inclusion_exclusion": 56,
+      "stored_global_overlap_frames": 56,
+      "match": true
+    },
+    {
+      "uid": "cmd_2571",
+      "n_spk": 2,
+      "per_speaker_active_frames": [
+        76,
+        63
+      ],
+      "sum_per_speaker_active_frames": 139,
+      "stored_global_speech_frames": 76,
+      "recomputed_overlap_via_inclusion_exclusion": 63,
+      "stored_global_overlap_frames": 63,
+      "match": true
+    },
+    {
+      "uid": "cmd_2061",
+      "n_spk": 2,
+      "per_speaker_active_frames": [
+        49,
+        40
+      ],
+      "sum_per_speaker_active_frames": 89,
+      "stored_global_speech_frames": 89,
+      "recomputed_overlap_via_inclusion_exclusion": 0,
+      "stored_global_overlap_frames": 0,
+      "match": true
+    },
+    {
+      "uid": "cmd_2401",
+      "n_spk": 2,
+      "per_speaker_active_frames": [
+        74,
+        72
+      ],
+      "sum_per_speaker_active_frames": 146,
+      "stored_global_speech_frames": 90,
+      "recomputed_overlap_via_inclusion_exclusion": 56,
+      "stored_global_overlap_frames": 56,
+      "match": true
+    },
+    {
+      "uid": "cmd_2551",
+      "n_spk": 2,
+      "per_speaker_active_frames": [
+        46,
+        58
+      ],
+      "sum_per_speaker_active_frames": 104,
+      "stored_global_speech_frames": 73,
+      "recomputed_overlap_via_inclusion_exclusion": 31,
+      "stored_global_overlap_frames": 31,
+      "match": true
+    },
+    {
+      "uid": "cmd_2609",
+      "n_spk": 2,
+      "per_speaker_active_frames": [
+        40,
+        44
+      ],
+      "sum_per_speaker_active_frames": 84,
+      "stored_global_speech_frames": 62,
+      "recomputed_overlap_via_inclusion_exclusion": 22,
+      "stored_global_overlap_frames": 22,
+      "match": true
+    },
+    {
+      "uid": "cmd_2370",
+      "n_spk": 2,
+      "per_speaker_active_frames": [
+        91,
+        109
+      ],
+      "sum_per_speaker_active_frames": 200,
+      "stored_global_speech_frames": 112,
+      "recomputed_overlap_via_inclusion_exclusion": 88,
+      "stored_global_overlap_frames": 88,
+      "match": true
+    }
+  ],
+  "sample_20_enrollment_free_print": [
+    {
+      "uid": "cmd_64",
+      "n_spk": 1,
+      "per_speaker_active_frames": [
+        90
+      ],
+      "global_overlap_frames": 0,
+      "global_speech_frames": 90,
+      "global_diar_overlap_ratio": 0.0
+    },
+    {
+      "uid": "cmd_2903",
+      "n_spk": 2,
+      "per_speaker_active_frames": [
+        91,
+        92
+      ],
+      "global_overlap_frames": 48,
+      "global_speech_frames": 135,
+      "global_diar_overlap_ratio": 0.35555555555555557
+    },
+    {
+      "uid": "cmd_160",
+      "n_spk": 1,
+      "per_speaker_active_frames": [
+        59
+      ],
+      "global_overlap_frames": 0,
+      "global_speech_frames": 59,
+      "global_diar_overlap_ratio": 0.0
+    },
+    {
+      "uid": "cmd_2539",
+      "n_spk": 2,
+      "per_speaker_active_frames": [
+        104,
+        137
+      ],
+      "global_overlap_frames": 100,
+      "global_speech_frames": 141,
+      "global_diar_overlap_ratio": 0.7092198581560284
+    },
+    {
+      "uid": "cmd_353",
+      "n_spk": 1,
+      "per_speaker_active_frames": [
+        110
+      ],
+      "global_overlap_frames": 0,
+      "global_speech_frames": 110,
+      "global_diar_overlap_ratio": 0.0
+    },
+    {
+      "uid": "cmd_2149",
+      "n_spk": 1,
+      "per_speaker_active_frames": [
+        59
+      ],
+      "global_overlap_frames": 0,
+      "global_speech_frames": 59,
+      "global_diar_overlap_ratio": 0.0
+    },
+    {
+      "uid": "cmd_148",
+      "n_spk": 2,
+      "per_speaker_active_frames": [
+        24,
+        102
+      ],
+      "global_overlap_frames": 0,
+      "global_speech_frames": 126,
+      "global_diar_overlap_ratio": 0.0
+    },
+    {
+      "uid": "cmd_2351",
+      "n_spk": 2,
+      "per_speaker_active_frames": [
+        99,
+        101
+      ],
+      "global_overlap_frames": 63,
+      "global_speech_frames": 137,
+      "global_diar_overlap_ratio": 0.45985401459854014
+    },
+    {
+      "uid": "cmd_2826",
+      "n_spk": 2,
+      "per_speaker_active_frames": [
+        82,
+        79
+      ],
+      "global_overlap_frames": 66,
+      "global_speech_frames": 95,
+      "global_diar_overlap_ratio": 0.6947368421052632
+    },
+    {
+      "uid": "cmd_2282",
+      "n_spk": 1,
+      "per_speaker_active_frames": [
+        112
+      ],
+      "global_overlap_frames": 0,
+      "global_speech_frames": 112,
+      "global_diar_overlap_ratio": 0.0
+    },
+    {
+      "uid": "cmd_341",
+      "n_spk": 1,
+      "per_speaker_active_frames": [
+        108
+      ],
+      "global_overlap_frames": 0,
+      "global_speech_frames": 108,
+      "global_diar_overlap_ratio": 0.0
+    },
+    {
+      "uid": "cmd_16",
+      "n_spk": 1,
+      "per_speaker_active_frames": [
+        69
+      ],
+      "global_overlap_frames": 0,
+      "global_speech_frames": 69,
+      "global_diar_overlap_ratio": 0.0
+    },
+    {
+      "uid": "cmd_2765",
+      "n_spk": 2,
+      "per_speaker_active_frames": [
+        86,
+        95
+      ],
+      "global_overlap_frames": 2,
+      "global_speech_frames": 179,
+      "global_diar_overlap_ratio": 0.0111731843575419
+    },
+    {
+      "uid": "cmd_303",
+      "n_spk": 1,
+      "per_speaker_active_frames": [
+        69
+      ],
+      "global_overlap_frames": 0,
+      "global_speech_frames": 69,
+      "global_diar_overlap_ratio": 0.0
+    },
+    {
+      "uid": "cmd_2057",
+      "n_spk": 2,
+      "per_speaker_active_frames": [
+        86,
+        39
+      ],
+      "global_overlap_frames": 39,
+      "global_speech_frames": 86,
+      "global_diar_overlap_ratio": 0.45348837209302323
+    },
+    {
+      "uid": "cmd_2824",
+      "n_spk": 2,
+      "per_speaker_active_frames": [
+        65,
+        52
+      ],
+      "global_overlap_frames": 50,
+      "global_speech_frames": 67,
+      "global_diar_overlap_ratio": 0.746268656716418
+    },
+    {
+      "uid": "cmd_2568",
+      "n_spk": 2,
+      "per_speaker_active_frames": [
+        45,
+        58
+      ],
+      "global_overlap_frames": 39,
+      "global_speech_frames": 64,
+      "global_diar_overlap_ratio": 0.609375
+    },
+    {
+      "uid": "cmd_2000",
+      "n_spk": 2,
+      "per_speaker_active_frames": [
+        158,
+        159
+      ],
+      "global_overlap_frames": 114,
+      "global_speech_frames": 203,
+      "global_diar_overlap_ratio": 0.5615763546798029
+    },
+    {
+      "uid": "cmd_2669",
+      "n_spk": 2,
+      "per_speaker_active_frames": [
+        70,
+        106
+      ],
+      "global_overlap_frames": 53,
+      "global_speech_frames": 123,
+      "global_diar_overlap_ratio": 0.43089430894308944
+    },
+    {
+      "uid": "cmd_2750",
+      "n_spk": 2,
+      "per_speaker_active_frames": [
+        38,
+        51
+      ],
+      "global_overlap_frames": 20,
+      "global_speech_frames": 69,
+      "global_diar_overlap_ratio": 0.2898550724637681
+    }
+  ],
+  "n_spk2_internal": {
+    "n": 805,
+    "primary_associations_enrollment_free": {
+      "global_overlap_vs_CER": {
+        "x": "global_overlap",
+        "y": "CER",
+        "n": 805,
+        "spearman_rho": 0.17997875552392997,
+        "spearman_p": 2.7393614916259013e-07,
+        "bootstrap_mean_rho": 0.18145023981489578,
+        "bootstrap_ci95_lo": 0.11602913483523251,
+        "bootstrap_ci95_hi": 0.24727471753297803,
+        "n_boot": 1000
+      },
+      "global_overlap_vs_max_sim": {
+        "x": "global_overlap",
+        "y": "max_sim",
+        "n": 805,
+        "spearman_rho": -0.11627790860573194,
+        "spearman_p": 0.000949125220174611,
+        "bootstrap_mean_rho": -0.1153911617802363,
+        "bootstrap_ci95_lo": -0.1826817737363029,
+        "bootstrap_ci95_hi": -0.04203388256410247,
+        "n_boot": 1000
+      },
+      "global_overlap_vs_false_reject": {
+        "x": "global_overlap",
+        "y": "false_reject(indicator thr0.27)",
+        "n": 805,
+        "spearman_rho": 0.10383424774374439,
+        "spearman_p": 0.003183530053858752,
+        "bootstrap_mean_rho": 0.10256510815954568,
+        "bootstrap_ci95_lo": 0.029494210081416335,
+        "bootstrap_ci95_hi": 0.1694326283210683,
+        "n_boot": 1000
+      }
+    },
+    "selected_target_overlap_contrast": {
+      "selected_overlap_vs_CER": {
+        "x": "selected_target_overlap",
+        "y": "CER",
+        "n": 805,
+        "spearman_rho": 0.18350250795616374,
+        "spearman_p": 1.5805407512988147e-07,
+        "bootstrap_mean_rho": 0.18504799816921008,
+        "bootstrap_ci95_lo": 0.12169356347183066,
+        "bootstrap_ci95_hi": 0.24823717234238532,
+        "n_boot": 1000
+      },
+      "selected_overlap_vs_max_sim": {
+        "x": "selected_target_overlap",
+        "y": "max_sim",
+        "n": 805,
+        "spearman_rho": -0.13944330646016811,
+        "spearman_p": 7.198739931117314e-05,
+        "bootstrap_mean_rho": -0.13875505350657782,
+        "bootstrap_ci95_lo": -0.20317403044888208,
+        "bootstrap_ci95_hi": -0.07073804025932083,
+        "n_boot": 1000
+      },
+      "selected_overlap_vs_false_reject": {
+        "x": "selected_target_overlap",
+        "y": "false_reject(indicator thr0.27)",
+        "n": 805,
+        "spearman_rho": 0.1219020589910677,
+        "spearman_p": 0.0005278132520860924,
+        "bootstrap_mean_rho": 0.12080767516336027,
+        "bootstrap_ci95_lo": 0.05063902133197983,
+        "bootstrap_ci95_hi": 0.18676455077614573,
+        "n_boot": 1000
+      }
+    }
+  },
+  "secondary_full_universe": {
+    "global_overlap_vs_CER": {
+      "x": "global_overlap",
+      "y": "CER",
+      "n": 1350,
+      "spearman_rho": 0.43782151053378887,
+      "spearman_p": 2.5278582252512753e-64,
+      "bootstrap_mean_rho": 0.43741235100868636,
+      "bootstrap_ci95_lo": 0.39487796821812154,
+      "bootstrap_ci95_hi": 0.4825288642868099,
+      "n_boot": 1000
+    },
+    "global_overlap_vs_max_sim": {
+      "x": "global_overlap",
+      "y": "max_sim",
+      "n": 1350,
+      "spearman_rho": -0.2563049123128334,
+      "spearman_p": 1.0815262455204716e-21,
+      "bootstrap_mean_rho": -0.25460873928353267,
+      "bootstrap_ci95_lo": -0.303182411092336,
+      "bootstrap_ci95_hi": -0.2054284727681609,
+      "n_boot": 1000
+    },
+    "global_overlap_vs_false_reject": {
+      "x": "global_overlap",
+      "y": "false_reject(indicator thr0.27)",
+      "n": 1350,
+      "spearman_rho": 0.22237787872804232,
+      "spearman_p": 1.3755639011047232e-16,
+      "bootstrap_mean_rho": 0.22079592448872515,
+      "bootstrap_ci95_lo": 0.1694907619188076,
+      "bootstrap_ci95_hi": 0.27412683516628844,
+      "n_boot": 1000
+    }
+  },
+  "step_nspk1_to_nspk2": {
+    "n_spk1": {
+      "n": 543,
+      "pooled_cer": 0.1013719512195122,
+      "total_err": 399,
+      "total_ref": 3936,
+      "max_sim_median": 0.33664366602897644,
+      "global_overlap_median": 0.0,
+      "false_reject_rate": 0.3425414364640884
+    },
+    "n_spk2": {
+      "n": 805,
+      "pooled_cer": 0.5186267348429511,
+      "total_err": 2840,
+      "total_ref": 5476,
+      "max_sim_median": 0.2520938217639923,
+      "global_overlap_median": 0.44144144144144143,
+      "false_reject_rate": 0.5503105590062112
+    },
+    "delta_pooled_cer_n2_minus_n1": 0.4172547836234389
+  },
+  "quartile_dose_table_nspk2": [
+    {
+      "quartile": "Q1",
+      "n": 201,
+      "overlap_range": [
+        0.0,
+        0.1794871794871795
+      ],
+      "overlap_median": 0.003787878787878788,
+      "pooled_cer": 0.3215712383488682,
+      "total_err": 483,
+      "total_ref": 1502,
+      "max_sim_median": 0.30359357595443726,
+      "false_reject_rate": 0.40298507462686567,
+      "cyclic_rate": 0.0,
+      "overlong_rate": 0.0,
+      "low_ref_jaccard_rate": 0.27860696517412936
+    },
+    {
+      "quartile": "Q2",
+      "n": 201,
+      "overlap_range": [
+        0.18811881188118812,
+        0.43636363636363634
+      ],
+      "overlap_median": 0.33136094674556216,
+      "pooled_cer": 0.5613496932515337,
+      "total_err": 732,
+      "total_ref": 1304,
+      "max_sim_median": 0.23195894062519073,
+      "false_reject_rate": 0.6218905472636815,
+      "cyclic_rate": 0.004975124378109453,
+      "overlong_rate": 0.03482587064676617,
+      "low_ref_jaccard_rate": 0.4427860696517413
+    },
+    {
+      "quartile": "Q3",
+      "n": 201,
+      "overlap_range": [
+        0.44144144144144143,
+        0.6352941176470588
+      ],
+      "overlap_median": 0.5495495495495496,
+      "pooled_cer": 0.6117824773413897,
+      "total_err": 810,
+      "total_ref": 1324,
+      "max_sim_median": 0.22733162343502045,
+      "false_reject_rate": 0.6417910447761194,
+      "cyclic_rate": 0.0,
+      "overlong_rate": 0.04477611940298507,
+      "low_ref_jaccard_rate": 0.46766169154228854
+    },
+    {
+      "quartile": "Q4",
+      "n": 202,
+      "overlap_range": [
+        0.6376811594202898,
+        0.9827586206896551
+      ],
+      "overlap_median": 0.7210102201257862,
+      "pooled_cer": 0.6054977711738484,
+      "total_err": 815,
+      "total_ref": 1346,
+      "max_sim_median": 0.2540254145860672,
+      "false_reject_rate": 0.5346534653465347,
+      "cyclic_rate": 0.0,
+      "overlong_rate": 0.06435643564356436,
+      "low_ref_jaccard_rate": 0.4603960396039604
+    }
+  ],
+  "abnormal_nspk2_separate": {
+    "cyclic_rate": 0.0012422360248447205,
+    "overlong_rate": 0.03602484472049689,
+    "low_ref_jaccard_rate": 0.4124223602484472,
+    "note": "low_ref_jaccard uses reference chars; NOT independent of CER, only a descriptive error manifestation. cyclic/overlong are reference-independent and have standalone diagnostic value.",
+    "spearman_rho_global_overlap_vs_cyclic_indicator": -0.01777337097137272,
+    "spearman_rho_global_overlap_vs_overlong_indicator": 0.1314635414129524
+  },
+  "stop_condition": {
+    "primary_rho_threshold_0p20_passes": false,
+    "primary_rho_n2_global_overlap_vs_CER": 0.17997875552392997,
+    "dose_response_monotonic_quartiles": false,
+    "quartile_cer_diffs_Q2_Q1_Q3_Q2_Q4_Q3": [
+      0.23977845490266553,
+      0.050432784089855964,
+      -0.006284706167541287
+    ],
+    "quartile_Q1_to_Q4_spread_abs": 0.2839265328249802,
+    "dose_response_passes": false,
+    "STOP_TRIGGERED": true,
+    "verdict_if_triggered": "主要信号来自多说话人场景阶跃, 而非 overlap continuous dose"
+  },
+  "dose_pattern_diagnostic": {
+    "Q1_to_Q2_step": 0.23977845490266553,
+    "Q2_to_Q4_spread": 0.050432784089855964,
+    "Q1_overlap_median_near_zero": true,
+    "interpretation": "Q1->Q2 large step + Q2-Q4 plateau pattern: CER jumps at 'any overlap presence' (binary) then is flat across Q2-Q4 dose range. This is a threshold/binary-presence pattern, NOT a continuous monotonic dose response."
+  },
+  "three_tier_conclusion": {
+    "observation": "在 n_spk=2 子集(n=805)内, enrollment-free global_diar_overlap_ratio 与 per-sample CER 的 Spearman rho = 0.1800, bootstrap 95% CI [0.1160, 0.2473]; 点估计 |rho|<0.20 但 CI 上界 0.247 略高于 0.20 (borderline negative, 非强负). 四分位 pooled CER Q1->Q4 = [0.3216, 0.5613, 0.6118, 0.6055]; Q1->Q2 step = +0.2398 (Q1 overlap_med=0.0038 近零=基本无重叠), Q2->Q4 spread = 0.0504 (平坦); non-monotonic (Q3->Q4 略降). 对照: n_spk=1 -> n_spk=2 pooled CER 0.1014 -> 0.5186 (Δ=+0.4173, speaker-count step 远大于 n_spk=2 内 dose).",
+    "inference": "n_spk=2 内 continuous overlap DOSE 与 CER 的连续关联弱 (rho=0.18 borderline): Q1(无重叠)->Q2(有重叠) 有 threshold step, 但 Q2-Q4 剂量段平坦 -> 主要模式是 'any overlap presence' 的二元 threshold 效应, 而非 'more overlap = worse' 的 连续 dose 响应. 跨 n_spk=1 -> n_spk=2 的场景阶跃 (ΔCER +0.42) 远大于 n_spk=2 内 Q2-Q4 dose spread (<0.06) -> speaker-count / scene-complexity signal 主导. selected_target_overlap 的 rho (0.184) 与 global_overlap 的 rho (0.180) 几乎相同, 无证据表明 selected '更准确' —— 即使略有差异也应归因 pipeline coupling / target_idx=argmax(sim) 内生性 (selected 计算依赖 target_idx 而 target_idx 依赖 sim).",
+    "unresolved": "1) DiariZen overlap 测量误差未量化 (frame_hz=50, PVAD-style; 真实重叠 start/end 边界可能与 active_count 不一致); 2) SNR / babble / target loudness 第三变量未控制 (overlap 高的样本可能 同时 SNR 低/目标音量小, 这是混淆而不是 overlap 的因果证据); 3) max_sim 既用于 target_idx 选择 (selected_overlap 内生) 又作为关联变量, 存在 measurement coupling; 4) low_ref_jaccard 与 CER 同源 (都依赖 ref), 不作独立机制证据."
+  }
+}

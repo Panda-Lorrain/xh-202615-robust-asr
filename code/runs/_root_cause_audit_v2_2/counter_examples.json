@@ -1,0 +1,186 @@
+{
+  "high_overlap_low_CER_top10": [
+    {
+      "uid": "cmd_2867",
+      "global_overlap_ratio": 0.9230769230769231,
+      "selected_target_overlap_ratio": 0.9230769230769231,
+      "cer_per_sample": 0.0,
+      "max_sim": 0.27762362360954285,
+      "ref_len": 6,
+      "hyp_len": 6
+    },
+    {
+      "uid": "cmd_2994",
+      "global_overlap_ratio": 0.9202898550724637,
+      "selected_target_overlap_ratio": 0.9202898550724637,
+      "cer_per_sample": 0.0,
+      "max_sim": 0.23321664333343506,
+      "ref_len": 10,
+      "hyp_len": 10
+    },
+    {
+      "uid": "cmd_2519",
+      "global_overlap_ratio": 0.9176470588235294,
+      "selected_target_overlap_ratio": 0.9176470588235294,
+      "cer_per_sample": 0.0,
+      "max_sim": 0.2802082598209381,
+      "ref_len": 7,
+      "hyp_len": 7
+    },
+    {
+      "uid": "cmd_2589",
+      "global_overlap_ratio": 0.8984771573604061,
+      "selected_target_overlap_ratio": 1.0,
+      "cer_per_sample": 0.0,
+      "max_sim": 0.2873905897140503,
+      "ref_len": 9,
+      "hyp_len": 9
+    },
+    {
+      "uid": "cmd_2082",
+      "global_overlap_ratio": 0.8979591836734694,
+      "selected_target_overlap_ratio": 1.0,
+      "cer_per_sample": 0.0,
+      "max_sim": 0.3997129201889038,
+      "ref_len": 4,
+      "hyp_len": 4
+    },
+    {
+      "uid": "cmd_2207",
+      "global_overlap_ratio": 0.8787878787878788,
+      "selected_target_overlap_ratio": 0.8787878787878788,
+      "cer_per_sample": 0.0,
+      "max_sim": 0.16355663537979126,
+      "ref_len": 6,
+      "hyp_len": 6
+    },
+    {
+      "uid": "cmd_2447",
+      "global_overlap_ratio": 0.875,
+      "selected_target_overlap_ratio": 0.875,
+      "cer_per_sample": 0.0,
+      "max_sim": 0.24608781933784485,
+      "ref_len": 4,
+      "hyp_len": 4
+    },
+    {
+      "uid": "cmd_2318",
+      "global_overlap_ratio": 0.8736842105263158,
+      "selected_target_overlap_ratio": 0.8736842105263158,
+      "cer_per_sample": 0.0,
+      "max_sim": 0.3674113154411316,
+      "ref_len": 5,
+      "hyp_len": 5
+    },
+    {
+      "uid": "cmd_2493",
+      "global_overlap_ratio": 0.860655737704918,
+      "selected_target_overlap_ratio": 0.8677685950413223,
+      "cer_per_sample": 0.0,
+      "max_sim": 0.23131199181079865,
+      "ref_len": 7,
+      "hyp_len": 7
+    },
+    {
+      "uid": "cmd_2787",
+      "global_overlap_ratio": 0.8547008547008547,
+      "selected_target_overlap_ratio": 1.0,
+      "cer_per_sample": 0.0,
+      "max_sim": 0.2551010847091675,
+      "ref_len": 8,
+      "hyp_len": 8
+    }
+  ],
+  "low_overlap_high_CER_top10": [
+    {
+      "uid": "cmd_2006",
+      "global_overlap_ratio": 0.0,
+      "selected_target_overlap_ratio": 0.0,
+      "cer_per_sample": 1.0,
+      "max_sim": 0.22095856070518494,
+      "ref_len": 3,
+      "hyp_len": 2
+    },
+    {
+      "uid": "cmd_2018",
+      "global_overlap_ratio": 0.0,
+      "selected_target_overlap_ratio": 0.0,
+      "cer_per_sample": 1.6,
+      "max_sim": 0.4806228280067444,
+      "ref_len": 5,
+      "hyp_len": 8
+    },
+    {
+      "uid": "cmd_2084",
+      "global_overlap_ratio": 0.0,
+      "selected_target_overlap_ratio": 0.0,
+      "cer_per_sample": 1.0,
+      "max_sim": 0.3423914611339569,
+      "ref_len": 9,
+      "hyp_len": 7
+    },
+    {
+      "uid": "cmd_2088",
+      "global_overlap_ratio": 0.0,
+      "selected_target_overlap_ratio": 0.0,
+      "cer_per_sample": 1.2,
+      "max_sim": 0.3791658878326416,
+      "ref_len": 10,
+      "hyp_len": 13
+    },
+    {
+      "uid": "cmd_2188",
+      "global_overlap_ratio": 0.0,
+      "selected_target_overlap_ratio": 0.0,
+      "cer_per_sample": 0.8888888888888888,
+      "max_sim": 0.45537659525871277,
+      "ref_len": 9,
+      "hyp_len": 4
+    },
+    {
+      "uid": "cmd_2239",
+      "global_overlap_ratio": 0.0,
+      "selected_target_overlap_ratio": 0.0,
+      "cer_per_sample": 1.0,
+      "max_sim": 0.24075770378112793,
+      "ref_len": 5,
+      "hyp_len": 5
+    },
+    {
+      "uid": "cmd_2283",
+      "global_overlap_ratio": 0.0,
+      "selected_target_overlap_ratio": 0.0,
+      "cer_per_sample": 1.0,
+      "max_sim": 0.1935127079486847,
+      "ref_len": 8,
+      "hyp_len": 2
+    },
+    {
+      "uid": "cmd_2291",
+      "global_overlap_ratio": 0.0,
+      "selected_target_overlap_ratio": 0.0,
+      "cer_per_sample": 1.0,
+      "max_sim": 0.11204396933317184,
+      "ref_len": 10,
+      "hyp_len": 1
+    },
+    {
+      "uid": "cmd_2322",
+      "global_overlap_ratio": 0.0,
+      "selected_target_overlap_ratio": 0.0,
+      "cer_per_sample": 1.0,
+      "max_sim": 0.054712776094675064,
+      "ref_len": 9,
+      "hyp_len": 6
+    },
+    {
+      "uid": "cmd_2347",
+      "global_overlap_ratio": 0.0,
+      "selected_target_overlap_ratio": 0.0,
+      "cer_per_sample": 0.8333333333333334,
+      "max_sim": 0.5333427786827087,
+      "ref_len": 6,
+      "hyp_len": 2
+    }
+  ]
+}
